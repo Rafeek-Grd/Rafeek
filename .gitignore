@@ -1,0 +1,13 @@
+# Visual Studio local settings (always ignore entire folder)
+.vs/
+
+# Build outputs
+bin/
+obj/
+
+# User-specific files
+*.user
+*.suo
+
+# NuGet packages
+packages/

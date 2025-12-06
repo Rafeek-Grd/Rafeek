@@ -1,0 +1,32 @@
+# Build outputs (critical - these cause cross-platform issues!)
+**/bin/
+**/obj/
+
+# Visual Studio files
+.vs/
+*.user
+*.suo
+
+# Git files
+.git/
+.github/
+.gitignore
+
+# IDE settings
+.idea/
+*.swp
+*.swo
+
+# Docker files (no need to copy into the container)
+**/Dockerfile
+**/*.dockerfile
+docker-compose*.yml
+
+# Development files
+*.md
+*.txt
+LICENSE
+
+# OS files
+Thumbs.db
+*.DS_Store
