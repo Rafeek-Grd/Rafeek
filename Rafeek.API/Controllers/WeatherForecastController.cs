@@ -30,13 +30,6 @@ namespace Rafeek.API.Controllers
             .ToArray();
         }
 
-        [HttpGet("greet/{name}")]
-        public IActionResult Greet(string name)
-        {
-            var greeting = $"Hello, {name}! Welcome to the Weather Forecast API.";
-            return Ok(greeting);
-        }
-
         [HttpGet("temperature/{celsius}")]
         public IActionResult ConvertToFahrenheit(int celsius)
         {
