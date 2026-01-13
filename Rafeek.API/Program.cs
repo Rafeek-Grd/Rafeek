@@ -54,7 +54,7 @@ namespace Rafeek.API
             {
                 // Treat controllers without version as the default version
                 options.AssumeDefaultVersionWhenUnspecified = true;
-                options.DefaultApiVersion = new ApiVersion(1, 0); 
+                options.DefaultApiVersion = new ApiVersion(1, 0);
                 options.ReportApiVersions = true;
             });
 
@@ -78,7 +78,7 @@ namespace Rafeek.API
 
             // Configure Swagger with versioning
             builder.Services.ConfigureOptions<ConfigureSwaggerOptions>();
-            
+
             // Configure Swagger
             builder.Services.AddSwaggerGen(options =>
             {
@@ -158,14 +158,14 @@ namespace Rafeek.API
             app.UseSwaggerUI(options =>
             {
                 var provider = app.Services.GetRequiredService<IApiVersionDescriptionProvider>();
-                
+
                 // Order by major, then minor to ensure highest version is first
                 foreach (var description in provider.ApiVersionDescriptions
                                                  .OrderByDescending(d => (d.ApiVersion.MajorVersion, d.ApiVersion.MinorVersion)))
                 {
                     var endpoint = $"/swagger/{description.GroupName}/swagger.json";
                     var name = $"{swaggerDocOptions.Title} {description.GroupName.ToUpperInvariant()}";
-                    
+
                     options.SwaggerEndpoint(endpoint, name);
                 }
             });
@@ -174,7 +174,7 @@ namespace Rafeek.API
             var supportedCultures = new[]
             {
                 new CultureInfo("ar"),
-                new CultureInfo("en") 
+                new CultureInfo("en")
             };
 
             app.UseRequestLocalization(new RequestLocalizationOptions
