@@ -1,8 +1,10 @@
-using Microsoft.AspNetCore.Localization;
+﻿using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
+using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.OpenApi.Models;
 using Rafeek.API.Filters;
+using Rafeek.API.Options;
 using Rafeek.Application;
 using Rafeek.Application.Common.Options;
 using Rafeek.Infrastructure;
@@ -47,60 +49,71 @@ namespace Rafeek.API
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
 
-            // Register API versioning BEFORE Swagger configuration
+            // Register API versioning with proper configuration
             builder.Services.AddApiVersioning(options =>
             {
-                options.AssumeDefaultVersionWhenUnspecified = false;
-                options.DefaultApiVersion = new ApiVersion(1, 0);
+                // Treat controllers without version as the default version
+                options.AssumeDefaultVersionWhenUnspecified = true;
+                options.DefaultApiVersion = new ApiVersion(1, 0); 
                 options.ReportApiVersions = true;
             });
 
             builder.Services.AddVersionedApiExplorer(options =>
             {
-                // Format: "v1", "v2", etc.
                 options.GroupNameFormat = "'v'VVV";
-                // Substitute the version in route URLs where {version:apiVersion} is used.
+                // Substitute the version in route URLs where {version:apiVersion} is used
                 options.SubstituteApiVersionInUrl = true;
             });
 
-            var swaggerDocOptions = new SwaggerDocOptions();
-            builder.Configuration.GetSection("SwaggerDocOptions").Bind(swaggerDocOptions);
+            builder.Services.AddLocalization(options => options.ResourcesPath = "Localization/Resources");
 
+            builder.Services.AddMvc()
+              .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
+              .ConfigureApiBehaviorOptions(options =>
+              {
+                  // Suppress automatic 400 responses - allows custom validation handling
+                  options.SuppressModelStateInvalidFilter = true;
+              });
+
+
+            // Configure Swagger with versioning
+            builder.Services.ConfigureOptions<ConfigureSwaggerOptions>();
+            
             // Configure Swagger
             builder.Services.AddSwaggerGen(options =>
             {
-                var provider = builder.Services.BuildServiceProvider()
-                                               .GetRequiredService<IApiVersionDescriptionProvider>();
-
-                // Use description.GroupName so document names match the UI endpoints
-                foreach (var description in provider.ApiVersionDescriptions)
-                {
-                    options.SwaggerDoc(description.GroupName, new OpenApiInfo
-                    {
-                        Title = swaggerDocOptions.Title,
-                        Version = description.ApiVersion.ToString(),
-                        Description = swaggerDocOptions.Description,
-                        Contact = new OpenApiContact
-                        {
-                            Name = swaggerDocOptions.Organization
-                        }
-                    });
-                }
-
                 options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
-                    Description = "JWT Authorization header using the Bearer scheme.",
+                    Description = "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",
                     Name = "Authorization",
                     In = ParameterLocation.Header,
                     Type = SecuritySchemeType.ApiKey,
                     Scheme = "Bearer"
                 });
 
+                options.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "Bearer"
+                            }
+                        },
+                        Array.Empty<string>()
+                    }
+                });
+
                 options.OperationFilter<AuthorizeCheckOperationFilter>();
 
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-                options.IncludeXmlComments(xmlPath);
+                if (File.Exists(xmlPath))
+                {
+                    options.IncludeXmlComments(xmlPath);
+                }
             });
 
             // Add libraries services
@@ -116,7 +129,7 @@ namespace Rafeek.API
             {
                 options.Preload = true;
                 options.IncludeSubDomains = true;
-                options.MaxAge = TimeSpan.FromDays(1);
+                options.MaxAge = TimeSpan.FromDays(365);
             });
 
             // Configure CORS
@@ -133,28 +146,44 @@ namespace Rafeek.API
 
             #endregion
 
-
             var app = builder.Build();
 
             #region Configure the HTTP request pipeline.
+
+            var provider = app.Services.GetRequiredService<IApiVersionDescriptionProvider>();
+            var swaggerDocOptions = new SwaggerDocOptions();
+            app.Configuration.GetSection("SwaggerDocOptions").Bind(swaggerDocOptions);
 
             app.UseSwagger();
             app.UseSwaggerUI(options =>
             {
                 var provider = app.Services.GetRequiredService<IApiVersionDescriptionProvider>();
-                foreach (var description in provider.ApiVersionDescriptions)
+                
+                Console.WriteLine($"=== SWAGGER UI CONFIGURATION DEBUG ===");
+                Console.WriteLine($"Total versions for UI: {provider.ApiVersionDescriptions.Count()}");
+                
+                // Order by major, then minor to ensure highest version is first
+                foreach (var description in provider.ApiVersionDescriptions
+                                                 .OrderByDescending(d => (d.ApiVersion.MajorVersion, d.ApiVersion.MinorVersion)))
                 {
-                    options.SwaggerEndpoint($"/swagger/{description.GroupName}/swagger.json",
-                                            $"{swaggerDocOptions.Title} {description.GroupName.ToUpperInvariant()}");
+                    var endpoint = $"/swagger/{description.GroupName}/swagger.json";
+                    var name = $"{swaggerDocOptions.Title} {description.GroupName.ToUpperInvariant()}";
+                    
+                    Console.WriteLine($"Adding SwaggerEndpoint: {endpoint} with name: {name}");
+                    
+                    options.SwaggerEndpoint(endpoint, name);
                 }
+                
+                Console.WriteLine($"=== END SWAGGER UI DEBUG ===");
             });
 
+            // Configure localization
             var supportedCultures = new[]
             {
-                new CultureInfo("ar")
+                new CultureInfo("ar"),
+                new CultureInfo("en") 
             };
 
-            // Configure localization
             app.UseRequestLocalization(new RequestLocalizationOptions
             {
                 DefaultRequestCulture = new RequestCulture("ar"),
@@ -168,7 +197,16 @@ namespace Rafeek.API
                 app.UseHttpsRedirection();
             }
 
+            app.UseAuthentication();
+
+            app.UseStaticFiles();
+
+            app.UseRouting();
+
+            app.UseCors("CorsPolicy");
+
             app.UseAuthorization();
+
             app.MapControllers();
 
             #endregion
