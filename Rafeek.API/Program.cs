@@ -1,6 +1,6 @@
-using Asp.Versioning;
-using Asp.Versioning.ApiExplorer;
 using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.OpenApi.Models;
 using Rafeek.API.Filters;
 using Rafeek.Application;
@@ -47,6 +47,22 @@ namespace Rafeek.API
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
 
+            // Register API versioning BEFORE Swagger configuration
+            builder.Services.AddApiVersioning(options =>
+            {
+                options.AssumeDefaultVersionWhenUnspecified = false;
+                options.DefaultApiVersion = new ApiVersion(1, 0);
+                options.ReportApiVersions = true;
+            });
+
+            builder.Services.AddVersionedApiExplorer(options =>
+            {
+                // Format: "v1", "v2", etc.
+                options.GroupNameFormat = "'v'VVV";
+                // Substitute the version in route URLs where {version:apiVersion} is used.
+                options.SubstituteApiVersionInUrl = true;
+            });
+
             var swaggerDocOptions = new SwaggerDocOptions();
             builder.Configuration.GetSection("SwaggerDocOptions").Bind(swaggerDocOptions);
 
@@ -54,14 +70,15 @@ namespace Rafeek.API
             builder.Services.AddSwaggerGen(options =>
             {
                 var provider = builder.Services.BuildServiceProvider()
-                .GetRequiredService<IApiVersionDescriptionProvider>();
+                                               .GetRequiredService<IApiVersionDescriptionProvider>();
 
-                foreach (var version in provider.ApiVersionDescriptions)
+                // Use description.GroupName so document names match the UI endpoints
+                foreach (var description in provider.ApiVersionDescriptions)
                 {
-                    options.SwaggerDoc($"v{version.ApiVersion.MajorVersion}", new OpenApiInfo
+                    options.SwaggerDoc(description.GroupName, new OpenApiInfo
                     {
                         Title = swaggerDocOptions.Title,
-                        Version = version.ApiVersion.ToString(),
+                        Version = description.ApiVersion.ToString(),
                         Description = swaggerDocOptions.Description,
                         Contact = new OpenApiContact
                         {
@@ -94,13 +111,6 @@ namespace Rafeek.API
             // Add options pattern support
             builder.Services.AddOptions();
 
-            builder.Services.AddApiVersioning(options =>
-            {
-                options.AssumeDefaultVersionWhenUnspecified = false;
-                options.DefaultApiVersion = new ApiVersion(1, 0);
-                options.ReportApiVersions = true;
-            });
-
             // Configure HSTS (HTTP Strict Transport Security)
             builder.Services.AddHsts(options =>
             {
@@ -129,7 +139,15 @@ namespace Rafeek.API
             #region Configure the HTTP request pipeline.
 
             app.UseSwagger();
-            app.UseSwaggerUI();
+            app.UseSwaggerUI(options =>
+            {
+                var provider = app.Services.GetRequiredService<IApiVersionDescriptionProvider>();
+                foreach (var description in provider.ApiVersionDescriptions)
+                {
+                    options.SwaggerEndpoint($"/swagger/{description.GroupName}/swagger.json",
+                                            $"{swaggerDocOptions.Title} {description.GroupName.ToUpperInvariant()}");
+                }
+            });
 
             var supportedCultures = new[]
             {
