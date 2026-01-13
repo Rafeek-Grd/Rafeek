@@ -159,9 +159,6 @@ namespace Rafeek.API
             {
                 var provider = app.Services.GetRequiredService<IApiVersionDescriptionProvider>();
                 
-                Console.WriteLine($"=== SWAGGER UI CONFIGURATION DEBUG ===");
-                Console.WriteLine($"Total versions for UI: {provider.ApiVersionDescriptions.Count()}");
-                
                 // Order by major, then minor to ensure highest version is first
                 foreach (var description in provider.ApiVersionDescriptions
                                                  .OrderByDescending(d => (d.ApiVersion.MajorVersion, d.ApiVersion.MinorVersion)))
@@ -169,12 +166,8 @@ namespace Rafeek.API
                     var endpoint = $"/swagger/{description.GroupName}/swagger.json";
                     var name = $"{swaggerDocOptions.Title} {description.GroupName.ToUpperInvariant()}";
                     
-                    Console.WriteLine($"Adding SwaggerEndpoint: {endpoint} with name: {name}");
-                    
                     options.SwaggerEndpoint(endpoint, name);
                 }
-                
-                Console.WriteLine($"=== END SWAGGER UI DEBUG ===");
             });
 
             // Configure localization
