@@ -1,6 +1,7 @@
 using Rafeek.Application;
 using Rafeek.Infrastructure;
 using Rafeek.Persistence;
+using System.Reflection;
 
 namespace Rafeek.API
 {
@@ -9,6 +10,32 @@ namespace Rafeek.API
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            #region Configure Application Configuration
+
+            var env = builder.Environment;
+
+            // Clear and rebuild configuration
+            builder.Configuration.Sources.Clear();
+
+            builder.Configuration.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: true);
+
+            if (env.EnvironmentName == "Development" || env.EnvironmentName == "Live")
+            {
+                var appAssembly = Assembly.Load(new AssemblyName(env.ApplicationName));
+                if (appAssembly != null)
+                {
+                    builder.Configuration.AddUserSecrets(appAssembly, optional: true);
+                }
+            }
+
+            builder.Configuration.AddEnvironmentVariables()
+                                 .AddCommandLine(args);
+
+            builder.Services.AddOptions();
+
+            #endregion
 
             #region Add services to DI container.
 
@@ -19,7 +46,7 @@ namespace Rafeek.API
             // Add libraries services
             builder.Services.AddApplication();
             builder.Services.AddInfrastructure();
-            builder.Services.AddPersistence(); 
+            builder.Services.AddPersistence();
 
             #endregion
 
@@ -40,7 +67,7 @@ namespace Rafeek.API
             app.UseAuthorization();
 
 
-            app.MapControllers();  
+            app.MapControllers();
 
             #endregion
 
