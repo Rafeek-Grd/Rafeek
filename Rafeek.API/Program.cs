@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.AspNetCore.Mvc.Razor;
+using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using Rafeek.API.Filters;
 using Rafeek.API.Options;
@@ -124,6 +125,8 @@ namespace Rafeek.API
             // Add options pattern support
             builder.Services.AddOptions();
 
+            builder.Services.Configure<SwaggerOptions>(builder.Configuration.GetSection("SwaggerOptions"));
+
             // Configure HSTS (HTTP Strict Transport Security)
             builder.Services.AddHsts(options =>
             {
@@ -163,7 +166,8 @@ namespace Rafeek.API
                 foreach (var description in provider.ApiVersionDescriptions
                                                  .OrderByDescending(d => (d.ApiVersion.MajorVersion, d.ApiVersion.MinorVersion)))
                 {
-                    var endpoint = $"/swagger/{description.GroupName}/swagger.json";
+                    var swaggerOptions = app.Services.GetRequiredService<IOptions<SwaggerOptions>>().Value;
+                    var endpoint = swaggerOptions.JsonRoute;
                     var name = $"{swaggerDocOptions.Title} {description.GroupName.ToUpperInvariant()}";
 
                     options.SwaggerEndpoint(endpoint, name);

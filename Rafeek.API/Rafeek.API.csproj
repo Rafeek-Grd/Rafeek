@@ -25,11 +25,4 @@
     <Folder Include="Logs\" />
   </ItemGroup>
 
-    <ItemGroup>
-	    <Content Update="appsettings.Live.json">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-	    </Content>
-    </ItemGroup>
-
 </Project>
