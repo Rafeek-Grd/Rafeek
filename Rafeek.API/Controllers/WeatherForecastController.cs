@@ -29,11 +29,5 @@ namespace Rafeek.API.Controllers
             })
             .ToArray();
         }
-
-        [HttpGet("Message")]
-        public IActionResult GetMessage()
-        {
-            return Ok("Hello from WeatherForecastController!");
-        }
     }
 }
