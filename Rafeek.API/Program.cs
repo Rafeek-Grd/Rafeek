@@ -162,14 +162,37 @@ namespace Rafeek.API
             {
                 var provider = app.Services.GetRequiredService<IApiVersionDescriptionProvider>();
 
+                // Read configured route template once
+                var swaggerOptions = app.Services.GetRequiredService<IOptions<SwaggerOptions>>().Value;
+                var jsonRouteTemplate = swaggerOptions?.JsonRoute?.Trim() ?? string.Empty;
+
                 // Order by major, then minor to ensure highest version is first
                 foreach (var description in provider.ApiVersionDescriptions
                                                  .OrderByDescending(d => (d.ApiVersion.MajorVersion, d.ApiVersion.MinorVersion)))
                 {
-                    var swaggerOptions = app.Services.GetRequiredService<IOptions<SwaggerOptions>>().Value;
-                    var endpoint = swaggerOptions.JsonRoute;
-                    var name = $"{swaggerDocOptions.Title} {description.GroupName.ToUpperInvariant()}";
+                    string endpoint;
 
+                    if (!string.IsNullOrEmpty(jsonRouteTemplate))
+                    {
+                        if (jsonRouteTemplate.Contains("{0}"))
+                        {
+                            endpoint = string.Format(jsonRouteTemplate, description.GroupName);
+                        }
+                        else if (jsonRouteTemplate.Contains("{documentName}"))
+                        {
+                            endpoint = jsonRouteTemplate.Replace("{documentName}", description.GroupName);
+                        }
+                        else
+                        {
+                            endpoint = jsonRouteTemplate;
+                        }
+                    }
+                    else
+                    {
+                        endpoint = $"/swagger/{description.GroupName}/swagger.json";
+                    }
+
+                    var name = $"{swaggerDocOptions.Title} {description.GroupName.ToUpperInvariant()}";
                     options.SwaggerEndpoint(endpoint, name);
                 }
             });
