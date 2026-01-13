@@ -175,23 +175,21 @@ namespace Rafeek.API
                     if (!string.IsNullOrEmpty(jsonRouteTemplate))
                     {
                         if (jsonRouteTemplate.Contains("{0}"))
-                        {
                             endpoint = string.Format(jsonRouteTemplate, description.GroupName);
-                        }
                         else if (jsonRouteTemplate.Contains("{documentName}"))
-                        {
                             endpoint = jsonRouteTemplate.Replace("{documentName}", description.GroupName);
-                        }
                         else
-                        {
                             endpoint = jsonRouteTemplate;
-                        }
                     }
                     else
-                    {
                         endpoint = $"/swagger/{description.GroupName}/swagger.json";
-                    }
 
+                    // Normalize: ensure it starts with a leading slash so it becomes absolute to the host root
+                    if (!endpoint.StartsWith("/"))
+                        endpoint = "/" + endpoint;
+
+                    var swaggerDocOptions = new SwaggerDocOptions();
+                    app.Configuration.GetSection("SwaggerDocOptions").Bind(swaggerDocOptions);
                     var name = $"{swaggerDocOptions.Title} {description.GroupName.ToUpperInvariant()}";
                     options.SwaggerEndpoint(endpoint, name);
                 }
