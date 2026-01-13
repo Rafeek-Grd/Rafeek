@@ -27,7 +27,8 @@
 
     <ItemGroup>
 	    <Content Update="appsettings.Live.json">
-		    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
 	    </Content>
     </ItemGroup>
 
