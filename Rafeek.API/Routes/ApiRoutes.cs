@@ -1,4 +1,4 @@
-﻿namespace Rafeek.API.Routes.Version1
+﻿namespace Rafeek.API.Routes
 {
     public static class ApiRoutes
     {
