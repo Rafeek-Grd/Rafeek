@@ -209,6 +209,11 @@ namespace Rafeek.API
                 SupportedUICultures = supportedCultures
             });
 
+            app.UseXContentTypeOptions();
+            app.UseXXssProtection(options => options.EnabledWithBlockMode());
+            app.UseXfo(options => options.SameOrigin());
+            app.UseReferrerPolicy(options => options.NoReferrerWhenDowngrade());
+
             // Only use HTTPS redirection in Development (Railway handles HTTPS at proxy level)
             if (app.Environment.IsDevelopment())
             {
