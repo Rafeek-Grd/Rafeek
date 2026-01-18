@@ -1562,3 +1562,833 @@
 2026-01-18 02:01:00.4430 Trace Opening E:\Rafeek-Graduation\Rafeek\Rafeek.API\bin\Debug\net8.0\logs/all.log with allowFileSharedWriting=False
 2026-01-18 02:01:00.4430 Trace Opening E:\Rafeek-Graduation\Rafeek\Rafeek.API\bin\Debug\net8.0\logs/info.log with allowFileSharedWriting=False
 2026-01-18 02:01:00.4595 Trace Opening E:\Rafeek-Graduation\Rafeek\Rafeek.API\bin\Debug\net8.0\logs/all.log with allowFileSharedWriting=False
+2026-01-18 02:34:41.2464 Debug ScanAssembly('NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c')
+2026-01-18 02:34:41.3266 Debug Found assembly location directory: 'E:\Rafeek-Graduation\Rafeek\Rafeek.API\bin\Debug\net8.0' (NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c)
+2026-01-18 02:34:41.3266 Debug Auto loading based on NLog-Assembly found location: E:\Rafeek-Graduation\Rafeek\Rafeek.API\bin\Debug\net8.0
+2026-01-18 02:34:41.3266 Debug Search for auto loading files in location: E:\Rafeek-Graduation\Rafeek\Rafeek.API\bin\Debug\net8.0
+2026-01-18 02:34:41.3326 Debug Start auto loading, location: E:\Rafeek-Graduation\Rafeek\Rafeek.API\bin\Debug\net8.0
+2026-01-18 02:34:41.3326 Info Auto loading assembly file: E:\Rafeek-Graduation\Rafeek\Rafeek.API\bin\Debug\net8.0\NLog.Extensions.Logging.dll
+2026-01-18 02:34:41.3326 Info Loading assembly file: E:\Rafeek-Graduation\Rafeek\Rafeek.API\bin\Debug\net8.0\NLog.Extensions.Logging.dll
+2026-01-18 02:34:41.3554 Info NLog.Extensions.Logging, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 1.7.4.1610. Product version: 1.7.4+e2bffa9e949fb4760d75aca224e78631c063f087. GlobalAssemblyCache: False
+2026-01-18 02:34:41.3554 Debug ScanAssembly('NLog.Extensions.Logging, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c')
+2026-01-18 02:34:41.3554 Info Auto loading assembly file: E:\Rafeek-Graduation\Rafeek\Rafeek.API\bin\Debug\net8.0\NLog.Extensions.Logging.dll succeeded!
+2026-01-18 02:34:41.3554 Info Auto loading assembly file: E:\Rafeek-Graduation\Rafeek\Rafeek.API\bin\Debug\net8.0\NLog.Web.AspNetCore.dll
+2026-01-18 02:34:41.3554 Info Loading assembly file: E:\Rafeek-Graduation\Rafeek\Rafeek.API\bin\Debug\net8.0\NLog.Web.AspNetCore.dll
+2026-01-18 02:34:41.3634 Info NLog.Web.AspNetCore, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 4.14.0.2042. Product version: 4.14.0+18bbcdbd5bd13b4565c32d72e09502b7ca6c71d4. GlobalAssemblyCache: False
+2026-01-18 02:34:41.3634 Debug ScanAssembly('NLog.Web.AspNetCore, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c')
+2026-01-18 02:34:41.3634 Info Auto loading assembly file: E:\Rafeek-Graduation\Rafeek\Rafeek.API\bin\Debug\net8.0\NLog.Web.AspNetCore.dll succeeded!
+2026-01-18 02:34:41.3634 Trace Assembly 'Microsoft.Extensions.Logging.Abstractions, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60' will be hidden in callsite stacktrace
+2026-01-18 02:34:41.3634 Trace Assembly 'NLog.Web.AspNetCore, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c' will be hidden in callsite stacktrace
+2026-01-18 02:34:41.3634 Trace Assembly 'Microsoft.Extensions.Logging, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60' will be hidden in callsite stacktrace
+2026-01-18 02:34:41.3634 Trace Assembly 'NLog.Extensions.Logging, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c' will be hidden in callsite stacktrace
+2026-01-18 02:34:41.3634 Debug Auto loading done
+2026-01-18 02:34:41.3634 Debug ScanAssembly('NLog.Web.AspNetCore, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c')
+2026-01-18 02:34:41.3931 Debug Loading config from E:\Rafeek-Graduation\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config
+2026-01-18 02:34:41.4097 Info Configuring from an XML element in E:\Rafeek-Graduation\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config...
+2026-01-18 02:34:41.4111 Trace ParseNLogElement
+2026-01-18 02:34:41.4111 Trace ParseNLogConfig
+2026-01-18 02:34:41.4111 Info Message Template Auto Format enabled
+2026-01-18 02:34:41.4302 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2026-01-18 02:34:41.4302 Trace Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2026-01-18 02:34:41.4302 Debug Setting 'NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper.uppercase' to 'true'
+2026-01-18 02:34:41.4302 Trace Wrapping NLog.LayoutRenderers.LevelLayoutRenderer with NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper
+2026-01-18 02:34:41.4302 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2026-01-18 02:34:41.4302 Trace Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2026-01-18 02:34:41.4302 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2026-01-18 02:34:41.4302 Trace Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2026-01-18 02:34:41.4302 Trace  Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2026-01-18 02:34:41.4427 Trace  Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2026-01-18 02:34:41.4427 Trace   Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2026-01-18 02:34:41.4427 Trace   Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2026-01-18 02:34:41.4427 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2026-01-18 02:34:41.4427 Trace Scanning LoggerNameLayoutRenderer 'Layout Renderer: ${logger}'
+2026-01-18 02:34:41.4427 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2026-01-18 02:34:41.4427 Trace Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2026-01-18 02:34:41.4427 Debug Setting 'NLog.Targets.FileTarget.name' to 'allfile'
+2026-01-18 02:34:41.4427 Debug Setting 'NLog.Targets.FileTarget.fileName' to 'logs/all.log'
+2026-01-18 02:34:41.4427 Debug Setting 'NLog.Targets.FileTarget.layout' to '${longdate}|${lowercase:${level}}|${message}'
+2026-01-18 02:34:41.4427 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2026-01-18 02:34:41.4427 Trace Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2026-01-18 02:34:41.4427 Debug Setting 'NLog.LayoutRenderers.Wrappers.LowercaseLayoutRendererWrapper.Inner' to '${level}'
+2026-01-18 02:34:41.4427 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2026-01-18 02:34:41.4427 Trace Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2026-01-18 02:34:41.4427 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2026-01-18 02:34:41.4427 Trace Scanning LowercaseLayoutRendererWrapper 'Layout Renderer: ${lowercase}'
+2026-01-18 02:34:41.4427 Trace  Scanning Property Inner ''${level}'' NLog.Layouts
+2026-01-18 02:34:41.4427 Trace  Scanning SimpleLayout ''${level}''
+2026-01-18 02:34:41.4427 Trace   Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2026-01-18 02:34:41.4427 Trace   Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2026-01-18 02:34:41.4427 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2026-01-18 02:34:41.4427 Trace Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2026-01-18 02:34:41.4427 Info Adding target FileTarget(Name=allfile)
+2026-01-18 02:34:41.4427 Debug Registered target allfile: NLog.Targets.FileTarget
+2026-01-18 02:34:41.4612 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2026-01-18 02:34:41.4612 Trace Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2026-01-18 02:34:41.4612 Debug Setting 'NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper.uppercase' to 'true'
+2026-01-18 02:34:41.4612 Trace Wrapping NLog.LayoutRenderers.LevelLayoutRenderer with NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper
+2026-01-18 02:34:41.4612 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2026-01-18 02:34:41.4612 Trace Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2026-01-18 02:34:41.4612 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2026-01-18 02:34:41.4612 Trace Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2026-01-18 02:34:41.4612 Trace  Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2026-01-18 02:34:41.4612 Trace  Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2026-01-18 02:34:41.4612 Trace   Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2026-01-18 02:34:41.4612 Trace   Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2026-01-18 02:34:41.4612 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2026-01-18 02:34:41.4612 Trace Scanning LoggerNameLayoutRenderer 'Layout Renderer: ${logger}'
+2026-01-18 02:34:41.4612 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2026-01-18 02:34:41.4612 Trace Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2026-01-18 02:34:41.4612 Debug Setting 'NLog.Targets.FileTarget.name' to 'errorLog'
+2026-01-18 02:34:41.4612 Debug Setting 'NLog.Targets.FileTarget.fileName' to 'logs/error.log'
+2026-01-18 02:34:41.4612 Debug Setting 'NLog.Targets.FileTarget.layout' to '${longdate}|${lowercase:${level}}|${message}'
+2026-01-18 02:34:41.4612 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2026-01-18 02:34:41.4612 Trace Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2026-01-18 02:34:41.4612 Debug Setting 'NLog.LayoutRenderers.Wrappers.LowercaseLayoutRendererWrapper.Inner' to '${level}'
+2026-01-18 02:34:41.4612 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2026-01-18 02:34:41.4612 Trace Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2026-01-18 02:34:41.4612 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2026-01-18 02:34:41.4612 Trace Scanning LowercaseLayoutRendererWrapper 'Layout Renderer: ${lowercase}'
+2026-01-18 02:34:41.4612 Trace  Scanning Property Inner ''${level}'' NLog.Layouts
+2026-01-18 02:34:41.4612 Trace  Scanning SimpleLayout ''${level}''
+2026-01-18 02:34:41.4612 Trace   Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2026-01-18 02:34:41.4612 Trace   Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2026-01-18 02:34:41.4612 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2026-01-18 02:34:41.4612 Trace Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2026-01-18 02:34:41.4612 Info Adding target FileTarget(Name=errorLog)
+2026-01-18 02:34:41.4612 Debug Registered target errorLog: NLog.Targets.FileTarget
+2026-01-18 02:34:41.4612 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2026-01-18 02:34:41.4612 Trace Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2026-01-18 02:34:41.4612 Debug Setting 'NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper.uppercase' to 'true'
+2026-01-18 02:34:41.4612 Trace Wrapping NLog.LayoutRenderers.LevelLayoutRenderer with NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper
+2026-01-18 02:34:41.4612 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2026-01-18 02:34:41.4612 Trace Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2026-01-18 02:34:41.4612 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2026-01-18 02:34:41.4612 Trace Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2026-01-18 02:34:41.4612 Trace  Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2026-01-18 02:34:41.4612 Trace  Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2026-01-18 02:34:41.4612 Trace   Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2026-01-18 02:34:41.4612 Trace   Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2026-01-18 02:34:41.4612 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2026-01-18 02:34:41.4612 Trace Scanning LoggerNameLayoutRenderer 'Layout Renderer: ${logger}'
+2026-01-18 02:34:41.4612 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2026-01-18 02:34:41.4612 Trace Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2026-01-18 02:34:41.4612 Debug Setting 'NLog.Targets.FileTarget.name' to 'infoLog'
+2026-01-18 02:34:41.4612 Debug Setting 'NLog.Targets.FileTarget.fileName' to 'logs/info.log'
+2026-01-18 02:34:41.4744 Debug Setting 'NLog.Targets.FileTarget.layout' to '${longdate}|${lowercase:${level}}|${message}'
+2026-01-18 02:34:41.4744 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2026-01-18 02:34:41.4744 Trace Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2026-01-18 02:34:41.4744 Debug Setting 'NLog.LayoutRenderers.Wrappers.LowercaseLayoutRendererWrapper.Inner' to '${level}'
+2026-01-18 02:34:41.4744 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2026-01-18 02:34:41.4744 Trace Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2026-01-18 02:34:41.4744 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2026-01-18 02:34:41.4744 Trace Scanning LowercaseLayoutRendererWrapper 'Layout Renderer: ${lowercase}'
+2026-01-18 02:34:41.4744 Trace  Scanning Property Inner ''${level}'' NLog.Layouts
+2026-01-18 02:34:41.4744 Trace  Scanning SimpleLayout ''${level}''
+2026-01-18 02:34:41.4744 Trace   Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2026-01-18 02:34:41.4744 Trace   Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2026-01-18 02:34:41.4744 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2026-01-18 02:34:41.4744 Trace Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2026-01-18 02:34:41.4744 Info Adding target FileTarget(Name=infoLog)
+2026-01-18 02:34:41.4744 Debug Registered target infoLog: NLog.Targets.FileTarget
+2026-01-18 02:34:41.4744 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2026-01-18 02:34:41.4744 Trace Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2026-01-18 02:34:41.4744 Debug Setting 'NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper.uppercase' to 'true'
+2026-01-18 02:34:41.4744 Trace Wrapping NLog.LayoutRenderers.LevelLayoutRenderer with NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper
+2026-01-18 02:34:41.4744 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2026-01-18 02:34:41.4744 Trace Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2026-01-18 02:34:41.4744 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2026-01-18 02:34:41.4744 Trace Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2026-01-18 02:34:41.4744 Trace  Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2026-01-18 02:34:41.4744 Trace  Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2026-01-18 02:34:41.4744 Trace   Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2026-01-18 02:34:41.4744 Trace   Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2026-01-18 02:34:41.4744 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2026-01-18 02:34:41.4744 Trace Scanning LoggerNameLayoutRenderer 'Layout Renderer: ${logger}'
+2026-01-18 02:34:41.4744 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2026-01-18 02:34:41.4744 Trace Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2026-01-18 02:34:41.4744 Debug Setting 'NLog.Targets.ConsoleTarget.name' to 'lifetimeConsole'
+2026-01-18 02:34:41.4744 Debug Setting 'NLog.Targets.ConsoleTarget.layout' to '${longdate}|${lowercase:${level}}|${message}'
+2026-01-18 02:34:41.4744 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2026-01-18 02:34:41.4744 Trace Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2026-01-18 02:34:41.4744 Debug Setting 'NLog.LayoutRenderers.Wrappers.LowercaseLayoutRendererWrapper.Inner' to '${level}'
+2026-01-18 02:34:41.4744 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2026-01-18 02:34:41.4744 Trace Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2026-01-18 02:34:41.4744 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2026-01-18 02:34:41.4744 Trace Scanning LowercaseLayoutRendererWrapper 'Layout Renderer: ${lowercase}'
+2026-01-18 02:34:41.4744 Trace  Scanning Property Inner ''${level}'' NLog.Layouts
+2026-01-18 02:34:41.4744 Trace  Scanning SimpleLayout ''${level}''
+2026-01-18 02:34:41.4744 Trace   Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2026-01-18 02:34:41.4744 Trace   Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2026-01-18 02:34:41.4744 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2026-01-18 02:34:41.4744 Trace Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2026-01-18 02:34:41.4744 Info Adding target ConsoleTarget(Name=lifetimeConsole)
+2026-01-18 02:34:41.4744 Debug Registered target lifetimeConsole: NLog.Targets.ConsoleTarget
+2026-01-18 02:34:41.4744 Trace ParseRulesElement
+2026-01-18 02:34:41.4919 Debug Setting 'NLog.Filters.ConditionBasedFilter.condition' to 'equals('${aspnet-environment}','Live')'
+2026-01-18 02:34:41.4919 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2026-01-18 02:34:41.4919 Trace Scanning AspNetEnvironmentLayoutRenderer 'Layout Renderer: ${aspnet-environment}'
+2026-01-18 02:34:41.5382 Debug Setting 'NLog.Filters.ConditionBasedFilter.action' to 'Ignore'
+2026-01-18 02:34:41.5382 Debug Setting 'NLog.Filters.ConditionBasedFilter.condition' to 'equals('${aspnet-environment}','Live')'
+2026-01-18 02:34:41.5382 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2026-01-18 02:34:41.5382 Trace Scanning AspNetEnvironmentLayoutRenderer 'Layout Renderer: ${aspnet-environment}'
+2026-01-18 02:34:41.5382 Debug Setting 'NLog.Filters.ConditionBasedFilter.action' to 'Ignore'
+2026-01-18 02:34:41.5382 Debug Setting 'NLog.Filters.ConditionBasedFilter.condition' to 'equals('${aspnet-environment}','Live')'
+2026-01-18 02:34:41.5382 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2026-01-18 02:34:41.5382 Trace Scanning AspNetEnvironmentLayoutRenderer 'Layout Renderer: ${aspnet-environment}'
+2026-01-18 02:34:41.5382 Debug Setting 'NLog.Filters.ConditionBasedFilter.action' to 'Ignore'
+2026-01-18 02:34:41.5523 Debug Watching path 'E:\Rafeek-Graduation\Rafeek\Rafeek.API\bin\Debug\net8.0' filter 'nlog.config' for changes.
+2026-01-18 02:34:41.5523 Debug --- NLog configuration dump ---
+2026-01-18 02:34:41.5523 Debug Targets:
+2026-01-18 02:34:41.5523 Debug File Target[allfile]
+2026-01-18 02:34:41.5523 Debug File Target[errorLog]
+2026-01-18 02:34:41.5523 Debug File Target[infoLog]
+2026-01-18 02:34:41.5523 Debug Console Target[lifetimeConsole]
+2026-01-18 02:34:41.5523 Debug Rules:
+2026-01-18 02:34:41.5523 Debug logNamePattern: (:All) levels: [ Info Warn Error Fatal ] appendTo: [ infoLog allfile ]
+2026-01-18 02:34:41.5523 Debug logNamePattern: (:All) levels: [ Error Fatal ] appendTo: [ errorLog ]
+2026-01-18 02:34:41.5523 Debug logNamePattern: (:All) levels: [ Info Warn Error Fatal ] appendTo: [ lifetimeConsole ]
+2026-01-18 02:34:41.5523 Debug --- End of NLog configuration dump ---
+2026-01-18 02:34:41.5523 Trace FindReachableObject<System.Object>:
+2026-01-18 02:34:41.5523 Trace Scanning LoggingRule 'logNamePattern: (:All) levels: [ Info Warn Error Fatal ] appendTo: [ infoLog allfile ]'
+2026-01-18 02:34:41.5523 Trace  Scanning Property Targets 'System.Collections.Generic.List`1[NLog.Targets.Target]' System.Collections.Generic
+2026-01-18 02:34:41.5523 Trace  Scanning FileTarget 'File Target[infoLog]'
+2026-01-18 02:34:41.5523 Trace   Scanning Property FileName ''logs/info.log'' NLog.Layouts
+2026-01-18 02:34:41.5523 Trace   Scanning SimpleLayout ''logs/info.log''
+2026-01-18 02:34:41.5523 Trace    Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2026-01-18 02:34:41.5523 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2026-01-18 02:34:41.5523 Trace   Scanning Property LineEnding 'Default' NLog.Targets
+2026-01-18 02:34:41.5523 Trace   Scanning Property Layout ''${longdate}|${lowercase:${level}}|${message}'' NLog.Layouts
+2026-01-18 02:34:41.5523 Trace   Scanning SimpleLayout ''${longdate}|${lowercase:${level}}|${message}''
+2026-01-18 02:34:41.5523 Trace    Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2026-01-18 02:34:41.5523 Trace    Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2026-01-18 02:34:41.5523 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2026-01-18 02:34:41.5523 Trace    Scanning LowercaseLayoutRendererWrapper 'Layout Renderer: ${lowercase}'
+2026-01-18 02:34:41.5523 Trace     Scanning Property Inner ''${level}'' NLog.Layouts
+2026-01-18 02:34:41.5523 Trace     Scanning SimpleLayout ''${level}''
+2026-01-18 02:34:41.5523 Trace      Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2026-01-18 02:34:41.5523 Trace      Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2026-01-18 02:34:41.5523 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2026-01-18 02:34:41.5523 Trace    Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2026-01-18 02:34:41.5523 Trace  Scanning FileTarget 'File Target[allfile]'
+2026-01-18 02:34:41.5523 Trace   Scanning Property FileName ''logs/all.log'' NLog.Layouts
+2026-01-18 02:34:41.5523 Trace   Scanning SimpleLayout ''logs/all.log''
+2026-01-18 02:34:41.5523 Trace    Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2026-01-18 02:34:41.5713 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2026-01-18 02:34:41.5713 Trace   Scanning Property LineEnding 'Default' NLog.Targets
+2026-01-18 02:34:41.5713 Trace   Scanning Property Layout ''${longdate}|${lowercase:${level}}|${message}'' NLog.Layouts
+2026-01-18 02:34:41.5713 Trace   Scanning SimpleLayout ''${longdate}|${lowercase:${level}}|${message}''
+2026-01-18 02:34:41.5713 Trace    Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2026-01-18 02:34:41.5713 Trace    Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2026-01-18 02:34:41.5713 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2026-01-18 02:34:41.5713 Trace    Scanning LowercaseLayoutRendererWrapper 'Layout Renderer: ${lowercase}'
+2026-01-18 02:34:41.5713 Trace     Scanning Property Inner ''${level}'' NLog.Layouts
+2026-01-18 02:34:41.5713 Trace     Scanning SimpleLayout ''${level}''
+2026-01-18 02:34:41.5713 Trace      Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2026-01-18 02:34:41.5713 Trace      Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2026-01-18 02:34:41.5713 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2026-01-18 02:34:41.5713 Trace    Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2026-01-18 02:34:41.5713 Trace  Scanning Property ChildRules 'System.Collections.Generic.List`1[NLog.Config.LoggingRule]' System.Collections.Generic
+2026-01-18 02:34:41.5713 Trace  Scanning Property Filters 'System.Collections.Generic.List`1[NLog.Filters.Filter]' System.Collections.Generic
+2026-01-18 02:34:41.5713 Trace  Scanning ConditionBasedFilter 'NLog.Filters.ConditionBasedFilter'
+2026-01-18 02:34:41.5713 Trace   Scanning Property Condition 'equals('${aspnet-environment}', 'Live')' NLog.Conditions
+2026-01-18 02:34:41.5713 Trace   Scanning ConditionMethodExpression 'equals('${aspnet-environment}', 'Live')'
+2026-01-18 02:34:41.5822 Trace    Scanning Property MethodInfo 'Boolean Equals2(System.Object, System.Object)' System.Reflection
+2026-01-18 02:34:41.5822 Trace Scanning LoggingRule 'logNamePattern: (:All) levels: [ Error Fatal ] appendTo: [ errorLog ]'
+2026-01-18 02:34:41.5822 Trace  Scanning Property Targets 'System.Collections.Generic.List`1[NLog.Targets.Target]' System.Collections.Generic
+2026-01-18 02:34:41.5822 Trace  Scanning FileTarget 'File Target[errorLog]'
+2026-01-18 02:34:41.5822 Trace   Scanning Property FileName ''logs/error.log'' NLog.Layouts
+2026-01-18 02:34:41.5822 Trace   Scanning SimpleLayout ''logs/error.log''
+2026-01-18 02:34:41.5822 Trace    Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2026-01-18 02:34:41.5822 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2026-01-18 02:34:41.5822 Trace   Scanning Property LineEnding 'Default' NLog.Targets
+2026-01-18 02:34:41.5822 Trace   Scanning Property Layout ''${longdate}|${lowercase:${level}}|${message}'' NLog.Layouts
+2026-01-18 02:34:41.5822 Trace   Scanning SimpleLayout ''${longdate}|${lowercase:${level}}|${message}''
+2026-01-18 02:34:41.5822 Trace    Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2026-01-18 02:34:41.5822 Trace    Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2026-01-18 02:34:41.5822 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2026-01-18 02:34:41.5822 Trace    Scanning LowercaseLayoutRendererWrapper 'Layout Renderer: ${lowercase}'
+2026-01-18 02:34:41.5822 Trace     Scanning Property Inner ''${level}'' NLog.Layouts
+2026-01-18 02:34:41.5822 Trace     Scanning SimpleLayout ''${level}''
+2026-01-18 02:34:41.5822 Trace      Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2026-01-18 02:34:41.5822 Trace      Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2026-01-18 02:34:41.5822 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2026-01-18 02:34:41.5822 Trace    Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2026-01-18 02:34:41.5822 Trace  Scanning Property ChildRules 'System.Collections.Generic.List`1[NLog.Config.LoggingRule]' System.Collections.Generic
+2026-01-18 02:34:41.5822 Trace  Scanning Property Filters 'System.Collections.Generic.List`1[NLog.Filters.Filter]' System.Collections.Generic
+2026-01-18 02:34:41.5822 Trace  Scanning ConditionBasedFilter 'NLog.Filters.ConditionBasedFilter'
+2026-01-18 02:34:41.5822 Trace   Scanning Property Condition 'equals('${aspnet-environment}', 'Live')' NLog.Conditions
+2026-01-18 02:34:41.5822 Trace   Scanning ConditionMethodExpression 'equals('${aspnet-environment}', 'Live')'
+2026-01-18 02:34:41.5822 Trace    Scanning Property MethodInfo 'Boolean Equals2(System.Object, System.Object)' System.Reflection
+2026-01-18 02:34:41.5822 Trace Scanning LoggingRule 'logNamePattern: (:All) levels: [ Info Warn Error Fatal ] appendTo: [ lifetimeConsole ]'
+2026-01-18 02:34:41.5822 Trace  Scanning Property Targets 'System.Collections.Generic.List`1[NLog.Targets.Target]' System.Collections.Generic
+2026-01-18 02:34:41.5822 Trace  Scanning ConsoleTarget 'Console Target[lifetimeConsole]'
+2026-01-18 02:34:41.5822 Trace   Scanning Property Layout ''${longdate}|${lowercase:${level}}|${message}'' NLog.Layouts
+2026-01-18 02:34:41.5822 Trace   Scanning SimpleLayout ''${longdate}|${lowercase:${level}}|${message}''
+2026-01-18 02:34:41.5822 Trace    Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2026-01-18 02:34:41.5822 Trace    Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2026-01-18 02:34:41.5822 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2026-01-18 02:34:41.5822 Trace    Scanning LowercaseLayoutRendererWrapper 'Layout Renderer: ${lowercase}'
+2026-01-18 02:34:41.5822 Trace     Scanning Property Inner ''${level}'' NLog.Layouts
+2026-01-18 02:34:41.5822 Trace     Scanning SimpleLayout ''${level}''
+2026-01-18 02:34:41.5822 Trace      Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2026-01-18 02:34:41.5822 Trace      Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2026-01-18 02:34:41.5822 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2026-01-18 02:34:41.5822 Trace    Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2026-01-18 02:34:41.5822 Trace  Scanning Property ChildRules 'System.Collections.Generic.List`1[NLog.Config.LoggingRule]' System.Collections.Generic
+2026-01-18 02:34:41.5822 Trace  Scanning Property Filters 'System.Collections.Generic.List`1[NLog.Filters.Filter]' System.Collections.Generic
+2026-01-18 02:34:41.5822 Trace  Scanning ConditionBasedFilter 'NLog.Filters.ConditionBasedFilter'
+2026-01-18 02:34:41.5822 Trace   Scanning Property Condition 'equals('${aspnet-environment}', 'Live')' NLog.Conditions
+2026-01-18 02:34:41.5822 Trace   Scanning ConditionMethodExpression 'equals('${aspnet-environment}', 'Live')'
+2026-01-18 02:34:41.5822 Trace    Scanning Property MethodInfo 'Boolean Equals2(System.Object, System.Object)' System.Reflection
+2026-01-18 02:34:41.5990 Info Validating config: TargetNames=infoLog, allfile, errorLog, lifetimeConsole, ConfigItems=51, FilePath=E:\Rafeek-Graduation\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config
+2026-01-18 02:34:41.5990 Debug Unused target checking is started... Rule Count: 3, Target Count: 4
+2026-01-18 02:34:41.5990 Debug Unused target checking is completed. Total Rule Count: 3, Total Target Count: 4, Unused Target Count: 0
+2026-01-18 02:34:41.5990 Trace Initializing Layout Renderer: ${message}
+2026-01-18 02:34:41.5990 Trace Initializing Layout Renderer: ${literal}
+2026-01-18 02:34:41.5990 Trace Initializing Layout Renderer: ${level}
+2026-01-18 02:34:41.5990 Trace Initializing '${level}'
+2026-01-18 02:34:41.5990 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2026-01-18 02:34:41.5990 Trace Scanning SimpleLayout ''${level}''
+2026-01-18 02:34:41.5990 Trace  Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2026-01-18 02:34:41.5990 Trace  Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2026-01-18 02:34:41.5990 Trace Initializing Layout Renderer: ${lowercase}
+2026-01-18 02:34:41.5990 Trace Initializing Layout Renderer: ${literal}
+2026-01-18 02:34:41.5990 Trace Initializing Layout Renderer: ${longdate}
+2026-01-18 02:34:41.5990 Trace Initializing '${longdate}|${lowercase:${level}}|${message}'
+2026-01-18 02:34:41.6181 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2026-01-18 02:34:41.6181 Trace Scanning SimpleLayout ''${longdate}|${lowercase:${level}}|${message}''
+2026-01-18 02:34:41.6181 Trace  Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2026-01-18 02:34:41.6181 Trace  Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2026-01-18 02:34:41.6181 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2026-01-18 02:34:41.6181 Trace  Scanning LowercaseLayoutRendererWrapper 'Layout Renderer: ${lowercase}'
+2026-01-18 02:34:41.6181 Trace   Scanning Property Inner ''${level}'' NLog.Layouts
+2026-01-18 02:34:41.6181 Trace   Scanning SimpleLayout ''${level}''
+2026-01-18 02:34:41.6181 Trace    Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2026-01-18 02:34:41.6181 Trace    Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2026-01-18 02:34:41.6181 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2026-01-18 02:34:41.6181 Trace  Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2026-01-18 02:34:41.6181 Trace Initializing Console Target[lifetimeConsole]
+2026-01-18 02:34:41.6181 Trace FindReachableObject<NLog.Layouts.Layout>:
+2026-01-18 02:34:41.6316 Trace Scanning ConsoleTarget 'Console Target[lifetimeConsole]'
+2026-01-18 02:34:41.6316 Trace  Scanning Property Layout ''${longdate}|${lowercase:${level}}|${message}'' NLog.Layouts
+2026-01-18 02:34:41.6316 Trace  Scanning SimpleLayout ''${longdate}|${lowercase:${level}}|${message}''
+2026-01-18 02:34:41.6316 Trace Console Target[lifetimeConsole] has 1 layouts
+2026-01-18 02:34:41.6316 Trace Initializing Layout Renderer: ${message}
+2026-01-18 02:34:41.6316 Trace Initializing Layout Renderer: ${literal}
+2026-01-18 02:34:41.6316 Trace Initializing Layout Renderer: ${level}
+2026-01-18 02:34:41.6316 Trace Initializing '${level}'
+2026-01-18 02:34:41.6316 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2026-01-18 02:34:41.6316 Trace Scanning SimpleLayout ''${level}''
+2026-01-18 02:34:41.6316 Trace  Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2026-01-18 02:34:41.6316 Trace  Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2026-01-18 02:34:41.6316 Trace Initializing Layout Renderer: ${lowercase}
+2026-01-18 02:34:41.6316 Trace Initializing Layout Renderer: ${literal}
+2026-01-18 02:34:41.6316 Trace Initializing Layout Renderer: ${longdate}
+2026-01-18 02:34:41.6316 Trace Initializing '${longdate}|${lowercase:${level}}|${message}'
+2026-01-18 02:34:41.6316 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2026-01-18 02:34:41.6316 Trace Scanning SimpleLayout ''${longdate}|${lowercase:${level}}|${message}''
+2026-01-18 02:34:41.6316 Trace  Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2026-01-18 02:34:41.6316 Trace  Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2026-01-18 02:34:41.6316 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2026-01-18 02:34:41.6316 Trace  Scanning LowercaseLayoutRendererWrapper 'Layout Renderer: ${lowercase}'
+2026-01-18 02:34:41.6316 Trace   Scanning Property Inner ''${level}'' NLog.Layouts
+2026-01-18 02:34:41.6316 Trace   Scanning SimpleLayout ''${level}''
+2026-01-18 02:34:41.6316 Trace    Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2026-01-18 02:34:41.6316 Trace    Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2026-01-18 02:34:41.6316 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2026-01-18 02:34:41.6316 Trace  Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2026-01-18 02:34:41.6316 Trace Initializing Layout Renderer: ${literal}
+2026-01-18 02:34:41.6316 Trace Initializing 'logs/error.log'
+2026-01-18 02:34:41.6316 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2026-01-18 02:34:41.6316 Trace Scanning SimpleLayout ''logs/error.log''
+2026-01-18 02:34:41.6316 Trace  Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2026-01-18 02:34:41.6316 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2026-01-18 02:34:41.6316 Trace Initializing File Target[errorLog]
+2026-01-18 02:34:41.6316 Trace FindReachableObject<NLog.Layouts.Layout>:
+2026-01-18 02:34:41.6316 Trace Scanning FileTarget 'File Target[errorLog]'
+2026-01-18 02:34:41.6316 Trace  Scanning Property FileName ''logs/error.log'' NLog.Layouts
+2026-01-18 02:34:41.6316 Trace  Scanning SimpleLayout ''logs/error.log''
+2026-01-18 02:34:41.6316 Trace  Scanning Property LineEnding 'Default' NLog.Targets
+2026-01-18 02:34:41.6316 Trace  Scanning Property Layout ''${longdate}|${lowercase:${level}}|${message}'' NLog.Layouts
+2026-01-18 02:34:41.6316 Trace  Scanning SimpleLayout ''${longdate}|${lowercase:${level}}|${message}''
+2026-01-18 02:34:41.6316 Trace File Target[errorLog] has 2 layouts
+2026-01-18 02:34:41.6316 Trace FileTarget(Name=errorLog): Using appenderFactory: NLog.Internal.FileAppenders.RetryingMultiProcessFileAppender+Factory
+2026-01-18 02:34:41.6316 Trace Initializing Layout Renderer: ${message}
+2026-01-18 02:34:41.6316 Trace Initializing Layout Renderer: ${literal}
+2026-01-18 02:34:41.6316 Trace Initializing Layout Renderer: ${level}
+2026-01-18 02:34:41.6316 Trace Initializing '${level}'
+2026-01-18 02:34:41.6316 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2026-01-18 02:34:41.6316 Trace Scanning SimpleLayout ''${level}''
+2026-01-18 02:34:41.6316 Trace  Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2026-01-18 02:34:41.6316 Trace  Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2026-01-18 02:34:41.6316 Trace Initializing Layout Renderer: ${lowercase}
+2026-01-18 02:34:41.6316 Trace Initializing Layout Renderer: ${literal}
+2026-01-18 02:34:41.6316 Trace Initializing Layout Renderer: ${longdate}
+2026-01-18 02:34:41.6316 Trace Initializing '${longdate}|${lowercase:${level}}|${message}'
+2026-01-18 02:34:41.6316 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2026-01-18 02:34:41.6316 Trace Scanning SimpleLayout ''${longdate}|${lowercase:${level}}|${message}''
+2026-01-18 02:34:41.6316 Trace  Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2026-01-18 02:34:41.6316 Trace  Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2026-01-18 02:34:41.6316 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2026-01-18 02:34:41.6316 Trace  Scanning LowercaseLayoutRendererWrapper 'Layout Renderer: ${lowercase}'
+2026-01-18 02:34:41.6316 Trace   Scanning Property Inner ''${level}'' NLog.Layouts
+2026-01-18 02:34:41.6316 Trace   Scanning SimpleLayout ''${level}''
+2026-01-18 02:34:41.6316 Trace    Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2026-01-18 02:34:41.6316 Trace    Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2026-01-18 02:34:41.6316 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2026-01-18 02:34:41.6316 Trace  Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2026-01-18 02:34:41.6316 Trace Initializing Layout Renderer: ${literal}
+2026-01-18 02:34:41.6316 Trace Initializing 'logs/all.log'
+2026-01-18 02:34:41.6316 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2026-01-18 02:34:41.6316 Trace Scanning SimpleLayout ''logs/all.log''
+2026-01-18 02:34:41.6501 Trace  Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2026-01-18 02:34:41.6501 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2026-01-18 02:34:41.6501 Trace Initializing File Target[allfile]
+2026-01-18 02:34:41.6501 Trace FindReachableObject<NLog.Layouts.Layout>:
+2026-01-18 02:34:41.6501 Trace Scanning FileTarget 'File Target[allfile]'
+2026-01-18 02:34:41.6501 Trace  Scanning Property FileName ''logs/all.log'' NLog.Layouts
+2026-01-18 02:34:41.6501 Trace  Scanning SimpleLayout ''logs/all.log''
+2026-01-18 02:34:41.6501 Trace  Scanning Property LineEnding 'Default' NLog.Targets
+2026-01-18 02:34:41.6501 Trace  Scanning Property Layout ''${longdate}|${lowercase:${level}}|${message}'' NLog.Layouts
+2026-01-18 02:34:41.6501 Trace  Scanning SimpleLayout ''${longdate}|${lowercase:${level}}|${message}''
+2026-01-18 02:34:41.6501 Trace File Target[allfile] has 2 layouts
+2026-01-18 02:34:41.6501 Trace FileTarget(Name=allfile): Using appenderFactory: NLog.Internal.FileAppenders.RetryingMultiProcessFileAppender+Factory
+2026-01-18 02:34:41.6501 Trace Initializing Layout Renderer: ${message}
+2026-01-18 02:34:41.6501 Trace Initializing Layout Renderer: ${literal}
+2026-01-18 02:34:41.6501 Trace Initializing Layout Renderer: ${level}
+2026-01-18 02:34:41.6501 Trace Initializing '${level}'
+2026-01-18 02:34:41.6501 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2026-01-18 02:34:41.6501 Trace Scanning SimpleLayout ''${level}''
+2026-01-18 02:34:41.6501 Trace  Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2026-01-18 02:34:41.6501 Trace  Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2026-01-18 02:34:41.6501 Trace Initializing Layout Renderer: ${lowercase}
+2026-01-18 02:34:41.6501 Trace Initializing Layout Renderer: ${literal}
+2026-01-18 02:34:41.6501 Trace Initializing Layout Renderer: ${longdate}
+2026-01-18 02:34:41.6501 Trace Initializing '${longdate}|${lowercase:${level}}|${message}'
+2026-01-18 02:34:41.6501 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2026-01-18 02:34:41.6501 Trace Scanning SimpleLayout ''${longdate}|${lowercase:${level}}|${message}''
+2026-01-18 02:34:41.6501 Trace  Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2026-01-18 02:34:41.6501 Trace  Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2026-01-18 02:34:41.6501 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2026-01-18 02:34:41.6501 Trace  Scanning LowercaseLayoutRendererWrapper 'Layout Renderer: ${lowercase}'
+2026-01-18 02:34:41.6501 Trace   Scanning Property Inner ''${level}'' NLog.Layouts
+2026-01-18 02:34:41.6501 Trace   Scanning SimpleLayout ''${level}''
+2026-01-18 02:34:41.6501 Trace    Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2026-01-18 02:34:41.6501 Trace    Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2026-01-18 02:34:41.6501 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2026-01-18 02:34:41.6501 Trace  Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2026-01-18 02:34:41.6501 Trace Initializing Layout Renderer: ${literal}
+2026-01-18 02:34:41.6501 Trace Initializing 'logs/info.log'
+2026-01-18 02:34:41.6501 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2026-01-18 02:34:41.6501 Trace Scanning SimpleLayout ''logs/info.log''
+2026-01-18 02:34:41.6501 Trace  Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2026-01-18 02:34:41.6501 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2026-01-18 02:34:41.6501 Trace Initializing File Target[infoLog]
+2026-01-18 02:34:41.6501 Trace FindReachableObject<NLog.Layouts.Layout>:
+2026-01-18 02:34:41.6501 Trace Scanning FileTarget 'File Target[infoLog]'
+2026-01-18 02:34:41.6501 Trace  Scanning Property FileName ''logs/info.log'' NLog.Layouts
+2026-01-18 02:34:41.6501 Trace  Scanning SimpleLayout ''logs/info.log''
+2026-01-18 02:34:41.6501 Trace  Scanning Property LineEnding 'Default' NLog.Targets
+2026-01-18 02:34:41.6501 Trace  Scanning Property Layout ''${longdate}|${lowercase:${level}}|${message}'' NLog.Layouts
+2026-01-18 02:34:41.6501 Trace  Scanning SimpleLayout ''${longdate}|${lowercase:${level}}|${message}''
+2026-01-18 02:34:41.6608 Trace File Target[infoLog] has 2 layouts
+2026-01-18 02:34:41.6608 Trace FileTarget(Name=infoLog): Using appenderFactory: NLog.Internal.FileAppenders.RetryingMultiProcessFileAppender+Factory
+2026-01-18 02:34:41.6608 Debug Targets for Rafeek.API.Program by level:
+2026-01-18 02:34:41.6763 Debug Trace =>
+2026-01-18 02:34:41.6763 Debug Debug =>
+2026-01-18 02:34:41.6763 Debug Info => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:41.6763 Debug Warn => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:41.6763 Debug Error => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:41.6763 Debug Fatal => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:41.6763 Debug ScanAssembly('NLog.Web.AspNetCore, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c')
+2026-01-18 02:34:42.1357 Debug Hide assemblies for callsite
+2026-01-18 02:34:42.1357 Debug ScanAssembly('NLog.Extensions.Logging, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c')
+2026-01-18 02:34:42.1611 Debug Targets for Microsoft.Extensions.Hosting.Internal.ApplicationLifetime by level:
+2026-01-18 02:34:42.1611 Debug Trace =>
+2026-01-18 02:34:42.1611 Debug Debug =>
+2026-01-18 02:34:42.1611 Debug Info => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.1611 Debug Warn => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.1611 Debug Error => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.1667 Debug Fatal => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.1667 Debug Targets for Microsoft.Extensions.Hosting.Internal.Host by level:
+2026-01-18 02:34:42.1667 Debug Trace =>
+2026-01-18 02:34:42.1667 Debug Debug =>
+2026-01-18 02:34:42.1667 Debug Info => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.1667 Debug Warn => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.1667 Debug Error => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.1667 Debug Fatal => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.1779 Debug Targets for Microsoft.Hosting.Lifetime by level:
+2026-01-18 02:34:42.1779 Debug Trace =>
+2026-01-18 02:34:42.1779 Debug Debug =>
+2026-01-18 02:34:42.1779 Debug Info => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.1779 Debug Warn => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.1779 Debug Error => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.1779 Debug Fatal => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.1779 Debug Targets for Microsoft.AspNetCore.Server.IIS.Core.IISHttpServer by level:
+2026-01-18 02:34:42.1779 Debug Trace =>
+2026-01-18 02:34:42.1779 Debug Debug =>
+2026-01-18 02:34:42.1779 Debug Info => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.1779 Debug Warn => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.1779 Debug Error => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.1779 Debug Fatal => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.2035 Debug Targets for Rafeek.API by level:
+2026-01-18 02:34:42.2035 Debug Trace =>
+2026-01-18 02:34:42.2035 Debug Debug =>
+2026-01-18 02:34:42.2035 Debug Info => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.2035 Debug Warn => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.2035 Debug Error => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.2035 Debug Fatal => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.2187 Debug Targets for Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonInputFormatter by level:
+2026-01-18 02:34:42.2187 Debug Trace =>
+2026-01-18 02:34:42.2187 Debug Debug =>
+2026-01-18 02:34:42.2187 Debug Info => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.2187 Debug Warn => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.2187 Debug Error => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.2187 Debug Fatal => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.2713 Debug Targets for Microsoft.AspNetCore.Mvc.Core.Filters.AntiforgeryMiddlewareAuthorizationFilter by level:
+2026-01-18 02:34:42.2713 Debug Trace =>
+2026-01-18 02:34:42.2713 Debug Debug =>
+2026-01-18 02:34:42.2713 Debug Info => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.2713 Debug Warn => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.2713 Debug Error => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.2713 Debug Fatal => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.2713 Debug Targets for Microsoft.AspNetCore.Mvc.ApplicationModels.CompiledPageRouteModelProvider by level:
+2026-01-18 02:34:42.2713 Debug Trace =>
+2026-01-18 02:34:42.2713 Debug Debug =>
+2026-01-18 02:34:42.2713 Debug Info => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.2713 Debug Warn => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.2713 Debug Error => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.2713 Debug Fatal => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.2713 Debug Targets for Microsoft.AspNetCore.Mvc.Razor.Compilation.DefaultViewCompiler by level:
+2026-01-18 02:34:42.2713 Debug Trace =>
+2026-01-18 02:34:42.2713 Debug Debug =>
+2026-01-18 02:34:42.2713 Debug Info => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.2713 Debug Warn => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.2713 Debug Error => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.2713 Debug Fatal => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.3043 Debug Targets for Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine by level:
+2026-01-18 02:34:42.3043 Debug Trace =>
+2026-01-18 02:34:42.3043 Debug Debug =>
+2026-01-18 02:34:42.3043 Debug Info => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.3043 Debug Warn => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.3043 Debug Error => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.3043 Debug Fatal => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.3043 Debug Targets for Microsoft.AspNetCore.Mvc.Infrastructure.DefaultActionDescriptorCollectionProvider by level:
+2026-01-18 02:34:42.3043 Debug Trace =>
+2026-01-18 02:34:42.3043 Debug Debug =>
+2026-01-18 02:34:42.3043 Debug Info => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.3043 Debug Warn => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.3043 Debug Error => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.3043 Debug Fatal => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.4718 Debug Targets for Microsoft.Extensions.Localization.ResourceManagerStringLocalizer by level:
+2026-01-18 02:34:42.4718 Debug Trace =>
+2026-01-18 02:34:42.4718 Debug Debug =>
+2026-01-18 02:34:42.4718 Debug Info => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.4718 Debug Warn => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.4718 Debug Error => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.4718 Debug Fatal => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.4790 Debug Targets for Microsoft.AspNetCore.Mvc.ModelBinding.ModelBinderFactory by level:
+2026-01-18 02:34:42.4790 Debug Trace =>
+2026-01-18 02:34:42.4790 Debug Debug =>
+2026-01-18 02:34:42.4790 Debug Info => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.4790 Debug Warn => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.4790 Debug Error => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.4790 Debug Fatal => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.4790 Debug Targets for Microsoft.AspNetCore.Mvc.ModelBinding.ParameterBinder by level:
+2026-01-18 02:34:42.4790 Debug Trace =>
+2026-01-18 02:34:42.4790 Debug Debug =>
+2026-01-18 02:34:42.4790 Debug Info => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.4790 Debug Warn => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.4790 Debug Error => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.4790 Debug Fatal => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.4790 Debug Targets for Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker by level:
+2026-01-18 02:34:42.4790 Debug Trace =>
+2026-01-18 02:34:42.4790 Debug Debug =>
+2026-01-18 02:34:42.4790 Debug Info => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.4790 Debug Warn => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.4790 Debug Error => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.4790 Debug Fatal => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.4898 Debug Targets for Microsoft.AspNetCore.DataProtection.TypeForwardingActivator by level:
+2026-01-18 02:34:42.4898 Debug Trace =>
+2026-01-18 02:34:42.4898 Debug Debug =>
+2026-01-18 02:34:42.4898 Debug Info => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.4898 Debug Warn => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.4898 Debug Error => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.4898 Debug Fatal => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.4898 Debug Targets for Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager by level:
+2026-01-18 02:34:42.4898 Debug Trace =>
+2026-01-18 02:34:42.4898 Debug Debug =>
+2026-01-18 02:34:42.4898 Debug Info => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.5039 Debug Warn => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.5039 Debug Error => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.5039 Debug Fatal => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.5039 Debug Targets for Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.CngGcmAuthenticatedEncryptorFactory by level:
+2026-01-18 02:34:42.5039 Debug Trace =>
+2026-01-18 02:34:42.5039 Debug Debug =>
+2026-01-18 02:34:42.5039 Debug Info => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.5039 Debug Warn => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.5039 Debug Error => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.5039 Debug Fatal => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.5039 Debug Targets for Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.CngCbcAuthenticatedEncryptorFactory by level:
+2026-01-18 02:34:42.5039 Debug Trace =>
+2026-01-18 02:34:42.5039 Debug Debug =>
+2026-01-18 02:34:42.5039 Debug Info => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.5039 Debug Warn => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.5039 Debug Error => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.5039 Debug Fatal => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.5039 Debug Targets for Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ManagedAuthenticatedEncryptorFactory by level:
+2026-01-18 02:34:42.5039 Debug Trace =>
+2026-01-18 02:34:42.5039 Debug Debug =>
+2026-01-18 02:34:42.5039 Debug Info => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.5039 Debug Warn => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.5039 Debug Error => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.5039 Debug Fatal => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.5039 Debug Targets for Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlEncryptor by level:
+2026-01-18 02:34:42.5039 Debug Trace =>
+2026-01-18 02:34:42.5039 Debug Debug =>
+2026-01-18 02:34:42.5039 Debug Info => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.5039 Debug Warn => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.5039 Debug Error => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.5039 Debug Fatal => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.5039 Debug Targets for Microsoft.AspNetCore.DataProtection.Repositories.FileSystemXmlRepository by level:
+2026-01-18 02:34:42.5039 Debug Trace =>
+2026-01-18 02:34:42.5039 Debug Debug =>
+2026-01-18 02:34:42.5039 Debug Info => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.5039 Debug Warn => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.5039 Debug Error => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.5039 Debug Fatal => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.5200 Debug Targets for Microsoft.AspNetCore.DataProtection.KeyManagement.DefaultKeyResolver by level:
+2026-01-18 02:34:42.5200 Debug Trace =>
+2026-01-18 02:34:42.5200 Debug Debug =>
+2026-01-18 02:34:42.5200 Debug Info => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.5200 Debug Warn => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.5200 Debug Error => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.5200 Debug Fatal => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.5200 Debug Targets for Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingProvider by level:
+2026-01-18 02:34:42.5200 Debug Trace =>
+2026-01-18 02:34:42.5200 Debug Debug =>
+2026-01-18 02:34:42.5200 Debug Info => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.5200 Debug Warn => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.5200 Debug Error => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.5200 Debug Fatal => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.5200 Debug Targets for Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingBasedDataProtector by level:
+2026-01-18 02:34:42.5200 Debug Trace =>
+2026-01-18 02:34:42.5200 Debug Debug =>
+2026-01-18 02:34:42.5200 Debug Info => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.5200 Debug Warn => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.5200 Debug Error => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.5200 Debug Fatal => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.5200 Debug Targets for Microsoft.AspNetCore.Mvc.ViewFeatures.CookieTempDataProvider by level:
+2026-01-18 02:34:42.5200 Debug Trace =>
+2026-01-18 02:34:42.5200 Debug Debug =>
+2026-01-18 02:34:42.5200 Debug Info => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.5200 Debug Warn => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.5200 Debug Error => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.5200 Debug Fatal => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.5200 Debug Targets for Microsoft.AspNetCore.Mvc.RazorPages.Infrastructure.PageActionInvoker by level:
+2026-01-18 02:34:42.5200 Debug Trace =>
+2026-01-18 02:34:42.5200 Debug Debug =>
+2026-01-18 02:34:42.5200 Debug Info => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.5200 Debug Warn => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.5200 Debug Error => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.5200 Debug Fatal => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.5200 Debug Targets for Microsoft.AspNetCore.DataProtection.Internal.DataProtectionHostedService by level:
+2026-01-18 02:34:42.5354 Debug Trace =>
+2026-01-18 02:34:42.5354 Debug Debug =>
+2026-01-18 02:34:42.5354 Debug Info => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.5354 Debug Warn => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.5354 Debug Error => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.5354 Debug Fatal => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.5354 Debug Targets for Microsoft.AspNetCore.Mvc.Routing.DefaultApiVersionRoutePolicy by level:
+2026-01-18 02:34:42.5354 Debug Trace =>
+2026-01-18 02:34:42.5354 Debug Debug =>
+2026-01-18 02:34:42.5354 Debug Info => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.5354 Debug Warn => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.5354 Debug Error => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.5354 Debug Fatal => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.5354 Debug Targets for Microsoft.AspNetCore.Hosting.Diagnostics by level:
+2026-01-18 02:34:42.5354 Debug Trace =>
+2026-01-18 02:34:42.5354 Debug Debug =>
+2026-01-18 02:34:42.5354 Debug Info => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.5354 Debug Warn => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.5354 Debug Error => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.5354 Debug Fatal => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.5796 Debug Targets for Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor by level:
+2026-01-18 02:34:42.5796 Debug Trace =>
+2026-01-18 02:34:42.5796 Debug Debug =>
+2026-01-18 02:34:42.5796 Debug Info => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.5796 Debug Warn => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.5796 Debug Error => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.5796 Debug Fatal => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.6268 Debug Targets for Microsoft.AspNetCore.Routing.EndpointMiddleware by level:
+2026-01-18 02:34:42.6268 Debug Trace =>
+2026-01-18 02:34:42.6268 Debug Debug =>
+2026-01-18 02:34:42.6268 Debug Info => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.6291 Debug Warn => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.6291 Debug Error => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.6291 Debug Fatal => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.6291 Debug Targets for Microsoft.AspNetCore.Authorization.AuthorizationMiddleware by level:
+2026-01-18 02:34:42.6291 Debug Trace =>
+2026-01-18 02:34:42.6291 Debug Debug =>
+2026-01-18 02:34:42.6291 Debug Info => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.6291 Debug Warn => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.6291 Debug Error => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.6291 Debug Fatal => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.6291 Debug Targets for Microsoft.AspNetCore.Cors.Infrastructure.CorsService by level:
+2026-01-18 02:34:42.6291 Debug Trace =>
+2026-01-18 02:34:42.6291 Debug Debug =>
+2026-01-18 02:34:42.6291 Debug Info => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.6291 Debug Warn => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.6291 Debug Error => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.6291 Debug Fatal => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.6291 Debug Targets for Microsoft.AspNetCore.Cors.Infrastructure.CorsMiddleware by level:
+2026-01-18 02:34:42.6291 Debug Trace =>
+2026-01-18 02:34:42.6291 Debug Debug =>
+2026-01-18 02:34:42.6291 Debug Info => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.6291 Debug Warn => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.6446 Debug Error => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.6446 Debug Fatal => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.6446 Debug Targets for Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware by level:
+2026-01-18 02:34:42.6446 Debug Trace =>
+2026-01-18 02:34:42.6446 Debug Debug =>
+2026-01-18 02:34:42.6446 Debug Info => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.6446 Debug Warn => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.6446 Debug Error => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.6446 Debug Fatal => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.6446 Debug Targets for Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware by level:
+2026-01-18 02:34:42.6446 Debug Trace =>
+2026-01-18 02:34:42.6446 Debug Debug =>
+2026-01-18 02:34:42.6446 Debug Info => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.6446 Debug Warn => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.6446 Debug Error => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.6446 Debug Fatal => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.6446 Debug Targets for Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware by level:
+2026-01-18 02:34:42.6446 Debug Trace =>
+2026-01-18 02:34:42.6446 Debug Debug =>
+2026-01-18 02:34:42.6446 Debug Info => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.6446 Debug Warn => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.6446 Debug Error => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.6446 Debug Fatal => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.6446 Debug Targets for Microsoft.AspNetCore.Localization.RequestLocalizationMiddleware by level:
+2026-01-18 02:34:42.6446 Debug Trace =>
+2026-01-18 02:34:42.6446 Debug Debug =>
+2026-01-18 02:34:42.6446 Debug Info => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.6446 Debug Warn => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.6446 Debug Error => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.6446 Debug Fatal => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.6887 Debug Targets for Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware by level:
+2026-01-18 02:34:42.6887 Debug Trace =>
+2026-01-18 02:34:42.6887 Debug Debug =>
+2026-01-18 02:34:42.6887 Debug Info => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.6887 Debug Warn => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.6887 Debug Error => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.6887 Debug Fatal => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.6887 Debug Targets for Microsoft.AspNetCore.HostFiltering.HostFilteringMiddleware by level:
+2026-01-18 02:34:42.6887 Debug Trace =>
+2026-01-18 02:34:42.6918 Debug Debug =>
+2026-01-18 02:34:42.6918 Debug Info => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.6918 Debug Warn => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.6918 Debug Error => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.6918 Debug Fatal => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.6918 Debug Targets for Microsoft.WebTools.BrowserLink.Net.BrowserLinkMiddleware by level:
+2026-01-18 02:34:42.6918 Debug Trace =>
+2026-01-18 02:34:42.6918 Debug Debug =>
+2026-01-18 02:34:42.6918 Debug Info => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.6918 Debug Warn => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.6918 Debug Error => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.6918 Debug Fatal => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.6918 Debug Targets for Microsoft.WebTools.BrowserLink.Net.VsContentMiddleware by level:
+2026-01-18 02:34:42.6918 Debug Trace =>
+2026-01-18 02:34:42.6918 Debug Debug =>
+2026-01-18 02:34:42.6918 Debug Info => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.6918 Debug Warn => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.6918 Debug Error => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.6918 Debug Fatal => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.6918 Debug Targets for Microsoft.AspNetCore.Watch.BrowserRefresh.BrowserRefreshMiddleware by level:
+2026-01-18 02:34:42.6918 Debug Trace =>
+2026-01-18 02:34:42.6918 Debug Debug =>
+2026-01-18 02:34:42.6918 Debug Info => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.6918 Debug Warn => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.6918 Debug Error => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.6918 Debug Fatal => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:34:42.8529 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2026-01-18 02:34:42.8692 Trace Scanning SimpleLayout ''${aspnet-environment}''
+2026-01-18 02:34:42.8795 Trace  Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2026-01-18 02:34:42.8795 Trace  Scanning AspNetEnvironmentLayoutRenderer 'Layout Renderer: ${aspnet-environment}'
+2026-01-18 02:34:42.9060 Debug FileTarget(Name=infoLog): Preparing for new file 'E:\Rafeek-Graduation\Rafeek\Rafeek.API\bin\Debug\net8.0\logs/info.log'
+2026-01-18 02:34:42.9060 Debug Creating file appender: E:\Rafeek-Graduation\Rafeek\Rafeek.API\bin\Debug\net8.0\logs/info.log
+2026-01-18 02:34:42.9060 Trace Opening E:\Rafeek-Graduation\Rafeek\Rafeek.API\bin\Debug\net8.0\logs/info.log with allowFileSharedWriting=False
+2026-01-18 02:34:42.9060 Debug FileTarget(Name=allfile): Preparing for new file 'E:\Rafeek-Graduation\Rafeek\Rafeek.API\bin\Debug\net8.0\logs/all.log'
+2026-01-18 02:34:42.9141 Debug Creating file appender: E:\Rafeek-Graduation\Rafeek\Rafeek.API\bin\Debug\net8.0\logs/all.log
+2026-01-18 02:34:42.9141 Trace Opening E:\Rafeek-Graduation\Rafeek\Rafeek.API\bin\Debug\net8.0\logs/all.log with allowFileSharedWriting=False
+2026-01-18 02:34:42.9141 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2026-01-18 02:34:42.9141 Trace Scanning SimpleLayout ''${aspnet-environment}''
+2026-01-18 02:34:42.9141 Trace  Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2026-01-18 02:34:42.9141 Trace  Scanning AspNetEnvironmentLayoutRenderer 'Layout Renderer: ${aspnet-environment}'
+2026-01-18 02:34:42.9141 Trace Opening E:\Rafeek-Graduation\Rafeek\Rafeek.API\bin\Debug\net8.0\logs/info.log with allowFileSharedWriting=False
+2026-01-18 02:34:42.9141 Trace Opening E:\Rafeek-Graduation\Rafeek\Rafeek.API\bin\Debug\net8.0\logs/all.log with allowFileSharedWriting=False
+2026-01-18 02:34:42.9141 Trace Opening E:\Rafeek-Graduation\Rafeek\Rafeek.API\bin\Debug\net8.0\logs/info.log with allowFileSharedWriting=False
+2026-01-18 02:34:42.9141 Trace Opening E:\Rafeek-Graduation\Rafeek\Rafeek.API\bin\Debug\net8.0\logs/all.log with allowFileSharedWriting=False
+2026-01-18 02:35:01.4557 Debug Targets for Microsoft.AspNetCore.Mvc.Routing.ApiVersionMatcherPolicy by level:
+2026-01-18 02:35:01.4582 Debug Trace =>
+2026-01-18 02:35:01.4582 Debug Debug =>
+2026-01-18 02:35:01.4582 Debug Info => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:35:01.4582 Debug Warn => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:35:01.4582 Debug Error => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:35:01.4582 Debug Fatal => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:35:01.4911 Debug Targets for Microsoft.AspNetCore.Routing.Matching.DfaMatcher by level:
+2026-01-18 02:35:01.4911 Debug Trace =>
+2026-01-18 02:35:01.4911 Debug Debug =>
+2026-01-18 02:35:01.4911 Debug Info => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:35:01.4911 Debug Warn => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:35:01.4911 Debug Error => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:35:01.4911 Debug Fatal => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:35:01.4911 Debug Targets for Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter by level:
+2026-01-18 02:35:01.4911 Debug Trace =>
+2026-01-18 02:35:01.4911 Debug Debug =>
+2026-01-18 02:35:01.4911 Debug Info => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:35:01.5048 Debug Warn => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:35:01.5048 Debug Error => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:35:01.5048 Debug Fatal => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:35:01.5274 Debug Targets for Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ComplexObjectModelBinder by level:
+2026-01-18 02:35:01.5274 Debug Trace =>
+2026-01-18 02:35:01.5274 Debug Debug =>
+2026-01-18 02:35:01.5274 Debug Info => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:35:01.5274 Debug Warn => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:35:01.5274 Debug Error => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:35:01.5274 Debug Fatal => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:35:01.5274 Debug Targets for Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinder by level:
+2026-01-18 02:35:01.5274 Debug Trace =>
+2026-01-18 02:35:01.5274 Debug Debug =>
+2026-01-18 02:35:01.5274 Debug Info => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:35:01.5274 Debug Warn => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:35:01.5274 Debug Error => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:35:01.5274 Debug Fatal => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:35:01.5364 Debug Targets for Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormFileModelBinder by level:
+2026-01-18 02:35:01.5364 Debug Trace =>
+2026-01-18 02:35:01.5364 Debug Debug =>
+2026-01-18 02:35:01.5364 Debug Info => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:35:01.5364 Debug Warn => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:35:01.5364 Debug Error => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:35:01.5364 Debug Fatal => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:35:01.6938 Debug Targets for Rafeek.Application.Handlers.UploaderHandlers.Commands.UploadImage.UploadImageCommand by level:
+2026-01-18 02:35:01.6938 Debug Trace =>
+2026-01-18 02:35:01.6938 Debug Debug =>
+2026-01-18 02:35:01.6938 Debug Info => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:35:01.6938 Debug Warn => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:35:01.6938 Debug Error => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:35:01.6938 Debug Fatal => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:35:01.7793 Debug Targets for Microsoft.AspNetCore.Mvc.Infrastructure.DefaultOutputFormatterSelector by level:
+2026-01-18 02:35:01.7793 Debug Trace =>
+2026-01-18 02:35:01.7793 Debug Debug =>
+2026-01-18 02:35:01.7793 Debug Info => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:35:01.7793 Debug Warn => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:35:01.7793 Debug Error => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:35:01.7793 Debug Fatal => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:35:01.7793 Debug Targets for Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor by level:
+2026-01-18 02:35:01.7793 Debug Trace =>
+2026-01-18 02:35:01.7793 Debug Debug =>
+2026-01-18 02:35:01.7793 Debug Info => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:35:01.7793 Debug Warn => infoLog (1 filters) allfile (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:35:01.7793 Debug Error => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)
+2026-01-18 02:35:01.7793 Debug Fatal => infoLog (1 filters) allfile (1 filters) errorLog (1 filters) lifetimeConsole (1 filters)

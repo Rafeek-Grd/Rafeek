@@ -1,12 +1,12 @@
-﻿using Microsoft.AspNetCore.Localization;
+﻿using Microsoft.AspNetCore.Http.Features;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.AspNetCore.Mvc.Razor;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
-using NLog;
-using NLog.Targets;
 using NLog.Web;
 using Rafeek.API.Filters;
 using Rafeek.API.Options;
@@ -28,6 +28,22 @@ namespace Rafeek.API
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            // Configure Kestrel server for better file upload performance
+            builder.WebHost.ConfigureKestrel(serverOptions =>
+            {
+                serverOptions.Limits.MaxRequestBodySize = 100 * 1024 * 1024; // 100 MB
+                serverOptions.Limits.MinRequestBodyDataRate = new MinDataRate(
+                    bytesPerSecond: 100,
+                    gracePeriod: TimeSpan.FromSeconds(10)
+                );
+                serverOptions.Limits.MinResponseDataRate = new MinDataRate(
+                    bytesPerSecond: 100,
+                    gracePeriod: TimeSpan.FromSeconds(10)
+                );
+                serverOptions.Limits.RequestHeadersTimeout = TimeSpan.FromMinutes(2);
+                serverOptions.Limits.KeepAliveTimeout = TimeSpan.FromMinutes(2);
+            });
 
             #region Configure Application Configuration
 
@@ -72,7 +88,15 @@ namespace Rafeek.API
             builder.Services.AddControllers(options =>
             {
                 options.Filters.Add<ApiExceptionFilterAttribute>();
+
+                // Add size limits for large file uploads
+                options.MaxModelValidationErrors = 50;
+            })
+            .AddJsonOptions(options =>
+            {
+                options.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
             });
+
             builder.Services.AddEndpointsApiExplorer();
 
             // Register API versioning with proper configuration
@@ -101,6 +125,14 @@ namespace Rafeek.API
                   options.SuppressModelStateInvalidFilter = true;
               });
 
+
+            builder.Services.Configure<FormOptions>(options =>
+            {
+                options.ValueLengthLimit = int.MaxValue;
+                options.MultipartBodyLengthLimit = 100 * 1024 * 1024; // 100 MB
+                options.MultipartHeadersLengthLimit = int.MaxValue;
+                options.BufferBodyLengthLimit = 100 * 1024 * 1024; // 100 MB
+            });
 
             // Configure Swagger with versioning
             builder.Services.ConfigureOptions<ConfigureSwaggerOptions>();
