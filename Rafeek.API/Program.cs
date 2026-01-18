@@ -27,6 +27,7 @@ namespace Rafeek.API
     {
         public static void Main(string[] args)
         {
+
             var builder = WebApplication.CreateBuilder(args);
 
             // Configure Kestrel server for better file upload performance
