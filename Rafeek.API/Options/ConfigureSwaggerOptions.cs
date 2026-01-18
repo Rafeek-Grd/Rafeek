@@ -33,7 +33,12 @@ namespace Rafeek.API.Options
                 {
                     Title = swaggerDocOptions.Title,
                     Version = description.ApiVersion.ToString(),
-                    Description = swaggerDocOptions.Description
+                    Description = swaggerDocOptions.Description,
+                    Contact = new OpenApiContact
+                    {
+                        Name = swaggerDocOptions.Organization,
+                        Email = swaggerDocOptions.Email
+                    }
                 });
             }
 

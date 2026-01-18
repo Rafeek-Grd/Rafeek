@@ -2,14 +2,22 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.AspNetCore.Mvc.Razor;
+using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
+using NLog;
+using NLog.Targets;
+using NLog.Web;
 using Rafeek.API.Filters;
 using Rafeek.API.Options;
+using Rafeek.API.Services;
+using Rafeek.API.Swagger;
 using Rafeek.Application;
 using Rafeek.Application.Common.Options;
+using Rafeek.Application.Localization;
 using Rafeek.Infrastructure;
 using Rafeek.Persistence;
+using System;
 using System.Globalization;
 using System.Reflection;
 
@@ -22,6 +30,20 @@ namespace Rafeek.API
             var builder = WebApplication.CreateBuilder(args);
 
             #region Configure Application Configuration
+
+            NLog.Common.InternalLogger.LogLevel = NLog.LogLevel.Trace;
+            NLog.Common.InternalLogger.LogToConsole = false;
+            NLog.Common.InternalLogger.LogFile = "logs/nlog-internal.log";
+            NLog.Common.InternalLogger.IncludeTimestamp = true;
+
+            // Use NLog
+            var logger = NLogBuilder.ConfigureNLog("nlog.config").GetCurrentClassLogger();
+            builder.Logging.ClearProviders();
+            builder.Logging.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Trace);
+
+            builder.Logging.AddConsole();
+
+            builder.Host.UseNLog();
 
             var env = builder.Environment;
 
@@ -47,7 +69,10 @@ namespace Rafeek.API
 
             #region Add services to DI container.
 
-            builder.Services.AddControllers();
+            builder.Services.AddControllers(options =>
+            {
+                options.Filters.Add<ApiExceptionFilterAttribute>();
+            });
             builder.Services.AddEndpointsApiExplorer();
 
             // Register API versioning with proper configuration
@@ -66,7 +91,7 @@ namespace Rafeek.API
                 options.SubstituteApiVersionInUrl = true;
             });
 
-            builder.Services.AddLocalization(options => options.ResourcesPath = "Localization/Resources");
+            builder.Services.AddLocalization();
 
             builder.Services.AddMvc()
               .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
@@ -83,6 +108,8 @@ namespace Rafeek.API
             // Configure Swagger
             builder.Services.AddSwaggerGen(options =>
             {
+                options.OperationFilter<AcceptLanguageOperationFilter>();
+
                 options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
                     Description = "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",
@@ -109,6 +136,24 @@ namespace Rafeek.API
 
                 options.OperationFilter<AuthorizeCheckOperationFilter>();
 
+                options.MapType<IFormFile>(() => new OpenApiSchema
+                {
+                    Type = "string",
+                    Format = "binary"
+                });
+
+                options.MapType<List<IFormFile>>(() => new OpenApiSchema
+                {
+                    Type = "array",
+                    Items = new Microsoft.OpenApi.Models.OpenApiSchema
+                    {
+                        Type = "string",
+                        Format = "binary"
+                    }
+                });
+
+                options.DocumentFilter<RegisterCommandSchemasDocumentFilter>();
+
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 if (File.Exists(xmlPath))
@@ -118,7 +163,7 @@ namespace Rafeek.API
             });
 
             // Add libraries services
-            builder.Services.AddApplication();
+            builder.Services.AddApplication(builder.Configuration);
             builder.Services.AddInfrastructure();
             builder.Services.AddPersistence();
 
@@ -184,7 +229,6 @@ namespace Rafeek.API
                     else
                         endpoint = $"/swagger/{description.GroupName}/swagger.json";
 
-                    // Normalize: ensure it starts with a leading slash so it becomes absolute to the host root
                     if (!endpoint.StartsWith("/"))
                         endpoint = "/" + endpoint;
 
@@ -192,6 +236,8 @@ namespace Rafeek.API
                     app.Configuration.GetSection("SwaggerDocOptions").Bind(swaggerDocOptions);
                     var name = $"{swaggerDocOptions.Title} {description.GroupName.ToUpperInvariant()}";
                     options.SwaggerEndpoint(endpoint, name);
+
+                    options.InjectJavascript("/swagger/swagger-ui/language.js");
                 }
             });
 
@@ -209,6 +255,12 @@ namespace Rafeek.API
                 SupportedUICultures = supportedCultures
             });
 
+            using (var scope = app.Services.CreateScope())
+            {
+                var localizerFactory = scope.ServiceProvider.GetRequiredService<IStringLocalizerFactory>();
+                LocalizationManager.Configure(localizerFactory);
+            }
+
             app.UseXContentTypeOptions();
             app.UseXXssProtection(options => options.EnabledWithBlockMode());
             app.UseXfo(options => options.SameOrigin());
@@ -223,6 +275,12 @@ namespace Rafeek.API
             app.UseAuthentication();
 
             app.UseStaticFiles();
+
+            app.UseStaticFiles(new StaticFileOptions()
+            {
+                FileProvider = new CustomFileProvider(app.Environment.WebRootPath),
+                RequestPath = "/files"
+            });
 
             app.UseRouting();
 
