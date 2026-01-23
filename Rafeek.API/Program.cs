@@ -211,47 +211,44 @@ namespace Rafeek.API
                 var swaggerDocOptions = new SwaggerDocOptions();
                 app.Configuration.GetSection("SwaggerDocOptions").Bind(swaggerDocOptions);
 
-                if (app.Environment.IsDevelopment() || app.Environment.EnvironmentName == "Live")
+                app.UseSwagger();
+                app.UseSwaggerUI(options =>
                 {
-                    app.UseSwagger();
-                    app.UseSwaggerUI(options =>
+                    var provider = app.Services.GetRequiredService<IApiVersionDescriptionProvider>();
+
+                    // Read configured route template once
+                    var swaggerOptions = app.Services.GetRequiredService<IOptions<SwaggerOptions>>().Value;
+                    var jsonRouteTemplate = swaggerOptions?.JsonRoute?.Trim() ?? string.Empty;
+
+                    // Order by major, then minor to ensure highest version is first
+                    foreach (var description in provider.ApiVersionDescriptions
+                                                        .OrderByDescending(d => (d.ApiVersion.MajorVersion, d.ApiVersion.MinorVersion)))
                     {
-                        var provider = app.Services.GetRequiredService<IApiVersionDescriptionProvider>();
+                        string endpoint;
 
-                        // Read configured route template once
-                        var swaggerOptions = app.Services.GetRequiredService<IOptions<SwaggerOptions>>().Value;
-                        var jsonRouteTemplate = swaggerOptions?.JsonRoute?.Trim() ?? string.Empty;
-
-                        // Order by major, then minor to ensure highest version is first
-                        foreach (var description in provider.ApiVersionDescriptions
-                                                         .OrderByDescending(d => (d.ApiVersion.MajorVersion, d.ApiVersion.MinorVersion)))
+                        if (!string.IsNullOrEmpty(jsonRouteTemplate))
                         {
-                            string endpoint;
-
-                            if (!string.IsNullOrEmpty(jsonRouteTemplate))
-                            {
-                                if (jsonRouteTemplate.Contains("{0}"))
-                                    endpoint = string.Format(jsonRouteTemplate, description.GroupName);
-                                else if (jsonRouteTemplate.Contains("{documentName}"))
-                                    endpoint = jsonRouteTemplate.Replace("{documentName}", description.GroupName);
-                                else
-                                    endpoint = jsonRouteTemplate;
-                            }
+                            if (jsonRouteTemplate.Contains("{0}"))
+                                endpoint = string.Format(jsonRouteTemplate, description.GroupName);
+                            else if (jsonRouteTemplate.Contains("{documentName}"))
+                                endpoint = jsonRouteTemplate.Replace("{documentName}", description.GroupName);
                             else
-                                endpoint = $"/swagger/{description.GroupName}/swagger.json";
-
-                            if (!endpoint.StartsWith("/"))
-                                endpoint = "/" + endpoint;
-
-                            var swaggerDocOptions = new SwaggerDocOptions();
-                            app.Configuration.GetSection("SwaggerDocOptions").Bind(swaggerDocOptions);
-                            var name = $"{swaggerDocOptions.Title} {description.GroupName.ToUpperInvariant()}";
-                            options.SwaggerEndpoint(endpoint, name);
-
-                            options.InjectJavascript("/swagger/swagger-ui/language.js");
+                                endpoint = jsonRouteTemplate;
                         }
-                    });
-                }
+                        else
+                            endpoint = $"/swagger/{description.GroupName}/swagger.json";
+
+                        if (!endpoint.StartsWith("/"))
+                            endpoint = "/" + endpoint;
+
+                        var swaggerDocOptions = new SwaggerDocOptions();
+                        app.Configuration.GetSection("SwaggerDocOptions").Bind(swaggerDocOptions);
+                        var name = $"{swaggerDocOptions.Title} {description.GroupName.ToUpperInvariant()}";
+                        options.SwaggerEndpoint(endpoint, name);
+
+                        options.InjectJavascript("/swagger/swagger-ui/language.js");
+                    }
+                });
 
 
                 // Configure localization
