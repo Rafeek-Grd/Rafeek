@@ -186,6 +186,7 @@ namespace Rafeek.API
                     }
                 });
 
+
                 // Add libraries services
                 builder.Services.AddApplication(builder.Configuration);
                 builder.Services.AddInfrastructure();
