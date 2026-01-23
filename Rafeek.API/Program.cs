@@ -27,133 +27,110 @@ namespace Rafeek.API
     {
         public static void Main(string[] args)
         {
-
-            var builder = WebApplication.CreateBuilder(args);
-
-            // Configure Kestrel server for better file upload performance
-            builder.WebHost.ConfigureKestrel(serverOptions =>
-            {
-                serverOptions.Limits.MaxRequestBodySize = 100 * 1024 * 1024; // 100 MB
-                serverOptions.Limits.MinRequestBodyDataRate = new MinDataRate(
-                    bytesPerSecond: 100,
-                    gracePeriod: TimeSpan.FromSeconds(10)
-                );
-                serverOptions.Limits.MinResponseDataRate = new MinDataRate(
-                    bytesPerSecond: 100,
-                    gracePeriod: TimeSpan.FromSeconds(10)
-                );
-                serverOptions.Limits.RequestHeadersTimeout = TimeSpan.FromMinutes(2);
-                serverOptions.Limits.KeepAliveTimeout = TimeSpan.FromMinutes(2);
-            });
-
-            #region Configure Application Configuration
-
-            NLog.Common.InternalLogger.LogLevel = NLog.LogLevel.Trace;
-            NLog.Common.InternalLogger.LogToConsole = false;
-            NLog.Common.InternalLogger.LogFile = "logs/nlog-internal.log";
-            NLog.Common.InternalLogger.IncludeTimestamp = true;
-
-            // Use NLog
+            // Replace your NLog setup with this:
             var logger = NLogBuilder.ConfigureNLog("nlog.config").GetCurrentClassLogger();
-            builder.Logging.ClearProviders();
-            builder.Logging.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Trace);
 
-            builder.Logging.AddConsole();
-
-            builder.Host.UseNLog();
-
-            var env = builder.Environment;
-
-            // Clear and rebuild configuration
-            builder.Configuration.Sources.Clear();
-
-            builder.Configuration.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: true);
-
-            if (env.EnvironmentName == "Development" || env.EnvironmentName == "Live")
+            try
             {
-                var appAssembly = Assembly.Load(new AssemblyName(env.ApplicationName));
-                if (appAssembly != null)
+                logger.Info("Application starting up");
+
+                var builder = WebApplication.CreateBuilder(args);
+
+                // Clear default logging providers and configure NLog
+                builder.Logging.ClearProviders();
+                builder.Logging.SetMinimumLevel(LogLevel.Trace);
+                builder.Logging.AddConsole();
+                builder.Host.UseNLog();
+
+                var env = builder.Environment;
+
+                // Clear and rebuild configuration
+                builder.Configuration.Sources.Clear();
+
+                builder.Configuration.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                                     .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: true);
+
+                if (env.EnvironmentName == "Development" || env.EnvironmentName == "Live")
                 {
-                    builder.Configuration.AddUserSecrets(appAssembly, optional: true);
+                    var appAssembly = Assembly.Load(new AssemblyName(env.ApplicationName));
+                    if (appAssembly != null)
+                    {
+                        builder.Configuration.AddUserSecrets(appAssembly, optional: true);
+                    }
                 }
-            }
 
-            builder.Configuration.AddEnvironmentVariables()
-                                 .AddCommandLine(args);
-
-            #endregion
-
-            #region Add services to DI container.
-
-            builder.Services.AddControllers(options =>
-            {
-                options.Filters.Add<ApiExceptionFilterAttribute>();
-
-                // Add size limits for large file uploads
-                options.MaxModelValidationErrors = 50;
-            })
-            .AddJsonOptions(options =>
-            {
-                options.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
-            });
-
-            builder.Services.AddEndpointsApiExplorer();
-
-            // Register API versioning with proper configuration
-            builder.Services.AddApiVersioning(options =>
-            {
-                // Treat controllers without version as the default version
-                options.AssumeDefaultVersionWhenUnspecified = true;
-                options.DefaultApiVersion = new ApiVersion(1, 0);
-                options.ReportApiVersions = true;
-            });
-
-            builder.Services.AddVersionedApiExplorer(options =>
-            {
-                options.GroupNameFormat = "'v'VVV";
-                // Substitute the version in route URLs where {version:apiVersion} is used
-                options.SubstituteApiVersionInUrl = true;
-            });
-
-            builder.Services.AddLocalization();
-
-            builder.Services.AddMvc()
-              .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
-              .ConfigureApiBehaviorOptions(options =>
-              {
-                  // Suppress automatic 400 responses - allows custom validation handling
-                  options.SuppressModelStateInvalidFilter = true;
-              });
+                builder.Configuration.AddEnvironmentVariables()
+                                     .AddCommandLine(args);
 
 
-            builder.Services.Configure<FormOptions>(options =>
-            {
-                options.ValueLengthLimit = int.MaxValue;
-                options.MultipartBodyLengthLimit = 100 * 1024 * 1024; // 100 MB
-                options.MultipartHeadersLengthLimit = int.MaxValue;
-                options.BufferBodyLengthLimit = 100 * 1024 * 1024; // 100 MB
-            });
-
-            // Configure Swagger with versioning
-            builder.Services.ConfigureOptions<ConfigureSwaggerOptions>();
-
-            // Configure Swagger
-            builder.Services.AddSwaggerGen(options =>
-            {
-                options.OperationFilter<AcceptLanguageOperationFilter>();
-
-                options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                builder.Services.AddControllers(options =>
                 {
-                    Description = "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",
-                    Name = "Authorization",
-                    In = ParameterLocation.Header,
-                    Type = SecuritySchemeType.ApiKey,
-                    Scheme = "Bearer"
+                    options.Filters.Add<ApiExceptionFilterAttribute>();
+
+                    // Add size limits for large file uploads
+                    options.MaxModelValidationErrors = 50;
+                })
+                .AddJsonOptions(options =>
+                {
+                    options.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
                 });
 
-                options.AddSecurityRequirement(new OpenApiSecurityRequirement
+                builder.Services.AddEndpointsApiExplorer();
+
+                // Register API versioning with proper configuration
+                builder.Services.AddApiVersioning(options =>
                 {
+                    // Treat controllers without version as the default version
+                    options.AssumeDefaultVersionWhenUnspecified = true;
+                    options.DefaultApiVersion = new ApiVersion(1, 0);
+                    options.ReportApiVersions = true;
+                });
+
+                builder.Services.AddVersionedApiExplorer(options =>
+                {
+                    options.GroupNameFormat = "'v'VVV";
+                    // Substitute the version in route URLs where {version:apiVersion} is used
+                    options.SubstituteApiVersionInUrl = true;
+                });
+
+                builder.Services.AddLocalization();
+
+                builder.Services.AddMvc()
+                  .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
+                  .ConfigureApiBehaviorOptions(options =>
+                  {
+                      // Suppress automatic 400 responses - allows custom validation handling
+                      options.SuppressModelStateInvalidFilter = true;
+                  });
+
+
+                builder.Services.Configure<FormOptions>(options =>
+                {
+                    options.ValueLengthLimit = int.MaxValue;
+                    options.MultipartBodyLengthLimit = 100 * 1024 * 1024; // 100 MB
+                    options.MultipartHeadersLengthLimit = int.MaxValue;
+                    options.BufferBodyLengthLimit = 100 * 1024 * 1024; // 100 MB
+                });
+
+                // Configure Swagger with versioning
+                builder.Services.ConfigureOptions<ConfigureSwaggerOptions>();
+
+                // Configure Swagger
+                builder.Services.AddSwaggerGen(options =>
+                {
+                    options.OperationFilter<AcceptLanguageOperationFilter>();
+
+                    options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                    {
+                        Description = "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",
+                        Name = "Authorization",
+                        In = ParameterLocation.Header,
+                        Type = SecuritySchemeType.ApiKey,
+                        Scheme = "Bearer"
+                    });
+
+                    options.AddSecurityRequirement(new OpenApiSecurityRequirement
+                    {
                     {
                         new OpenApiSecurityScheme
                         {
@@ -165,167 +142,181 @@ namespace Rafeek.API
                         },
                         Array.Empty<string>()
                     }
-                });
+                    });
 
-                options.OperationFilter<AuthorizeCheckOperationFilter>();
+                    options.OperationFilter<AuthorizeCheckOperationFilter>();
 
-                options.MapType<IFormFile>(() => new OpenApiSchema
-                {
-                    Type = "string",
-                    Format = "binary"
-                });
-
-                options.MapType<List<IFormFile>>(() => new OpenApiSchema
-                {
-                    Type = "array",
-                    Items = new Microsoft.OpenApi.Models.OpenApiSchema
+                    options.MapType<IFormFile>(() => new OpenApiSchema
                     {
                         Type = "string",
                         Format = "binary"
-                    }
-                });
+                    });
 
-                options.DocumentFilter<RegisterCommandSchemasDocumentFilter>();
-
-                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-                if (File.Exists(xmlPath))
-                {
-                    options.IncludeXmlComments(xmlPath);
-                }
-            });
-
-            // Add libraries services
-            builder.Services.AddApplication(builder.Configuration);
-            builder.Services.AddInfrastructure();
-            builder.Services.AddPersistence();
-
-            // Add options pattern support
-            builder.Services.AddOptions();
-
-            builder.Services.Configure<SwaggerOptions>(builder.Configuration.GetSection("SwaggerOptions"));
-
-            // Configure HSTS (HTTP Strict Transport Security)
-            builder.Services.AddHsts(options =>
-            {
-                options.Preload = true;
-                options.IncludeSubDomains = true;
-                options.MaxAge = TimeSpan.FromDays(365);
-            });
-
-            // Configure CORS
-            builder.Services.AddCors(options =>
-            {
-                options.AddPolicy("CorsPolicy", cors =>
-                {
-                    cors.SetIsOriginAllowed(_ => true)
-                        .AllowAnyOrigin()
-                        .AllowAnyMethod()
-                        .AllowAnyHeader();
-                });
-            });
-
-            #endregion
-
-            var app = builder.Build();
-
-            #region Configure the HTTP request pipeline.
-
-            var provider = app.Services.GetRequiredService<IApiVersionDescriptionProvider>();
-            var swaggerDocOptions = new SwaggerDocOptions();
-            app.Configuration.GetSection("SwaggerDocOptions").Bind(swaggerDocOptions);
-
-            app.UseSwagger();
-            app.UseSwaggerUI(options =>
-            {
-                var provider = app.Services.GetRequiredService<IApiVersionDescriptionProvider>();
-
-                // Read configured route template once
-                var swaggerOptions = app.Services.GetRequiredService<IOptions<SwaggerOptions>>().Value;
-                var jsonRouteTemplate = swaggerOptions?.JsonRoute?.Trim() ?? string.Empty;
-
-                // Order by major, then minor to ensure highest version is first
-                foreach (var description in provider.ApiVersionDescriptions
-                                                 .OrderByDescending(d => (d.ApiVersion.MajorVersion, d.ApiVersion.MinorVersion)))
-                {
-                    string endpoint;
-
-                    if (!string.IsNullOrEmpty(jsonRouteTemplate))
+                    options.MapType<List<IFormFile>>(() => new OpenApiSchema
                     {
-                        if (jsonRouteTemplate.Contains("{0}"))
-                            endpoint = string.Format(jsonRouteTemplate, description.GroupName);
-                        else if (jsonRouteTemplate.Contains("{documentName}"))
-                            endpoint = jsonRouteTemplate.Replace("{documentName}", description.GroupName);
-                        else
-                            endpoint = jsonRouteTemplate;
+                        Type = "array",
+                        Items = new Microsoft.OpenApi.Models.OpenApiSchema
+                        {
+                            Type = "string",
+                            Format = "binary"
+                        }
+                    });
+
+                    options.DocumentFilter<RegisterCommandSchemasDocumentFilter>();
+
+                    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                    if (File.Exists(xmlPath))
+                    {
+                        options.IncludeXmlComments(xmlPath);
                     }
-                    else
-                        endpoint = $"/swagger/{description.GroupName}/swagger.json";
+                });
 
-                    if (!endpoint.StartsWith("/"))
-                        endpoint = "/" + endpoint;
+                // Add libraries services
+                builder.Services.AddApplication(builder.Configuration);
+                builder.Services.AddInfrastructure();
+                builder.Services.AddPersistence();
 
-                    var swaggerDocOptions = new SwaggerDocOptions();
-                    app.Configuration.GetSection("SwaggerDocOptions").Bind(swaggerDocOptions);
-                    var name = $"{swaggerDocOptions.Title} {description.GroupName.ToUpperInvariant()}";
-                    options.SwaggerEndpoint(endpoint, name);
+                // Add options pattern support
+                builder.Services.AddOptions();
 
-                    options.InjectJavascript("/swagger/swagger-ui/language.js");
+                builder.Services.Configure<SwaggerOptions>(builder.Configuration.GetSection("SwaggerOptions"));
+
+                // Configure HSTS (HTTP Strict Transport Security)
+                builder.Services.AddHsts(options =>
+                {
+                    options.Preload = true;
+                    options.IncludeSubDomains = true;
+                    options.MaxAge = TimeSpan.FromDays(365);
+                });
+
+                // Configure CORS
+                builder.Services.AddCors(options =>
+                {
+                    options.AddPolicy("CorsPolicy", cors =>
+                    {
+                        cors.SetIsOriginAllowed(_ => true)
+                            .AllowAnyOrigin()
+                            .AllowAnyMethod()
+                            .AllowAnyHeader();
+                    });
+                });
+
+
+                var app = builder.Build();
+
+
+                var provider = app.Services.GetRequiredService<IApiVersionDescriptionProvider>();
+                var swaggerDocOptions = new SwaggerDocOptions();
+                app.Configuration.GetSection("SwaggerDocOptions").Bind(swaggerDocOptions);
+
+                if (app.Environment.IsDevelopment() || app.Environment.EnvironmentName == "Live")
+                {
+                    app.UseSwagger();
+                    app.UseSwaggerUI(options =>
+                    {
+                        var provider = app.Services.GetRequiredService<IApiVersionDescriptionProvider>();
+
+                        // Read configured route template once
+                        var swaggerOptions = app.Services.GetRequiredService<IOptions<SwaggerOptions>>().Value;
+                        var jsonRouteTemplate = swaggerOptions?.JsonRoute?.Trim() ?? string.Empty;
+
+                        // Order by major, then minor to ensure highest version is first
+                        foreach (var description in provider.ApiVersionDescriptions
+                                                         .OrderByDescending(d => (d.ApiVersion.MajorVersion, d.ApiVersion.MinorVersion)))
+                        {
+                            string endpoint;
+
+                            if (!string.IsNullOrEmpty(jsonRouteTemplate))
+                            {
+                                if (jsonRouteTemplate.Contains("{0}"))
+                                    endpoint = string.Format(jsonRouteTemplate, description.GroupName);
+                                else if (jsonRouteTemplate.Contains("{documentName}"))
+                                    endpoint = jsonRouteTemplate.Replace("{documentName}", description.GroupName);
+                                else
+                                    endpoint = jsonRouteTemplate;
+                            }
+                            else
+                                endpoint = $"/swagger/{description.GroupName}/swagger.json";
+
+                            if (!endpoint.StartsWith("/"))
+                                endpoint = "/" + endpoint;
+
+                            var swaggerDocOptions = new SwaggerDocOptions();
+                            app.Configuration.GetSection("SwaggerDocOptions").Bind(swaggerDocOptions);
+                            var name = $"{swaggerDocOptions.Title} {description.GroupName.ToUpperInvariant()}";
+                            options.SwaggerEndpoint(endpoint, name);
+
+                            options.InjectJavascript("/swagger/swagger-ui/language.js");
+                        }
+                    });
                 }
-            });
 
-            // Configure localization
-            var supportedCultures = new[]
-            {
+
+                // Configure localization
+                var supportedCultures = new[]
+                {
                 new CultureInfo("ar"),
                 new CultureInfo("en")
             };
 
-            app.UseRequestLocalization(new RequestLocalizationOptions
-            {
-                DefaultRequestCulture = new RequestCulture("ar"),
-                SupportedCultures = supportedCultures,
-                SupportedUICultures = supportedCultures
-            });
+                app.UseRequestLocalization(new RequestLocalizationOptions
+                {
+                    DefaultRequestCulture = new RequestCulture("ar"),
+                    SupportedCultures = supportedCultures,
+                    SupportedUICultures = supportedCultures
+                });
 
-            using (var scope = app.Services.CreateScope())
-            {
-                var localizerFactory = scope.ServiceProvider.GetRequiredService<IStringLocalizerFactory>();
-                LocalizationManager.Configure(localizerFactory);
+                using (var scope = app.Services.CreateScope())
+                {
+                    var localizerFactory = scope.ServiceProvider.GetRequiredService<IStringLocalizerFactory>();
+                    LocalizationManager.Configure(localizerFactory);
+                }
+
+                app.UseXContentTypeOptions();
+                app.UseXXssProtection(options => options.EnabledWithBlockMode());
+                app.UseXfo(options => options.SameOrigin());
+                app.UseReferrerPolicy(options => options.NoReferrerWhenDowngrade());
+
+                // Only use HTTPS redirection in Development (Railway handles HTTPS at proxy level)
+                if (app.Environment.IsDevelopment())
+                {
+                    app.UseHttpsRedirection();
+                }
+
+                app.UseAuthentication();
+
+                app.UseStaticFiles();
+
+                app.UseStaticFiles(new StaticFileOptions()
+                {
+                    FileProvider = new CustomFileProvider(app.Environment.WebRootPath),
+                    RequestPath = "/files"
+                });
+
+                app.UseRouting();
+
+                app.UseCors("CorsPolicy");
+
+                app.UseAuthorization();
+
+                app.MapControllers();
+
+                app.MapGet("/", () => Results.Redirect("/swagger"));
+
+                app.Run();
             }
-
-            app.UseXContentTypeOptions();
-            app.UseXXssProtection(options => options.EnabledWithBlockMode());
-            app.UseXfo(options => options.SameOrigin());
-            app.UseReferrerPolicy(options => options.NoReferrerWhenDowngrade());
-
-            // Only use HTTPS redirection in Development (Railway handles HTTPS at proxy level)
-            if (app.Environment.IsDevelopment())
+            catch (Exception ex)
             {
-                app.UseHttpsRedirection();
+                // NLog: catch setup errors
+                logger.Error(ex, "Application stopped because of exception");
+                throw;
             }
-
-            app.UseAuthentication();
-
-            app.UseStaticFiles();
-
-            app.UseStaticFiles(new StaticFileOptions()
+            finally
             {
-                FileProvider = new CustomFileProvider(app.Environment.WebRootPath),
-                RequestPath = "/files"
-            });
-
-            app.UseRouting();
-
-            app.UseCors("CorsPolicy");
-
-            app.UseAuthorization();
-
-            app.MapControllers();
-
-            #endregion
-
-            app.Run();
+                // Ensure to flush and stop internal timers/threads before application-exit (Avoid segmentation fault on Linux)
+                NLog.LogManager.Shutdown();
+            }
         }
     }
 }
