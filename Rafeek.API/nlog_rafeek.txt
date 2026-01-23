@@ -62,3 +62,59 @@
 2026-01-23 22:52:23.8508 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
 2026-01-23 22:52:23.8508 Info Adding target ConsoleTarget(Name=lifetimeConsole)
 2026-01-23 22:52:23.8935 Info Validating config: TargetNames=infoLog, errorLog, lifetimeConsole, allfile, ConfigItems=90, FilePath=E:\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config
+2026-01-24 00:20:24.5831 Info Message Template Auto Format enabled
+2026-01-24 00:20:24.6066 Info Loading assembly: NLog.Web.AspNetCore
+2026-01-24 00:20:24.6645 Info Adding target FileTarget(Name=allfile)
+2026-01-24 00:20:24.6750 Info Adding target FileTarget(Name=errorLog)
+2026-01-24 00:20:24.6750 Info Adding target FileTarget(Name=infoLog)
+2026-01-24 00:20:24.6750 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
+2026-01-24 00:20:24.6750 Info Adding target ConsoleTarget(Name=lifetimeConsole)
+2026-01-24 00:20:24.7095 Info Validating config: TargetNames=infoLog, errorLog, lifetimeConsole, allfile, ConfigItems=90, FilePath=E:\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config
+2026-01-24 00:25:33.9808 Info Message Template Auto Format enabled
+2026-01-24 00:25:33.9967 Info Loading assembly: NLog.Web.AspNetCore
+2026-01-24 00:25:34.0369 Info Adding target FileTarget(Name=allfile)
+2026-01-24 00:25:34.0369 Info Adding target FileTarget(Name=errorLog)
+2026-01-24 00:25:34.0369 Info Adding target FileTarget(Name=infoLog)
+2026-01-24 00:25:34.0369 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
+2026-01-24 00:25:34.0369 Info Adding target ConsoleTarget(Name=lifetimeConsole)
+2026-01-24 00:25:34.0669 Info Validating config: TargetNames=infoLog, errorLog, lifetimeConsole, allfile, ConfigItems=90, FilePath=E:\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config
+2026-01-24 00:40:08.6945 Info Message Template Auto Format enabled
+2026-01-24 00:40:08.7209 Info Loading assembly: NLog.Web.AspNetCore
+2026-01-24 00:40:08.7633 Info Adding target FileTarget(Name=allfile)
+2026-01-24 00:40:08.7633 Info Adding target FileTarget(Name=errorLog)
+2026-01-24 00:40:08.7684 Info Adding target FileTarget(Name=infoLog)
+2026-01-24 00:40:08.7684 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
+2026-01-24 00:40:08.7684 Info Adding target ConsoleTarget(Name=lifetimeConsole)
+2026-01-24 00:40:08.7979 Info Validating config: TargetNames=infoLog, errorLog, lifetimeConsole, allfile, ConfigItems=90, FilePath=E:\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config
+2026-01-24 00:40:19.9580 Info Message Template Auto Format enabled
+2026-01-24 00:40:19.9759 Info Loading assembly: NLog.Web.AspNetCore
+2026-01-24 00:40:20.0201 Info Adding target FileTarget(Name=allfile)
+2026-01-24 00:40:20.0201 Info Adding target FileTarget(Name=errorLog)
+2026-01-24 00:40:20.0201 Info Adding target FileTarget(Name=infoLog)
+2026-01-24 00:40:20.0201 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
+2026-01-24 00:40:20.0201 Info Adding target ConsoleTarget(Name=lifetimeConsole)
+2026-01-24 00:40:20.0624 Info Validating config: TargetNames=infoLog, errorLog, lifetimeConsole, allfile, ConfigItems=90, FilePath=E:\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config
+2026-01-24 00:46:20.0992 Info Message Template Auto Format enabled
+2026-01-24 00:46:20.1154 Info Loading assembly: NLog.Web.AspNetCore
+2026-01-24 00:46:20.1773 Info Adding target FileTarget(Name=allfile)
+2026-01-24 00:46:20.1773 Info Adding target FileTarget(Name=errorLog)
+2026-01-24 00:46:20.1773 Info Adding target FileTarget(Name=infoLog)
+2026-01-24 00:46:20.1773 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
+2026-01-24 00:46:20.1889 Info Adding target ConsoleTarget(Name=lifetimeConsole)
+2026-01-24 00:46:20.2200 Info Validating config: TargetNames=infoLog, errorLog, lifetimeConsole, allfile, ConfigItems=90, FilePath=E:\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config
+2026-01-24 01:05:27.6136 Info Message Template Auto Format enabled
+2026-01-24 01:05:27.6319 Info Loading assembly: NLog.Web.AspNetCore
+2026-01-24 01:05:27.6767 Info Adding target FileTarget(Name=allfile)
+2026-01-24 01:05:27.6767 Info Adding target FileTarget(Name=errorLog)
+2026-01-24 01:05:27.6767 Info Adding target FileTarget(Name=infoLog)
+2026-01-24 01:05:27.6767 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
+2026-01-24 01:05:27.6767 Info Adding target ConsoleTarget(Name=lifetimeConsole)
+2026-01-24 01:05:27.7069 Info Validating config: TargetNames=infoLog, errorLog, lifetimeConsole, allfile, ConfigItems=90, FilePath=E:\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config
+2026-01-24 01:08:33.3541 Info Message Template Auto Format enabled
+2026-01-24 01:08:33.3684 Info Loading assembly: NLog.Web.AspNetCore
+2026-01-24 01:08:33.4022 Info Adding target FileTarget(Name=allfile)
+2026-01-24 01:08:33.4022 Info Adding target FileTarget(Name=errorLog)
+2026-01-24 01:08:33.4077 Info Adding target FileTarget(Name=infoLog)
+2026-01-24 01:08:33.4077 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
+2026-01-24 01:08:33.4077 Info Adding target ConsoleTarget(Name=lifetimeConsole)
+2026-01-24 01:08:33.4327 Info Validating config: TargetNames=infoLog, errorLog, lifetimeConsole, allfile, ConfigItems=90, FilePath=E:\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config

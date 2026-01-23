@@ -1,12 +1,15 @@
-﻿using Microsoft.AspNetCore.Http.Features;
+﻿using AspNetCoreRateLimit;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.AspNetCore.Mvc.Razor;
+using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
+using Newtonsoft.Json.Serialization;
 using NLog.Web;
 using Rafeek.API.Filters;
 using Rafeek.API.Options;
@@ -17,9 +20,12 @@ using Rafeek.Application.Common.Options;
 using Rafeek.Application.Localization;
 using Rafeek.Infrastructure;
 using Rafeek.Persistence;
-using System;
 using System.Globalization;
 using System.Reflection;
+using tusdotnet;
+using tusdotnet.Models;
+using tusdotnet.Stores;
+using tusdotnet.Models.Configuration;
 
 namespace Rafeek.API
 {
@@ -70,12 +76,12 @@ namespace Rafeek.API
 
                     // Add size limits for large file uploads
                     options.MaxModelValidationErrors = 50;
-                })
-                .AddJsonOptions(options =>
+                }).AddNewtonsoftJson(options =>
                 {
-                    options.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
+                    // Example: use camelCase and ignore nulls — adapt to your project's conventions
+                    options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+                    options.SerializerSettings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore;
                 });
-
                 builder.Services.AddEndpointsApiExplorer();
 
                 // Register API versioning with proper configuration
@@ -188,6 +194,20 @@ namespace Rafeek.API
                 // Add options pattern support
                 builder.Services.AddOptions();
 
+                builder.Services.AddMemoryCache();
+
+                builder.Services.AddInMemoryRateLimiting();
+                // load general configuration from appsettings.json
+                builder.Services.Configure<IpRateLimitOptions>(builder.Configuration.GetSection("IpRateLimiting"));
+
+                // inject counter and rules stores
+                builder.Services.AddSingleton<IIpPolicyStore, MemoryCacheIpPolicyStore>();
+                builder.Services.AddSingleton<IRateLimitCounterStore, MemoryCacheRateLimitCounterStore>();
+
+                // configuration (resolvers, counter key builders)
+                builder.Services.AddSingleton<IRateLimitConfiguration, RateLimitConfiguration>();
+                builder.Services.AddSingleton<IProcessingStrategy, AsyncKeyLockProcessingStrategy>();
+
                 builder.Services.Configure<SwaggerOptions>(builder.Configuration.GetSection("SwaggerOptions"));
 
                 // Configure HSTS (HTTP Strict Transport Security)
@@ -210,6 +230,25 @@ namespace Rafeek.API
                     });
                 });
 
+
+
+                // Configure Response Compression
+                builder.Services.AddResponseCompression(options =>
+                {
+                    options.EnableForHttps = true;
+                    options.Providers.Add<BrotliCompressionProvider>();
+                    options.Providers.Add<GzipCompressionProvider>();
+                });
+
+                builder.Services.Configure<BrotliCompressionProviderOptions>(options =>
+                {
+                    options.Level = System.IO.Compression.CompressionLevel.Fastest;
+                });
+
+                builder.Services.Configure<GzipCompressionProviderOptions>(options =>
+                {
+                    options.Level = System.IO.Compression.CompressionLevel.SmallestSize;
+                });
 
                 var app = builder.Build();
 
@@ -261,9 +300,9 @@ namespace Rafeek.API
                 // Configure localization
                 var supportedCultures = new[]
                 {
-                new CultureInfo("ar"),
-                new CultureInfo("en")
-            };
+                    new CultureInfo("ar"),
+                    new CultureInfo("en")
+                };
 
                 app.UseRequestLocalization(new RequestLocalizationOptions
                 {
@@ -278,10 +317,14 @@ namespace Rafeek.API
                     LocalizationManager.Configure(localizerFactory);
                 }
 
+                app.UseResponseCompression();
+
                 app.UseXContentTypeOptions();
                 app.UseXXssProtection(options => options.EnabledWithBlockMode());
                 app.UseXfo(options => options.SameOrigin());
                 app.UseReferrerPolicy(options => options.NoReferrerWhenDowngrade());
+
+                app.UseIpRateLimiting();
 
                 // Only use HTTPS redirection in Development (Railway handles HTTPS at proxy level)
                 if (app.Environment.IsDevelopment())
@@ -293,10 +336,28 @@ namespace Rafeek.API
 
                 app.UseStaticFiles();
 
-                app.UseStaticFiles(new StaticFileOptions()
+                 app.UseStaticFiles(new StaticFileOptions()
                 {
                     FileProvider = new CustomFileProvider(app.Environment.WebRootPath),
                     RequestPath = "/files"
+                });
+
+                // Configure TUS (Resumable File Uploads)
+                app.UseTus(context => new DefaultTusConfiguration
+                {
+                    // Where to store the files
+                    Store = new TusDiskStore(Path.Combine(env.WebRootPath, "tusfiles")),
+                    // The URL path to listen for uploads
+                    UrlPath = "/files",
+                    Events = new Events
+                    {
+                        OnFileCompleteAsync = async eventContext =>
+                        {
+                            var file = await eventContext.GetFileAsync();
+                            var logger = eventContext.HttpContext.RequestServices.GetService<ILogger<Program>>();
+                            logger?.LogInformation($"Upload completed: {file.Id}");
+                        }
+                    }
                 });
 
                 app.UseRouting();
