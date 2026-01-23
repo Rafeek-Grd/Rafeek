@@ -27,6 +27,7 @@ namespace Rafeek.API
     {
         public static void Main(string[] args)
         {
+
             // Replace your NLog setup with this:
             var logger = NLogBuilder.ConfigureNLog("nlog.config").GetCurrentClassLogger();
 
