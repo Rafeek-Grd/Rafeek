@@ -4,7 +4,7 @@ namespace Rafeek.Application.Common.Interfaces
 {
     public interface IVideoValidator
     {
-        public Task<(bool Uploaded, string Result)> UploadVideo(IFormFile file, int Place);
+        public Task<(bool Uploaded, string Result)> UploadVideo(IFormFile file, int Place, CancellationToken cancellationToken = default);
         public Task<(bool Uploaded, string Result)> UploadMultipleVideo(List<IFormFile> file, int Place);
         public bool VideoIsExisted(string? FullImagePath);
         public Task<bool> DeleteVideo(string fileName, int Place);

@@ -22,7 +22,7 @@ namespace Rafeek.Application.Handlers.UploaderHandlers.Commands.DownloadFile
 
         public async Task<string> Handle(DownloadFileCommand request, CancellationToken cancellationToken)
         {
-            var file = await _fileValidator.DownloadFile(request.FilePlace, request.FileName);
+            var file = await _fileValidator.DownloadFile(request.FilePlace, request.FileName, cancellationToken);
             if (!file.Item1)
                 return _localizer[LocalizationKeys.UploadFileMessages.FileNotFound.Value];
             else

@@ -105,12 +105,19 @@ namespace Rafeek.API
                   });
 
 
+                builder.Services.Configure<KestrelServerOptions>(options =>
+                {
+                    options.Limits.MaxRequestBodySize = 250_000_000; // 250 MB
+                    options.Limits.KeepAliveTimeout = TimeSpan.FromMinutes(10);
+                    options.Limits.RequestHeadersTimeout = TimeSpan.FromMinutes(10);
+                });
+
                 builder.Services.Configure<FormOptions>(options =>
                 {
                     options.ValueLengthLimit = int.MaxValue;
-                    options.MultipartBodyLengthLimit = 100 * 1024 * 1024; // 100 MB
+                    options.MultipartBodyLengthLimit = 250 * 1024 * 1024; // 250 MB
                     options.MultipartHeadersLengthLimit = int.MaxValue;
-                    options.BufferBodyLengthLimit = 100 * 1024 * 1024; // 100 MB
+                    options.BufferBodyLengthLimit = 250 * 1024 * 1024; // 250 MB
                 });
 
                 // Configure Swagger with versioning

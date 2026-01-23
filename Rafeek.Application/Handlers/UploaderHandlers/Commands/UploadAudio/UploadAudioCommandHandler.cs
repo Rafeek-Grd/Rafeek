@@ -18,7 +18,7 @@ namespace Rafeek.Application.Handlers.UploaderHandlers.Commands.UploadAudio
 
         public async Task<string> Handle(UploadAudioCommand request, CancellationToken cancellationToken)
         {
-            var result = await _audioValidator.UploadAudio(request.File, request.UploadPlace);
+            var result = await _audioValidator.UploadAudio(request.File, request.UploadPlace, cancellationToken);
 
             if (!result.Uploaded)
             {

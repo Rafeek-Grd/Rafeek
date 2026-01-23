@@ -23,6 +23,7 @@ namespace Rafeek.Application.Common.Services
         };
 
         private const long MaxImageFileSize = 10L * 1024L * 1024L; // 10 MB
+        private const int BufferSize = 81920; // 80 KB buffer for optimal streaming
 
         public ImageValidator
         (
@@ -36,7 +37,7 @@ namespace Rafeek.Application.Common.Services
             _localizer = localizer;
         }
 
-        public async Task<(bool Uploaded, string Result)> UploadImage(IFormFile file, int place = 0)
+        public async Task<(bool Uploaded, string Result)> UploadImage(IFormFile file, int place = 0, CancellationToken cancellationToken = default)
         {
             if (file == null || file.Length <= 0)
                 return (false, _localizer[LocalizationKeys.UploadFileMessages.FileNotFound.Value]);
@@ -59,53 +60,60 @@ namespace Rafeek.Application.Common.Services
 
             try
             {
-                using (var stream = new FileStream(filePath, FileMode.Create, FileAccess.Write, FileShare.None))
+                // Validate GIF signature before saving to avoid redundant I/O
+                var extension = Path.GetExtension(uniqueFileName)?.ToLowerInvariant();
+                if (extension == ".gif")
                 {
-                    await file.CopyToAsync(stream);
+                    if (!await IsValidGifFile(file.OpenReadStream()))
+                    {
+                        return (false, "Invalid GIF file format");
+                    }
+                }
+
+                // Use async file I/O with optimal buffer size and true async operations
+                using (var stream = new FileStream(filePath, FileMode.Create, FileAccess.Write, FileShare.None, BufferSize, useAsync: true))
+                {
+                    await file.CopyToAsync(stream, cancellationToken);
+                    await stream.FlushAsync(cancellationToken);
                 }
 
                 if (!File.Exists(filePath))
                     return (false, _localizer[LocalizationKeys.UploadFileMessages.FileUploadFailed.Value]);
 
-                // Validate GIF signature after saving (if GIF)
-                var extension = Path.GetExtension(uniqueFileName)?.ToLowerInvariant();
-                if (extension == ".gif")
-                {
-                    if (!await IsValidGifFile(filePath))
-                    {
-                        File.Delete(filePath);
-                        return (false, "Invalid GIF file format");
-                    }
-                }
-
                 return (true, uniqueFileName);
             }
             catch (Exception ex)
             {
+                if (File.Exists(filePath))
+                {
+                    try { File.Delete(filePath); } catch { }
+                }
                 return (false, $"Upload failed: {ex.Message}");
             }
         }
 
-        private static async Task<bool> IsValidGifFile(string filePath)
+        private static async Task<bool> IsValidGifFile(Stream stream)
         {
-            if (string.IsNullOrWhiteSpace(filePath) || !File.Exists(filePath))
+            if (stream == null || stream.Length < 6)
                 return false;
 
             try
             {
-                using (var fs = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read))
-                {
-                    if (fs.Length < 6)
-                        return false;
+                if (stream.CanSeek)
+                    stream.Position = 0;
 
-                    byte[] header = new byte[6];
-                    var read = await fs.ReadAsync(header, 0, header.Length);
-                    if (read < header.Length)
-                        return false;
+                byte[] header = new byte[6];
+                var read = await stream.ReadAsync(header, 0, header.Length);
+                
+                // Reset position if possible for subsequent reads
+                if (stream.CanSeek)
+                    stream.Position = 0;
 
-                    var signature = Encoding.ASCII.GetString(header);
-                    return signature == "GIF89a" || signature == "GIF87a";
-                }
+                if (read < header.Length)
+                    return false;
+
+                var signature = Encoding.ASCII.GetString(header);
+                return signature == "GIF89a" || signature == "GIF87a";
             }
             catch
             {
@@ -205,20 +213,40 @@ namespace Rafeek.Application.Common.Services
             if (files == null || !files.Any())
                 return (false, "No files provided");
 
-            var sb = new StringBuilder();
-            foreach (var item in files)
+            // Use SemaphoreSlim to limit concurrency if needed (e.g. max 5 parallel uploads)
+            var semaphore = new SemaphoreSlim(5);
+            var results = new System.Collections.Concurrent.ConcurrentBag<string>();
+            var errors = new System.Collections.Concurrent.ConcurrentBag<string>();
+
+            var tasks = files.Where(f => f != null).Select(async file =>
             {
-                if (item == null)
-                    continue;
+                await semaphore.WaitAsync();
+                try
+                {
+                    var result = await UploadImage(file, place);
+                    if (result.Uploaded)
+                    {
+                        results.Add(result.Result);
+                    }
+                    else
+                    {
+                        errors.Add(result.Result);
+                    }
+                }
+                finally
+                {
+                    semaphore.Release();
+                }
+            });
 
-                var result = await UploadImage(item, place);
-                if (!result.Uploaded)
-                    return (false, result.Result);
+            await Task.WhenAll(tasks);
 
-                sb.Append(result.Result).Append(';');
+            if (errors.Any())
+            {
+                return (false, errors.First());
             }
 
-            var resultString = sb.ToString().TrimEnd(';');
+            var resultString = string.Join(";", results);
             return (true, resultString);
         }
 

@@ -42,6 +42,7 @@ namespace Rafeek.Application.Common.Services
         private const long MaxVideoFileSize = 100L * 1024L * 1024L; // 100 MB
         private const long MaxAudioFileSize = 5L * 1024L * 1024L; // 5 MB
         private const long MaxDocumentFileSize = 10L * 1024L * 1024L; // 10 MB (kept previous 5MB relaxed to 10MB for docs)
+        private const int BufferSize = 81920; // 80 KB
 
         public FileValidator
         (
@@ -54,7 +55,7 @@ namespace Rafeek.Application.Common.Services
             _localizer = localizer;
         }
 
-        public async Task<(bool Uploaded, string Result)> UploadFile(IFormFile file, int place = 0)
+        public async Task<(bool Uploaded, string Result)> UploadFile(IFormFile file, int place = 0, CancellationToken cancellationToken = default)
         {
             if (file == null || file.Length <= 0)
                 return (false, _localizer[LocalizationKeys.UploadFileMessages.FileNotFound.Value]);
@@ -74,12 +75,24 @@ namespace Rafeek.Application.Common.Services
 
             var filePath = Path.Combine(uploadPlace, uniqueFileName);
 
-            using (var stream = new FileStream(filePath, FileMode.Create, FileAccess.Write, FileShare.None))
+            try
             {
-                await file.CopyToAsync(stream);
-            }
+                using (var stream = new FileStream(filePath, FileMode.Create, FileAccess.Write, FileShare.None, BufferSize, useAsync: true))
+                {
+                    await file.CopyToAsync(stream, cancellationToken);
+                    await stream.FlushAsync(cancellationToken);
+                }
 
-            return (true, uniqueFileName);
+                return (true, uniqueFileName);
+            }
+            catch (Exception ex)
+            {
+                if (File.Exists(filePath))
+                {
+                    try { File.Delete(filePath); } catch { }
+                }
+                return (false, $"Upload failed: {ex.Message}");
+            }
         }
 
         public async Task<bool> DeleteFile(string fileName, int place)
@@ -192,7 +205,7 @@ namespace Rafeek.Application.Common.Services
             return System.IO.File.Exists(path);
         }
 
-        public async Task<(bool, string)> DownloadFile(int filePlace, string fileName)
+        public async Task<(bool, string)> DownloadFile(int filePlace, string fileName, CancellationToken cancellationToken = default)
         {
             if (string.IsNullOrWhiteSpace(fileName))
                 return (false, string.Empty);
@@ -203,14 +216,12 @@ namespace Rafeek.Application.Common.Services
 
             try
             {
-                var provider = new FileExtensionContentTypeProvider();
-                if (!provider.TryGetContentType(Path.GetFileName(fullPath), out var contentType))
-                {
-                    contentType = "application/octet-stream";
-                }
-
-                var bytes = await System.IO.File.ReadAllBytesAsync(fullPath);
-                return (true, Convert.ToBase64String(bytes));
+                // Use stream with buffer instead of reading all bytes at once
+                using var fileStream = new FileStream(fullPath, FileMode.Open, FileAccess.Read, FileShare.Read, BufferSize, useAsync: true);
+                using var memoryStream = new MemoryStream();
+                await fileStream.CopyToAsync(memoryStream, cancellationToken);
+                
+                return (true, Convert.ToBase64String(memoryStream.ToArray()));
             }
             catch (Exception)
             {
