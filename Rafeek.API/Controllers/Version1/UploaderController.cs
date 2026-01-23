@@ -16,7 +16,7 @@ namespace Rafeek.API.Controllers.Version1
 {
     [ApiController]
     [ApiVersion("1.0")]
-    //[Authorize]
+    [Authorize]
     public class UploaderController : BaseApiController
     {
         private readonly IMediator _mediator;
