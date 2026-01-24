@@ -190,7 +190,7 @@ namespace Rafeek.API
                 // Add libraries services
                 builder.Services.AddApplication(builder.Configuration);
                 builder.Services.AddInfrastructure();
-                builder.Services.AddPersistence();
+                builder.Services.AddPersistence(builder.Configuration);
 
                 // Add options pattern support
                 builder.Services.AddOptions();

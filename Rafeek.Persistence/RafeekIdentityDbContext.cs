@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Rafeek.Application.Common.Interfaces;
 using Rafeek.Domain.Common;
@@ -6,34 +8,33 @@ using Rafeek.Domain.Entities;
 
 namespace Rafeek.Persistence
 {
-    public class RafeekDbContext : DbContext, IRafeekDbContext
+    public class RafeekIdentityDbContext : IdentityDbContext<ApplicationUser, IdentityRole<Guid>, Guid,
+        IdentityUserClaim<Guid>, IdentityUserRole<Guid>, IdentityUserLogin<Guid>,
+        IdentityRoleClaim<Guid>, IdentityUserToken<Guid>>, IRafeekIdentityDbContext
     {
         private readonly ICurrentUserService? _currentUserService;
 
-        public RafeekDbContext(DbContextOptions<RafeekDbContext> options) : base(options)
+        public RafeekIdentityDbContext(DbContextOptions<RafeekIdentityDbContext> options) : base(options)
         {
         }
 
-        public RafeekDbContext(DbContextOptions<RafeekDbContext> options
-            , ICurrentUserService currentUserService) : base(options)
+        public RafeekIdentityDbContext(DbContextOptions<RafeekIdentityDbContext> options,
+            ICurrentUserService currentUserService): base(options)
         {
             _currentUserService = currentUserService;
         }
 
-        public DbSet<TeachingAssistant> TeachingAssistants { get; set; }
-        public DbSet<Doctor> Doctors { get; set; }
-        public DbSet<Student> Students { get; set; }
-        public DbSet<Department> Departments { get; set; }
+        public DbSet<UserFbTokens> FbTokens { get; set; }
+        public DbSet<RefreshToken> RefreshTokens { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
 
-            builder.ApplyConfigurationsFromAssembly(typeof(RafeekDbContext).Assembly, 
-                type => type.Namespace != null && type.Namespace.Contains("Configurations.RafeekConfigurations"));
+            builder.ApplyConfigurationsFromAssembly(typeof(RafeekIdentityDbContext).Assembly,
+                type => type.Namespace != null && type.Namespace.Contains("Configurations.IdentityConfigurations"));
 
             builder.HasDefaultSchema("dbo");
-            
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -47,7 +48,7 @@ namespace Rafeek.Persistence
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
-            foreach(var entry in ChangeTracker.Entries<BaseEntity>())
+            foreach (var entry in ChangeTracker.Entries<BaseEntity>())
             {
                 switch (entry.State)
                 {
