@@ -1,436 +1,102 @@
-2026-01-24 00:20:24.7427||INFO|Rafeek.API.Program|Application starting up 
-2026-01-24 00:25:34.0967||INFO|Rafeek.API.Program|Application starting up 
-2026-01-24 00:40:08.8297||INFO|Rafeek.API.Program|Application starting up 
-2026-01-24 00:40:11.1978|6|FATAL|Microsoft.AspNetCore.Hosting.Diagnostics|Application startup exception System.InvalidOperationException: Unable to resolve service for type 'AspNetCoreRateLimit.IProcessingStrategy' while attempting to activate 'AspNetCoreRateLimit.IpRateLimitMiddleware'.
-   at Microsoft.Extensions.Internal.ActivatorUtilities.ConstructorMatcher.CreateInstance(IServiceProvider provider)
-   at Microsoft.Extensions.Internal.ActivatorUtilities.CreateInstance(IServiceProvider provider, Type instanceType, Object[] parameters)
-   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.ReflectionMiddlewareBinder.CreateMiddleware(RequestDelegate next)
-   at Microsoft.AspNetCore.Builder.ApplicationBuilder.Build()
-   at Microsoft.AspNetCore.Builder.ApplicationBuilder.Build()
-   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
-2026-01-24 00:40:11.3310|11|ERROR|Microsoft.Extensions.Hosting.Internal.Host|Hosting failed to start System.InvalidOperationException: Unable to resolve service for type 'AspNetCoreRateLimit.IProcessingStrategy' while attempting to activate 'AspNetCoreRateLimit.IpRateLimitMiddleware'.
-   at Microsoft.Extensions.Internal.ActivatorUtilities.ConstructorMatcher.CreateInstance(IServiceProvider provider)
-   at Microsoft.Extensions.Internal.ActivatorUtilities.CreateInstance(IServiceProvider provider, Type instanceType, Object[] parameters)
-   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.ReflectionMiddlewareBinder.CreateMiddleware(RequestDelegate next)
-   at Microsoft.AspNetCore.Builder.ApplicationBuilder.Build()
-   at Microsoft.AspNetCore.Builder.ApplicationBuilder.Build()
-   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
-   at Microsoft.Extensions.Hosting.Internal.Host.<StartAsync>b__15_1(IHostedService service, CancellationToken token)
-   at Microsoft.Extensions.Hosting.Internal.Host.ForeachService[T](IEnumerable`1 services, CancellationToken token, Boolean concurrent, Boolean abortOnFirstException, List`1 exceptions, Func`3 operation)
-2026-01-24 00:40:11.8868||ERROR|Rafeek.API.Program|Application stopped because of exception System.InvalidOperationException: Unable to resolve service for type 'AspNetCoreRateLimit.IProcessingStrategy' while attempting to activate 'AspNetCoreRateLimit.IpRateLimitMiddleware'.
-   at Microsoft.Extensions.Internal.ActivatorUtilities.ConstructorMatcher.CreateInstance(IServiceProvider provider)
-   at Microsoft.Extensions.Internal.ActivatorUtilities.CreateInstance(IServiceProvider provider, Type instanceType, Object[] parameters)
-   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.ReflectionMiddlewareBinder.CreateMiddleware(RequestDelegate next)
-   at Microsoft.AspNetCore.Builder.ApplicationBuilder.Build()
-   at Microsoft.AspNetCore.Builder.ApplicationBuilder.Build()
-   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
-   at Microsoft.Extensions.Hosting.Internal.Host.<StartAsync>b__15_1(IHostedService service, CancellationToken token)
-   at Microsoft.Extensions.Hosting.Internal.Host.ForeachService[T](IEnumerable`1 services, CancellationToken token, Boolean concurrent, Boolean abortOnFirstException, List`1 exceptions, Func`3 operation)
-   at Microsoft.Extensions.Hosting.Internal.Host.StartAsync(CancellationToken cancellationToken)
-   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
-   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
-   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.Run(IHost host)
-   at Rafeek.API.Program.Main(String[] args) in E:\Rafeek\Rafeek.API\Program.cs:line 339
-2026-01-24 00:40:20.0912||INFO|Rafeek.API.Program|Application starting up 
-2026-01-24 00:40:21.2734|6|FATAL|Microsoft.AspNetCore.Hosting.Diagnostics|Application startup exception System.InvalidOperationException: Unable to resolve service for type 'AspNetCoreRateLimit.IProcessingStrategy' while attempting to activate 'AspNetCoreRateLimit.IpRateLimitMiddleware'.
-   at Microsoft.Extensions.Internal.ActivatorUtilities.ConstructorMatcher.CreateInstance(IServiceProvider provider)
-   at Microsoft.Extensions.Internal.ActivatorUtilities.CreateInstance(IServiceProvider provider, Type instanceType, Object[] parameters)
-   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.ReflectionMiddlewareBinder.CreateMiddleware(RequestDelegate next)
-   at Microsoft.AspNetCore.Builder.ApplicationBuilder.Build()
-   at Microsoft.AspNetCore.Builder.ApplicationBuilder.Build()
-   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
-2026-01-24 00:40:21.3376|11|ERROR|Microsoft.Extensions.Hosting.Internal.Host|Hosting failed to start System.InvalidOperationException: Unable to resolve service for type 'AspNetCoreRateLimit.IProcessingStrategy' while attempting to activate 'AspNetCoreRateLimit.IpRateLimitMiddleware'.
-   at Microsoft.Extensions.Internal.ActivatorUtilities.ConstructorMatcher.CreateInstance(IServiceProvider provider)
-   at Microsoft.Extensions.Internal.ActivatorUtilities.CreateInstance(IServiceProvider provider, Type instanceType, Object[] parameters)
-   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.ReflectionMiddlewareBinder.CreateMiddleware(RequestDelegate next)
-   at Microsoft.AspNetCore.Builder.ApplicationBuilder.Build()
-   at Microsoft.AspNetCore.Builder.ApplicationBuilder.Build()
-   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
-   at Microsoft.Extensions.Hosting.Internal.Host.<StartAsync>b__15_1(IHostedService service, CancellationToken token)
-   at Microsoft.Extensions.Hosting.Internal.Host.ForeachService[T](IEnumerable`1 services, CancellationToken token, Boolean concurrent, Boolean abortOnFirstException, List`1 exceptions, Func`3 operation)
-2026-01-24 00:40:21.4143||ERROR|Rafeek.API.Program|Application stopped because of exception System.InvalidOperationException: Unable to resolve service for type 'AspNetCoreRateLimit.IProcessingStrategy' while attempting to activate 'AspNetCoreRateLimit.IpRateLimitMiddleware'.
-   at Microsoft.Extensions.Internal.ActivatorUtilities.ConstructorMatcher.CreateInstance(IServiceProvider provider)
-   at Microsoft.Extensions.Internal.ActivatorUtilities.CreateInstance(IServiceProvider provider, Type instanceType, Object[] parameters)
-   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.ReflectionMiddlewareBinder.CreateMiddleware(RequestDelegate next)
-   at Microsoft.AspNetCore.Builder.ApplicationBuilder.Build()
-   at Microsoft.AspNetCore.Builder.ApplicationBuilder.Build()
-   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
-   at Microsoft.Extensions.Hosting.Internal.Host.<StartAsync>b__15_1(IHostedService service, CancellationToken token)
-   at Microsoft.Extensions.Hosting.Internal.Host.ForeachService[T](IEnumerable`1 services, CancellationToken token, Boolean concurrent, Boolean abortOnFirstException, List`1 exceptions, Func`3 operation)
-   at Microsoft.Extensions.Hosting.Internal.Host.StartAsync(CancellationToken cancellationToken)
-   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
-   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
-   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.Run(IHost host)
-   at Rafeek.API.Program.Main(String[] args) in E:\Rafeek\Rafeek.API\Program.cs:line 339
-2026-01-24 00:46:20.2676||INFO|Rafeek.API.Program|Application starting up 
-2026-01-24 01:05:27.7329||INFO|Rafeek.API.Program|Application starting up 
-2026-01-24 01:06:05.8085|13|ERROR|Microsoft.AspNetCore.Server.Kestrel|Connection id "0HNIQQFJGKHSB", Request id "0HNIQQFJGKHSB:0000000D": An unhandled exception was thrown by the application. System.IO.IOException: There is not enough space on the disk.
-   at Microsoft.Win32.SafeHandles.SafeFileHandle.OverlappedValueTaskSource.GetResult(Int16 token)
-   at Microsoft.Win32.SafeHandles.SafeFileHandle.OverlappedValueTaskSource.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
-   at System.IO.Strategies.BufferedFileStreamStrategy.FlushAsyncInternal(CancellationToken cancellationToken)
-   at System.IO.Strategies.BufferedFileStreamStrategy.DisposeAsync()
-   at System.IO.Strategies.BufferedFileStreamStrategy.DisposeAsync()
-   at System.IO.FileStream.DisposeAsync()
-   at Microsoft.AspNetCore.WebUtilities.FileBufferingReadStream.DisposeAsync()
-   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.<FireOnCompleted>g__ProcessEvents|242_0(HttpProtocol protocol, Stack`1 events)
-2026-01-24 01:06:32.0459|13|ERROR|Microsoft.AspNetCore.Server.Kestrel|Connection id "0HNIQQFJGKHSB", Request id "0HNIQQFJGKHSB:0000000F": An unhandled exception was thrown by the application. System.IO.IOException: There is not enough space on the disk.
-   at Microsoft.Win32.SafeHandles.SafeFileHandle.OverlappedValueTaskSource.GetResult(Int16 token)
-   at Microsoft.Win32.SafeHandles.SafeFileHandle.OverlappedValueTaskSource.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
-   at System.IO.Strategies.BufferedFileStreamStrategy.FlushAsyncInternal(CancellationToken cancellationToken)
-   at System.IO.Strategies.BufferedFileStreamStrategy.DisposeAsync()
-   at System.IO.Strategies.BufferedFileStreamStrategy.DisposeAsync()
-   at System.IO.FileStream.DisposeAsync()
-   at Microsoft.AspNetCore.WebUtilities.FileBufferingReadStream.DisposeAsync()
-   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.<FireOnCompleted>g__ProcessEvents|242_0(HttpProtocol protocol, Stack`1 events)
-2026-01-24 01:08:33.4607||INFO|Rafeek.API.Program|Application starting up 
-2026-01-24 16:57:44.3883||INFO|Rafeek.API.Program|Application starting up 
-2026-01-24 16:57:44.8448||ERROR|Rafeek.API.Program|Application stopped because of exception Microsoft.Extensions.Hosting.HostAbortedException: The host was aborted.
-   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.ThrowHostAborted()
-   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.OnNext(KeyValuePair`2 value)
-   at System.Diagnostics.DiagnosticListener.Write(String name, Object value)
-   at Microsoft.Extensions.Hosting.HostBuilder.ResolveHost(IServiceProvider serviceProvider, DiagnosticListener diagnosticListener)
-   at Microsoft.Extensions.Hosting.HostApplicationBuilder.Build()
-   at Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build()
-   at Rafeek.API.Program.Main(String[] args) in E:\Rafeek\Rafeek.API\Program.cs:line 254
-2026-01-24 17:00:18.5878||INFO|Rafeek.API.Program|Application starting up 
-2026-01-24 17:00:18.7724||ERROR|Rafeek.API.Program|Application stopped because of exception Microsoft.Extensions.Hosting.HostAbortedException: The host was aborted.
-   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.ThrowHostAborted()
-   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.OnNext(KeyValuePair`2 value)
-   at System.Diagnostics.DiagnosticListener.Write(String name, Object value)
-   at Microsoft.Extensions.Hosting.HostBuilder.ResolveHost(IServiceProvider serviceProvider, DiagnosticListener diagnosticListener)
-   at Microsoft.Extensions.Hosting.HostApplicationBuilder.Build()
-   at Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build()
-   at Rafeek.API.Program.Main(String[] args) in E:\Rafeek\Rafeek.API\Program.cs:line 254
-2026-01-24 17:01:33.4365||INFO|Rafeek.API.Program|Application starting up 
-2026-01-24 17:01:33.6155||ERROR|Rafeek.API.Program|Application stopped because of exception Microsoft.Extensions.Hosting.HostAbortedException: The host was aborted.
-   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.ThrowHostAborted()
-   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.OnNext(KeyValuePair`2 value)
-   at System.Diagnostics.DiagnosticListener.Write(String name, Object value)
-   at Microsoft.Extensions.Hosting.HostBuilder.ResolveHost(IServiceProvider serviceProvider, DiagnosticListener diagnosticListener)
-   at Microsoft.Extensions.Hosting.HostApplicationBuilder.Build()
-   at Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build()
-   at Rafeek.API.Program.Main(String[] args) in E:\Rafeek\Rafeek.API\Program.cs:line 254
-2026-01-24 17:05:56.6831||INFO|Rafeek.API.Program|Application starting up 
-2026-01-24 17:05:56.8666||ERROR|Rafeek.API.Program|Application stopped because of exception Microsoft.Extensions.Hosting.HostAbortedException: The host was aborted.
-   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.ThrowHostAborted()
-   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.OnNext(KeyValuePair`2 value)
-   at System.Diagnostics.DiagnosticListener.Write(String name, Object value)
-   at Microsoft.Extensions.Hosting.HostBuilder.ResolveHost(IServiceProvider serviceProvider, DiagnosticListener diagnosticListener)
-   at Microsoft.Extensions.Hosting.HostApplicationBuilder.Build()
-   at Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build()
-   at Rafeek.API.Program.Main(String[] args) in E:\Rafeek\Rafeek.API\Program.cs:line 254
-2026-01-24 17:06:12.0466||INFO|Rafeek.API.Program|Application starting up 
-2026-01-24 17:06:12.2280||ERROR|Rafeek.API.Program|Application stopped because of exception Microsoft.Extensions.Hosting.HostAbortedException: The host was aborted.
-   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.ThrowHostAborted()
-   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.OnNext(KeyValuePair`2 value)
-   at System.Diagnostics.DiagnosticListener.Write(String name, Object value)
-   at Microsoft.Extensions.Hosting.HostBuilder.ResolveHost(IServiceProvider serviceProvider, DiagnosticListener diagnosticListener)
-   at Microsoft.Extensions.Hosting.HostApplicationBuilder.Build()
-   at Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build()
-   at Rafeek.API.Program.Main(String[] args) in E:\Rafeek\Rafeek.API\Program.cs:line 254
-2026-01-24 17:10:57.6223||INFO|Rafeek.API.Program|Application starting up 
-2026-01-24 17:10:57.7989||ERROR|Rafeek.API.Program|Application stopped because of exception Microsoft.Extensions.Hosting.HostAbortedException: The host was aborted.
-   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.ThrowHostAborted()
-   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.OnNext(KeyValuePair`2 value)
-   at System.Diagnostics.DiagnosticListener.Write(String name, Object value)
-   at Microsoft.Extensions.Hosting.HostBuilder.ResolveHost(IServiceProvider serviceProvider, DiagnosticListener diagnosticListener)
-   at Microsoft.Extensions.Hosting.HostApplicationBuilder.Build()
-   at Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build()
-   at Rafeek.API.Program.Main(String[] args) in E:\Rafeek\Rafeek.API\Program.cs:line 254
-2026-01-24 17:13:21.2558||INFO|Rafeek.API.Program|Application starting up 
-2026-01-24 17:13:21.4327||ERROR|Rafeek.API.Program|Application stopped because of exception Microsoft.Extensions.Hosting.HostAbortedException: The host was aborted.
-   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.ThrowHostAborted()
-   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.OnNext(KeyValuePair`2 value)
-   at System.Diagnostics.DiagnosticListener.Write(String name, Object value)
-   at Microsoft.Extensions.Hosting.HostBuilder.ResolveHost(IServiceProvider serviceProvider, DiagnosticListener diagnosticListener)
-   at Microsoft.Extensions.Hosting.HostApplicationBuilder.Build()
-   at Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build()
-   at Rafeek.API.Program.Main(String[] args) in E:\Rafeek\Rafeek.API\Program.cs:line 254
-2026-01-24 17:13:31.4981||INFO|Rafeek.API.Program|Application starting up 
-2026-01-24 17:13:31.6822||ERROR|Rafeek.API.Program|Application stopped because of exception Microsoft.Extensions.Hosting.HostAbortedException: The host was aborted.
-   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.ThrowHostAborted()
-   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.OnNext(KeyValuePair`2 value)
-   at System.Diagnostics.DiagnosticListener.Write(String name, Object value)
-   at Microsoft.Extensions.Hosting.HostBuilder.ResolveHost(IServiceProvider serviceProvider, DiagnosticListener diagnosticListener)
-   at Microsoft.Extensions.Hosting.HostApplicationBuilder.Build()
-   at Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build()
-   at Rafeek.API.Program.Main(String[] args) in E:\Rafeek\Rafeek.API\Program.cs:line 254
-2026-01-24 17:14:45.8414||INFO|Rafeek.API.Program|Application starting up 
-2026-01-24 17:14:46.0191||ERROR|Rafeek.API.Program|Application stopped because of exception Microsoft.Extensions.Hosting.HostAbortedException: The host was aborted.
-   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.ThrowHostAborted()
-   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.OnNext(KeyValuePair`2 value)
-   at System.Diagnostics.DiagnosticListener.Write(String name, Object value)
-   at Microsoft.Extensions.Hosting.HostBuilder.ResolveHost(IServiceProvider serviceProvider, DiagnosticListener diagnosticListener)
-   at Microsoft.Extensions.Hosting.HostApplicationBuilder.Build()
-   at Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build()
-   at Rafeek.API.Program.Main(String[] args) in E:\Rafeek\Rafeek.API\Program.cs:line 254
-2026-01-24 17:15:09.0873||INFO|Rafeek.API.Program|Application starting up 
-2026-01-24 17:15:09.2679||ERROR|Rafeek.API.Program|Application stopped because of exception Microsoft.Extensions.Hosting.HostAbortedException: The host was aborted.
-   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.ThrowHostAborted()
-   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.OnNext(KeyValuePair`2 value)
-   at System.Diagnostics.DiagnosticListener.Write(String name, Object value)
-   at Microsoft.Extensions.Hosting.HostBuilder.ResolveHost(IServiceProvider serviceProvider, DiagnosticListener diagnosticListener)
-   at Microsoft.Extensions.Hosting.HostApplicationBuilder.Build()
-   at Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build()
-   at Rafeek.API.Program.Main(String[] args) in E:\Rafeek\Rafeek.API\Program.cs:line 254
-2026-01-24 17:20:02.8408||INFO|Rafeek.API.Program|Application starting up 
-2026-01-24 17:20:03.0256||ERROR|Rafeek.API.Program|Application stopped because of exception Microsoft.Extensions.Hosting.HostAbortedException: The host was aborted.
-   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.ThrowHostAborted()
-   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.OnNext(KeyValuePair`2 value)
-   at System.Diagnostics.DiagnosticListener.Write(String name, Object value)
-   at Microsoft.Extensions.Hosting.HostBuilder.ResolveHost(IServiceProvider serviceProvider, DiagnosticListener diagnosticListener)
-   at Microsoft.Extensions.Hosting.HostApplicationBuilder.Build()
-   at Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build()
-   at Rafeek.API.Program.Main(String[] args) in E:\Rafeek\Rafeek.API\Program.cs:line 254
-2026-01-24 17:20:15.7466||INFO|Rafeek.API.Program|Application starting up 
-2026-01-24 17:20:15.9306||ERROR|Rafeek.API.Program|Application stopped because of exception Microsoft.Extensions.Hosting.HostAbortedException: The host was aborted.
-   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.ThrowHostAborted()
-   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.OnNext(KeyValuePair`2 value)
-   at System.Diagnostics.DiagnosticListener.Write(String name, Object value)
-   at Microsoft.Extensions.Hosting.HostBuilder.ResolveHost(IServiceProvider serviceProvider, DiagnosticListener diagnosticListener)
-   at Microsoft.Extensions.Hosting.HostApplicationBuilder.Build()
-   at Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build()
-   at Rafeek.API.Program.Main(String[] args) in E:\Rafeek\Rafeek.API\Program.cs:line 254
-2026-01-24 17:23:52.0789||INFO|Rafeek.API.Program|Application starting up 
-2026-01-24 17:23:52.3075||ERROR|Rafeek.API.Program|Application stopped because of exception Microsoft.Extensions.Hosting.HostAbortedException: The host was aborted.
-   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.ThrowHostAborted()
-   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.OnNext(KeyValuePair`2 value)
-   at System.Diagnostics.DiagnosticListener.Write(String name, Object value)
-   at Microsoft.Extensions.Hosting.HostBuilder.ResolveHost(IServiceProvider serviceProvider, DiagnosticListener diagnosticListener)
-   at Microsoft.Extensions.Hosting.HostApplicationBuilder.Build()
-   at Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build()
-   at Rafeek.API.Program.Main(String[] args) in E:\Rafeek\Rafeek.API\Program.cs:line 254
-2026-01-24 17:26:19.5488||INFO|Rafeek.API.Program|Application starting up 
-2026-01-24 17:26:19.7537||ERROR|Rafeek.API.Program|Application stopped because of exception Microsoft.Extensions.Hosting.HostAbortedException: The host was aborted.
-   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.ThrowHostAborted()
-   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.OnNext(KeyValuePair`2 value)
-   at System.Diagnostics.DiagnosticListener.Write(String name, Object value)
-   at Microsoft.Extensions.Hosting.HostBuilder.ResolveHost(IServiceProvider serviceProvider, DiagnosticListener diagnosticListener)
-   at Microsoft.Extensions.Hosting.HostApplicationBuilder.Build()
-   at Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build()
-   at Rafeek.API.Program.Main(String[] args) in E:\Rafeek\Rafeek.API\Program.cs:line 254
-2026-01-24 17:29:23.0054||INFO|Rafeek.API.Program|Application starting up 
-2026-01-24 17:29:23.2158||ERROR|Rafeek.API.Program|Application stopped because of exception Microsoft.Extensions.Hosting.HostAbortedException: The host was aborted.
-   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.ThrowHostAborted()
-   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.OnNext(KeyValuePair`2 value)
-   at System.Diagnostics.DiagnosticListener.Write(String name, Object value)
-   at Microsoft.Extensions.Hosting.HostBuilder.ResolveHost(IServiceProvider serviceProvider, DiagnosticListener diagnosticListener)
-   at Microsoft.Extensions.Hosting.HostApplicationBuilder.Build()
-   at Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build()
-   at Rafeek.API.Program.Main(String[] args) in E:\Rafeek\Rafeek.API\Program.cs:line 254
-2026-01-24 17:29:31.8144||INFO|Rafeek.API.Program|Application starting up 
-2026-01-24 17:29:32.0136||ERROR|Rafeek.API.Program|Application stopped because of exception Microsoft.Extensions.Hosting.HostAbortedException: The host was aborted.
-   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.ThrowHostAborted()
-   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.OnNext(KeyValuePair`2 value)
-   at System.Diagnostics.DiagnosticListener.Write(String name, Object value)
-   at Microsoft.Extensions.Hosting.HostBuilder.ResolveHost(IServiceProvider serviceProvider, DiagnosticListener diagnosticListener)
-   at Microsoft.Extensions.Hosting.HostApplicationBuilder.Build()
-   at Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build()
-   at Rafeek.API.Program.Main(String[] args) in E:\Rafeek\Rafeek.API\Program.cs:line 254
-2026-01-24 17:43:53.9435||INFO|Rafeek.API.Program|Application starting up 
-2026-01-24 17:43:54.1772||ERROR|Rafeek.API.Program|Application stopped because of exception Microsoft.Extensions.Hosting.HostAbortedException: The host was aborted.
-   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.ThrowHostAborted()
-   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.OnNext(KeyValuePair`2 value)
-   at System.Diagnostics.DiagnosticListener.Write(String name, Object value)
-   at Microsoft.Extensions.Hosting.HostBuilder.ResolveHost(IServiceProvider serviceProvider, DiagnosticListener diagnosticListener)
-   at Microsoft.Extensions.Hosting.HostApplicationBuilder.Build()
-   at Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build()
-   at Rafeek.API.Program.Main(String[] args) in E:\Rafeek\Rafeek.API\Program.cs:line 254
-2026-01-24 17:44:17.6657||INFO|Rafeek.API.Program|Application starting up 
-2026-01-24 17:44:17.8621||ERROR|Rafeek.API.Program|Application stopped because of exception Microsoft.Extensions.Hosting.HostAbortedException: The host was aborted.
-   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.ThrowHostAborted()
-   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.OnNext(KeyValuePair`2 value)
-   at System.Diagnostics.DiagnosticListener.Write(String name, Object value)
-   at Microsoft.Extensions.Hosting.HostBuilder.ResolveHost(IServiceProvider serviceProvider, DiagnosticListener diagnosticListener)
-   at Microsoft.Extensions.Hosting.HostApplicationBuilder.Build()
-   at Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build()
-   at Rafeek.API.Program.Main(String[] args) in E:\Rafeek\Rafeek.API\Program.cs:line 254
-2026-01-24 19:10:05.1759||INFO|Rafeek.API.Program|Application starting up 
-2026-01-24 19:10:05.4295||ERROR|Rafeek.API.Program|Application stopped because of exception Microsoft.Extensions.Hosting.HostAbortedException: The host was aborted.
-   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.ThrowHostAborted()
-   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.OnNext(KeyValuePair`2 value)
-   at System.Diagnostics.DiagnosticListener.Write(String name, Object value)
-   at Microsoft.Extensions.Hosting.HostBuilder.ResolveHost(IServiceProvider serviceProvider, DiagnosticListener diagnosticListener)
-   at Microsoft.Extensions.Hosting.HostApplicationBuilder.Build()
-   at Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build()
-   at Rafeek.API.Program.Main(String[] args) in E:\Rafeek\Rafeek.API\Program.cs:line 254
-2026-01-24 19:11:29.7913||INFO|Rafeek.API.Program|Application starting up 
-2026-01-24 19:11:30.0049||ERROR|Rafeek.API.Program|Application stopped because of exception Microsoft.Extensions.Hosting.HostAbortedException: The host was aborted.
-   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.ThrowHostAborted()
-   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.OnNext(KeyValuePair`2 value)
-   at System.Diagnostics.DiagnosticListener.Write(String name, Object value)
-   at Microsoft.Extensions.Hosting.HostBuilder.ResolveHost(IServiceProvider serviceProvider, DiagnosticListener diagnosticListener)
-   at Microsoft.Extensions.Hosting.HostApplicationBuilder.Build()
-   at Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build()
-   at Rafeek.API.Program.Main(String[] args) in E:\Rafeek\Rafeek.API\Program.cs:line 254
-2026-01-24 19:11:59.8258||INFO|Rafeek.API.Program|Application starting up 
-2026-01-24 19:12:00.0801||ERROR|Rafeek.API.Program|Application stopped because of exception Microsoft.Extensions.Hosting.HostAbortedException: The host was aborted.
-   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.ThrowHostAborted()
-   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.OnNext(KeyValuePair`2 value)
-   at System.Diagnostics.DiagnosticListener.Write(String name, Object value)
-   at Microsoft.Extensions.Hosting.HostBuilder.ResolveHost(IServiceProvider serviceProvider, DiagnosticListener diagnosticListener)
-   at Microsoft.Extensions.Hosting.HostApplicationBuilder.Build()
-   at Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build()
-   at Rafeek.API.Program.Main(String[] args) in E:\Rafeek\Rafeek.API\Program.cs:line 254
-2026-01-24 19:14:13.3963||INFO|Rafeek.API.Program|Application starting up 
-2026-01-24 19:14:13.6391||ERROR|Rafeek.API.Program|Application stopped because of exception Microsoft.Extensions.Hosting.HostAbortedException: The host was aborted.
-   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.ThrowHostAborted()
-   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.OnNext(KeyValuePair`2 value)
-   at System.Diagnostics.DiagnosticListener.Write(String name, Object value)
-   at Microsoft.Extensions.Hosting.HostBuilder.ResolveHost(IServiceProvider serviceProvider, DiagnosticListener diagnosticListener)
-   at Microsoft.Extensions.Hosting.HostApplicationBuilder.Build()
-   at Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build()
-   at Rafeek.API.Program.Main(String[] args) in E:\Rafeek\Rafeek.API\Program.cs:line 254
-2026-01-24 19:14:23.9384||INFO|Rafeek.API.Program|Application starting up 
-2026-01-24 19:14:24.2105||ERROR|Rafeek.API.Program|Application stopped because of exception Microsoft.Extensions.Hosting.HostAbortedException: The host was aborted.
-   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.ThrowHostAborted()
-   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.OnNext(KeyValuePair`2 value)
-   at System.Diagnostics.DiagnosticListener.Write(String name, Object value)
-   at Microsoft.Extensions.Hosting.HostBuilder.ResolveHost(IServiceProvider serviceProvider, DiagnosticListener diagnosticListener)
-   at Microsoft.Extensions.Hosting.HostApplicationBuilder.Build()
-   at Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build()
-   at Rafeek.API.Program.Main(String[] args) in E:\Rafeek\Rafeek.API\Program.cs:line 254
-2026-01-24 19:17:44.0779||INFO|Rafeek.API.Program|Application starting up 
-2026-01-24 19:17:44.3289||ERROR|Rafeek.API.Program|Application stopped because of exception Microsoft.Extensions.Hosting.HostAbortedException: The host was aborted.
-   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.ThrowHostAborted()
-   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.OnNext(KeyValuePair`2 value)
-   at System.Diagnostics.DiagnosticListener.Write(String name, Object value)
-   at Microsoft.Extensions.Hosting.HostBuilder.ResolveHost(IServiceProvider serviceProvider, DiagnosticListener diagnosticListener)
-   at Microsoft.Extensions.Hosting.HostApplicationBuilder.Build()
-   at Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build()
-   at Rafeek.API.Program.Main(String[] args) in E:\Rafeek\Rafeek.API\Program.cs:line 254
-2026-01-24 19:19:54.7530||INFO|Rafeek.API.Program|Application starting up 
-2026-01-24 19:19:54.9855||ERROR|Rafeek.API.Program|Application stopped because of exception Microsoft.Extensions.Hosting.HostAbortedException: The host was aborted.
-   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.ThrowHostAborted()
-   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.OnNext(KeyValuePair`2 value)
-   at System.Diagnostics.DiagnosticListener.Write(String name, Object value)
-   at Microsoft.Extensions.Hosting.HostBuilder.ResolveHost(IServiceProvider serviceProvider, DiagnosticListener diagnosticListener)
-   at Microsoft.Extensions.Hosting.HostApplicationBuilder.Build()
-   at Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build()
-   at Rafeek.API.Program.Main(String[] args) in E:\Rafeek\Rafeek.API\Program.cs:line 254
-2026-01-24 19:20:16.5327||INFO|Rafeek.API.Program|Application starting up 
-2026-01-24 19:20:16.7657||ERROR|Rafeek.API.Program|Application stopped because of exception Microsoft.Extensions.Hosting.HostAbortedException: The host was aborted.
-   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.ThrowHostAborted()
-   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.OnNext(KeyValuePair`2 value)
-   at System.Diagnostics.DiagnosticListener.Write(String name, Object value)
-   at Microsoft.Extensions.Hosting.HostBuilder.ResolveHost(IServiceProvider serviceProvider, DiagnosticListener diagnosticListener)
-   at Microsoft.Extensions.Hosting.HostApplicationBuilder.Build()
-   at Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build()
-   at Rafeek.API.Program.Main(String[] args) in E:\Rafeek\Rafeek.API\Program.cs:line 254
-2026-01-24 19:22:52.5629||INFO|Rafeek.API.Program|Application starting up 
-2026-01-24 19:22:52.7823||ERROR|Rafeek.API.Program|Application stopped because of exception Microsoft.Extensions.Hosting.HostAbortedException: The host was aborted.
-   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.ThrowHostAborted()
-   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.OnNext(KeyValuePair`2 value)
-   at System.Diagnostics.DiagnosticListener.Write(String name, Object value)
-   at Microsoft.Extensions.Hosting.HostBuilder.ResolveHost(IServiceProvider serviceProvider, DiagnosticListener diagnosticListener)
-   at Microsoft.Extensions.Hosting.HostApplicationBuilder.Build()
-   at Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build()
-   at Rafeek.API.Program.Main(String[] args) in E:\Rafeek\Rafeek.API\Program.cs:line 254
-2026-01-24 19:23:00.9021||INFO|Rafeek.API.Program|Application starting up 
-2026-01-24 19:23:01.1309||ERROR|Rafeek.API.Program|Application stopped because of exception Microsoft.Extensions.Hosting.HostAbortedException: The host was aborted.
-   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.ThrowHostAborted()
-   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.OnNext(KeyValuePair`2 value)
-   at System.Diagnostics.DiagnosticListener.Write(String name, Object value)
-   at Microsoft.Extensions.Hosting.HostBuilder.ResolveHost(IServiceProvider serviceProvider, DiagnosticListener diagnosticListener)
-   at Microsoft.Extensions.Hosting.HostApplicationBuilder.Build()
-   at Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build()
-   at Rafeek.API.Program.Main(String[] args) in E:\Rafeek\Rafeek.API\Program.cs:line 254
-2026-01-24 19:26:22.4489||INFO|Rafeek.API.Program|Application starting up 
-2026-01-24 19:26:22.7019||ERROR|Rafeek.API.Program|Application stopped because of exception Microsoft.Extensions.Hosting.HostAbortedException: The host was aborted.
-   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.ThrowHostAborted()
-   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.OnNext(KeyValuePair`2 value)
-   at System.Diagnostics.DiagnosticListener.Write(String name, Object value)
-   at Microsoft.Extensions.Hosting.HostBuilder.ResolveHost(IServiceProvider serviceProvider, DiagnosticListener diagnosticListener)
-   at Microsoft.Extensions.Hosting.HostApplicationBuilder.Build()
-   at Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build()
-   at Rafeek.API.Program.Main(String[] args) in E:\Rafeek\Rafeek.API\Program.cs:line 254
-2026-01-24 19:26:31.2826||INFO|Rafeek.API.Program|Application starting up 
-2026-01-24 19:26:31.5020||ERROR|Rafeek.API.Program|Application stopped because of exception Microsoft.Extensions.Hosting.HostAbortedException: The host was aborted.
-   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.ThrowHostAborted()
-   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.OnNext(KeyValuePair`2 value)
-   at System.Diagnostics.DiagnosticListener.Write(String name, Object value)
-   at Microsoft.Extensions.Hosting.HostBuilder.ResolveHost(IServiceProvider serviceProvider, DiagnosticListener diagnosticListener)
-   at Microsoft.Extensions.Hosting.HostApplicationBuilder.Build()
-   at Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build()
-   at Rafeek.API.Program.Main(String[] args) in E:\Rafeek\Rafeek.API\Program.cs:line 254
-2026-01-24 19:29:23.4641||INFO|Rafeek.API.Program|Application starting up 
-2026-01-24 19:29:23.6856||ERROR|Rafeek.API.Program|Application stopped because of exception Microsoft.Extensions.Hosting.HostAbortedException: The host was aborted.
-   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.ThrowHostAborted()
-   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.OnNext(KeyValuePair`2 value)
-   at System.Diagnostics.DiagnosticListener.Write(String name, Object value)
-   at Microsoft.Extensions.Hosting.HostBuilder.ResolveHost(IServiceProvider serviceProvider, DiagnosticListener diagnosticListener)
-   at Microsoft.Extensions.Hosting.HostApplicationBuilder.Build()
-   at Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build()
-   at Rafeek.API.Program.Main(String[] args) in E:\Rafeek\Rafeek.API\Program.cs:line 254
-2026-01-24 19:33:40.3275||INFO|Rafeek.API.Program|Application starting up 
-2026-01-24 19:33:40.5260||ERROR|Rafeek.API.Program|Application stopped because of exception Microsoft.Extensions.Hosting.HostAbortedException: The host was aborted.
-   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.ThrowHostAborted()
-   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.OnNext(KeyValuePair`2 value)
-   at System.Diagnostics.DiagnosticListener.Write(String name, Object value)
-   at Microsoft.Extensions.Hosting.HostBuilder.ResolveHost(IServiceProvider serviceProvider, DiagnosticListener diagnosticListener)
-   at Microsoft.Extensions.Hosting.HostApplicationBuilder.Build()
-   at Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build()
-   at Rafeek.API.Program.Main(String[] args) in E:\Rafeek\Rafeek.API\Program.cs:line 254
-2026-01-24 19:35:15.6655||INFO|Rafeek.API.Program|Application starting up 
-2026-01-24 19:35:15.8634||ERROR|Rafeek.API.Program|Application stopped because of exception Microsoft.Extensions.Hosting.HostAbortedException: The host was aborted.
-   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.ThrowHostAborted()
-   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.OnNext(KeyValuePair`2 value)
-   at System.Diagnostics.DiagnosticListener.Write(String name, Object value)
-   at Microsoft.Extensions.Hosting.HostBuilder.ResolveHost(IServiceProvider serviceProvider, DiagnosticListener diagnosticListener)
-   at Microsoft.Extensions.Hosting.HostApplicationBuilder.Build()
-   at Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build()
-   at Rafeek.API.Program.Main(String[] args) in E:\Rafeek\Rafeek.API\Program.cs:line 254
-2026-01-24 19:35:45.4385||INFO|Rafeek.API.Program|Application starting up 
-2026-01-24 19:35:45.6450||ERROR|Rafeek.API.Program|Application stopped because of exception Microsoft.Extensions.Hosting.HostAbortedException: The host was aborted.
-   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.ThrowHostAborted()
-   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.OnNext(KeyValuePair`2 value)
-   at System.Diagnostics.DiagnosticListener.Write(String name, Object value)
-   at Microsoft.Extensions.Hosting.HostBuilder.ResolveHost(IServiceProvider serviceProvider, DiagnosticListener diagnosticListener)
-   at Microsoft.Extensions.Hosting.HostApplicationBuilder.Build()
-   at Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build()
-   at Rafeek.API.Program.Main(String[] args) in E:\Rafeek\Rafeek.API\Program.cs:line 254
-2026-01-24 19:37:19.5322||INFO|Rafeek.API.Program|Application starting up 
-2026-01-24 19:37:19.7307||ERROR|Rafeek.API.Program|Application stopped because of exception Microsoft.Extensions.Hosting.HostAbortedException: The host was aborted.
-   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.ThrowHostAborted()
-   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.OnNext(KeyValuePair`2 value)
-   at System.Diagnostics.DiagnosticListener.Write(String name, Object value)
-   at Microsoft.Extensions.Hosting.HostBuilder.ResolveHost(IServiceProvider serviceProvider, DiagnosticListener diagnosticListener)
-   at Microsoft.Extensions.Hosting.HostApplicationBuilder.Build()
-   at Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build()
-   at Rafeek.API.Program.Main(String[] args) in E:\Rafeek\Rafeek.API\Program.cs:line 254
-2026-01-24 19:40:17.2935||INFO|Rafeek.API.Program|Application starting up 
-2026-01-24 19:40:17.5180||ERROR|Rafeek.API.Program|Application stopped because of exception Microsoft.Extensions.Hosting.HostAbortedException: The host was aborted.
-   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.ThrowHostAborted()
-   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.OnNext(KeyValuePair`2 value)
-   at System.Diagnostics.DiagnosticListener.Write(String name, Object value)
-   at Microsoft.Extensions.Hosting.HostBuilder.ResolveHost(IServiceProvider serviceProvider, DiagnosticListener diagnosticListener)
-   at Microsoft.Extensions.Hosting.HostApplicationBuilder.Build()
-   at Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build()
-   at Rafeek.API.Program.Main(String[] args) in E:\Rafeek\Rafeek.API\Program.cs:line 254
-2026-01-24 19:40:47.9946||INFO|Rafeek.API.Program|Application starting up 
-2026-01-24 19:40:48.2446||ERROR|Rafeek.API.Program|Application stopped because of exception Microsoft.Extensions.Hosting.HostAbortedException: The host was aborted.
-   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.ThrowHostAborted()
-   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.OnNext(KeyValuePair`2 value)
-   at System.Diagnostics.DiagnosticListener.Write(String name, Object value)
-   at Microsoft.Extensions.Hosting.HostBuilder.ResolveHost(IServiceProvider serviceProvider, DiagnosticListener diagnosticListener)
-   at Microsoft.Extensions.Hosting.HostApplicationBuilder.Build()
-   at Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build()
-   at Rafeek.API.Program.Main(String[] args) in E:\Rafeek\Rafeek.API\Program.cs:line 254
-2026-01-24 20:28:52.0904||INFO|Rafeek.API.Program|Application starting up 
-2026-01-24 20:28:52.3225||ERROR|Rafeek.API.Program|Application stopped because of exception Microsoft.Extensions.Hosting.HostAbortedException: The host was aborted.
-   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.ThrowHostAborted()
-   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.OnNext(KeyValuePair`2 value)
-   at System.Diagnostics.DiagnosticListener.Write(String name, Object value)
-   at Microsoft.Extensions.Hosting.HostBuilder.ResolveHost(IServiceProvider serviceProvider, DiagnosticListener diagnosticListener)
-   at Microsoft.Extensions.Hosting.HostApplicationBuilder.Build()
-   at Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build()
-   at Rafeek.API.Program.Main(String[] args) in E:\Rafeek\Rafeek.API\Program.cs:line 254
-2026-01-24 20:29:38.9662||INFO|Rafeek.API.Program|Application starting up 
-2026-01-24 20:29:39.2011||ERROR|Rafeek.API.Program|Application stopped because of exception Microsoft.Extensions.Hosting.HostAbortedException: The host was aborted.
-   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.ThrowHostAborted()
-   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.OnNext(KeyValuePair`2 value)
-   at System.Diagnostics.DiagnosticListener.Write(String name, Object value)
-   at Microsoft.Extensions.Hosting.HostBuilder.ResolveHost(IServiceProvider serviceProvider, DiagnosticListener diagnosticListener)
-   at Microsoft.Extensions.Hosting.HostApplicationBuilder.Build()
-   at Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build()
-   at Rafeek.API.Program.Main(String[] args) in E:\Rafeek\Rafeek.API\Program.cs:line 254
+2026-01-24 21:43:00.2474||INFO|Program|Application starting up 
+2026-01-24 21:43:03.7625||INFO|Microsoft.Hosting.Lifetime|Application started. Press Ctrl+C to shut down. 
+2026-01-24 21:43:03.8191||INFO|Microsoft.Hosting.Lifetime|Hosting environment: Development 
+2026-01-24 21:43:03.8541||INFO|Microsoft.Hosting.Lifetime|Content root path: E:\Rafeek\Rafeek.API 
+2026-01-24 21:43:40.3578||ERROR|Rafeek.Application.Handlers.UploaderHandlers.Commands.UploadImage.UploadImageCommand|Squeak Request: Unhandled Exception for Request "UploadImageCommand" {"UploadPlace":0} Rafeek.Application.Common.Exceptions.ValidationException: One or more validation failures
+   at Rafeek.Application.Common.Behaviours.ValidationBehaviour`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next) in E:\Rafeek\Rafeek.Application\Common\Behaviours\ValidationBehaviour.cs:line 26
+   at Rafeek.Application.Common.Behaviours.UnhandledExceptionBehaviour`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next) in E:\Rafeek\Rafeek.Application\Common\Behaviours\UnhandledExceptionBehaviour.cs:line 20
+2026-01-24 21:44:24.9178||INFO|Program|Application starting up 
+2026-01-24 21:44:26.6345||INFO|Microsoft.Hosting.Lifetime|Application started. Press Ctrl+C to shut down. 
+2026-01-24 21:44:26.6548||INFO|Microsoft.Hosting.Lifetime|Hosting environment: Development 
+2026-01-24 21:44:26.6719||INFO|Microsoft.Hosting.Lifetime|Content root path: E:\Rafeek\Rafeek.API 
+2026-01-24 21:46:11.0895||INFO|Program|Application starting up 
+2026-01-24 21:46:12.5821||INFO|Microsoft.Hosting.Lifetime|Application started. Press Ctrl+C to shut down. 
+2026-01-24 21:46:12.5964||INFO|Microsoft.Hosting.Lifetime|Hosting environment: Development 
+2026-01-24 21:46:12.6198||INFO|Microsoft.Hosting.Lifetime|Content root path: E:\Rafeek\Rafeek.API 
+2026-01-24 21:49:02.3189||INFO|Program|Application starting up 
+2026-01-24 21:49:06.9168||INFO|Microsoft.Hosting.Lifetime|Application started. Press Ctrl+C to shut down. 
+2026-01-24 21:49:06.9991||INFO|Microsoft.Hosting.Lifetime|Hosting environment: Development 
+2026-01-24 21:49:07.0791||INFO|Microsoft.Hosting.Lifetime|Content root path: E:\Rafeek\Rafeek.API 
+2026-01-24 21:49:51.0825||INFO|Program|Application starting up 
+2026-01-24 21:49:52.9751||INFO|Microsoft.Hosting.Lifetime|Application started. Press Ctrl+C to shut down. 
+2026-01-24 21:49:52.9927||INFO|Microsoft.Hosting.Lifetime|Hosting environment: Development 
+2026-01-24 21:49:53.0011||INFO|Microsoft.Hosting.Lifetime|Content root path: E:\Rafeek\Rafeek.API 
+2026-01-24 22:00:22.5622||INFO|Program|Application starting up 
+2026-01-24 22:00:24.4211||INFO|Microsoft.Hosting.Lifetime|Application started. Press Ctrl+C to shut down. 
+2026-01-24 22:00:24.5127||INFO|Microsoft.Hosting.Lifetime|Hosting environment: Development 
+2026-01-24 22:00:24.6196||INFO|Microsoft.Hosting.Lifetime|Content root path: E:\Rafeek\Rafeek.API 
+2026-01-24 22:04:21.3292||INFO|Program|Application starting up 
+2026-01-24 22:04:22.9844||INFO|Microsoft.Hosting.Lifetime|Application started. Press Ctrl+C to shut down. 
+2026-01-24 22:04:23.0040||INFO|Microsoft.Hosting.Lifetime|Hosting environment: Development 
+2026-01-24 22:04:23.0040||INFO|Microsoft.Hosting.Lifetime|Content root path: E:\Rafeek\Rafeek.API 
+2026-01-24 22:12:45.2649||INFO|Program|Application starting up 
+2026-01-24 22:12:46.7964||INFO|Microsoft.Hosting.Lifetime|Application started. Press Ctrl+C to shut down. 
+2026-01-24 22:12:46.8190||INFO|Microsoft.Hosting.Lifetime|Hosting environment: Development 
+2026-01-24 22:12:46.8947||INFO|Microsoft.Hosting.Lifetime|Content root path: E:\Rafeek\Rafeek.API 
+2026-01-24 22:13:46.2977||INFO|Program|Application starting up 
+2026-01-24 22:13:48.5842||INFO|Microsoft.Hosting.Lifetime|Application started. Press Ctrl+C to shut down. 
+2026-01-24 22:13:48.6098||INFO|Microsoft.Hosting.Lifetime|Hosting environment: Development 
+2026-01-24 22:13:48.6226||INFO|Microsoft.Hosting.Lifetime|Content root path: E:\Rafeek\Rafeek.API 
+2026-01-24 22:14:07.0701||INFO|Program|Application starting up 
+2026-01-24 22:14:08.4855||INFO|Microsoft.Hosting.Lifetime|Application started. Press Ctrl+C to shut down. 
+2026-01-24 22:14:08.5004||INFO|Microsoft.Hosting.Lifetime|Hosting environment: Development 
+2026-01-24 22:14:08.5141||INFO|Microsoft.Hosting.Lifetime|Content root path: E:\Rafeek\Rafeek.API 
+2026-01-24 22:19:15.4399||INFO|Program|Application starting up 
+2026-01-24 22:19:18.3021||INFO|Microsoft.Hosting.Lifetime|Application started. Press Ctrl+C to shut down. 
+2026-01-24 22:19:18.4028||INFO|Microsoft.Hosting.Lifetime|Hosting environment: Development 
+2026-01-24 22:19:18.4471||INFO|Microsoft.Hosting.Lifetime|Content root path: E:\Rafeek\Rafeek.API 
+2026-01-24 22:19:28.6354|1|ERROR|Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware|An unhandled exception has occurred while executing the request. System.InvalidOperationException: No service for type 'Rafeek.API.Filters.AuthorizeCheckOperationFilter' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Mvc.ServiceFilterAttribute.CreateInstance(IServiceProvider serviceProvider)
+   at Microsoft.AspNetCore.Mvc.Filters.DefaultFilterProvider.ProvideFilter(FilterProviderContext context, FilterItem filterItem)
+   at Microsoft.AspNetCore.Mvc.Filters.DefaultFilterProvider.OnProvidersExecuting(FilterProviderContext context)
+   at Microsoft.AspNetCore.Mvc.Filters.FilterFactory.CreateUncachedFiltersCore(IFilterProvider[] filterProviders, ActionContext actionContext, List`1 filterItems)
+   at Microsoft.AspNetCore.Mvc.Filters.FilterFactory.GetAllFilters(IFilterProvider[] filterProviders, ActionContext actionContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvokerCache.GetCachedResult(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Routing.ControllerRequestDelegateFactory.<>c__DisplayClass12_0.<CreateRequestDelegate>b__0(HttpContext context)
+   at tusdotnet.TusCoreMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at AspNetCoreRateLimit.RateLimitMiddleware`1.Invoke(HttpContext context) in C:\Users\User\Documents\Github\AspNetCoreRateLimit\src\AspNetCoreRateLimit\Middleware\RateLimitMiddleware.cs:line 124
+   at NWebsec.AspNetCore.Middleware.Middleware.MiddlewareBase.Invoke(HttpContext context)
+   at NWebsec.AspNetCore.Middleware.Middleware.MiddlewareBase.Invoke(HttpContext context)
+   at NWebsec.AspNetCore.Middleware.Middleware.MiddlewareBase.Invoke(HttpContext context)
+   at NWebsec.AspNetCore.Middleware.Middleware.MiddlewareBase.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.ResponseCompression.ResponseCompressionMiddleware.InvokeCore(HttpContext context)
+   at Microsoft.AspNetCore.Localization.RequestLocalizationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2026-01-24 22:21:25.6100||INFO|Program|Application starting up 
+2026-01-24 22:21:28.3242||INFO|Microsoft.Hosting.Lifetime|Application started. Press Ctrl+C to shut down. 
+2026-01-24 22:21:28.4030||INFO|Microsoft.Hosting.Lifetime|Hosting environment: Development 
+2026-01-24 22:21:28.4726||INFO|Microsoft.Hosting.Lifetime|Content root path: E:\Rafeek\Rafeek.API 
+2026-01-24 22:21:37.7985|1|ERROR|Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware|An unhandled exception has occurred while executing the request. System.InvalidCastException: Unable to cast object of type 'Rafeek.API.Filters.AuthorizeCheckOperationFilter' to type 'Microsoft.AspNetCore.Mvc.Filters.IFilterMetadata'.
+   at Microsoft.AspNetCore.Mvc.ServiceFilterAttribute.CreateInstance(IServiceProvider serviceProvider)
+   at Microsoft.AspNetCore.Mvc.Filters.DefaultFilterProvider.ProvideFilter(FilterProviderContext context, FilterItem filterItem)
+   at Microsoft.AspNetCore.Mvc.Filters.DefaultFilterProvider.OnProvidersExecuting(FilterProviderContext context)
+   at Microsoft.AspNetCore.Mvc.Filters.FilterFactory.CreateUncachedFiltersCore(IFilterProvider[] filterProviders, ActionContext actionContext, List`1 filterItems)
+   at Microsoft.AspNetCore.Mvc.Filters.FilterFactory.GetAllFilters(IFilterProvider[] filterProviders, ActionContext actionContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvokerCache.GetCachedResult(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Routing.ControllerRequestDelegateFactory.<>c__DisplayClass12_0.<CreateRequestDelegate>b__0(HttpContext context)
+   at tusdotnet.TusCoreMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at AspNetCoreRateLimit.RateLimitMiddleware`1.Invoke(HttpContext context) in C:\Users\User\Documents\Github\AspNetCoreRateLimit\src\AspNetCoreRateLimit\Middleware\RateLimitMiddleware.cs:line 124
+   at NWebsec.AspNetCore.Middleware.Middleware.MiddlewareBase.Invoke(HttpContext context)
+   at NWebsec.AspNetCore.Middleware.Middleware.MiddlewareBase.Invoke(HttpContext context)
+   at NWebsec.AspNetCore.Middleware.Middleware.MiddlewareBase.Invoke(HttpContext context)
+   at NWebsec.AspNetCore.Middleware.Middleware.MiddlewareBase.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.ResponseCompression.ResponseCompressionMiddleware.InvokeCore(HttpContext context)
+   at Microsoft.AspNetCore.Localization.RequestLocalizationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2026-01-24 22:36:43.3076||INFO|Program|Application starting up 
+2026-01-24 22:36:45.3539||INFO|Microsoft.Hosting.Lifetime|Application started. Press Ctrl+C to shut down. 
+2026-01-24 22:36:45.3539||INFO|Microsoft.Hosting.Lifetime|Hosting environment: Development 
+2026-01-24 22:36:45.3687||INFO|Microsoft.Hosting.Lifetime|Content root path: E:\Rafeek\Rafeek.API 
+2026-01-24 22:39:26.5139||INFO|Program|Application starting up 
+2026-01-24 22:39:28.4949||INFO|Microsoft.Hosting.Lifetime|Application started. Press Ctrl+C to shut down. 
+2026-01-24 22:39:28.5069||INFO|Microsoft.Hosting.Lifetime|Hosting environment: Development 
+2026-01-24 22:39:28.5069||INFO|Microsoft.Hosting.Lifetime|Content root path: E:\Rafeek\Rafeek.API 

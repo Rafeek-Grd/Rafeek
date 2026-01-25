@@ -196,6 +196,15 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid Token..
+        /// </summary>
+        public static string TokenNotValid {
+            get {
+                return ResourceManager.GetString("TokenNotValid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unauthorized access..
         /// </summary>
         public static string UnauthorizedExceptionMessage {

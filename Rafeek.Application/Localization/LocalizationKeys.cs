@@ -20,6 +20,11 @@
             public static readonly KeyString UnknownException = new("UnknownExceptionMessage");
         }
 
+        public record TokenMessages
+        {
+            public static readonly KeyString NotValid = new("TokenNotValid");
+        }
+
         public record UploadFileMessages
         {
             public static readonly KeyString PalceRequried = new("PlaceNotValid");

@@ -131,4 +131,9 @@
 	<data name="UnknownExceptionMessage" xml:space="preserve">
 	<value>حدث خطأ غير معروف.</value>
   </data>
+
+	<data name="TokenNotValid" xml:space="preserve">
+	<value>التوكن غير صالح.</value>
+  </data>
+
 </root>

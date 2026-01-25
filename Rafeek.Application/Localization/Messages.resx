@@ -131,4 +131,9 @@
 	<data name="UnknownExceptionMessage" xml:space="preserve">
 	<value>An unknown error occurred.</value>
   </data>
+
+	<data name="TokenNotValid" xml:space="preserve">
+	<value>Invalid Token.</value>
+  </data>
+
 </root>

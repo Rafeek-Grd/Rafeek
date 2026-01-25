@@ -12,7 +12,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Repostiories\Implementations\" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.23" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.2" />
   </ItemGroup>
 
 </Project>

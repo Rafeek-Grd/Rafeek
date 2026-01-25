@@ -41,11 +41,6 @@ namespace Rafeek.Persistence
 
             services.AddScoped<IRafeekDbContext>(provider =>
                provider.GetRequiredService<RafeekDbContext>());
-            
-            // Configure Identity
-            services.AddIdentity<ApplicationUser, IdentityRole<Guid>>()
-                .AddEntityFrameworkStores<RafeekIdentityDbContext>()
-                .AddDefaultTokenProviders();
 
             return services;
         }

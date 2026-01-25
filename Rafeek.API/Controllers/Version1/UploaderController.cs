@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
+using Rafeek.API.Filters;
 using Rafeek.API.Routes;
 using Rafeek.Application.Handlers.UploaderHandlers.Commands.DownloadFile;
 using Rafeek.Application.Handlers.UploaderHandlers.Commands.UpdateImage;
@@ -32,7 +33,6 @@ namespace Rafeek.API.Controllers.Version1
         /// <exception cref="NotImplementedException"></exception>
         [HttpPost]
         [Route(ApiRoutes.Uploader.UploadImage)]
-        [Consumes("multipart/form-data")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> UploadImage([FromForm] UploadImageCommand request)
