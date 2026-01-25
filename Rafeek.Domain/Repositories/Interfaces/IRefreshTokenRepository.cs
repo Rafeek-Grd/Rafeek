@@ -5,7 +5,7 @@ namespace Rafeek.Domain.Repositories.Interfaces
 {
     public interface IRefreshTokenRepository : IGenericRepository<RefreshToken, string>
     {
-        Task<RefreshToken> GetToken(string token, CancellationToken cancellationToken = new CancellationToken());
-        Task<object> GenerateTokens(ApplicationUser user, CancellationToken cancellationToken = new CancellationToken());
+        Task<RefreshToken> GetToken(string token, CancellationToken cancellationToken = default);
+        Task<object> GenerateTokens(ApplicationUser user, CancellationToken cancellationToken = default);
     }
 }

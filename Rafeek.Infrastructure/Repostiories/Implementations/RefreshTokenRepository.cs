@@ -2,29 +2,27 @@
 using Rafeek.Application.Localization;
 using Rafeek.Domain.Entities;
 using Rafeek.Domain.Repositories.Interfaces;
+using Rafeek.Domain.Repositories.Interfaces.Generic;
 using Rafeek.Infrastructure.Repostiories.Implementations.Generic;
-using Rafeek.Persistence;
-using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Rafeek.Infrastructure.Repostiories.Implementations
 {
-    internal class RefreshTokenRepository : EntityRepository<RefreshToken, string>, IRefreshTokenRepository
+
+    internal class RefreshTokenRepository : BaseIdentityEntityRepository<RefreshToken, string>, IRefreshTokenRepository
     {
         private readonly IJwtTokenManager _jwtTokenManager;
         private readonly ICurrentUserService _currentUserService;
-        private readonly RafeekDbContext _context;
 
-        public RefreshTokenRepository(RafeekDbContext context, IJwtTokenManager jwtTokenManager, ICurrentUserService currentUserService) : base(context)
+        public RefreshTokenRepository
+        (
+            IRafeekIdentityDbContext context,
+            IJwtTokenManager jwtTokenManager,
+            ICurrentUserService currentUserService) : base(context)
         {
             _jwtTokenManager = jwtTokenManager;
             _currentUserService = currentUserService;
-            _context = context;
         }
 
         public async Task<RefreshToken> GetToken(string token, CancellationToken cancellationToken)
@@ -74,6 +72,7 @@ namespace Rafeek.Infrastructure.Repostiories.Implementations
                 await AddAsync(newToken, cancellationToken);
 
                 await _context.SaveChangesAsync(cancellationToken);
+                // Transaction management delegated to IIdentityUnitOfWork - caller is responsible for SaveChangesAsync
                 return jwtToken;
             }
             catch (Exception ex)

@@ -7,13 +7,13 @@ namespace Rafeek.Infrastructure.Repostiories.Implementations.Generic
 {
     public class EntityRepository<T, TKey> : IEntityRepository<T, TKey> where T : class
     {
-        protected readonly RafeekDbContext _dbContext;
+        protected readonly DbContext _context;
         protected readonly DbSet<T> _dbSet;
 
-        public EntityRepository(RafeekDbContext dbContext)
+        public EntityRepository(DbContext context)
         {
-            _dbContext = dbContext;
-            _dbSet = _dbContext.Set<T>();
+            _context = context;
+            _dbSet = _context.Set<T>();
         }
 
         public T Add(T entity)
@@ -127,7 +127,7 @@ namespace Rafeek.Infrastructure.Repostiories.Implementations.Generic
         public IQueryable<T> IncludeAll()
         {
             var query = _dbSet.AsQueryable();
-            var navigations = _dbContext.Model.FindEntityType(typeof(T))
+            var navigations = _context.Model.FindEntityType(typeof(T))
                 .GetNavigations();
 
             foreach (var property in navigations)

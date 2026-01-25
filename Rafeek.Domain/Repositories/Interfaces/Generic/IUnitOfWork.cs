@@ -1,9 +1,7 @@
-﻿namespace Rafeek.Domain.Repositories.Interfaces.Generic
+namespace Rafeek.Domain.Repositories.Interfaces.Generic
 {
-    public interface IUnitOfWork: IAsyncDisposable
+    public interface IUnitOfWork : IAsyncDisposable
     {
-        IRefreshTokenRepository RefreshTokenRepository { get; }
-
-        Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken());
+        Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
     }
 }

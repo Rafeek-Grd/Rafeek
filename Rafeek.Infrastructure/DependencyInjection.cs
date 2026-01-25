@@ -108,6 +108,7 @@ namespace Rafeek.Infrastructure
 
 
 
+            services.AddTransient<IIdentityUnitOfWork, IdentityUnitOfWork>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
 
             var dataProtectionOptionsConfig = new DataProtectionOptions();
