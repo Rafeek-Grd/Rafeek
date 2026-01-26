@@ -188,8 +188,8 @@ try
 
     // Add libraries services
     builder.Services.AddApplication(builder.Configuration);
-    builder.Services.AddInfrastructure(builder.Configuration);
     builder.Services.AddPersistence(builder.Configuration);
+    builder.Services.AddInfrastructure(builder.Configuration);
 
     // Add options pattern support
     builder.Services.AddOptions();
@@ -382,7 +382,7 @@ try
 
     app.Run();
 }
-catch (Exception ex)
+catch (Exception ex) when (ex is not Microsoft.Extensions.Hosting.HostAbortedException)
 {
     // NLog: catch setup errors
     logger.Error(ex, "Application stopped because of exception");

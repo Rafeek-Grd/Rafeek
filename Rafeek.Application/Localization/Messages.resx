@@ -136,4 +136,68 @@
 	<value>Invalid Token.</value>
   </data>
 
+	<data name="InvalidSignIn" xml:space="preserve">
+	<value>Invalid email or password!.</value>
+  </data>
+
+	<data name="NationalNumberExist" xml:space="preserve">
+		<value>National Number is already taken.</value>
+  </data>
+
+	<data name="PhoneNumberExist" xml:space="preserve">
+		<value>Phone number is already taken.</value>
+  </data>
+
+	<data name="UserCodeExist" xml:space="preserve">
+		<value>User Code is already taken.</value>
+  </data>
+
+	<data name="PhoneInvalid" xml:space="preserve">
+		<value>Invalid phone number.</value>
+  </data>
+
+	<data name="EmailInvalid" xml:space="preserve">
+		<value>Invalid email.</value>
+  </data>
+
+	<data name="EmailAlreadyExistedbefore" xml:space="preserve">
+		<value>User already exists before.</value>
+  </data>
+
+	<data name="GenderIsNotValid" xml:space="preserve">
+		<value>Invalid gender.</value>
+  </data>
+
+	<data name="PasswordRequired" xml:space="preserve">
+		<value>Password required.</value>
+  </data>
+
+	<data name="PasswordValid" xml:space="preserve">
+		<value>Password may be weak. Or it doesn't accepted cause of criteria.</value>
+  </data>
+
+	<data name="PasswordConfirmNotEqual" xml:space="preserve">
+		<value>Password confirmation value not equals to password value.</value>
+  </data>
+
+	<data name="FullNameRequired" xml:space="preserve">
+		<value>Fullname required.</value>
+  </data>
+
+	<data name="PhoneRequired" xml:space="preserve">
+		<value>Phone number required.</value>
+  </data>
+
+	<data name="EmailRequired" xml:space="preserve">
+		<value>Email required.</value>
+  </data>
+
+	<data name="NationalNumberRequired" xml:space="preserve">
+		<value>National number required.</value>
+  </data>
+
+	<data name="NationalNumberRequired" xml:space="preserve">
+		<value>National number required.</value>
+  </data>
+
 </root>

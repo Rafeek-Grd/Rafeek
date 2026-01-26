@@ -20,9 +20,6 @@ namespace Rafeek.Persistence
             _currentUserService = currentUserService;
         }
 
-        public DbSet<TeachingAssistant> TeachingAssistants { get; set; }
-        public DbSet<Doctor> Doctors { get; set; }
-        public DbSet<Student> Students { get; set; }
         public DbSet<Department> Departments { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -30,10 +27,12 @@ namespace Rafeek.Persistence
             base.OnModelCreating(builder);
 
             builder.ApplyConfigurationsFromAssembly(typeof(RafeekDbContext).Assembly, 
-                type => type.Namespace != null && type.Namespace.Contains("Configurations.RafeekConfigurations"));
+                type => type.Namespace != null && type.Namespace.EndsWith("Configurations.RafeekConfigurations"));
 
             builder.HasDefaultSchema("dbo");
-            
+
+            builder.Ignore<ApplicationUser>();
+            builder.Ignore<UserFbTokens>();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -52,18 +51,18 @@ namespace Rafeek.Persistence
                 switch (entry.State)
                 {
                     case EntityState.Added:
-                        entry.Entity.CreatedAt = DateTime.UtcNow;
+                        entry.Entity.CreatedAt = DateTime.Now;
                         entry.Entity.CreatedBy = !string.IsNullOrEmpty(entry.Entity.CreatedBy)
                             ? entry.Entity.CreatedBy
                             : (_currentUserService?.UserId.ToString() ?? "System");
                         break;
                     case EntityState.Modified:
-                        entry.Entity.UpdatedAt = DateTime.UtcNow;
+                        entry.Entity.UpdatedAt = DateTime.Now;
                         entry.Entity.UpdatedBy = _currentUserService?.UserId.ToString() ?? "System";
                         break;
                     case EntityState.Deleted:
                         entry.State = EntityState.Modified;
-                        entry.Entity.DeletedAt = DateTime.UtcNow;
+                        entry.Entity.DeletedAt = DateTime.Now;
                         entry.Entity.DeletedBy = _currentUserService?.UserId.ToString() ?? "System";
                         entry.Entity.IsDeleted = true;
                         entry.State = EntityState.Modified;

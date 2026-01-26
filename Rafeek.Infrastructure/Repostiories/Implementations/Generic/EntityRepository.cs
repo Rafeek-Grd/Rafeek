@@ -52,9 +52,9 @@ namespace Rafeek.Infrastructure.Repostiories.Implementations.Generic
             return _dbSet.Any(predicate);
         }
 
-        public async Task<bool> ExistsAsync(Func<T, bool> predicate, CancellationToken cancellationToken = default)
+        public async Task<bool> ExistsAsync(Expression<Func<T, bool>> predicate, CancellationToken cancellationToken = default)
         {
-            return _dbSet.AsEnumerable().Any(predicate);
+            return _dbSet.AsQueryable().Any(predicate);
         }
 
         public async Task<bool> ExistsByKeyAsync(TKey key, CancellationToken cancellationToken = default)
@@ -84,12 +84,12 @@ namespace Rafeek.Infrastructure.Repostiories.Implementations.Generic
             return _dbSet.AsQueryable();
         }
 
-        public IQueryable<T> GetAll(Func<T, bool> predicate)
+        public IQueryable<T> GetAll(Expression<Func<T, bool>> predicate)
         {
             return _dbSet.Where(predicate).AsQueryable();
         }
 
-        public IQueryable<T> GetBy(Func<T, bool> predicate)
+        public IQueryable<T> GetBy(Expression<Func<T, bool>> predicate)
         {
             return _dbSet.Where(predicate).AsQueryable();
         }
@@ -99,7 +99,7 @@ namespace Rafeek.Infrastructure.Repostiories.Implementations.Generic
             return _dbSet.First(predicate);
         }
 
-        public async Task<T> GetFirstAsync(Func<T, bool> predicate, CancellationToken cancellationToken = default)
+        public async Task<T> GetFirstAsync(Expression<Func<T, bool>> predicate, CancellationToken cancellationToken = default)
         {
             return await Task.Run(() => _dbSet.First(predicate), cancellationToken);
         }
@@ -109,7 +109,7 @@ namespace Rafeek.Infrastructure.Repostiories.Implementations.Generic
             return _dbSet.Single(predicate);
         }
 
-        public async Task<T> GetSingleAsync(Func<T, bool> predicate, CancellationToken cancellationToken = default)
+        public async Task<T> GetSingleAsync(Expression<Func<T, bool>> predicate, CancellationToken cancellationToken = default)
         {
              return await Task.Run(() => _dbSet.Single(predicate), cancellationToken);
         }

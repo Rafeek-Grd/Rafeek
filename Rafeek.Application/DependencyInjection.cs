@@ -1,9 +1,8 @@
-﻿using FluentValidation.AspNetCore;
+﻿using AutoMapper;
+using FluentValidation.AspNetCore;
 using MediatR;
 using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
-using Microsoft.Extensions.Localization;
 using Rafeek.Application.Common.Behaviours;
 using Rafeek.Application.Common.Interfaces;
 using Rafeek.Application.Common.Options;
@@ -11,6 +10,7 @@ using Rafeek.Application.Common.Services;
 using Rafeek.Application.HealthCheck;
 using Rafeek.Application.Localization;
 using System.Reflection;
+
 
 namespace Rafeek.Application
 {
@@ -21,6 +21,8 @@ namespace Rafeek.Application
             // Add Health Checks
             services.AddHealthChecks()
                 .AddCheck<ApplicationHealthCheck>("rafeek");
+
+            services.AddAutoMapper((Action<IMapperConfigurationExpression>?)null, Assembly.GetExecutingAssembly());
 
             services.AddFluentValidation(conf =>
             {

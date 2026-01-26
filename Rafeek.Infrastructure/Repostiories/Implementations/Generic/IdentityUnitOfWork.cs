@@ -13,6 +13,7 @@ namespace Rafeek.Infrastructure.Repostiories.Implementations.Generic
         private readonly ICurrentUserService _currentUserService;
 
         private RefreshTokenRepository? _refreshTokenRepository;
+        private UserFbTokenRepository? _userFbTokenRepository;
 
         public IdentityUnitOfWork
         (
@@ -27,6 +28,8 @@ namespace Rafeek.Infrastructure.Repostiories.Implementations.Generic
         }
 
         public IRefreshTokenRepository RefreshTokenRepository => _refreshTokenRepository ??= new RefreshTokenRepository(_identityDbContext, _jwtTokenManager, _currentUserService);
+
+        public IUserFbTokenRepository UserFbTokenRepository => _userFbTokenRepository ??= new UserFbTokenRepository(_identityDbContext);
 
         public async ValueTask DisposeAsync()
         {

@@ -8,8 +8,6 @@ namespace Rafeek.Domain.Entities
         public string? Code { get; set; }
         public string? Description { get; set; }
 
-        public ICollection<Doctor> Doctors { get; set; } = new HashSet<Doctor>();
-        public ICollection<TeachingAssistant> TeachingAssistants { get; set; } = new HashSet<TeachingAssistant>();
-        public ICollection<Student> Students { get; set; } = new HashSet<Student>();
+        public ICollection<ApplicationUser> Users { get; set; } = new HashSet<ApplicationUser>();
     }
 }

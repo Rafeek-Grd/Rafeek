@@ -3,7 +3,7 @@ using Rafeek.Domain.Repositories.Interfaces.Generic;
 
 namespace Rafeek.Domain.Repositories.Interfaces
 {
-    public interface IRefreshTokenRepository : IGenericRepository<RefreshToken, string>
+    public interface IRefreshTokenRepository : IGenericRepository<RefreshToken, Guid>
     {
         Task<RefreshToken> GetToken(string token, CancellationToken cancellationToken = default);
         Task<object> GenerateTokens(ApplicationUser user, CancellationToken cancellationToken = default);

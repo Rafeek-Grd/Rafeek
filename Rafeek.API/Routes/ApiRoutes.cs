@@ -18,5 +18,10 @@
             public const string UploadListVideo = Base + "/video/uploadmultiple";
             public const string UploadListImage = Base + "/image/uploadmultiple";
         }
+
+        public static class Authentication
+        {
+            public const string SignUp = Base + "/signup";
+        }
     }
 }

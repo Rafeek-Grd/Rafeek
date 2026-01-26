@@ -97,6 +97,33 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to User already exists before..
+        /// </summary>
+        public static string EmailAlreadyExistedbefore {
+            get {
+                return ResourceManager.GetString("EmailAlreadyExistedbefore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid email..
+        /// </summary>
+        public static string EmailInvalid {
+            get {
+                return ResourceManager.GetString("EmailInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email required..
+        /// </summary>
+        public static string EmailRequired {
+            get {
+                return ResourceManager.GetString("EmailRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to File Deletion Failed..
         /// </summary>
         public static string FaildToDeleted {
@@ -151,11 +178,56 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fullname required..
+        /// </summary>
+        public static string FullNameRequired {
+            get {
+                return ResourceManager.GetString("FullNameRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid gender..
+        /// </summary>
+        public static string GenderIsNotValid {
+            get {
+                return ResourceManager.GetString("GenderIsNotValid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid model state..
         /// </summary>
         public static string InvalidModelStateExceptionMessage {
             get {
                 return ResourceManager.GetString("InvalidModelStateExceptionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid email or password!..
+        /// </summary>
+        public static string InvalidSignIn {
+            get {
+                return ResourceManager.GetString("InvalidSignIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to National Number is already taken..
+        /// </summary>
+        public static string NationalNumberExist {
+            get {
+                return ResourceManager.GetString("NationalNumberExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to National number required..
+        /// </summary>
+        public static string NationalNumberRequired {
+            get {
+                return ResourceManager.GetString("NationalNumberRequired", resourceCulture);
             }
         }
         
@@ -174,6 +246,60 @@ namespace Rafeek.Application.Localization {
         public static string OkActionResultMessage {
             get {
                 return ResourceManager.GetString("OkActionResultMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password confirmation value not equals to password value..
+        /// </summary>
+        public static string PasswordConfirmNotEqual {
+            get {
+                return ResourceManager.GetString("PasswordConfirmNotEqual", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password required..
+        /// </summary>
+        public static string PasswordRequired {
+            get {
+                return ResourceManager.GetString("PasswordRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password may be weak. Or it doesn&apos;t accepted cause of criteria..
+        /// </summary>
+        public static string PasswordValid {
+            get {
+                return ResourceManager.GetString("PasswordValid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid phone number..
+        /// </summary>
+        public static string PhoneInvalid {
+            get {
+                return ResourceManager.GetString("PhoneInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phone number is already taken..
+        /// </summary>
+        public static string PhoneNumberExist {
+            get {
+                return ResourceManager.GetString("PhoneNumberExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phone number required..
+        /// </summary>
+        public static string PhoneRequired {
+            get {
+                return ResourceManager.GetString("PhoneRequired", resourceCulture);
             }
         }
         
@@ -219,6 +345,15 @@ namespace Rafeek.Application.Localization {
         public static string UnknownExceptionMessage {
             get {
                 return ResourceManager.GetString("UnknownExceptionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User Code is already taken..
+        /// </summary>
+        public static string UserCodeExist {
+            get {
+                return ResourceManager.GetString("UserCodeExist", resourceCulture);
             }
         }
         

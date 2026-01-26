@@ -42,6 +42,9 @@ namespace Rafeek.Persistence
             services.AddScoped<IRafeekDbContext>(provider =>
                provider.GetRequiredService<RafeekDbContext>());
 
+            services.AddScoped<IRafeekIdentityDbContext>(provider =>
+                provider.GetRequiredService<RafeekIdentityDbContext>());
+
             return services;
         }
     }

@@ -10,7 +10,7 @@ using System.Security.Claims;
 namespace Rafeek.Infrastructure.Repostiories.Implementations
 {
 
-    internal class RefreshTokenRepository : BaseIdentityEntityRepository<RefreshToken, string>, IRefreshTokenRepository
+    public class RefreshTokenRepository : BaseIdentityEntityRepository<RefreshToken, Guid>, IRefreshTokenRepository
     {
         private readonly IJwtTokenManager _jwtTokenManager;
         private readonly ICurrentUserService _currentUserService;
@@ -68,9 +68,19 @@ namespace Rafeek.Infrastructure.Repostiories.Implementations
                     Delete(lastToken);
                 }
 
-                var newToken = await GetToken(jwtToken.RefreshToken, cancellationToken);
-                await AddAsync(newToken, cancellationToken);
+                var jti = new JwtSecurityTokenHandler().ReadJwtToken(jwtToken.RefreshToken).Id;
 
+                var newToken = new RefreshToken()
+                {
+                    CreationDate = DateTime.Now,
+                    ExpirationDate = jwtToken.RefreshTokenExpiration,
+                    JwtId = jti,
+                    RemoteIpAddress = _currentUserService.IpAddress ?? "::1",
+                    Token = jwtToken.RefreshToken,
+                    UserId = user.Id.ToString()
+                };
+
+                await AddAsync(newToken, cancellationToken);
                 await _context.SaveChangesAsync(cancellationToken);
                 // Transaction management delegated to IIdentityUnitOfWork - caller is responsible for SaveChangesAsync
                 return jwtToken;

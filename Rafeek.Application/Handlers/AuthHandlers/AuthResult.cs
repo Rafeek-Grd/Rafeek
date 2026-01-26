@@ -6,5 +6,6 @@
         public string TokenType { get; set; } = null!;
         public DateTime ExpiresIn { get; set; }
         public string RefreshToken { get; set; } = null!;
+        public DateTime RefreshTokenExpiration { get; set; }
     }
 }

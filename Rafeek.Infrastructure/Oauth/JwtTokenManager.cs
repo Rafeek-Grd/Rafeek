@@ -74,7 +74,8 @@ namespace Rafeek.Infrastructure.Oauth
                 Token = tokenHandler.WriteToken(token),
                 TokenType = "Bearer",
                 ExpiresIn = token.ValidTo,
-                RefreshToken = tokenHandler.WriteToken(refreshToken)
+                RefreshToken = tokenHandler.WriteToken(refreshToken),
+                RefreshTokenExpiration = refreshToken.ValidTo
             };
         }
 

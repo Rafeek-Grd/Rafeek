@@ -15,11 +15,8 @@ using Rafeek.Domain.Repositories.Interfaces.Generic;
 using Rafeek.Infrastructure.Repostiories.Implementations.Generic;
 using DataProtectionOptions = Rafeek.Infrastructure.DataProtection.DataProtectionOptions;
 using IdentityOptions = Rafeek.Infrastructure.Identity.IdentityOptions;
-using Rafeek.Domain.Repositories.Interfaces;
-using Rafeek.Infrastructure.Repostiories.Implementations;
 using Microsoft.AspNetCore.Http;
 using Rafeek.Application.Localization;
-using Rafeek.Application.Common.Models;
 
 namespace Rafeek.Infrastructure
 {
@@ -29,6 +26,7 @@ namespace Rafeek.Infrastructure
         {
             // Register JwtToken Manager
             services.AddTransient<IJwtTokenManager, JwtTokenManager>();
+            services.AddTransient<ISignInManager, SignInManager>();
 
             // Register Generic Repositories
             services.AddScoped(typeof(IEntityRepository<,>), typeof(EntityRepository<,>));
@@ -108,8 +106,8 @@ namespace Rafeek.Infrastructure
 
 
 
-            services.AddTransient<IIdentityUnitOfWork, IdentityUnitOfWork>();
-            services.AddTransient<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IIdentityUnitOfWork, IdentityUnitOfWork>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             var dataProtectionOptionsConfig = new DataProtectionOptions();
             configuration.GetSection("DataProtection").Bind(dataProtectionOptionsConfig);
@@ -119,8 +117,6 @@ namespace Rafeek.Infrastructure
                 .SetDefaultKeyLifetime(TimeSpan.FromDays(lifetimeDays));
 
             services.AddSingleton<IDataEncryption, RouteDataProtection>();
-
-            services.AddTransient<IRefreshTokenRepository, RefreshTokenRepository>();
 
             return services;
         }

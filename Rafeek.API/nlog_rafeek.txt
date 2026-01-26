@@ -935,3 +935,918 @@
 2026-01-25 03:17:13.9092 Info Adding target ColoredConsoleTarget(Name=lifetimeConsole)
 2026-01-25 03:17:13.9292 Info Adding target FileTarget(Name=stdout)
 2026-01-25 03:17:13.9591 Info Validating config: Targets=5, ConfigItems=129, FilePath=E:\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config
+2026-01-26 01:18:30.7997 Info Message Template Auto Format enabled
+2026-01-26 01:18:30.7997 Info Loading assembly: NLog.Web.AspNetCore
+2026-01-26 01:18:30.8361 Info Adding target FileTarget(Name=allfile)
+2026-01-26 01:18:30.8361 Info Adding target FileTarget(Name=errorLog)
+2026-01-26 01:18:30.8361 Info Adding target FileTarget(Name=infoLog)
+2026-01-26 01:18:30.8474 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
+2026-01-26 01:18:30.8474 Info Adding target ColoredConsoleTarget(Name=lifetimeConsole)
+2026-01-26 01:18:30.8621 Info Adding target FileTarget(Name=stdout)
+2026-01-26 01:18:30.8813 Info Validating config: Targets=5, ConfigItems=129, FilePath=E:\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config
+2026-01-26 01:18:31.5667 Info Shutdown() called. Logger closing...
+2026-01-26 01:18:31.5667 Info Closing old configuration.
+2026-01-26 01:18:31.5667 Info Logger has been closed down.
+2026-01-26 01:18:32.8954 Info AppDomain Shutting down. Logger closing...
+2026-01-26 01:18:32.8954 Info Logger has been shut down.
+2026-01-26 01:22:51.7635 Info Message Template Auto Format enabled
+2026-01-26 01:22:51.7741 Info Loading assembly: NLog.Web.AspNetCore
+2026-01-26 01:22:51.7964 Info Adding target FileTarget(Name=allfile)
+2026-01-26 01:22:51.7964 Info Adding target FileTarget(Name=errorLog)
+2026-01-26 01:22:51.8009 Info Adding target FileTarget(Name=infoLog)
+2026-01-26 01:22:51.8009 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
+2026-01-26 01:22:51.8009 Info Adding target ColoredConsoleTarget(Name=lifetimeConsole)
+2026-01-26 01:22:51.8009 Info Adding target FileTarget(Name=stdout)
+2026-01-26 01:22:51.8303 Info Validating config: Targets=5, ConfigItems=129, FilePath=E:\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config
+2026-01-26 01:22:52.0912 Info Shutdown() called. Logger closing...
+2026-01-26 01:22:52.0912 Info Closing old configuration.
+2026-01-26 01:22:52.1014 Info Logger has been closed down.
+2026-01-26 01:22:54.4004 Info AppDomain Shutting down. Logger closing...
+2026-01-26 01:22:54.4004 Info Logger has been shut down.
+2026-01-26 01:23:52.0788 Info Message Template Auto Format enabled
+2026-01-26 01:23:52.0945 Info Loading assembly: NLog.Web.AspNetCore
+2026-01-26 01:23:52.1389 Info Adding target FileTarget(Name=allfile)
+2026-01-26 01:23:52.1389 Info Adding target FileTarget(Name=errorLog)
+2026-01-26 01:23:52.1443 Info Adding target FileTarget(Name=infoLog)
+2026-01-26 01:23:52.1443 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
+2026-01-26 01:23:52.1443 Info Adding target ColoredConsoleTarget(Name=lifetimeConsole)
+2026-01-26 01:23:52.1626 Info Adding target FileTarget(Name=stdout)
+2026-01-26 01:23:52.2171 Info Validating config: Targets=5, ConfigItems=129, FilePath=E:\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config
+2026-01-26 01:29:03.8555 Info Message Template Auto Format enabled
+2026-01-26 01:29:03.8683 Info Loading assembly: NLog.Web.AspNetCore
+2026-01-26 01:29:03.8978 Info Adding target FileTarget(Name=allfile)
+2026-01-26 01:29:03.8978 Info Adding target FileTarget(Name=errorLog)
+2026-01-26 01:29:03.8978 Info Adding target FileTarget(Name=infoLog)
+2026-01-26 01:29:03.8978 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
+2026-01-26 01:29:03.9101 Info Adding target ColoredConsoleTarget(Name=lifetimeConsole)
+2026-01-26 01:29:03.9101 Info Adding target FileTarget(Name=stdout)
+2026-01-26 01:29:03.9345 Info Validating config: Targets=5, ConfigItems=129, FilePath=E:\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config
+2026-01-26 01:29:04.2201 Info Shutdown() called. Logger closing...
+2026-01-26 01:29:04.2201 Info Closing old configuration.
+2026-01-26 01:29:04.2329 Info Logger has been closed down.
+2026-01-26 01:29:05.6984 Info AppDomain Shutting down. Logger closing...
+2026-01-26 01:29:05.6984 Info Logger has been shut down.
+2026-01-26 01:29:36.6920 Info Message Template Auto Format enabled
+2026-01-26 01:29:36.7082 Info Loading assembly: NLog.Web.AspNetCore
+2026-01-26 01:29:36.7744 Info Adding target FileTarget(Name=allfile)
+2026-01-26 01:29:36.7744 Info Adding target FileTarget(Name=errorLog)
+2026-01-26 01:29:36.7912 Info Adding target FileTarget(Name=infoLog)
+2026-01-26 01:29:36.8017 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
+2026-01-26 01:29:36.8017 Info Adding target ColoredConsoleTarget(Name=lifetimeConsole)
+2026-01-26 01:29:36.8326 Info Adding target FileTarget(Name=stdout)
+2026-01-26 01:29:36.8650 Info Validating config: Targets=5, ConfigItems=129, FilePath=E:\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config
+2026-01-26 01:32:27.2934 Info Message Template Auto Format enabled
+2026-01-26 01:32:27.3034 Info Loading assembly: NLog.Web.AspNetCore
+2026-01-26 01:32:27.3259 Info Adding target FileTarget(Name=allfile)
+2026-01-26 01:32:27.3259 Info Adding target FileTarget(Name=errorLog)
+2026-01-26 01:32:27.3259 Info Adding target FileTarget(Name=infoLog)
+2026-01-26 01:32:27.3350 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
+2026-01-26 01:32:27.3350 Info Adding target ColoredConsoleTarget(Name=lifetimeConsole)
+2026-01-26 01:32:27.3350 Info Adding target FileTarget(Name=stdout)
+2026-01-26 01:32:27.3567 Info Validating config: Targets=5, ConfigItems=129, FilePath=E:\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config
+2026-01-26 01:32:27.6295 Info Shutdown() called. Logger closing...
+2026-01-26 01:32:27.6295 Info Closing old configuration.
+2026-01-26 01:32:27.6295 Info Logger has been closed down.
+2026-01-26 01:32:29.0196 Info AppDomain Shutting down. Logger closing...
+2026-01-26 01:32:29.0196 Info Logger has been shut down.
+2026-01-26 01:35:01.3132 Info Message Template Auto Format enabled
+2026-01-26 01:35:01.3335 Info Loading assembly: NLog.Web.AspNetCore
+2026-01-26 01:35:01.3766 Info Adding target FileTarget(Name=allfile)
+2026-01-26 01:35:01.3797 Info Adding target FileTarget(Name=errorLog)
+2026-01-26 01:35:01.3797 Info Adding target FileTarget(Name=infoLog)
+2026-01-26 01:35:01.3797 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
+2026-01-26 01:35:01.3945 Info Adding target ColoredConsoleTarget(Name=lifetimeConsole)
+2026-01-26 01:35:01.4116 Info Adding target FileTarget(Name=stdout)
+2026-01-26 01:35:01.5415 Info Validating config: Targets=5, ConfigItems=129, FilePath=E:\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config
+2026-01-26 01:35:38.0970 Info Message Template Auto Format enabled
+2026-01-26 01:35:38.0970 Info Loading assembly: NLog.Web.AspNetCore
+2026-01-26 01:35:38.1489 Info Adding target FileTarget(Name=allfile)
+2026-01-26 01:35:38.1489 Info Adding target FileTarget(Name=errorLog)
+2026-01-26 01:35:38.1489 Info Adding target FileTarget(Name=infoLog)
+2026-01-26 01:35:38.1619 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
+2026-01-26 01:35:38.1619 Info Adding target ColoredConsoleTarget(Name=lifetimeConsole)
+2026-01-26 01:35:38.1756 Info Adding target FileTarget(Name=stdout)
+2026-01-26 01:35:38.2020 Info Validating config: Targets=5, ConfigItems=129, FilePath=E:\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config
+2026-01-26 01:36:26.4800 Info Message Template Auto Format enabled
+2026-01-26 01:36:26.5133 Info Loading assembly: NLog.Web.AspNetCore
+2026-01-26 01:36:26.6174 Info Adding target FileTarget(Name=allfile)
+2026-01-26 01:36:26.6174 Info Adding target FileTarget(Name=errorLog)
+2026-01-26 01:36:26.6316 Info Adding target FileTarget(Name=infoLog)
+2026-01-26 01:36:26.6316 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
+2026-01-26 01:36:26.6476 Info Adding target ColoredConsoleTarget(Name=lifetimeConsole)
+2026-01-26 01:36:26.6782 Info Adding target FileTarget(Name=stdout)
+2026-01-26 01:36:26.7160 Info Validating config: Targets=5, ConfigItems=129, FilePath=E:\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config
+2026-01-26 01:36:55.0088 Info Message Template Auto Format enabled
+2026-01-26 01:36:55.0199 Info Loading assembly: NLog.Web.AspNetCore
+2026-01-26 01:36:55.0446 Info Adding target FileTarget(Name=allfile)
+2026-01-26 01:36:55.0497 Info Adding target FileTarget(Name=errorLog)
+2026-01-26 01:36:55.0497 Info Adding target FileTarget(Name=infoLog)
+2026-01-26 01:36:55.0497 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
+2026-01-26 01:36:55.0497 Info Adding target ColoredConsoleTarget(Name=lifetimeConsole)
+2026-01-26 01:36:55.0684 Info Adding target FileTarget(Name=stdout)
+2026-01-26 01:36:55.0861 Info Validating config: Targets=5, ConfigItems=129, FilePath=E:\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config
+2026-01-26 01:36:55.3402 Info Shutdown() called. Logger closing...
+2026-01-26 01:36:55.3402 Info Closing old configuration.
+2026-01-26 01:36:55.3402 Info Logger has been closed down.
+2026-01-26 01:36:56.7947 Info AppDomain Shutting down. Logger closing...
+2026-01-26 01:36:56.7947 Info Logger has been shut down.
+2026-01-26 01:38:13.6992 Info Message Template Auto Format enabled
+2026-01-26 01:38:13.7122 Info Loading assembly: NLog.Web.AspNetCore
+2026-01-26 01:38:13.7399 Info Adding target FileTarget(Name=allfile)
+2026-01-26 01:38:13.7399 Info Adding target FileTarget(Name=errorLog)
+2026-01-26 01:38:13.7399 Info Adding target FileTarget(Name=infoLog)
+2026-01-26 01:38:13.7399 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
+2026-01-26 01:38:13.7399 Info Adding target ColoredConsoleTarget(Name=lifetimeConsole)
+2026-01-26 01:38:13.7561 Info Adding target FileTarget(Name=stdout)
+2026-01-26 01:38:13.7740 Info Validating config: Targets=5, ConfigItems=129, FilePath=E:\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config
+2026-01-26 01:38:14.0282 Info Shutdown() called. Logger closing...
+2026-01-26 01:38:14.0282 Info Closing old configuration.
+2026-01-26 01:38:14.0369 Info Logger has been closed down.
+2026-01-26 01:38:15.4338 Info AppDomain Shutting down. Logger closing...
+2026-01-26 01:38:15.4338 Info Logger has been shut down.
+2026-01-26 01:43:54.4877 Info Message Template Auto Format enabled
+2026-01-26 01:43:54.4991 Info Loading assembly: NLog.Web.AspNetCore
+2026-01-26 01:43:54.5241 Info Adding target FileTarget(Name=allfile)
+2026-01-26 01:43:54.5241 Info Adding target FileTarget(Name=errorLog)
+2026-01-26 01:43:54.5241 Info Adding target FileTarget(Name=infoLog)
+2026-01-26 01:43:54.5241 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
+2026-01-26 01:43:54.5340 Info Adding target ColoredConsoleTarget(Name=lifetimeConsole)
+2026-01-26 01:43:54.5340 Info Adding target FileTarget(Name=stdout)
+2026-01-26 01:43:54.5547 Info Validating config: Targets=5, ConfigItems=129, FilePath=E:\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config
+2026-01-26 01:43:54.8206 Info Shutdown() called. Logger closing...
+2026-01-26 01:43:54.8206 Info Closing old configuration.
+2026-01-26 01:43:54.8320 Info Logger has been closed down.
+2026-01-26 01:43:56.1930 Info AppDomain Shutting down. Logger closing...
+2026-01-26 01:43:56.1930 Info Logger has been shut down.
+2026-01-26 01:45:10.0069 Info Message Template Auto Format enabled
+2026-01-26 01:45:10.0190 Info Loading assembly: NLog.Web.AspNetCore
+2026-01-26 01:45:10.0479 Info Adding target FileTarget(Name=allfile)
+2026-01-26 01:45:10.0516 Info Adding target FileTarget(Name=errorLog)
+2026-01-26 01:45:10.0516 Info Adding target FileTarget(Name=infoLog)
+2026-01-26 01:45:10.0516 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
+2026-01-26 01:45:10.0516 Info Adding target ColoredConsoleTarget(Name=lifetimeConsole)
+2026-01-26 01:45:10.0516 Info Adding target FileTarget(Name=stdout)
+2026-01-26 01:45:10.0792 Info Validating config: Targets=5, ConfigItems=129, FilePath=E:\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config
+2026-01-26 01:45:10.3408 Info Shutdown() called. Logger closing...
+2026-01-26 01:45:10.3408 Info Closing old configuration.
+2026-01-26 01:45:10.3509 Info Logger has been closed down.
+2026-01-26 01:45:12.6560 Info AppDomain Shutting down. Logger closing...
+2026-01-26 01:45:12.6560 Info Logger has been shut down.
+2026-01-26 01:47:58.9653 Info Message Template Auto Format enabled
+2026-01-26 01:47:58.9762 Info Loading assembly: NLog.Web.AspNetCore
+2026-01-26 01:47:59.0025 Info Adding target FileTarget(Name=allfile)
+2026-01-26 01:47:59.0053 Info Adding target FileTarget(Name=errorLog)
+2026-01-26 01:47:59.0053 Info Adding target FileTarget(Name=infoLog)
+2026-01-26 01:47:59.0053 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
+2026-01-26 01:47:59.0053 Info Adding target ColoredConsoleTarget(Name=lifetimeConsole)
+2026-01-26 01:47:59.0182 Info Adding target FileTarget(Name=stdout)
+2026-01-26 01:47:59.0182 Info Validating config: Targets=5, ConfigItems=129, FilePath=E:\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config
+2026-01-26 01:47:59.2647 Info Shutdown() called. Logger closing...
+2026-01-26 01:47:59.2647 Info Closing old configuration.
+2026-01-26 01:47:59.2747 Info Logger has been closed down.
+2026-01-26 01:48:01.5349 Info AppDomain Shutting down. Logger closing...
+2026-01-26 01:48:01.5359 Info Logger has been shut down.
+2026-01-26 01:48:12.9881 Info Message Template Auto Format enabled
+2026-01-26 01:48:12.9980 Info Loading assembly: NLog.Web.AspNetCore
+2026-01-26 01:48:13.0200 Info Adding target FileTarget(Name=allfile)
+2026-01-26 01:48:13.0200 Info Adding target FileTarget(Name=errorLog)
+2026-01-26 01:48:13.0200 Info Adding target FileTarget(Name=infoLog)
+2026-01-26 01:48:13.0200 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
+2026-01-26 01:48:13.0200 Info Adding target ColoredConsoleTarget(Name=lifetimeConsole)
+2026-01-26 01:48:13.0357 Info Adding target FileTarget(Name=stdout)
+2026-01-26 01:48:13.0532 Info Validating config: Targets=5, ConfigItems=129, FilePath=E:\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config
+2026-01-26 01:48:13.2901 Info Shutdown() called. Logger closing...
+2026-01-26 01:48:13.2901 Info Closing old configuration.
+2026-01-26 01:48:13.2995 Info Logger has been closed down.
+2026-01-26 01:48:16.9556 Info AppDomain Shutting down. Logger closing...
+2026-01-26 01:48:16.9556 Info Logger has been shut down.
+2026-01-26 01:55:21.9539 Info Message Template Auto Format enabled
+2026-01-26 01:55:21.9675 Info Loading assembly: NLog.Web.AspNetCore
+2026-01-26 01:55:21.9982 Info Adding target FileTarget(Name=allfile)
+2026-01-26 01:55:21.9982 Info Adding target FileTarget(Name=errorLog)
+2026-01-26 01:55:22.0040 Info Adding target FileTarget(Name=infoLog)
+2026-01-26 01:55:22.0040 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
+2026-01-26 01:55:22.0040 Info Adding target ColoredConsoleTarget(Name=lifetimeConsole)
+2026-01-26 01:55:22.0040 Info Adding target FileTarget(Name=stdout)
+2026-01-26 01:55:22.0299 Info Validating config: Targets=5, ConfigItems=129, FilePath=E:\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config
+2026-01-26 01:55:22.2669 Info Shutdown() called. Logger closing...
+2026-01-26 01:55:22.2669 Info Closing old configuration.
+2026-01-26 01:55:22.2773 Info Logger has been closed down.
+2026-01-26 01:55:22.8588 Info AppDomain Shutting down. Logger closing...
+2026-01-26 01:55:22.8588 Info Logger has been shut down.
+2026-01-26 01:55:54.9700 Info Message Template Auto Format enabled
+2026-01-26 01:55:54.9836 Info Loading assembly: NLog.Web.AspNetCore
+2026-01-26 01:55:55.0103 Info Adding target FileTarget(Name=allfile)
+2026-01-26 01:55:55.0103 Info Adding target FileTarget(Name=errorLog)
+2026-01-26 01:55:55.0103 Info Adding target FileTarget(Name=infoLog)
+2026-01-26 01:55:55.0211 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
+2026-01-26 01:55:55.0211 Info Adding target ColoredConsoleTarget(Name=lifetimeConsole)
+2026-01-26 01:55:55.0211 Info Adding target FileTarget(Name=stdout)
+2026-01-26 01:55:55.0428 Info Validating config: Targets=5, ConfigItems=129, FilePath=E:\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config
+2026-01-26 01:55:55.2802 Info Shutdown() called. Logger closing...
+2026-01-26 01:55:55.2802 Info Closing old configuration.
+2026-01-26 01:55:55.2893 Info Logger has been closed down.
+2026-01-26 01:55:55.8427 Info AppDomain Shutting down. Logger closing...
+2026-01-26 01:55:55.8427 Info Logger has been shut down.
+2026-01-26 02:01:17.1385 Info Message Template Auto Format enabled
+2026-01-26 02:01:17.1519 Info Loading assembly: NLog.Web.AspNetCore
+2026-01-26 02:01:17.1802 Info Adding target FileTarget(Name=allfile)
+2026-01-26 02:01:17.1831 Info Adding target FileTarget(Name=errorLog)
+2026-01-26 02:01:17.1831 Info Adding target FileTarget(Name=infoLog)
+2026-01-26 02:01:17.1831 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
+2026-01-26 02:01:17.1910 Info Adding target ColoredConsoleTarget(Name=lifetimeConsole)
+2026-01-26 02:01:17.1910 Info Adding target FileTarget(Name=stdout)
+2026-01-26 02:01:17.2142 Info Validating config: Targets=5, ConfigItems=129, FilePath=E:\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config
+2026-01-26 02:01:17.4470 Info Shutdown() called. Logger closing...
+2026-01-26 02:01:17.4470 Info Closing old configuration.
+2026-01-26 02:01:17.4470 Info Logger has been closed down.
+2026-01-26 02:01:20.1190 Info AppDomain Shutting down. Logger closing...
+2026-01-26 02:01:20.1190 Info Logger has been shut down.
+2026-01-26 02:01:30.3382 Info Message Template Auto Format enabled
+2026-01-26 02:01:30.3511 Info Loading assembly: NLog.Web.AspNetCore
+2026-01-26 02:01:30.3751 Info Adding target FileTarget(Name=allfile)
+2026-01-26 02:01:30.3751 Info Adding target FileTarget(Name=errorLog)
+2026-01-26 02:01:30.3795 Info Adding target FileTarget(Name=infoLog)
+2026-01-26 02:01:30.3795 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
+2026-01-26 02:01:30.3795 Info Adding target ColoredConsoleTarget(Name=lifetimeConsole)
+2026-01-26 02:01:30.3795 Info Adding target FileTarget(Name=stdout)
+2026-01-26 02:01:30.4030 Info Validating config: Targets=5, ConfigItems=129, FilePath=E:\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config
+2026-01-26 02:01:30.6356 Info Shutdown() called. Logger closing...
+2026-01-26 02:01:30.6356 Info Closing old configuration.
+2026-01-26 02:01:30.6356 Info Logger has been closed down.
+2026-01-26 02:01:34.1056 Info AppDomain Shutting down. Logger closing...
+2026-01-26 02:01:34.1056 Info Logger has been shut down.
+2026-01-26 02:05:17.5400 Info Message Template Auto Format enabled
+2026-01-26 02:05:17.5523 Info Loading assembly: NLog.Web.AspNetCore
+2026-01-26 02:05:17.5812 Info Adding target FileTarget(Name=allfile)
+2026-01-26 02:05:17.5843 Info Adding target FileTarget(Name=errorLog)
+2026-01-26 02:05:17.5843 Info Adding target FileTarget(Name=infoLog)
+2026-01-26 02:05:17.5843 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
+2026-01-26 02:05:17.5843 Info Adding target ColoredConsoleTarget(Name=lifetimeConsole)
+2026-01-26 02:05:17.5982 Info Adding target FileTarget(Name=stdout)
+2026-01-26 02:05:17.5982 Info Validating config: Targets=5, ConfigItems=129, FilePath=E:\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config
+2026-01-26 02:05:17.8638 Info Shutdown() called. Logger closing...
+2026-01-26 02:05:17.8638 Info Closing old configuration.
+2026-01-26 02:05:17.8638 Info Logger has been closed down.
+2026-01-26 02:05:18.5426 Info AppDomain Shutting down. Logger closing...
+2026-01-26 02:05:18.5426 Info Logger has been shut down.
+2026-01-26 02:19:16.3880 Info Message Template Auto Format enabled
+2026-01-26 02:19:16.4000 Info Loading assembly: NLog.Web.AspNetCore
+2026-01-26 02:19:16.4283 Info Adding target FileTarget(Name=allfile)
+2026-01-26 02:19:16.4283 Info Adding target FileTarget(Name=errorLog)
+2026-01-26 02:19:16.4283 Info Adding target FileTarget(Name=infoLog)
+2026-01-26 02:19:16.4283 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
+2026-01-26 02:19:16.4283 Info Adding target ColoredConsoleTarget(Name=lifetimeConsole)
+2026-01-26 02:19:16.4428 Info Adding target FileTarget(Name=stdout)
+2026-01-26 02:19:16.4428 Info Validating config: Targets=5, ConfigItems=129, FilePath=E:\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config
+2026-01-26 02:19:16.7015 Info Shutdown() called. Logger closing...
+2026-01-26 02:19:16.7015 Info Closing old configuration.
+2026-01-26 02:19:16.7107 Info Logger has been closed down.
+2026-01-26 02:19:18.0811 Info AppDomain Shutting down. Logger closing...
+2026-01-26 02:19:18.0811 Info Logger has been shut down.
+2026-01-26 02:23:25.7605 Info Message Template Auto Format enabled
+2026-01-26 02:23:25.7704 Info Loading assembly: NLog.Web.AspNetCore
+2026-01-26 02:23:25.7938 Info Adding target FileTarget(Name=allfile)
+2026-01-26 02:23:25.7938 Info Adding target FileTarget(Name=errorLog)
+2026-01-26 02:23:25.7938 Info Adding target FileTarget(Name=infoLog)
+2026-01-26 02:23:25.8025 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
+2026-01-26 02:23:25.8025 Info Adding target ColoredConsoleTarget(Name=lifetimeConsole)
+2026-01-26 02:23:25.8025 Info Adding target FileTarget(Name=stdout)
+2026-01-26 02:23:25.8236 Info Validating config: Targets=5, ConfigItems=129, FilePath=E:\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config
+2026-01-26 02:23:26.0602 Info Shutdown() called. Logger closing...
+2026-01-26 02:23:26.0602 Info Closing old configuration.
+2026-01-26 02:23:26.0693 Info Logger has been closed down.
+2026-01-26 02:23:27.4434 Info AppDomain Shutting down. Logger closing...
+2026-01-26 02:23:27.4434 Info Logger has been shut down.
+2026-01-26 02:24:07.5177 Info Message Template Auto Format enabled
+2026-01-26 02:24:07.5276 Info Loading assembly: NLog.Web.AspNetCore
+2026-01-26 02:24:07.5491 Info Adding target FileTarget(Name=allfile)
+2026-01-26 02:24:07.5517 Info Adding target FileTarget(Name=errorLog)
+2026-01-26 02:24:07.5517 Info Adding target FileTarget(Name=infoLog)
+2026-01-26 02:24:07.5517 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
+2026-01-26 02:24:07.5517 Info Adding target ColoredConsoleTarget(Name=lifetimeConsole)
+2026-01-26 02:24:07.5517 Info Adding target FileTarget(Name=stdout)
+2026-01-26 02:24:07.5825 Info Validating config: Targets=5, ConfigItems=129, FilePath=E:\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config
+2026-01-26 02:24:07.8225 Info Shutdown() called. Logger closing...
+2026-01-26 02:24:07.8225 Info Closing old configuration.
+2026-01-26 02:24:07.8225 Info Logger has been closed down.
+2026-01-26 02:24:09.1941 Info AppDomain Shutting down. Logger closing...
+2026-01-26 02:24:09.1941 Info Logger has been shut down.
+2026-01-26 02:26:13.8762 Info Message Template Auto Format enabled
+2026-01-26 02:26:13.8912 Info Loading assembly: NLog.Web.AspNetCore
+2026-01-26 02:26:13.9223 Info Adding target FileTarget(Name=allfile)
+2026-01-26 02:26:13.9258 Info Adding target FileTarget(Name=errorLog)
+2026-01-26 02:26:13.9258 Info Adding target FileTarget(Name=infoLog)
+2026-01-26 02:26:13.9258 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
+2026-01-26 02:26:13.9258 Info Adding target ColoredConsoleTarget(Name=lifetimeConsole)
+2026-01-26 02:26:13.9414 Info Adding target FileTarget(Name=stdout)
+2026-01-26 02:26:13.9604 Info Validating config: Targets=5, ConfigItems=129, FilePath=E:\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config
+2026-01-26 02:26:14.2144 Info Shutdown() called. Logger closing...
+2026-01-26 02:26:14.2149 Info Closing old configuration.
+2026-01-26 02:26:14.2240 Info Logger has been closed down.
+2026-01-26 02:26:15.5628 Info AppDomain Shutting down. Logger closing...
+2026-01-26 02:26:15.5628 Info Logger has been shut down.
+2026-01-26 02:28:23.6005 Info Message Template Auto Format enabled
+2026-01-26 02:28:23.6106 Info Loading assembly: NLog.Web.AspNetCore
+2026-01-26 02:28:23.6320 Info Adding target FileTarget(Name=allfile)
+2026-01-26 02:28:23.6347 Info Adding target FileTarget(Name=errorLog)
+2026-01-26 02:28:23.6347 Info Adding target FileTarget(Name=infoLog)
+2026-01-26 02:28:23.6347 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
+2026-01-26 02:28:23.6347 Info Adding target ColoredConsoleTarget(Name=lifetimeConsole)
+2026-01-26 02:28:23.6461 Info Adding target FileTarget(Name=stdout)
+2026-01-26 02:28:23.6461 Info Validating config: Targets=5, ConfigItems=129, FilePath=E:\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config
+2026-01-26 02:28:23.9200 Info Shutdown() called. Logger closing...
+2026-01-26 02:28:23.9200 Info Closing old configuration.
+2026-01-26 02:28:23.9295 Info Logger has been closed down.
+2026-01-26 02:28:25.2325 Info AppDomain Shutting down. Logger closing...
+2026-01-26 02:28:25.2325 Info Logger has been shut down.
+2026-01-26 02:32:05.0882 Info Message Template Auto Format enabled
+2026-01-26 02:32:05.0991 Info Loading assembly: NLog.Web.AspNetCore
+2026-01-26 02:32:05.1278 Info Adding target FileTarget(Name=allfile)
+2026-01-26 02:32:05.1305 Info Adding target FileTarget(Name=errorLog)
+2026-01-26 02:32:05.1305 Info Adding target FileTarget(Name=infoLog)
+2026-01-26 02:32:05.1305 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
+2026-01-26 02:32:05.1305 Info Adding target ColoredConsoleTarget(Name=lifetimeConsole)
+2026-01-26 02:32:05.1430 Info Adding target FileTarget(Name=stdout)
+2026-01-26 02:32:05.1430 Info Validating config: Targets=5, ConfigItems=129, FilePath=E:\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config
+2026-01-26 02:32:05.4085 Info Shutdown() called. Logger closing...
+2026-01-26 02:32:05.4088 Info Closing old configuration.
+2026-01-26 02:32:05.4088 Info Logger has been closed down.
+2026-01-26 02:32:06.7072 Info AppDomain Shutting down. Logger closing...
+2026-01-26 02:32:06.7072 Info Logger has been shut down.
+2026-01-26 02:32:25.3721 Info Message Template Auto Format enabled
+2026-01-26 02:32:25.3858 Info Loading assembly: NLog.Web.AspNetCore
+2026-01-26 02:32:25.4162 Info Adding target FileTarget(Name=allfile)
+2026-01-26 02:32:25.4162 Info Adding target FileTarget(Name=errorLog)
+2026-01-26 02:32:25.4162 Info Adding target FileTarget(Name=infoLog)
+2026-01-26 02:32:25.4162 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
+2026-01-26 02:32:25.4284 Info Adding target ColoredConsoleTarget(Name=lifetimeConsole)
+2026-01-26 02:32:25.4284 Info Adding target FileTarget(Name=stdout)
+2026-01-26 02:32:25.4521 Info Validating config: Targets=5, ConfigItems=129, FilePath=E:\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config
+2026-01-26 02:32:25.7131 Info Shutdown() called. Logger closing...
+2026-01-26 02:32:25.7131 Info Closing old configuration.
+2026-01-26 02:32:25.7232 Info Logger has been closed down.
+2026-01-26 02:32:27.1319 Info AppDomain Shutting down. Logger closing...
+2026-01-26 02:32:27.1319 Info Logger has been shut down.
+2026-01-26 02:33:24.0655 Info Message Template Auto Format enabled
+2026-01-26 02:33:24.0793 Info Loading assembly: NLog.Web.AspNetCore
+2026-01-26 02:33:24.1094 Info Adding target FileTarget(Name=allfile)
+2026-01-26 02:33:24.1094 Info Adding target FileTarget(Name=errorLog)
+2026-01-26 02:33:24.1150 Info Adding target FileTarget(Name=infoLog)
+2026-01-26 02:33:24.1150 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
+2026-01-26 02:33:24.1150 Info Adding target ColoredConsoleTarget(Name=lifetimeConsole)
+2026-01-26 02:33:24.1279 Info Adding target FileTarget(Name=stdout)
+2026-01-26 02:33:24.1279 Info Validating config: Targets=5, ConfigItems=129, FilePath=E:\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config
+2026-01-26 02:33:24.3845 Info Shutdown() called. Logger closing...
+2026-01-26 02:33:24.3845 Info Closing old configuration.
+2026-01-26 02:33:24.3845 Info Logger has been closed down.
+2026-01-26 02:33:25.7031 Info AppDomain Shutting down. Logger closing...
+2026-01-26 02:33:25.7031 Info Logger has been shut down.
+2026-01-26 02:52:25.5865 Info Message Template Auto Format enabled
+2026-01-26 02:52:25.5974 Info Loading assembly: NLog.Web.AspNetCore
+2026-01-26 02:52:25.6204 Info Adding target FileTarget(Name=allfile)
+2026-01-26 02:52:25.6204 Info Adding target FileTarget(Name=errorLog)
+2026-01-26 02:52:25.6204 Info Adding target FileTarget(Name=infoLog)
+2026-01-26 02:52:25.6292 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
+2026-01-26 02:52:25.6292 Info Adding target ColoredConsoleTarget(Name=lifetimeConsole)
+2026-01-26 02:52:25.6292 Info Adding target FileTarget(Name=stdout)
+2026-01-26 02:52:25.6502 Info Validating config: Targets=5, ConfigItems=129, FilePath=E:\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config
+2026-01-26 02:52:25.8735 Info Shutdown() called. Logger closing...
+2026-01-26 02:52:25.8735 Info Closing old configuration.
+2026-01-26 02:52:25.8829 Info Logger has been closed down.
+2026-01-26 02:52:27.3633 Info AppDomain Shutting down. Logger closing...
+2026-01-26 02:52:27.3633 Info Logger has been shut down.
+2026-01-26 02:56:51.3960 Info Message Template Auto Format enabled
+2026-01-26 02:56:51.3960 Info Loading assembly: NLog.Web.AspNetCore
+2026-01-26 02:56:51.4402 Info Adding target FileTarget(Name=allfile)
+2026-01-26 02:56:51.4436 Info Adding target FileTarget(Name=errorLog)
+2026-01-26 02:56:51.4436 Info Adding target FileTarget(Name=infoLog)
+2026-01-26 02:56:51.4436 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
+2026-01-26 02:56:51.4436 Info Adding target ColoredConsoleTarget(Name=lifetimeConsole)
+2026-01-26 02:56:51.4588 Info Adding target FileTarget(Name=stdout)
+2026-01-26 02:56:51.4774 Info Validating config: Targets=5, ConfigItems=129, FilePath=E:\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config
+2026-01-26 02:56:51.7465 Info Shutdown() called. Logger closing...
+2026-01-26 02:56:51.7465 Info Closing old configuration.
+2026-01-26 02:56:51.7556 Info Logger has been closed down.
+2026-01-26 02:56:53.0583 Info AppDomain Shutting down. Logger closing...
+2026-01-26 02:56:53.0583 Info Logger has been shut down.
+2026-01-26 03:16:17.1617 Info Message Template Auto Format enabled
+2026-01-26 03:16:17.1727 Info Loading assembly: NLog.Web.AspNetCore
+2026-01-26 03:16:17.1976 Info Adding target FileTarget(Name=allfile)
+2026-01-26 03:16:17.1976 Info Adding target FileTarget(Name=errorLog)
+2026-01-26 03:16:17.2024 Info Adding target FileTarget(Name=infoLog)
+2026-01-26 03:16:17.2024 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
+2026-01-26 03:16:17.2024 Info Adding target ColoredConsoleTarget(Name=lifetimeConsole)
+2026-01-26 03:16:17.2024 Info Adding target FileTarget(Name=stdout)
+2026-01-26 03:16:17.2281 Info Validating config: Targets=5, ConfigItems=129, FilePath=E:\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config
+2026-01-26 03:16:17.4634 Info Shutdown() called. Logger closing...
+2026-01-26 03:16:17.4634 Info Closing old configuration.
+2026-01-26 03:16:17.4722 Info Logger has been closed down.
+2026-01-26 03:16:19.0397 Info AppDomain Shutting down. Logger closing...
+2026-01-26 03:16:19.0397 Info Logger has been shut down.
+2026-01-26 03:17:12.1937 Info Message Template Auto Format enabled
+2026-01-26 03:17:12.2043 Info Loading assembly: NLog.Web.AspNetCore
+2026-01-26 03:17:12.2285 Info Adding target FileTarget(Name=allfile)
+2026-01-26 03:17:12.2311 Info Adding target FileTarget(Name=errorLog)
+2026-01-26 03:17:12.2311 Info Adding target FileTarget(Name=infoLog)
+2026-01-26 03:17:12.2311 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
+2026-01-26 03:17:12.2311 Info Adding target ColoredConsoleTarget(Name=lifetimeConsole)
+2026-01-26 03:17:12.2311 Info Adding target FileTarget(Name=stdout)
+2026-01-26 03:17:12.2572 Info Validating config: Targets=5, ConfigItems=129, FilePath=E:\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config
+2026-01-26 03:17:12.4845 Info Shutdown() called. Logger closing...
+2026-01-26 03:17:12.4845 Info Closing old configuration.
+2026-01-26 03:17:12.4845 Info Logger has been closed down.
+2026-01-26 03:17:13.7452 Info AppDomain Shutting down. Logger closing...
+2026-01-26 03:17:13.7452 Info Logger has been shut down.
+2026-01-26 03:19:20.8697 Info Message Template Auto Format enabled
+2026-01-26 03:19:20.9137 Info Loading assembly: NLog.Web.AspNetCore
+2026-01-26 03:19:20.9391 Info Adding target FileTarget(Name=allfile)
+2026-01-26 03:19:20.9391 Info Adding target FileTarget(Name=errorLog)
+2026-01-26 03:19:20.9391 Info Adding target FileTarget(Name=infoLog)
+2026-01-26 03:19:20.9391 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
+2026-01-26 03:19:20.9391 Info Adding target ColoredConsoleTarget(Name=lifetimeConsole)
+2026-01-26 03:19:20.9391 Info Adding target FileTarget(Name=stdout)
+2026-01-26 03:19:20.9685 Info Validating config: Targets=5, ConfigItems=129, FilePath=E:\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config
+2026-01-26 03:19:21.2074 Info Shutdown() called. Logger closing...
+2026-01-26 03:19:21.2074 Info Closing old configuration.
+2026-01-26 03:19:21.2074 Info Logger has been closed down.
+2026-01-26 03:19:22.5328 Info AppDomain Shutting down. Logger closing...
+2026-01-26 03:19:22.5328 Info Logger has been shut down.
+2026-01-26 03:21:28.5416 Info Message Template Auto Format enabled
+2026-01-26 03:21:28.5524 Info Loading assembly: NLog.Web.AspNetCore
+2026-01-26 03:21:28.5773 Info Adding target FileTarget(Name=allfile)
+2026-01-26 03:21:28.5773 Info Adding target FileTarget(Name=errorLog)
+2026-01-26 03:21:28.5773 Info Adding target FileTarget(Name=infoLog)
+2026-01-26 03:21:28.5773 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
+2026-01-26 03:21:28.5773 Info Adding target ColoredConsoleTarget(Name=lifetimeConsole)
+2026-01-26 03:21:28.5917 Info Adding target FileTarget(Name=stdout)
+2026-01-26 03:21:28.6062 Info Validating config: Targets=5, ConfigItems=129, FilePath=E:\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config
+2026-01-26 03:21:28.8408 Info Shutdown() called. Logger closing...
+2026-01-26 03:21:28.8408 Info Closing old configuration.
+2026-01-26 03:21:28.8408 Info Logger has been closed down.
+2026-01-26 03:21:30.1041 Info AppDomain Shutting down. Logger closing...
+2026-01-26 03:21:30.1041 Info Logger has been shut down.
+2026-01-26 03:24:19.0268 Info Message Template Auto Format enabled
+2026-01-26 03:24:19.0268 Info Loading assembly: NLog.Web.AspNetCore
+2026-01-26 03:24:19.0613 Info Adding target FileTarget(Name=allfile)
+2026-01-26 03:24:19.0613 Info Adding target FileTarget(Name=errorLog)
+2026-01-26 03:24:19.0613 Info Adding target FileTarget(Name=infoLog)
+2026-01-26 03:24:19.0707 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
+2026-01-26 03:24:19.0707 Info Adding target ColoredConsoleTarget(Name=lifetimeConsole)
+2026-01-26 03:24:19.0707 Info Adding target FileTarget(Name=stdout)
+2026-01-26 03:24:19.0901 Info Validating config: Targets=5, ConfigItems=129, FilePath=E:\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config
+2026-01-26 03:24:19.3205 Info Shutdown() called. Logger closing...
+2026-01-26 03:24:19.3205 Info Closing old configuration.
+2026-01-26 03:24:19.3205 Info Logger has been closed down.
+2026-01-26 03:24:20.5138 Info AppDomain Shutting down. Logger closing...
+2026-01-26 03:24:20.5138 Info Logger has been shut down.
+2026-01-26 03:25:29.1735 Info Message Template Auto Format enabled
+2026-01-26 03:25:29.1845 Info Loading assembly: NLog.Web.AspNetCore
+2026-01-26 03:25:29.2087 Info Adding target FileTarget(Name=allfile)
+2026-01-26 03:25:29.2087 Info Adding target FileTarget(Name=errorLog)
+2026-01-26 03:25:29.2131 Info Adding target FileTarget(Name=infoLog)
+2026-01-26 03:25:29.2131 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
+2026-01-26 03:25:29.2131 Info Adding target ColoredConsoleTarget(Name=lifetimeConsole)
+2026-01-26 03:25:29.2131 Info Adding target FileTarget(Name=stdout)
+2026-01-26 03:25:29.2387 Info Validating config: Targets=5, ConfigItems=129, FilePath=E:\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config
+2026-01-26 03:25:29.4773 Info Shutdown() called. Logger closing...
+2026-01-26 03:25:29.4773 Info Closing old configuration.
+2026-01-26 03:25:29.4861 Info Logger has been closed down.
+2026-01-26 03:25:30.7979 Info AppDomain Shutting down. Logger closing...
+2026-01-26 03:25:30.7979 Info Logger has been shut down.
+2026-01-26 03:26:36.6513 Info Message Template Auto Format enabled
+2026-01-26 03:26:36.6513 Info Loading assembly: NLog.Web.AspNetCore
+2026-01-26 03:26:36.6867 Info Adding target FileTarget(Name=allfile)
+2026-01-26 03:26:36.6867 Info Adding target FileTarget(Name=errorLog)
+2026-01-26 03:26:36.6867 Info Adding target FileTarget(Name=infoLog)
+2026-01-26 03:26:36.6955 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
+2026-01-26 03:26:36.6955 Info Adding target ColoredConsoleTarget(Name=lifetimeConsole)
+2026-01-26 03:26:36.6955 Info Adding target FileTarget(Name=stdout)
+2026-01-26 03:26:36.7156 Info Validating config: Targets=5, ConfigItems=129, FilePath=E:\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config
+2026-01-26 03:26:36.9477 Info Shutdown() called. Logger closing...
+2026-01-26 03:26:36.9477 Info Closing old configuration.
+2026-01-26 03:26:36.9477 Info Logger has been closed down.
+2026-01-26 03:26:41.2903 Info AppDomain Shutting down. Logger closing...
+2026-01-26 03:26:41.2903 Info Logger has been shut down.
+2026-01-26 03:27:13.5689 Info Message Template Auto Format enabled
+2026-01-26 03:27:13.5689 Info Loading assembly: NLog.Web.AspNetCore
+2026-01-26 03:27:13.6065 Info Adding target FileTarget(Name=allfile)
+2026-01-26 03:27:13.6065 Info Adding target FileTarget(Name=errorLog)
+2026-01-26 03:27:13.6065 Info Adding target FileTarget(Name=infoLog)
+2026-01-26 03:27:13.6171 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
+2026-01-26 03:27:13.6171 Info Adding target ColoredConsoleTarget(Name=lifetimeConsole)
+2026-01-26 03:27:13.6171 Info Adding target FileTarget(Name=stdout)
+2026-01-26 03:27:13.6381 Info Validating config: Targets=5, ConfigItems=129, FilePath=E:\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config
+2026-01-26 03:27:13.8859 Info Shutdown() called. Logger closing...
+2026-01-26 03:27:13.8859 Info Closing old configuration.
+2026-01-26 03:27:13.8963 Info Logger has been closed down.
+2026-01-26 03:27:18.1958 Info AppDomain Shutting down. Logger closing...
+2026-01-26 03:27:18.1958 Info Logger has been shut down.
+2026-01-26 03:29:03.8033 Info Message Template Auto Format enabled
+2026-01-26 03:29:03.8160 Info Loading assembly: NLog.Web.AspNetCore
+2026-01-26 03:29:03.8427 Info Adding target FileTarget(Name=allfile)
+2026-01-26 03:29:03.8456 Info Adding target FileTarget(Name=errorLog)
+2026-01-26 03:29:03.8456 Info Adding target FileTarget(Name=infoLog)
+2026-01-26 03:29:03.8456 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
+2026-01-26 03:29:03.8456 Info Adding target ColoredConsoleTarget(Name=lifetimeConsole)
+2026-01-26 03:29:03.8587 Info Adding target FileTarget(Name=stdout)
+2026-01-26 03:29:03.8747 Info Validating config: Targets=5, ConfigItems=129, FilePath=E:\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config
+2026-01-26 03:29:04.1287 Info Shutdown() called. Logger closing...
+2026-01-26 03:29:04.1287 Info Closing old configuration.
+2026-01-26 03:29:04.1287 Info Logger has been closed down.
+2026-01-26 03:29:04.1757 Info AppDomain Shutting down. Logger closing...
+2026-01-26 03:29:04.1757 Info Logger has been shut down.
+2026-01-26 03:29:37.7808 Info Message Template Auto Format enabled
+2026-01-26 03:29:37.7808 Info Loading assembly: NLog.Web.AspNetCore
+2026-01-26 03:29:37.8189 Info Adding target FileTarget(Name=allfile)
+2026-01-26 03:29:37.8189 Info Adding target FileTarget(Name=errorLog)
+2026-01-26 03:29:37.8189 Info Adding target FileTarget(Name=infoLog)
+2026-01-26 03:29:37.8294 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
+2026-01-26 03:29:37.8294 Info Adding target ColoredConsoleTarget(Name=lifetimeConsole)
+2026-01-26 03:29:37.8294 Info Adding target FileTarget(Name=stdout)
+2026-01-26 03:29:37.8517 Info Validating config: Targets=5, ConfigItems=129, FilePath=E:\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config
+2026-01-26 03:29:38.1082 Info Shutdown() called. Logger closing...
+2026-01-26 03:29:38.1082 Info Closing old configuration.
+2026-01-26 03:29:38.1082 Info Logger has been closed down.
+2026-01-26 03:29:40.4521 Info AppDomain Shutting down. Logger closing...
+2026-01-26 03:29:40.4521 Info Logger has been shut down.
+2026-01-26 03:29:47.1170 Info Message Template Auto Format enabled
+2026-01-26 03:29:47.1290 Info Loading assembly: NLog.Web.AspNetCore
+2026-01-26 03:29:47.1539 Info Adding target FileTarget(Name=allfile)
+2026-01-26 03:29:47.1539 Info Adding target FileTarget(Name=errorLog)
+2026-01-26 03:29:47.1596 Info Adding target FileTarget(Name=infoLog)
+2026-01-26 03:29:47.1596 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
+2026-01-26 03:29:47.1596 Info Adding target ColoredConsoleTarget(Name=lifetimeConsole)
+2026-01-26 03:29:47.1596 Info Adding target FileTarget(Name=stdout)
+2026-01-26 03:29:47.1851 Info Validating config: Targets=5, ConfigItems=129, FilePath=E:\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config
+2026-01-26 03:29:47.4490 Info Shutdown() called. Logger closing...
+2026-01-26 03:29:47.4490 Info Closing old configuration.
+2026-01-26 03:29:47.4614 Info Logger has been closed down.
+2026-01-26 03:29:50.7552 Info AppDomain Shutting down. Logger closing...
+2026-01-26 03:29:50.7552 Info Logger has been shut down.
+2026-01-26 03:30:02.4036 Info Message Template Auto Format enabled
+2026-01-26 03:30:02.4036 Info Loading assembly: NLog.Web.AspNetCore
+2026-01-26 03:30:02.4411 Info Adding target FileTarget(Name=allfile)
+2026-01-26 03:30:02.4411 Info Adding target FileTarget(Name=errorLog)
+2026-01-26 03:30:02.4411 Info Adding target FileTarget(Name=infoLog)
+2026-01-26 03:30:02.4498 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
+2026-01-26 03:30:02.4498 Info Adding target ColoredConsoleTarget(Name=lifetimeConsole)
+2026-01-26 03:30:02.4498 Info Adding target FileTarget(Name=stdout)
+2026-01-26 03:30:02.4731 Info Validating config: Targets=5, ConfigItems=129, FilePath=E:\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config
+2026-01-26 03:30:02.7375 Info Shutdown() called. Logger closing...
+2026-01-26 03:30:02.7375 Info Closing old configuration.
+2026-01-26 03:30:02.7462 Info Logger has been closed down.
+2026-01-26 03:30:07.5009 Info AppDomain Shutting down. Logger closing...
+2026-01-26 03:30:07.5009 Info Logger has been shut down.
+2026-01-26 03:30:58.8020 Info Message Template Auto Format enabled
+2026-01-26 03:30:58.8020 Info Loading assembly: NLog.Web.AspNetCore
+2026-01-26 03:30:58.8333 Info Adding target FileTarget(Name=allfile)
+2026-01-26 03:30:58.8333 Info Adding target FileTarget(Name=errorLog)
+2026-01-26 03:30:58.8333 Info Adding target FileTarget(Name=infoLog)
+2026-01-26 03:30:58.8333 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
+2026-01-26 03:30:58.8451 Info Adding target ColoredConsoleTarget(Name=lifetimeConsole)
+2026-01-26 03:30:58.8451 Info Adding target FileTarget(Name=stdout)
+2026-01-26 03:30:58.8612 Info Validating config: Targets=5, ConfigItems=129, FilePath=E:\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config
+2026-01-26 03:30:59.0797 Info Shutdown() called. Logger closing...
+2026-01-26 03:30:59.0797 Info Closing old configuration.
+2026-01-26 03:30:59.0797 Info Logger has been closed down.
+2026-01-26 03:30:59.1260 Info AppDomain Shutting down. Logger closing...
+2026-01-26 03:30:59.1260 Info Logger has been shut down.
+2026-01-26 03:31:15.3607 Info Message Template Auto Format enabled
+2026-01-26 03:31:15.3717 Info Loading assembly: NLog.Web.AspNetCore
+2026-01-26 03:31:15.3957 Info Adding target FileTarget(Name=allfile)
+2026-01-26 03:31:15.3957 Info Adding target FileTarget(Name=errorLog)
+2026-01-26 03:31:15.3957 Info Adding target FileTarget(Name=infoLog)
+2026-01-26 03:31:15.4043 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
+2026-01-26 03:31:15.4043 Info Adding target ColoredConsoleTarget(Name=lifetimeConsole)
+2026-01-26 03:31:15.4043 Info Adding target FileTarget(Name=stdout)
+2026-01-26 03:31:15.4235 Info Validating config: Targets=5, ConfigItems=129, FilePath=E:\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config
+2026-01-26 03:31:15.6431 Info Shutdown() called. Logger closing...
+2026-01-26 03:31:15.6431 Info Closing old configuration.
+2026-01-26 03:31:15.6431 Info Logger has been closed down.
+2026-01-26 03:31:17.4987 Info AppDomain Shutting down. Logger closing...
+2026-01-26 03:31:17.4987 Info Logger has been shut down.
+2026-01-26 03:31:24.9418 Info Message Template Auto Format enabled
+2026-01-26 03:31:24.9520 Info Loading assembly: NLog.Web.AspNetCore
+2026-01-26 03:31:24.9761 Info Adding target FileTarget(Name=allfile)
+2026-01-26 03:31:24.9789 Info Adding target FileTarget(Name=errorLog)
+2026-01-26 03:31:24.9789 Info Adding target FileTarget(Name=infoLog)
+2026-01-26 03:31:24.9789 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
+2026-01-26 03:31:24.9789 Info Adding target ColoredConsoleTarget(Name=lifetimeConsole)
+2026-01-26 03:31:24.9789 Info Adding target FileTarget(Name=stdout)
+2026-01-26 03:31:25.0035 Info Validating config: Targets=5, ConfigItems=129, FilePath=E:\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config
+2026-01-26 03:31:25.2189 Info Shutdown() called. Logger closing...
+2026-01-26 03:31:25.2189 Info Closing old configuration.
+2026-01-26 03:31:25.2189 Info Logger has been closed down.
+2026-01-26 03:31:27.1870 Info AppDomain Shutting down. Logger closing...
+2026-01-26 03:31:27.1870 Info Logger has been shut down.
+2026-01-26 03:35:42.1918 Info Message Template Auto Format enabled
+2026-01-26 03:35:42.2020 Info Loading assembly: NLog.Web.AspNetCore
+2026-01-26 03:35:42.2245 Info Adding target FileTarget(Name=allfile)
+2026-01-26 03:35:42.2245 Info Adding target FileTarget(Name=errorLog)
+2026-01-26 03:35:42.2285 Info Adding target FileTarget(Name=infoLog)
+2026-01-26 03:35:42.2285 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
+2026-01-26 03:35:42.2285 Info Adding target ColoredConsoleTarget(Name=lifetimeConsole)
+2026-01-26 03:35:42.2285 Info Adding target FileTarget(Name=stdout)
+2026-01-26 03:35:42.2513 Info Validating config: Targets=5, ConfigItems=129, FilePath=E:\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config
+2026-01-26 03:35:42.4720 Info Shutdown() called. Logger closing...
+2026-01-26 03:35:42.4720 Info Closing old configuration.
+2026-01-26 03:35:42.4807 Info Logger has been closed down.
+2026-01-26 03:35:43.6415 Info AppDomain Shutting down. Logger closing...
+2026-01-26 03:35:43.6415 Info Logger has been shut down.
+2026-01-26 03:36:27.5583 Info Message Template Auto Format enabled
+2026-01-26 03:36:27.5583 Info Loading assembly: NLog.Web.AspNetCore
+2026-01-26 03:36:27.5896 Info Adding target FileTarget(Name=allfile)
+2026-01-26 03:36:27.5896 Info Adding target FileTarget(Name=errorLog)
+2026-01-26 03:36:27.5896 Info Adding target FileTarget(Name=infoLog)
+2026-01-26 03:36:27.5896 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
+2026-01-26 03:36:27.5896 Info Adding target ColoredConsoleTarget(Name=lifetimeConsole)
+2026-01-26 03:36:27.6031 Info Adding target FileTarget(Name=stdout)
+2026-01-26 03:36:27.6031 Info Validating config: Targets=5, ConfigItems=129, FilePath=E:\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config
+2026-01-26 03:36:27.8427 Info Shutdown() called. Logger closing...
+2026-01-26 03:36:27.8427 Info Closing old configuration.
+2026-01-26 03:36:27.8427 Info Logger has been closed down.
+2026-01-26 03:36:29.0838 Info AppDomain Shutting down. Logger closing...
+2026-01-26 03:36:29.0838 Info Logger has been shut down.
+2026-01-26 03:43:16.1069 Info Message Template Auto Format enabled
+2026-01-26 03:43:16.1180 Info Loading assembly: NLog.Web.AspNetCore
+2026-01-26 03:43:16.1427 Info Adding target FileTarget(Name=allfile)
+2026-01-26 03:43:16.1427 Info Adding target FileTarget(Name=errorLog)
+2026-01-26 03:43:16.1427 Info Adding target FileTarget(Name=infoLog)
+2026-01-26 03:43:16.1520 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
+2026-01-26 03:43:16.1520 Info Adding target ColoredConsoleTarget(Name=lifetimeConsole)
+2026-01-26 03:43:16.1520 Info Adding target FileTarget(Name=stdout)
+2026-01-26 03:43:16.1725 Info Validating config: Targets=5, ConfigItems=129, FilePath=E:\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config
+2026-01-26 03:43:16.4056 Info Shutdown() called. Logger closing...
+2026-01-26 03:43:16.4056 Info Closing old configuration.
+2026-01-26 03:43:16.4056 Info Logger has been closed down.
+2026-01-26 03:43:17.6662 Info AppDomain Shutting down. Logger closing...
+2026-01-26 03:43:17.6662 Info Logger has been shut down.
+2026-01-26 03:43:56.5482 Info Message Template Auto Format enabled
+2026-01-26 03:43:56.5589 Info Loading assembly: NLog.Web.AspNetCore
+2026-01-26 03:43:56.5820 Info Adding target FileTarget(Name=allfile)
+2026-01-26 03:43:56.5820 Info Adding target FileTarget(Name=errorLog)
+2026-01-26 03:43:56.5863 Info Adding target FileTarget(Name=infoLog)
+2026-01-26 03:43:56.5863 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
+2026-01-26 03:43:56.5863 Info Adding target ColoredConsoleTarget(Name=lifetimeConsole)
+2026-01-26 03:43:56.5863 Info Adding target FileTarget(Name=stdout)
+2026-01-26 03:43:56.6106 Info Validating config: Targets=5, ConfigItems=129, FilePath=E:\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config
+2026-01-26 03:43:56.8463 Info Shutdown() called. Logger closing...
+2026-01-26 03:43:56.8463 Info Closing old configuration.
+2026-01-26 03:43:56.8552 Info Logger has been closed down.
+2026-01-26 03:43:59.3095 Info AppDomain Shutting down. Logger closing...
+2026-01-26 03:43:59.3095 Info Logger has been shut down.
+2026-01-26 03:44:44.0300 Info Message Template Auto Format enabled
+2026-01-26 03:44:44.0428 Info Loading assembly: NLog.Web.AspNetCore
+2026-01-26 03:44:44.0680 Info Adding target FileTarget(Name=allfile)
+2026-01-26 03:44:44.0709 Info Adding target FileTarget(Name=errorLog)
+2026-01-26 03:44:44.0709 Info Adding target FileTarget(Name=infoLog)
+2026-01-26 03:44:44.0709 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
+2026-01-26 03:44:44.0709 Info Adding target ColoredConsoleTarget(Name=lifetimeConsole)
+2026-01-26 03:44:44.0709 Info Adding target FileTarget(Name=stdout)
+2026-01-26 03:44:44.0980 Info Validating config: Targets=5, ConfigItems=129, FilePath=E:\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config
+2026-01-26 03:44:44.3300 Info Shutdown() called. Logger closing...
+2026-01-26 03:44:44.3300 Info Closing old configuration.
+2026-01-26 03:44:44.3394 Info Logger has been closed down.
+2026-01-26 03:44:45.6358 Info AppDomain Shutting down. Logger closing...
+2026-01-26 03:44:45.6358 Info Logger has been shut down.
+2026-01-26 03:46:37.8853 Info Message Template Auto Format enabled
+2026-01-26 03:46:37.8853 Info Loading assembly: NLog.Web.AspNetCore
+2026-01-26 03:46:37.9202 Info Adding target FileTarget(Name=allfile)
+2026-01-26 03:46:37.9202 Info Adding target FileTarget(Name=errorLog)
+2026-01-26 03:46:37.9202 Info Adding target FileTarget(Name=infoLog)
+2026-01-26 03:46:37.9202 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
+2026-01-26 03:46:37.9321 Info Adding target ColoredConsoleTarget(Name=lifetimeConsole)
+2026-01-26 03:46:37.9321 Info Adding target FileTarget(Name=stdout)
+2026-01-26 03:46:37.9483 Info Validating config: Targets=5, ConfigItems=129, FilePath=E:\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config
+2026-01-26 03:46:38.1744 Info Shutdown() called. Logger closing...
+2026-01-26 03:46:38.1744 Info Closing old configuration.
+2026-01-26 03:46:38.1838 Info Logger has been closed down.
+2026-01-26 03:46:39.5161 Info AppDomain Shutting down. Logger closing...
+2026-01-26 03:46:39.5161 Info Logger has been shut down.
+2026-01-26 03:47:15.9362 Info Message Template Auto Format enabled
+2026-01-26 03:47:15.9467 Info Loading assembly: NLog.Web.AspNetCore
+2026-01-26 03:47:15.9707 Info Adding target FileTarget(Name=allfile)
+2026-01-26 03:47:15.9707 Info Adding target FileTarget(Name=errorLog)
+2026-01-26 03:47:15.9707 Info Adding target FileTarget(Name=infoLog)
+2026-01-26 03:47:15.9796 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
+2026-01-26 03:47:15.9796 Info Adding target ColoredConsoleTarget(Name=lifetimeConsole)
+2026-01-26 03:47:15.9796 Info Adding target FileTarget(Name=stdout)
+2026-01-26 03:47:15.9998 Info Validating config: Targets=5, ConfigItems=129, FilePath=E:\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config
+2026-01-26 03:47:16.2306 Info Shutdown() called. Logger closing...
+2026-01-26 03:47:16.2306 Info Closing old configuration.
+2026-01-26 03:47:16.2306 Info Logger has been closed down.
+2026-01-26 03:47:20.4133 Info AppDomain Shutting down. Logger closing...
+2026-01-26 03:47:20.4133 Info Logger has been shut down.
+2026-01-26 04:26:50.4880 Info Message Template Auto Format enabled
+2026-01-26 04:26:50.5066 Info Loading assembly: NLog.Web.AspNetCore
+2026-01-26 04:26:50.5552 Info Adding target FileTarget(Name=allfile)
+2026-01-26 04:26:50.5552 Info Adding target FileTarget(Name=errorLog)
+2026-01-26 04:26:50.5552 Info Adding target FileTarget(Name=infoLog)
+2026-01-26 04:26:50.5687 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
+2026-01-26 04:26:50.5729 Info Adding target ColoredConsoleTarget(Name=lifetimeConsole)
+2026-01-26 04:26:50.5946 Info Adding target FileTarget(Name=stdout)
+2026-01-26 04:26:50.6228 Info Validating config: Targets=5, ConfigItems=129, FilePath=E:\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config
+2026-01-26 04:27:07.3853 Info Message Template Auto Format enabled
+2026-01-26 04:27:07.4028 Info Loading assembly: NLog.Web.AspNetCore
+2026-01-26 04:27:07.4518 Info Adding target FileTarget(Name=allfile)
+2026-01-26 04:27:07.4518 Info Adding target FileTarget(Name=errorLog)
+2026-01-26 04:27:07.4518 Info Adding target FileTarget(Name=infoLog)
+2026-01-26 04:27:07.4627 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
+2026-01-26 04:27:07.4627 Info Adding target ColoredConsoleTarget(Name=lifetimeConsole)
+2026-01-26 04:27:07.4627 Info Adding target FileTarget(Name=stdout)
+2026-01-26 04:27:07.4862 Info Validating config: Targets=5, ConfigItems=129, FilePath=E:\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config
+2026-01-26 04:27:07.8719 Info Shutdown() called. Logger closing...
+2026-01-26 04:27:07.9101 Info Closing old configuration.
+2026-01-26 04:27:07.9866 Info Logger has been closed down.
+2026-01-26 04:27:10.7801 Info AppDomain Shutting down. Logger closing...
+2026-01-26 04:27:10.7801 Info Logger has been shut down.
+2026-01-26 06:06:06.7212 Info Message Template Auto Format enabled
+2026-01-26 06:06:06.7358 Info Loading assembly: NLog.Web.AspNetCore
+2026-01-26 06:06:06.7750 Info Adding target FileTarget(Name=allfile)
+2026-01-26 06:06:06.7750 Info Adding target FileTarget(Name=errorLog)
+2026-01-26 06:06:06.7750 Info Adding target FileTarget(Name=infoLog)
+2026-01-26 06:06:06.7750 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
+2026-01-26 06:06:06.7904 Info Adding target ColoredConsoleTarget(Name=lifetimeConsole)
+2026-01-26 06:06:06.7904 Info Adding target FileTarget(Name=stdout)
+2026-01-26 06:06:06.8311 Info Validating config: Targets=5, ConfigItems=129, FilePath=E:\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config
+2026-01-26 06:08:06.9515 Info Message Template Auto Format enabled
+2026-01-26 06:08:06.9665 Info Loading assembly: NLog.Web.AspNetCore
+2026-01-26 06:08:07.0037 Info Adding target FileTarget(Name=allfile)
+2026-01-26 06:08:07.0037 Info Adding target FileTarget(Name=errorLog)
+2026-01-26 06:08:07.0037 Info Adding target FileTarget(Name=infoLog)
+2026-01-26 06:08:07.0135 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
+2026-01-26 06:08:07.0135 Info Adding target ColoredConsoleTarget(Name=lifetimeConsole)
+2026-01-26 06:08:07.0254 Info Adding target FileTarget(Name=stdout)
+2026-01-26 06:08:07.0487 Info Validating config: Targets=5, ConfigItems=129, FilePath=E:\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config
+2026-01-26 06:09:20.5443 Info Message Template Auto Format enabled
+2026-01-26 06:09:20.5605 Info Loading assembly: NLog.Web.AspNetCore
+2026-01-26 06:09:20.6004 Info Adding target FileTarget(Name=allfile)
+2026-01-26 06:09:20.6036 Info Adding target FileTarget(Name=errorLog)
+2026-01-26 06:09:20.6036 Info Adding target FileTarget(Name=infoLog)
+2026-01-26 06:09:20.6036 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
+2026-01-26 06:09:20.6036 Info Adding target ColoredConsoleTarget(Name=lifetimeConsole)
+2026-01-26 06:09:20.6222 Info Adding target FileTarget(Name=stdout)
+2026-01-26 06:09:20.6435 Info Validating config: Targets=5, ConfigItems=129, FilePath=E:\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config
+2026-01-26 06:10:48.4086 Info Message Template Auto Format enabled
+2026-01-26 06:10:48.4232 Info Loading assembly: NLog.Web.AspNetCore
+2026-01-26 06:10:48.4558 Info Adding target FileTarget(Name=allfile)
+2026-01-26 06:10:48.4558 Info Adding target FileTarget(Name=errorLog)
+2026-01-26 06:10:48.4558 Info Adding target FileTarget(Name=infoLog)
+2026-01-26 06:10:48.4655 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
+2026-01-26 06:10:48.4655 Info Adding target ColoredConsoleTarget(Name=lifetimeConsole)
+2026-01-26 06:10:48.4771 Info Adding target FileTarget(Name=stdout)
+2026-01-26 06:10:48.5008 Info Validating config: Targets=5, ConfigItems=129, FilePath=E:\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config
+2026-01-26 06:15:39.5170 Info Message Template Auto Format enabled
+2026-01-26 06:15:39.5321 Info Loading assembly: NLog.Web.AspNetCore
+2026-01-26 06:15:39.5705 Info Adding target FileTarget(Name=allfile)
+2026-01-26 06:15:39.5736 Info Adding target FileTarget(Name=errorLog)
+2026-01-26 06:15:39.5736 Info Adding target FileTarget(Name=infoLog)
+2026-01-26 06:15:39.5736 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
+2026-01-26 06:15:39.5736 Info Adding target ColoredConsoleTarget(Name=lifetimeConsole)
+2026-01-26 06:15:39.5941 Info Adding target FileTarget(Name=stdout)
+2026-01-26 06:15:39.6208 Info Validating config: Targets=5, ConfigItems=129, FilePath=E:\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config
+2026-01-26 06:18:42.1552 Info Message Template Auto Format enabled
+2026-01-26 06:18:42.1709 Info Loading assembly: NLog.Web.AspNetCore
+2026-01-26 06:18:42.2038 Info Adding target FileTarget(Name=allfile)
+2026-01-26 06:18:42.2038 Info Adding target FileTarget(Name=errorLog)
+2026-01-26 06:18:42.2038 Info Adding target FileTarget(Name=infoLog)
+2026-01-26 06:18:42.2141 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
+2026-01-26 06:18:42.2141 Info Adding target ColoredConsoleTarget(Name=lifetimeConsole)
+2026-01-26 06:18:42.2141 Info Adding target FileTarget(Name=stdout)
+2026-01-26 06:18:42.2533 Info Validating config: Targets=5, ConfigItems=129, FilePath=E:\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config
+2026-01-26 06:21:23.0741 Info Message Template Auto Format enabled
+2026-01-26 06:21:23.0929 Info Loading assembly: NLog.Web.AspNetCore
+2026-01-26 06:21:23.1414 Info Adding target FileTarget(Name=allfile)
+2026-01-26 06:21:23.1414 Info Adding target FileTarget(Name=errorLog)
+2026-01-26 06:21:23.1414 Info Adding target FileTarget(Name=infoLog)
+2026-01-26 06:21:23.1529 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
+2026-01-26 06:21:23.1529 Info Adding target ColoredConsoleTarget(Name=lifetimeConsole)
+2026-01-26 06:21:23.1662 Info Adding target FileTarget(Name=stdout)
+2026-01-26 06:21:23.1925 Info Validating config: Targets=5, ConfigItems=129, FilePath=E:\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config
+2026-01-26 06:24:16.5674 Info Message Template Auto Format enabled
+2026-01-26 06:24:16.6652 Info Loading assembly: NLog.Web.AspNetCore
+2026-01-26 06:24:16.9965 Info Adding target FileTarget(Name=allfile)
+2026-01-26 06:24:17.0321 Info Adding target FileTarget(Name=errorLog)
+2026-01-26 06:24:17.0321 Info Adding target FileTarget(Name=infoLog)
+2026-01-26 06:24:17.0811 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
+2026-01-26 06:24:17.1242 Info Adding target ColoredConsoleTarget(Name=lifetimeConsole)
+2026-01-26 06:24:17.3023 Info Adding target FileTarget(Name=stdout)
+2026-01-26 06:24:17.4643 Info Validating config: Targets=5, ConfigItems=129, FilePath=E:\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config
+2026-01-26 06:30:28.4055 Info Message Template Auto Format enabled
+2026-01-26 06:30:28.4210 Info Loading assembly: NLog.Web.AspNetCore
+2026-01-26 06:30:28.4566 Info Adding target FileTarget(Name=allfile)
+2026-01-26 06:30:28.4566 Info Adding target FileTarget(Name=errorLog)
+2026-01-26 06:30:28.4615 Info Adding target FileTarget(Name=infoLog)
+2026-01-26 06:30:28.4615 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
+2026-01-26 06:30:28.4615 Info Adding target ColoredConsoleTarget(Name=lifetimeConsole)
+2026-01-26 06:30:28.4789 Info Adding target FileTarget(Name=stdout)
+2026-01-26 06:30:28.4999 Info Validating config: Targets=5, ConfigItems=129, FilePath=E:\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config
+2026-01-26 06:34:23.4368 Info Message Template Auto Format enabled
+2026-01-26 06:34:23.4509 Info Loading assembly: NLog.Web.AspNetCore
+2026-01-26 06:34:23.4890 Info Adding target FileTarget(Name=allfile)
+2026-01-26 06:34:23.4890 Info Adding target FileTarget(Name=errorLog)
+2026-01-26 06:34:23.4933 Info Adding target FileTarget(Name=infoLog)
+2026-01-26 06:34:23.4933 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
+2026-01-26 06:34:23.4933 Info Adding target ColoredConsoleTarget(Name=lifetimeConsole)
+2026-01-26 06:34:23.5095 Info Adding target FileTarget(Name=stdout)
+2026-01-26 06:34:23.5343 Info Validating config: Targets=5, ConfigItems=129, FilePath=E:\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config
+2026-01-26 06:34:52.7737 Info Message Template Auto Format enabled
+2026-01-26 06:34:52.7979 Info Loading assembly: NLog.Web.AspNetCore
+2026-01-26 06:34:52.8568 Info Adding target FileTarget(Name=allfile)
+2026-01-26 06:34:52.8568 Info Adding target FileTarget(Name=errorLog)
+2026-01-26 06:34:52.8568 Info Adding target FileTarget(Name=infoLog)
+2026-01-26 06:34:52.8728 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
+2026-01-26 06:34:52.8728 Info Adding target ColoredConsoleTarget(Name=lifetimeConsole)
+2026-01-26 06:34:52.8908 Info Adding target FileTarget(Name=stdout)
+2026-01-26 06:34:52.9337 Info Validating config: Targets=5, ConfigItems=129, FilePath=E:\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config
+2026-01-26 06:38:48.0815 Info Message Template Auto Format enabled
+2026-01-26 06:38:48.0984 Info Loading assembly: NLog.Web.AspNetCore
+2026-01-26 06:38:48.1356 Info Adding target FileTarget(Name=allfile)
+2026-01-26 06:38:48.1356 Info Adding target FileTarget(Name=errorLog)
+2026-01-26 06:38:48.1356 Info Adding target FileTarget(Name=infoLog)
+2026-01-26 06:38:48.1356 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
+2026-01-26 06:38:48.1494 Info Adding target ColoredConsoleTarget(Name=lifetimeConsole)
+2026-01-26 06:38:48.1494 Info Adding target FileTarget(Name=stdout)
+2026-01-26 06:38:48.1811 Info Validating config: Targets=5, ConfigItems=129, FilePath=E:\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config
+2026-01-26 06:44:56.7662 Info Message Template Auto Format enabled
+2026-01-26 06:44:56.7799 Info Loading assembly: NLog.Web.AspNetCore
+2026-01-26 06:44:56.8132 Info Adding target FileTarget(Name=allfile)
+2026-01-26 06:44:56.8132 Info Adding target FileTarget(Name=errorLog)
+2026-01-26 06:44:56.8132 Info Adding target FileTarget(Name=infoLog)
+2026-01-26 06:44:56.8230 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
+2026-01-26 06:44:56.8230 Info Adding target ColoredConsoleTarget(Name=lifetimeConsole)
+2026-01-26 06:44:56.8374 Info Adding target FileTarget(Name=stdout)
+2026-01-26 06:44:56.8635 Info Validating config: Targets=5, ConfigItems=129, FilePath=E:\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config
+2026-01-26 06:57:04.4688 Info Message Template Auto Format enabled
+2026-01-26 06:57:04.4875 Info Loading assembly: NLog.Web.AspNetCore
+2026-01-26 06:57:04.5268 Info Adding target FileTarget(Name=allfile)
+2026-01-26 06:57:04.5268 Info Adding target FileTarget(Name=errorLog)
+2026-01-26 06:57:04.5268 Info Adding target FileTarget(Name=infoLog)
+2026-01-26 06:57:04.5268 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
+2026-01-26 06:57:04.5432 Info Adding target ColoredConsoleTarget(Name=lifetimeConsole)
+2026-01-26 06:57:04.5432 Info Adding target FileTarget(Name=stdout)
+2026-01-26 06:57:04.5784 Info Validating config: Targets=5, ConfigItems=129, FilePath=E:\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config
+2026-01-26 06:57:52.2135 Info Message Template Auto Format enabled
+2026-01-26 06:57:52.2135 Info Loading assembly: NLog.Web.AspNetCore
+2026-01-26 06:57:52.2649 Info Adding target FileTarget(Name=allfile)
+2026-01-26 06:57:52.2649 Info Adding target FileTarget(Name=errorLog)
+2026-01-26 06:57:52.2649 Info Adding target FileTarget(Name=infoLog)
+2026-01-26 06:57:52.2760 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
+2026-01-26 06:57:52.2760 Info Adding target ColoredConsoleTarget(Name=lifetimeConsole)
+2026-01-26 06:57:52.2760 Info Adding target FileTarget(Name=stdout)
+2026-01-26 06:57:52.3160 Info Validating config: Targets=5, ConfigItems=129, FilePath=E:\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config
+2026-01-26 07:07:11.9244 Info Message Template Auto Format enabled
+2026-01-26 07:07:11.9402 Info Loading assembly: NLog.Web.AspNetCore
+2026-01-26 07:07:11.9834 Info Adding target FileTarget(Name=allfile)
+2026-01-26 07:07:11.9834 Info Adding target FileTarget(Name=errorLog)
+2026-01-26 07:07:11.9834 Info Adding target FileTarget(Name=infoLog)
+2026-01-26 07:07:11.9949 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
+2026-01-26 07:07:11.9949 Info Adding target ColoredConsoleTarget(Name=lifetimeConsole)
+2026-01-26 07:07:11.9949 Info Adding target FileTarget(Name=stdout)
+2026-01-26 07:07:12.0294 Info Validating config: Targets=5, ConfigItems=129, FilePath=E:\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config
+2026-01-26 07:11:28.3389 Info Message Template Auto Format enabled
+2026-01-26 07:11:28.3626 Info Loading assembly: NLog.Web.AspNetCore
+2026-01-26 07:11:28.4157 Info Adding target FileTarget(Name=allfile)
+2026-01-26 07:11:28.4157 Info Adding target FileTarget(Name=errorLog)
+2026-01-26 07:11:28.4157 Info Adding target FileTarget(Name=infoLog)
+2026-01-26 07:11:28.4345 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
+2026-01-26 07:11:28.4345 Info Adding target ColoredConsoleTarget(Name=lifetimeConsole)
+2026-01-26 07:11:28.4550 Info Adding target FileTarget(Name=stdout)
+2026-01-26 07:11:28.4941 Info Validating config: Targets=5, ConfigItems=129, FilePath=E:\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config
+2026-01-26 07:18:56.0391 Info Message Template Auto Format enabled
+2026-01-26 07:18:56.0560 Info Loading assembly: NLog.Web.AspNetCore
+2026-01-26 07:18:56.0986 Info Adding target FileTarget(Name=allfile)
+2026-01-26 07:18:56.0986 Info Adding target FileTarget(Name=errorLog)
+2026-01-26 07:18:56.1036 Info Adding target FileTarget(Name=infoLog)
+2026-01-26 07:18:56.1036 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
+2026-01-26 07:18:56.1036 Info Adding target ColoredConsoleTarget(Name=lifetimeConsole)
+2026-01-26 07:18:56.1243 Info Adding target FileTarget(Name=stdout)
+2026-01-26 07:18:56.1511 Info Validating config: Targets=5, ConfigItems=129, FilePath=E:\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config
+2026-01-26 07:25:13.9716 Info Message Template Auto Format enabled
+2026-01-26 07:25:13.9878 Info Loading assembly: NLog.Web.AspNetCore
+2026-01-26 07:25:14.0218 Info Adding target FileTarget(Name=allfile)
+2026-01-26 07:25:14.0250 Info Adding target FileTarget(Name=errorLog)
+2026-01-26 07:25:14.0250 Info Adding target FileTarget(Name=infoLog)
+2026-01-26 07:25:14.0250 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
+2026-01-26 07:25:14.0250 Info Adding target ColoredConsoleTarget(Name=lifetimeConsole)
+2026-01-26 07:25:14.0452 Info Adding target FileTarget(Name=stdout)
+2026-01-26 07:25:14.0697 Info Validating config: Targets=5, ConfigItems=129, FilePath=E:\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config
+2026-01-26 07:40:53.1788 Info Message Template Auto Format enabled
+2026-01-26 07:40:53.1992 Info Loading assembly: NLog.Web.AspNetCore
+2026-01-26 07:40:53.2491 Info Adding target FileTarget(Name=allfile)
+2026-01-26 07:40:53.2491 Info Adding target FileTarget(Name=errorLog)
+2026-01-26 07:40:53.2491 Info Adding target FileTarget(Name=infoLog)
+2026-01-26 07:40:53.2613 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
+2026-01-26 07:40:53.2613 Info Adding target ColoredConsoleTarget(Name=lifetimeConsole)
+2026-01-26 07:40:53.2769 Info Adding target FileTarget(Name=stdout)
+2026-01-26 07:40:53.3059 Info Validating config: Targets=5, ConfigItems=129, FilePath=E:\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config
+2026-01-26 07:46:46.6911 Info Message Template Auto Format enabled
+2026-01-26 07:46:46.7197 Info Loading assembly: NLog.Web.AspNetCore
+2026-01-26 07:46:46.7591 Info Adding target FileTarget(Name=allfile)
+2026-01-26 07:46:46.7591 Info Adding target FileTarget(Name=errorLog)
+2026-01-26 07:46:46.7591 Info Adding target FileTarget(Name=infoLog)
+2026-01-26 07:46:46.7591 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
+2026-01-26 07:46:46.7749 Info Adding target ColoredConsoleTarget(Name=lifetimeConsole)
+2026-01-26 07:46:46.7749 Info Adding target FileTarget(Name=stdout)
+2026-01-26 07:46:46.8100 Info Validating config: Targets=5, ConfigItems=129, FilePath=E:\Rafeek\Rafeek.API\bin\Debug\net8.0\nlog.config

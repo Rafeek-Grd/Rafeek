@@ -25,6 +25,21 @@
             public static readonly KeyString NotValid = new("TokenNotValid");
         }
 
+        public record UserMessages
+        {
+            public static readonly KeyString InvalidSignIn = new("InvalidSignIn");
+            public static readonly KeyString EmailAlreadyExistedbefore = new("EmailAlreadyExistedbefore");
+            public static readonly KeyString GenderIsNotValid = new("GenderIsNotValid");
+            public static readonly KeyString PasswordRequired = new("PasswordRequired");
+            public static readonly KeyString PasswordValid = new("PasswordValid");
+            public static readonly KeyString PasswordConfirmNotEqual = new("PasswordConfirmNotEqual");
+            public static readonly KeyString FullNameRequired = new("FullNameRequired");
+            public static readonly KeyString PhoneRequired = new("PhoneRequired");
+            public static readonly KeyString EmailRequired = new("EmailRequired");
+            public static readonly KeyString NationalNumberRequired = new("NationalNumberRequired");
+            public static readonly KeyString UserTypeRequired = new("UserTypeRequired");
+        }
+
         public record UploadFileMessages
         {
             public static readonly KeyString PalceRequried = new("PlaceNotValid");
@@ -35,6 +50,16 @@
             public static readonly KeyString FileNotValid = new("FileNotValid");
             public static readonly KeyString FileUploadFailed = new("FileUploadFailed");
             public static readonly KeyString FileFaildToDeleted = new("FaildToDeleted");
+        }
+
+        public record GlobalValidationMessages
+        {
+            public static readonly KeyString EmailExist = new("EmailExist");
+            public static readonly KeyString NationalNumberExist = new("NationalNumberExist");
+            public static readonly KeyString PhoneNumberExist = new("PhoneNumberExist");
+            public static readonly KeyString UserCodeExist = new("UserCodeExist");
+            public static readonly KeyString PhoneInvalid = new("PhoneInvalid");
+            public static readonly KeyString EmailInvalid = new("EmailInvalid");
         }
     }
 }
