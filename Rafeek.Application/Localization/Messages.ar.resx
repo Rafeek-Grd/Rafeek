@@ -219,4 +219,7 @@
   <data name="NationalNumberRequired" xml:space="preserve">
     <value>الرقم القومي مطلوب.</value>
   </data>
+  <data name="PasswordMinLength" xml:space="preserve">
+    <value>الباسورد يجب ان تكون علي الاقل 8 حروف.</value>
+  </data>
 </root>

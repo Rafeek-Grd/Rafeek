@@ -38,6 +38,7 @@
             public static readonly KeyString EmailRequired = new("EmailRequired");
             public static readonly KeyString NationalNumberRequired = new("NationalNumberRequired");
             public static readonly KeyString UserTypeRequired = new("UserTypeRequired");
+            public static readonly KeyString PasswordMinLength = new("PasswordMinLength");
         }
 
         public record UploadFileMessages

@@ -200,4 +200,8 @@
 		<value>National number required.</value>
   </data>
 
+	<data name="PasswordMinLength" xml:space="preserve">
+		<value>Password minimum length must be 8 characters.</value>
+  </data>
+
 </root>

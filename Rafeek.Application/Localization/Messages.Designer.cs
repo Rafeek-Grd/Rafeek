@@ -259,6 +259,15 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Password minimum length must be 8 characters..
+        /// </summary>
+        public static string PasswordMinLength {
+            get {
+                return ResourceManager.GetString("PasswordMinLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Password required..
         /// </summary>
         public static string PasswordRequired {

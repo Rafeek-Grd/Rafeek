@@ -47,22 +47,34 @@ namespace Rafeek.Application.Handlers.AuthHandlers.SignUp
                 .WithMessage(_localizer[LocalizationKeys.UserMessages.GenderIsNotValid.Value]);
 
             RuleFor(v => v.Password)
-                .NotNull().NotEmpty().WithMessage(_localizer[LocalizationKeys.UserMessages.PasswordRequired.Value])
-                .Must(password =>
-                {
-                    if (string.IsNullOrEmpty(password)) return false;
-                    bool hasMinLength = password.Length >= 6;
-                    // Only allow letters and digits and specific special chars
-                    bool isValidFormat = Regex.IsMatch(password, @"^[a-zA-Z0-9!@#$%^&*()_+=\-{}\[\]:;""'|\\<>,.?/~`]+$");
-                    return hasMinLength && isValidFormat;
-                }).WithMessage(_localizer[LocalizationKeys.UserMessages.PasswordValid.Value]);
+            .Cascade(CascadeMode.Stop)
+            .NotNull().NotEmpty().WithMessage(_localizer[LocalizationKeys.UserMessages.PasswordRequired.Value])
+            .MinimumLength(8).WithMessage(_localizer[LocalizationKeys.UserMessages.PasswordMinLength.Value])
+            .Must(password =>
+            {
+                if (string.IsNullOrEmpty(password)) return false;
+
+                // At least one uppercase letter
+                bool hasUpperCase = Regex.IsMatch(password, @"[A-Z]");
+
+                // At least one lowercase letter
+                bool hasLowerCase = Regex.IsMatch(password, @"[a-z]");
+
+                // At least one digit
+                bool hasDigit = Regex.IsMatch(password, @"\d");
+
+                // At least one special character
+                bool hasSpecialChar = Regex.IsMatch(password, @"[!@#$%^&*()_+=\-{}\[\]:;""'|\\<>,.?/~`]");
+
+                // Only allow valid characters (letters, digits, and specific special chars)
+                bool isValidFormat = Regex.IsMatch(password, @"^[a-zA-Z0-9!@#$%^&*()_+=\-{}\[\]:;""'|\\<>,.?/~`]+$");
+
+                return hasUpperCase && hasLowerCase && hasDigit && hasSpecialChar && isValidFormat;
+            })
+            .WithMessage(_localizer[LocalizationKeys.UserMessages.PasswordValid.Value]);
 
             RuleFor(v => v.PasswordConfirm)
                 .Equal(v => v.Password).WithMessage(_localizer[LocalizationKeys.UserMessages.PasswordConfirmNotEqual.Value]);
-
-            //RuleFor(v => v.UserType)
-            //    .Must(x => x.HasValue && Enum.IsDefined(typeof(UserType), x.Value))
-            //    .WithMessage(_localizer["UserTypeRequired"].Value);
         }
 
         private async Task<bool> EmailIsNotExist(string email, CancellationToken cancellationToken)
