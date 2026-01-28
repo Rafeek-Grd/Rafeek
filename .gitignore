@@ -11,3 +11,8 @@ obj/
 
 # NuGet packages
 packages/
+
+# Logs
+Rafeek.API/wwwroot/
+Rafeek.API/logs/
+/Rafeek.API/nlog_rafeek.txt
