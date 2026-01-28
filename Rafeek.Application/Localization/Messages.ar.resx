@@ -222,4 +222,7 @@
   <data name="PasswordMinLength" xml:space="preserve">
     <value>الباسورد يجب ان تكون علي الاقل 8 حروف.</value>
   </data>
+  <data name="EmailDomainInvalid" xml:space="preserve">
+    <value>الايمل ينتهي بدومين غير صالح.</value>
+  </data>
 </root>

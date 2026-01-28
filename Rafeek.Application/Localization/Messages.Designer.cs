@@ -106,6 +106,15 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Email ends with invalid domain..
+        /// </summary>
+        public static string EmailDomainInvalid {
+            get {
+                return ResourceManager.GetString("EmailDomainInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid email..
         /// </summary>
         public static string EmailInvalid {

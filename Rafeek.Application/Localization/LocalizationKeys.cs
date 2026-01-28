@@ -61,6 +61,7 @@
             public static readonly KeyString UserCodeExist = new("UserCodeExist");
             public static readonly KeyString PhoneInvalid = new("PhoneInvalid");
             public static readonly KeyString EmailInvalid = new("EmailInvalid");
+            public static readonly KeyString EmailDomainInvalid = new("EmailDomainInvalid");
         }
     }
 }

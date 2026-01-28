@@ -204,4 +204,8 @@
 		<value>Password minimum length must be 8 characters.</value>
   </data>
 
+	<data name="EmailDomainInvalid" xml:space="preserve">
+		<value>Email ends with invalid domain.</value>
+  </data>
+
 </root>
