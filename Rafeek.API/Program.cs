@@ -114,7 +114,7 @@ try
 
     builder.Services.Configure<KestrelServerOptions>(options =>
     {
-        options.Limits.MaxRequestBodySize = 250_000_000; // 250 MB
+        options.Limits.MaxRequestBodySize = 512_000_000; // Increased to 512 MB
         options.Limits.KeepAliveTimeout = TimeSpan.FromMinutes(10);
         options.Limits.RequestHeadersTimeout = TimeSpan.FromMinutes(10);
     });
@@ -122,9 +122,10 @@ try
     builder.Services.Configure<FormOptions>(options =>
     {
         options.ValueLengthLimit = int.MaxValue;
-        options.MultipartBodyLengthLimit = 250 * 1024 * 1024; // 250 MB
+        options.MultipartBodyLengthLimit = 512 * 1024 * 1024; // 512 MB
         options.MultipartHeadersLengthLimit = int.MaxValue;
-        options.BufferBodyLengthLimit = 250 * 1024 * 1024; // 250 MB
+        options.BufferBodyLengthLimit = 1024 * 1024; // Reduce memory buffering to 1 MB for faster streaming to disk
+        options.MemoryBufferThreshold = 1024 * 1024; // Buffer only 1MB in memory
     });
 
     // Configure Swagger with versioning

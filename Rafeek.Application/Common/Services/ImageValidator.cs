@@ -60,25 +60,25 @@ namespace Rafeek.Application.Common.Services
 
             try
             {
-                // Validate GIF signature before saving to avoid redundant I/O
+                // Validate GIF signature if needed, but do it efficiently
                 var extension = Path.GetExtension(uniqueFileName)?.ToLowerInvariant();
                 if (extension == ".gif")
                 {
-                    if (!await IsValidGifFile(file.OpenReadStream()))
+                    using (var readStream = file.OpenReadStream())
                     {
-                        return (false, "Invalid GIF file format");
+                        if (!await IsValidGifFile(readStream))
+                        {
+                            return (false, "Invalid GIF file format");
+                        }
                     }
                 }
 
-                // Use async file I/O with optimal buffer size and true async operations
-                using (var stream = new FileStream(filePath, FileMode.Create, FileAccess.Write, FileShare.None, BufferSize, useAsync: true))
+                // Use FileOptions.SequentialScan and optimal buffer size for performance
+                using (var stream = new FileStream(filePath, FileMode.Create, FileAccess.Write, FileShare.None, BufferSize, FileOptions.Asynchronous | FileOptions.SequentialScan))
                 {
                     await file.CopyToAsync(stream, cancellationToken);
-                    await stream.FlushAsync(cancellationToken);
+                    // FlushAsync is generally not needed after CopyToAsync unless specifically required by logic
                 }
-
-                if (!File.Exists(filePath))
-                    return (false, _localizer[LocalizationKeys.UploadFileMessages.FileUploadFailed.Value]);
 
                 return (true, uniqueFileName);
             }

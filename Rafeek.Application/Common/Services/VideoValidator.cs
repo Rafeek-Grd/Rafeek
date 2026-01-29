@@ -54,10 +54,10 @@ namespace Rafeek.Application.Common.Services
 
             try
             {
-                using (var stream = new FileStream(filePath, FileMode.Create, FileAccess.Write, FileShare.None, BufferSize, useAsync: true))
+                // Use FileOptions.SequentialScan for better large file write performance
+                using (var stream = new FileStream(filePath, FileMode.Create, FileAccess.Write, FileShare.None, BufferSize, FileOptions.Asynchronous | FileOptions.SequentialScan))
                 {
                     await file.CopyToAsync(stream, cancellationToken);
-                    await stream.FlushAsync(cancellationToken);
                 }
 
                 return (true, uniqueFileName);
