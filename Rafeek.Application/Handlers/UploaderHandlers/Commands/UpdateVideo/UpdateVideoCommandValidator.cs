@@ -1,5 +1,7 @@
 ﻿using FluentValidation;
 using Microsoft.Extensions.Localization;
+using Rafeek.Application.Common.Interfaces;
+using Rafeek.Application.Common.Services;
 using Rafeek.Application.Localization;
 using System.Text.RegularExpressions;
 
@@ -8,10 +10,12 @@ namespace Rafeek.Application.Handlers.UploaderHandlers.Commands.UpdateVideo
     public class UpdateVideoCommandValidator: AbstractValidator<UpdateVideoCommand>
     {
         private readonly IStringLocalizer<Messages> _localizer;
+        private readonly IVideoValidator _videoValidator;
 
-        public UpdateVideoCommandValidator(IStringLocalizer<Messages> localizer)
+        public UpdateVideoCommandValidator(IStringLocalizer<Messages> localizer, IVideoValidator videoValidator)
         {
             _localizer = localizer;
+            _videoValidator = videoValidator;
 
 
             RuleFor(x => x.UploadPlace)
@@ -38,6 +42,16 @@ namespace Rafeek.Application.Handlers.UploaderHandlers.Commands.UpdateVideo
                     return firstDigit == command.UploadPlace;
                 })
                 .WithMessage(x => _localizer[LocalizationKeys.UploadFileMessages.PalceNotValid.Value]);
+
+            RuleFor(x => x.VideoName)
+                .Must((command, videoName) =>
+                {
+                    if (string.IsNullOrWhiteSpace(videoName))
+                        return true;
+
+                    return _videoValidator.IsValidVideo(videoName, UploadPaths.GetPath(command.UploadPlace));
+                })
+                .WithMessage(x => _localizer[LocalizationKeys.UploadFileMessages.FileNotFound.Value]);
         }
     }
 }

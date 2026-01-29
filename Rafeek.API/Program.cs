@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+﻿using AspNetCoreRateLimit;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
@@ -12,25 +13,25 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json.Serialization;
 using NLog.Web;
-using System.Text;
 using Rafeek.API.Filters;
 using Rafeek.API.Options;
 using Rafeek.API.Services;
 using Rafeek.API.Swagger;
 using Rafeek.Application;
+using Rafeek.Application.Common.Interfaces;
 using Rafeek.Application.Common.Options;
 using Rafeek.Application.HealthCheck;
 using Rafeek.Application.Localization;
 using Rafeek.Infrastructure;
 using Rafeek.Persistence;
 using System.Globalization;
+using System.IO.Compression;
 using System.Reflection;
+using System.Text;
 using tusdotnet;
 using tusdotnet.Models;
 using tusdotnet.Models.Configuration;
 using tusdotnet.Stores;
-using AspNetCoreRateLimit;
-using Rafeek.Application.Common.Interfaces;
 
 
 
@@ -235,22 +236,23 @@ try
 
 
 
-    // Configure Response Compression
     builder.Services.AddResponseCompression(options =>
     {
         options.EnableForHttps = true;
-        options.Providers.Add<BrotliCompressionProvider>();
         options.Providers.Add<GzipCompressionProvider>();
-    });
-
-    builder.Services.Configure<BrotliCompressionProviderOptions>(options =>
-    {
-        options.Level = System.IO.Compression.CompressionLevel.Fastest;
+        options.Providers.Add<BrotliCompressionProvider>();
+        options.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(
+            new[] { "application/json", "application/xml" });
     });
 
     builder.Services.Configure<GzipCompressionProviderOptions>(options =>
     {
-        options.Level = System.IO.Compression.CompressionLevel.SmallestSize;
+        options.Level = CompressionLevel.Optimal;
+    });
+
+    builder.Services.Configure<BrotliCompressionProviderOptions>(options =>
+    {
+        options.Level = CompressionLevel.Optimal;
     });
 
     var app = builder.Build();
