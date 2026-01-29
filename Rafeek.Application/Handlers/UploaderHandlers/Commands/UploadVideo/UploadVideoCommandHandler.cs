@@ -19,7 +19,7 @@ namespace Rafeek.Application.Handlers.UploaderHandlers.Commands.UploadVideo
 
         public async Task<string> Handle(UploadVideoCommand request, CancellationToken cancellationToken)
         {
-            var result = await _videoValidator.UploadVideo(request.File, request.UploadPlace, cancellationToken);
+            var result = await _videoValidator.UploadVideo(request.File, request.UploadPlace);
 
             if (!result.Uploaded)
             {

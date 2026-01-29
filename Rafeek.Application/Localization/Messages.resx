@@ -208,4 +208,8 @@
 		<value>Email ends with invalid domain.</value>
   </data>
 
+	<data name="InvalidContentType" xml:space="preserve">
+		<value>Content type is not valid.</value>
+  </data>
+
 </root>

@@ -18,7 +18,7 @@ namespace Rafeek.Application.Handlers.UploaderHandlers.Commands.UploadFile
 
         public async Task<string> Handle(UploadFileCommand request, CancellationToken cancellationToken)
         {
-            var result = await _fileValidator.UploadFile(request.File, request.UploadPlace, cancellationToken);
+            var result = await _fileValidator.UploadFile(request.File, request.UploadPlace);
 
             if (!result.Uploaded)
             {

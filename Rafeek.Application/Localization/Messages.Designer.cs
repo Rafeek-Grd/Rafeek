@@ -205,6 +205,15 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Content type is not valid..
+        /// </summary>
+        public static string InvalidContentType {
+            get {
+                return ResourceManager.GetString("InvalidContentType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid model state..
         /// </summary>
         public static string InvalidModelStateExceptionMessage {

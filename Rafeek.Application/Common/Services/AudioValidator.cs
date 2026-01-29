@@ -10,144 +10,100 @@ namespace Rafeek.Application.Common.Services
     {
         private readonly IWebHostEnvironment _env;
         private readonly IStringLocalizer<Messages> _localizer;
-
-        private static readonly string[] AllowedExtensions = new[]
-        {
-            ".aac", ".ogg", ".opus", ".mp3", ".m4a", ".midi", ".amr", ".wma", ".wav", ".webm"
-        };
-
-        private static readonly string[] AllowedContentTypes = new[]
-        {
-            "audio/mpeg", "audio/mp3", "audio/aac", "audio/ogg", "audio/opus",
-            "audio/wav", "audio/wave", "audio/x-wav", "audio/m4a", "audio/x-m4a",
-            "audio/midi", "audio/x-midi", "audio/amr", "audio/x-ms-wma", "audio/webm"
-        };
-
-        private const long MaxFileSizeBytes = 5L * 1024L * 1024L; // 5 MB
-        private const int BufferSize = 81920; // 80 KB
-
-        public AudioValidator
-        (
-            IWebHostEnvironment env,
-            IStringLocalizer<Messages> localizer
-        )
+        public AudioValidator(IWebHostEnvironment env, IStringLocalizer<Messages> localizer)
         {
             _env = env;
             _localizer = localizer;
         }
-
-        public async Task<(bool Uploaded, string Result)> UploadAudio(IFormFile file, int place = 0, CancellationToken cancellationToken = default)
+        public async Task<(bool Uploaded, string Result)> UploadAudio(IFormFile file, int place = 0)
         {
+            string uploadPalce = Path.Combine(_env.WebRootPath, UploadPaths.GetPath(place));
             if (file == null || file.Length <= 0)
                 return (false, _localizer[LocalizationKeys.UploadFileMessages.FileNotFound.Value]);
 
             if (!IsValidAudio(file))
                 return (false, _localizer[LocalizationKeys.UploadFileMessages.FileNotValid.Value]);
 
-            var uploadPlace = Path.Combine(_env.WebRootPath, UploadPaths.GetPath(place));
-            if (!Directory.Exists(uploadPlace))
+            var uniqueFileName = $"{place}{GetUniqueFileName(file.FileName)}";
+            var filePath = Path.Combine(uploadPalce, uniqueFileName);
+            // check folder is exist 
+            if (!Directory.Exists(uploadPalce))
             {
-                Directory.CreateDirectory(uploadPlace);
+                Directory.CreateDirectory(uploadPalce);
+            }
+            using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                await file.CopyToAsync(stream);
             }
 
-            var uniqueFileName = GetUniqueFileName(file.FileName);
-            // Prefix the generated name with the upload place to match ImageValidator and VideoValidator behavior
-            uniqueFileName = $"{place}{uniqueFileName}";
-
-            var filePath = Path.Combine(uploadPlace, uniqueFileName);
-
-            try
-            {
-                using (var stream = new FileStream(filePath, FileMode.Create, FileAccess.Write, FileShare.None, BufferSize, useAsync: true))
-                {
-                    await file.CopyToAsync(stream, cancellationToken);
-                    await stream.FlushAsync(cancellationToken);
-                }
-
-                return (true, uniqueFileName);
-            }
-            catch (Exception ex)
-            {
-                if (File.Exists(filePath))
-                {
-                    try { File.Delete(filePath); } catch { }
-                }
-                return (false, $"Upload failed: {ex.Message}");
-            }
+            return (true, uniqueFileName);
         }
 
         public async Task<bool> DeleteAudio(string fileName, int place)
         {
-            if (string.IsNullOrWhiteSpace(fileName))
-                return false;
-
-            var safeName = Path.GetFileName(fileName);
-            var fullPath = Path.Combine(_env.WebRootPath, UploadPaths.GetPath(place), safeName);
-
-            if (!File.Exists(fullPath))
-                return false;
-
-            try
-            {
-                File.Delete(fullPath);
-                await Task.CompletedTask;
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
+            return true;
         }
 
         public string GetUniqueFileName(string fileName)
         {
-            var extension = Path.GetExtension(fileName) ?? string.Empty;
-            var timestamp = DateTime.UtcNow.ToString("yyyyMMddHHmmssfff");
+            // Generate a unique file name using a combination of timestamp and file extension
+            var timestamp = DateTime.Now.ToString("yyyyMMddHHmmssfff");
+            var extension = Path.GetExtension(fileName);
             return $"{timestamp}{extension}";
         }
 
+
         public bool IsValidAudio(IFormFile file)
         {
+            // Check if the file is not null and has a non-zero length
             if (file == null || file.Length == 0)
                 return false;
 
-            var extension = (Path.GetExtension(file.FileName) ?? string.Empty).ToLowerInvariant();
-            if (!AllowedExtensions.Contains(extension, StringComparer.OrdinalIgnoreCase))
+            // Check the file extension Acc , Ogg , Opus
+            var allowedExtensions = new[]
+            { ".aac",".AAC", ".ogg",".OGG", ".opus",".OPUS", ".mp3", ".MP3", ".m4a",".M4A",".MIDI",".midi",".AMR",".amr",".WMA",".wma",".WAV",".wav",".WEBM",".webm" };
+            var fileExtension = Path.GetExtension(file.FileName).ToLower();
+            if (!allowedExtensions.Contains(fileExtension))
                 return false;
 
-            var contentType = file.ContentType?.ToLowerInvariant() ?? string.Empty;
-            if (!AllowedContentTypes.Contains(contentType, StringComparer.OrdinalIgnoreCase))
+            // Check the file content type
+            var allowedContentTypes = new[] { "audio/mpeg", "audio/mp3", "audio/aac", "audio/ogg", "audio/opus", "audio/wav", "audio/wave", "audio/x-wav", "audio/m4a", "audio/x-m4a", "audio/midi", "audio/x-midi", "audio/amr", "audio/x-ms-wma", "audio/webm" };
+            if (!allowedContentTypes.Contains(file.ContentType.ToLower()))
                 return false;
 
-            if (file.Length > MaxFileSizeBytes)
+            // Check the file size (in this example, limit it to 5 MB)
+            var maxFileSize = 5 * 1024 * 1024; // 5 MB in bytes
+            if (file.Length > maxFileSize)
                 return false;
+
+            // You can perform additional checks here, such as image dimensions, aspect ratio, etc.
 
             return true;
         }
 
-        public bool IsValidAudio(string fileName, string placeHolder)
+        public bool IsValidAudio(string ImageName, string PlaceHolder)
         {
-            if (string.IsNullOrWhiteSpace(fileName))
-                return false;
+            // Check the string must end with this extension
+            var allowedExtensions = new[]
+           { ".aac",".AAC", ".ogg",".OGG", ".opus",".OPUS", ".mp3", ".MP3", ".m4a",".M4A",".MIDI",".midi",".AMR",".amr",".WMA",".wma",".WAV",".wav",".WEBM", ".webm" };
 
-            var extension = (Path.GetExtension(fileName) ?? string.Empty).ToLowerInvariant();
-            if (!AllowedExtensions.Contains(extension, StringComparer.OrdinalIgnoreCase))
-                return false;
-
-            var fullPath = Path.Combine(_env.WebRootPath, placeHolder, Path.GetFileName(fileName));
-            return AudioIsExisted(fullPath);
+            var Result = allowedExtensions.Any(x => ImageName.EndsWith(x));
+            if (Result)
+            {
+                // check Image are Existed int this Location
+                string uploadPalce = Path.Combine(_env.WebRootPath, PlaceHolder);
+                string? FullImagePath = Path.Combine(uploadPalce, ImageName);
+                return AudioIsExisted(FullImagePath);
+            }
+            return false;
         }
 
-        public bool AudioIsExisted(string? fullAudioPath)
+        public bool AudioIsExisted(string? FullImagePath)
         {
-            if (string.IsNullOrWhiteSpace(fullAudioPath))
-                return false;
-
-            var path = fullAudioPath!;
-            if (!Path.IsPathRooted(path))
-                path = Path.Combine(_env.WebRootPath, path);
-
-            return System.IO.File.Exists(path);
+            var image = Path.Combine(Directory.GetCurrentDirectory(), FullImagePath);
+            if (System.IO.File.Exists(image))
+                return true;
+            return false;
         }
     }
 }

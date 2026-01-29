@@ -225,4 +225,7 @@
   <data name="EmailDomainInvalid" xml:space="preserve">
     <value>الايمل ينتهي بدومين غير صالح.</value>
   </data>
+  <data name="InvalidContentType" xml:space="preserve">
+    <value>نوع محتوي الملف غير صالح.</value>
+  </data>
 </root>

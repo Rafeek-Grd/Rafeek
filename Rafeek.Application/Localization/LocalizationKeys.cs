@@ -51,6 +51,7 @@
             public static readonly KeyString FileNotValid = new("FileNotValid");
             public static readonly KeyString FileUploadFailed = new("FileUploadFailed");
             public static readonly KeyString FileFaildToDeleted = new("FaildToDeleted");
+            public static readonly KeyString InvalidContentType = new("InvalidContentType");
         }
 
         public record GlobalValidationMessages
