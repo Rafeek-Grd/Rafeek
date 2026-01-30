@@ -136,6 +136,7 @@ try
     builder.Services.AddSwaggerGen(options =>
     {
         options.OperationFilter<AcceptLanguageOperationFilter>();
+        options.OperationFilter<AuthorizeCheckOperationFilter>();
 
         options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
         {
@@ -144,21 +145,6 @@ try
             In = ParameterLocation.Header,
             Type = SecuritySchemeType.ApiKey,
             Scheme = "Bearer"
-        });
-
-        options.AddSecurityRequirement(new OpenApiSecurityRequirement
-        {
-        {
-            new OpenApiSecurityScheme
-            {
-                Reference = new OpenApiReference
-                {
-                    Type = ReferenceType.SecurityScheme,
-                    Id = "Bearer"
-                }
-            },
-            Array.Empty<string>()
-        }
         });
 
         options.MapType<IFormFile>(() => new OpenApiSchema
