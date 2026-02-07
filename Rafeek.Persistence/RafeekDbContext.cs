@@ -21,12 +21,13 @@ namespace Rafeek.Persistence
         }
 
         public DbSet<Department> Departments { get; set; }
+        public DbSet<Student> Students { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
 
-            builder.ApplyConfigurationsFromAssembly(typeof(RafeekDbContext).Assembly, 
+            builder.ApplyConfigurationsFromAssembly(typeof(RafeekDbContext).Assembly,
                 type => type.Namespace != null && type.Namespace.EndsWith("Configurations.RafeekConfigurations"));
 
             builder.HasDefaultSchema("dbo");
@@ -45,7 +46,7 @@ namespace Rafeek.Persistence
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
-            foreach(var entry in ChangeTracker.Entries<BaseEntity>())
+            foreach (var entry in ChangeTracker.Entries<BaseEntity>())
             {
                 switch (entry.State)
                 {
