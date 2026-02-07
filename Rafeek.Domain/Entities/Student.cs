@@ -14,4 +14,5 @@ namespace Rafeek.Domain.Entities
         public int Term { get; set; }
         public string Status { get; set; } = null!;
     }
+
 }
