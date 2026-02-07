@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 using Rafeek.API.Routes;
@@ -9,11 +10,12 @@ namespace Rafeek.API.Controllers.Version1
 {
     [ApiController]
     [ApiVersion("1.0")]
-    public class AuthenticaionController : BaseApiController
+    [Authorize]
+    public class AuthenticationController : BaseApiController
     {
         private readonly IMediator _mediator;
 
-        public AuthenticaionController(IMediator mediator, IStringLocalizer<Messages> localizer ) : base(mediator,localizer)
+        public AuthenticationController(IMediator mediator, IStringLocalizer<Messages> localizer ) : base(mediator,localizer)
         {
             _mediator = mediator;
         }
