@@ -133,16 +133,14 @@ namespace Rafeek.Persistence.Migrations.Rafeek
 
                     b.HasIndex("DepartmentId");
 
-                    b.ToTable("Student", "dbo");
+                    b.ToTable("Students", "dbo");
                 });
 
             modelBuilder.Entity("Rafeek.Domain.Entities.StudentAcademicProfile", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<decimal>("CGPA")
                         .HasColumnType("decimal(3,2)");
