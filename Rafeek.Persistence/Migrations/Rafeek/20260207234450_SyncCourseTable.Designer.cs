@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Rafeek.Persistence;
 
@@ -11,9 +12,11 @@ using Rafeek.Persistence;
 namespace Rafeek.Persistence.Migrations.Rafeek
 {
     [DbContext(typeof(RafeekDbContext))]
-    partial class RafeekDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260207234450_SyncCourseTable")]
+    partial class SyncCourseTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -195,9 +198,11 @@ namespace Rafeek.Persistence.Migrations.Rafeek
 
             modelBuilder.Entity("Rafeek.Domain.Entities.StudentAcademicProfile", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
                     b.Property<decimal>("CGPA")
                         .HasColumnType("decimal(3,2)");
