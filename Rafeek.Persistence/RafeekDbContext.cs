@@ -23,6 +23,7 @@ namespace Rafeek.Persistence
         public DbSet<Department> Departments { get; set; }
         public DbSet<Student> Students { get; set; }
         public DbSet<StudentAcademicProfile> StudentAcademicProfiles { get; set; }
+        public DbSet<Course> Courses { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
