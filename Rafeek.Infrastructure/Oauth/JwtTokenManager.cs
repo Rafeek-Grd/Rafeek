@@ -2,7 +2,6 @@
 using Microsoft.IdentityModel.Tokens;
 using Rafeek.Application.Common.Interfaces;
 using Rafeek.Application.Handlers.AuthHandlers;
-using Rafeek.Domain.Entities;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -12,10 +11,10 @@ namespace Rafeek.Infrastructure.Oauth
     public class JwtTokenManager : IJwtTokenManager
     {
         private readonly JwtSettings _jwtSettings;
-        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly UserManager<IdentityUser<Guid>> _userManager;
         private readonly TokenValidationParameters _tokenValidationParameters;
 
-        public JwtTokenManager(JwtSettings jwtSettings, UserManager<ApplicationUser> userManager, TokenValidationParameters tokenValidationParameters)
+        public JwtTokenManager(JwtSettings jwtSettings, UserManager<IdentityUser<Guid>> userManager, TokenValidationParameters tokenValidationParameters)
         {
             _jwtSettings = jwtSettings;
             _userManager = userManager;

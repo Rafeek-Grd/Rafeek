@@ -31,7 +31,6 @@ namespace Rafeek.Persistence
 
             builder.HasDefaultSchema("dbo");
 
-            builder.Ignore<ApplicationUser>();
             builder.Ignore<UserFbTokens>();
         }
 

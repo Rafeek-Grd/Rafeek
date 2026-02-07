@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Localization;
 using Rafeek.Application.Localization;
-using Rafeek.Domain.Entities;
 using Rafeek.Domain.Enums;
 using System.Text.RegularExpressions;
 using Microsoft.EntityFrameworkCore;
@@ -12,9 +11,9 @@ namespace Rafeek.Application.Handlers.AuthHandlers.SignUp
     public class SignUpCommandValidator : AbstractValidator<SignUpCommand>
     {
         private readonly IStringLocalizer<Messages> _localizer;
-        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly UserManager<IdentityUser<Guid>> _userManager;
 
-        public SignUpCommandValidator(IStringLocalizer<Messages> localizer, UserManager<ApplicationUser> userManager)
+        public SignUpCommandValidator(IStringLocalizer<Messages> localizer, UserManager<IdentityUser<Guid>> userManager)
         {
             _localizer = localizer;
             _userManager = userManager;
@@ -39,8 +38,7 @@ namespace Rafeek.Application.Handlers.AuthHandlers.SignUp
                 .MustAsync(EmailIsNotExist).WithMessage(_localizer[LocalizationKeys.UserMessages.EmailAlreadyExistedbefore.Value]);
 
             RuleFor(v => v.NationalNumber)
-                .NotEmpty().WithMessage(_localizer[LocalizationKeys.UserMessages.NationalNumberRequired.Value])
-                .MustAsync(NationalNumberIsNotExist).WithMessage(_localizer[LocalizationKeys.GlobalValidationMessages.NationalNumberExist.Value]);
+                .NotEmpty().WithMessage(_localizer[LocalizationKeys.UserMessages.NationalNumberRequired.Value]);
 
              RuleFor(x => x.Gender)
                 .Must(g => !g.HasValue || Enum.IsDefined(typeof(GenderType), g.Value))
@@ -87,11 +85,6 @@ namespace Rafeek.Application.Handlers.AuthHandlers.SignUp
              // Normalize phone before check if needed, or check exactly as stored
             var normalizedPhone = Regex.Replace(phone, "^0+", "");
             return !await _userManager.Users.AnyAsync(x => x.PhoneNumber == phone || x.PhoneNumber == normalizedPhone, cancellationToken);
-        }
-
-        private async Task<bool> NationalNumberIsNotExist(string nationalNumber, CancellationToken cancellationToken)
-        {
-             return !await _userManager.Users.AnyAsync(x => x.NationalNumber == nationalNumber, cancellationToken);
         }
     }
 }

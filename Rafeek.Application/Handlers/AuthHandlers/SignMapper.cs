@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Identity;
 using Rafeek.Domain.Entities;
 
 namespace Rafeek.Application.Handlers.AuthHandlers
@@ -12,9 +13,8 @@ namespace Rafeek.Application.Handlers.AuthHandlers
             .ForMember(dest => dest.ExpirationDate, opt => opt.MapFrom(src => src.ExpiresIn))
             .ForMember(dest => dest.JwtId, opt => opt.MapFrom(src => src.Token));
 
-            CreateMap<ApplicationUser, SignResponse>()
-                .ForMember(dest => dest.Phone, opt => opt.MapFrom(src => src.PhoneNumber))
-                .ForMember(dest => dest.Role, opt => opt.MapFrom(src => src.UserType));
+            CreateMap<IdentityUser<Guid>, SignResponse>()
+                .ForMember(dest => dest.Phone, opt => opt.MapFrom(src => src.PhoneNumber));
 
             CreateMap<AuthResult, SignResponse>()
                 .ForMember(dest => dest.Token, opt => opt.MapFrom(src => src.Token))

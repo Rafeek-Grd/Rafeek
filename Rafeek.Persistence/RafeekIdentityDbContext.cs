@@ -8,7 +8,7 @@ using Rafeek.Domain.Entities;
 
 namespace Rafeek.Persistence
 {
-    public class RafeekIdentityDbContext : IdentityDbContext<ApplicationUser, IdentityRole<Guid>, Guid,
+    public class RafeekIdentityDbContext : IdentityDbContext<IdentityUser<Guid>, IdentityRole<Guid>, Guid,
         IdentityUserClaim<Guid>, IdentityUserRole<Guid>, IdentityUserLogin<Guid>,
         IdentityRoleClaim<Guid>, IdentityUserToken<Guid>>, IRafeekIdentityDbContext
     {

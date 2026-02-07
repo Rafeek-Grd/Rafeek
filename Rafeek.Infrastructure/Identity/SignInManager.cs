@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Rafeek.Application.Common.Interfaces;
 using Rafeek.Application.Common.Models;
-using Rafeek.Domain.Entities;
 using Rafeek.Domain.Enums;
 using Rafeek.Infrastructure.Extensions;
 using Microsoft.EntityFrameworkCore;
@@ -14,11 +13,11 @@ namespace Rafeek.Infrastructure.Identity
 {
     public class SignInManager : ISignInManager
     {
-        private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly SignInManager<IdentityUser<Guid>> _signInManager;
         private readonly RoleManager<IdentityRole<Guid>> _roleManager;
         private readonly IStringLocalizer<Messages> _localizer;
 
-        public SignInManager(SignInManager<ApplicationUser> signInManager, RoleManager<IdentityRole<Guid>> roleManager, IStringLocalizer<Messages> localizer)
+        public SignInManager(SignInManager<IdentityUser<Guid>> signInManager, RoleManager<IdentityRole<Guid>> roleManager, IStringLocalizer<Messages> localizer)
         {
             _signInManager = signInManager;
             _roleManager = roleManager;
@@ -39,7 +38,7 @@ namespace Rafeek.Infrastructure.Identity
             }
         }
 
-        public async Task<Result> SignUpAsync(ApplicationUser user, string Password, CancellationToken cancellationToken)
+        public async Task<Result> SignUpAsync(IdentityUser<Guid> user, string Password, CancellationToken cancellationToken)
         {
             var userByEmail = await _signInManager.UserManager.FindByEmailAsync(user.Email);
             if (userByEmail is not null)
@@ -52,19 +51,9 @@ namespace Rafeek.Infrastructure.Identity
                 await _signInManager.UserManager.DeleteAsync(userByEmail);
             }
 
-            if (await _signInManager.UserManager.Users.AnyAsync(u => u.NationalNumber == user.NationalNumber, cancellationToken))
-            {
-                throw new BadRequestException(_localizer[LocalizationKeys.GlobalValidationMessages.NationalNumberExist.Value]);
-            }
-
             if (!string.IsNullOrEmpty(user.PhoneNumber) && await _signInManager.UserManager.Users.AnyAsync(u => u.PhoneNumber == user.PhoneNumber, cancellationToken))
             {
                 throw new BadRequestException(_localizer[LocalizationKeys.GlobalValidationMessages.PhoneNumberExist.Value]);
-            }
-
-            if (!string.IsNullOrEmpty(user.Code) && await _signInManager.UserManager.Users.AnyAsync(u => u.Code == user.Code, cancellationToken))
-            {
-                throw new BadRequestException(_localizer[LocalizationKeys.GlobalValidationMessages.UserCodeExist.Value]);
             }
 
             user.EmailConfirmed = true;
@@ -72,7 +61,8 @@ namespace Rafeek.Infrastructure.Identity
 
             if (result.Succeeded)
             {
-                var roleName = ((UserType)user.UserType).ToString();
+                // Add default user role
+                var roleName = UserType.Student.ToString();
 
                 if (!await _roleManager.RoleExistsAsync(roleName))
                 {

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 using Rafeek.Application.Common.Exceptions;
@@ -36,27 +37,17 @@ namespace Rafeek.Application.Handlers.AuthHandlers.SignUp
         public async Task<SignResponse> Handle(SignUpCommand request, CancellationToken cancellationToken)
         {
             var phone = request.Phone!.Trim();
-            var user = new ApplicationUser()
+            var userId = Guid.NewGuid();
+            var user = new IdentityUser<Guid>()
             {
-                FullName = request.FullName,
-                UserName = $"{request.Email.Split("@")[0]}_{Guid.NewGuid().ToString("N")[..8]}".ToLowerInvariant(), // Address collision
-                NormalizedUserName = request.Email.ToUpperInvariant(), // Or just use Email as UserName if configured
+                Id = userId,
+                UserName = $"{request.Email.Split("@")[0]}_{Guid.NewGuid().ToString("N")[..8]}".ToLowerInvariant(),
+                NormalizedUserName = request.Email.ToUpperInvariant(),
                 Email = request.Email,
                 NormalizedEmail = request.Email.ToUpperInvariant(),
                 PhoneNumber = Regex.Replace(phone, "^0+", ""),
-                ImageName = request.ImageName,
-                BirthDate = request.BirthDate,
-                UserType = (int)(request.UserType ?? UserType.Student),
-                NationalNumber = request.NationalNumber,
-                Code = Random.Shared.Next(10000000, 1000000000).ToString()
+                EmailConfirmed = true
             };
-            user.CreatedBy = user.Id.ToString();
-
-            if (request.Gender.HasValue
-                && Enum.IsDefined(typeof(GenderType), request.Gender.Value))
-                user.Gender = request.Gender.Value;
-            else
-                user.Gender = null;
 
             var result = await _signInManager.SignUpAsync(user, request.Password, cancellationToken);
 
@@ -74,10 +65,10 @@ namespace Rafeek.Application.Handlers.AuthHandlers.SignUp
 
             if (!string.IsNullOrWhiteSpace(request.FbToken))
             {
-                var checkTokenIsAlreadyExistBefore = await _ctx.UserFbTokenRepository.GetBy(fb => fb.ApplicationUserId == user.Id && fb.FbToken == request.FbToken).FirstOrDefaultAsync();
+                var checkTokenIsAlreadyExistBefore = await _ctx.UserFbTokenRepository.GetBy(fb => fb.UserId == user.Id && fb.FbToken == request.FbToken).FirstOrDefaultAsync();
                 if (checkTokenIsAlreadyExistBefore is null)
                 {
-                    var added = await _ctx.UserFbTokenRepository.AddAsync(new UserFbTokens() { ApplicationUserId = user.Id, FbToken = request.FbToken });
+                    var added = await _ctx.UserFbTokenRepository.AddAsync(new UserFbTokens() { UserId = user.Id, FbToken = request.FbToken });
                     added.CreatedBy = user.Id.ToString();
                     added.IsIosDevice = request.IsIosDevice ? true : false;
                     added.IsAndroidDevice = request.IsAndroidDevice ? true : false;
@@ -91,7 +82,7 @@ namespace Rafeek.Application.Handlers.AuthHandlers.SignUp
                 }
             }
 
-            ApplicationUser response = (ApplicationUser)signInResult.Data;
+            IdentityUser<Guid> response = (IdentityUser<Guid>)signInResult.Data;
             AuthResult tokens = (AuthResult)await _ctx.RefreshTokenRepository.GenerateTokens(response, cancellationToken);
             signInResult.Data = _mapper.Map(user, new SignResponse());
             await _ctx.SaveChangesAsync(cancellationToken);

@@ -1,4 +1,5 @@
-﻿using Rafeek.Application.Common.Interfaces;
+﻿using Microsoft.AspNetCore.Identity;
+using Rafeek.Application.Common.Interfaces;
 using Rafeek.Application.Localization;
 using Rafeek.Domain.Entities;
 using Rafeek.Domain.Repositories.Interfaces;
@@ -57,7 +58,7 @@ namespace Rafeek.Infrastructure.Repostiories.Implementations
             }
         }
 
-        public async Task<object> GenerateTokens(ApplicationUser user, CancellationToken cancellationToken)
+        public async Task<object> GenerateTokens(IdentityUser<Guid> user, CancellationToken cancellationToken)
         {
             try
             {
