@@ -9,5 +9,6 @@ namespace Rafeek.Domain.Entities
         public string? Description { get; set; }
 
         public ICollection<ApplicationUser> Users { get; set; } = new HashSet<ApplicationUser>();
+        public ICollection<Student> Students { get; set; } = new HashSet<Student>();
     }
 }
