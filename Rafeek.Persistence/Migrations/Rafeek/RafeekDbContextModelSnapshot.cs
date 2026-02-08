@@ -135,11 +135,10 @@ namespace Rafeek.Persistence.Migrations.Rafeek
 
             modelBuilder.Entity("Rafeek.Domain.Entities.CoursePrerequisite", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<Guid>("CourseId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("CourseId")
+                    b.Property<Guid>("PrerequisiteId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreatedAt")
@@ -161,18 +160,13 @@ namespace Rafeek.Persistence.Migrations.Rafeek
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<Guid>("PrerequisiteId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("UpdatedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("CourseId");
+                    b.HasKey("CourseId", "PrerequisiteId");
 
                     b.HasIndex("PrerequisiteId");
 
@@ -500,23 +494,6 @@ namespace Rafeek.Persistence.Migrations.Rafeek
                     b.Navigation("Department");
                 });
 
-            modelBuilder.Entity("Rafeek.Domain.Entities.Instructor", b =>
-                {
-                    b.HasOne("Rafeek.Domain.Entities.Department", "Department")
-                        .WithMany()
-                        .HasForeignKey("DepartmentId");
-
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser<System.Guid>", "User")
-                        .WithOne()
-                        .HasForeignKey("Rafeek.Domain.Entities.Instructor", "UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Department");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("Rafeek.Domain.Entities.CoursePrerequisite", b =>
                 {
                     b.HasOne("Rafeek.Domain.Entities.Course", "Course")
@@ -534,6 +511,23 @@ namespace Rafeek.Persistence.Migrations.Rafeek
                     b.Navigation("Course");
 
                     b.Navigation("Prerequisite");
+                });
+
+            modelBuilder.Entity("Rafeek.Domain.Entities.Instructor", b =>
+                {
+                    b.HasOne("Rafeek.Domain.Entities.Department", "Department")
+                        .WithMany()
+                        .HasForeignKey("DepartmentId");
+
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser<System.Guid>", "User")
+                        .WithOne()
+                        .HasForeignKey("Rafeek.Domain.Entities.Instructor", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Department");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Rafeek.Domain.Entities.Student", b =>

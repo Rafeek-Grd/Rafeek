@@ -21,6 +21,7 @@ namespace Rafeek.Persistence
             _currentUserService = currentUserService;
         }
 
+        public DbSet<IdentityUser<Guid>> ApplicationUsers { get; set; }
         public DbSet<Department> Departments { get; set; }
         public DbSet<Student> Students { get; set; }
         public DbSet<Instructor> Instructors { get; set; }

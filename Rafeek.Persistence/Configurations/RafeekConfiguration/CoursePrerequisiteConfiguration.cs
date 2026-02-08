@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Rafeek.Domain.Entities;
 
-namespace Rafeek.Persistence.Configurations.RafeekConfigurations
+namespace Rafeek.Persistence.Configurations.RafeekConfiguration
 {
     public class CoursePrerequisiteConfiguration : IEntityTypeConfiguration<CoursePrerequisite>
     {
@@ -10,10 +10,9 @@ namespace Rafeek.Persistence.Configurations.RafeekConfigurations
         {
             builder.ToTable("CoursePrerequisites");
 
-            builder.HasKey(x => x.Id);
+            builder.HasKey(x => new { x.CourseId, x.PrerequisiteId});
 
-            builder.Property(x => x.Id)
-                .ValueGeneratedOnAdd();
+            builder.Ignore(x => x.Id);
 
             builder.HasOne(x => x.Course)
                 .WithMany(x => x.Prerequisites)
