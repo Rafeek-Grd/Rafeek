@@ -12,8 +12,8 @@ using Rafeek.Persistence;
 namespace Rafeek.Persistence.Migrations.Rafeek
 {
     [DbContext(typeof(RafeekDbContext))]
-    [Migration("20260207225512_AddDbSetInRafeekDbContext_AddStudentTbl")]
-    partial class AddDbSetInRafeekDbContext_AddStudentTbl
+    [Migration("20260207235039_InverseFromRafeekDbContext")]
+    partial class InverseFromRafeekDbContext
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -139,6 +139,65 @@ namespace Rafeek.Persistence.Migrations.Rafeek
                     b.ToTable("Students", "dbo");
                 });
 
+            modelBuilder.Entity("Rafeek.Domain.Entities.StudentAcademicProfile", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("CGPA")
+                        .HasColumnType("decimal(3,2)");
+
+                    b.Property<int>("CompletedCredits")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DeletedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("GPA")
+                        .HasColumnType("decimal(3,2)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("RemainingCredits")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Standing")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<Guid>("StudentId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("StudentId")
+                        .IsUnique();
+
+                    b.ToTable("StudentAcademicProfiles", "dbo");
+                });
+
             modelBuilder.Entity("Rafeek.Domain.Entities.Student", b =>
                 {
                     b.HasOne("Rafeek.Domain.Entities.Department", "Department")
@@ -150,9 +209,25 @@ namespace Rafeek.Persistence.Migrations.Rafeek
                     b.Navigation("Department");
                 });
 
+            modelBuilder.Entity("Rafeek.Domain.Entities.StudentAcademicProfile", b =>
+                {
+                    b.HasOne("Rafeek.Domain.Entities.Student", "Student")
+                        .WithOne("AcademicProfile")
+                        .HasForeignKey("Rafeek.Domain.Entities.StudentAcademicProfile", "StudentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Student");
+                });
+
             modelBuilder.Entity("Rafeek.Domain.Entities.Department", b =>
                 {
                     b.Navigation("Students");
+                });
+
+            modelBuilder.Entity("Rafeek.Domain.Entities.Student", b =>
+                {
+                    b.Navigation("AcademicProfile");
                 });
 #pragma warning restore 612, 618
         }

@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Rafeek.Domain.Entities;
 
-namespace Rafeek.Persistence.Configurations.RafeekConfigurations
+namespace Rafeek.Persistence.Configurations.RafeekConfiguration
 {
     public class CourseConfiguration : IEntityTypeConfiguration<Course>
     {
