@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Rafeek.Domain.Entities;
 
-namespace Rafeek.Persistence.Configurations.IdentityConfiguration
+namespace Rafeek.Persistence.Configurations.RafeekConfiguration
 {
     public class UserFbTokensConfigurations : IEntityTypeConfiguration<UserFbTokens>
     {

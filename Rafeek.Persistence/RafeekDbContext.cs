@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Rafeek.Application.Common.Interfaces;
 using Rafeek.Domain.Common;
@@ -22,8 +23,11 @@ namespace Rafeek.Persistence
 
         public DbSet<Department> Departments { get; set; }
         public DbSet<Student> Students { get; set; }
+        public DbSet<Instructor> Instructors { get; set; }
         public DbSet<StudentAcademicProfile> StudentAcademicProfiles { get; set; }
         public DbSet<Course> Courses { get; set; }
+        public DbSet<UserFbTokens> FbTokens { get; set; }
+        public DbSet<RefreshToken> RefreshTokens { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -33,8 +37,6 @@ namespace Rafeek.Persistence
                 type => type.Namespace != null && type.Namespace.EndsWith("Configurations.RafeekConfiguration"));
 
             builder.HasDefaultSchema("dbo");
-
-            builder.Ignore<UserFbTokens>();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
