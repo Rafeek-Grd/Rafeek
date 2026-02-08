@@ -10,5 +10,7 @@ namespace Rafeek.Domain.Entities
         public int CreditHours { get; set; }
         public Guid DepartmentId { get; set; }
         public Department Department { get; set; } = null!;
+        
+        public ICollection<CoursePrerequisite> Prerequisites { get; set; } = new HashSet<CoursePrerequisite>();
     }
 }
