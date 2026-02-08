@@ -18,4 +18,5 @@ Rafeek.API/logs/
 /Rafeek.API/nlog_rafeek.txt
 
 
-
+/Rafeek.Persistence/Migrations/Rafeek/
+/Rafeek.Persistence/Migrations/Identity/
