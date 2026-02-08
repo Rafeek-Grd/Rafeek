@@ -32,7 +32,7 @@ namespace Rafeek.Persistence
             base.OnModelCreating(builder);
 
             builder.ApplyConfigurationsFromAssembly(typeof(RafeekIdentityDbContext).Assembly,
-                type => type.Namespace != null && type.Namespace.EndsWith("Configurations.Identity"));
+                type => type.Namespace != null && type.Namespace.EndsWith("Configurations.IdentityConfiguration"));
 
             builder.HasDefaultSchema("auth");
 

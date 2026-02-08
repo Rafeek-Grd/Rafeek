@@ -30,7 +30,7 @@ namespace Rafeek.Persistence
             base.OnModelCreating(builder);
 
             builder.ApplyConfigurationsFromAssembly(typeof(RafeekDbContext).Assembly,
-                type => type.Namespace != null && type.Namespace.EndsWith("Configurations.RafeekConfigurations"));
+                type => type.Namespace != null && type.Namespace.EndsWith("Configurations.RafeekConfiguration"));
 
             builder.HasDefaultSchema("dbo");
 

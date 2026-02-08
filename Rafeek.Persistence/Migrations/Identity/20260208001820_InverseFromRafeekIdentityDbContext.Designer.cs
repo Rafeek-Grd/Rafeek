@@ -9,11 +9,11 @@ using Rafeek.Persistence;
 
 #nullable disable
 
-namespace Rafeek.Persistence.Migrations
+namespace Rafeek.Persistence.Migrations.Identity
 {
     [DbContext(typeof(RafeekIdentityDbContext))]
-    [Migration("20260207224355_ChangeAspNetUsersTbl_ToApplicationUsers")]
-    partial class ChangeAspNetUsersTbl_ToApplicationUsers
+    [Migration("20260208001820_InverseFromRafeekIdentityDbContext")]
+    partial class InverseFromRafeekIdentityDbContext
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -141,7 +141,7 @@ namespace Rafeek.Persistence.Migrations
                         .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
-                    b.ToTable("AspNetUsers", "auth");
+                    b.ToTable("ApplicationUsers", "auth");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<System.Guid>", b =>

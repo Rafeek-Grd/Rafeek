@@ -3,10 +3,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Rafeek.Persistence.Migrations
+namespace Rafeek.Persistence.Migrations.Identity
 {
     /// <inheritdoc />
-    public partial class RemoveApplicationUser : Migration
+    public partial class InverseFromRafeekIdentityDbContext : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -15,7 +15,7 @@ namespace Rafeek.Persistence.Migrations
                 name: "auth");
 
             migrationBuilder.CreateTable(
-                name: "AspNetUsers",
+                name: "ApplicationUsers",
                 schema: "auth",
                 columns: table => new
                 {
@@ -37,7 +37,7 @@ namespace Rafeek.Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                    table.PrimaryKey("PK_ApplicationUsers", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -112,10 +112,10 @@ namespace Rafeek.Persistence.Migrations
                 {
                     table.PrimaryKey("PK_UserClaims", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_UserClaims_AspNetUsers_UserId",
+                        name: "FK_UserClaims_ApplicationUsers_UserId",
                         column: x => x.UserId,
                         principalSchema: "auth",
-                        principalTable: "AspNetUsers",
+                        principalTable: "ApplicationUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -134,10 +134,10 @@ namespace Rafeek.Persistence.Migrations
                 {
                     table.PrimaryKey("PK_UserLogins", x => new { x.LoginProvider, x.ProviderKey });
                     table.ForeignKey(
-                        name: "FK_UserLogins_AspNetUsers_UserId",
+                        name: "FK_UserLogins_ApplicationUsers_UserId",
                         column: x => x.UserId,
                         principalSchema: "auth",
-                        principalTable: "AspNetUsers",
+                        principalTable: "ApplicationUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -156,10 +156,10 @@ namespace Rafeek.Persistence.Migrations
                 {
                     table.PrimaryKey("PK_UserTokens", x => new { x.UserId, x.LoginProvider, x.Name });
                     table.ForeignKey(
-                        name: "FK_UserTokens_AspNetUsers_UserId",
+                        name: "FK_UserTokens_ApplicationUsers_UserId",
                         column: x => x.UserId,
                         principalSchema: "auth",
-                        principalTable: "AspNetUsers",
+                        principalTable: "ApplicationUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -199,10 +199,10 @@ namespace Rafeek.Persistence.Migrations
                 {
                     table.PrimaryKey("PK_UserRoles", x => new { x.UserId, x.RoleId });
                     table.ForeignKey(
-                        name: "FK_UserRoles_AspNetUsers_UserId",
+                        name: "FK_UserRoles_ApplicationUsers_UserId",
                         column: x => x.UserId,
                         principalSchema: "auth",
-                        principalTable: "AspNetUsers",
+                        principalTable: "ApplicationUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -217,13 +217,13 @@ namespace Rafeek.Persistence.Migrations
             migrationBuilder.CreateIndex(
                 name: "EmailIndex",
                 schema: "auth",
-                table: "AspNetUsers",
+                table: "ApplicationUsers",
                 column: "NormalizedEmail");
 
             migrationBuilder.CreateIndex(
                 name: "UserNameIndex",
                 schema: "auth",
-                table: "AspNetUsers",
+                table: "ApplicationUsers",
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
@@ -297,7 +297,7 @@ namespace Rafeek.Persistence.Migrations
                 schema: "auth");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers",
+                name: "ApplicationUsers",
                 schema: "auth");
         }
     }

@@ -8,7 +8,7 @@ using Rafeek.Persistence;
 
 #nullable disable
 
-namespace Rafeek.Persistence.Migrations
+namespace Rafeek.Persistence.Migrations.Identity
 {
     [DbContext(typeof(RafeekIdentityDbContext))]
     partial class RafeekIdentityDbContextModelSnapshot : ModelSnapshot
@@ -138,7 +138,7 @@ namespace Rafeek.Persistence.Migrations
                         .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
-                    b.ToTable("AspNetUsers", "auth");
+                    b.ToTable("ApplicationUsers", "auth");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<System.Guid>", b =>
