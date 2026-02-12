@@ -30,6 +30,13 @@ namespace Rafeek.Persistence
         public DbSet<UserFbTokens> FbTokens { get; set; }
         public DbSet<RefreshToken> RefreshTokens { get; set; }
         public DbSet<CoursePrerequisite> CoursePrerequisites { get; set; }
+        public DbSet<Section> Sections { get; set; }
+        public DbSet<Enrollment> Enrollments { get; set; }
+        public DbSet<Grade> Grades { get; set; }
+        public DbSet<AICourseRecommendation> AICourseRecommendations { get; set; }
+        public DbSet<CareerSuggestion> CareerSuggestions { get; set; }
+        public DbSet<AcademicFeedback> AcademicFeedbacks { get; set; }
+        public DbSet<GPASimulatorLog> GPASimulatorLogs { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
