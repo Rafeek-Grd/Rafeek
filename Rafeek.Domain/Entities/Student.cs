@@ -17,5 +17,7 @@ namespace Rafeek.Domain.Entities
         public Guid UserId { get; set; }
         public IdentityUser<Guid> User { get; set; } = null!;
         public ICollection<UserFbTokens> UserFbTokens { get; set; } = new List<UserFbTokens>();
+        public ICollection<ChatbotQuery> ChatbotQueries { get; set; } = new HashSet<ChatbotQuery>();
+        public ICollection<StudyPlan> StudyPlans { get; set; } = new HashSet<StudyPlan>();
     }
 }

@@ -12,5 +12,7 @@ namespace Rafeek.Domain.Entities
         public Department Department { get; set; } = null!;
         
         public ICollection<CoursePrerequisite> Prerequisites { get; set; } = new HashSet<CoursePrerequisite>();
+        public ICollection<StudyPlan> StudyPlans { get; set; } = new HashSet<StudyPlan>();
+        public ICollection<LearningResource> LearningResources { get; set; } = new HashSet<LearningResource>();
     }
 }

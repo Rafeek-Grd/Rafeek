@@ -47,30 +47,6 @@ namespace Rafeek.Persistence
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
-            foreach (var entry in ChangeTracker.Entries<BaseEntity>())
-            {
-                switch (entry.State)
-                {
-                    case EntityState.Added:
-                        entry.Entity.CreatedAt = DateTime.Now;
-                        entry.Entity.CreatedBy = !string.IsNullOrEmpty(entry.Entity.CreatedBy)
-                            ? entry.Entity.CreatedBy
-                            : (_currentUserService?.UserId.ToString() ?? "System");
-                        break;
-                    case EntityState.Modified:
-                        entry.Entity.UpdatedAt = DateTime.Now;
-                        entry.Entity.UpdatedBy = _currentUserService?.UserId.ToString() ?? "System";
-                        break;
-                    case EntityState.Deleted:
-                        entry.State = EntityState.Modified;
-                        entry.Entity.DeletedAt = DateTime.Now;
-                        entry.Entity.DeletedBy = _currentUserService?.UserId.ToString() ?? "System";
-                        entry.Entity.IsDeleted = true;
-                        entry.State = EntityState.Modified;
-                        break;
-                }
-            }
-
             return await base.SaveChangesAsync(cancellationToken);
         }
     }

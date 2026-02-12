@@ -37,6 +37,9 @@ namespace Rafeek.Persistence
         public DbSet<CareerSuggestion> CareerSuggestions { get; set; }
         public DbSet<AcademicFeedback> AcademicFeedbacks { get; set; }
         public DbSet<GPASimulatorLog> GPASimulatorLogs { get; set; }
+        public DbSet<ChatbotQuery> ChatbotQueries { get; set; }
+        public DbSet<LearningResource> LearningResources { get; set; }
+        public DbSet<StudyPlan> StudyPlans { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
