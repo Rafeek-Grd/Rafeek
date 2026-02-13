@@ -8,15 +8,11 @@ using Rafeek.Domain.Entities;
 
 namespace Rafeek.Persistence
 {
-    public class RafeekIdentityDbContext : IdentityDbContext<IdentityUser<Guid>, IdentityRole<Guid>, Guid,
+    public class RafeekIdentityDbContext : IdentityDbContext<ApplicationUser, IdentityRole<Guid>, Guid,
         IdentityUserClaim<Guid>, IdentityUserRole<Guid>, IdentityUserLogin<Guid>,
         IdentityRoleClaim<Guid>, IdentityUserToken<Guid>>, IRafeekIdentityDbContext
     {
         private readonly ICurrentUserService? _currentUserService;
-
-        public RafeekIdentityDbContext(DbContextOptions<RafeekIdentityDbContext> options) : base(options)
-        {
-        }
 
         public RafeekIdentityDbContext(DbContextOptions<RafeekIdentityDbContext> options,
             ICurrentUserService currentUserService) : base(options)
@@ -26,12 +22,12 @@ namespace Rafeek.Persistence
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.HasDefaultSchema("auth");
+
             base.OnModelCreating(builder);
 
             builder.ApplyConfigurationsFromAssembly(typeof(RafeekIdentityDbContext).Assembly,
                 type => type.Namespace != null && type.Namespace.EndsWith("Configurations.IdentityConfiguration"));
-
-            builder.HasDefaultSchema("auth");
 
             builder.Ignore<Department>();
         }

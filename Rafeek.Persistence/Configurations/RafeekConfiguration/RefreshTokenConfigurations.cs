@@ -10,7 +10,7 @@ namespace Rafeek.Persistence.Configurations.RafeekConfiguration
         {
             builder.ToTable("RefreshTokens");
 
-            builder.HasQueryFilter(r => !r.IsExpired && r.Revoked == null);
+            builder.HasQueryFilter(r => DateTime.UtcNow < r.ExpirationDate && r.Revoked == null);
         }
     }
 }

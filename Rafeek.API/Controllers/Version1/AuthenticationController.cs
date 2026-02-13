@@ -2,25 +2,27 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
+using Rafeek.API.Filters;
 using Rafeek.API.Routes;
 using Rafeek.Application.Handlers.AuthHandlers.SignUp;
 using Rafeek.Application.Localization;
+using Rafeek.Domain.Enums;
 
 namespace Rafeek.API.Controllers.Version1
 {
     [ApiController]
     [ApiVersion("1.0")]
-    [Authorize]
     public class AuthenticationController : BaseApiController
     {
         private readonly IMediator _mediator;
 
-        public AuthenticationController(IMediator mediator, IStringLocalizer<Messages> localizer ) : base(mediator,localizer)
+        public AuthenticationController(IMediator mediator, IStringLocalizer<Messages> localizer) : base(mediator, localizer)
         {
             _mediator = mediator;
         }
 
         [HttpPost]
+        [RoleAuthorize(nameof(UserType.Admin))]
         [Route(ApiRoutes.Authentication.SignUp)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

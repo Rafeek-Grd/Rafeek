@@ -36,7 +36,7 @@ namespace Rafeek.Infrastructure
             var identityOptionsConfig = new IdentityOptions();
             configuration.Bind(nameof(IdentityOptions), identityOptionsConfig);
 
-            services.AddIdentity<IdentityUser<Guid>, IdentityRole<Guid>>(options =>
+            services.AddIdentity<ApplicationUser, IdentityRole<Guid>>(options =>
             {
                 options.Password.RequireNonAlphanumeric = identityOptionsConfig.RequireNonAlphanumeric;
                 options.Password.RequiredLength = identityOptionsConfig.RequiredLength;

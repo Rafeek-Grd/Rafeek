@@ -20,7 +20,7 @@ namespace Rafeek.Persistence
                     sqlOptions =>
                     {
                         sqlOptions.MigrationsAssembly(typeof(RafeekIdentityDbContext).Assembly.GetName().Name);
-                        sqlOptions.MigrationsHistoryTable("__EFMigrationsHistory", "dbo");
+                        sqlOptions.MigrationsHistoryTable("__IdentityMigrationsHistory", "auth");
                     });
             });
 
@@ -40,10 +40,18 @@ namespace Rafeek.Persistence
             }, ServiceLifetime.Scoped);
 
             services.AddScoped<IRafeekDbContext>(provider =>
-               provider.GetRequiredService<RafeekDbContext>());
+            {
+                var options = provider.GetRequiredService<DbContextOptions<RafeekDbContext>>();
+                var currentUserService = provider.GetRequiredService<ICurrentUserService>();
+                return new RafeekDbContext(options, currentUserService);
+            });
 
             services.AddScoped<IRafeekIdentityDbContext>(provider =>
-                provider.GetRequiredService<RafeekIdentityDbContext>());
+            {
+                var options = provider.GetRequiredService<DbContextOptions<RafeekIdentityDbContext>>();
+                var currentUserService = provider.GetRequiredService<ICurrentUserService>();
+                return new RafeekIdentityDbContext(options, currentUserService);
+            });
 
             return services;
         }

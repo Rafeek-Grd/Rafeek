@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
+using Microsoft.EntityFrameworkCore.Storage;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+
 using Rafeek.Application.Common.Interfaces;
 using Rafeek.Domain.Common;
 using Rafeek.Domain.Entities;
@@ -9,19 +12,13 @@ namespace Rafeek.Persistence
 {
     public class RafeekDbContext : DbContext, IRafeekDbContext
     {
-        private readonly ICurrentUserService? _currentUserService;
-
-        public RafeekDbContext(DbContextOptions<RafeekDbContext> options) : base(options)
-        {
-        }
+        private readonly ICurrentUserService _currentUserService;
 
         public RafeekDbContext(DbContextOptions<RafeekDbContext> options
             , ICurrentUserService currentUserService) : base(options)
         {
             _currentUserService = currentUserService;
         }
-
-        public DbSet<IdentityUser<Guid>> ApplicationUsers { get; set; }
         public DbSet<Department> Departments { get; set; }
         public DbSet<Student> Students { get; set; }
         public DbSet<Instructor> Instructors { get; set; }
@@ -40,6 +37,7 @@ namespace Rafeek.Persistence
         public DbSet<ChatbotQuery> ChatbotQueries { get; set; }
         public DbSet<LearningResource> LearningResources { get; set; }
         public DbSet<StudyPlan> StudyPlans { get; set; }
+        public DbSet<Doctor> Doctors { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -48,8 +46,21 @@ namespace Rafeek.Persistence
             builder.ApplyConfigurationsFromAssembly(typeof(RafeekDbContext).Assembly,
                 type => type.Namespace != null && type.Namespace.EndsWith("Configurations.RafeekConfiguration"));
 
+            builder.ApplyConfiguration(new Configurations.IdentityConfiguration.IdentityUserConfigurations());
+
             builder.HasDefaultSchema("dbo");
         }
+
+        public async Task<IDbContextTransaction> BeginTransactionAsync(CancellationToken cancellationToken = default)
+        {
+            return await Database.BeginTransactionAsync(cancellationToken);
+        }
+
+        public IExecutionStrategy CreateExecutionStrategy()
+        {
+            return Database.CreateExecutionStrategy();
+        }
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -70,7 +81,7 @@ namespace Rafeek.Persistence
                         entry.Entity.CreatedAt = DateTime.Now;
                         entry.Entity.CreatedBy = !string.IsNullOrEmpty(entry.Entity.CreatedBy)
                             ? entry.Entity.CreatedBy
-                            : (_currentUserService?.UserId.ToString() ?? "System");
+                            : _currentUserService?.UserId.ToString() ?? "System";
                         break;
                     case EntityState.Modified:
                         entry.Entity.UpdatedAt = DateTime.Now;

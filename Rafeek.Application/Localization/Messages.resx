@@ -212,4 +212,20 @@
 		<value>Content type is not valid.</value>
   </data>
 
+	<data name="FailedSignUp" xml:space="preserve">
+		<value>Failed to sign up that user.</value>
+  </data>
+
+	<data name="UniversityCodeMultipleAttemps" xml:space="preserve">
+		<value>Unable to generate unique university code after multiple attempts.</value>
+  </data>
+
+	<data name="PrimayRoleInvalid" xml:space="preserve">
+		<value>Primary role must be a valid role type.</value>
+  </data>
+
+	<data name="AdditionalRolesInvalid" xml:space="preserve">
+		<value>All additional roles must be a valid role type.</value>
+  </data>
+
 </root>

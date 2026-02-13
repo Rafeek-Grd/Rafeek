@@ -1,14 +1,15 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Rafeek.Domain.Entities;
 
 namespace Rafeek.Persistence.Configurations.IdentityConfiguration
 {
-    public class IdentityUserConfigurations : IEntityTypeConfiguration<IdentityUser<Guid>>
+    public class IdentityUserConfigurations : IEntityTypeConfiguration<ApplicationUser>
     {
-        public void Configure(EntityTypeBuilder<IdentityUser<Guid>> builder)
+        public void Configure(EntityTypeBuilder<ApplicationUser> builder)
         {
-            builder.ToTable("ApplicationUsers");
+            builder.ToTable("ApplicationUsers", "auth");
         }
     }
 }

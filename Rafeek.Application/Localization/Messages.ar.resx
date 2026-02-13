@@ -228,4 +228,16 @@
   <data name="InvalidContentType" xml:space="preserve">
     <value>نوع محتوي الملف غير صالح.</value>
   </data>
+  <data name="FailedSignUp" xml:space="preserve">
+    <value>فشل تسجيل هذا المستخدم.</value>
+  </data>
+  <data name="UniversityCodeMultipleAttemps" xml:space="preserve">
+    <value>فشل توليد رمز جامعي جديد.</value>
+  </data>
+  <data name="PrimayRoleInvalid" xml:space="preserve">
+    <value>الدور الأولي يجب أن يكون صحيح.</value>
+  </data>
+  <data name="AdditionalRolesInvalid" xml:space="preserve">
+    <value>كل الأدوار الإضافية يجب أن تكون صحيحة.</value>
+  </data>
 </root>

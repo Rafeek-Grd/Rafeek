@@ -1,5 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+
 using Rafeek.Domain.Entities;
 using System;
 
@@ -15,7 +18,6 @@ namespace Rafeek.Application.Common.Interfaces
         DbSet<UserFbTokens> FbTokens { get; }
         DbSet<RefreshToken> RefreshTokens { get; }
         DbSet<CoursePrerequisite> CoursePrerequisites { get; }
-        DbSet<IdentityUser<Guid>> ApplicationUsers { get; }
         DbSet<Section> Sections { get; }
         DbSet<Enrollment> Enrollments { get; }
         DbSet<Grade> Grades { get; set; }
@@ -26,7 +28,10 @@ namespace Rafeek.Application.Common.Interfaces
         DbSet<ChatbotQuery> ChatbotQueries { get; }
         DbSet<LearningResource> LearningResources { get; }
         DbSet<StudyPlan> StudyPlans { get; }
+        DbSet<Doctor> Doctors { get; }
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
+        Task<IDbContextTransaction> BeginTransactionAsync(CancellationToken cancellationToken = default);
+        IExecutionStrategy CreateExecutionStrategy();
     }
 }

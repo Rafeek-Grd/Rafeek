@@ -2,6 +2,7 @@
 using Microsoft.IdentityModel.Tokens;
 using Rafeek.Application.Common.Interfaces;
 using Rafeek.Application.Handlers.AuthHandlers;
+using Rafeek.Domain.Entities;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -11,14 +12,16 @@ namespace Rafeek.Infrastructure.Oauth
     public class JwtTokenManager : IJwtTokenManager
     {
         private readonly JwtSettings _jwtSettings;
-        private readonly UserManager<IdentityUser<Guid>> _userManager;
+        private readonly UserManager<ApplicationUser> _userManager;
         private readonly TokenValidationParameters _tokenValidationParameters;
+        private readonly IDataEncryption _dataEncryption;
 
-        public JwtTokenManager(JwtSettings jwtSettings, UserManager<IdentityUser<Guid>> userManager, TokenValidationParameters tokenValidationParameters)
+        public JwtTokenManager(JwtSettings jwtSettings, UserManager<ApplicationUser> userManager, TokenValidationParameters tokenValidationParameters, IDataEncryption dataEncryption)
         {
             _jwtSettings = jwtSettings;
             _userManager = userManager;
             _tokenValidationParameters = tokenValidationParameters;
+            _dataEncryption = dataEncryption;
         }
 
         public async Task<AuthResult> GenerateClaimsTokenAsync(string email, CancellationToken cancellationToken = new CancellationToken())
@@ -30,17 +33,25 @@ namespace Rafeek.Infrastructure.Oauth
 
             var currentTime = DateTimeOffset.UtcNow;
 
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Name, user.UserName),
+                new Claim(ClaimTypes.NameIdentifier, _dataEncryption.Encrypt(user.Id.ToString())), // Encrypt User Id
+                new Claim(JwtRegisteredClaimNames.Sub, user.UserName),
+                new Claim(JwtRegisteredClaimNames.Nbf, currentTime.ToUnixTimeSeconds().ToString()),
+                new Claim(JwtRegisteredClaimNames.Exp, currentTime.Add(_jwtSettings.AccessTokenExpiration).ToUnixTimeSeconds().ToString()),
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+            };
+
+            var roles = await _userManager.GetRolesAsync(user);
+            foreach (var role in roles)
+            {
+                claims.Add(new Claim(ClaimTypes.Role, role));
+            }
+
             var tokenDescriptor = new SecurityTokenDescriptor
             {
-                Subject = new ClaimsIdentity(new[]
-                {
-                    new Claim(ClaimTypes.Name, user.UserName),
-                    new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()), // TODO: encrypt user id for added security
-                    new Claim(JwtRegisteredClaimNames.Sub, user.UserName),
-                    new Claim(JwtRegisteredClaimNames.Nbf, currentTime.ToUnixTimeSeconds().ToString()),
-                    new Claim(JwtRegisteredClaimNames.Exp, currentTime.Add(_jwtSettings.AccessTokenExpiration).ToUnixTimeSeconds().ToString()),
-                    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
-                }),
+                Subject = new ClaimsIdentity(claims),
                 Expires = currentTime.Add(_jwtSettings.AccessTokenExpiration).UtcDateTime,
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature),
                 Issuer = _jwtSettings.Issuer,
@@ -52,7 +63,7 @@ namespace Rafeek.Infrastructure.Oauth
                 Subject = new ClaimsIdentity(new[]
                 {
                     new Claim(ClaimTypes.Name, user.UserName),
-                    new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()), // TODO: encrypt user id for added security
+                    new Claim(ClaimTypes.NameIdentifier, _dataEncryption.Encrypt(user.Id.ToString())), // Encrypt User Id
                     new Claim(JwtRegisteredClaimNames.Iss, _jwtSettings.Issuer),
                     new Claim(JwtRegisteredClaimNames.Iat, currentTime.ToUnixTimeSeconds().ToString()),
                     new Claim(JwtRegisteredClaimNames.Nbf, currentTime.ToUnixTimeSeconds().ToString()),

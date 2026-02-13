@@ -39,6 +39,9 @@
             public static readonly KeyString NationalNumberRequired = new("NationalNumberRequired");
             public static readonly KeyString UserTypeRequired = new("UserTypeRequired");
             public static readonly KeyString PasswordMinLength = new("PasswordMinLength");
+            public static readonly KeyString FailedSignUp = new("FailedSignUp");
+            public static readonly KeyString PrimayRoleInvalid = new("PrimayRoleInvalid");
+            public static readonly KeyString AdditionalRolesInvalid = new("AdditionalRolesInvalid");
         }
 
         public record UploadFileMessages
@@ -63,6 +66,7 @@
             public static readonly KeyString PhoneInvalid = new("PhoneInvalid");
             public static readonly KeyString EmailInvalid = new("EmailInvalid");
             public static readonly KeyString EmailDomainInvalid = new("EmailDomainInvalid");
+            public static readonly KeyString UniversityCodeMultipleAttemps = new("UniversityCodeMultipleAttemps");
         }
     }
 }

@@ -6,7 +6,8 @@ namespace Rafeek.Application.Handlers.AuthHandlers.SignUp
 {
     public class SignUpCommand : IRequest<SignResponse>
     {
-        public UserType? UserType { get; set; }
+        public UserType PrimaryRole { get; set; } = UserType.Student;
+        public List<UserType>? AdditionalRoles { get; set; }
         public string FullName { get; set; } = null!;
         public string Email { get; set; } = null!;
         public string? Phone { get; set; }

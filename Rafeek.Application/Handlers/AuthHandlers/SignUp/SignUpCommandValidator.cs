@@ -5,18 +5,34 @@ using Rafeek.Application.Localization;
 using Rafeek.Domain.Enums;
 using System.Text.RegularExpressions;
 using Microsoft.EntityFrameworkCore;
+using Rafeek.Domain.Entities;
 
 namespace Rafeek.Application.Handlers.AuthHandlers.SignUp
 {
     public class SignUpCommandValidator : AbstractValidator<SignUpCommand>
     {
         private readonly IStringLocalizer<Messages> _localizer;
-        private readonly UserManager<IdentityUser<Guid>> _userManager;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public SignUpCommandValidator(IStringLocalizer<Messages> localizer, UserManager<IdentityUser<Guid>> userManager)
+        public SignUpCommandValidator(IStringLocalizer<Messages> localizer, UserManager<ApplicationUser> userManager)
         {
             _localizer = localizer;
             _userManager = userManager;
+
+            // Security: Validate PrimaryRole
+            RuleFor(v => v.PrimaryRole)
+                .Must(r => Enum.IsDefined(typeof(UserType), r))
+                .WithMessage(_localizer[LocalizationKeys.UserMessages.PrimayRoleInvalid.Value]);
+
+            // Security: Validate AdditionalRoles if provided
+            RuleFor(v => v.AdditionalRoles)
+                .Must(roles => roles == null || roles.All(r => Enum.IsDefined(typeof(UserType), r)))
+                .WithMessage(_localizer[LocalizationKeys.UserMessages.AdditionalRolesInvalid.Value]);
+
+            // Security: Prevent duplicate roles
+            RuleFor(v => v)
+                .Must(command => command.AdditionalRoles == null || !command.AdditionalRoles.Contains(command.PrimaryRole))
+                .WithMessage(_localizer[LocalizationKeys.UserMessages.PrimayRoleInvalid.Value]);
 
             RuleFor(v => v.FullName)
                 .Cascade(CascadeMode.Stop)
@@ -33,7 +49,18 @@ namespace Rafeek.Application.Handlers.AuthHandlers.SignUp
                 .Cascade(CascadeMode.Stop)
                 .NotNull().NotEmpty().WithMessage(_localizer[LocalizationKeys.UserMessages.EmailRequired.Value])
                 .EmailAddress().WithMessage(_localizer[LocalizationKeys.GlobalValidationMessages.EmailInvalid.Value])
-                .Must(email => email != null && email.EndsWith("@std.mans.edu.eg", StringComparison.OrdinalIgnoreCase))
+                .Must((command, email) =>
+                {
+                    if (string.IsNullOrEmpty(email)) return false;
+                    
+                    // Security: Email domain validation based on PrimaryRole
+                    if (command.PrimaryRole == UserType.Student)
+                    {
+                        return email.EndsWith("@std.mans.edu.eg", StringComparison.OrdinalIgnoreCase);
+                    }
+                    
+                    return email.EndsWith("@mans.edu.eg", StringComparison.OrdinalIgnoreCase);
+                })
                 .WithMessage(_localizer[LocalizationKeys.GlobalValidationMessages.EmailDomainInvalid.Value]) 
                 .MustAsync(EmailIsNotExist).WithMessage(_localizer[LocalizationKeys.UserMessages.EmailAlreadyExistedbefore.Value]);
 

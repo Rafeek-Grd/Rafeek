@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Rafeek.Persistence.Migrations.Rafeek
 {
     /// <inheritdoc />
-    public partial class InitDatabaseAndSolveConflicts : Migration
+    public partial class Init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -14,12 +14,20 @@ namespace Rafeek.Persistence.Migrations.Rafeek
             migrationBuilder.EnsureSchema(
                 name: "dbo");
 
+            migrationBuilder.EnsureSchema(
+                name: "auth");
+
             migrationBuilder.CreateTable(
                 name: "ApplicationUsers",
-                schema: "dbo",
+                schema: "auth",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    FullName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    NationalId = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PasswordResetToken = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PasswordResetTokenExpiredTime = table.Column<DateTime>(type: "datetime2", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -140,6 +148,41 @@ namespace Rafeek.Persistence.Migrations.Rafeek
                 });
 
             migrationBuilder.CreateTable(
+                name: "Doctors",
+                schema: "dbo",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    DepartmentId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeletedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DeletedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Doctors", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Doctors_ApplicationUsers_UserId",
+                        column: x => x.UserId,
+                        principalSchema: "auth",
+                        principalTable: "ApplicationUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Doctors_Departments_DepartmentId",
+                        column: x => x.DepartmentId,
+                        principalSchema: "dbo",
+                        principalTable: "Departments",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Instructors",
                 schema: "dbo",
                 columns: table => new
@@ -162,7 +205,7 @@ namespace Rafeek.Persistence.Migrations.Rafeek
                     table.ForeignKey(
                         name: "FK_Instructors_ApplicationUsers_UserId",
                         column: x => x.UserId,
-                        principalSchema: "dbo",
+                        principalSchema: "auth",
                         principalTable: "ApplicationUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -180,12 +223,11 @@ namespace Rafeek.Persistence.Migrations.Rafeek
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    FullName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    NationalId = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DepartmentId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UniversityCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DepartmentId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     Level = table.Column<int>(type: "int", nullable: false),
                     Term = table.Column<int>(type: "int", nullable: false),
-                    Status = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false),
                     AcademicProfileId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -203,7 +245,7 @@ namespace Rafeek.Persistence.Migrations.Rafeek
                     table.ForeignKey(
                         name: "FK_Students_ApplicationUsers_UserId",
                         column: x => x.UserId,
-                        principalSchema: "dbo",
+                        principalSchema: "auth",
                         principalTable: "ApplicationUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -212,8 +254,7 @@ namespace Rafeek.Persistence.Migrations.Rafeek
                         column: x => x.DepartmentId,
                         principalSchema: "dbo",
                         principalTable: "Departments",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Students_StudentAcademicProfiles_AcademicProfileId",
                         column: x => x.AcademicProfileId,
@@ -356,7 +397,7 @@ namespace Rafeek.Persistence.Migrations.Rafeek
                         principalSchema: "dbo",
                         principalTable: "Students",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -533,6 +574,7 @@ namespace Rafeek.Persistence.Migrations.Rafeek
                     UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     IsAndroidDevice = table.Column<bool>(type: "bit", nullable: false),
                     IsIosDevice = table.Column<bool>(type: "bit", nullable: false),
+                    DoctorId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     InstructorId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     StudentId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -547,6 +589,12 @@ namespace Rafeek.Persistence.Migrations.Rafeek
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_UserFbTokens", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_UserFbTokens_Doctors_DoctorId",
+                        column: x => x.DoctorId,
+                        principalSchema: "dbo",
+                        principalTable: "Doctors",
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_UserFbTokens_Instructors_InstructorId",
                         column: x => x.InstructorId,
@@ -679,6 +727,19 @@ namespace Rafeek.Persistence.Migrations.Rafeek
                 column: "DepartmentId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Doctors_DepartmentId",
+                schema: "dbo",
+                table: "Doctors",
+                column: "DepartmentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Doctors_UserId",
+                schema: "dbo",
+                table: "Doctors",
+                column: "UserId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Enrollments_CourseId",
                 schema: "dbo",
                 table: "Enrollments",
@@ -772,6 +833,12 @@ namespace Rafeek.Persistence.Migrations.Rafeek
                 column: "StudentId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_UserFbTokens_DoctorId",
+                schema: "dbo",
+                table: "UserFbTokens",
+                column: "DoctorId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_UserFbTokens_InstructorId",
                 schema: "dbo",
                 table: "UserFbTokens",
@@ -836,6 +903,10 @@ namespace Rafeek.Persistence.Migrations.Rafeek
                 schema: "dbo");
 
             migrationBuilder.DropTable(
+                name: "Doctors",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
                 name: "Sections",
                 schema: "dbo");
 
@@ -857,7 +928,7 @@ namespace Rafeek.Persistence.Migrations.Rafeek
 
             migrationBuilder.DropTable(
                 name: "ApplicationUsers",
-                schema: "dbo");
+                schema: "auth");
 
             migrationBuilder.DropTable(
                 name: "Departments",

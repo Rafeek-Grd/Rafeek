@@ -6,57 +6,13 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Rafeek.Persistence.Migrations.Identity
 {
     /// <inheritdoc />
-    public partial class InverseFromRafeekIdentityDbContext : Migration
+    public partial class Init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.EnsureSchema(
                 name: "auth");
-
-            migrationBuilder.CreateTable(
-                name: "ApplicationUsers",
-                schema: "auth",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
-                    NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
-                    Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
-                    NormalizedEmail = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
-                    EmailConfirmed = table.Column<bool>(type: "bit", nullable: false),
-                    PasswordHash = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    SecurityStamp = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PhoneNumberConfirmed = table.Column<bool>(type: "bit", nullable: false),
-                    TwoFactorEnabled = table.Column<bool>(type: "bit", nullable: false),
-                    LockoutEnd = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
-                    LockoutEnabled = table.Column<bool>(type: "bit", nullable: false),
-                    AccessFailedCount = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ApplicationUsers", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "RefreshTokens",
-                schema: "auth",
-                columns: table => new
-                {
-                    JwtId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    UserId = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Token = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ExpirationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Revoked = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    RemoteIpAddress = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_RefreshTokens", x => x.JwtId);
-                });
 
             migrationBuilder.CreateTable(
                 name: "Roles",
@@ -71,30 +27,6 @@ namespace Rafeek.Persistence.Migrations.Identity
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Roles", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "UserFbTokens",
-                schema: "auth",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    FbToken = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    IsAndroidDevice = table.Column<bool>(type: "bit", nullable: false),
-                    IsIosDevice = table.Column<bool>(type: "bit", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    DeletedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DeletedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_UserFbTokens", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -215,20 +147,6 @@ namespace Rafeek.Persistence.Migrations.Identity
                 });
 
             migrationBuilder.CreateIndex(
-                name: "EmailIndex",
-                schema: "auth",
-                table: "ApplicationUsers",
-                column: "NormalizedEmail");
-
-            migrationBuilder.CreateIndex(
-                name: "UserNameIndex",
-                schema: "auth",
-                table: "ApplicationUsers",
-                column: "NormalizedUserName",
-                unique: true,
-                filter: "[NormalizedUserName] IS NOT NULL");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_RoleClaims_RoleId",
                 schema: "auth",
                 table: "RoleClaims",
@@ -265,19 +183,11 @@ namespace Rafeek.Persistence.Migrations.Identity
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "RefreshTokens",
-                schema: "auth");
-
-            migrationBuilder.DropTable(
                 name: "RoleClaims",
                 schema: "auth");
 
             migrationBuilder.DropTable(
                 name: "UserClaims",
-                schema: "auth");
-
-            migrationBuilder.DropTable(
-                name: "UserFbTokens",
                 schema: "auth");
 
             migrationBuilder.DropTable(
@@ -294,10 +204,6 @@ namespace Rafeek.Persistence.Migrations.Identity
 
             migrationBuilder.DropTable(
                 name: "Roles",
-                schema: "auth");
-
-            migrationBuilder.DropTable(
-                name: "ApplicationUsers",
                 schema: "auth");
         }
     }
