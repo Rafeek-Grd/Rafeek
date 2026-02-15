@@ -38,6 +38,10 @@ namespace Rafeek.Persistence
         public DbSet<LearningResource> LearningResources { get; set; }
         public DbSet<StudyPlan> StudyPlans { get; set; }
         public DbSet<Doctor> Doctors { get; set; }
+        public DbSet<DocumentRequest> DocumentRequests { get; set; }
+        public DbSet<Appointment> Appointments { get; set; }
+        public DbSet<StudentSupport> StudentSupports { get; set; }
+        public DbSet<AcademicCalendar> AcademicCalendars { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
