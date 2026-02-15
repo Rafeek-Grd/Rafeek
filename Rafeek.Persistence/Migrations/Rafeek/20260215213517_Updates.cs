@@ -78,24 +78,26 @@ namespace Rafeek.Persistence.Migrations.Rafeek
                 oldType: "bit",
                 oldDefaultValue: false);
 
-            migrationBuilder.AddForeignKey(
-                name: "FK_Notifications_ApplicationUsers_UserId",
-                schema: "dbo",
-                table: "Notifications",
-                column: "UserId",
-                principalSchema: "auth",
-                principalTable: "ApplicationUsers",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
+            // FK removed temporarily - ApplicationUsers table reference issue
+            // migrationBuilder.AddForeignKey(
+            //     name: "FK_Notifications_ApplicationUsers_UserId",
+            //     schema: "dbo",
+            //     table: "Notifications",
+            //     column: "UserId",
+            //     principalSchema: "auth",
+            //     principalTable: "ApplicationUsers",
+            //     principalColumn: "Id",
+            //     onDelete: ReferentialAction.Restrict);
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_Notifications_ApplicationUsers_UserId",
-                schema: "dbo",
-                table: "Notifications");
+            // FK was not added in Up, so no need to drop
+            // migrationBuilder.DropForeignKey(
+            //     name: "FK_Notifications_ApplicationUsers_UserId",
+            //     schema: "dbo",
+            //     table: "Notifications");
 
             migrationBuilder.RenameColumn(
                 name: "UserId",
