@@ -29,6 +29,11 @@ namespace Rafeek.Application.Common.Interfaces
         DbSet<LearningResource> LearningResources { get; }
         DbSet<StudyPlan> StudyPlans { get; }
         DbSet<Doctor> Doctors { get; }
+        DbSet<DocumentRequest> DocumentRequests { get; }
+        DbSet<Appointment> Appointments { get; }
+        DbSet<StudentSupport> StudentSupports { get; }
+        DbSet<AcademicCalendar> AcademicCalendars { get; }
+        DbSet<CampusMapLocation> CampusMapLocations { get; }
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
         Task<IDbContextTransaction> BeginTransactionAsync(CancellationToken cancellationToken = default);
