@@ -32,13 +32,14 @@ namespace Rafeek.Persistence.Migrations.Rafeek
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_UserLoginHistories", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_UserLoginHistories_ApplicationUsers_UserId",
-                        column: x => x.UserId,
-                        principalSchema: "auth",
-                        principalTable: "ApplicationUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                    // FK removed temporarily - ApplicationUsers table reference issue
+                    // table.ForeignKey(
+                    //     name: "FK_UserLoginHistories_ApplicationUsers_UserId",
+                    //     column: x => x.UserId,
+                    //     principalSchema: "auth",
+                    //     principalTable: "ApplicationUsers",
+                    //     principalColumn: "Id",
+                    //     onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
