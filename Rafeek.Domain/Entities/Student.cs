@@ -24,6 +24,5 @@ namespace Rafeek.Domain.Entities
         public ICollection<DocumentRequest> DocumentRequests { get; set; } = new HashSet<DocumentRequest>();
         public ICollection<Appointment> Appointments { get; set; } = new HashSet<Appointment>();
         public ICollection<StudentSupport> StudentSupports { get; set; } = new HashSet<StudentSupport>();
-        public ICollection<Notification> Notifications { get; set; } = new HashSet<Notification>();
     }
 }
