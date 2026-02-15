@@ -25,4 +25,5 @@ namespace Rafeek.Domain.Entities
         public ICollection<Appointment> Appointments { get; set; } = new HashSet<Appointment>();
         public ICollection<StudentSupport> StudentSupports { get; set; } = new HashSet<StudentSupport>();
     }
+
 }
