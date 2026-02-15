@@ -32,13 +32,8 @@ namespace Rafeek.Persistence.Migrations.Rafeek
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Appointments", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Appointments_Doctors_DoctorId",
-                        column: x => x.DoctorId,
-                        principalSchema: "dbo",
-                        principalTable: "Doctors",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                    // Foreign key to Doctors table removed temporarily due to missing Doctors table
+                    // Will be added in a separate migration after Doctors table is verified/created
                     table.ForeignKey(
                         name: "FK_Appointments_Students_StudentId",
                         column: x => x.StudentId,

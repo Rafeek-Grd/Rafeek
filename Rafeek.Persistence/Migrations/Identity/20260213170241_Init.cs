@@ -43,13 +43,7 @@ namespace Rafeek.Persistence.Migrations.Identity
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_UserClaims", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_UserClaims_ApplicationUsers_UserId",
-                        column: x => x.UserId,
-                        principalSchema: "auth",
-                        principalTable: "ApplicationUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                    // FK removed - ApplicationUsers is in RafeekDbContext
                 });
 
             migrationBuilder.CreateTable(
@@ -65,13 +59,7 @@ namespace Rafeek.Persistence.Migrations.Identity
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_UserLogins", x => new { x.LoginProvider, x.ProviderKey });
-                    table.ForeignKey(
-                        name: "FK_UserLogins_ApplicationUsers_UserId",
-                        column: x => x.UserId,
-                        principalSchema: "auth",
-                        principalTable: "ApplicationUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                    // FK removed - ApplicationUsers is in RafeekDbContext
                 });
 
             migrationBuilder.CreateTable(
@@ -87,13 +75,7 @@ namespace Rafeek.Persistence.Migrations.Identity
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_UserTokens", x => new { x.UserId, x.LoginProvider, x.Name });
-                    table.ForeignKey(
-                        name: "FK_UserTokens_ApplicationUsers_UserId",
-                        column: x => x.UserId,
-                        principalSchema: "auth",
-                        principalTable: "ApplicationUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                    // FK removed - ApplicationUsers is in RafeekDbContext
                 });
 
             migrationBuilder.CreateTable(
@@ -130,13 +112,7 @@ namespace Rafeek.Persistence.Migrations.Identity
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_UserRoles", x => new { x.UserId, x.RoleId });
-                    table.ForeignKey(
-                        name: "FK_UserRoles_ApplicationUsers_UserId",
-                        column: x => x.UserId,
-                        principalSchema: "auth",
-                        principalTable: "ApplicationUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                    // FK to ApplicationUsers removed - ApplicationUsers is in RafeekDbContext
                     table.ForeignKey(
                         name: "FK_UserRoles_Roles_RoleId",
                         column: x => x.RoleId,
