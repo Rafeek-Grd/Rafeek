@@ -7,11 +7,7 @@ namespace Rafeek.Domain.Entities
     {
         public Guid StudentId { get; set; }
         public Student Student { get; set; } = null!;
-        
         public ReportType ReportType { get; set; }
-        
-        public DateTime GeneratedAt { get; set; }
-        
-        public string FileUrl { get; set; } = null!;
+        public string? FileUrl { get; set; }
     }
 }
