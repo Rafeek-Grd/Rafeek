@@ -35,6 +35,7 @@ namespace Rafeek.Application.Common.Interfaces
         DbSet<AcademicCalendar> AcademicCalendars { get; }
         DbSet<CampusMapLocation> CampusMapLocations { get; }
         DbSet<Notification> Notifications { get; }
+        DbSet<UserLoginHistory> UserLoginHistories { get; }
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
         Task<IDbContextTransaction> BeginTransactionAsync(CancellationToken cancellationToken = default);

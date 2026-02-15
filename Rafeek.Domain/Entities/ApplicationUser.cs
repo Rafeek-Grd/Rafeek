@@ -10,6 +10,7 @@ namespace Rafeek.Domain.Entities
         public string? PasswordResetToken { get; set; }
         public DateTime? PasswordResetTokenExpiredTime { get; set; }
         public ICollection<Notification> Notifications { get; set; } = new HashSet<Notification>();
+        public ICollection<UserLoginHistory> LoginHistories { get; set; } = new HashSet<UserLoginHistory>();
 
         public ApplicationUser()
         {
