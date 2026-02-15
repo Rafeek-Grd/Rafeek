@@ -42,6 +42,7 @@ namespace Rafeek.Persistence
         public DbSet<Appointment> Appointments { get; set; }
         public DbSet<StudentSupport> StudentSupports { get; set; }
         public DbSet<AcademicCalendar> AcademicCalendars { get; set; }
+        public DbSet<CampusMapLocation> CampusMapLocations { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
