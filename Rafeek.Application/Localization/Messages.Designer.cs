@@ -70,6 +70,15 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to All additional roles must be a valid role type..
+        /// </summary>
+        public static string AdditionalRolesInvalid {
+            get {
+                return ResourceManager.GetString("AdditionalRolesInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bad request..
         /// </summary>
         public static string BadRequestExceptionMessage {
@@ -138,6 +147,15 @@ namespace Rafeek.Application.Localization {
         public static string FaildToDeleted {
             get {
                 return ResourceManager.GetString("FaildToDeleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to sign up that user..
+        /// </summary>
+        public static string FailedSignUp {
+            get {
+                return ResourceManager.GetString("FailedSignUp", resourceCulture);
             }
         }
         
@@ -349,6 +367,15 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Primary role must be a valid role type..
+        /// </summary>
+        public static string PrimayRoleInvalid {
+            get {
+                return ResourceManager.GetString("PrimayRoleInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid Token..
         /// </summary>
         public static string TokenNotValid {
@@ -363,6 +390,15 @@ namespace Rafeek.Application.Localization {
         public static string UnauthorizedExceptionMessage {
             get {
                 return ResourceManager.GetString("UnauthorizedExceptionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to generate unique university code after multiple attempts..
+        /// </summary>
+        public static string UniversityCodeMultipleAttemps {
+            get {
+                return ResourceManager.GetString("UniversityCodeMultipleAttemps", resourceCulture);
             }
         }
         

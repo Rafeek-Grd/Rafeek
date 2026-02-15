@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Rafeek.Application.Common.Interfaces;
 using Rafeek.Application.Common.Models;
-using Rafeek.Domain.Entities;
 using Rafeek.Domain.Enums;
 using Rafeek.Infrastructure.Extensions;
 using Microsoft.EntityFrameworkCore;
@@ -9,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Rafeek.Application.Common.Exceptions;
 using Rafeek.Application.Localization;
 using Microsoft.Extensions.Localization;
+using Rafeek.Domain.Entities;
 
 namespace Rafeek.Infrastructure.Identity
 {
@@ -39,8 +39,16 @@ namespace Rafeek.Infrastructure.Identity
             }
         }
 
-        public async Task<Result> SignUpAsync(ApplicationUser user, string Password, CancellationToken cancellationToken)
+        public async Task<Result> SignUpAsync(ApplicationUser user, string Password, IReadOnlyCollection<string> roles, CancellationToken cancellationToken)
         {
+            if (roles == null || !roles.Any())
+            {
+                throw new BadRequestException(_localizer[LocalizationKeys.UserMessages.PrimayRoleInvalid]);
+            }
+
+            // Security: Deduplicate roles to prevent duplicate assignments
+            var uniqueRoles = roles.Distinct(StringComparer.OrdinalIgnoreCase).ToList();
+
             var userByEmail = await _signInManager.UserManager.FindByEmailAsync(user.Email);
             if (userByEmail is not null)
             {
@@ -52,19 +60,9 @@ namespace Rafeek.Infrastructure.Identity
                 await _signInManager.UserManager.DeleteAsync(userByEmail);
             }
 
-            if (await _signInManager.UserManager.Users.AnyAsync(u => u.NationalNumber == user.NationalNumber, cancellationToken))
-            {
-                throw new BadRequestException(_localizer[LocalizationKeys.GlobalValidationMessages.NationalNumberExist.Value]);
-            }
-
             if (!string.IsNullOrEmpty(user.PhoneNumber) && await _signInManager.UserManager.Users.AnyAsync(u => u.PhoneNumber == user.PhoneNumber, cancellationToken))
             {
                 throw new BadRequestException(_localizer[LocalizationKeys.GlobalValidationMessages.PhoneNumberExist.Value]);
-            }
-
-            if (!string.IsNullOrEmpty(user.Code) && await _signInManager.UserManager.Users.AnyAsync(u => u.Code == user.Code, cancellationToken))
-            {
-                throw new BadRequestException(_localizer[LocalizationKeys.GlobalValidationMessages.UserCodeExist.Value]);
             }
 
             user.EmailConfirmed = true;
@@ -72,14 +70,24 @@ namespace Rafeek.Infrastructure.Identity
 
             if (result.Succeeded)
             {
-                var roleName = ((UserType)user.UserType).ToString();
+                // Performance: Batch check existing roles to minimize database queries
+                var existingRoles = await _roleManager.Roles
+                    .Where(r => uniqueRoles.Contains(r.Name))
+                    .Select(r => r.Name)
+                    .ToListAsync(cancellationToken);
 
-                if (!await _roleManager.RoleExistsAsync(roleName))
+                // Performance: Create only non-existing roles in batch
+                var rolesToCreate = uniqueRoles.Except(existingRoles, StringComparer.OrdinalIgnoreCase).ToList();
+                foreach (var roleToCreate in rolesToCreate)
                 {
-                    await _roleManager.CreateAsync(new IdentityRole<Guid>(roleName));
+                    await _roleManager.CreateAsync(new IdentityRole<Guid>(roleToCreate));
                 }
 
-                await _signInManager.UserManager.AddToRoleAsync(user, roleName);
+                // Security & Performance: Assign all roles to user
+                foreach (var role in uniqueRoles)
+                {
+                    await _signInManager.UserManager.AddToRoleAsync(user, role);
+                }
             }
 
             return result.MapToResult(result);

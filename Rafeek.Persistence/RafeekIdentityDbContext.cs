@@ -14,27 +14,20 @@ namespace Rafeek.Persistence
     {
         private readonly ICurrentUserService? _currentUserService;
 
-        public RafeekIdentityDbContext(DbContextOptions<RafeekIdentityDbContext> options) : base(options)
-        {
-        }
-
         public RafeekIdentityDbContext(DbContextOptions<RafeekIdentityDbContext> options,
             ICurrentUserService currentUserService) : base(options)
         {
             _currentUserService = currentUserService;
         }
 
-        public DbSet<UserFbTokens> FbTokens { get; set; }
-        public DbSet<RefreshToken> RefreshTokens { get; set; }
-
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.HasDefaultSchema("auth");
+
             base.OnModelCreating(builder);
 
             builder.ApplyConfigurationsFromAssembly(typeof(RafeekIdentityDbContext).Assembly,
-                type => type.Namespace != null && type.Namespace.EndsWith("Configurations.Identity"));
-
-            builder.HasDefaultSchema("auth");
+                type => type.Namespace != null && type.Namespace.EndsWith("Configurations.IdentityConfiguration"));
 
             builder.Ignore<Department>();
         }
@@ -50,30 +43,6 @@ namespace Rafeek.Persistence
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
-            foreach (var entry in ChangeTracker.Entries<BaseEntity>())
-            {
-                switch (entry.State)
-                {
-                    case EntityState.Added:
-                        entry.Entity.CreatedAt = DateTime.Now;
-                        entry.Entity.CreatedBy = !string.IsNullOrEmpty(entry.Entity.CreatedBy)
-                            ? entry.Entity.CreatedBy
-                            : (_currentUserService?.UserId.ToString() ?? "System");
-                        break;
-                    case EntityState.Modified:
-                        entry.Entity.UpdatedAt = DateTime.Now;
-                        entry.Entity.UpdatedBy = _currentUserService?.UserId.ToString() ?? "System";
-                        break;
-                    case EntityState.Deleted:
-                        entry.State = EntityState.Modified;
-                        entry.Entity.DeletedAt = DateTime.Now;
-                        entry.Entity.DeletedBy = _currentUserService?.UserId.ToString() ?? "System";
-                        entry.Entity.IsDeleted = true;
-                        entry.State = EntityState.Modified;
-                        break;
-                }
-            }
-
             return await base.SaveChangesAsync(cancellationToken);
         }
     }

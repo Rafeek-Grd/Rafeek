@@ -24,7 +24,8 @@ namespace Rafeek.API.Filters
             }
 
             // If neither action nor controller has Authorize, remove security and return
-            var hasAuthorize = actionAttrs.OfType<AuthorizeAttribute>().Any() || controllerAttrs.OfType<AuthorizeAttribute>().Any();
+            var hasAuthorize = actionAttrs.OfType<AuthorizeAttribute>().Any() || controllerAttrs.OfType<AuthorizeAttribute>().Any()
+                              || actionAttrs.OfType<RoleAuthorizeAttribute>().Any() || controllerAttrs.OfType<RoleAuthorizeAttribute>().Any();
             if (!hasAuthorize)
             {
                 operation.Security = null;

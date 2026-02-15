@@ -11,13 +11,31 @@ namespace Rafeek.API.Services
         public bool IsAuthenticated { get; } = false;
         public string IpAddress { get; } = "";
 
-        public CurrentUserService(IHttpContextAccessor httpContextAccessor)
+        public CurrentUserService(IHttpContextAccessor httpContextAccessor, IDataEncryption dataEncryption)
         {
             try
             {
                 IpAddress = httpContextAccessor.HttpContext?.Connection?.RemoteIpAddress?.ToString() ?? string.Empty;
                 UserName = httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.Name);
-                UserId = httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.NameIdentifier).ToGuid() ?? Guid.Empty;
+                
+                var encryptedId = httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.NameIdentifier);
+                if (!string.IsNullOrEmpty(encryptedId))
+                {
+                    try 
+                    {
+                        var decryptedId = dataEncryption.Decrypt(encryptedId);
+                        UserId = decryptedId.ToGuid();
+                    }
+                    catch 
+                    {
+                        UserId = Guid.Empty;
+                    }
+                }
+                else
+                {
+                    UserId = Guid.Empty;
+                }
+
                 IsAuthenticated = UserId != Guid.Empty;
             }
             catch (Exception ex)

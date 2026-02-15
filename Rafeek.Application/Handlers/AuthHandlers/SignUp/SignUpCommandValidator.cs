@@ -2,10 +2,10 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Localization;
 using Rafeek.Application.Localization;
-using Rafeek.Domain.Entities;
 using Rafeek.Domain.Enums;
 using System.Text.RegularExpressions;
 using Microsoft.EntityFrameworkCore;
+using Rafeek.Domain.Entities;
 
 namespace Rafeek.Application.Handlers.AuthHandlers.SignUp
 {
@@ -18,6 +18,21 @@ namespace Rafeek.Application.Handlers.AuthHandlers.SignUp
         {
             _localizer = localizer;
             _userManager = userManager;
+
+            // Security: Validate PrimaryRole
+            RuleFor(v => v.PrimaryRole)
+                .Must(r => Enum.IsDefined(typeof(UserType), r))
+                .WithMessage(_localizer[LocalizationKeys.UserMessages.PrimayRoleInvalid.Value]);
+
+            // Security: Validate AdditionalRoles if provided
+            RuleFor(v => v.AdditionalRoles)
+                .Must(roles => roles == null || roles.All(r => Enum.IsDefined(typeof(UserType), r)))
+                .WithMessage(_localizer[LocalizationKeys.UserMessages.AdditionalRolesInvalid.Value]);
+
+            // Security: Prevent duplicate roles
+            RuleFor(v => v)
+                .Must(command => command.AdditionalRoles == null || !command.AdditionalRoles.Contains(command.PrimaryRole))
+                .WithMessage(_localizer[LocalizationKeys.UserMessages.PrimayRoleInvalid.Value]);
 
             RuleFor(v => v.FullName)
                 .Cascade(CascadeMode.Stop)
@@ -34,13 +49,23 @@ namespace Rafeek.Application.Handlers.AuthHandlers.SignUp
                 .Cascade(CascadeMode.Stop)
                 .NotNull().NotEmpty().WithMessage(_localizer[LocalizationKeys.UserMessages.EmailRequired.Value])
                 .EmailAddress().WithMessage(_localizer[LocalizationKeys.GlobalValidationMessages.EmailInvalid.Value])
-                .Must(email => email != null && email.EndsWith("@std.mans.edu.eg", StringComparison.OrdinalIgnoreCase))
+                .Must((command, email) =>
+                {
+                    if (string.IsNullOrEmpty(email)) return false;
+                    
+                    // Security: Email domain validation based on PrimaryRole
+                    if (command.PrimaryRole == UserType.Student)
+                    {
+                        return email.EndsWith("@std.mans.edu.eg", StringComparison.OrdinalIgnoreCase);
+                    }
+                    
+                    return email.EndsWith("@mans.edu.eg", StringComparison.OrdinalIgnoreCase);
+                })
                 .WithMessage(_localizer[LocalizationKeys.GlobalValidationMessages.EmailDomainInvalid.Value]) 
                 .MustAsync(EmailIsNotExist).WithMessage(_localizer[LocalizationKeys.UserMessages.EmailAlreadyExistedbefore.Value]);
 
             RuleFor(v => v.NationalNumber)
-                .NotEmpty().WithMessage(_localizer[LocalizationKeys.UserMessages.NationalNumberRequired.Value])
-                .MustAsync(NationalNumberIsNotExist).WithMessage(_localizer[LocalizationKeys.GlobalValidationMessages.NationalNumberExist.Value]);
+                .NotEmpty().WithMessage(_localizer[LocalizationKeys.UserMessages.NationalNumberRequired.Value]);
 
              RuleFor(x => x.Gender)
                 .Must(g => !g.HasValue || Enum.IsDefined(typeof(GenderType), g.Value))
@@ -87,11 +112,6 @@ namespace Rafeek.Application.Handlers.AuthHandlers.SignUp
              // Normalize phone before check if needed, or check exactly as stored
             var normalizedPhone = Regex.Replace(phone, "^0+", "");
             return !await _userManager.Users.AnyAsync(x => x.PhoneNumber == phone || x.PhoneNumber == normalizedPhone, cancellationToken);
-        }
-
-        private async Task<bool> NationalNumberIsNotExist(string nationalNumber, CancellationToken cancellationToken)
-        {
-             return !await _userManager.Users.AnyAsync(x => x.NationalNumber == nationalNumber, cancellationToken);
         }
     }
 }

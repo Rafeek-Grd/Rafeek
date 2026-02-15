@@ -5,11 +5,11 @@ using Rafeek.Infrastructure.Repostiories.Implementations.Generic;
 
 namespace Rafeek.Infrastructure.Repostiories.Implementations
 {
-    public class UserFbTokenRepository: BaseIdentityEntityRepository<UserFbTokens, Guid>, IUserFbTokenRepository
+    public class UserFbTokenRepository: BaseEntityRepository<UserFbTokens, Guid>, IUserFbTokenRepository
     {
         public UserFbTokenRepository
         (
-            IRafeekIdentityDbContext context) : base(context)
+            IRafeekDbContext context) : base(context)
         {
         }
     }

@@ -1,4 +1,5 @@
-﻿using Rafeek.Application.Common.Interfaces;
+﻿using Microsoft.AspNetCore.Identity;
+using Rafeek.Application.Common.Interfaces;
 using Rafeek.Application.Localization;
 using Rafeek.Domain.Entities;
 using Rafeek.Domain.Repositories.Interfaces;
@@ -10,19 +11,22 @@ using System.Security.Claims;
 namespace Rafeek.Infrastructure.Repostiories.Implementations
 {
 
-    public class RefreshTokenRepository : BaseIdentityEntityRepository<RefreshToken, Guid>, IRefreshTokenRepository
+    public class RefreshTokenRepository : BaseEntityRepository<RefreshToken, Guid>, IRefreshTokenRepository
     {
         private readonly IJwtTokenManager _jwtTokenManager;
         private readonly ICurrentUserService _currentUserService;
+        private readonly IDataEncryption _dataEncryption;
 
         public RefreshTokenRepository
         (
-            IRafeekIdentityDbContext context,
+            IRafeekDbContext context,
             IJwtTokenManager jwtTokenManager,
-            ICurrentUserService currentUserService) : base(context)
+            ICurrentUserService currentUserService,
+            IDataEncryption dataEncryption) : base(context)
         {
             _jwtTokenManager = jwtTokenManager;
             _currentUserService = currentUserService;
+            _dataEncryption = dataEncryption;
         }
 
         public async Task<RefreshToken> GetToken(string token, CancellationToken cancellationToken)
@@ -33,7 +37,9 @@ namespace Rafeek.Infrastructure.Repostiories.Implementations
 
                 // Extract individual claims from the JWT
                 string username = jwtToken.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Name)?.Value;
-                string userId = jwtToken.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
+                
+                string encryptedId = jwtToken.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
+                string userId = !string.IsNullOrEmpty(encryptedId) ? _dataEncryption.Decrypt(encryptedId) : null;
                 string issuer = jwtToken.Claims.FirstOrDefault(x => x.Type == JwtRegisteredClaimNames.Iss)?.Value;
                 long issuedAt = Convert.ToInt64(jwtToken.Claims.FirstOrDefault(x => x.Type == JwtRegisteredClaimNames.Iat)?.Value);
                 long notBefore = Convert.ToInt64(jwtToken.Claims.FirstOrDefault(x => x.Type == JwtRegisteredClaimNames.Nbf)?.Value);
@@ -59,36 +65,29 @@ namespace Rafeek.Infrastructure.Repostiories.Implementations
 
         public async Task<object> GenerateTokens(ApplicationUser user, CancellationToken cancellationToken)
         {
-            try
+            var jwtToken = await _jwtTokenManager.GenerateClaimsTokenAsync(user.Email, cancellationToken);
+            var lastToken = GetBy(x => x.UserId == user.Id.ToString() && x.RemoteIpAddress == _currentUserService.IpAddress).OrderBy(x => x.CreationDate).LastOrDefault();
+            if (lastToken != null && lastToken.IsActive)
             {
-                var jwtToken = await _jwtTokenManager.GenerateClaimsTokenAsync(user.Email, cancellationToken);
-                var lastToken = GetBy(x => x.UserId == user.Id.ToString() && x.RemoteIpAddress == _currentUserService.IpAddress).OrderBy(x => x.CreationDate).LastOrDefault();
-                if (lastToken != null && lastToken.IsActive)
-                {
-                    Delete(lastToken);
-                }
-
-                var jti = new JwtSecurityTokenHandler().ReadJwtToken(jwtToken.RefreshToken).Id;
-
-                var newToken = new RefreshToken()
-                {
-                    CreationDate = DateTime.Now,
-                    ExpirationDate = jwtToken.RefreshTokenExpiration,
-                    JwtId = jti,
-                    RemoteIpAddress = _currentUserService.IpAddress ?? "::1",
-                    Token = jwtToken.RefreshToken,
-                    UserId = user.Id.ToString()
-                };
-
-                await AddAsync(newToken, cancellationToken);
-                await _context.SaveChangesAsync(cancellationToken);
-                // Transaction management delegated to IIdentityUnitOfWork - caller is responsible for SaveChangesAsync
-                return jwtToken;
+                Delete(lastToken);
             }
-            catch (Exception ex)
+
+            var jti = new JwtSecurityTokenHandler().ReadJwtToken(jwtToken.RefreshToken).Id;
+
+            var newToken = new RefreshToken()
             {
-                throw new UnauthorizedAccessException(LocalizationKeys.TokenMessages.NotValid.Value);
-            }
+                CreationDate = DateTime.Now,
+                ExpirationDate = jwtToken.RefreshTokenExpiration,
+                JwtId = jti,
+                RemoteIpAddress = _currentUserService.IpAddress ?? "::1",
+                Token = jwtToken.RefreshToken,
+                UserId = user.Id.ToString()
+            };
+
+            await AddAsync(newToken, cancellationToken);
+            await _context.SaveChangesAsync(cancellationToken);
+            // Transaction management delegated to IIdentityUnitOfWork - caller is responsible for SaveChangesAsync
+            return jwtToken;
         }
     }
 }

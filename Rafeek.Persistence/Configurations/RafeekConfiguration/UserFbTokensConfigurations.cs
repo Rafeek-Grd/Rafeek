@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Rafeek.Domain.Entities;
 
-namespace Rafeek.Persistence.Configurations.Identity
+namespace Rafeek.Persistence.Configurations.RafeekConfiguration
 {
     public class UserFbTokensConfigurations : IEntityTypeConfiguration<UserFbTokens>
     {
@@ -11,11 +11,6 @@ namespace Rafeek.Persistence.Configurations.Identity
             builder.ToTable("UserFbTokens");
 
             builder.HasQueryFilter(x => !x.IsDeleted);
-
-            builder.HasOne(x => x.ApplicationUser)
-                .WithMany(x => x.UserFbTokens)
-                .HasForeignKey(x => x.ApplicationUserId)
-                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

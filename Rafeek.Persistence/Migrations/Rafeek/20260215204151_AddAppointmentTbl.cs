@@ -6,23 +6,20 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Rafeek.Persistence.Migrations.Rafeek
 {
     /// <inheritdoc />
-    public partial class InitiateRafeekDb : Migration
+    public partial class AddAppointmentTbl : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.EnsureSchema(
-                name: "dbo");
-
             migrationBuilder.CreateTable(
-                name: "Departments",
+                name: "Appointments",
                 schema: "dbo",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Code = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    StudentId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    DoctorId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
                     DeletedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -34,15 +31,36 @@ namespace Rafeek.Persistence.Migrations.Rafeek
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Departments", x => x.Id);
+                    table.PrimaryKey("PK_Appointments", x => x.Id);
+                    // Foreign key to Doctors table removed temporarily due to missing Doctors table
+                    // Will be added in a separate migration after Doctors table is verified/created
+                    table.ForeignKey(
+                        name: "FK_Appointments_Students_StudentId",
+                        column: x => x.StudentId,
+                        principalSchema: "dbo",
+                        principalTable: "Students",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Appointments_DoctorId",
+                schema: "dbo",
+                table: "Appointments",
+                column: "DoctorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Appointments_StudentId",
+                schema: "dbo",
+                table: "Appointments",
+                column: "StudentId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Departments",
+                name: "Appointments",
                 schema: "dbo");
         }
     }

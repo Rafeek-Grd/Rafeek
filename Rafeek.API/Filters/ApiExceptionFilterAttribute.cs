@@ -118,6 +118,8 @@ namespace Rafeek.API.Filters
 
         private void HandleUnknownException(ExceptionContext context)
         {
+            _logger.Error(context.Exception, "An unhandled exception has occurred while executing the request.");
+
             var message = _localizer?[LocalizationKeys.ExceptionMessage.UnknownException.Value];
             var details = ApiResponse<object>.Error(message, StatusCodes.Status500InternalServerError);
 
@@ -125,7 +127,7 @@ namespace Rafeek.API.Filters
             {
                 StatusCode = StatusCodes.Status500InternalServerError
             };
-            Console.WriteLine(context.Exception.Message);
+
             context.ExceptionHandled = true;
         }
     }

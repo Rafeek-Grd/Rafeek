@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Rafeek.Domain.Entities;
 
-namespace Rafeek.Persistence.Configurations.IdentityConfiguration
+namespace Rafeek.Persistence.Configurations.RafeekConfiguration
 {
     public class RefreshTokenConfigurations : IEntityTypeConfiguration<RefreshToken>
     {
@@ -10,7 +10,7 @@ namespace Rafeek.Persistence.Configurations.IdentityConfiguration
         {
             builder.ToTable("RefreshTokens");
 
-            builder.HasQueryFilter(r => !r.IsExpired && r.Revoked == null);
+            builder.HasQueryFilter(r => DateTime.UtcNow < r.ExpirationDate && r.Revoked == null);
         }
     }
 }
