@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Rafeek.Persistence;
 
@@ -11,9 +12,11 @@ using Rafeek.Persistence;
 namespace Rafeek.Persistence.Migrations.Rafeek
 {
     [DbContext(typeof(RafeekDbContext))]
-    partial class RafeekDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260215210212_AddAcademicNotification")]
+    partial class AddAcademicNotification
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -124,6 +127,61 @@ namespace Rafeek.Persistence.Migrations.Rafeek
                     b.HasIndex("StudentId");
 
                     b.ToTable("AcademicFeedbacks", "dbo");
+                });
+
+            modelBuilder.Entity("Rafeek.Domain.Entities.AcademicNotification", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DeletedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsRead")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("StudentId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("StudentId");
+
+                    b.ToTable("AcademicNotifications", "dbo");
                 });
 
             modelBuilder.Entity("Rafeek.Domain.Entities.ApplicationUser", b =>
@@ -736,77 +794,6 @@ namespace Rafeek.Persistence.Migrations.Rafeek
                     b.ToTable("LearningResources", "dbo");
                 });
 
-            modelBuilder.Entity("Rafeek.Domain.Entities.Notification", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("DeletedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("DeletedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsRead")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
-
-                    b.Property<string>("Message")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("SendTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid?>("StudentId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("TargetGroup")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.Property<int>("Type")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasDefaultValue(0);
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("UpdatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("SendTime");
-
-                    b.HasIndex("StudentId");
-
-                    b.HasIndex("Type");
-
-                    b.ToTable("Notifications", "dbo");
-                });
-
             modelBuilder.Entity("Rafeek.Domain.Entities.RefreshToken", b =>
                 {
                     b.Property<string>("JwtId")
@@ -1160,6 +1147,17 @@ namespace Rafeek.Persistence.Migrations.Rafeek
                     b.Navigation("Student");
                 });
 
+            modelBuilder.Entity("Rafeek.Domain.Entities.AcademicNotification", b =>
+                {
+                    b.HasOne("Rafeek.Domain.Entities.Student", "Student")
+                        .WithMany("AcademicNotifications")
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Student");
+                });
+
             modelBuilder.Entity("Rafeek.Domain.Entities.CareerSuggestion", b =>
                 {
                     b.HasOne("Rafeek.Domain.Entities.Student", "Student")
@@ -1306,16 +1304,6 @@ namespace Rafeek.Persistence.Migrations.Rafeek
                     b.Navigation("Course");
                 });
 
-            modelBuilder.Entity("Rafeek.Domain.Entities.Notification", b =>
-                {
-                    b.HasOne("Rafeek.Domain.Entities.Student", "Student")
-                        .WithMany("Notifications")
-                        .HasForeignKey("StudentId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.Navigation("Student");
-                });
-
             modelBuilder.Entity("Rafeek.Domain.Entities.Section", b =>
                 {
                     b.HasOne("Rafeek.Domain.Entities.Course", "Course")
@@ -1436,11 +1424,11 @@ namespace Rafeek.Persistence.Migrations.Rafeek
                 {
                     b.Navigation("AcademicFeedbacks");
 
+                    b.Navigation("AcademicNotifications");
+
                     b.Navigation("ChatbotQueries");
 
                     b.Navigation("Enrollments");
-
-                    b.Navigation("Notifications");
 
                     b.Navigation("StudyPlans");
 
