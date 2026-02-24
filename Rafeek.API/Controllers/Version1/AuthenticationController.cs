@@ -21,6 +21,11 @@ namespace Rafeek.API.Controllers.Version1
             _mediator = mediator;
         }
 
+        /// <summary>
+        /// Sign up a new user. Only Admin can create new users.
+        /// </summary>
+        /// <param name="command"></param>
+        /// <returns></returns>
         [HttpPost]
         [RoleAuthorize(nameof(UserType.Admin))]
         [Route(ApiRoutes.Authentication.SignUp)]
