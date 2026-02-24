@@ -6,6 +6,7 @@ namespace Rafeek.Domain.Entities
     {
         public string FullName { get; set; } = null!;
         public string NationalId { get; set; } = null!;
+        public string? ProfilePictureUrl { get; set; }
         public string? Address { get; set; }
         public string? PasswordResetToken { get; set; }
         public DateTime? PasswordResetTokenExpiredTime { get; set; }

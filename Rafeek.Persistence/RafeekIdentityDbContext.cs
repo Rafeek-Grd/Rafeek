@@ -30,6 +30,8 @@ namespace Rafeek.Persistence
                 type => type.Namespace != null && type.Namespace.EndsWith("Configurations.IdentityConfiguration"));
 
             builder.Ignore<Department>();
+            builder.Ignore<Notification>();
+            builder.Ignore<UserLoginHistory>();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
