@@ -59,6 +59,7 @@ namespace Rafeek.Application.Handlers.AuthHandlers.SignUp
                         NormalizedUserName = request.Email.ToUpperInvariant(),
                         Email = request.Email,
                         NormalizedEmail = request.Email.ToUpperInvariant(),
+                        ProfilePictureUrl = request.ImageName,
                         FullName = request.FullName,
                         NationalId = request.NationalNumber,
                         PhoneNumber = Regex.Replace(phone, "^0+", ""),
@@ -107,19 +108,33 @@ namespace Rafeek.Application.Handlers.AuthHandlers.SignUp
                     }
                     else if (primaryRole == UserType.Instructor)
                     {
+                        string employeeCode = await GenerateUniqueEmployeeCodeAsync(cancellationToken);
                         var instructor = new Instructor
                         {
-                            UserId = user.Id
+                            UserId = user.Id,
+                            EmployeeCode = employeeCode
                         };
                         await _dbContext.Instructors.AddAsync(instructor, cancellationToken);
                     }
                     else if (primaryRole == UserType.Doctor)
                     {
+                        string employeeCode = await GenerateUniqueEmployeeCodeAsync(cancellationToken);
                         var doctor = new Doctor
                         {
-                            UserId = user.Id
+                            UserId = user.Id,
+                            EmployeeCode = employeeCode
                         };
                         await _dbContext.Doctors.AddAsync(doctor, cancellationToken);
+                    }
+                    else if (primaryRole == UserType.Staff)
+                    {
+                        string employeeCode = await GenerateUniqueEmployeeCodeAsync(cancellationToken);
+                        var staff = new Staff
+                        {
+                            UserId = user.Id,
+                            EmployeeCode = employeeCode
+                        };
+                        await _dbContext.Staffs.AddAsync(staff, cancellationToken);
                     }
 
                     await _ctx.SaveChangesAsync(cancellationToken);
@@ -188,6 +203,34 @@ namespace Rafeek.Application.Handlers.AuthHandlers.SignUp
                 if (!exists)
                 {
                     return universityCode;
+                }
+
+                attempts++;
+            }
+
+            throw new BadRequestException(_localizer[LocalizationKeys.GlobalValidationMessages.UniversityCodeMultipleAttemps.Value]);
+        }
+
+        private async Task<string> GenerateUniqueEmployeeCodeAsync(CancellationToken cancellationToken)
+        {
+            const int maxAttempts = 10;
+            int attempts = 0;
+
+            while (attempts < maxAttempts)
+            {
+                var randomNumber = RandomNumberGenerator.GetInt32(100000000, 1000000000);
+                var employeeCode = randomNumber.ToString();
+
+                var existsInStaff = await _dbContext.Staffs
+                    .AnyAsync(s => s.EmployeeCode == employeeCode, cancellationToken);
+                var existsInDoctors = await _dbContext.Doctors
+                    .AnyAsync(d => d.EmployeeCode == employeeCode, cancellationToken);
+                var existsInInstructors = await _dbContext.Instructors
+                    .AnyAsync(i => i.EmployeeCode == employeeCode, cancellationToken);
+
+                if (!existsInStaff && !existsInDoctors && !existsInInstructors)
+                {
+                    return employeeCode;
                 }
 
                 attempts++;

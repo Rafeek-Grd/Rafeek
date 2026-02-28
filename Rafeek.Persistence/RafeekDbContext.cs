@@ -46,6 +46,7 @@ namespace Rafeek.Persistence
         public DbSet<CampusMapLocation> CampusMapLocations { get; set; }
         public DbSet<AnalyticsReport> AnalyticsReports { get; set; }
         public DbSet<UserLoginHistory> UserLoginHistories { get; set; }
+        public DbSet<Staff> Staffs { get; set; }    
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

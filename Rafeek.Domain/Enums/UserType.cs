@@ -7,7 +7,6 @@
         Staff = 3,
         Instructor = 4,
         Doctor = 5,
-        Student = 6,
-        AcademicAdvisor = 7
+        Student = 6
     }
 }

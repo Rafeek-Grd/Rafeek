@@ -37,6 +37,7 @@ namespace Rafeek.Application.Common.Interfaces
         DbSet<Notification> Notifications { get; }
         DbSet<UserLoginHistory> UserLoginHistories { get; }
         DbSet<AnalyticsReport> AnalyticsReports { get; }
+        DbSet<Staff> Staffs { get; }
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
         Task<IDbContextTransaction> BeginTransactionAsync(CancellationToken cancellationToken = default);
