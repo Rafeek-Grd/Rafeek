@@ -16,6 +16,8 @@ namespace Rafeek.Domain.Entities
         public StudentAcademicProfile? AcademicProfile { get; set; }
         public Guid UserId { get; set; }
         public ApplicationUser User { get; set; } = null!;
+        public Guid? AcademicAdvisorId { get; set; }
+        public Doctor? AcademicAdvisor { get; set; }
         public ICollection<UserFbTokens> UserFbTokens { get; set; } = new List<UserFbTokens>();
         public ICollection<ChatbotQuery> ChatbotQueries { get; set; } = new HashSet<ChatbotQuery>();
         public ICollection<StudyPlan> StudyPlans { get; set; } = new HashSet<StudyPlan>();

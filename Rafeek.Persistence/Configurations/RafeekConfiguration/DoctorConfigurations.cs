@@ -13,6 +13,11 @@ namespace Rafeek.Persistence.Configurations.RafeekConfiguration
                    .HasForeignKey<Doctor>(d => d.UserId)
                    .OnDelete(DeleteBehavior.Cascade);
 
+            builder.HasMany(d => d.AdvisedStudents)
+                   .WithOne(s => s.AcademicAdvisor)
+                   .HasForeignKey(s => s.AcademicAdvisorId)
+                   .OnDelete(DeleteBehavior.NoAction);
+
             builder.HasQueryFilter(d => !d.IsDeleted);
         }
     }

@@ -2,10 +2,12 @@
 {
     public enum UserType
     {
-        Student = 0,
-        SubAdmin = 1,
-        Admin = 2,
-        Doctor = 3,
-        Instructor = 4
+        Admin = 1,
+        SubAdmin = 2,
+        Staff = 3,
+        Instructor = 4,
+        Doctor = 5,
+        Student = 6,
+        AcademicAdvisor = 7
     }
 }

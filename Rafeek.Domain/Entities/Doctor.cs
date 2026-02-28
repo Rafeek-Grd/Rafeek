@@ -8,6 +8,9 @@ namespace Rafeek.Domain.Entities
         public ApplicationUser User { get; set; } = null!;
         public Guid? DepartmentId { get; set; }
         public Department? Department { get; set; }
+        public bool IsAcademicAdvisor { get; set; }
+
+        public ICollection<Student> AdvisedStudents { get; set; } = new HashSet<Student>();
         public ICollection<UserFbTokens> UserFbTokens { get; set; } = new List<UserFbTokens>();
         public ICollection<Appointment> Appointments { get; set; } = new HashSet<Appointment>();
     }
