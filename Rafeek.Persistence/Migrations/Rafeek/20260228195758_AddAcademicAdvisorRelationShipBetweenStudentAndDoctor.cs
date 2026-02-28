@@ -5,10 +5,8 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Rafeek.Persistence.Migrations.Rafeek
 {
-    /// <inheritdoc />
     public partial class AddAcademicAdvisorRelationShipBetweenStudentAndDoctor : Migration
     {
-        /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<Guid>(
@@ -18,7 +16,6 @@ namespace Rafeek.Persistence.Migrations.Rafeek
                 type: "uniqueidentifier",
                 nullable: true);
 
-            // Add IsAcademicAdvisor to Doctors only if the table exists (for databases with older schema)
             migrationBuilder.Sql(@"
                 IF EXISTS (SELECT * FROM sys.tables t JOIN sys.schemas s ON t.schema_id = s.schema_id 
                            WHERE s.name = 'dbo' AND t.name = 'Doctors')
@@ -36,7 +33,6 @@ namespace Rafeek.Persistence.Migrations.Rafeek
                 table: "Students",
                 column: "AcademicAdvisorId");
 
-            // Add FK only if Doctors table exists
             migrationBuilder.Sql(@"
                 IF EXISTS (SELECT * FROM sys.tables t JOIN sys.schemas s ON t.schema_id = s.schema_id 
                            WHERE s.name = 'dbo' AND t.name = 'Doctors')
@@ -50,7 +46,6 @@ namespace Rafeek.Persistence.Migrations.Rafeek
             ");
         }
 
-        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.Sql(@"
