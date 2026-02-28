@@ -1,4 +1,4 @@
-﻿namespace Rafeek.API.Routes
+namespace Rafeek.API.Routes
 {
     public static class ApiRoutes
     {
@@ -22,6 +22,8 @@
         public static class Authentication
         {
             public const string SignUp = Base + "/signup";
+            public const string SignIn = Base + "/signin";
+            public const string RefreshToken = Base + "/refresh-token";
         }
     }
 }

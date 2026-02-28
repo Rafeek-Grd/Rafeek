@@ -1,9 +1,11 @@
-﻿using MediatR;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 using Rafeek.API.Filters;
 using Rafeek.API.Routes;
+using Rafeek.Application.Handlers.AuthHandlers.RefreshToken;
+using Rafeek.Application.Handlers.AuthHandlers.SignIn;
 using Rafeek.Application.Handlers.AuthHandlers.SignUp;
 using Rafeek.Application.Localization;
 using Rafeek.Domain.Enums;
@@ -21,16 +23,35 @@ namespace Rafeek.API.Controllers.Version1
             _mediator = mediator;
         }
 
-        /// <summary>
-        /// Sign up a new user. Only Admin can create new users.
-        /// </summary>
-        /// <param name="command"></param>
-        /// <returns></returns>
         [HttpPost]
         [Route(ApiRoutes.Authentication.SignUp)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> SignUp([FromBody] SignUpCommand command)
+        {
+            var result = await _mediator.Send(command);
+            return Ok(result);
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [Route(ApiRoutes.Authentication.SignIn)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        public async Task<IActionResult> SignIn([FromBody] SignInCommand command)
+        {
+            var result = await _mediator.Send(command);
+            return Ok(result);
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [Route(ApiRoutes.Authentication.RefreshToken)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        public async Task<IActionResult> RefreshToken([FromBody] RefreshTokenCommand command)
         {
             var result = await _mediator.Send(command);
             return Ok(result);
