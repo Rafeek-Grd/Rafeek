@@ -12,7 +12,7 @@ using Rafeek.Persistence;
 namespace Rafeek.Persistence.Migrations.Rafeek
 {
     [DbContext(typeof(RafeekDbContext))]
-    [Migration("20260228195758_AddAcademicAdvisorRelationShipBetweenStudentAndDoctor")]
+    [Migration("20260228211018_AddAcademicAdvisorRelationShipBetweenStudentAndDoctor")]
     partial class AddAcademicAdvisorRelationShipBetweenStudentAndDoctor
     {
         /// <inheritdoc />
