@@ -1,4 +1,4 @@
-﻿namespace Rafeek.Application.Handlers.AuthHandlers
+namespace Rafeek.Application.Handlers.AuthHandlers
 {
     public class SignResponse
     {
@@ -7,6 +7,7 @@
         public string FullName { get; set; } = null!;
         public string Phone { get; set; } = null!;
         public int Role { get; set; }
+        public string? ProfilePictureUrl { get; set; }
         public string Token { get; set; } = null!;
         public string RefreshToken { get; set; } = null!;
         public string TokenType { get; set; } = null!;

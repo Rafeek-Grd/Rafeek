@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Rafeek.Application.Common.Interfaces;
 using Rafeek.Application.Localization;
 using Rafeek.Domain.Entities;
@@ -29,13 +30,12 @@ namespace Rafeek.Infrastructure.Repostiories.Implementations
             _dataEncryption = dataEncryption;
         }
 
-        public async Task<RefreshToken> GetToken(string token, CancellationToken cancellationToken)
+        public async Task<RefreshToken?> GetToken(string token, CancellationToken cancellationToken)
         {
             try
             {
                 var jwtToken = await _jwtTokenManager.GetPrincipFromTokenAsync(token);
 
-                // Extract individual claims from the JWT
                 string username = jwtToken.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Name)?.Value;
                 
                 string encryptedId = jwtToken.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
@@ -57,10 +57,15 @@ namespace Rafeek.Infrastructure.Repostiories.Implementations
                     UserId = userId
                 };
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return null;
             }
+        }
+
+        public async Task<RefreshToken?> GetValidRefreshTokenAsync(string token, CancellationToken cancellationToken)
+        {
+            return await GetBy(x => x.Token == token).FirstOrDefaultAsync(cancellationToken);
         }
 
         public async Task<object> GenerateTokens(ApplicationUser user, CancellationToken cancellationToken)
@@ -86,7 +91,7 @@ namespace Rafeek.Infrastructure.Repostiories.Implementations
 
             await AddAsync(newToken, cancellationToken);
             await _context.SaveChangesAsync(cancellationToken);
-            // Transaction management delegated to IIdentityUnitOfWork - caller is responsible for SaveChangesAsync
+            
             return jwtToken;
         }
     }
