@@ -248,4 +248,8 @@
 		<value>User account is locked out.</value>
   </data>
 
+	<data name="EmailUnVerified" xml:space="preserve">
+		<value>User email is unverified.</value>
+  </data>
+
 </root>

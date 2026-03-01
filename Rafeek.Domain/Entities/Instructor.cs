@@ -11,6 +11,5 @@ namespace Rafeek.Domain.Entities
 
         public Guid? DepartmentId { get; set; }
         public Department? Department { get; set; }
-        public ICollection<UserFbTokens> UserFbTokens { get; set; } = new List<UserFbTokens>();
     }
 }

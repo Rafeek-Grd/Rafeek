@@ -69,7 +69,7 @@ namespace Rafeek.Application.Handlers.AuthHandlers.SignUp
                     var primaryRole = request.PrimaryRole;
                     
                     var allRoles = new List<string> { primaryRole.ToString() };
-                    if (request.AdditionalRoles?.Any() == true)
+                    if (request.AdditionalRoles != null && request.AdditionalRoles.Any())
                     {
                         allRoles.AddRange(request.AdditionalRoles.Select(r => r.ToString()));
                     }
@@ -173,7 +173,7 @@ namespace Rafeek.Application.Handlers.AuthHandlers.SignUp
                     var signResponse = _mapper.Map(tokens, new SignResponse());
                     _mapper.Map(user, signResponse);
                     
-                    signResponse.Role = (int)primaryRole;
+                    signResponse.Roles = allRoles;
                     
                     return signResponse;
                 }

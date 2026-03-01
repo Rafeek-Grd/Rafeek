@@ -47,6 +47,7 @@
             public static readonly KeyString AdditionalRolesInvalid = new("AdditionalRolesInvalid");
             public static readonly KeyString NotFound = new("UserNotFound");
             public static readonly KeyString Locked = new("UserLocked");
+            public static readonly KeyString EmailUnVerified = new("EmailUnVerified");
         }
 
         public record UploadFileMessages

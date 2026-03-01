@@ -142,6 +142,15 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to User email is unverified..
+        /// </summary>
+        public static string EmailUnVerified {
+            get {
+                return ResourceManager.GetString("EmailUnVerified", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to File Deletion Failed..
         /// </summary>
         public static string FaildToDeleted {

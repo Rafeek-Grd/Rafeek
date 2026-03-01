@@ -255,4 +255,7 @@
   <data name="UserLocked" xml:space="preserve">
     <value>حساب المُستخدم تم اغلاقه.</value>
   </data>
+  <data name="EmailUnVerified" xml:space="preserve">
+    <value>حساب المُستخدم لم يتم التحقق منه.</value>
+  </data>
 </root>

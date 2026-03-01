@@ -10,6 +10,12 @@ namespace Rafeek.Persistence.Configurations.RafeekConfiguration
         {
             builder.ToTable("UserFbTokens");
 
+            builder.HasOne(x => x.ApplicationUser)
+                .WithMany(x => x.UserFbTokens)
+                .HasForeignKey(x => x.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+
             builder.HasQueryFilter(x => !x.IsDeleted);
         }
     }
