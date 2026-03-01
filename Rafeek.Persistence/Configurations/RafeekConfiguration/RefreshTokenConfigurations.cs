@@ -9,8 +9,6 @@ namespace Rafeek.Persistence.Configurations.RafeekConfiguration
         public void Configure(EntityTypeBuilder<RefreshToken> builder)
         {
             builder.ToTable("RefreshTokens");
-
-            builder.HasQueryFilter(r => DateTime.UtcNow < r.ExpirationDate && r.Revoked == null);
         }
     }
 }

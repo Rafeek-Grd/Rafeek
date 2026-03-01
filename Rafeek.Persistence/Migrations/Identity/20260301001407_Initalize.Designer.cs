@@ -12,8 +12,8 @@ using Rafeek.Persistence;
 namespace Rafeek.Persistence.Migrations.Identity
 {
     [DbContext(typeof(RafeekIdentityDbContext))]
-    [Migration("20260213170241_Init")]
-    partial class Init
+    [Migration("20260301001407_Initalize")]
+    partial class Initalize
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -216,6 +216,9 @@ namespace Rafeek.Persistence.Migrations.Identity
 
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
+
+                    b.Property<string>("ProfilePictureUrl")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");

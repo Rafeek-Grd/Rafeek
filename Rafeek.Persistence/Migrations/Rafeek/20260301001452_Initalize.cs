@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Rafeek.Persistence.Migrations.Rafeek
 {
     /// <inheritdoc />
-    public partial class Init : Migration
+    public partial class Initalize : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -18,34 +18,50 @@ namespace Rafeek.Persistence.Migrations.Rafeek
                 name: "auth");
 
             migrationBuilder.CreateTable(
-                name: "ApplicationUsers",
-                schema: "auth",
+                name: "AcademicCalendars",
+                schema: "dbo",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    FullName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    NationalId = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PasswordResetToken = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PasswordResetTokenExpiredTime = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    NormalizedUserName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    NormalizedEmail = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    EmailConfirmed = table.Column<bool>(type: "bit", nullable: false),
-                    PasswordHash = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    SecurityStamp = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PhoneNumberConfirmed = table.Column<bool>(type: "bit", nullable: false),
-                    TwoFactorEnabled = table.Column<bool>(type: "bit", nullable: false),
-                    LockoutEnd = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
-                    LockoutEnabled = table.Column<bool>(type: "bit", nullable: false),
-                    AccessFailedCount = table.Column<int>(type: "int", nullable: false)
+                    EventName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    EventDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeletedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DeletedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ApplicationUsers", x => x.Id);
+                    table.PrimaryKey("PK_AcademicCalendars", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CampusMapLocations",
+                schema: "dbo",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Place = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Building = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Floor = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FloorLevel = table.Column<int>(type: "int", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeletedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DeletedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CampusMapLocations", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -116,6 +132,97 @@ namespace Rafeek.Persistence.Migrations.Rafeek
                 });
 
             migrationBuilder.CreateTable(
+                name: "Notifications",
+                schema: "dbo",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Type = table.Column<int>(type: "int", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Message = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IsRead = table.Column<bool>(type: "bit", nullable: false),
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeletedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DeletedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Notifications", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Notifications_ApplicationUsers_UserId",
+                        column: x => x.UserId,
+                        principalSchema: "auth",
+                        principalTable: "ApplicationUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Staffs",
+                schema: "dbo",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    EmployeeCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeletedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DeletedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Staffs", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Staffs_ApplicationUsers_UserId",
+                        column: x => x.UserId,
+                        principalSchema: "auth",
+                        principalTable: "ApplicationUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "UserLoginHistories",
+                schema: "dbo",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    LoginTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IpAddress = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeletedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DeletedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserLoginHistories", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_UserLoginHistories_ApplicationUsers_UserId",
+                        column: x => x.UserId,
+                        principalSchema: "auth",
+                        principalTable: "ApplicationUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Courses",
                 schema: "dbo",
                 columns: table => new
@@ -153,8 +260,10 @@ namespace Rafeek.Persistence.Migrations.Rafeek
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    EmployeeCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     DepartmentId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    IsAcademicAdvisor = table.Column<bool>(type: "bit", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
                     DeletedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -188,6 +297,7 @@ namespace Rafeek.Persistence.Migrations.Rafeek
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    EmployeeCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     DepartmentId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -215,53 +325,6 @@ namespace Rafeek.Persistence.Migrations.Rafeek
                         principalSchema: "dbo",
                         principalTable: "Departments",
                         principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Students",
-                schema: "dbo",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    UniversityCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DepartmentId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    Level = table.Column<int>(type: "int", nullable: false),
-                    Term = table.Column<int>(type: "int", nullable: false),
-                    Status = table.Column<int>(type: "int", nullable: false),
-                    AcademicProfileId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    DeletedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DeletedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Students", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Students_ApplicationUsers_UserId",
-                        column: x => x.UserId,
-                        principalSchema: "auth",
-                        principalTable: "ApplicationUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Students_Departments_DepartmentId",
-                        column: x => x.DepartmentId,
-                        principalSchema: "dbo",
-                        principalTable: "Departments",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Students_StudentAcademicProfiles_AcademicProfileId",
-                        column: x => x.AcademicProfileId,
-                        principalSchema: "dbo",
-                        principalTable: "StudentAcademicProfiles",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -326,6 +389,60 @@ namespace Rafeek.Persistence.Migrations.Rafeek
                         column: x => x.CourseId,
                         principalSchema: "dbo",
                         principalTable: "Courses",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Students",
+                schema: "dbo",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UniversityCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DepartmentId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    Level = table.Column<int>(type: "int", nullable: false),
+                    Term = table.Column<int>(type: "int", nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false),
+                    AcademicProfileId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    AcademicAdvisorId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeletedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DeletedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Students", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Students_ApplicationUsers_UserId",
+                        column: x => x.UserId,
+                        principalSchema: "auth",
+                        principalTable: "ApplicationUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Students_Departments_DepartmentId",
+                        column: x => x.DepartmentId,
+                        principalSchema: "dbo",
+                        principalTable: "Departments",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Students_Doctors_AcademicAdvisorId",
+                        column: x => x.AcademicAdvisorId,
+                        principalSchema: "dbo",
+                        principalTable: "Doctors",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Students_StudentAcademicProfiles_AcademicProfileId",
+                        column: x => x.AcademicProfileId,
+                        principalSchema: "dbo",
+                        principalTable: "StudentAcademicProfiles",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -438,6 +555,73 @@ namespace Rafeek.Persistence.Migrations.Rafeek
                 });
 
             migrationBuilder.CreateTable(
+                name: "AnalyticsReports",
+                schema: "dbo",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    StudentId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ReportType = table.Column<int>(type: "int", nullable: false),
+                    FileUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeletedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DeletedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AnalyticsReports", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AnalyticsReports_Students_StudentId",
+                        column: x => x.StudentId,
+                        principalSchema: "dbo",
+                        principalTable: "Students",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Appointments",
+                schema: "dbo",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    StudentId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    DoctorId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeletedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DeletedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Appointments", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Appointments_Doctors_DoctorId",
+                        column: x => x.DoctorId,
+                        principalSchema: "dbo",
+                        principalTable: "Doctors",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Appointments_Students_StudentId",
+                        column: x => x.StudentId,
+                        principalSchema: "dbo",
+                        principalTable: "Students",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "CareerSuggestions",
                 schema: "dbo",
                 columns: table => new
@@ -498,6 +682,36 @@ namespace Rafeek.Persistence.Migrations.Rafeek
                 });
 
             migrationBuilder.CreateTable(
+                name: "DocumentRequests",
+                schema: "dbo",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    DocumentType = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false),
+                    StudentId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeletedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DeletedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DocumentRequests", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_DocumentRequests_Students_StudentId",
+                        column: x => x.StudentId,
+                        principalSchema: "dbo",
+                        principalTable: "Students",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "GPASimulatorLogs",
                 schema: "dbo",
                 columns: table => new
@@ -520,6 +734,37 @@ namespace Rafeek.Persistence.Migrations.Rafeek
                     table.PrimaryKey("PK_GPASimulatorLogs", x => x.Id);
                     table.ForeignKey(
                         name: "FK_GPASimulatorLogs_Students_StudentId",
+                        column: x => x.StudentId,
+                        principalSchema: "dbo",
+                        principalTable: "Students",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "StudentSupports",
+                schema: "dbo",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    StudentSupportStatus = table.Column<int>(type: "int", nullable: false),
+                    StudentId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeletedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DeletedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_StudentSupports", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_StudentSupports_Students_StudentId",
                         column: x => x.StudentId,
                         principalSchema: "dbo",
                         principalTable: "Students",
@@ -703,6 +948,24 @@ namespace Rafeek.Persistence.Migrations.Rafeek
                 column: "StudentId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_AnalyticsReports_StudentId",
+                schema: "dbo",
+                table: "AnalyticsReports",
+                column: "StudentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Appointments_DoctorId",
+                schema: "dbo",
+                table: "Appointments",
+                column: "DoctorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Appointments_StudentId",
+                schema: "dbo",
+                table: "Appointments",
+                column: "StudentId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_CareerSuggestions_StudentId",
                 schema: "dbo",
                 table: "CareerSuggestions",
@@ -738,6 +1001,12 @@ namespace Rafeek.Persistence.Migrations.Rafeek
                 table: "Doctors",
                 column: "UserId",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DocumentRequests_StudentId",
+                schema: "dbo",
+                table: "DocumentRequests",
+                column: "StudentId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Enrollments_CourseId",
@@ -789,6 +1058,12 @@ namespace Rafeek.Persistence.Migrations.Rafeek
                 column: "CourseId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Notifications_UserId",
+                schema: "dbo",
+                table: "Notifications",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Sections_CourseId",
                 schema: "dbo",
                 table: "Sections",
@@ -799,6 +1074,19 @@ namespace Rafeek.Persistence.Migrations.Rafeek
                 schema: "dbo",
                 table: "Sections",
                 column: "InstructorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Staffs_UserId",
+                schema: "dbo",
+                table: "Staffs",
+                column: "UserId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Students_AcademicAdvisorId",
+                schema: "dbo",
+                table: "Students",
+                column: "AcademicAdvisorId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Students_AcademicProfileId",
@@ -819,6 +1107,12 @@ namespace Rafeek.Persistence.Migrations.Rafeek
                 table: "Students",
                 column: "UserId",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_StudentSupports_StudentId",
+                schema: "dbo",
+                table: "StudentSupports",
+                column: "StudentId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_StudyPlans_CourseId",
@@ -849,17 +1143,39 @@ namespace Rafeek.Persistence.Migrations.Rafeek
                 schema: "dbo",
                 table: "UserFbTokens",
                 column: "StudentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserLoginHistories_UserId",
+                schema: "dbo",
+                table: "UserLoginHistories",
+                column: "UserId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "AcademicCalendars",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
                 name: "AcademicFeedbacks",
                 schema: "dbo");
 
             migrationBuilder.DropTable(
                 name: "AICourseRecommendations",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "AnalyticsReports",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "Appointments",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "CampusMapLocations",
                 schema: "dbo");
 
             migrationBuilder.DropTable(
@@ -875,6 +1191,10 @@ namespace Rafeek.Persistence.Migrations.Rafeek
                 schema: "dbo");
 
             migrationBuilder.DropTable(
+                name: "DocumentRequests",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
                 name: "GPASimulatorLogs",
                 schema: "dbo");
 
@@ -887,7 +1207,19 @@ namespace Rafeek.Persistence.Migrations.Rafeek
                 schema: "dbo");
 
             migrationBuilder.DropTable(
+                name: "Notifications",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
                 name: "RefreshTokens",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "Staffs",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "StudentSupports",
                 schema: "dbo");
 
             migrationBuilder.DropTable(
@@ -899,11 +1231,11 @@ namespace Rafeek.Persistence.Migrations.Rafeek
                 schema: "dbo");
 
             migrationBuilder.DropTable(
-                name: "Enrollments",
+                name: "UserLoginHistories",
                 schema: "dbo");
 
             migrationBuilder.DropTable(
-                name: "Doctors",
+                name: "Enrollments",
                 schema: "dbo");
 
             migrationBuilder.DropTable(
@@ -923,12 +1255,12 @@ namespace Rafeek.Persistence.Migrations.Rafeek
                 schema: "dbo");
 
             migrationBuilder.DropTable(
-                name: "StudentAcademicProfiles",
+                name: "Doctors",
                 schema: "dbo");
 
             migrationBuilder.DropTable(
-                name: "ApplicationUsers",
-                schema: "auth");
+                name: "StudentAcademicProfiles",
+                schema: "dbo");
 
             migrationBuilder.DropTable(
                 name: "Departments",

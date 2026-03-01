@@ -2,8 +2,8 @@ using MediatR;
 
 namespace Rafeek.Application.Handlers.AuthHandlers.RefreshToken
 {
-    public class RefreshTokenCommand : IRequest<SignResponse>
+    public class RefreshTokenCommand : IRequest<AuthResult>
     {
-        public string RefreshToken { get; set; } = null!;
+        public string Token { get; set; } = null!;
     }
 }

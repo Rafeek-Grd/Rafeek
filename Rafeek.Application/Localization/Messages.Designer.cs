@@ -376,11 +376,38 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to now, Token is expired..
+        /// </summary>
+        public static string TokenExpired {
+            get {
+                return ResourceManager.GetString("TokenExpired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Token is not found..
+        /// </summary>
+        public static string TokenNotFound {
+            get {
+                return ResourceManager.GetString("TokenNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid Token..
         /// </summary>
         public static string TokenNotValid {
             get {
                 return ResourceManager.GetString("TokenNotValid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Token is required..
+        /// </summary>
+        public static string TokenRequired {
+            get {
+                return ResourceManager.GetString("TokenRequired", resourceCulture);
             }
         }
         
@@ -417,6 +444,24 @@ namespace Rafeek.Application.Localization {
         public static string UserCodeExist {
             get {
                 return ResourceManager.GetString("UserCodeExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User account is locked out..
+        /// </summary>
+        public static string UserLocked {
+            get {
+                return ResourceManager.GetString("UserLocked", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User is not found..
+        /// </summary>
+        public static string UserNotFound {
+            get {
+                return ResourceManager.GetString("UserNotFound", resourceCulture);
             }
         }
         

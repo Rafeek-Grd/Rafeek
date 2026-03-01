@@ -17,6 +17,7 @@ using DataProtectionOptions = Rafeek.Infrastructure.DataProtection.DataProtectio
 using IdentityOptions = Rafeek.Infrastructure.Identity.IdentityOptions;
 using Microsoft.AspNetCore.Http;
 using Rafeek.Application.Localization;
+using Squeak.Infrastructure.Oauth;
 
 namespace Rafeek.Infrastructure
 {

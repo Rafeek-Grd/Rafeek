@@ -23,6 +23,9 @@
         public record TokenMessages
         {
             public static readonly KeyString NotValid = new("TokenNotValid");
+            public static readonly KeyString NotFound = new("TokenNotFound");
+            public static readonly KeyString Expired = new("TokenExpired");
+            public static readonly KeyString Required = new("TokenRequired");
         }
 
         public record UserMessages
@@ -42,6 +45,8 @@
             public static readonly KeyString FailedSignUp = new("FailedSignUp");
             public static readonly KeyString PrimayRoleInvalid = new("PrimayRoleInvalid");
             public static readonly KeyString AdditionalRolesInvalid = new("AdditionalRolesInvalid");
+            public static readonly KeyString NotFound = new("UserNotFound");
+            public static readonly KeyString Locked = new("UserLocked");
         }
 
         public record UploadFileMessages

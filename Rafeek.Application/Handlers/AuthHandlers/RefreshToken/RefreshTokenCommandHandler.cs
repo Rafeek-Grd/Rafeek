@@ -3,15 +3,13 @@ using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Localization;
 using Rafeek.Application.Common.Exceptions;
-using Rafeek.Application.Common.Interfaces;
 using Rafeek.Application.Localization;
 using Rafeek.Domain.Entities;
-using Rafeek.Domain.Enums;
 using Rafeek.Domain.Repositories.Interfaces.Generic;
 
 namespace Rafeek.Application.Handlers.AuthHandlers.RefreshToken
 {
-    public class RefreshTokenCommandHandler : IRequestHandler<RefreshTokenCommand, SignResponse>
+    public class RefreshTokenCommandHandler : IRequestHandler<RefreshTokenCommand, AuthResult>
     {
         private readonly IUnitOfWork _ctx;
         private readonly IStringLocalizer<Messages> _localizer;
@@ -30,38 +28,21 @@ namespace Rafeek.Application.Handlers.AuthHandlers.RefreshToken
             _userManager = userManager;
         }
 
-        public async Task<SignResponse> Handle(RefreshTokenCommand request, CancellationToken cancellationToken)
+        public async Task<AuthResult> Handle(RefreshTokenCommand request, CancellationToken cancellationToken)
         {
-            var storedToken = await _ctx.RefreshTokenRepository.GetValidRefreshTokenAsync(request.RefreshToken, cancellationToken);
+            var refreshToken = await _ctx.RefreshTokenRepository.GetValidRefreshTokenAsync(request.Token, cancellationToken);
+            if (refreshToken is null) throw new UnauthorizedException(_localizer[LocalizationKeys.TokenMessages.NotValid.Value]);
+            if (refreshToken.IsExpired || !refreshToken.IsActive) throw new UnauthorizedException(_localizer[LocalizationKeys.TokenMessages.Expired.Value]);
 
-            if (storedToken is null)
-            {
-                throw new UnauthorizedException(_localizer[LocalizationKeys.TokenMessages.NotValid.Value]);
-            }
+            var user = await _userManager.FindByIdAsync(refreshToken.UserId);
+            if (user is null) throw new UnauthorizedException(_localizer[LocalizationKeys.UserMessages.NotFound.Value]);
+            if (user.LockoutEnabled && user.LockoutEnd > DateTime.UtcNow) throw new UnauthorizedException(_localizer[LocalizationKeys.UserMessages.Locked.Value]);
 
-            var user = await _userManager.FindByIdAsync(storedToken.UserId);
-            if (user is null)
-            {
-                throw new UnauthorizedException(_localizer[LocalizationKeys.TokenMessages.NotValid.Value]);
-            }
-
-            _ctx.RefreshTokenRepository.Delete(storedToken);
-            var tokens = (AuthResult)await _ctx.RefreshTokenRepository.GenerateTokens(user, cancellationToken);
+            refreshToken.Revoke();
             await _ctx.SaveChangesAsync(cancellationToken);
 
-            var signResponse = _mapper.Map<AuthResult, SignResponse>(tokens);
-            _mapper.Map(user, signResponse);
-
-            var roles = await _userManager.GetRolesAsync(user);
-            var primaryRole = roles.FirstOrDefault();
-            if (!string.IsNullOrEmpty(primaryRole) && Enum.TryParse<UserType>(primaryRole, out var userType))
-            {
-                signResponse.Role = (int)userType;
-            }
-
-            signResponse.ProfilePictureUrl = user.ProfilePictureUrl;
-
-            return signResponse;
+            var newRefreshTokens = (AuthResult)await _ctx.RefreshTokenRepository.GenerateTokens(user, cancellationToken);
+            return newRefreshTokens;
         }
     }
 }

@@ -1,55 +1,57 @@
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Rafeek.Application.Common.Interfaces;
 using Rafeek.Application.Localization;
 using Rafeek.Domain.Entities;
 using Rafeek.Domain.Repositories.Interfaces;
-using Rafeek.Domain.Repositories.Interfaces.Generic;
 using Rafeek.Infrastructure.Repostiories.Implementations.Generic;
+using Rafeek.Persistence;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 
 namespace Rafeek.Infrastructure.Repostiories.Implementations
 {
-
     public class RefreshTokenRepository : BaseEntityRepository<RefreshToken, Guid>, IRefreshTokenRepository
     {
         private readonly IJwtTokenManager _jwtTokenManager;
         private readonly ICurrentUserService _currentUserService;
-        private readonly IDataEncryption _dataEncryption;
+        private readonly IRafeekDbContext _context;
 
-        public RefreshTokenRepository
-        (
-            IRafeekDbContext context,
-            IJwtTokenManager jwtTokenManager,
-            ICurrentUserService currentUserService,
-            IDataEncryption dataEncryption) : base(context)
+        public RefreshTokenRepository(IRafeekDbContext context, IJwtTokenManager jwtTokenManager, ICurrentUserService currentUserService) : base(context)
         {
             _jwtTokenManager = jwtTokenManager;
             _currentUserService = currentUserService;
-            _dataEncryption = dataEncryption;
+            _context = context;
         }
 
-        public async Task<RefreshToken?> GetToken(string token, CancellationToken cancellationToken)
+        public async Task<RefreshToken> GetToken(string token, CancellationToken cancellationToken)
         {
             try
             {
-                var jwtToken = await _jwtTokenManager.GetPrincipFromTokenAsync(token);
+                var jwtToken = await _jwtTokenManager.GetPrincipFromTokenAsync(token, cancellationToken);
 
-                string username = jwtToken.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Name)?.Value;
-                
-                string encryptedId = jwtToken.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
-                string userId = !string.IsNullOrEmpty(encryptedId) ? _dataEncryption.Decrypt(encryptedId) : null;
+                if (jwtToken == null)
+                {
+                    return null;
+                }
+
+                string username = jwtToken.Claims.FirstOrDefault(x => x.Type == JwtRegisteredClaimNames.UniqueName)?.Value
+                               ?? jwtToken.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Name)?.Value;
+
+                string userId = jwtToken.Claims.FirstOrDefault(x => x.Type == JwtRegisteredClaimNames.NameId)?.Value
+                             ?? jwtToken.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
+
                 string issuer = jwtToken.Claims.FirstOrDefault(x => x.Type == JwtRegisteredClaimNames.Iss)?.Value;
-                long issuedAt = Convert.ToInt64(jwtToken.Claims.FirstOrDefault(x => x.Type == JwtRegisteredClaimNames.Iat)?.Value);
-                long notBefore = Convert.ToInt64(jwtToken.Claims.FirstOrDefault(x => x.Type == JwtRegisteredClaimNames.Nbf)?.Value);
-                long expiration = Convert.ToInt64(jwtToken.Claims.FirstOrDefault(x => x.Type == JwtRegisteredClaimNames.Exp)?.Value);
+
+                long.TryParse(jwtToken.Claims.FirstOrDefault(x => x.Type == JwtRegisteredClaimNames.Iat)?.Value, out long issuedAt);
+                long.TryParse(jwtToken.Claims.FirstOrDefault(x => x.Type == JwtRegisteredClaimNames.Nbf)?.Value, out long notBefore);
+                long.TryParse(jwtToken.Claims.FirstOrDefault(x => x.Type == JwtRegisteredClaimNames.Exp)?.Value, out long expiration);
+
                 string jti = jwtToken.Claims.FirstOrDefault(x => x.Type == JwtRegisteredClaimNames.Jti)?.Value;
 
                 return new RefreshToken()
                 {
-                    CreationDate = DateTimeOffset.FromUnixTimeSeconds(notBefore).LocalDateTime,
-                    ExpirationDate = DateTimeOffset.FromUnixTimeSeconds(expiration).LocalDateTime,
+                    CreationDate = notBefore > 0 ? DateTimeOffset.FromUnixTimeSeconds(notBefore).LocalDateTime : DateTime.Now,
+                    ExpirationDate = expiration > 0 ? DateTimeOffset.FromUnixTimeSeconds(expiration).LocalDateTime : DateTime.Now.AddDays(1),
                     JwtId = jti,
                     RemoteIpAddress = _currentUserService.IpAddress,
                     Token = token,
@@ -57,42 +59,58 @@ namespace Rafeek.Infrastructure.Repostiories.Implementations
                     UserId = userId
                 };
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return null;
             }
         }
 
-        public async Task<RefreshToken?> GetValidRefreshTokenAsync(string token, CancellationToken cancellationToken)
-        {
-            return await GetBy(x => x.Token == token).FirstOrDefaultAsync(cancellationToken);
-        }
-
         public async Task<object> GenerateTokens(ApplicationUser user, CancellationToken cancellationToken)
         {
-            var jwtToken = await _jwtTokenManager.GenerateClaimsTokenAsync(user.Email, cancellationToken);
-            var lastToken = GetBy(x => x.UserId == user.Id.ToString() && x.RemoteIpAddress == _currentUserService.IpAddress).OrderBy(x => x.CreationDate).LastOrDefault();
-            if (lastToken != null && lastToken.IsActive)
+            try
             {
-                Delete(lastToken);
+                var jwtToken = await _jwtTokenManager.GenerateClaimsTokenAsync(user.Email, cancellationToken);
+                var lastToken = GetBy(x => x.UserId == user.Id.ToString() && x.RemoteIpAddress == _currentUserService.IpAddress).OrderBy(x => x.CreationDate).LastOrDefault();
+                if (lastToken != null && lastToken.IsActive)
+                {
+                    Delete(lastToken);
+                }
+
+                var newToken = await GetToken(jwtToken.RefreshToken, cancellationToken);
+
+                if (newToken == null)
+                {
+                    throw new UnauthorizedAccessException(LocalizationKeys.TokenMessages.NotValid.Value);
+                }
+
+                // Ensure UserId is set from the authenticated user if extraction failed
+                if (string.IsNullOrEmpty(newToken.UserId))
+                {
+                    newToken.UserId = user.Id.ToString();
+                }
+
+                await AddAsync(newToken, cancellationToken);
+                await _context.SaveChangesAsync(cancellationToken);
+
+                return jwtToken;
+            }
+            catch (Exception ex)
+            {
+                throw new UnauthorizedAccessException(LocalizationKeys.TokenMessages.NotValid.Value);
+            }
+        }
+
+        public async Task<RefreshToken?> GetValidRefreshTokenAsync(string token, CancellationToken cancellationToken)
+        {
+            var refreshToken = await _context.RefreshTokens
+                .FirstOrDefaultAsync(rt => rt.Token == token && rt.Revoked == null, cancellationToken);
+
+            if (refreshToken != null && !refreshToken.IsExpired && refreshToken.IsActive)
+            {
+                return refreshToken;
             }
 
-            var jti = new JwtSecurityTokenHandler().ReadJwtToken(jwtToken.RefreshToken).Id;
-
-            var newToken = new RefreshToken()
-            {
-                CreationDate = DateTime.Now,
-                ExpirationDate = jwtToken.RefreshTokenExpiration,
-                JwtId = jti,
-                RemoteIpAddress = _currentUserService.IpAddress ?? "::1",
-                Token = jwtToken.RefreshToken,
-                UserId = user.Id.ToString()
-            };
-
-            await AddAsync(newToken, cancellationToken);
-            await _context.SaveChangesAsync(cancellationToken);
-            
-            return jwtToken;
+            return null;
         }
     }
 }

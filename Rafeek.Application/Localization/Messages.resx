@@ -228,4 +228,24 @@
 		<value>All additional roles must be a valid role type.</value>
   </data>
 
+	<data name="TokenNotFound" xml:space="preserve">
+		<value>Token is not found.</value>
+  </data>
+
+	<data name="UserNotFound" xml:space="preserve">
+		<value>User is not found.</value>
+  </data>
+
+	<data name="TokenRequired" xml:space="preserve">
+		<value>Token is required.</value>
+  </data>
+
+	<data name="TokenExpired" xml:space="preserve">
+		<value>now, Token is expired.</value>
+  </data>
+
+	<data name="UserLocked" xml:space="preserve">
+		<value>User account is locked out.</value>
+  </data>
+
 </root>

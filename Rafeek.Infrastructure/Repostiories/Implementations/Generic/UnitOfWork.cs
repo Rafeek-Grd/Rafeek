@@ -15,7 +15,6 @@ namespace Rafeek.Infrastructure.Repostiories.Implementations.Generic
         private readonly IRafeekDbContext _context;
         private readonly IJwtTokenManager _jwtTokenManager;
         private readonly ICurrentUserService _currentUserService;
-        private readonly IDataEncryption _dataEncryption;
 
 
         private RefreshTokenRepository? _refreshTokenRepository;
@@ -24,18 +23,15 @@ namespace Rafeek.Infrastructure.Repostiories.Implementations.Generic
         public UnitOfWork(
             IRafeekDbContext context,
             IJwtTokenManager jwtTokenManager,
-            ICurrentUserService currentUserService,
-            IDataEncryption dataEncryption)
+            ICurrentUserService currentUserService)
         {
             _context = context;
             _jwtTokenManager = jwtTokenManager;
             _currentUserService = currentUserService;
-            _dataEncryption = dataEncryption;
-
         }
 
 
-        public IRefreshTokenRepository RefreshTokenRepository => _refreshTokenRepository ??= new RefreshTokenRepository(_context, _jwtTokenManager, _currentUserService,_dataEncryption);
+        public IRefreshTokenRepository RefreshTokenRepository => _refreshTokenRepository ??= new RefreshTokenRepository(_context, _jwtTokenManager, _currentUserService);
         public IUserFbTokenRepository UserFbTokenRepository => _userFbTokenRepository ??= new UserFbTokenRepository(_context);
 
         public async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)

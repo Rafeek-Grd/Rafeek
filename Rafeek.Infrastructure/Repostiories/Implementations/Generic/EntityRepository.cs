@@ -59,7 +59,7 @@ namespace Rafeek.Infrastructure.Repostiories.Implementations.Generic
 
         public async Task<bool> ExistsByKeyAsync(TKey key, CancellationToken cancellationToken = default)
         {
-            var entity = await _dbSet.FindAsync(key , cancellationToken);
+            var entity = await _dbSet.FindAsync(new object?[] { key }, cancellationToken);
             return entity != null;
         }
 
@@ -76,7 +76,7 @@ namespace Rafeek.Infrastructure.Repostiories.Implementations.Generic
 
         public async Task<T?> FindByKeyAsync(TKey key, CancellationToken cancellationToken = default)
         {
-            return await _dbSet.FindAsync(key , cancellationToken);
+            return await _dbSet.FindAsync(new object?[] { key }, cancellationToken);
         }
 
         public IQueryable<T> GetAll()
