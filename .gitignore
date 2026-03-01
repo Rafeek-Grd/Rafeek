@@ -16,3 +16,7 @@ packages/
 Rafeek.API/wwwroot/
 Rafeek.API/logs/
 /Rafeek.API/nlog_rafeek.txt
+
+# Publish Profiles
+Rafeek.API/Properties/PublishProfiles/
+/Rafeek.API/Properties/PublishProfiles/site51752-WebDeploy.pubxml
