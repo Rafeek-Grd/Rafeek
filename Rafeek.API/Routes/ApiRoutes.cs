@@ -24,6 +24,7 @@ namespace Rafeek.API.Routes
             public const string SignUp = Base + "/signup";
             public const string SignIn = Base + "/signin";
             public const string RefreshToken = Base + "/refresh-token";
+            public const string ResetPassword = Base + "/reset-password";
         }
     }
 }
