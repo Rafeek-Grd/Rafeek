@@ -23,6 +23,7 @@ using Rafeek.Application.Common.Options;
 using Rafeek.Application.HealthCheck;
 using Rafeek.Application.Localization;
 using Rafeek.Infrastructure;
+using Rafeek.Infrastructure.Notifications.Emails;
 using Rafeek.Persistence;
 using System.Globalization;
 using System.IO.Compression;
@@ -181,6 +182,10 @@ try
 
     // Add options pattern support
     builder.Services.AddOptions();
+
+    builder.Services.Configure<TemplatePath>(builder.Configuration.GetSection("TemplatePath"));
+
+    builder.Services.Configure<EmailConfiguration>(builder.Configuration.GetSection("EmailConfiguration"));
 
     builder.Services.AddMemoryCache();
 

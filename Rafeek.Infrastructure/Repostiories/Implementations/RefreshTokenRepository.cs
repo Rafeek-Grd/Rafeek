@@ -14,13 +14,23 @@ namespace Rafeek.Infrastructure.Repostiories.Implementations
     {
         private readonly IJwtTokenManager _jwtTokenManager;
         private readonly ICurrentUserService _currentUserService;
-        private readonly IRafeekDbContext _context;
+        private readonly IRafeekDbContext? _context;
+        private readonly IRafeekIdentityDbContext? _identityDbContext;
 
         public RefreshTokenRepository(IRafeekDbContext context, IJwtTokenManager jwtTokenManager, ICurrentUserService currentUserService) : base(context)
         {
             _jwtTokenManager = jwtTokenManager;
             _currentUserService = currentUserService;
             _context = context;
+            _identityDbContext = null;
+        }
+
+        public RefreshTokenRepository(IRafeekIdentityDbContext identityDbContext, IJwtTokenManager jwtTokenManager, ICurrentUserService currentUserService) : base(identityDbContext)
+        {
+            _jwtTokenManager = jwtTokenManager;
+            _currentUserService = currentUserService;
+            _identityDbContext = identityDbContext;
+            _context = null;
         }
 
         public async Task<RefreshToken> GetToken(string token, CancellationToken cancellationToken)

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 using Rafeek.API.Filters;
 using Rafeek.API.Routes;
+using Rafeek.Application.Handlers.AuthHandlers.ForegetPassword;
 using Rafeek.Application.Handlers.AuthHandlers.RefreshToken;
 using Rafeek.Application.Handlers.AuthHandlers.SignIn;
 using Rafeek.Application.Handlers.AuthHandlers.SignUp;
@@ -63,6 +64,21 @@ namespace Rafeek.API.Controllers.Version1
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> RefreshToken([FromBody] RefreshTokenCommand command)
+        {
+            var result = await _mediator.Send(command);
+            return Ok(result);
+        }
+
+        /// <summary>
+        /// Forgot password, send an email with a link to reset the password.
+        /// </summary>
+        /// <param name="command"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route(ApiRoutes.Authentication.ForgotPassword)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> ForgotPassword([FromBody] ForegetPasswordCommand command)
         {
             var result = await _mediator.Send(command);
             return Ok(result);

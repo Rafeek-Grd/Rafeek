@@ -48,6 +48,7 @@
             public static readonly KeyString NotFound = new("UserNotFound");
             public static readonly KeyString Locked = new("UserLocked");
             public static readonly KeyString EmailUnVerified = new("EmailUnVerified");
+            public static readonly KeyString EmailNotFoundBefore = new("EmailNotFoundBefore");
         }
 
         public record UploadFileMessages
@@ -73,6 +74,23 @@
             public static readonly KeyString EmailInvalid = new("EmailInvalid");
             public static readonly KeyString EmailDomainInvalid = new("EmailDomainInvalid");
             public static readonly KeyString UniversityCodeMultipleAttemps = new("UniversityCodeMultipleAttemps");
+        }
+
+        public record EmailTemplates
+        {
+            public record EmailTemplatesKeys
+            {
+                public KeyString? Subject { get; set; }
+                public KeyString? Template { get; set; }
+                public KeyString? Message { get; set; }
+            }
+
+            public static EmailTemplatesKeys ForgotPassword => new EmailTemplatesKeys()
+            {
+                Subject = new("PasswordResetSubject"),
+                Template = new("PasswordResetTemplate"),
+                Message = new("PasswordResetMessage")
+            };
         }
     }
 }

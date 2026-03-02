@@ -1,8 +1,11 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Rafeek.Application.Common.Interfaces;
+using Rafeek.Domain.Entities;
 using Rafeek.Domain.Repositories.Interfaces;
 using Rafeek.Domain.Repositories.Interfaces.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Rafeek.Infrastructure.Repostiories.Implementations.Generic
 {
@@ -15,17 +18,22 @@ namespace Rafeek.Infrastructure.Repostiories.Implementations.Generic
         private RefreshTokenRepository? _refreshTokenRepository;
         private UserFbTokenRepository? _userFbTokenRepository;
 
+
         public IdentityUnitOfWork
         (
             IRafeekIdentityDbContext identityDbContext,
             IJwtTokenManager jwtTokenManager,
-            ICurrentUserService currentUserService
+            ICurrentUserService currentUserService,
+            SignInManager<ApplicationUser> signInManager
         )
         {
             _identityDbContext = identityDbContext;
             _jwtTokenManager = jwtTokenManager;
             _currentUserService = currentUserService;
         }
+
+        public IRefreshTokenRepository RefreshTokenRepository => _refreshTokenRepository ??= new RefreshTokenRepository(_identityDbContext, _jwtTokenManager, _currentUserService);
+        public IUserFbTokenRepository UserFbTokenRepository => _userFbTokenRepository ??= new UserFbTokenRepository(_identityDbContext);
 
         public async ValueTask DisposeAsync()
         {
