@@ -267,4 +267,12 @@
 	<data name="PasswordResetMessage" xml:space="preserve">
 	<value>Reset Code Sent.</value>
   </data>
+	<data name="ResetTokenInvalid" xml:space="preserve">
+		<value>Invalid or expired password reset token.</value>
+  </data>
+
+	<data name="PasswordResetSuccess" xml:space="preserve">
+		<value>Password has been reset successfully.</value>
+  </data>
+
 </root>

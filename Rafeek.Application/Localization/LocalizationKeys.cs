@@ -48,6 +48,8 @@
             public static readonly KeyString NotFound = new("UserNotFound");
             public static readonly KeyString Locked = new("UserLocked");
             public static readonly KeyString EmailUnVerified = new("EmailUnVerified");
+            public static readonly KeyString ResetTokenInvalid = new("ResetTokenInvalid");
+            public static readonly KeyString PasswordResetSuccess = new("PasswordResetSuccess");
             public static readonly KeyString EmailNotFoundBefore = new("EmailNotFoundBefore");
         }
 
