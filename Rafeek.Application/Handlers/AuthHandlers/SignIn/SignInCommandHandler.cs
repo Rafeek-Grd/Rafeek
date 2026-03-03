@@ -42,7 +42,10 @@ namespace Rafeek.Application.Handlers.AuthHandlers.SignIn
 
         public async Task<SignResponse> Handle(SignInCommand request, CancellationToken cancellationToken)
         {
-            var currentUser = await _userManager.Users.FirstOrDefaultAsync(u => u.Email == request.Email, cancellationToken);
+            // Find user by university email or temporary email
+            var currentUser = await _userManager.Users
+                .FirstOrDefaultAsync(u => u.Email == request.Email || u.TemporaryEmail == request.Email, cancellationToken);
+            
             if (currentUser is null)
             {
                 throw new UnauthorizedException(_localizer[LocalizationKeys.UserMessages.InvalidSignIn.Value]);

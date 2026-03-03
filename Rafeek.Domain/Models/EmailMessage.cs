@@ -1,4 +1,4 @@
-﻿namespace Rafeek.Infrastructure.Notifications.Emails
+﻿namespace Rafeek.Domain.Models
 {
     public class EmailMessage
     {

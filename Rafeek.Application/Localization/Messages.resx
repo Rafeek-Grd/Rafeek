@@ -64,6 +64,7 @@
 	<value>Place of file is not valid.</value>
   </data>
 
+
 	<data name="PlaceNotSupported" xml:space="preserve">
 	<value>Place file Not Supported.</value>
   </data>
@@ -220,6 +221,10 @@
 	<value>Unable to generate unique university code after multiple attempts.</value>
   </data>
 
+	<data name="UniversityEmailMultipleAttemps" xml:space="preserve">
+	<value>Unable to generate unique university email after multiple attempts.</value>
+  </data>
+
 	<data name="PrimayRoleInvalid" xml:space="preserve">
 	<value>Primary role must be a valid role type.</value>
   </data>
@@ -274,5 +279,37 @@
 	<data name="PasswordResetSuccess" xml:space="preserve">
 		<value>Password has been reset successfully.</value>
   </data>
+
+	<data name="InvalidToken" xml:space="preserve">
+		<value>Token Invalid or expiration.</value>
+  </data>
+
+	<data name="EmailNotFound" xml:space="preserve">
+		<value>Email is not found.</value>
+  </data>
+
+	<data name="SendUserCredentialsSubject" xml:space="preserve">
+		<value>Your University Account Credentials - Rafeek</value>
+	</data>
+
+	<data name="SendUserCredentialsTemplate" xml:space="preserve">
+		<value>&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&lt;meta charset="utf-8" /&gt;&lt;title&gt;Your University Credentials&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;h2&gt;Welcome to Rafeek University System&lt;/h2&gt;&lt;p&gt;Hello, @(Model.FullName) !&lt;/p&gt;&lt;p&gt;Your account has been successfully created. Below are your login credentials:&lt;/p&gt;&lt;p&gt;University Email: &lt;strong&gt;@(Model.Email)&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Temporary Password: &lt;strong&gt;@(Model.Password)&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Important:&lt;/strong&gt; For security reasons, please change your password after your first login.&lt;/p&gt;&lt;p&gt;You can now access the Rafeek University System using these credentials.&lt;/p&gt;&lt;p&gt;If you did not request this account, please contact support immediately.&lt;/p&gt;&lt;p&gt;Regards,&lt;/p&gt;&lt;p&gt;The Rafeek Team&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</value>
+	</data>
+
+	<data name="SendUserCredentialsMessage" xml:space="preserve">
+		<value>User credentials sent successfully to email.</value>
+	</data>
+
+	<data name="EmailNotActivated" xml:space="preserve">
+		<value>Email is not activated yet.</value>
+	</data>
+
+	<data name="EmailActivatedSuccessfully" xml:space="preserve">
+		<value>Email is activated successfully.</value>
+	</data>
+
+	<data name="EmailAlreadyActivated" xml:space="preserve">
+		<value>Email is already activated.</value>
+	</data>
 
 </root>

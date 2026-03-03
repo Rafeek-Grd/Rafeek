@@ -21,6 +21,7 @@
 
 	<ItemGroup>
 		<EmbeddedResource Include="Notifications\Emails\Templates\ForgetPassword.txt" />
+		<EmbeddedResource Include="Notifications\Emails\Templates\SendUserCredentials.txt" />
 	</ItemGroup>
 
 </Project>

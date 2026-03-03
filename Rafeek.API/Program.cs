@@ -20,6 +20,7 @@ using Rafeek.API.Swagger;
 using Rafeek.Application;
 using Rafeek.Application.Common.Interfaces;
 using Rafeek.Application.Common.Options;
+using Rafeek.Application.Handlers.AuthHandlers.SignUp;
 using Rafeek.Application.HealthCheck;
 using Rafeek.Application.Localization;
 using Rafeek.Infrastructure;

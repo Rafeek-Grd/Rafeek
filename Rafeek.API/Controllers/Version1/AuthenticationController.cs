@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 using Rafeek.API.Filters;
 using Rafeek.API.Routes;
+using Rafeek.Application.Handlers.AuthHandlers.ActivateUniversityEmail;
+using Rafeek.Application.Handlers.AuthHandlers.CheckFromConfirmationCode;
 using Rafeek.Application.Handlers.AuthHandlers.ForegetPassword;
 using Rafeek.Application.Handlers.AuthHandlers.RefreshToken;
 using Rafeek.Application.Handlers.AuthHandlers.ResetPassword;
@@ -95,6 +97,36 @@ namespace Rafeek.API.Controllers.Version1
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> ForgotPassword([FromBody] ForegetPasswordCommand command)
+        {
+            var result = await _mediator.Send(command);
+            return Ok(result);
+        }
+
+        /// <summary>
+        /// Check if the confirmation code is valid for the given email.
+        /// </summary>
+        /// <param name="command"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route(ApiRoutes.Authentication.CheckFromConfirmationCode)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> CheckFromConfirmationCode([FromBody] CheckFromConfirmationCodeCommand command)
+        {
+            var result = await _mediator.Send(command);
+            return Ok(result);
+        }
+
+        /// <summary>
+        /// Activate university email for a user. Only admins can activate university emails.
+        /// </summary>
+        /// <param name="command"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route(ApiRoutes.Authentication.ActivateUniversityEmail)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> ActivateUniversityEmail([FromBody] ActivateUniversityEmailCommand command)
         {
             var result = await _mediator.Send(command);
             return Ok(result);

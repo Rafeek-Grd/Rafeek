@@ -51,6 +51,9 @@
             public static readonly KeyString ResetTokenInvalid = new("ResetTokenInvalid");
             public static readonly KeyString PasswordResetSuccess = new("PasswordResetSuccess");
             public static readonly KeyString EmailNotFoundBefore = new("EmailNotFoundBefore");
+            public static readonly KeyString EmailAlreadyActivated = new("EmailAlreadyActivated");
+            public static readonly KeyString FailedToActivateEmail = new("FailedToActivateEmail");
+            public static readonly KeyString EmailActivatedSuccessfully = new("EmailActivatedSuccessfully");
         }
 
         public record UploadFileMessages
@@ -76,6 +79,10 @@
             public static readonly KeyString EmailInvalid = new("EmailInvalid");
             public static readonly KeyString EmailDomainInvalid = new("EmailDomainInvalid");
             public static readonly KeyString UniversityCodeMultipleAttemps = new("UniversityCodeMultipleAttemps");
+            public static readonly KeyString UniversityEmailMultipleAttemps = new("UniversityEmailMultipleAttemps");
+            public static readonly KeyString InvalidToken = new("InvalidToken");
+            public static readonly KeyString EmailNotFound = new("EmailNotFound");
+            public static readonly KeyString EmailNotActivated = new("EmailNotActivated");
         }
 
         public record EmailTemplates
@@ -92,6 +99,13 @@
                 Subject = new("PasswordResetSubject"),
                 Template = new("PasswordResetTemplate"),
                 Message = new("PasswordResetMessage")
+            };
+
+            public static EmailTemplatesKeys SendUserCredentials => new EmailTemplatesKeys()
+            {
+                Subject = new("SendUserCredentialsSubject"),
+                Template = new("SendUserCredentialsTemplate"),
+                Message = new("SendUserCredentialsMessage")
             };
         }
     }

@@ -11,5 +11,6 @@ namespace Rafeek.Application.Common.Options
     public class Templates
     {
         public string ForgetPassword { get; set; } = string.Empty;
+        public string SendUserCredentials { get; set; } = string.Empty;
     }
 }

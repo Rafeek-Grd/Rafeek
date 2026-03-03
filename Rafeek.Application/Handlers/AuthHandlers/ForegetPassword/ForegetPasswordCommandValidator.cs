@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 using Rafeek.Application.Localization;
 using Rafeek.Domain.Entities;
@@ -18,14 +19,19 @@ namespace Rafeek.Application.Handlers.AuthHandlers.ForegetPassword
 
             RuleFor(x => x.Email)
                 .NotNull().WithMessage(_localizer[LocalizationKeys.UserMessages.EmailRequired.Value])
-                .NotEmpty().EmailAddress().WithMessage(_localizer[LocalizationKeys.GlobalValidationMessages.EmailInvalid.Value])
-                .MustAsync(EmailExists).WithMessage(_localizer[LocalizationKeys.UserMessages.EmailNotFoundBefore.Value]);
+                .NotEmpty().WithMessage(_localizer[LocalizationKeys.UserMessages.EmailRequired.Value])
+                .EmailAddress().WithMessage(_localizer[LocalizationKeys.GlobalValidationMessages.EmailInvalid.Value])
+                .MustAsync(IsValidEmail).WithMessage(_localizer[LocalizationKeys.UserMessages.EmailNotFoundBefore.Value])
+                .MustAsync(IsActivatedUniversityEmail).WithMessage(_localizer[LocalizationKeys.GlobalValidationMessages.EmailNotActivated.Value]);
+        }
+        public Task<bool> IsValidEmail(string email, CancellationToken cancellationToken)
+        {
+            return _signInManager.UserManager.Users.AnyAsync(u => (u.Email == email || u.TemporaryEmail == email), cancellationToken);
         }
 
-        private async Task<bool> EmailExists(string email, CancellationToken cancellationToken)
+        private async Task<bool> IsActivatedUniversityEmail(string email, CancellationToken cancellationToken)
         {
-            var user = await _signInManager.UserManager.FindByEmailAsync(email);
-            return user?.Email != null;
+            return await _signInManager.UserManager.Users.AnyAsync(u => (u.Email == email || u.TemporaryEmail == email) && u.IsUniversityEmailActivated, cancellationToken);
         }
     }
 }

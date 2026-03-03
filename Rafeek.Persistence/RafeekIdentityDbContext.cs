@@ -32,6 +32,7 @@ namespace Rafeek.Persistence
             builder.Ignore<Department>();
             builder.Ignore<Notification>();
             builder.Ignore<UserLoginHistory>();
+            builder.Ignore<UserFbTokens>();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

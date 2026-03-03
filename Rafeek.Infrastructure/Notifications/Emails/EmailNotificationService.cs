@@ -1,13 +1,14 @@
 ﻿using MailKit.Security;
 using Microsoft.Extensions.Options;
+using Microsoft.Extensions.Logging;
 using MimeKit;
-using Rafeek.Application.Common.Options;
+using Rafeek.Application.Common.Interfaces;
 using Rafeek.Application.Localization;
 using Rafeek.Domain.Enums;
+using Rafeek.Domain.Models;
 using System.Dynamic;
 using System.Reflection;
 using System.Runtime.CompilerServices;
-using System.Text;
 
 namespace Rafeek.Infrastructure.Notifications.Emails
 {
@@ -15,12 +16,13 @@ namespace Rafeek.Infrastructure.Notifications.Emails
     {
         private readonly IOptions<EmailConfiguration> _emailConfig;
 
-        public EmailNotificationService(IOptions<EmailConfiguration> emailConfig)
+        public EmailNotificationService(
+            IOptions<EmailConfiguration> emailConfig)
         {
             _emailConfig = emailConfig;
         }
 
-        public async Task SendConfirmationCodeToEmailByUsingEmbeddedMailKitAsync(
+        public async Task SendAnyTemplateToEmailByUsingEmbeddedMailKitAsync(
             EmailMessage emailMessage,
             LocalizationKeys.EmailTemplates.EmailTemplatesKeys templatesKeys,
             string templatePath,
@@ -32,13 +34,17 @@ namespace Rafeek.Infrastructure.Notifications.Emails
                               ?? _emailConfig.Value.EmailSettings?.FirstOrDefault(x => x.EmailType == EmailType.Default);
 
                 if (settings == null)
+                {
                     throw new InvalidOperationException("SMTP settings not found for this email type.");
+                }
 
                 string templateContent;
                 using (var stream = GetType().Assembly.GetManifestResourceStream(templatePath))
                 {
                     if (stream == null)
+                    {
                         throw new InvalidOperationException($"Email template resource not found: {templatePath}");
+                    }
 
                     using (var reader = new StreamReader(stream))
                     {

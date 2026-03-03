@@ -11,6 +11,8 @@ using Rafeek.Domain.Enums;
 using Rafeek.Domain.Repositories.Interfaces.Generic;
 using System.Security.Cryptography;
 using System.Text.RegularExpressions;
+using Microsoft.AspNetCore.Identity;
+using Rafeek.Application.Handlers.AuthHandlers.SendUserCredentials;
 
 namespace Rafeek.Application.Handlers.AuthHandlers.SignUp
 {
@@ -22,6 +24,8 @@ namespace Rafeek.Application.Handlers.AuthHandlers.SignUp
         private readonly IMapper _mapper;
         private readonly IRafeekDbContext _dbContext;
         private readonly ILogger<SignUpCommandHandler> _logger;
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IMediator _mediator;
 
         public SignUpCommandHandler
         (
@@ -30,7 +34,9 @@ namespace Rafeek.Application.Handlers.AuthHandlers.SignUp
             IStringLocalizer<Messages> localizer,
             IMapper mapper,
             IRafeekDbContext dbContext,
-            ILogger<SignUpCommandHandler> logger
+            ILogger<SignUpCommandHandler> logger,
+            UserManager<ApplicationUser> userManager,
+            IMediator mediator
         )
         {
             _signInManager = signInManager;
@@ -39,6 +45,8 @@ namespace Rafeek.Application.Handlers.AuthHandlers.SignUp
             _mapper = mapper;
             _dbContext = dbContext;
             _logger = logger;
+            _userManager = userManager;
+            _mediator = mediator;
         }
 
         public async Task<SignResponse> Handle(SignUpCommand request, CancellationToken cancellationToken)
@@ -50,24 +58,35 @@ namespace Rafeek.Application.Handlers.AuthHandlers.SignUp
                 using var transaction = await _ctx.BeginTransactionAsync(cancellationToken);
                 try
                 {
+                    if (string.IsNullOrWhiteSpace(request.Password))
+                    {
+                        var generated = GenerateSecurePassword();
+                        request.Password = generated;
+                    }
+
                     var phone = request.Phone!.Trim();
                     var userId = Guid.NewGuid();
+                    
+                    var universityEmail = await GenerateUniqueUniversityEmailAsync(request.FullName, request.PrimaryRole, cancellationToken);
+                    
                     var user = new ApplicationUser()
                     {
                         Id = userId,
-                        UserName = $"{request.Email.Split("@")[0]}_{Guid.NewGuid().ToString("N")[..8]}".ToLowerInvariant(),
-                        NormalizedUserName = request.Email.ToUpperInvariant(),
-                        Email = request.Email,
-                        NormalizedEmail = request.Email.ToUpperInvariant(),
+                        UserName = $"{universityEmail.Split("@")[0]}_{Guid.NewGuid().ToString("N")[..8]}".ToLowerInvariant(),
+                        NormalizedUserName = universityEmail.ToUpperInvariant(),
+                        Email = universityEmail,
+                        TemporaryEmail = request.TemporaryEmail,
+                        NormalizedEmail = universityEmail.ToUpperInvariant(),
                         ProfilePictureUrl = request.ImageName,
                         FullName = request.FullName,
                         NationalId = request.NationalNumber,
                         PhoneNumber = Regex.Replace(phone, "^0+", ""),
-                        EmailConfirmed = true
+                        EmailConfirmed = true,
+                        IsUniversityEmailActivated = false
                     };
 
                     var primaryRole = request.PrimaryRole;
-                    
+
                     var allRoles = new List<string> { primaryRole.ToString() };
                     if (request.AdditionalRoles != null && request.AdditionalRoles.Any())
                     {
@@ -86,7 +105,7 @@ namespace Rafeek.Application.Handlers.AuthHandlers.SignUp
                     {
                         // Security & Performance: Generate unique 9-digit university code
                         string universityCode = await GenerateUniqueUniversityCodeAsync(cancellationToken);
-                        
+
                         var student = new Student
                         {
                             UserId = user.Id,
@@ -122,7 +141,8 @@ namespace Rafeek.Application.Handlers.AuthHandlers.SignUp
                         var doctor = new Doctor
                         {
                             UserId = user.Id,
-                            EmployeeCode = employeeCode
+                            EmployeeCode = employeeCode,
+                            IsAcademicAdvisor = request.IsAcademicAdvisor
                         };
                         await _dbContext.Doctors.AddAsync(doctor, cancellationToken);
                     }
@@ -166,24 +186,78 @@ namespace Rafeek.Application.Handlers.AuthHandlers.SignUp
 
                     ApplicationUser response = (ApplicationUser)signInResult.Data;
                     AuthResult tokens = (AuthResult)await _ctx.RefreshTokenRepository.GenerateTokens(response, cancellationToken);
-                    
+
                     await _ctx.SaveChangesAsync(cancellationToken);
                     await transaction.CommitAsync(cancellationToken);
 
+                    try
+                    {
+                        _logger.LogInformation("Attempting to send credentials email to newly created user: {Email}", user.Email);
+                        await _mediator.Send(new SendUserCredentialsCommand() { Email = user.Email, Password = request.Password }, cancellationToken);
+                    }
+                    catch (Exception emailEx)
+                    {
+                        _logger.LogError(emailEx, "Failed to send credentials email to {Email}, but user was created successfully", user.Email);
+                    }
+
                     var signResponse = _mapper.Map(tokens, new SignResponse());
                     _mapper.Map(user, signResponse);
-                    
+
                     signResponse.Roles = allRoles;
-                    
+
                     return signResponse;
                 }
                 catch (Exception ex)
                 {
-                    _logger.LogError(ex, "Error occurred during sign up for user {Email}", request.Email);
+                    _logger.LogError(ex, "Error occurred during sign up for temporary email {TemporaryEmail}", request.TemporaryEmail);
                     await transaction.RollbackAsync(cancellationToken);
                     throw;
                 }
             });
+        }
+
+        private async Task<string> GenerateUniqueUniversityEmailAsync(string fullName, UserType userType, CancellationToken cancellationToken)
+        {
+            var normalizedName = Regex.Replace(fullName.Trim().ToLowerInvariant(), @"[^a-z\s]", "");
+            var nameParts = normalizedName.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            
+            string baseEmail;
+            if (nameParts.Length >= 2)
+            {
+                baseEmail = $"{nameParts[0]}.{nameParts[^1]}";
+            }
+            else
+            {
+                baseEmail = nameParts[0];
+            }
+
+            string domain = userType == UserType.Student ? "@std.mans.edu.eg" : "@mans.edu.eg";
+            string email = baseEmail + domain;
+
+            var exists = await _userManager.Users.AnyAsync(u => u.Email == email, cancellationToken);
+            
+            if (!exists)
+            {
+                return email;
+            }
+
+            int counter = 1;
+            const int maxAttempts = 100;
+            
+            while (counter < maxAttempts)
+            {
+                email = $"{baseEmail}{counter}{domain}";
+                exists = await _userManager.Users.AnyAsync(u => u.Email == email, cancellationToken);
+                
+                if (!exists)
+                {
+                    return email;
+                }
+                
+                counter++;
+            }
+
+            throw new BadRequestException(_localizer[LocalizationKeys.GlobalValidationMessages.UniversityEmailMultipleAttemps.Value]);
         }
 
         private async Task<string> GenerateUniqueUniversityCodeAsync(CancellationToken cancellationToken)
@@ -196,7 +270,6 @@ namespace Rafeek.Application.Handlers.AuthHandlers.SignUp
                 var randomNumber = RandomNumberGenerator.GetInt32(100000000, 1000000000);
                 var universityCode = randomNumber.ToString();
 
-                // Check if this code is already used
                 var exists = await _dbContext.Students
                     .AnyAsync(s => s.UniversityCode == universityCode, cancellationToken);
 
@@ -237,6 +310,40 @@ namespace Rafeek.Application.Handlers.AuthHandlers.SignUp
             }
 
             throw new BadRequestException(_localizer[LocalizationKeys.GlobalValidationMessages.UniversityCodeMultipleAttemps.Value]);
+        }
+
+        private string GenerateSecurePassword(int length = 12)
+        {
+            const string upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            const string lower = "abcdefghijklmnopqrstuvwxyz";
+            const string digits = "0123456789";
+            const string special = "!@$?_-";
+
+            var all = upper + lower + digits + special;
+
+            if (length < 8) length = 8;
+
+            var password = new char[length];
+
+            password[0] = upper[RandomNumberGenerator.GetInt32(upper.Length)];
+            password[1] = lower[RandomNumberGenerator.GetInt32(lower.Length)];
+            password[2] = digits[RandomNumberGenerator.GetInt32(digits.Length)];
+            password[3] = special[RandomNumberGenerator.GetInt32(special.Length)];
+
+            for (int i = 4; i < length; i++)
+            {
+                password[i] = all[RandomNumberGenerator.GetInt32(all.Length)];
+            }
+
+            for (int i = password.Length - 1; i > 0; i--)
+            {
+                int j = RandomNumberGenerator.GetInt32(i + 1);
+                var tmp = password[i];
+                password[i] = password[j];
+                password[j] = tmp;
+            }
+
+            return new string(password);
         }
     }
 }

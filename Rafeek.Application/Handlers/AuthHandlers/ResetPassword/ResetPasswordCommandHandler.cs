@@ -1,5 +1,6 @@
 using MediatR;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 using Rafeek.Application.Common.Exceptions;
 using Rafeek.Application.Localization;
@@ -22,19 +23,23 @@ namespace Rafeek.Application.Handlers.AuthHandlers.ResetPassword
 
         public async Task<ResetPasswordResponse> Handle(ResetPasswordCommand request, CancellationToken cancellationToken)
         {
-            var user = await _userManager.FindByEmailAsync(request.Email);
+            var user = await _userManager.Users.FirstOrDefaultAsync(u => u.Email == request.Email || u.TemporaryEmail == request.Email);
 
-            if (user is null)
+            var removePasswordResult = await _userManager.RemovePasswordAsync(user);
+            if (!removePasswordResult.Succeeded)
             {
-                throw new NotFoundException(_localizer[LocalizationKeys.UserMessages.NotFound.Value]);
+                throw new BadRequestException(_localizer[LocalizationKeys.UserMessages.PasswordResetSuccess.Value]);
             }
 
-            var result = await _userManager.ResetPasswordAsync(user, request.Token, request.NewPassword);
-
-            if (!result.Succeeded)
+            var addPasswordResult = await _userManager.AddPasswordAsync(user, request.NewPassword);
+            if (!addPasswordResult.Succeeded)
             {
-                throw new BadRequestException(_localizer[LocalizationKeys.UserMessages.ResetTokenInvalid.Value]);
+                throw new BadRequestException(_localizer[LocalizationKeys.UserMessages.PasswordResetSuccess.Value]);
             }
+
+            user.PasswordResetToken = null;
+            user.PasswordResetTokenExpiredTime = null;
+            await _userManager.UpdateAsync(user);
 
             return new ResetPasswordResponse
             {

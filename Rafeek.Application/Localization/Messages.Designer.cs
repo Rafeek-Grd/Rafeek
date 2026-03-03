@@ -106,6 +106,24 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Email is activated successfully..
+        /// </summary>
+        public static string EmailActivatedSuccessfully {
+            get {
+                return ResourceManager.GetString("EmailActivatedSuccessfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email is already activated..
+        /// </summary>
+        public static string EmailAlreadyActivated {
+            get {
+                return ResourceManager.GetString("EmailAlreadyActivated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to User already exists before..
         /// </summary>
         public static string EmailAlreadyExistedbefore {
@@ -129,6 +147,24 @@ namespace Rafeek.Application.Localization {
         public static string EmailInvalid {
             get {
                 return ResourceManager.GetString("EmailInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email is not activated yet..
+        /// </summary>
+        public static string EmailNotActivated {
+            get {
+                return ResourceManager.GetString("EmailNotActivated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email is not found..
+        /// </summary>
+        public static string EmailNotFound {
+            get {
+                return ResourceManager.GetString("EmailNotFound", resourceCulture);
             }
         }
         
@@ -268,6 +304,15 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Token Invalid or expiration..
+        /// </summary>
+        public static string InvalidToken {
+            get {
+                return ResourceManager.GetString("InvalidToken", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to National Number is already taken..
         /// </summary>
         public static string NationalNumberExist {
@@ -349,6 +394,15 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Password has been reset successfully..
+        /// </summary>
+        public static string PasswordResetSuccess {
+            get {
+                return ResourceManager.GetString("PasswordResetSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;title&gt;Password Reset&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;h2&gt;Password Reset&lt;/h2&gt;&lt;p&gt;Hello, @(Model.FullName) !&lt;/p&gt;&lt;p&gt;You have requested to reset your password for Rafeek. To reset your password, please use the following reset code:&lt;/p&gt;&lt;p&gt;Reset Code: &lt;strong&gt;@(Model.VerificationCode)&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;If you didn&apos;t request this password reset, you can safely ignore this email.&lt;/p&gt;&lt;p&gt;Regards,&lt;/p&gt;&lt;p&gt;The Rafeek Team&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;.
         /// </summary>
         public static string PasswordResetTemplate {
@@ -421,6 +475,42 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid or expired password reset token..
+        /// </summary>
+        public static string ResetTokenInvalid {
+            get {
+                return ResourceManager.GetString("ResetTokenInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User credentials sent successfully to email..
+        /// </summary>
+        public static string SendUserCredentialsMessage {
+            get {
+                return ResourceManager.GetString("SendUserCredentialsMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your University Account Credentials - Rafeek.
+        /// </summary>
+        public static string SendUserCredentialsSubject {
+            get {
+                return ResourceManager.GetString("SendUserCredentialsSubject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;title&gt;Your University Credentials&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;h2&gt;Welcome to Rafeek University System&lt;/h2&gt;&lt;p&gt;Hello, @(Model.FullName) !&lt;/p&gt;&lt;p&gt;Your account has been successfully created. Below are your login credentials:&lt;/p&gt;&lt;p&gt;University Email: &lt;strong&gt;@(Model.Email)&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Temporary Password: &lt;strong&gt;@(Model.Password)&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Important:&lt;/strong&gt; For security reasons, please change your password after your first login.&lt;/p&gt;&lt;p&gt;You can now acces [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string SendUserCredentialsTemplate {
+            get {
+                return ResourceManager.GetString("SendUserCredentialsTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to now, Token is expired..
         /// </summary>
         public static string TokenExpired {
@@ -471,6 +561,15 @@ namespace Rafeek.Application.Localization {
         public static string UniversityCodeMultipleAttemps {
             get {
                 return ResourceManager.GetString("UniversityCodeMultipleAttemps", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to generate unique university email after multiple attempts..
+        /// </summary>
+        public static string UniversityEmailMultipleAttemps {
+            get {
+                return ResourceManager.GetString("UniversityEmailMultipleAttemps", resourceCulture);
             }
         }
         
