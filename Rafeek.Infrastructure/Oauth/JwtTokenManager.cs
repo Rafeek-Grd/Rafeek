@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using Rafeek.Application.Common.Interfaces;
-using Rafeek.Application.Handlers.AuthHandlers;
+using Rafeek.Application.Handlers.AuthHandlers.Commands;
 using Rafeek.Domain.Entities;
 using Rafeek.Infrastructure.Oauth;
 using System.IdentityModel.Tokens.Jwt;

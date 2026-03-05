@@ -28,6 +28,7 @@ namespace Rafeek.API.Routes
             public const string ResetPassword = Base + "/reset-password";
             public const string CheckFromConfirmationCode = Base + "/check-confirmation-code";
             public const string ActivateUniversityEmail = Base + "/activate-university-email";
+            public const string GetUserProfile = Base + "/profile";
         }
     }
 }

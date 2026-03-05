@@ -5,14 +5,14 @@ using Microsoft.Extensions.Options;
 using Microsoft.Extensions.Logging;
 using Rafeek.Application.Common.Interfaces;
 using Rafeek.Application.Common.Options;
-using Rafeek.Application.Handlers.AuthHandlers.ForegetPassword;
-using Rafeek.Application.Handlers.AuthHandlers.SendUserCredentials;
 using Rafeek.Application.Localization;
 using Rafeek.Domain.Entities;
 using Rafeek.Domain.Models;
 using Rafeek.Domain.Repositories.Interfaces;
 using Rafeek.Infrastructure.Repostiories.Implementations.Generic;
 using System.Security.Cryptography;
+using Rafeek.Application.Handlers.AuthHandlers.Commands.ForegetPassword;
+using Rafeek.Application.Handlers.AuthHandlers.Commands.SendUserCredentials;
 
 namespace Rafeek.Infrastructure.Repostiories.Implementations
 {

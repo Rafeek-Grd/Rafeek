@@ -1,6 +1,7 @@
 ﻿using AspNetCoreRateLimit;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Http.Features;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
@@ -20,8 +21,6 @@ using Rafeek.API.Swagger;
 using Rafeek.Application;
 using Rafeek.Application.Common.Interfaces;
 using Rafeek.Application.Common.Options;
-using Rafeek.Application.Handlers.AuthHandlers.SignUp;
-using Rafeek.Application.HealthCheck;
 using Rafeek.Application.Localization;
 using Rafeek.Infrastructure;
 using Rafeek.Infrastructure.Notifications.Emails;
