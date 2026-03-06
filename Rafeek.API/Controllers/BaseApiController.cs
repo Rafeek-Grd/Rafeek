@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 using Rafeek.API.Routes;
+using Rafeek.Application.Common.Interfaces;
 using Rafeek.Application.Common.Models;
 using Rafeek.Application.Localization;
 
@@ -12,6 +13,7 @@ namespace Rafeek.API.Controllers
     {
         private readonly IMediator _mediator;
         private readonly IStringLocalizer<Messages>? _localizer;
+        private readonly ICurrentUserService _currentUserService;
 
         protected BaseApiController(IMediator mediator)
         {
@@ -22,6 +24,13 @@ namespace Rafeek.API.Controllers
         {
             _mediator = mediator;
             _localizer = localizer;
+        }
+
+        protected BaseApiController(IMediator mediator, IStringLocalizer<Messages> localizer, ICurrentUserService currentUserService)
+        {
+            _mediator = mediator;
+            _localizer = localizer;
+            _currentUserService = currentUserService;
         }
 
         protected IActionResult Ok(string message) => base.Ok(ApiResponse<string>.Ok(null, message ?? _localizer[LocalizationKeys.AcionResultMessage.Ok.Value]));

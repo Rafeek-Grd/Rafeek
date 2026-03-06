@@ -196,6 +196,42 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to End time must be greater that a start time..
+        /// </summary>
+        public static string EndTimeMustBeGreaterThanStartTime {
+            get {
+                return ResourceManager.GetString("EndTimeMustBeGreaterThanStartTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to End time is required..
+        /// </summary>
+        public static string EndTimeRequired {
+            get {
+                return ResourceManager.GetString("EndTimeRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Event date is required..
+        /// </summary>
+        public static string EventDateRequired {
+            get {
+                return ResourceManager.GetString("EventDateRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Event name is required..
+        /// </summary>
+        public static string EventNameRequired {
+            get {
+                return ResourceManager.GetString("EventNameRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to File Deletion Failed..
         /// </summary>
         public static string FaildToDeleted {
@@ -309,6 +345,33 @@ namespace Rafeek.Application.Localization {
         public static string InvalidToken {
             get {
                 return ResourceManager.GetString("InvalidToken", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Location is required..
+        /// </summary>
+        public static string LocationRequired {
+            get {
+                return ResourceManager.GetString("LocationRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Event name is exceeded the required length..
+        /// </summary>
+        public static string MaxLengthOfEventNameExceededRequiredLength {
+            get {
+                return ResourceManager.GetString("MaxLengthOfEventNameExceededRequiredLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Location of event must not exceeded the required length..
+        /// </summary>
+        public static string MaxLengthOfLocationExceededRequiredLength {
+            get {
+                return ResourceManager.GetString("MaxLengthOfLocationExceededRequiredLength", resourceCulture);
             }
         }
         
@@ -507,6 +570,24 @@ namespace Rafeek.Application.Localization {
         public static string SendUserCredentialsTemplate {
             get {
                 return ResourceManager.GetString("SendUserCredentialsTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start time is required..
+        /// </summary>
+        public static string StartTimeRequired {
+            get {
+                return ResourceManager.GetString("StartTimeRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Targeted user Id is required..
+        /// </summary>
+        public static string TargetUserIdRequired {
+            get {
+                return ResourceManager.GetString("TargetUserIdRequired", resourceCulture);
             }
         }
         

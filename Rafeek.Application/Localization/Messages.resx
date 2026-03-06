@@ -312,4 +312,40 @@
 		<value>Email is already activated.</value>
 	</data>
 
+	<data name="EventNameRequired" xml:space="preserve">
+		<value>Event name is required.</value>
+	</data>
+
+	<data name="MaxLengthOfEventNameExceededRequiredLength" xml:space="preserve">
+		<value>Event name is exceeded the required length.</value>
+	</data>
+
+	<data name="EventDateRequired" xml:space="preserve">
+		<value>Event date is required.</value>
+	</data>
+
+	<data name="StartTimeRequired" xml:space="preserve">
+		<value>Start time is required.</value>
+	</data>
+
+	<data name="EndTimeRequired" xml:space="preserve">
+		<value>End time is required.</value>
+	</data>
+
+	<data name="LocationRequired" xml:space="preserve">
+		<value>Location is required.</value>
+	</data>
+
+	<data name="MaxLengthOfLocationExceededRequiredLength" xml:space="preserve">
+		<value>Location of event must not exceeded the required length.</value>
+	</data>
+
+	<data name="TargetUserIdRequired" xml:space="preserve">
+		<value>Targeted user Id is required.</value>
+	</data>
+
+	<data name="EndTimeMustBeGreaterThanStartTime" xml:space="preserve">
+		<value>End time must be greater that a start time.</value>
+	</data>
+
 </root>

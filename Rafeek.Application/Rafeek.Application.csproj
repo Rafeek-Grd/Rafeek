@@ -42,6 +42,7 @@
 
   <ItemGroup>
     <Folder Include="Common\Enums\" />
+    <Folder Include="Handlers\AcademicCalendarHandlers\Query\" />
     <Folder Include="Hubs\" />
   </ItemGroup>
 

@@ -1,9 +1,9 @@
-﻿using Rafeek.Domain.Common;
-using Rafeek.Domain.Enums;
+﻿using MediatR;
+using Rafeek.Domain.Entities;
 
-namespace Rafeek.Domain.Entities
+namespace Rafeek.Application.Handlers.AcademicCalendarHandlers.Commands
 {
-    public class AcademicCalendar : BaseEntity
+    public class AddEventToAcademicCalendarCommand: IRequest<string>
     {
         public string EventName { get; set; } = string.Empty;
         public string? Description { get; set; }
@@ -14,8 +14,6 @@ namespace Rafeek.Domain.Entities
         public string? Location { get; set; }
 
         public AcademicCalendarEventType EventType { get; set; } = AcademicCalendarEventType.General;
-
         public Guid? TargetUserId { get; set; }
-        public ApplicationUser? TargetUser { get; set; }
     }
 }

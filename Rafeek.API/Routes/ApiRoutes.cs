@@ -30,5 +30,14 @@ namespace Rafeek.API.Routes
             public const string ActivateUniversityEmail = Base + "/activate-university-email";
             public const string GetUserProfile = Base + "/profile";
         }
+
+        public static class AcademicCalendar
+        {
+            public const string AddEvent = Base + "/academic-calendar/events";
+            public const string GetEvents = Base + "/academic-calendar/events";
+            public const string GetEventById = Base + "/academic-calendar/events/{id}";
+            public const string UpdateEvent = Base + "/academic-calendar/events/{id}";
+            public const string DeleteEvent = Base + "/academic-calendar/events/{id}";
+        }
     }
 }

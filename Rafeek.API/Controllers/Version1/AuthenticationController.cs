@@ -139,7 +139,7 @@ namespace Rafeek.API.Controllers.Version1
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [RoleAuthorize()]
+        [RoleAuthorize]
         [Route(ApiRoutes.Authentication.GetUserProfile)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

@@ -304,4 +304,31 @@
     <data name="EmailAlreadyActivated" xml:space="preserve">
         <value>الايميل بالفعل تم تفعيله من قبل.</value>
   </data>
+    <data name="EventNameRequired" xml:space="preserve">
+        <value>اسم الحدث مطلوب.</value>
+  </data>
+    <data name="MaxLengthOfEventNameExceededRequiredLength" xml:space="preserve">
+        <value>اسم الحدث تجاوز عدد الحروف المطلوبه.</value>
+  </data>
+    <data name="EventDateRequired" xml:space="preserve">
+        <value>تاريخ الحدث مطلوب.</value>
+  </data>
+    <data name="StartTimeRequired" xml:space="preserve">
+        <value>موعد بدء الحدث مطلوب.</value>
+  </data>
+    <data name="EndTimeRequired" xml:space="preserve">
+        <value>موعد انتهاء الحدث مطلوب.</value>
+  </data>
+    <data name="LocationRequired" xml:space="preserve">
+        <value>موقع الحدث مطلوب.</value>
+  </data>
+    <data name="MaxLengthOfLocationExceededRequiredLength" xml:space="preserve">
+        <value>موقع الحدث لا يجب ان يتجاوز الحد الاقصي للحروف المطلوبة.</value>
+  </data>
+    <data name="TargetUserIdRequired" xml:space="preserve">
+        <value>مُعرف المستخدم مطلوب.</value>
+  </data>
+    <data name="TargetUserIdRequired" xml:space="preserve">
+        <value>يجب أن يكون موعد انتهاء الحدث اكبر من موعد البداية.</value>
+  </data>
 </root>

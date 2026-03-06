@@ -85,6 +85,19 @@
             public static readonly KeyString EmailNotActivated = new("EmailNotActivated");
         }
 
+        public record AcademicCalendar
+        {
+            public static readonly KeyString EventNameRequired = new("EventNameRequired");
+            public static readonly KeyString MaxLengthOfEventNameExceededRequiredLength = new("MaxLengthOfEventNameExceededRequiredLength");
+            public static readonly KeyString EventDateRequired = new("EventDateRequired");
+            public static readonly KeyString StartTimeRequired = new("StartTimeRequired");
+            public static readonly KeyString EndTimeRequired = new("EndTimeRequired");
+            public static readonly KeyString EndTimeMustBeGreaterThanStartTime = new("EndTimeMustBeGreaterThanStartTime");
+            public static readonly KeyString LocationRequired = new("LocationRequired");
+            public static readonly KeyString MaxLengthOfLocationExceededRequiredLength = new("MaxLengthOfLocationExceededRequiredLength");
+            public static readonly KeyString TargetUserIdRequired = new("TargetUserIdRequired");
+        }
+
         public record EmailTemplates
         {
             public record EmailTemplatesKeys

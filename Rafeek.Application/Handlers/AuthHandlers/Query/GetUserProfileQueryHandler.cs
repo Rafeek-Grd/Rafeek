@@ -24,9 +24,6 @@ namespace Rafeek.Application.Handlers.AuthHandlers.Query
 
         public async Task<GetUserProfileQueryResponse?> Handle(GetUserProfileQuery request, CancellationToken cancellationToken)
         {
-            if (!_currentUserService.IsAuthenticated || _currentUserService.UserId == Guid.Empty)
-                return null;
-
             var user = await _userRepository.FindByKeyAsync(_currentUserService.UserId, cancellationToken);
             if (user == null) return null;
 
