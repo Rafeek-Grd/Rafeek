@@ -2,7 +2,7 @@
 using Rafeek.Application.Common.Interfaces;
 using Rafeek.Domain.Entities;
 
-namespace Rafeek.Application.Handlers.AcademicCalendarHandlers.Commands
+namespace Rafeek.Application.Handlers.AcademicCalendarHandlers.Commands.AddEventToAcademicCalendar
 {
     public class AddEventToAcademicCalendarCommandHandler: IRequestHandler<AddEventToAcademicCalendarCommand, string>
     {

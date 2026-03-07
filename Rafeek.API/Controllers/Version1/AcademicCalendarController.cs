@@ -4,7 +4,7 @@ using Microsoft.Extensions.Localization;
 using Rafeek.API.Filters;
 using Rafeek.API.Routes;
 using Rafeek.Application.Common.Interfaces;
-using Rafeek.Application.Handlers.AcademicCalendarHandlers.Commands;
+using Rafeek.Application.Handlers.AcademicCalendarHandlers.Commands.AddEventToAcademicCalendar;
 using Rafeek.Application.Localization;
 
 namespace Rafeek.API.Controllers.Version1

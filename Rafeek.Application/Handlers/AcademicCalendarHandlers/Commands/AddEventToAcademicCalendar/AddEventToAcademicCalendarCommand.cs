@@ -2,7 +2,7 @@
 using Rafeek.Domain.Entities;
 using Rafeek.Domain.Enums;
 
-namespace Rafeek.Application.Handlers.AcademicCalendarHandlers.Commands
+namespace Rafeek.Application.Handlers.AcademicCalendarHandlers.Commands.AddEventToAcademicCalendar
 {
     public class AddEventToAcademicCalendarCommand: IRequest<string>
     {

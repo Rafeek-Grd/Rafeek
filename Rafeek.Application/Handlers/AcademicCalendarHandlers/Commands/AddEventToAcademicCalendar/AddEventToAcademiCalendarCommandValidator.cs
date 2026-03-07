@@ -3,7 +3,7 @@ using Microsoft.Extensions.Localization;
 using Rafeek.Application.Localization;
 using Rafeek.Domain.Enums;
 
-namespace Rafeek.Application.Handlers.AcademicCalendarHandlers.Commands
+namespace Rafeek.Application.Handlers.AcademicCalendarHandlers.Commands.AddEventToAcademicCalendar
 {
     public class AddEventToAcademiCalendarCommandValidator: AbstractValidator<AddEventToAcademicCalendarCommand>
     {
