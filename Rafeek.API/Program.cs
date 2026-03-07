@@ -289,6 +289,7 @@ try
             options.SwaggerEndpoint(endpoint, name);
 
             options.InjectJavascript("/swagger/swagger-ui/language.js");
+            options.InjectStylesheet("/swagger/swagger-ui/custom.css");
         }
     });
 
