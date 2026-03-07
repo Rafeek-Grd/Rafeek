@@ -20,12 +20,21 @@ namespace Rafeek.Application.Handlers.AcademicCalendarHandlers.Commands
                 EventName = request.EventName,
                 Description = request.Description,
                 EventDate = request.EventDate,
+                EndDate = request.EndDate,
                 StartTime = request.StartTime,
                 EndTime = request.EndTime,
                 IsAllDay = request.IsAllDay,
                 Location = request.Location,
                 EventType = request.EventType,
-                TargetUserId = request.TargetUserId
+                Status = request.Status,
+                Visibility = request.Visibility,
+                RecurrenceType = request.RecurrenceType,
+                RecurrenceEndDate = request.RecurrenceEndDate,
+                TargetUserId = request.TargetUserId,
+                AcademicTermId = request.AcademicTermId,
+                DepartmentId = request.DepartmentId,
+                CourseId = request.CourseId,
+                SectionId = request.SectionId
             };
 
             await _dbContext.AcademicCalendars.AddAsync(entity, cancellationToken);

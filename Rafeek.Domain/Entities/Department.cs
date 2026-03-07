@@ -10,5 +10,6 @@ namespace Rafeek.Domain.Entities
 
         public ICollection<Student> Students { get; set; } = new HashSet<Student>();
         public ICollection<Course> Courses { get; set; } = new HashSet<Course>();
+        public ICollection<AcademicCalendar> CalendarEvents { get; set; } = new HashSet<AcademicCalendar>();
     }
 }

@@ -348,4 +348,20 @@
 		<value>End time must be greater that a start time.</value>
 	</data>
 
+	<data name="EndDateMustBeGreaterThanOrEqualEventDate" xml:space="preserve">
+		<value>End date must be greater that or equal event date.</value>
+	</data>
+
+	<data name="RecurrenceEndDateRequired" xml:space="preserve">
+		<value>Recurrence end date is required.</value>
+	</data>
+
+	<data name="RecurrenceEndDateMustBeAfterEventDate" xml:space="preserve">
+		<value>Recurrence end date must be after event date.</value>
+	</data>
+
+	<data name="CourseIdRequiredForExamEvent" xml:space="preserve">
+		<value>Course Id required for exam event.</value>
+	</data>
+
 </root>

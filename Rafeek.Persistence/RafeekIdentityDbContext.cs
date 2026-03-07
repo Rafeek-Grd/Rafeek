@@ -33,6 +33,22 @@ namespace Rafeek.Persistence
             builder.Ignore<Notification>();
             builder.Ignore<UserLoginHistory>();
             builder.Ignore<UserFbTokens>();
+            builder.Ignore<AcademicCalendar>();
+            builder.Ignore<UserCalendarPreference>();
+            builder.Ignore<Course>();
+            builder.Ignore<CoursePrerequisite>();
+            builder.Ignore<Section>();
+            builder.Ignore<AcademicTerm>();
+            builder.Ignore<AcademicYear>();
+            builder.Ignore<Enrollment>();
+            builder.Ignore<Instructor>();
+            builder.Ignore<LearningResource>();
+            builder.Ignore<StudyPlan>();
+            builder.Ignore<Student>();
+            builder.Ignore<StudentAcademicProfile>();
+            builder.Ignore<Doctor>();
+            builder.Ignore<Appointment>();
+            builder.Ignore<Grade>();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

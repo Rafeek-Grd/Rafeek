@@ -96,6 +96,10 @@
             public static readonly KeyString LocationRequired = new("LocationRequired");
             public static readonly KeyString MaxLengthOfLocationExceededRequiredLength = new("MaxLengthOfLocationExceededRequiredLength");
             public static readonly KeyString TargetUserIdRequired = new("TargetUserIdRequired");
+            public static readonly KeyString EndDateMustBeGreaterThanOrEqualEventDate = new("EndDateMustBeGreaterThanOrEqualEventDate");
+            public static readonly KeyString RecurrenceEndDateRequired = new("RecurrenceEndDateRequired");
+            public static readonly KeyString RecurrenceEndDateMustBeAfterEventDate = new("RecurrenceEndDateMustBeAfterEventDate");
+            public static readonly KeyString CourseIdRequiredForExamEvent = new("CourseIdRequiredForExamEvent");
         }
 
         public record EmailTemplates

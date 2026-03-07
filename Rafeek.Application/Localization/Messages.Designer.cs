@@ -88,6 +88,15 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Course Id required for exam event..
+        /// </summary>
+        public static string CourseIdRequiredForExamEvent {
+            get {
+                return ResourceManager.GetString("CourseIdRequiredForExamEvent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Created successfully..
         /// </summary>
         public static string CreatedActionResultMessage {
@@ -192,6 +201,15 @@ namespace Rafeek.Application.Localization {
         public static string EmailUnVerified {
             get {
                 return ResourceManager.GetString("EmailUnVerified", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to End date must be greater that or equal event date..
+        /// </summary>
+        public static string EndDateMustBeGreaterThanOrEqualEventDate {
+            get {
+                return ResourceManager.GetString("EndDateMustBeGreaterThanOrEqualEventDate", resourceCulture);
             }
         }
         
@@ -534,6 +552,24 @@ namespace Rafeek.Application.Localization {
         public static string PrimayRoleInvalid {
             get {
                 return ResourceManager.GetString("PrimayRoleInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recurrence end date must be after event date..
+        /// </summary>
+        public static string RecurrenceEndDateMustBeAfterEventDate {
+            get {
+                return ResourceManager.GetString("RecurrenceEndDateMustBeAfterEventDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recurrence end date is required..
+        /// </summary>
+        public static string RecurrenceEndDateRequired {
+            get {
+                return ResourceManager.GetString("RecurrenceEndDateRequired", resourceCulture);
             }
         }
         

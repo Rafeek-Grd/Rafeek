@@ -43,6 +43,9 @@ namespace Rafeek.Persistence
         public DbSet<Appointment> Appointments { get; set; }
         public DbSet<StudentSupport> StudentSupports { get; set; }
         public DbSet<AcademicCalendar> AcademicCalendars { get; set; }
+        public DbSet<AcademicYear> AcademicYears { get; set; }
+        public DbSet<AcademicTerm> AcademicTerms { get; set; }
+        public DbSet<UserCalendarPreference> UserCalendarPreferences { get; set; }
         public DbSet<CampusMapLocation> CampusMapLocations { get; set; }
         public DbSet<AnalyticsReport> AnalyticsReports { get; set; }
         public DbSet<UserLoginHistory> UserLoginHistories { get; set; }
