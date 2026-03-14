@@ -83,10 +83,18 @@
             public static readonly KeyString InvalidToken = new("InvalidToken");
             public static readonly KeyString EmailNotFound = new("EmailNotFound");
             public static readonly KeyString EmailNotActivated = new("EmailNotActivated");
+            public static readonly KeyString AddedSuccessfully = new("AddedSuccessfully");
+            public static readonly KeyString UpdatedSuccessfully = new("UpdatedSuccessfully");
+            public static readonly KeyString DeletedSuccessfully = new("DeletedSuccessfully");
+            public static readonly KeyString AddedFailed = new("AddedFailed");
+            public static readonly KeyString UpdatedFailed = new("UpdatedFailed");
+            public static readonly KeyString DeletedFailed = new("DeletedFailed");
         }
 
         public record AcademicCalendar
         {
+            public static readonly KeyString EventIdRequired = new("EventIdRequired");
+            public static readonly KeyString EventIdNotValid = new("EventIdNotValid");
             public static readonly KeyString EventNameRequired = new("EventNameRequired");
             public static readonly KeyString MaxLengthOfEventNameExceededRequiredLength = new("MaxLengthOfEventNameExceededRequiredLength");
             public static readonly KeyString EventDateRequired = new("EventDateRequired");

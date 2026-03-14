@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk.Web">
 
 	<PropertyGroup>
 		<TargetFramework>net8.0</TargetFramework>
@@ -8,6 +8,7 @@
 		<IsTransformWebConfigDisabled>true</IsTransformWebConfigDisabled>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 		<NoWarn>$(NoWarn);1591</NoWarn>
+		<DefaultItemExcludes>$(DefaultItemExcludes);logs\**</DefaultItemExcludes>
 	</PropertyGroup>
 
 	<PropertyGroup Condition=" '$(Configuration)' == '' Or '$(Configuration)' == 'Debug' ">
@@ -59,6 +60,10 @@
 		<None Include="web.config">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Watch Remove="logs\**" />
 	</ItemGroup>
 
 </Project>

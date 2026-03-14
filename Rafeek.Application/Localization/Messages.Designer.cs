@@ -19,7 +19,7 @@ namespace Rafeek.Application.Localization {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "18.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Messages {
@@ -70,6 +70,24 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Failed to added a new record..
+        /// </summary>
+        public static string AddedFailed {
+            get {
+                return ResourceManager.GetString("AddedFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The record is added succefully..
+        /// </summary>
+        public static string AddedSuccessfully {
+            get {
+                return ResourceManager.GetString("AddedSuccessfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to All additional roles must be a valid role type..
         /// </summary>
         public static string AdditionalRolesInvalid {
@@ -111,6 +129,24 @@ namespace Rafeek.Application.Localization {
         public static string DeletedActionResultMessage {
             get {
                 return ResourceManager.GetString("DeletedActionResultMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to deleted a new record..
+        /// </summary>
+        public static string DeletedFailed {
+            get {
+                return ResourceManager.GetString("DeletedFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The record is deleted succefully..
+        /// </summary>
+        public static string DeletedSuccessfully {
+            get {
+                return ResourceManager.GetString("DeletedSuccessfully", resourceCulture);
             }
         }
         
@@ -237,6 +273,24 @@ namespace Rafeek.Application.Localization {
         public static string EventDateRequired {
             get {
                 return ResourceManager.GetString("EventDateRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Event Id is not valid..
+        /// </summary>
+        public static string EventIdNotValid {
+            get {
+                return ResourceManager.GetString("EventIdNotValid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Event Id Required..
+        /// </summary>
+        public static string EventIdRequired {
+            get {
+                return ResourceManager.GetString("EventIdRequired", resourceCulture);
             }
         }
         
@@ -696,6 +750,24 @@ namespace Rafeek.Application.Localization {
         public static string UnknownExceptionMessage {
             get {
                 return ResourceManager.GetString("UnknownExceptionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to updated a new record..
+        /// </summary>
+        public static string UpdatedFailed {
+            get {
+                return ResourceManager.GetString("UpdatedFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The record is updated succefully..
+        /// </summary>
+        public static string UpdatedSuccessfully {
+            get {
+                return ResourceManager.GetString("UpdatedSuccessfully", resourceCulture);
             }
         }
         

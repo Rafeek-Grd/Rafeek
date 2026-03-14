@@ -1,16 +1,18 @@
 ﻿using MediatR;
 using Rafeek.Application.Common.Interfaces;
+using Rafeek.Application.Localization;
 using Rafeek.Domain.Entities;
+using Rafeek.Domain.Repositories.Interfaces.Generic;
 
 namespace Rafeek.Application.Handlers.AcademicCalendarHandlers.Commands.AddEventToAcademicCalendar
 {
     public class AddEventToAcademicCalendarCommandHandler: IRequestHandler<AddEventToAcademicCalendarCommand, string>
     {
-        private readonly IRafeekDbContext _dbContext;
+        private readonly IUnitOfWork _ctx;
 
-        public AddEventToAcademicCalendarCommandHandler(IRafeekDbContext dbContext)
+        public AddEventToAcademicCalendarCommandHandler(IUnitOfWork ctx)
         {
-            _dbContext = dbContext;
+            _ctx = ctx;
         }
 
         public async Task<string> Handle(AddEventToAcademicCalendarCommand request, CancellationToken cancellationToken)
@@ -37,10 +39,10 @@ namespace Rafeek.Application.Handlers.AcademicCalendarHandlers.Commands.AddEvent
                 SectionId = request.SectionId
             };
 
-            await _dbContext.AcademicCalendars.AddAsync(entity, cancellationToken);
-            await _dbContext.SaveChangesAsync(cancellationToken);
+            await _ctx.AcademicCalendarRepository.AddAsync(entity, cancellationToken);
+            var result = await _ctx.SaveChangesAsync(cancellationToken);
 
-            return entity.Id.ToString();
+            return result > 0 ? LocalizationKeys.GlobalValidationMessages.AddedSuccessfully : LocalizationKeys.GlobalValidationMessages.AddedFailed;
         }
     }
 }

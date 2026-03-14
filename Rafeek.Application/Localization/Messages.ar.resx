@@ -342,4 +342,28 @@
   <data name="CourseIdRequiredForExamEvent" xml:space="preserve">
     <value>مُعرف الدورة مطلوب من اجل حدث الامتحانات.</value>
   </data>
+  <data name="AddedSuccessfully" xml:space="preserve">
+    <value>تم الإضافة بنجاح.</value>
+  </data>
+  <data name="UpdatedSuccessfully" xml:space="preserve">
+    <value>تم التعديل بنجاح.</value>
+  </data>
+  <data name="DeletedSuccessfully" xml:space="preserve">
+    <value>تم الحذف بنجاح.</value>
+  </data>
+  <data name="AddedFailed" xml:space="preserve">
+    <value>فشل الإضافة.</value>
+  </data>
+  <data name="UpdatedFailed" xml:space="preserve">
+    <value>فشل التعديل.</value>
+  </data>
+  <data name="DeletedFailed" xml:space="preserve">
+    <value>فشل الحذف.</value>
+  </data>
+  <data name="EventIdRequired" xml:space="preserve">
+    <value>مُعرف الحدث مطلوب.</value>
+  </data>
+  <data name="EventIdNotValid" xml:space="preserve">
+    <value>مُعرف الحدث غير صالح.</value>
+  </data>
 </root>

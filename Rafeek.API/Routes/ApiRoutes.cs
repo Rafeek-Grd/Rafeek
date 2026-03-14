@@ -31,13 +31,13 @@ namespace Rafeek.API.Routes
             public const string GetUserProfile = Base + "/profile";
         }
 
-        public static class AcademicCalendar
+        public static class EventOfAcademicCalendar
         {
-            public const string AddEvent = Base + "/academic-calendar/events";
-            public const string GetEvents = Base + "/academic-calendar/events";
-            public const string GetEventById = Base + "/academic-calendar/events/{id}";
-            public const string UpdateEvent = Base + "/academic-calendar/events/{id}";
-            public const string DeleteEvent = Base + "/academic-calendar/events/{id}";
+            public const string AddEvent = Base + "/events/add";
+            public const string GetAllPagginatedEvents = Base + "/events/pagginated";
+            public const string GetEventById = Base + "/events/{id}";
+            public const string UpdateEvent = Base + "/events/update";
+            public const string DeleteEvent = Base + "/events/{id}/delete";
         }
     }
 }

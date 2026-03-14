@@ -364,4 +364,36 @@
 		<value>Course Id required for exam event.</value>
 	</data>
 
+	<data name="AddedSuccessfully" xml:space="preserve">
+		<value>The record is added succefully.</value>
+	</data>
+
+	<data name="UpdatedSuccessfully" xml:space="preserve">
+		<value>The record is updated succefully.</value>
+	</data>
+
+	<data name="DeletedSuccessfully" xml:space="preserve">
+		<value>The record is deleted succefully.</value>
+	</data>
+
+	<data name="AddedFailed" xml:space="preserve">
+		<value>Failed to added a new record.</value>
+	</data>
+
+	<data name="UpdatedFailed" xml:space="preserve">
+		<value>Failed to updated a new record.</value>
+	</data>
+
+	<data name="DeletedFailed" xml:space="preserve">
+		<value>Failed to deleted a new record.</value>
+	</data>
+
+	<data name="EventIdRequired" xml:space="preserve">
+		<value>Event Id Required.</value>
+	</data>
+
+	<data name="EventIdNotValid" xml:space="preserve">
+		<value>Event Id is not valid.</value>
+	</data>
+
 </root>
