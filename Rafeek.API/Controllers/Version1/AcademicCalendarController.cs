@@ -20,11 +20,11 @@ namespace Rafeek.API.Controllers.Version1
 {
     [ApiController]
     [ApiVersion("1.0")]
-    public class EventOfAcademicCalendarController : BaseApiController
+    public class AcademicCalendarController : BaseApiController
     {
         private readonly IMediator _mediator;
         private readonly ICurrentUserService _currentUserService;
-        public EventOfAcademicCalendarController(IMediator mediator, IStringLocalizer<Messages> localizer, ICurrentUserService currentUserService) : base(mediator, localizer, currentUserService)
+        public AcademicCalendarController(IMediator mediator, IStringLocalizer<Messages> localizer, ICurrentUserService currentUserService) : base(mediator, localizer, currentUserService)
         {
             _mediator = mediator;
             _currentUserService = currentUserService;
