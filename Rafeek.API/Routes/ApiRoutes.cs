@@ -48,5 +48,14 @@ namespace Rafeek.API.Routes
             public const string GetAll = Base + "/academic-years";
             public const string GetById = Base + "/academic-years/{id}";
         }
+
+        public static class AcademicTerm
+        {
+            public const string Create = Base + "/academic-terms";
+            public const string Update = Base + "/academic-terms/{id}";
+            public const string Delete = Base + "/academic-terms/{id}";
+            public const string GetAll = Base + "/academic-terms";
+            public const string GetById = Base + "/academic-terms/{id}";
+        }
     }
 }

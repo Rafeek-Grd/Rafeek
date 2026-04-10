@@ -50,7 +50,7 @@ namespace Rafeek.Persistence
         public DbSet<AnalyticsReport> AnalyticsReports { get; set; }
         public DbSet<UserLoginHistory> UserLoginHistories { get; set; }
         public DbSet<Staff> Staffs { get; set; }    
-        public DbSet<AcademicYear> AcademicYears { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

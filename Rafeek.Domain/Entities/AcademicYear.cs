@@ -9,5 +9,7 @@ namespace Rafeek.Domain.Entities
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public bool IsCurrentYear { get; set; }
+
+        public ICollection<AcademicTerm> Terms { get; set; } = new HashSet<AcademicTerm>();
     }
 }
