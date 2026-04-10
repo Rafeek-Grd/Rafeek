@@ -50,6 +50,10 @@
             public static readonly KeyString EmailUnVerified = new("EmailUnVerified");
             public static readonly KeyString ResetTokenInvalid = new("ResetTokenInvalid");
             public static readonly KeyString PasswordResetSuccess = new("PasswordResetSuccess");
+            public static readonly KeyString EmailNotFoundBefore = new("EmailNotFoundBefore");
+            public static readonly KeyString EmailAlreadyActivated = new("EmailAlreadyActivated");
+            public static readonly KeyString FailedToActivateEmail = new("FailedToActivateEmail");
+            public static readonly KeyString EmailActivatedSuccessfully = new("EmailActivatedSuccessfully");
         }
 
         public record UploadFileMessages
@@ -75,6 +79,59 @@
             public static readonly KeyString EmailInvalid = new("EmailInvalid");
             public static readonly KeyString EmailDomainInvalid = new("EmailDomainInvalid");
             public static readonly KeyString UniversityCodeMultipleAttemps = new("UniversityCodeMultipleAttemps");
+            public static readonly KeyString UniversityEmailMultipleAttemps = new("UniversityEmailMultipleAttemps");
+            public static readonly KeyString InvalidToken = new("InvalidToken");
+            public static readonly KeyString EmailNotFound = new("EmailNotFound");
+            public static readonly KeyString EmailNotActivated = new("EmailNotActivated");
+            public static readonly KeyString AddedSuccessfully = new("AddedSuccessfully");
+            public static readonly KeyString UpdatedSuccessfully = new("UpdatedSuccessfully");
+            public static readonly KeyString DeletedSuccessfully = new("DeletedSuccessfully");
+            public static readonly KeyString AddedFailed = new("AddedFailed");
+            public static readonly KeyString UpdatedFailed = new("UpdatedFailed");
+            public static readonly KeyString DeletedFailed = new("DeletedFailed");
+        }
+
+        public record AcademicCalendar
+        {
+            public static readonly KeyString EventIdRequired = new("EventIdRequired");
+            public static readonly KeyString EventIdNotValid = new("EventIdNotValid");
+            public static readonly KeyString EventNameRequired = new("EventNameRequired");
+            public static readonly KeyString MaxLengthOfEventNameExceededRequiredLength = new("MaxLengthOfEventNameExceededRequiredLength");
+            public static readonly KeyString EventDateRequired = new("EventDateRequired");
+            public static readonly KeyString StartTimeRequired = new("StartTimeRequired");
+            public static readonly KeyString EndTimeRequired = new("EndTimeRequired");
+            public static readonly KeyString EndTimeMustBeGreaterThanStartTime = new("EndTimeMustBeGreaterThanStartTime");
+            public static readonly KeyString LocationRequired = new("LocationRequired");
+            public static readonly KeyString MaxLengthOfLocationExceededRequiredLength = new("MaxLengthOfLocationExceededRequiredLength");
+            public static readonly KeyString TargetUserIdRequired = new("TargetUserIdRequired");
+            public static readonly KeyString EndDateMustBeGreaterThanOrEqualEventDate = new("EndDateMustBeGreaterThanOrEqualEventDate");
+            public static readonly KeyString RecurrenceEndDateRequired = new("RecurrenceEndDateRequired");
+            public static readonly KeyString RecurrenceEndDateMustBeAfterEventDate = new("RecurrenceEndDateMustBeAfterEventDate");
+            public static readonly KeyString CourseIdRequiredForExamEvent = new("CourseIdRequiredForExamEvent");
+        }
+
+        public record EmailTemplates
+        {
+            public record EmailTemplatesKeys
+            {
+                public KeyString? Subject { get; set; }
+                public KeyString? Template { get; set; }
+                public KeyString? Message { get; set; }
+            }
+
+            public static EmailTemplatesKeys ForgotPassword => new EmailTemplatesKeys()
+            {
+                Subject = new("PasswordResetSubject"),
+                Template = new("PasswordResetTemplate"),
+                Message = new("PasswordResetMessage")
+            };
+
+            public static EmailTemplatesKeys SendUserCredentials => new EmailTemplatesKeys()
+            {
+                Subject = new("SendUserCredentialsSubject"),
+                Template = new("SendUserCredentialsTemplate"),
+                Message = new("SendUserCredentialsMessage")
+            };
         }
     }
 }

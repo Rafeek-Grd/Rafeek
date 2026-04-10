@@ -79,6 +79,12 @@ namespace Rafeek.Persistence.Migrations.Rafeek
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid?>("AcademicTermId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("CourseId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
@@ -92,8 +98,17 @@ namespace Rafeek.Persistence.Migrations.Rafeek
                     b.Property<string>("DeletedBy")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid?>("DepartmentId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<TimeSpan>("EndTime")
+                        .HasColumnType("time");
 
                     b.Property<DateTime>("EventDate")
                         .HasColumnType("datetime2");
@@ -102,11 +117,38 @@ namespace Rafeek.Persistence.Migrations.Rafeek
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("EventType")
+                        .HasColumnType("int");
+
                     b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsAllDay")
                         .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
+
+                    b.Property<string>("Location")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("RecurrenceEndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("RecurrenceType")
+                        .HasColumnType("int");
+
+                    b.Property<Guid?>("SectionId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<TimeSpan>("StartTime")
+                        .HasColumnType("time");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<Guid?>("TargetUserId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
@@ -114,7 +156,20 @@ namespace Rafeek.Persistence.Migrations.Rafeek
                     b.Property<string>("UpdatedBy")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("Visibility")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("AcademicTermId");
+
+                    b.HasIndex("CourseId");
+
+                    b.HasIndex("DepartmentId");
+
+                    b.HasIndex("SectionId");
+
+                    b.HasIndex("TargetUserId");
 
                     b.ToTable("AcademicCalendars", "dbo");
                 });
@@ -170,6 +225,124 @@ namespace Rafeek.Persistence.Migrations.Rafeek
                     b.HasIndex("StudentId");
 
                     b.ToTable("AcademicFeedbacks", "dbo");
+                });
+
+            modelBuilder.Entity("Rafeek.Domain.Entities.AcademicTerm", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("AcademicYearId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DeletedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("DropDeadline")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("ExamEndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("ExamStartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("RegistrationEndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("RegistrationStartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("TermType")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AcademicYearId");
+
+                    b.ToTable("AcademicTerms", "dbo");
+                });
+
+            modelBuilder.Entity("Rafeek.Domain.Entities.AcademicYear", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DeletedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AcademicYears", "dbo");
                 });
 
             modelBuilder.Entity("Rafeek.Domain.Entities.AnalyticsReport", b =>
@@ -244,6 +417,9 @@ namespace Rafeek.Persistence.Migrations.Rafeek
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsUniversityEmailActivated")
+                        .HasColumnType("bit");
+
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
 
@@ -281,6 +457,9 @@ namespace Rafeek.Persistence.Migrations.Rafeek
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("TemporaryEmail")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
 
@@ -298,6 +477,9 @@ namespace Rafeek.Persistence.Migrations.Rafeek
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<DateTime>("AppointmentDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
@@ -314,11 +496,23 @@ namespace Rafeek.Persistence.Migrations.Rafeek
                     b.Property<Guid>("DoctorId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<TimeSpan>("EndTime")
+                        .HasColumnType("time");
+
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
+
+                    b.Property<string>("Location")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Notes")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<TimeSpan>("StartTime")
+                        .HasColumnType("time");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
@@ -1104,6 +1298,9 @@ namespace Rafeek.Persistence.Migrations.Rafeek
                     b.Property<string>("DeletedBy")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<TimeSpan?>("EndTime")
+                        .HasColumnType("time");
+
                     b.Property<Guid>("InstructorId")
                         .HasColumnType("uniqueidentifier");
 
@@ -1112,6 +1309,9 @@ namespace Rafeek.Persistence.Migrations.Rafeek
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
+
+                    b.Property<TimeSpan?>("StartTime")
+                        .HasColumnType("time");
 
                     b.Property<string>("Time")
                         .IsRequired()
@@ -1405,6 +1605,60 @@ namespace Rafeek.Persistence.Migrations.Rafeek
                     b.ToTable("StudyPlans", "dbo");
                 });
 
+            modelBuilder.Entity("Rafeek.Domain.Entities.UserCalendarPreference", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DeletedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("ShowAcademicEvents")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("ShowDeadlines")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("ShowGuidanceEvents")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("ShowOfficialHolidays")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
+                    b.ToTable("UserCalendarPreferences", "dbo");
+                });
+
             modelBuilder.Entity("Rafeek.Domain.Entities.UserFbTokens", b =>
                 {
                     b.Property<Guid>("Id")
@@ -1522,6 +1776,44 @@ namespace Rafeek.Persistence.Migrations.Rafeek
                     b.Navigation("Student");
                 });
 
+            modelBuilder.Entity("Rafeek.Domain.Entities.AcademicCalendar", b =>
+                {
+                    b.HasOne("Rafeek.Domain.Entities.AcademicTerm", "AcademicTerm")
+                        .WithMany("CalendarEvents")
+                        .HasForeignKey("AcademicTermId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.HasOne("Rafeek.Domain.Entities.Course", "Course")
+                        .WithMany("CalendarEvents")
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.HasOne("Rafeek.Domain.Entities.Department", "Department")
+                        .WithMany("CalendarEvents")
+                        .HasForeignKey("DepartmentId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.HasOne("Rafeek.Domain.Entities.Section", "Section")
+                        .WithMany("CalendarEvents")
+                        .HasForeignKey("SectionId")
+                        .OnDelete(DeleteBehavior.NoAction);
+
+                    b.HasOne("Rafeek.Domain.Entities.ApplicationUser", "TargetUser")
+                        .WithMany("GuidanceEvents")
+                        .HasForeignKey("TargetUserId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.Navigation("AcademicTerm");
+
+                    b.Navigation("Course");
+
+                    b.Navigation("Department");
+
+                    b.Navigation("Section");
+
+                    b.Navigation("TargetUser");
+                });
+
             modelBuilder.Entity("Rafeek.Domain.Entities.AcademicFeedback", b =>
                 {
                     b.HasOne("Rafeek.Domain.Entities.Student", "Student")
@@ -1531,6 +1823,17 @@ namespace Rafeek.Persistence.Migrations.Rafeek
                         .IsRequired();
 
                     b.Navigation("Student");
+                });
+
+            modelBuilder.Entity("Rafeek.Domain.Entities.AcademicTerm", b =>
+                {
+                    b.HasOne("Rafeek.Domain.Entities.AcademicYear", "AcademicYear")
+                        .WithMany("Terms")
+                        .HasForeignKey("AcademicYearId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("AcademicYear");
                 });
 
             modelBuilder.Entity("Rafeek.Domain.Entities.AnalyticsReport", b =>
@@ -1822,6 +2125,17 @@ namespace Rafeek.Persistence.Migrations.Rafeek
                     b.Navigation("Student");
                 });
 
+            modelBuilder.Entity("Rafeek.Domain.Entities.UserCalendarPreference", b =>
+                {
+                    b.HasOne("Rafeek.Domain.Entities.ApplicationUser", "User")
+                        .WithOne("CalendarPreference")
+                        .HasForeignKey("Rafeek.Domain.Entities.UserCalendarPreference", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Rafeek.Domain.Entities.UserFbTokens", b =>
                 {
                     b.HasOne("Rafeek.Domain.Entities.ApplicationUser", "ApplicationUser")
@@ -1844,8 +2158,22 @@ namespace Rafeek.Persistence.Migrations.Rafeek
                     b.Navigation("ApplicationUser");
                 });
 
+            modelBuilder.Entity("Rafeek.Domain.Entities.AcademicTerm", b =>
+                {
+                    b.Navigation("CalendarEvents");
+                });
+
+            modelBuilder.Entity("Rafeek.Domain.Entities.AcademicYear", b =>
+                {
+                    b.Navigation("Terms");
+                });
+
             modelBuilder.Entity("Rafeek.Domain.Entities.ApplicationUser", b =>
                 {
+                    b.Navigation("CalendarPreference");
+
+                    b.Navigation("GuidanceEvents");
+
                     b.Navigation("LoginHistories");
 
                     b.Navigation("Notifications");
@@ -1855,6 +2183,8 @@ namespace Rafeek.Persistence.Migrations.Rafeek
 
             modelBuilder.Entity("Rafeek.Domain.Entities.Course", b =>
                 {
+                    b.Navigation("CalendarEvents");
+
                     b.Navigation("Enrollments");
 
                     b.Navigation("LearningResources");
@@ -1866,6 +2196,8 @@ namespace Rafeek.Persistence.Migrations.Rafeek
 
             modelBuilder.Entity("Rafeek.Domain.Entities.Department", b =>
                 {
+                    b.Navigation("CalendarEvents");
+
                     b.Navigation("Courses");
 
                     b.Navigation("Students");
@@ -1885,6 +2217,8 @@ namespace Rafeek.Persistence.Migrations.Rafeek
 
             modelBuilder.Entity("Rafeek.Domain.Entities.Section", b =>
                 {
+                    b.Navigation("CalendarEvents");
+
                     b.Navigation("Enrollments");
                 });
 

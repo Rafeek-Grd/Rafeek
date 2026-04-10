@@ -12,8 +12,11 @@ namespace Rafeek.Domain.Entities
 
         public string Day { get; set; } = null!;
         public string Time { get; set; } = null!;
+        public TimeSpan? StartTime { get; set; }
+        public TimeSpan? EndTime { get; set; }
         public int Capacity { get; set; }
 
         public ICollection<Enrollment> Enrollments { get; set; } = new HashSet<Enrollment>();
+        public ICollection<AcademicCalendar> CalendarEvents { get; set; } = new HashSet<AcademicCalendar>();
     }
 }

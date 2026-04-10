@@ -19,7 +19,7 @@ namespace Rafeek.Application.Localization {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "18.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Messages {
@@ -70,6 +70,24 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Failed to added a new record..
+        /// </summary>
+        public static string AddedFailed {
+            get {
+                return ResourceManager.GetString("AddedFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The record is added succefully..
+        /// </summary>
+        public static string AddedSuccessfully {
+            get {
+                return ResourceManager.GetString("AddedSuccessfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to All additional roles must be a valid role type..
         /// </summary>
         public static string AdditionalRolesInvalid {
@@ -88,6 +106,15 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Course Id required for exam event..
+        /// </summary>
+        public static string CourseIdRequiredForExamEvent {
+            get {
+                return ResourceManager.GetString("CourseIdRequiredForExamEvent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Created successfully..
         /// </summary>
         public static string CreatedActionResultMessage {
@@ -102,6 +129,42 @@ namespace Rafeek.Application.Localization {
         public static string DeletedActionResultMessage {
             get {
                 return ResourceManager.GetString("DeletedActionResultMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to deleted a new record..
+        /// </summary>
+        public static string DeletedFailed {
+            get {
+                return ResourceManager.GetString("DeletedFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The record is deleted succefully..
+        /// </summary>
+        public static string DeletedSuccessfully {
+            get {
+                return ResourceManager.GetString("DeletedSuccessfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email is activated successfully..
+        /// </summary>
+        public static string EmailActivatedSuccessfully {
+            get {
+                return ResourceManager.GetString("EmailActivatedSuccessfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email is already activated..
+        /// </summary>
+        public static string EmailAlreadyActivated {
+            get {
+                return ResourceManager.GetString("EmailAlreadyActivated", resourceCulture);
             }
         }
         
@@ -133,6 +196,33 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Email is not activated yet..
+        /// </summary>
+        public static string EmailNotActivated {
+            get {
+                return ResourceManager.GetString("EmailNotActivated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email is not found..
+        /// </summary>
+        public static string EmailNotFound {
+            get {
+                return ResourceManager.GetString("EmailNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User email is not found before..
+        /// </summary>
+        public static string EmailNotFoundBefore {
+            get {
+                return ResourceManager.GetString("EmailNotFoundBefore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Email required..
         /// </summary>
         public static string EmailRequired {
@@ -147,6 +237,69 @@ namespace Rafeek.Application.Localization {
         public static string EmailUnVerified {
             get {
                 return ResourceManager.GetString("EmailUnVerified", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to End date must be greater that or equal event date..
+        /// </summary>
+        public static string EndDateMustBeGreaterThanOrEqualEventDate {
+            get {
+                return ResourceManager.GetString("EndDateMustBeGreaterThanOrEqualEventDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to End time must be greater that a start time..
+        /// </summary>
+        public static string EndTimeMustBeGreaterThanStartTime {
+            get {
+                return ResourceManager.GetString("EndTimeMustBeGreaterThanStartTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to End time is required..
+        /// </summary>
+        public static string EndTimeRequired {
+            get {
+                return ResourceManager.GetString("EndTimeRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Event date is required..
+        /// </summary>
+        public static string EventDateRequired {
+            get {
+                return ResourceManager.GetString("EventDateRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Event Id is not valid..
+        /// </summary>
+        public static string EventIdNotValid {
+            get {
+                return ResourceManager.GetString("EventIdNotValid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Event Id Required..
+        /// </summary>
+        public static string EventIdRequired {
+            get {
+                return ResourceManager.GetString("EventIdRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Event name is required..
+        /// </summary>
+        public static string EventNameRequired {
+            get {
+                return ResourceManager.GetString("EventNameRequired", resourceCulture);
             }
         }
         
@@ -259,6 +412,42 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Token Invalid or expiration..
+        /// </summary>
+        public static string InvalidToken {
+            get {
+                return ResourceManager.GetString("InvalidToken", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Location is required..
+        /// </summary>
+        public static string LocationRequired {
+            get {
+                return ResourceManager.GetString("LocationRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Event name is exceeded the required length..
+        /// </summary>
+        public static string MaxLengthOfEventNameExceededRequiredLength {
+            get {
+                return ResourceManager.GetString("MaxLengthOfEventNameExceededRequiredLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Location of event must not exceeded the required length..
+        /// </summary>
+        public static string MaxLengthOfLocationExceededRequiredLength {
+            get {
+                return ResourceManager.GetString("MaxLengthOfLocationExceededRequiredLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to National Number is already taken..
         /// </summary>
         public static string NationalNumberExist {
@@ -318,6 +507,42 @@ namespace Rafeek.Application.Localization {
         public static string PasswordRequired {
             get {
                 return ResourceManager.GetString("PasswordRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reset Code Sent..
+        /// </summary>
+        public static string PasswordResetMessage {
+            get {
+                return ResourceManager.GetString("PasswordResetMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password Reset Code for Rafeek..
+        /// </summary>
+        public static string PasswordResetSubject {
+            get {
+                return ResourceManager.GetString("PasswordResetSubject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password has been reset successfully..
+        /// </summary>
+        public static string PasswordResetSuccess {
+            get {
+                return ResourceManager.GetString("PasswordResetSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;title&gt;Password Reset&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;h2&gt;Password Reset&lt;/h2&gt;&lt;p&gt;Hello, @(Model.FullName) !&lt;/p&gt;&lt;p&gt;You have requested to reset your password for Rafeek. To reset your password, please use the following reset code:&lt;/p&gt;&lt;p&gt;Reset Code: &lt;strong&gt;@(Model.VerificationCode)&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;If you didn&apos;t request this password reset, you can safely ignore this email.&lt;/p&gt;&lt;p&gt;Regards,&lt;/p&gt;&lt;p&gt;The Rafeek Team&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;.
+        /// </summary>
+        public static string PasswordResetTemplate {
+            get {
+                return ResourceManager.GetString("PasswordResetTemplate", resourceCulture);
             }
         }
         
@@ -385,6 +610,78 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Recurrence end date must be after event date..
+        /// </summary>
+        public static string RecurrenceEndDateMustBeAfterEventDate {
+            get {
+                return ResourceManager.GetString("RecurrenceEndDateMustBeAfterEventDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recurrence end date is required..
+        /// </summary>
+        public static string RecurrenceEndDateRequired {
+            get {
+                return ResourceManager.GetString("RecurrenceEndDateRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid or expired password reset token..
+        /// </summary>
+        public static string ResetTokenInvalid {
+            get {
+                return ResourceManager.GetString("ResetTokenInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User credentials sent successfully to email..
+        /// </summary>
+        public static string SendUserCredentialsMessage {
+            get {
+                return ResourceManager.GetString("SendUserCredentialsMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your University Account Credentials - Rafeek.
+        /// </summary>
+        public static string SendUserCredentialsSubject {
+            get {
+                return ResourceManager.GetString("SendUserCredentialsSubject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;title&gt;Your University Credentials&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;h2&gt;Welcome to Rafeek University System&lt;/h2&gt;&lt;p&gt;Hello, @(Model.FullName) !&lt;/p&gt;&lt;p&gt;Your account has been successfully created. Below are your login credentials:&lt;/p&gt;&lt;p&gt;University Email: &lt;strong&gt;@(Model.Email)&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Temporary Password: &lt;strong&gt;@(Model.Password)&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Important:&lt;/strong&gt; For security reasons, please change your password after your first login.&lt;/p&gt;&lt;p&gt;You can now acces [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string SendUserCredentialsTemplate {
+            get {
+                return ResourceManager.GetString("SendUserCredentialsTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start time is required..
+        /// </summary>
+        public static string StartTimeRequired {
+            get {
+                return ResourceManager.GetString("StartTimeRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Targeted user Id is required..
+        /// </summary>
+        public static string TargetUserIdRequired {
+            get {
+                return ResourceManager.GetString("TargetUserIdRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to now, Token is expired..
         /// </summary>
         public static string TokenExpired {
@@ -439,11 +736,38 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Unable to generate unique university email after multiple attempts..
+        /// </summary>
+        public static string UniversityEmailMultipleAttemps {
+            get {
+                return ResourceManager.GetString("UniversityEmailMultipleAttemps", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An unknown error occurred..
         /// </summary>
         public static string UnknownExceptionMessage {
             get {
                 return ResourceManager.GetString("UnknownExceptionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to updated a new record..
+        /// </summary>
+        public static string UpdatedFailed {
+            get {
+                return ResourceManager.GetString("UpdatedFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The record is updated succefully..
+        /// </summary>
+        public static string UpdatedSuccessfully {
+            get {
+                return ResourceManager.GetString("UpdatedSuccessfully", resourceCulture);
             }
         }
         

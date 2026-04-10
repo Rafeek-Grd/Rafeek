@@ -10,5 +10,11 @@ namespace Rafeek.Domain.Entities
         public Guid DoctorId { get; set; }
         public Doctor Doctor { get; set; } = null!;
         public AppointmentStatus Status { get; set; }
+
+        public DateTime AppointmentDate { get; set; }
+        public TimeSpan StartTime { get; set; }
+        public TimeSpan EndTime { get; set; }
+        public string? Location { get; set; }
+        public string? Notes { get; set; }
     }
 }

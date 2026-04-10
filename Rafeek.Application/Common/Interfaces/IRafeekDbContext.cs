@@ -33,6 +33,9 @@ namespace Rafeek.Application.Common.Interfaces
         DbSet<Appointment> Appointments { get; }
         DbSet<StudentSupport> StudentSupports { get; }
         DbSet<AcademicCalendar> AcademicCalendars { get; }
+        DbSet<AcademicYear> AcademicYears { get; }
+        DbSet<AcademicTerm> AcademicTerms { get; }
+        DbSet<UserCalendarPreference> UserCalendarPreferences { get; }
         DbSet<CampusMapLocation> CampusMapLocations { get; }
         DbSet<Notification> Notifications { get; }
         DbSet<UserLoginHistory> UserLoginHistories { get; }

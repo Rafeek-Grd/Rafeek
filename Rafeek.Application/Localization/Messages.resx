@@ -64,6 +64,7 @@
 	<value>Place of file is not valid.</value>
   </data>
 
+
 	<data name="PlaceNotSupported" xml:space="preserve">
 	<value>Place file Not Supported.</value>
   </data>
@@ -141,117 +142,136 @@
   </data>
 
 	<data name="NationalNumberExist" xml:space="preserve">
-		<value>National Number is already taken.</value>
+	<value>National Number is already taken.</value>
   </data>
 
 	<data name="PhoneNumberExist" xml:space="preserve">
-		<value>Phone number is already taken.</value>
+	<value>Phone number is already taken.</value>
   </data>
 
 	<data name="UserCodeExist" xml:space="preserve">
-		<value>User Code is already taken.</value>
+	<value>User Code is already taken.</value>
   </data>
 
 	<data name="PhoneInvalid" xml:space="preserve">
-		<value>Invalid phone number.</value>
+	<value>Invalid phone number.</value>
   </data>
 
 	<data name="EmailInvalid" xml:space="preserve">
-		<value>Invalid email.</value>
+	<value>Invalid email.</value>
   </data>
 
 	<data name="EmailAlreadyExistedbefore" xml:space="preserve">
-		<value>User already exists before.</value>
+	<value>User already exists before.</value>
   </data>
 
 	<data name="GenderIsNotValid" xml:space="preserve">
-		<value>Invalid gender.</value>
+	<value>Invalid gender.</value>
   </data>
 
 	<data name="PasswordRequired" xml:space="preserve">
-		<value>Password required.</value>
+	<value>Password required.</value>
   </data>
 
 	<data name="PasswordValid" xml:space="preserve">
-		<value>Password may be weak. Or it doesn't accepted cause of criteria.</value>
+	<value>Password may be weak. Or it doesn't accepted cause of criteria.</value>
   </data>
 
 	<data name="PasswordConfirmNotEqual" xml:space="preserve">
-		<value>Password confirmation value not equals to password value.</value>
+	<value>Password confirmation value not equals to password value.</value>
   </data>
 
 	<data name="FullNameRequired" xml:space="preserve">
-		<value>Fullname required.</value>
+	<value>Fullname required.</value>
   </data>
 
 	<data name="PhoneRequired" xml:space="preserve">
-		<value>Phone number required.</value>
+	<value>Phone number required.</value>
   </data>
 
 	<data name="EmailRequired" xml:space="preserve">
-		<value>Email required.</value>
+	<value>Email required.</value>
   </data>
 
 	<data name="NationalNumberRequired" xml:space="preserve">
-		<value>National number required.</value>
+	<value>National number required.</value>
   </data>
 
 	<data name="NationalNumberRequired" xml:space="preserve">
-		<value>National number required.</value>
+	<value>National number required.</value>
   </data>
 
 	<data name="PasswordMinLength" xml:space="preserve">
-		<value>Password minimum length must be 8 characters.</value>
+	<value>Password minimum length must be 8 characters.</value>
   </data>
 
 	<data name="EmailDomainInvalid" xml:space="preserve">
-		<value>Email ends with invalid domain.</value>
+	<value>Email ends with invalid domain.</value>
   </data>
 
 	<data name="InvalidContentType" xml:space="preserve">
-		<value>Content type is not valid.</value>
+	<value>Content type is not valid.</value>
   </data>
 
 	<data name="FailedSignUp" xml:space="preserve">
-		<value>Failed to sign up that user.</value>
+	<value>Failed to sign up that user.</value>
   </data>
 
 	<data name="UniversityCodeMultipleAttemps" xml:space="preserve">
-		<value>Unable to generate unique university code after multiple attempts.</value>
+	<value>Unable to generate unique university code after multiple attempts.</value>
+  </data>
+
+	<data name="UniversityEmailMultipleAttemps" xml:space="preserve">
+	<value>Unable to generate unique university email after multiple attempts.</value>
   </data>
 
 	<data name="PrimayRoleInvalid" xml:space="preserve">
-		<value>Primary role must be a valid role type.</value>
+	<value>Primary role must be a valid role type.</value>
   </data>
 
 	<data name="AdditionalRolesInvalid" xml:space="preserve">
-		<value>All additional roles must be a valid role type.</value>
+	<value>All additional roles must be a valid role type.</value>
   </data>
 
 	<data name="TokenNotFound" xml:space="preserve">
-		<value>Token is not found.</value>
+	<value>Token is not found.</value>
   </data>
 
 	<data name="UserNotFound" xml:space="preserve">
-		<value>User is not found.</value>
+	<value>User is not found.</value>
   </data>
 
 	<data name="TokenRequired" xml:space="preserve">
-		<value>Token is required.</value>
+	<value>Token is required.</value>
   </data>
 
 	<data name="TokenExpired" xml:space="preserve">
-		<value>now, Token is expired.</value>
+	<value>now, Token is expired.</value>
   </data>
 
 	<data name="UserLocked" xml:space="preserve">
-		<value>User account is locked out.</value>
+	<value>User account is locked out.</value>
   </data>
 
 	<data name="EmailUnVerified" xml:space="preserve">
-		<value>User email is unverified.</value>
+	<value>User email is unverified.</value>
   </data>
 
+	<data name="EmailNotFoundBefore" xml:space="preserve">
+	<value>User email is not found before.</value>
+  </data>
+
+	<data name="PasswordResetSubject" xml:space="preserve">
+	<value>Password Reset Code for Rafeek.</value>
+  </data>
+
+	<data name="PasswordResetTemplate" xml:space="preserve">
+	<value>&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&lt;meta charset="utf-8" /&gt;&lt;title&gt;Password Reset&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;h2&gt;Password Reset&lt;/h2&gt;&lt;p&gt;Hello, @(Model.FullName) !&lt;/p&gt;&lt;p&gt;You have requested to reset your password for Rafeek. To reset your password, please use the following reset code:&lt;/p&gt;&lt;p&gt;Reset Code: &lt;strong&gt;@(Model.VerificationCode)&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;If you didn't request this password reset, you can safely ignore this email.&lt;/p&gt;&lt;p&gt;Regards,&lt;/p&gt;&lt;p&gt;The Rafeek Team&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</value>
+  </data>
+
+	<data name="PasswordResetMessage" xml:space="preserve">
+	<value>Reset Code Sent.</value>
+  </data>
 	<data name="ResetTokenInvalid" xml:space="preserve">
 		<value>Invalid or expired password reset token.</value>
   </data>
@@ -259,5 +279,121 @@
 	<data name="PasswordResetSuccess" xml:space="preserve">
 		<value>Password has been reset successfully.</value>
   </data>
+
+	<data name="InvalidToken" xml:space="preserve">
+		<value>Token Invalid or expiration.</value>
+  </data>
+
+	<data name="EmailNotFound" xml:space="preserve">
+		<value>Email is not found.</value>
+  </data>
+
+	<data name="SendUserCredentialsSubject" xml:space="preserve">
+		<value>Your University Account Credentials - Rafeek</value>
+	</data>
+
+	<data name="SendUserCredentialsTemplate" xml:space="preserve">
+		<value>&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&lt;meta charset="utf-8" /&gt;&lt;title&gt;Your University Credentials&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;h2&gt;Welcome to Rafeek University System&lt;/h2&gt;&lt;p&gt;Hello, @(Model.FullName) !&lt;/p&gt;&lt;p&gt;Your account has been successfully created. Below are your login credentials:&lt;/p&gt;&lt;p&gt;University Email: &lt;strong&gt;@(Model.Email)&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Temporary Password: &lt;strong&gt;@(Model.Password)&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Important:&lt;/strong&gt; For security reasons, please change your password after your first login.&lt;/p&gt;&lt;p&gt;You can now access the Rafeek University System using these credentials.&lt;/p&gt;&lt;p&gt;If you did not request this account, please contact support immediately.&lt;/p&gt;&lt;p&gt;Regards,&lt;/p&gt;&lt;p&gt;The Rafeek Team&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</value>
+	</data>
+
+	<data name="SendUserCredentialsMessage" xml:space="preserve">
+		<value>User credentials sent successfully to email.</value>
+	</data>
+
+	<data name="EmailNotActivated" xml:space="preserve">
+		<value>Email is not activated yet.</value>
+	</data>
+
+	<data name="EmailActivatedSuccessfully" xml:space="preserve">
+		<value>Email is activated successfully.</value>
+	</data>
+
+	<data name="EmailAlreadyActivated" xml:space="preserve">
+		<value>Email is already activated.</value>
+	</data>
+
+	<data name="EventNameRequired" xml:space="preserve">
+		<value>Event name is required.</value>
+	</data>
+
+	<data name="MaxLengthOfEventNameExceededRequiredLength" xml:space="preserve">
+		<value>Event name is exceeded the required length.</value>
+	</data>
+
+	<data name="EventDateRequired" xml:space="preserve">
+		<value>Event date is required.</value>
+	</data>
+
+	<data name="StartTimeRequired" xml:space="preserve">
+		<value>Start time is required.</value>
+	</data>
+
+	<data name="EndTimeRequired" xml:space="preserve">
+		<value>End time is required.</value>
+	</data>
+
+	<data name="LocationRequired" xml:space="preserve">
+		<value>Location is required.</value>
+	</data>
+
+	<data name="MaxLengthOfLocationExceededRequiredLength" xml:space="preserve">
+		<value>Location of event must not exceeded the required length.</value>
+	</data>
+
+	<data name="TargetUserIdRequired" xml:space="preserve">
+		<value>Targeted user Id is required.</value>
+	</data>
+
+	<data name="EndTimeMustBeGreaterThanStartTime" xml:space="preserve">
+		<value>End time must be greater that a start time.</value>
+	</data>
+
+	<data name="EndDateMustBeGreaterThanOrEqualEventDate" xml:space="preserve">
+		<value>End date must be greater that or equal event date.</value>
+	</data>
+
+	<data name="RecurrenceEndDateRequired" xml:space="preserve">
+		<value>Recurrence end date is required.</value>
+	</data>
+
+	<data name="RecurrenceEndDateMustBeAfterEventDate" xml:space="preserve">
+		<value>Recurrence end date must be after event date.</value>
+	</data>
+
+	<data name="CourseIdRequiredForExamEvent" xml:space="preserve">
+		<value>Course Id required for exam event.</value>
+	</data>
+
+	<data name="AddedSuccessfully" xml:space="preserve">
+		<value>The record is added succefully.</value>
+	</data>
+
+	<data name="UpdatedSuccessfully" xml:space="preserve">
+		<value>The record is updated succefully.</value>
+	</data>
+
+	<data name="DeletedSuccessfully" xml:space="preserve">
+		<value>The record is deleted succefully.</value>
+	</data>
+
+	<data name="AddedFailed" xml:space="preserve">
+		<value>Failed to added a new record.</value>
+	</data>
+
+	<data name="UpdatedFailed" xml:space="preserve">
+		<value>Failed to updated a new record.</value>
+	</data>
+
+	<data name="DeletedFailed" xml:space="preserve">
+		<value>Failed to deleted a new record.</value>
+	</data>
+
+	<data name="EventIdRequired" xml:space="preserve">
+		<value>Event Id Required.</value>
+	</data>
+
+	<data name="EventIdNotValid" xml:space="preserve">
+		<value>Event Id is not valid.</value>
+	</data>
 
 </root>

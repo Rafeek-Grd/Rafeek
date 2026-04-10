@@ -1,21 +1,19 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFramework>net8.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
-		<EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
+		<GenerateSatelliteAssembliesForCore>true</GenerateSatelliteAssembliesForCore>
 	</PropertyGroup>
 
 	<ItemGroup>
-      <EmbeddedResource Include="Localization\Messages.resx">
-        <LogicalName>Rafeek.Application.Localization.Messages.resources</LogicalName>
+      <EmbeddedResource Update="Localization\Messages.resx">
         <Generator>PublicResXFileCodeGenerator</Generator>
         <LastGenOutput>Messages.Designer.cs</LastGenOutput>
       </EmbeddedResource>
 
-      <EmbeddedResource Include="Localization\Messages.ar.resx">
-        <LogicalName>Rafeek.Application.Localization.Messages.ar.resources</LogicalName>
+      <EmbeddedResource Update="Localization\Messages.ar.resx">
         <DependentUpon>Messages.resx</DependentUpon>
       </EmbeddedResource>
     </ItemGroup>

@@ -1,4 +1,4 @@
-﻿using Rafeek.Application.Handlers.AuthHandlers;
+﻿using Rafeek.Application.Handlers.AuthHandlers.Commands;
 using System.Security.Claims;
 
 namespace Rafeek.Application.Common.Interfaces

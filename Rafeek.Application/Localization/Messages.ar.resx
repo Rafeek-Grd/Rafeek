@@ -232,7 +232,10 @@
     <value>فشل تسجيل هذا المستخدم.</value>
   </data>
   <data name="UniversityCodeMultipleAttemps" xml:space="preserve">
-    <value>فشل توليد رمز جامعي جديد.</value>
+    <value>فشل توليد الكود جامعي جديد.</value>
+  </data>
+  <data name="UniversityEmailMultipleAttemps" xml:space="preserve">
+    <value>فشل توليد ايميل جامعي جديد.</value>
   </data>
   <data name="PrimayRoleInvalid" xml:space="preserve">
     <value>الدور الأولي يجب أن يكون صحيح.</value>
@@ -257,5 +260,110 @@
   </data>
   <data name="EmailUnVerified" xml:space="preserve">
     <value>حساب المُستخدم لم يتم التحقق منه.</value>
+  </data>
+  <data name="EmailNotFoundBefore" xml:space="preserve">
+    <value>هذا الحساب غير موجود.</value>
+  </data>
+  <data name="PasswordResetSubject" xml:space="preserve">
+    <value>رمز التحقق لاعادة تعيين كلمة السر.</value>
+  </data>
+  <data name="PasswordResetTemplate" xml:space="preserve">
+    <value>&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&lt;meta charset="utf-8" /&gt;&lt;title&gt;إعادة تعيين كلمة المرور&lt;/title&gt;&lt;/head&gt;&lt;body style="direction: rtl; text-align: right;"&gt;&lt;h2&gt;إعادة تعيين كلمة المرور&lt;/h2&gt;&lt;p&gt;مرحبًا، @(Model.FullName) !&lt;/p&gt;&lt;p&gt;لقد طلبت إعادة تعيين كلمة المرور الخاصة بك لنظام رفيق. لإعادة تعيين كلمة المرور، يرجى استخدام رمز إعادة التعيين التالي:&lt;/p&gt;&lt;p&gt;رمز إعادة التعيين: &lt;strong&gt;@(Model.VerificationCode)&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;إذا لم تطلب إعادة تعيين كلمة المرور هذه، يمكنك تجاهل هذا البريد الإلكتروني بأمان.&lt;/p&gt;&lt;p&gt;مع تحيات،&lt;/p&gt;&lt;p&gt;فريق رفيق&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</value>
+  </data>
+  <data name="PasswordResetMessage" xml:space="preserve">
+    <value>تم إرسال إعادة التعيين.</value>
+  </data>
+  <data name="ResetTokenInvalid" xml:space="preserve">
+    <value>كود التحقق غير صالح.</value>
+  </data>
+  <data name="PasswordResetSuccess" xml:space="preserve">
+    <value>تم اعادة تعيين كلمة السر بنجاح.</value>
+  </data>
+  <data name="InvalidToken" xml:space="preserve">
+    <value>كود التأكيد غير صحيح أو تم انتهاء صلاحيته.</value>
+  </data>
+  <data name="EmailNotFound" xml:space="preserve">
+    <value>الايميل غير موجود.</value>
+  </data>
+  <data name="SendUserCredentialsSubject" xml:space="preserve">
+    <value>بيانات حساب الجامعة الخاص بك - رفيق</value>
+  </data>
+  <data name="SendUserCredentialsTemplate" xml:space="preserve">
+    <value>&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&lt;meta charset="utf-8" /&gt;&lt;title&gt;بيانات حسابك الجامعي&lt;/title&gt;&lt;/head&gt;&lt;body style="direction: rtl; text-align: right;"&gt;&lt;h2&gt;مرحبًا بك في نظام رفيق الجامعي&lt;/h2&gt;&lt;p&gt;مرحبًا، @(Model.FullName) !&lt;/p&gt;&lt;p&gt;تم إنشاء حسابك بنجاح. فيما يلي بيانات تسجيل الدخول الخاصة بك:&lt;/p&gt;&lt;p&gt;البريد الجامعي: &lt;strong&gt;@(Model.Email)&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;كلمة المرور المؤقتة: &lt;strong&gt;@(Model.Password)&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;مهم:&lt;/strong&gt; لأسباب أمنية، يرجى تغيير كلمة المرور الخاصة بك بعد أول تسجيل دخول.&lt;/p&gt;&lt;p&gt;يمكنك الآن الوصول إلى نظام رفيق الجامعي باستخدام هذه البيانات.&lt;/p&gt;&lt;p&gt;إذا لم تطلب هذا الحساب، يرجى الاتصال بالدعم الفني فورًا.&lt;/p&gt;&lt;p&gt;مع تحيات،&lt;/p&gt;&lt;p&gt;فريق رفيق&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</value>
+  </data>
+  <data name="SendUserCredentialsMessage" xml:space="preserve">
+    <value>تم إرسال بيانات المستخدم بنجاح إلى البريد الإلكتروني.</value>
+  </data>
+  <data name="EmailNotActivated" xml:space="preserve">
+    <value>الايميل لم يتم تفعيله بعد.</value>
+  </data>
+  <data name="EmailActivatedSuccessfully" xml:space="preserve">
+    <value>تم تفعيل الايميل بنجاح.</value>
+  </data>
+  <data name="EmailAlreadyActivated" xml:space="preserve">
+    <value>الايميل بالفعل تم تفعيله من قبل.</value>
+  </data>
+  <data name="EventNameRequired" xml:space="preserve">
+    <value>اسم الحدث مطلوب.</value>
+  </data>
+  <data name="MaxLengthOfEventNameExceededRequiredLength" xml:space="preserve">
+    <value>اسم الحدث تجاوز عدد الحروف المطلوبه.</value>
+  </data>
+  <data name="EventDateRequired" xml:space="preserve">
+    <value>تاريخ الحدث مطلوب.</value>
+  </data>
+  <data name="StartTimeRequired" xml:space="preserve">
+    <value>موعد بدء الحدث مطلوب.</value>
+  </data>
+  <data name="EndTimeRequired" xml:space="preserve">
+    <value>موعد انتهاء الحدث مطلوب.</value>
+  </data>
+  <data name="LocationRequired" xml:space="preserve">
+    <value>موقع الحدث مطلوب.</value>
+  </data>
+  <data name="MaxLengthOfLocationExceededRequiredLength" xml:space="preserve">
+    <value>موقع الحدث لا يجب ان يتجاوز الحد الاقصي للحروف المطلوبة.</value>
+  </data>
+  <data name="TargetUserIdRequired" xml:space="preserve">
+    <value>يجب أن يكون موعد انتهاء الحدث اكبر من موعد البداية.</value>
+  </data>
+  <data name="EndTimeMustBeGreaterThanStartTime" xml:space="preserve">
+    <value>موعد انتهاء الحدث يجب ان يكون بعد موعد البداية وليس العكس</value>
+  </data>
+  <data name="EndDateMustBeGreaterThanOrEqualEventDate" xml:space="preserve">
+    <value>تاريخ انتهاء الحدث يجب ان يكون اكبر من او مُساوٍ ل تاريخ بداية الحدث.</value>
+  </data>
+  <data name="RecurrenceEndDateRequired" xml:space="preserve">
+    <value>تاريخ انتهاء التكرار مطلوب.</value>
+  </data>
+  <data name="RecurrenceEndDateMustBeAfterEventDate" xml:space="preserve">
+    <value>تاريخ انتهاء التكرار يجب ان يكون بعد تاريخ بداية الحدث.</value>
+  </data>
+  <data name="CourseIdRequiredForExamEvent" xml:space="preserve">
+    <value>مُعرف الدورة مطلوب من اجل حدث الامتحانات.</value>
+  </data>
+  <data name="AddedSuccessfully" xml:space="preserve">
+    <value>تم الإضافة بنجاح.</value>
+  </data>
+  <data name="UpdatedSuccessfully" xml:space="preserve">
+    <value>تم التعديل بنجاح.</value>
+  </data>
+  <data name="DeletedSuccessfully" xml:space="preserve">
+    <value>تم الحذف بنجاح.</value>
+  </data>
+  <data name="AddedFailed" xml:space="preserve">
+    <value>فشل الإضافة.</value>
+  </data>
+  <data name="UpdatedFailed" xml:space="preserve">
+    <value>فشل التعديل.</value>
+  </data>
+  <data name="DeletedFailed" xml:space="preserve">
+    <value>فشل الحذف.</value>
+  </data>
+  <data name="EventIdRequired" xml:space="preserve">
+    <value>مُعرف الحدث مطلوب.</value>
+  </data>
+  <data name="EventIdNotValid" xml:space="preserve">
+    <value>مُعرف الحدث غير صالح.</value>
   </data>
 </root>

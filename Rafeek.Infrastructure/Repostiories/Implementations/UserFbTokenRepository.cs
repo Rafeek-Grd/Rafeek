@@ -12,5 +12,10 @@ namespace Rafeek.Infrastructure.Repostiories.Implementations
             IRafeekDbContext context) : base(context)
         {
         }
+
+        public UserFbTokenRepository(IRafeekIdentityDbContext identityDbContext) : base(identityDbContext)
+        {
+            
+        }
     }
 }

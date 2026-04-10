@@ -24,7 +24,20 @@ namespace Rafeek.API.Routes
             public const string SignUp = Base + "/signup";
             public const string SignIn = Base + "/signin";
             public const string RefreshToken = Base + "/refresh-token";
+            public const string ForgotPassword = Base + "/forgot-password";
             public const string ResetPassword = Base + "/reset-password";
+            public const string CheckFromConfirmationCode = Base + "/check-confirmation-code";
+            public const string ActivateUniversityEmail = Base + "/activate-university-email";
+            public const string GetUserProfile = Base + "/profile";
+        }
+
+        public static class EventOfAcademicCalendar
+        {
+            public const string AddEvent = Base + "/events/add";
+            public const string GetAllPagginatedEvents = Base + "/events/pagginated";
+            public const string GetEventById = Base + "/events/{id}";
+            public const string UpdateEvent = Base + "/events/update";
+            public const string DeleteEvent = Base + "/events/{id}/delete";
         }
 
         public static class AcademicYear

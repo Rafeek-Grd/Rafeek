@@ -1,6 +1,7 @@
 ﻿using AspNetCoreRateLimit;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Http.Features;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
@@ -20,9 +21,9 @@ using Rafeek.API.Swagger;
 using Rafeek.Application;
 using Rafeek.Application.Common.Interfaces;
 using Rafeek.Application.Common.Options;
-using Rafeek.Application.HealthCheck;
 using Rafeek.Application.Localization;
 using Rafeek.Infrastructure;
+using Rafeek.Infrastructure.Notifications.Emails;
 using Rafeek.Persistence;
 using System.Globalization;
 using System.IO.Compression;
@@ -182,6 +183,10 @@ try
     // Add options pattern support
     builder.Services.AddOptions();
 
+    builder.Services.Configure<TemplatePath>(builder.Configuration.GetSection("TemplatePath"));
+
+    builder.Services.Configure<EmailConfiguration>(builder.Configuration.GetSection("EmailConfiguration"));
+
     builder.Services.AddMemoryCache();
 
     builder.Services.AddInMemoryRateLimiting();
@@ -284,6 +289,7 @@ try
             options.SwaggerEndpoint(endpoint, name);
 
             options.InjectJavascript("/swagger/swagger-ui/language.js");
+            options.InjectStylesheet("/swagger/swagger-ui/custom.css");
         }
     });
 

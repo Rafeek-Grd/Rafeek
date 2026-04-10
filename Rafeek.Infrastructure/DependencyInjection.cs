@@ -18,6 +18,9 @@ using IdentityOptions = Rafeek.Infrastructure.Identity.IdentityOptions;
 using Microsoft.AspNetCore.Http;
 using Rafeek.Application.Localization;
 using Squeak.Infrastructure.Oauth;
+using Rafeek.Infrastructure.Notifications.Emails;
+using Rafeek.Domain.Repositories.Interfaces;
+using Rafeek.Infrastructure.Repostiories.Implementations;
 
 namespace Rafeek.Infrastructure
 {
@@ -32,6 +35,7 @@ namespace Rafeek.Infrastructure
             // Register Generic Repositories
             services.AddScoped(typeof(IEntityRepository<,>), typeof(EntityRepository<,>));
             services.AddScoped(typeof(IGenericRepository<,>), typeof(GenericRepository<,>));
+            services.AddScoped<IUserRepository, UserRepository>();
 
             // Configure Identity (Must be before Authentication to avoid overwriting defaults)
             var identityOptionsConfig = new IdentityOptions();
@@ -109,6 +113,8 @@ namespace Rafeek.Infrastructure
 
             services.AddScoped<IIdentityUnitOfWork, IdentityUnitOfWork>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+            services.AddTransient<IEmailNotificationService, EmailNotificationService>();
 
             var dataProtectionOptionsConfig = new DataProtectionOptions();
             configuration.GetSection("DataProtection").Bind(dataProtectionOptionsConfig);
