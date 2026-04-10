@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.EntityFrameworkCore.Storage;
@@ -47,6 +47,7 @@ namespace Rafeek.Persistence
         public DbSet<AnalyticsReport> AnalyticsReports { get; set; }
         public DbSet<UserLoginHistory> UserLoginHistories { get; set; }
         public DbSet<Staff> Staffs { get; set; }    
+        public DbSet<AcademicYear> AcademicYears { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

@@ -26,5 +26,14 @@ namespace Rafeek.API.Routes
             public const string RefreshToken = Base + "/refresh-token";
             public const string ResetPassword = Base + "/reset-password";
         }
+
+        public static class AcademicYear
+        {
+            public const string Create = Base + "/academic-years";
+            public const string Update = Base + "/academic-years/{id}";
+            public const string Delete = Base + "/academic-years/{id}";
+            public const string GetAll = Base + "/academic-years";
+            public const string GetById = Base + "/academic-years/{id}";
+        }
     }
 }

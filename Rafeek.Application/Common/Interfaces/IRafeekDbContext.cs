@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Infrastructure;
@@ -38,6 +38,7 @@ namespace Rafeek.Application.Common.Interfaces
         DbSet<UserLoginHistory> UserLoginHistories { get; }
         DbSet<AnalyticsReport> AnalyticsReports { get; }
         DbSet<Staff> Staffs { get; }
+        DbSet<AcademicYear> AcademicYears { get; }
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
         Task<IDbContextTransaction> BeginTransactionAsync(CancellationToken cancellationToken = default);
