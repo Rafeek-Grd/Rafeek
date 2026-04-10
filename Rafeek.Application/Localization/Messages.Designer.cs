@@ -61,6 +61,24 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Academic year name is required..
+        /// </summary>
+        public static string AcademicYearNameRequired {
+            get {
+                return ResourceManager.GetString("AcademicYearNameRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This Academic year is not found in our system..
+        /// </summary>
+        public static string AcademicYearNotFound {
+            get {
+                return ResourceManager.GetString("AcademicYearNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Request accepted successfully..
         /// </summary>
         public static string AcceptedActionResultMessage {
@@ -246,6 +264,24 @@ namespace Rafeek.Application.Localization {
         public static string EndDateMustBeGreaterThanOrEqualEventDate {
             get {
                 return ResourceManager.GetString("EndDateMustBeGreaterThanOrEqualEventDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to End date of academic year must be greater than start date..
+        /// </summary>
+        public static string EndDateMustBeGreaterThanStartDate {
+            get {
+                return ResourceManager.GetString("EndDateMustBeGreaterThanStartDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to End date of academic year is required..
+        /// </summary>
+        public static string EndDateRequired {
+            get {
+                return ResourceManager.GetString("EndDateRequired", resourceCulture);
             }
         }
         
@@ -660,6 +696,15 @@ namespace Rafeek.Application.Localization {
         public static string SendUserCredentialsTemplate {
             get {
                 return ResourceManager.GetString("SendUserCredentialsTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start date of academic year is required..
+        /// </summary>
+        public static string StartDateRequired {
+            get {
+                return ResourceManager.GetString("StartDateRequired", resourceCulture);
             }
         }
         

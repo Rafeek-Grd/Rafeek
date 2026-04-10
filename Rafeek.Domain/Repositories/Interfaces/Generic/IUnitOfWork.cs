@@ -8,6 +8,7 @@ namespace Rafeek.Domain.Repositories.Interfaces.Generic
         IRefreshTokenRepository RefreshTokenRepository { get; }
         IUserFbTokenRepository UserFbTokenRepository { get; }
         IAcademicCalendarRepository AcademicCalendarRepository { get; }
+        IAcademicYearRepository AcademicYearRepository { get; }
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
         Task<IDbContextTransaction> BeginTransactionAsync(CancellationToken cancellationToken = default);

@@ -1,19 +1,12 @@
-using AutoMapper;
+﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Rafeek.Application.Common.Interfaces;
 using Rafeek.Application.Handlers.AcademicYearHandlers.DTOs;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
 
-namespace Rafeek.Application.Handlers.AcademicYearHandlers.Queries
+namespace Rafeek.Application.Handlers.AcademicYearHandlers.Queries.GetAllAcademicYear
 {
-    public class GetAllAcademicYearsQuery : IRequest<List<AcademicYearDto>>
-    {
-    }
-
     public class GetAllAcademicYearsQueryHandler : IRequestHandler<GetAllAcademicYearsQuery, List<AcademicYearDto>>
     {
         private readonly IRafeekDbContext _context;

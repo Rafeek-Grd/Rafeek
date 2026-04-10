@@ -5,9 +5,9 @@ using Rafeek.Infrastructure.Repostiories.Implementations.Generic;
 
 namespace Rafeek.Infrastructure.Repostiories.Implementations
 {
-    public class AcademicCalendarRepository: BaseEntityRepository<AcademicCalendar, Guid>, IAcademicCalendarRepository
+    public class AcademicYearRepository: BaseEntityRepository<AcademicYear,Guid >, IAcademicYearRepository
     {
-        public AcademicCalendarRepository(IRafeekDbContext dbContext): base(dbContext)
+        public AcademicYearRepository(IRafeekDbContext context): base(context)
         {
             
         }

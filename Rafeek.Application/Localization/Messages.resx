@@ -396,4 +396,24 @@
 		<value>Event Id is not valid.</value>
 	</data>
 
+	<data name="AcademicYearNameRequired" xml:space="preserve">
+		<value>Academic year name is required.</value>
+	</data>
+
+	<data name="StartDateRequired" xml:space="preserve">
+		<value>Start date of academic year is required.</value>
+	</data>
+
+	<data name="EndDateRequired" xml:space="preserve">
+		<value>End date of academic year is required.</value>
+	</data>
+
+	<data name="EndDateMustBeGreaterThanStartDate" xml:space="preserve">
+		<value>End date of academic year must be greater than start date.</value>
+	</data>
+
+	<data name="AcademicYearNotFound" xml:space="preserve">
+		<value>This Academic year is not found in our system.</value>
+	</data>
+
 </root>

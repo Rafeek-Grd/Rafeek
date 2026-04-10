@@ -1,4 +1,6 @@
-﻿namespace Rafeek.Application.Localization
+﻿using Rafeek.Domain.Entities;
+
+namespace Rafeek.Application.Localization
 {
     public static class LocalizationKeys
     {
@@ -108,6 +110,15 @@
             public static readonly KeyString RecurrenceEndDateRequired = new("RecurrenceEndDateRequired");
             public static readonly KeyString RecurrenceEndDateMustBeAfterEventDate = new("RecurrenceEndDateMustBeAfterEventDate");
             public static readonly KeyString CourseIdRequiredForExamEvent = new("CourseIdRequiredForExamEvent");
+        }
+
+        public record AcademicYear
+        {
+            public static readonly KeyString AcademicYearNameRequired = new("AcademicYearNameRequired");
+            public static readonly KeyString StartDateRequired = new("StartDateRequired");
+            public static readonly KeyString EndDateRequired = new("EndDateRequired");
+            public static readonly KeyString EndDateMustBeGreaterThanStartDate = new("EndDateMustBeGreaterThanStartDate");
+            public static readonly KeyString AcademicYearNotFound = new("AcademicYearNotFound");
         }
 
         public record EmailTemplates

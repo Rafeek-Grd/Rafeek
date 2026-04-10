@@ -20,6 +20,7 @@ namespace Rafeek.Infrastructure.Repostiories.Implementations.Generic
         private RefreshTokenRepository? _refreshTokenRepository;
         private UserFbTokenRepository? _userFbTokenRepository;
         private AcademicCalendarRepository? _academicCalendarRepository;
+        private AcademicYearRepository? _academicYearRepository;
 
         public UnitOfWork(
             IRafeekDbContext context,
@@ -35,6 +36,7 @@ namespace Rafeek.Infrastructure.Repostiories.Implementations.Generic
         public IRefreshTokenRepository RefreshTokenRepository => _refreshTokenRepository ??= new RefreshTokenRepository(_context, _jwtTokenManager, _currentUserService);
         public IUserFbTokenRepository UserFbTokenRepository => _userFbTokenRepository ??= new UserFbTokenRepository(_context);
         public IAcademicCalendarRepository AcademicCalendarRepository => _academicCalendarRepository ??= new AcademicCalendarRepository(_context);
+        public IAcademicYearRepository AcademicYearRepository => _academicYearRepository ??= new AcademicYearRepository(_context);
 
         public async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
