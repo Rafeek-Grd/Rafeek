@@ -7,11 +7,13 @@ using Rafeek.Application.Handlers.AcademicTermHandlers.Commands;
 using Rafeek.Application.Handlers.AcademicTermHandlers.Queries;
 using System;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Rafeek.API.Controllers.Version1
 {
     [ApiController]
     [ApiVersion("1.0")]
+    [Authorize(Roles = "Admin")]
     public class AcademicTermController : BaseApiController
     {
         private readonly IMediator _mediator;

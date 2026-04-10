@@ -7,11 +7,13 @@ using Rafeek.Application.Handlers.AcademicYearHandlers.Commands;
 using Rafeek.Application.Handlers.AcademicYearHandlers.Queries;
 using System;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Rafeek.API.Controllers.Version1
 {
     [ApiController]
     [ApiVersion("1.0")]
+    [Authorize(Roles = "Admin")]
     public class AcademicYearController : BaseApiController
     {
         private readonly IMediator _mediator;
