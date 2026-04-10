@@ -40,6 +40,7 @@ namespace Rafeek.Application.Common.Interfaces
         DbSet<AnalyticsReport> AnalyticsReports { get; }
         DbSet<Staff> Staffs { get; }
 
+
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
         Task<IDbContextTransaction> BeginTransactionAsync(CancellationToken cancellationToken = default);
         IExecutionStrategy CreateExecutionStrategy();
