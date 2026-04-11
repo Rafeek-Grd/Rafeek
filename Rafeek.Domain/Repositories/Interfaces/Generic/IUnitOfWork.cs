@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore.Storage;
-using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace Rafeek.Domain.Repositories.Interfaces.Generic
 {
@@ -9,6 +8,11 @@ namespace Rafeek.Domain.Repositories.Interfaces.Generic
         IUserFbTokenRepository UserFbTokenRepository { get; }
         IAcademicCalendarRepository AcademicCalendarRepository { get; }
         IAcademicYearRepository AcademicYearRepository { get; }
+        IAcademicTermRepository AcademicTermRepository { get; }
+        IStudentRepository StudentRepository { get; }
+        IDoctorRepository DoctorRepository { get; }
+        IStudentSupportRepository StudentSupportRepository { get; }
+        IDepartmentRepository DepartmentRepository { get; }
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
         Task<IDbContextTransaction> BeginTransactionAsync(CancellationToken cancellationToken = default);

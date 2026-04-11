@@ -24,11 +24,9 @@ namespace Rafeek.Application.Handlers.AcademicCalendarHandlers.Query.GetEventOfA
 
         public async Task<AcademicCalendarDto> Handle(GetEventOfAcademicCalendarByIdQuery request, CancellationToken cancellationToken)
         {
-            var eventOfAcademicCalendar = await _ctx
-            .AcademicCalendarRepository
-            .IncludeAll()
-            .FirstOrDefaultAsync(x => x.Id == request.AcademicCalendarId, cancellationToken)
-            ?? throw new NotFoundException(nameof(AcademicCalendar), request.AcademicCalendarId);
+            var eventOfAcademicCalendar = await _ctx.AcademicCalendarRepository
+            .GetFirstIncludingAll(x => x.Id == request.AcademicCalendarId)
+            .FirstOrDefaultAsync(cancellationToken);
 
             return _mapper.Map<AcademicCalendarDto>(eventOfAcademicCalendar);
         }

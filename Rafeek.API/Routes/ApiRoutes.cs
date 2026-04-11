@@ -42,10 +42,10 @@ namespace Rafeek.API.Routes
 
         public static class AcademicYear
         {
-            public const string Create = Base + "/academic-years";
-            public const string Update = Base + "/academic-years/{id}";
-            public const string Delete = Base + "/academic-years/{id}";
-            public const string GetAll = Base + "/academic-years";
+            public const string Create = Base + "/academic-years/add";
+            public const string Update = Base + "/academic-years/{id}/update";
+            public const string Delete = Base + "/academic-years/{id}/delete";
+            public const string GetAllPagginated = Base + "/academic-years/pagginated";
             public const string GetById = Base + "/academic-years/{id}";
         }
 
@@ -54,20 +54,20 @@ namespace Rafeek.API.Routes
             public const string Create = Base + "/academic-terms";
             public const string Update = Base + "/academic-terms/{id}";
             public const string Delete = Base + "/academic-terms/{id}";
-            public const string GetAll = Base + "/academic-terms";
+            public const string GetAllPagginated = Base + "/academic-terms/pagginated";
             public const string GetById = Base + "/academic-terms/{id}";
         }
 
         public static class Student
         {
-            public const string AssignToAcademicAdvisor = Base + "/students/assign-advisor";
-            public const string RequestGuidance = Base + "/students/request-guidance";
+            public const string AssignStudentsToAcademicAdvisor = Base + "/students/assign-to-academic-advisor";
+            public const string SendRequestToGuide = Base + "/students/guidance-request/send";
         }
 
         public static class Advisor
         {
-            public const string GetPendingGuidanceRequests = Base + "/advisor/{advisorId}/guidance-requests";
-            public const string ReviewGuidanceRequest = Base + "/advisor/{advisorId}/guidance-requests/{requestId}/review";
+            public const string GetAllGuidanceRequestsPagginated = Base + "/advisor/guidance-requests";
+            public const string UpdateGuidanceRequestStatus = Base + "/advisor/guidance-requests/{requestId}";
         }
     }
 }

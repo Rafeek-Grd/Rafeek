@@ -17,12 +17,9 @@ namespace Rafeek.Domain.Repositories.Interfaces.Generic
         Task<T?> FindByKeyAsync(TKey key, CancellationToken cancellationToken = default);
 
         // Include all navigational properties
-        IQueryable<T> IncludeAll();
+        IQueryable<T> IncludeAll(Expression<Func<T, bool>>? predicate);
 
         // Get first including all navigational properties
-        Task<T?> GetFirstIncludingAllAsync(Expression<Func<T, bool>> predicate, CancellationToken cancellationToken = default);
-
-        // Get single including all navigational properties
-        Task<T?> GetSingleIncludingAllAsync(Expression<Func<T, bool>> predicate, CancellationToken cancellationToken = default);
+        public IQueryable<T?> GetFirstIncludingAll(Expression<Func<T, bool>> predicate);
     }
 }

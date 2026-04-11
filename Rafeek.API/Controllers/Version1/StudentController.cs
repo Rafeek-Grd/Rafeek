@@ -3,9 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 using Rafeek.API.Routes;
 using Rafeek.Application.Localization;
-using Rafeek.Application.Handlers.StudentHandlers.Commands;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+using Rafeek.API.Filters;
+using Rafeek.Domain.Enums;
+using Rafeek.Application.Handlers.StudentHandlers.Commands.SendRequestForAdvismentGuide;
 
 namespace Rafeek.API.Controllers.Version1
 {
@@ -20,35 +20,20 @@ namespace Rafeek.API.Controllers.Version1
             _mediator = mediator;
         }
 
+        /// <summary>
+        /// Send request for guidance to an advisor, including the title and description of the request.
+        /// </summary>
+        /// <param name="command"></param>
+        /// <returns></returns>
         [HttpPost]
-        [Authorize(Roles = "Admin")]
-        [Route(ApiRoutes.Student.AssignToAcademicAdvisor)]
-        public async Task<IActionResult> AssignToAcademicAdvisor([FromBody] AssignStudentToAcademicAdvisorCommand command)
+        [RoleAuthorize(nameof(UserType.Student))]
+        [Route(ApiRoutes.Student.SendRequestToGuide)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> SendRequestForGuidance([FromBody] SendRequestForAdvismentGuideCommand command)
         {
             var result = await _mediator.Send(command);
-            
-            if (!result)
-            {
-                return BadRequest("Failed to assign student to academic advisor. Please verify student and advisor IDs.");
-            }
-
-            return Ok("Student successfully assigned to academic advisor.");
-        }
-
-        [HttpPost]
-        [Authorize]
-        [Route(ApiRoutes.Student.RequestGuidance)]
-        public async Task<IActionResult> RequestGuidance([FromBody] RequestGuidanceCommand command)
-        {
-            try
-            {
-                var result = await _mediator.Send(command);
-                return Ok(result, "Guidance request submitted successfully.");
-            }
-            catch (System.Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            return Ok(result);
         }
     }
 }

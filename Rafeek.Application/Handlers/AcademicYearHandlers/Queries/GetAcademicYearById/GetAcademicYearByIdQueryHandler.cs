@@ -2,31 +2,26 @@
 using AutoMapper.QueryableExtensions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Rafeek.Application.Common.Interfaces;
 using Rafeek.Application.Handlers.AcademicYearHandlers.DTOs;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Rafeek.Domain.Repositories.Interfaces.Generic;
 
 namespace Rafeek.Application.Handlers.AcademicYearHandlers.Queries.GetAcademicYearById
 {
     public class GetAcademicYearByIdQueryHandler : IRequestHandler<GetAcademicYearByIdQuery, AcademicYearDto?>
     {
-        private readonly IRafeekDbContext _context;
+        private readonly IUnitOfWork _ctx;
         private readonly IMapper _mapper;
 
-        public GetAcademicYearByIdQueryHandler(IRafeekDbContext context, IMapper mapper)
+        public GetAcademicYearByIdQueryHandler(IUnitOfWork ctx, IMapper mapper)
         {
-            _context = context;
+            _ctx = ctx;
             _mapper = mapper;
         }
 
         public async Task<AcademicYearDto?> Handle(GetAcademicYearByIdQuery request, CancellationToken cancellationToken)
         {
-            return await _context.AcademicYears
-                .Where(x => x.Id == request.Id)
+            return await _ctx.AcademicYearRepository
+                .GetFirstIncludingAll(x => x.Id == request.Id)
                 .ProjectTo<AcademicYearDto>(_mapper.ConfigurationProvider)
                 .FirstOrDefaultAsync(cancellationToken);
         }

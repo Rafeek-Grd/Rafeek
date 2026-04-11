@@ -1,6 +1,5 @@
-﻿using MediatR;
-using Microsoft.EntityFrameworkCore;
-using Rafeek.Application.Common.Interfaces;
+﻿using AutoMapper;
+using MediatR;
 using Rafeek.Domain.Repositories.Interfaces.Generic;
 
 namespace Rafeek.Application.Handlers.AcademicYearHandlers.Commands.UpdateAcademicYear
@@ -8,28 +7,19 @@ namespace Rafeek.Application.Handlers.AcademicYearHandlers.Commands.UpdateAcadem
     public class UpdateAcademicYearCommandHandler : IRequestHandler<UpdateAcademicYearCommand, Unit>
     {
         private readonly IUnitOfWork _ctx;
+        private readonly IMapper _mapper;
 
-        public UpdateAcademicYearCommandHandler(IUnitOfWork ctx)
+        public UpdateAcademicYearCommandHandler(IUnitOfWork ctx, IMapper mapper)
         {
             _ctx = ctx;
+            _mapper = mapper;
         }
 
         public async Task<Unit> Handle(UpdateAcademicYearCommand request, CancellationToken cancellationToken)
         {
             var entity = await _ctx.AcademicYearRepository.GetFirstAsync(x => x.Id == request.Id, cancellationToken);
 
-
-            if (request.Name is not null)
-                entity.Name = request.Name;
-
-            if (request.StartDate.HasValue)
-                entity.StartDate = request.StartDate.Value;
-
-            if (request.EndDate.HasValue)
-                entity.EndDate = request.EndDate.Value;
-
-            if (request.IsCurrentYear.HasValue)
-                entity.IsCurrentYear = request.IsCurrentYear.Value;
+            _mapper.Map(request, entity);
 
             await _ctx.SaveChangesAsync(cancellationToken);
 

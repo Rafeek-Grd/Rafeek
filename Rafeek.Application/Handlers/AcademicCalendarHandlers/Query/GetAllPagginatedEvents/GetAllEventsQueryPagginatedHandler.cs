@@ -28,7 +28,7 @@ namespace Rafeek.Application.Handlers.AcademicCalendarHandlers.Query.GetAllPaggi
         {
             return await _ctx
                 .AcademicCalendarRepository
-                .IncludeAll()
+                .IncludeAll(null)
                 .AsNoTracking()
                 .ProjectTo<AcademicCalendarDto>(_mapper.ConfigurationProvider)
                 .PaginatedListAsync(request.PageNumber, request.PageSize);

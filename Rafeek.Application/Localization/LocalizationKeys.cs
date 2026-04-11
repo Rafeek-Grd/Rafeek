@@ -121,6 +121,47 @@ namespace Rafeek.Application.Localization
             public static readonly KeyString AcademicYearNotFound = new("AcademicYearNotFound");
         }
 
+        public record AcademicTerm
+        {
+            public static readonly KeyString AcademicTermNameRequired = new("AcademicTermNameRequired");
+            public static readonly KeyString AcademicTermIdRequired = new("AcademicTermIdRequired");
+            public static readonly KeyString AcademicTermStartDateRequired = new("AcademicTermStartDateRequired");
+            public static readonly KeyString AcademicTermEndDateRequired = new("AcademicTermEndDateRequired");
+            public static readonly KeyString EndDateMustBeGreaterThanStartDate = new("EndDateMustBeGreaterThanStartDate");
+            public static readonly KeyString RegisterationEndDateMustBeGreaterThanRegistrationStartDate = new("RegisterationEndDateMustBeGreaterThanRegistrationStartDate");
+            public static readonly KeyString ExamEndDateMustBeGreaterThanExamStartDate = new("ExamEndDateMustBeGreaterThanExamStartDate");
+            public static readonly KeyString RegistrationStartDateMustBeGreaterThanAcademicTermStartDate = new("RegistrationStartDateMustBeGreaterThanAcademicTermStartDate");
+            public static readonly KeyString ExamStartDateMustBeGreaterThanRegistrationStartDate = new("ExamStartDateMustBeGreaterThanRegistrationStartDate");
+            public static readonly KeyString AcademicTermNotFound = new("AcademicTermNotFound");
+        }
+
+        public record StudentSupport
+        {
+            public static readonly KeyString RequestIdRequired = new("RequestIdRequired");
+            public static readonly KeyString TitleRequired = new("TitleRequired");
+            public static readonly KeyString DescriptionRequired = new("DescriptionRequired");
+            public static readonly KeyString RequestIsSentSuccessfully = new("RequestIsSentSuccessfully");
+            public static readonly KeyString RequestIsFailedToSend = new("RequestIsFailedToSend");
+        }
+
+        public record Advisor
+        {
+            public static readonly KeyString YouAreNotAdvisorOfThatStudent = new("YouAreNotAdvisorOfThatStudent");
+            public static readonly KeyString AdvisorIdRequired = new("AdvisorIdRequired");
+            public static readonly KeyString AdvisorIdNotFound = new("AdvisorIdNotFound");
+        }
+
+        public record Department
+        {
+            public static readonly KeyString DepartmentIdNotFound = new("DepartmentIdNotFound");
+        }
+
+        public record Student
+        {
+            public static readonly KeyString StudentIdRequired = new("StudentIdRequired");
+            public static readonly KeyString StudentsNotFound = new("StudentsNotFound");
+        }
+
         public record EmailTemplates
         {
             public record EmailTemplatesKeys

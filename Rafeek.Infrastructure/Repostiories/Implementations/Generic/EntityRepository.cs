@@ -54,7 +54,7 @@ namespace Rafeek.Infrastructure.Repostiories.Implementations.Generic
 
         public async Task<bool> ExistsAsync(Expression<Func<T, bool>> predicate, CancellationToken cancellationToken = default)
         {
-            return _dbSet.AsQueryable().Any(predicate);
+            return await _dbSet.AsQueryable().AnyAsync(predicate, cancellationToken);
         }
 
         public async Task<bool> ExistsByKeyAsync(TKey key, CancellationToken cancellationToken = default)
@@ -101,7 +101,7 @@ namespace Rafeek.Infrastructure.Repostiories.Implementations.Generic
 
         public async Task<T> GetFirstAsync(Expression<Func<T, bool>> predicate, CancellationToken cancellationToken = default)
         {
-            return await Task.Run(() => _dbSet.First(predicate), cancellationToken);
+            return await _dbSet.FirstAsync(predicate, cancellationToken);
         }
 
         public T GetSingle(Func<T, bool> predicate)
@@ -111,7 +111,7 @@ namespace Rafeek.Infrastructure.Repostiories.Implementations.Generic
 
         public async Task<T> GetSingleAsync(Expression<Func<T, bool>> predicate, CancellationToken cancellationToken = default)
         {
-             return await Task.Run(() => _dbSet.Single(predicate), cancellationToken);
+            return await _dbSet.SingleAsync(predicate, cancellationToken);
         }
 
         public void Update(T entity)
@@ -124,11 +124,15 @@ namespace Rafeek.Infrastructure.Repostiories.Implementations.Generic
             _dbSet.UpdateRange(entities);
         }
 
-        public IQueryable<T> IncludeAll()
+        public IQueryable<T> IncludeAll(Expression<Func<T, bool>>? predicate)
         {
-            var query = _dbSet.AsQueryable();
-            var navigations = _context.Model.FindEntityType(typeof(T))
-                .GetNavigations();
+            var query = GetAll(predicate!);
+            var entityType = _context.Model.FindEntityType(typeof(T));
+
+            if (entityType == null)
+                return query;
+
+            var navigations = entityType.GetNavigations();
 
             foreach (var property in navigations)
             {
@@ -138,14 +142,9 @@ namespace Rafeek.Infrastructure.Repostiories.Implementations.Generic
             return query;
         }
 
-        public async Task<T?> GetFirstIncludingAllAsync(Expression<Func<T, bool>> predicate, CancellationToken cancellationToken = default)
+        public IQueryable<T> GetFirstIncludingAll(Expression<Func<T, bool>> predicate)
         {
-            return await IncludeAll().FirstOrDefaultAsync(predicate, cancellationToken);
-        }
-
-        public async Task<T?> GetSingleIncludingAllAsync(Expression<Func<T, bool>> predicate, CancellationToken cancellationToken = default)
-        {
-            return await IncludeAll().SingleOrDefaultAsync(predicate, cancellationToken);
+            return IncludeAll(null).Where(predicate);
         }
     }
 }
