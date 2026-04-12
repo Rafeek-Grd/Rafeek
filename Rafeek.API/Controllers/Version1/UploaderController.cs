@@ -15,7 +15,6 @@ using Rafeek.Application.Localization;
 
 namespace Rafeek.API.Controllers.Version1
 {
-    [ApiController]
     [ApiVersion("1.0")]
     [RoleAuthorize]
     public class UploaderController : BaseApiController

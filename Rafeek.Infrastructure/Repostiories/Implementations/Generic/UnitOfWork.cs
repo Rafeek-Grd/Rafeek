@@ -1,12 +1,8 @@
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
-using Microsoft.EntityFrameworkCore.Infrastructure;
-
 using Rafeek.Application.Common.Interfaces;
+using Rafeek.Domain.Repositories;
 using Rafeek.Domain.Repositories.Interfaces;
 using Rafeek.Domain.Repositories.Interfaces.Generic;
-using Rafeek.Infrastructure.Oauth;
 
 namespace Rafeek.Infrastructure.Repostiories.Implementations.Generic
 {
@@ -26,6 +22,7 @@ namespace Rafeek.Infrastructure.Repostiories.Implementations.Generic
         private DoctorRepository? _doctorRepository;
         private StudentSupportRepository? _studentSupportRepository;
         private DepartmentRepository? _departmentRepository;
+        private CourseRepository? _courseRepository;
 
         public UnitOfWork(
             IRafeekDbContext context,
@@ -47,6 +44,7 @@ namespace Rafeek.Infrastructure.Repostiories.Implementations.Generic
         public IDoctorRepository DoctorRepository => _doctorRepository ??= new DoctorRepository(_context);
         public IStudentSupportRepository StudentSupportRepository => _studentSupportRepository ??= new StudentSupportRepository(_context);
         public IDepartmentRepository DepartmentRepository => _departmentRepository ??= new DepartmentRepository(_context);
+        public ICourseRepository CourseRepository => _courseRepository ??= new CourseRepository(_context);
 
         public async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {

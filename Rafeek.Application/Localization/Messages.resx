@@ -486,5 +486,23 @@
 	<data name="RequestIsFailedToSend" xml:space="preserve">
 		<value>Guidence support request is failed to send.</value>
 	</data>
+	<data name="DepartmentNameRequired" xml:space="preserve">
+		<value>Department name is required.</value>
+	</data>
+	<data name="DepartmentNameMaxLength" xml:space="preserve">
+		<value>Max length of department name must not exceeded 100 character.</value>
+	</data>
+	<data name="DepartmentCodeRequired" xml:space="preserve">
+		<value>Department code is required.</value>
+	</data>
+	<data name="DepartmentCodeMaxLength" xml:space="preserve">
+		<value>Department code must not exceed 10 characters.</value>
+	</data>
+	<data name="DepartmentCodeUnique" xml:space="preserve">
+		<value>Department code must not found before.</value>
+	</data>
+	<data name="DepartmentNotFound" xml:space="preserve">
+		<value>Department is not found.</value>
+	</data>
 
 </root>

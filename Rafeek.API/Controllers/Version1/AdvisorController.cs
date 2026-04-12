@@ -11,7 +11,6 @@ using Rafeek.Domain.Enums;
 
 namespace Rafeek.API.Controllers.Version1
 {
-    [ApiController]
     [ApiVersion("1.0")]
     public class AdvisorController : BaseApiController
     {

@@ -34,7 +34,7 @@ namespace Rafeek.API.Routes
         public static class EventOfAcademicCalendar
         {
             public const string AddEvent = Base + "/events/add";
-            public const string GetAllPagginatedEvents = Base + "/events/pagginated";
+            public const string GetAllPagginatedEvents = Base + "/events/getall/pagginated";
             public const string GetEventById = Base + "/events/{id}";
             public const string UpdateEvent = Base + "/events/update";
             public const string DeleteEvent = Base + "/events/{id}/delete";
@@ -42,20 +42,20 @@ namespace Rafeek.API.Routes
 
         public static class AcademicYear
         {
-            public const string Create = Base + "/academic-years/add";
-            public const string Update = Base + "/academic-years/{id}/update";
-            public const string Delete = Base + "/academic-years/{id}/delete";
-            public const string GetAllPagginated = Base + "/academic-years/pagginated";
-            public const string GetById = Base + "/academic-years/{id}";
+            public const string Create = Base + "/academic-year/add";
+            public const string Update = Base + "/academic-year/{id}/update";
+            public const string Delete = Base + "/academic-year/{id}/delete";
+            public const string GetAllPagginated = Base + "/academic-year/getall/pagginated";
+            public const string GetById = Base + "/academic-year/{id}";
         }
 
         public static class AcademicTerm
         {
-            public const string Create = Base + "/academic-terms";
-            public const string Update = Base + "/academic-terms/{id}";
-            public const string Delete = Base + "/academic-terms/{id}";
-            public const string GetAllPagginated = Base + "/academic-terms/pagginated";
-            public const string GetById = Base + "/academic-terms/{id}";
+            public const string Create = Base + "/academic-term/add";
+            public const string Update = Base + "/academic-term/{id}/update";
+            public const string Delete = Base + "/academic-term/{id}/delete";
+            public const string GetAllPagginated = Base + "/academic-term/getall/pagginated";
+            public const string GetById = Base + "/academic-term/{id}";
         }
 
         public static class Student
@@ -68,6 +68,13 @@ namespace Rafeek.API.Routes
         {
             public const string GetAllGuidanceRequestsPagginated = Base + "/advisor/guidance-requests";
             public const string UpdateGuidanceRequestStatus = Base + "/advisor/guidance-requests/{requestId}";
+        }
+
+        public static class Department
+        {
+            public const string Create = Base + "/department/add";
+            public const string Update = Base + "/department/{id}/update";
+            public const string Delete = Base + "/department/{id}/delete";
         }
     }
 }

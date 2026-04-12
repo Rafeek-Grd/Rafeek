@@ -20,8 +20,11 @@ namespace Rafeek.Application.Handlers.AcademicYearHandlers.Commands.DeleteAcadem
         {
             var entity = await _ctx.AcademicYearRepository.GetFirstAsync(x => x.Id == request.Id);
 
-            _ctx.AcademicYearRepository.Delete(entity);
-            await _ctx.SaveChangesAsync(cancellationToken);
+            entity.IsActive = false;
+            entity.IsDeleted = true;
+
+            _ctx.AcademicYearRepository.Update(entity);
+            var result = await _ctx.SaveChangesAsync(cancellationToken);
 
             return Unit.Value;
         }

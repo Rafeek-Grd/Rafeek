@@ -449,4 +449,22 @@
   <data name="RequestIsFailedToSend" xml:space="preserve">
     <value>فشل إرسال طلب الإرشاد الاكاديمي.</value>
   </data>
+  <data name="DepartmentNameRequired" xml:space="preserve">
+    <value>اسم القسم مطلوب.</value>
+  </data>
+  <data name="DepartmentNameMaxLength" xml:space="preserve">
+    <value>أقصي حد حروف لاسم القسم لا يجب أن يتجاوز 100 حرف.</value>
+  </data>
+  <data name="DepartmentCodeRequired" xml:space="preserve">
+    <value>كود القسم مطلوب.</value>
+  </data>
+  <data name="DepartmentCodeMaxLength" xml:space="preserve">
+    <value>كود القسم لا يجب أن يتجاوز 10 أحرف.</value>
+  </data>
+  <data name="DepartmentCodeUnique" xml:space="preserve">
+    <value>هذا الكود موجود بالفعل من قبل.</value>
+  </data>
+  <data name="DepartmentNotFound" xml:space="preserve">
+    <value>هذا القسم غير موجود.</value>
+  </data>
 </root>

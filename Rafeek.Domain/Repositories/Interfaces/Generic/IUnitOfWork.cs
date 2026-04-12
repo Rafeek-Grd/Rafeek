@@ -13,6 +13,7 @@ namespace Rafeek.Domain.Repositories.Interfaces.Generic
         IDoctorRepository DoctorRepository { get; }
         IStudentSupportRepository StudentSupportRepository { get; }
         IDepartmentRepository DepartmentRepository { get; }
+        ICourseRepository CourseRepository { get; }
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
         Task<IDbContextTransaction> BeginTransactionAsync(CancellationToken cancellationToken = default);

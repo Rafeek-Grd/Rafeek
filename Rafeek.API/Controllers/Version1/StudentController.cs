@@ -9,7 +9,6 @@ using Rafeek.Application.Handlers.StudentHandlers.Commands.SendRequestForAdvisme
 
 namespace Rafeek.API.Controllers.Version1
 {
-    [ApiController]
     [ApiVersion("1.0")]
     public class StudentController : BaseApiController
     {

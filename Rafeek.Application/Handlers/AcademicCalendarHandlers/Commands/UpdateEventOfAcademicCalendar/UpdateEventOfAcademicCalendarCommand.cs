@@ -28,5 +28,7 @@ namespace Rafeek.Application.Handlers.AcademicCalendarHandlers.Commands.UpdateEv
         public Guid? DepartmentId { get; set; }
         public Guid? CourseId { get; set; }
         public Guid? SectionId { get; set; }
+        public bool? IsActive { get; set; }
+        public bool? IsDeleted { get; set; }
     }
 }

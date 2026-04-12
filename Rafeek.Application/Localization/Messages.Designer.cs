@@ -232,11 +232,65 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Department code must not exceed 10 characters..
+        /// </summary>
+        public static string DepartmentCodeMaxLength {
+            get {
+                return ResourceManager.GetString("DepartmentCodeMaxLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Department code is required..
+        /// </summary>
+        public static string DepartmentCodeRequired {
+            get {
+                return ResourceManager.GetString("DepartmentCodeRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Department code must not found before..
+        /// </summary>
+        public static string DepartmentCodeUnique {
+            get {
+                return ResourceManager.GetString("DepartmentCodeUnique", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Department ID is not found..
         /// </summary>
         public static string DepartmentIdNotFound {
             get {
                 return ResourceManager.GetString("DepartmentIdNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Max length of department name must not exceeded 100 character..
+        /// </summary>
+        public static string DepartmentNameMaxLength {
+            get {
+                return ResourceManager.GetString("DepartmentNameMaxLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Department name is required..
+        /// </summary>
+        public static string DepartmentNameRequired {
+            get {
+                return ResourceManager.GetString("DepartmentNameRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Department is not found..
+        /// </summary>
+        public static string DepartmentNotFound {
+            get {
+                return ResourceManager.GetString("DepartmentNotFound", resourceCulture);
             }
         }
         

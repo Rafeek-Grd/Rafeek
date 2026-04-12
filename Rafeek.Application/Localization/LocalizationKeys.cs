@@ -154,6 +154,12 @@ namespace Rafeek.Application.Localization
         public record Department
         {
             public static readonly KeyString DepartmentIdNotFound = new("DepartmentIdNotFound");
+            public static readonly KeyString DepartmentNameRequired = new("DepartmentNameRequired");
+            public static readonly KeyString DepartmentNameMaxLength = new("DepartmentNameMaxLength");
+            public static readonly KeyString DepartmentCodeRequired = new("DepartmentCodeRequired");
+            public static readonly KeyString DepartmentCodeMaxLength = new("DepartmentCodeMaxLength");
+            public static readonly KeyString DepartmentCodeUnique = new("DepartmentCodeUnique");
+            public static readonly KeyString DepartmentNotFound = new("DepartmentNotFound");
         }
 
         public record Student

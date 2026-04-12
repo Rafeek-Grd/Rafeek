@@ -16,5 +16,7 @@ namespace Rafeek.Application.Handlers.AcademicTermHandlers.Commands.UpdateAcadem
         public DateTime? ExamStartDate { get; set; }
         public DateTime? ExamEndDate { get; set; }
         public Guid? AcademicYearId { get; set; }
+        public bool? IsActive { get; set; }
+        public bool? IsDeleted { get; set; }
     }
 }

@@ -13,7 +13,6 @@ using Rafeek.Application.Handlers.AcademicYearHandlers.Queries.GetAcademicYearBy
 
 namespace Rafeek.API.Controllers.Version1
 {
-    [ApiController]
     [ApiVersion("1.0")]
     public class AcademicYearController : BaseApiController
     {
