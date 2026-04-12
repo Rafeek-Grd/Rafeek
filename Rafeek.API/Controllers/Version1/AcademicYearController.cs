@@ -57,6 +57,11 @@ namespace Rafeek.API.Controllers.Version1
             return Ok(result);
         }
 
+        /// <summary>
+        /// Delete academic year
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete]
         [RoleAuthorize(nameof(UserType.Admin))]
         [Route(ApiRoutes.AcademicYear.Delete)]
@@ -69,17 +74,27 @@ namespace Rafeek.API.Controllers.Version1
             return Ok(result);
         }
 
+        /// <summary>
+        /// Get all academic years pagginated
+        /// </summary>
+        /// <param name="query"></param>
+        /// <returns></returns>
         [HttpGet]
         [RoleAuthorize()]
         [Route(ApiRoutes.AcademicYear.GetAllPagginated)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll([FromQuery]GetAllAcademicYearsPagginatedQuery query)
         {
-            var result = await _mediator.Send(new GetAllAcademicYearsPagginatedQuery());
+            var result = await _mediator.Send(query);
             return Ok(result);
         }
 
+        /// <summary>
+        /// Get academic year by id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet]
         [RoleAuthorize()]
         [Route(ApiRoutes.AcademicYear.GetById)]

@@ -46,9 +46,9 @@ namespace Rafeek.API.Controllers.Version1
         [Route(ApiRoutes.Advisor.GetAllGuidanceRequestsPagginated)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> GetAllGuidanceRequestsPagginated()
+        public async Task<IActionResult> GetAllGuidanceRequestsPagginated([FromQuery] GetAllGuidenceSupportRequestsPagginatedQuery query)
         {
-            var result = await _mediator.Send(new GetAllGuidenceSupportRequestsPagginatedQuery());
+            var result = await _mediator.Send(query);
             return Ok(result);
         }
 

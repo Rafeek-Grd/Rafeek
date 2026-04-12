@@ -10,6 +10,7 @@ using Rafeek.Application.Handlers.AcademicTermHandlers.Commands.UpdateAcademicTe
 using Rafeek.Application.Handlers.AcademicTermHandlers.Commands.DeleteAcademicTerm;
 using Rafeek.API.Filters;
 using Rafeek.Domain.Enums;
+using Rafeek.Application.Handlers.AcademicTermHandlers.Queries.GetAllPagginatedAcademicTerm;
 
 namespace Rafeek.API.Controllers.Version1
 {
@@ -45,7 +46,7 @@ namespace Rafeek.API.Controllers.Version1
         /// <param name="id"></param>
         /// <param name="command"></param>
         /// <returns></returns>
-        [HttpPut]
+        [HttpPatch]
         [RoleAuthorize(nameof(UserType.Admin), nameof(UserType.SubAdmin))]
         [Route(ApiRoutes.AcademicTerm.Update)]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -83,9 +84,8 @@ namespace Rafeek.API.Controllers.Version1
         [Route(ApiRoutes.AcademicTerm.GetAllPagginated)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll([FromQuery] GetAllAcademicTermPagginatedQuery query)
         {
-            var query = new GetAllAcademicTermsQuery();
             var result = await _mediator.Send(query);
             return Ok(result);
         }
