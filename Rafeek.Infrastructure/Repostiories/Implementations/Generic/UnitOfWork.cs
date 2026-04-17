@@ -1,6 +1,5 @@
 using Microsoft.EntityFrameworkCore.Storage;
 using Rafeek.Application.Common.Interfaces;
-using Rafeek.Domain.Repositories;
 using Rafeek.Domain.Repositories.Interfaces;
 using Rafeek.Domain.Repositories.Interfaces.Generic;
 
