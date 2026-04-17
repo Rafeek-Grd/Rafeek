@@ -6,6 +6,9 @@ using Rafeek.Application.Localization;
 using Rafeek.API.Filters;
 using Rafeek.Domain.Enums;
 using Rafeek.Application.Handlers.StudentHandlers.Commands.SendRequestForAdvismentGuide;
+using Rafeek.Application.Handlers.StudentHandlers.Query;
+using Rafeek.Application.Handlers.StudentHandlers.DTOs;
+using Rafeek.Application.Common.Models;
 
 namespace Rafeek.API.Controllers.Version1
 {
@@ -32,6 +35,21 @@ namespace Rafeek.API.Controllers.Version1
         public async Task<IActionResult> SendRequestForGuidance([FromBody] SendRequestForAdvismentGuideCommand command)
         {
             var result = await _mediator.Send(command);
+            return Ok(result);
+        }
+
+        /// <summary>
+        /// Get the profile of the currently logged-in student, including academic history.
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [RoleAuthorize()]
+        [Route(ApiRoutes.Student.GetProfile)]
+        [ProducesResponseType(typeof(ApiResponse<StudentProfileDto>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> GetProfile()
+        {
+            var result = await _mediator.Send(new GetStudentProfileQuery());
             return Ok(result);
         }
     }

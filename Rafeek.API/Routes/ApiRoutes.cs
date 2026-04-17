@@ -62,6 +62,7 @@ namespace Rafeek.API.Routes
         {
             public const string AssignStudentsToAcademicAdvisor = Base + "/students/assign-to-academic-advisor";
             public const string SendRequestToGuide = Base + "/students/guidance-request/send";
+            public const string GetProfile = Base + "/students/profile";
         }
 
         public static class Advisor
