@@ -50,5 +50,22 @@ namespace Rafeek.API.Controllers.Version1
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpGet]
+        [Authorize]
+        [Route(ApiRoutes.Student.GetDashboard)]
+        public async Task<IActionResult> GetStudentDashboard([FromRoute] System.Guid userId)
+        {
+            try
+            {
+                var query = new Rafeek.Application.Handlers.StudentHandlers.Queries.GetStudentDashboard.GetStudentDashboardQuery(userId);
+                var result = await _mediator.Send(query);
+                return Ok(result);
+            }
+            catch (System.Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }
