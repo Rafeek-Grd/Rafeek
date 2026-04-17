@@ -1,5 +1,5 @@
+using Rafeek.Application.Handlers.AcademicYearHandlers.DTOs;
 using Rafeek.Domain.Enums;
-using System;
 
 namespace Rafeek.Application.Handlers.AcademicTermHandlers.DTOs
 {
@@ -16,5 +16,6 @@ namespace Rafeek.Application.Handlers.AcademicTermHandlers.DTOs
         public DateTime? ExamStartDate { get; set; }
         public DateTime? ExamEndDate { get; set; }
         public Guid AcademicYearId { get; set; }
+        public AcademicYearDto AcademicYear { get; set; } = null!;
     }
 }

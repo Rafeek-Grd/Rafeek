@@ -1,12 +1,8 @@
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
-using Microsoft.EntityFrameworkCore.Infrastructure;
-
 using Rafeek.Application.Common.Interfaces;
+using Rafeek.Domain.Repositories;
 using Rafeek.Domain.Repositories.Interfaces;
 using Rafeek.Domain.Repositories.Interfaces.Generic;
-using Rafeek.Infrastructure.Oauth;
 
 namespace Rafeek.Infrastructure.Repostiories.Implementations.Generic
 {
@@ -20,6 +16,14 @@ namespace Rafeek.Infrastructure.Repostiories.Implementations.Generic
         private RefreshTokenRepository? _refreshTokenRepository;
         private UserFbTokenRepository? _userFbTokenRepository;
         private AcademicCalendarRepository? _academicCalendarRepository;
+        private AcademicYearRepository? _academicYearRepository;
+        private AcademicTermRepository? _academicTermRepository;
+        private StudentRepository? _studentRepository;
+        private DoctorRepository? _doctorRepository;
+        private StudentSupportRepository? _studentSupportRepository;
+        private DepartmentRepository? _departmentRepository;
+        private CourseRepository? _courseRepository;
+        private StudentAcademicProfileRepository? _studentAcademicProfileRepository;
 
         public UnitOfWork(
             IRafeekDbContext context,
@@ -35,6 +39,14 @@ namespace Rafeek.Infrastructure.Repostiories.Implementations.Generic
         public IRefreshTokenRepository RefreshTokenRepository => _refreshTokenRepository ??= new RefreshTokenRepository(_context, _jwtTokenManager, _currentUserService);
         public IUserFbTokenRepository UserFbTokenRepository => _userFbTokenRepository ??= new UserFbTokenRepository(_context);
         public IAcademicCalendarRepository AcademicCalendarRepository => _academicCalendarRepository ??= new AcademicCalendarRepository(_context);
+        public IAcademicYearRepository AcademicYearRepository => _academicYearRepository ??= new AcademicYearRepository(_context);
+        public IAcademicTermRepository AcademicTermRepository => _academicTermRepository ??= new AcademicTermRepository(_context);
+        public IStudentRepository StudentRepository => _studentRepository ??= new StudentRepository(_context);
+        public IDoctorRepository DoctorRepository => _doctorRepository ??= new DoctorRepository(_context);
+        public IStudentSupportRepository StudentSupportRepository => _studentSupportRepository ??= new StudentSupportRepository(_context);
+        public IDepartmentRepository DepartmentRepository => _departmentRepository ??= new DepartmentRepository(_context);
+        public ICourseRepository CourseRepository => _courseRepository ??= new CourseRepository(_context);
+        public IStudentAcademicProfileRepository StudentAcademicProfileRepository => _studentAcademicProfileRepository ??= new StudentAcademicProfileRepository(_context);
 
         public async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {

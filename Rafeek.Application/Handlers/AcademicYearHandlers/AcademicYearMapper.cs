@@ -1,7 +1,8 @@
 using AutoMapper;
 using Rafeek.Domain.Entities;
 using Rafeek.Application.Handlers.AcademicYearHandlers.DTOs;
-using Rafeek.Application.Handlers.AcademicYearHandlers.Commands;
+using Rafeek.Application.Handlers.AcademicYearHandlers.Commands.AddAcademicYearCommand;
+using Rafeek.Application.Handlers.AcademicYearHandlers.Commands.UpdateAcademicYear;
 
 namespace Rafeek.Application.Handlers.AcademicYearHandlers
 {
@@ -9,9 +10,11 @@ namespace Rafeek.Application.Handlers.AcademicYearHandlers
     {
         public AcademicYearMapper()
         {
-            CreateMap<AcademicYear, AcademicYearDto>().ReverseMap();
-            CreateMap<CreateAcademicYearCommand, AcademicYear>();
-            CreateMap<UpdateAcademicYearCommand, AcademicYear>();
+            CreateMap<AcademicYear, AcademicYearDto>()
+                .ForMember(dest => dest.Terms, opt => opt.MapFrom(src => src.Terms)).ReverseMap();
+            CreateMap<AddAcademicYearCommand, AcademicYear>();
+            CreateMap<UpdateAcademicYearCommand, AcademicYear>()
+                .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
         }
     }
 }

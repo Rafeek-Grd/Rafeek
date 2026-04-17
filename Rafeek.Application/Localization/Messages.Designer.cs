@@ -61,6 +61,69 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Academic term end date is required..
+        /// </summary>
+        public static string AcademicTermEndDateRequired {
+            get {
+                return ResourceManager.GetString("AcademicTermEndDateRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Academic year ID required..
+        /// </summary>
+        public static string AcademicTermIdRequired {
+            get {
+                return ResourceManager.GetString("AcademicTermIdRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Academic term name is required..
+        /// </summary>
+        public static string AcademicTermNameRequired {
+            get {
+                return ResourceManager.GetString("AcademicTermNameRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Academic term is not found in our system..
+        /// </summary>
+        public static string AcademicTermNotFound {
+            get {
+                return ResourceManager.GetString("AcademicTermNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Academic start date is required..
+        /// </summary>
+        public static string AcademicTermStartDateRequired {
+            get {
+                return ResourceManager.GetString("AcademicTermStartDateRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Academic year name is required..
+        /// </summary>
+        public static string AcademicYearNameRequired {
+            get {
+                return ResourceManager.GetString("AcademicYearNameRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This Academic year is not found in our system..
+        /// </summary>
+        public static string AcademicYearNotFound {
+            get {
+                return ResourceManager.GetString("AcademicYearNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Request accepted successfully..
         /// </summary>
         public static string AcceptedActionResultMessage {
@@ -93,6 +156,24 @@ namespace Rafeek.Application.Localization {
         public static string AdditionalRolesInvalid {
             get {
                 return ResourceManager.GetString("AdditionalRolesInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Advisor ID is not found..
+        /// </summary>
+        public static string AdvisorIdNotFound {
+            get {
+                return ResourceManager.GetString("AdvisorIdNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Advisor ID is required..
+        /// </summary>
+        public static string AdvisorIdRequired {
+            get {
+                return ResourceManager.GetString("AdvisorIdRequired", resourceCulture);
             }
         }
         
@@ -147,6 +228,78 @@ namespace Rafeek.Application.Localization {
         public static string DeletedSuccessfully {
             get {
                 return ResourceManager.GetString("DeletedSuccessfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Department code must not exceed 10 characters..
+        /// </summary>
+        public static string DepartmentCodeMaxLength {
+            get {
+                return ResourceManager.GetString("DepartmentCodeMaxLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Department code is required..
+        /// </summary>
+        public static string DepartmentCodeRequired {
+            get {
+                return ResourceManager.GetString("DepartmentCodeRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Department code must not found before..
+        /// </summary>
+        public static string DepartmentCodeUnique {
+            get {
+                return ResourceManager.GetString("DepartmentCodeUnique", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Department ID is not found..
+        /// </summary>
+        public static string DepartmentIdNotFound {
+            get {
+                return ResourceManager.GetString("DepartmentIdNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Max length of department name must not exceeded 100 character..
+        /// </summary>
+        public static string DepartmentNameMaxLength {
+            get {
+                return ResourceManager.GetString("DepartmentNameMaxLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Department name is required..
+        /// </summary>
+        public static string DepartmentNameRequired {
+            get {
+                return ResourceManager.GetString("DepartmentNameRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Department is not found..
+        /// </summary>
+        public static string DepartmentNotFound {
+            get {
+                return ResourceManager.GetString("DepartmentNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description of guidence request is required..
+        /// </summary>
+        public static string DescriptionRequired {
+            get {
+                return ResourceManager.GetString("DescriptionRequired", resourceCulture);
             }
         }
         
@@ -250,6 +403,24 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Academic term end date must be greater than start date..
+        /// </summary>
+        public static string EndDateMustBeGreaterThanStartDate {
+            get {
+                return ResourceManager.GetString("EndDateMustBeGreaterThanStartDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to End date of academic year is required..
+        /// </summary>
+        public static string EndDateRequired {
+            get {
+                return ResourceManager.GetString("EndDateRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to End time must be greater that a start time..
         /// </summary>
         public static string EndTimeMustBeGreaterThanStartTime {
@@ -300,6 +471,24 @@ namespace Rafeek.Application.Localization {
         public static string EventNameRequired {
             get {
                 return ResourceManager.GetString("EventNameRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Academic term exam end date must be greater than exam start date..
+        /// </summary>
+        public static string ExamEndDateMustBeGreaterThanExamStartDate {
+            get {
+                return ResourceManager.GetString("ExamEndDateMustBeGreaterThanExamStartDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Academic term exam start date must be greater than registration start date..
+        /// </summary>
+        public static string ExamStartDateMustBeGreaterThanRegistrationStartDate {
+            get {
+                return ResourceManager.GetString("ExamStartDateMustBeGreaterThanRegistrationStartDate", resourceCulture);
             }
         }
         
@@ -628,6 +817,51 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Academic term registration end date must be greater than registration start date..
+        /// </summary>
+        public static string RegisterationEndDateMustBeGreaterThanRegistrationStartDate {
+            get {
+                return ResourceManager.GetString("RegisterationEndDateMustBeGreaterThanRegistrationStartDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Academic term registration start date must be greater than academic term start date..
+        /// </summary>
+        public static string RegistrationStartDateMustBeGreaterThanAcademicTermStartDate {
+            get {
+                return ResourceManager.GetString("RegistrationStartDateMustBeGreaterThanAcademicTermStartDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Request ID is required..
+        /// </summary>
+        public static string RequestIdRequired {
+            get {
+                return ResourceManager.GetString("RequestIdRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Guidence support request is failed to send..
+        /// </summary>
+        public static string RequestIsFailedToSend {
+            get {
+                return ResourceManager.GetString("RequestIsFailedToSend", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Guidence support request is sent successfully..
+        /// </summary>
+        public static string RequestIsSentSuccessfully {
+            get {
+                return ResourceManager.GetString("RequestIsSentSuccessfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid or expired password reset token..
         /// </summary>
         public static string ResetTokenInvalid {
@@ -664,6 +898,15 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Start date of academic year is required..
+        /// </summary>
+        public static string StartDateRequired {
+            get {
+                return ResourceManager.GetString("StartDateRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Start time is required..
         /// </summary>
         public static string StartTimeRequired {
@@ -673,11 +916,38 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Student ID is required..
+        /// </summary>
+        public static string StudentIdRequired {
+            get {
+                return ResourceManager.GetString("StudentIdRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to That student list IDs are not found..
+        /// </summary>
+        public static string StudentsNotFound {
+            get {
+                return ResourceManager.GetString("StudentsNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Targeted user Id is required..
         /// </summary>
         public static string TargetUserIdRequired {
             get {
                 return ResourceManager.GetString("TargetUserIdRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Title of guidence request is required..
+        /// </summary>
+        public static string TitleRequired {
+            get {
+                return ResourceManager.GetString("TitleRequired", resourceCulture);
             }
         }
         
@@ -804,6 +1074,15 @@ namespace Rafeek.Application.Localization {
         public static string ValidationExceptionMessage {
             get {
                 return ResourceManager.GetString("ValidationExceptionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The guidance request either not exist, or the current request status is not pending, or that student is not under your advisement..
+        /// </summary>
+        public static string YouAreNotAdvisorOfThatStudent {
+            get {
+                return ResourceManager.GetString("YouAreNotAdvisorOfThatStudent", resourceCulture);
             }
         }
     }

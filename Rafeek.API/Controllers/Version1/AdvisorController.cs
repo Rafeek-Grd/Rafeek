@@ -1,19 +1,17 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
+using Rafeek.API.Filters;
 using Rafeek.API.Routes;
+using Rafeek.Application.Handlers.AdvisorHandlers.Commands.AssignStudentsToAcademicAdvisor;
+using Rafeek.Application.Handlers.AdvisorHandlers.Commands.UpdateStatusOfGudienceRequest;
+using Rafeek.Application.Handlers.AdvisorHandlers.Queries.GetAllGuidenceSupportRequests;
 using Rafeek.Application.Localization;
-using Rafeek.Application.Handlers.AdvisorHandlers.Commands;
-using Rafeek.Application.Handlers.AdvisorHandlers.Queries;
-using System;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+using Rafeek.Domain.Enums;
 
 namespace Rafeek.API.Controllers.Version1
 {
-    [ApiController]
     [ApiVersion("1.0")]
-    [Authorize]
     public class AdvisorController : BaseApiController
     {
         private readonly IMediator _mediator;
@@ -23,31 +21,53 @@ namespace Rafeek.API.Controllers.Version1
             _mediator = mediator;
         }
 
-        [HttpGet]
-        [Route(ApiRoutes.Advisor.GetPendingGuidanceRequests)]
-        public async Task<IActionResult> GetPendingGuidanceRequests([FromRoute] Guid advisorId)
+        /// <summary>
+        /// Assign a list of students to an academic advisor.
+        /// </summary>
+        /// <param name="command"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [RoleAuthorize(nameof(UserType.Admin), nameof(UserType.SubAdmin))]
+        [Route(ApiRoutes.Student.AssignStudentsToAcademicAdvisor)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> AssignToAcademicAdvisor([FromBody] AssignStudentsToAcademicAdvisorCommand command)
         {
-            var query = new GetPendingGuidanceRequestsQuery { AdvisorId = advisorId };
+            var result = await _mediator.Send(command);
+            return Ok(result);
+        }
+
+        /// <summary>
+        /// Get all guidance requests with pagination, filtering, and searching capabilities.
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [RoleAuthorize()]
+        [Route(ApiRoutes.Advisor.GetAllGuidanceRequestsPagginated)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> GetAllGuidanceRequestsPagginated([FromQuery] GetAllGuidenceSupportRequestsPagginatedQuery query)
+        {
             var result = await _mediator.Send(query);
             return Ok(result);
         }
 
+        /// <summary>
+        /// Update status of a guidance request (approve, reject, or request more information).
+        /// </summary>
+        /// <param name="requestId">The ID of the guidance request to update.</param>
+        /// <param name="command">The command containing the new status and any additional information.</param>
+        /// <returns></returns>
         [HttpPatch]
-        [Route(ApiRoutes.Advisor.ReviewGuidanceRequest)]
-        public async Task<IActionResult> ReviewGuidanceRequest([FromRoute] Guid advisorId, [FromRoute] Guid requestId, [FromBody] ReviewStudentGuidanceRequestCommand command)
+        [RoleAuthorize(nameof(UserType.Doctor), nameof(UserType.Admin), nameof(UserType.SubAdmin))]
+        [Route(ApiRoutes.Advisor.UpdateGuidanceRequestStatus)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> UpdateGuidenceRequestStatus(Guid requestId, [FromBody] UpdateStatusOfGuidenceRequestCommand command)
         {
-            try
-            {
-                command.AdvisorId = advisorId;
-                command.RequestId = requestId;
-                
-                var result = await _mediator.Send(command);
-                return Ok(result, "Guidance request reviewed successfully.");
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            command.RequestId = requestId;
+            var result = await _mediator.Send(command);
+            return Ok(result);
         }
     }
 }

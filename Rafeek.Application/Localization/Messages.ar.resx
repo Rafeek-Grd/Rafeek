@@ -22,8 +22,10 @@
     <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
         <value>[base64 mime encoded serialized .NET Framework object]</value>
     </data>
-    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing"
+  mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework
+  object]</value>
         <comment>This is a comment</comment>
     </data>
                 
@@ -59,7 +61,8 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
     <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
@@ -112,10 +115,12 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0,
+      Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0,
+      Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="PlaceNotValid" xml:space="preserve">
     <value>مكان الملف غير صالح.</value>
@@ -365,5 +370,101 @@
   </data>
   <data name="EventIdNotValid" xml:space="preserve">
     <value>مُعرف الحدث غير صالح.</value>
+  </data>
+  <data name="AcademicYearNameRequired" xml:space="preserve">
+    <value>اسم السنة الأكاديمية مطلوب</value>
+  </data>
+  <data name="StartDateRequired" xml:space="preserve">
+    <value>تاريخ بداية السنة الدراسية مطلوب.</value>
+  </data>
+  <data name="EndDateRequired" xml:space="preserve">
+    <value>تاريخ نهاية السنة الدراسية مطلوب.</value>
+  </data>
+  <data name="EndDateMustBeGreaterThanStartDate" xml:space="preserve">
+    <value>تاريخ نهاية السنة الدراسية يجب أن يكون أكبر من تاريخ البداية.</value>
+  </data>
+  <data name="AcademicYearNotFound" xml:space="preserve">
+    <value>تلك السنة الدراسية غير موجودة في النظام.</value>
+  </data>
+  <data name="AcademicTermNameRequired" xml:space="preserve">
+    <value>اسم التيرم الأكاديمي مطلوب.</value>
+  </data>
+  <data name="AcademicTermIdRequired" xml:space="preserve">
+    <value>مُعرف السنة الدراسية مطلوب.</value>
+  </data>
+  <data name="AcademicTermStartDateRequired" xml:space="preserve">
+    <value>تاريخ بداية التيرم الأكاديمي مطلوب.</value>
+  </data>
+  <data name="AcademicTermEndDateRequired" xml:space="preserve">
+    <value>تاريخ نهاية التيرم الأكاديمي مطلوب.</value>
+  </data>
+  <data name="EndDateMustBeGreaterThanStartDate" xml:space="preserve">
+    <value>تاريخ نهاية التيرم الأكاديمي يجب أن يكون أكبر من تاريخ بداية التيرم الدراسي.</value>
+  </data>
+  <data name="RegisterationEndDateMustBeGreaterThanRegistrationStartDate" xml:space="preserve">
+    <value>تاريخ نهاية التسجيل في التيرم الأكاديمي يجب أن يكون أكبر من تاريخ البداية</value>
+  </data>
+  <data name="ExamEndDateMustBeGreaterThanExamStartDate" xml:space="preserve">
+    <value>تاريخ نهاية الامتحانات في التيرم الأكاديمي يجب أن يكون أكبر من تاريخ البداية</value>
+  </data>
+  <data name="RegistrationStartDateMustBeGreaterThanAcademicTermStartDate" xml:space="preserve">
+    <value>تاريخ بداية التسجيل في التيرم الأكاديمي يجب أن يكون أكبر من تاريخ بداية التيرم الدراسي.</value>
+  </data>
+  <data name="ExamStartDateMustBeGreaterThanRegistrationStartDate" xml:space="preserve">
+    <value>تاريخ بداية الامتحانات في التيرم الأكاديمي يجب أن يكون أكبر من تاريخ بداية التسجيل.</value>
+  </data>
+  <data name="AcademicTermNotFound" xml:space="preserve">
+    <value>مُعرف التيرم الأكاديمي  خاظئ أو غير موجود.</value>
+  </data>
+  <data name="StudentsNotFound" xml:space="preserve">
+    <value>قائمة مُعرفات الطلاب المُقدَمَة غير موجودة.</value>
+  </data>
+  <data name="RequestIdRequired" xml:space="preserve">
+    <value>مُعرف طلب الإرشاد الأكاديمي مطلوب.</value>
+  </data>
+  <data name="YouAreNotAdvisorOfThatStudent" xml:space="preserve">
+    <value>طلب الإرشاد إما غير موجود أو الحالة الحالية للطلب ليست قيد الانتظار أو أنك لست المُرشد الأكاديمي الخاص بذلك الطالب.</value>
+  </data>
+  <data name="AdvisorIdRequired" xml:space="preserve">
+    <value>المُعرف الخاص بالمُرشد الأكاديمي مطلوب.</value>
+  </data>
+  <data name="AdvisorIdNotFound" xml:space="preserve">
+    <value>مُعرف المُرشد الأكاديمي غير صحيح.</value>
+  </data>
+  <data name="DepartmentIdNotFound" xml:space="preserve">
+    <value>مُعرف القسم غير صحيح.</value>
+  </data>
+  <data name="StudentIdRequired" xml:space="preserve">
+    <value>مُعرف الطالب مطلوب.</value>
+  </data>
+  <data name="TitleRequired" xml:space="preserve">
+    <value>عنوان طلب الإرشاد الاكاديمي مطلوب.</value>
+  </data>
+  <data name="DescriptionRequired" xml:space="preserve">
+    <value>وصف طلب الإرشاد الاكاديمي مطلوب.</value>
+  </data>
+  <data name="RequestIsSentSuccessfully" xml:space="preserve">
+    <value>تم إرسال طلب الإرشاد الأكاديمي بنجاح.</value>
+  </data>
+  <data name="RequestIsFailedToSend" xml:space="preserve">
+    <value>فشل إرسال طلب الإرشاد الاكاديمي.</value>
+  </data>
+  <data name="DepartmentNameRequired" xml:space="preserve">
+    <value>اسم القسم مطلوب.</value>
+  </data>
+  <data name="DepartmentNameMaxLength" xml:space="preserve">
+    <value>أقصي حد حروف لاسم القسم لا يجب أن يتجاوز 100 حرف.</value>
+  </data>
+  <data name="DepartmentCodeRequired" xml:space="preserve">
+    <value>كود القسم مطلوب.</value>
+  </data>
+  <data name="DepartmentCodeMaxLength" xml:space="preserve">
+    <value>كود القسم لا يجب أن يتجاوز 10 أحرف.</value>
+  </data>
+  <data name="DepartmentCodeUnique" xml:space="preserve">
+    <value>هذا الكود موجود بالفعل من قبل.</value>
+  </data>
+  <data name="DepartmentNotFound" xml:space="preserve">
+    <value>هذا القسم غير موجود.</value>
   </data>
 </root>
