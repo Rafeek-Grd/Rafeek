@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Rafeek.Application.Handlers.StudentHandlers.Queries.GetStudentDashboard
+namespace Rafeek.Application.Handlers.StudentHandlers.DTOs
 {
     public class StudentDashboardDto
     {

@@ -11,6 +11,7 @@ using Rafeek.Application.Handlers.StudentHandlers.Query;
 using Rafeek.Application.Handlers.StudentHandlers.DTOs;
 using Rafeek.Application.Common.Models;
 using Rafeek.Application.Handlers.StudentHandlers.Query.GetStudentProfile;
+using Rafeek.Application.Handlers.StudentHandlers.Query.GetStudentDashboard;
 
 namespace Rafeek.API.Controllers.Version1
 {
@@ -55,21 +56,21 @@ namespace Rafeek.API.Controllers.Version1
             return Ok(result);
         }
 
+        /// <summary>
+        /// Get Student Dashboard data.
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
         [HttpGet]
         [Authorize]
         [Route(ApiRoutes.Student.GetDashboard)]
-        public async Task<IActionResult> GetStudentDashboard([FromRoute] System.Guid userId)
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> GetStudentDashboard(Guid userId, [FromQuery] GetStudentDashboardQuery query)
         {
-            try
-            {
-                var query = new Rafeek.Application.Handlers.StudentHandlers.Queries.GetStudentDashboard.GetStudentDashboardQuery(userId);
-                var result = await _mediator.Send(query);
-                return Ok(result);
-            }
-            catch (System.Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            query.UserId = userId;
+            var result = await _mediator.Send(query);
+            return Ok(result);
         }
     }
 }

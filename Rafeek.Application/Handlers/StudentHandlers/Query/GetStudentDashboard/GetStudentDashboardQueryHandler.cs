@@ -1,12 +1,9 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Rafeek.Application.Common.Interfaces;
-using System;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
+using Rafeek.Application.Handlers.StudentHandlers.DTOs;
 
-namespace Rafeek.Application.Handlers.StudentHandlers.Queries.GetStudentDashboard
+namespace Rafeek.Application.Handlers.StudentHandlers.Query.GetStudentDashboard
 {
     public class GetStudentDashboardQueryHandler : IRequestHandler<GetStudentDashboardQuery, StudentDashboardDto>
     {
@@ -19,7 +16,7 @@ namespace Rafeek.Application.Handlers.StudentHandlers.Queries.GetStudentDashboar
 
         public async Task<StudentDashboardDto> Handle(GetStudentDashboardQuery request, CancellationToken cancellationToken)
         {
-            Rafeek.Domain.Entities.Student student = null;
+            Domain.Entities.Student student = null;
             try
             {
                 student = await _context.Students

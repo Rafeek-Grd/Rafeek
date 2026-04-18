@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace Rafeek.Application.Handlers.StudentHandlers.Queries.GetStudentDashboard
+namespace Rafeek.Application.Handlers.StudentHandlers.Query.GetStudentDashboard
 {
     public class GetStudentDashboardQueryValidator : AbstractValidator<GetStudentDashboardQuery>
     {
