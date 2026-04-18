@@ -27,6 +27,7 @@ namespace Rafeek.API.Controllers.Version1
         /// <param name="command"></param>
         /// <returns></returns>
         [HttpPost]
+        [Tags("Advisor")]
         [RoleAuthorize(nameof(UserType.Admin), nameof(UserType.SubAdmin))]
         [Route(ApiRoutes.Student.AssignStudentsToAcademicAdvisor)]
         [ProducesResponseType(StatusCodes.Status200OK)]

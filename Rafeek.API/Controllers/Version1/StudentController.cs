@@ -1,4 +1,5 @@
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 using Rafeek.API.Routes;
@@ -52,6 +53,23 @@ namespace Rafeek.API.Controllers.Version1
         {
             var result = await _mediator.Send(new GetStudentProfileQuery());
             return Ok(result);
+        }
+
+        [HttpGet]
+        [Authorize]
+        [Route(ApiRoutes.Student.GetDashboard)]
+        public async Task<IActionResult> GetStudentDashboard([FromRoute] System.Guid userId)
+        {
+            try
+            {
+                var query = new Rafeek.Application.Handlers.StudentHandlers.Queries.GetStudentDashboard.GetStudentDashboardQuery(userId);
+                var result = await _mediator.Send(query);
+                return Ok(result);
+            }
+            catch (System.Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }
