@@ -32,6 +32,7 @@ namespace Rafeek.Persistence.Configurations.RafeekConfiguration
             builder.HasOne(x => x.Department)
                 .WithMany(x => x.Courses)
                 .HasForeignKey(x => x.DepartmentId)
+                .IsRequired(false)
                 .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasQueryFilter(x => !x.IsDeleted);

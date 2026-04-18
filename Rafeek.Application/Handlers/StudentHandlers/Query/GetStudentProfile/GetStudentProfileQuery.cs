@@ -1,7 +1,7 @@
 using MediatR;
 using Rafeek.Application.Handlers.StudentHandlers.DTOs;
 
-namespace Rafeek.Application.Handlers.StudentHandlers.Query
+namespace Rafeek.Application.Handlers.StudentHandlers.Query.GetStudentProfile
 {
     public class GetStudentProfileQuery : IRequest<StudentProfileDto>
     {

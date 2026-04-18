@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using MediatR;
+using Rafeek.Application.Common.Models;
 
 namespace Rafeek.Application.Handlers.DepartmentHandlers.Commands.AssignUserToDepartment
 {
-    internal class AssignUserToDepartmentCommand
+    public class AssignUserToDepartmentCommand : IRequest<string>
     {
+        public Guid UserId { get; set; }
+        public Guid DepartmentId { get; set; }
     }
 }

@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using MediatR;
+using Rafeek.Application.Common.Models;
+using Rafeek.Application.Handlers.DepartmentHandlers.DTOs;
 
 namespace Rafeek.Application.Handlers.DepartmentHandlers.Query.GetAllDepartmentsPagginated
 {
-    internal class GetAllDepartmentsPagginatedQuery
+    public class GetAllDepartmentsPagginatedQuery : IRequest<PagginatedResult<DepartmentDto>>
     {
+        public int PageNumber { get; set; }
+        public int PageSize { get; set; }
+        public string? Search { get; set; }
     }
 }

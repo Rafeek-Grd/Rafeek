@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using MediatR;
 
 namespace Rafeek.Application.Handlers.DepartmentHandlers.Commands.AssignCourseToDepartment
 {
-    internal class AssignCourseToDepartmentCommand
+    public class AssignCourseToDepartmentCommand : IRequest<string>
     {
+        public Guid CourseId { get; set; }
+        public Guid DepartmentId { get; set; }
     }
 }

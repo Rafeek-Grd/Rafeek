@@ -467,4 +467,34 @@
   <data name="DepartmentNotFound" xml:space="preserve">
     <value>هذا القسم غير موجود.</value>
   </data>
+  <data name="DepartmentIdRequired" xml:space="preserve">
+    <value>مُعرف القسم مطلوب.</value>
+  </data>
+	<data name="CourseNotFound" xml:space="preserve">
+		<value>المادة غير موجودة.</value>
+	</data>
+	<data name="CourseIdRequired" xml:space="preserve">
+		<value>مُعرف المادة مطلوب.</value>
+	</data>
+	<data name="UserNotEligibleForDepartment" xml:space="preserve">
+		<value>نوع المستخدم هذا لا يمكن تعيينه لقسم.</value>
+	</data>
+	<data name="CourseAssignedSuccessfully" xml:space="preserve">
+		<value>تم تعيين المادة للقسم بنجاح.</value>
+	</data>
+	<data name="UserAssignedSuccessfully" xml:space="preserve">
+		<value>تم تعيين المستخدم للقسم بنجاح.</value>
+	</data>
+	<data name="CourseRemovedSuccessfully" xml:space="preserve">
+		<value>تم حذف المادة من القسم بنجاح.</value>
+	</data>
+	<data name="UserRemovedSuccessfully" xml:space="preserve">
+		<value>تم حذف المستخدم من القسم بنجاح.</value>
+	</data>
+	<data name="UserRoleNotFound" xml:space="preserve">
+		<value>لم يتم العثور على دور أكاديمي (طالب/دكتور/محاضر) لهذا المستخدم.</value>
+	</data>
+	<data name="UserNotInDepartment" xml:space="preserve">
+		<value>المستخدم غير معين في أي قسم.</value>
+	</data>
 </root>

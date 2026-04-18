@@ -3,7 +3,7 @@ using Microsoft.Extensions.Localization;
 using Rafeek.Application.Localization;
 using Rafeek.Domain.Repositories.Interfaces.Generic;
 
-namespace Rafeek.Application.Handlers.StudentHandlers.Query
+namespace Rafeek.Application.Handlers.StudentHandlers.Query.GetStudentProfile
 {
     public class GetStudentProfileQueryValidator : AbstractValidator<GetStudentProfileQuery>
     {

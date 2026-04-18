@@ -76,6 +76,14 @@ namespace Rafeek.API.Routes
             public const string Create = Base + "/department/add";
             public const string Update = Base + "/department/{id}/update";
             public const string Delete = Base + "/department/{id}/delete";
+            public const string AssignCourse = Base + "/department/assign-course";
+            public const string AssignUser = Base + "/department/assign-user";
+            public const string RemoveCourse = Base + "/department/remove-course/{courseId}";
+            public const string RemoveUser = Base + "/department/remove-user";
+            public const string GetAllPagginated = Base + "/department/getall/pagginated";
+            public const string GetAllUsersInDepartmentPagginated = Base + "/department/{id}/users";
+            public const string GetByIdOrCode = Base + "/department/id-code";
+            public const string GetAllCoursesInDepartment = Base + "/department/{id}/courses";
         }
     }
 }

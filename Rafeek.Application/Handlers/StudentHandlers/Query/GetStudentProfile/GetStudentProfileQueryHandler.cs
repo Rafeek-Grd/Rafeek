@@ -8,7 +8,7 @@ using Rafeek.Application.Localization;
 using Rafeek.Domain.Repositories.Interfaces.Generic;
 using Rafeek.Domain.Entities;
 
-namespace Rafeek.Application.Handlers.StudentHandlers.Query
+namespace Rafeek.Application.Handlers.StudentHandlers.Query.GetStudentProfile
 {
     public class GetStudentProfileQueryHandler : IRequestHandler<GetStudentProfileQuery, StudentProfileDto>
     {

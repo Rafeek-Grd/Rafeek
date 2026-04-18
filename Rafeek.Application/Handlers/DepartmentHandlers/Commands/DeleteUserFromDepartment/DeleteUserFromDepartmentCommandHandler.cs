@@ -1,23 +1,24 @@
 using MediatR;
 using Microsoft.Extensions.Localization;
 using Microsoft.EntityFrameworkCore;
+using Rafeek.Application.Common.Models;
 using Rafeek.Application.Localization;
 using Rafeek.Domain.Repositories.Interfaces.Generic;
 
-namespace Rafeek.Application.Handlers.DepartmentHandlers.Commands.AssignUserToDepartment
+namespace Rafeek.Application.Handlers.DepartmentHandlers.Commands.DeleteUserFromDepartment
 {
-    public class AssignUserToDepartmentCommandHandler : IRequestHandler<AssignUserToDepartmentCommand, string>
+    public class DeleteUserFromDepartmentCommandHandler : IRequestHandler<DeleteUserFromDepartmentCommand, ApiResponse<bool>>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IStringLocalizer<Messages> _localizer;
 
-        public AssignUserToDepartmentCommandHandler(IUnitOfWork unitOfWork, IStringLocalizer<Messages> localizer)
+        public DeleteUserFromDepartmentCommandHandler(IUnitOfWork unitOfWork, IStringLocalizer<Messages> localizer)
         {
             _unitOfWork = unitOfWork;
             _localizer = localizer;
         }
 
-        public async Task<string> Handle(AssignUserToDepartmentCommand request, CancellationToken cancellationToken)
+        public async Task<ApiResponse<bool>> Handle(DeleteUserFromDepartmentCommand request, CancellationToken cancellationToken)
         {
             var studentTask = _unitOfWork.StudentRepository.GetAll(s => s.UserId == request.UserId).FirstOrDefaultAsync(cancellationToken);
             var doctorTask = _unitOfWork.DoctorRepository.GetAll(d => d.UserId == request.UserId).FirstOrDefaultAsync(cancellationToken);
@@ -31,22 +32,22 @@ namespace Rafeek.Application.Handlers.DepartmentHandlers.Commands.AssignUserToDe
 
             if (student != null)
             {
-                student.DepartmentId = request.DepartmentId;
+                student.DepartmentId = null;
             }
-            
+
             if (doctor != null)
             {
-                doctor.DepartmentId = request.DepartmentId;
+                doctor.DepartmentId = null;
             }
-            
+
             if (instructor != null)
             {
-                instructor.DepartmentId = request.DepartmentId;
+                instructor.DepartmentId = null;
             }
 
             await _unitOfWork.SaveChangesAsync(cancellationToken);
 
-            return _localizer[LocalizationKeys.Department.UserAssignedSuccessfully.Value];
+            return ApiResponse<bool>.Ok(true, _localizer[LocalizationKeys.Department.UserRemovedSuccessfully.Value]);
         }
     }
 }

@@ -504,5 +504,34 @@
 	<data name="DepartmentNotFound" xml:space="preserve">
 		<value>Department is not found.</value>
 	</data>
-
+	<data name="DepartmentIdRequired" xml:space="preserve">
+		<value>Department ID is required.</value>
+	</data>
+	<data name="CourseNotFound" xml:space="preserve">
+		<value>Course is not found.</value>
+	</data>
+	<data name="CourseIdRequired" xml:space="preserve">
+		<value>Course ID is required.</value>
+	</data>
+	<data name="UserNotEligibleForDepartment" xml:space="preserve">
+		<value>This user type cannot be assigned to a department.</value>
+	</data>
+	<data name="CourseAssignedSuccessfully" xml:space="preserve">
+		<value>Course has been assigned to the department successfully.</value>
+	</data>
+	<data name="UserAssignedSuccessfully" xml:space="preserve">
+		<value>User has been assigned to the department successfully.</value>
+	</data>
+	<data name="CourseRemovedSuccessfully" xml:space="preserve">
+		<value>Course has been removed from the department successfully.</value>
+	</data>
+	<data name="UserRemovedSuccessfully" xml:space="preserve">
+		<value>User has been removed from the department successfully.</value>
+	</data>
+	<data name="UserRoleNotFound" xml:space="preserve">
+		<value>Could not find a specific academic role (Student/Doctor/Instructor) for this user.</value>
+	</data>
+	<data name="UserNotInDepartment" xml:space="preserve">
+		<value>User is not assigned to any department.</value>
+	</data>
 </root>

@@ -9,6 +9,7 @@ using Rafeek.Application.Handlers.StudentHandlers.Commands.SendRequestForAdvisme
 using Rafeek.Application.Handlers.StudentHandlers.Query;
 using Rafeek.Application.Handlers.StudentHandlers.DTOs;
 using Rafeek.Application.Common.Models;
+using Rafeek.Application.Handlers.StudentHandlers.Query.GetStudentProfile;
 
 namespace Rafeek.API.Controllers.Version1
 {
@@ -45,8 +46,8 @@ namespace Rafeek.API.Controllers.Version1
         [HttpGet]
         [RoleAuthorize()]
         [Route(ApiRoutes.Student.GetProfile)]
-        [ProducesResponseType(typeof(ApiResponse<StudentProfileDto>), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetProfile()
         {
             var result = await _mediator.Send(new GetStudentProfileQuery());

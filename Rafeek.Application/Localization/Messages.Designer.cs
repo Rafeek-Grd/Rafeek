@@ -187,11 +187,47 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Course has been assigned to the department successfully..
+        /// </summary>
+        public static string CourseAssignedSuccessfully {
+            get {
+                return ResourceManager.GetString("CourseAssignedSuccessfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Course ID is required..
+        /// </summary>
+        public static string CourseIdRequired {
+            get {
+                return ResourceManager.GetString("CourseIdRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Course Id required for exam event..
         /// </summary>
         public static string CourseIdRequiredForExamEvent {
             get {
                 return ResourceManager.GetString("CourseIdRequiredForExamEvent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Course is not found..
+        /// </summary>
+        public static string CourseNotFound {
+            get {
+                return ResourceManager.GetString("CourseNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Course has been removed from the department successfully..
+        /// </summary>
+        public static string CourseRemovedSuccessfully {
+            get {
+                return ResourceManager.GetString("CourseRemovedSuccessfully", resourceCulture);
             }
         }
         
@@ -264,6 +300,15 @@ namespace Rafeek.Application.Localization {
         public static string DepartmentIdNotFound {
             get {
                 return ResourceManager.GetString("DepartmentIdNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Department ID is required..
+        /// </summary>
+        public static string DepartmentIdRequired {
+            get {
+                return ResourceManager.GetString("DepartmentIdRequired", resourceCulture);
             }
         }
         
@@ -1042,6 +1087,15 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to User has been assigned to the department successfully..
+        /// </summary>
+        public static string UserAssignedSuccessfully {
+            get {
+                return ResourceManager.GetString("UserAssignedSuccessfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to User Code is already taken..
         /// </summary>
         public static string UserCodeExist {
@@ -1060,11 +1114,47 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This user type cannot be assigned to a department..
+        /// </summary>
+        public static string UserNotEligibleForDepartment {
+            get {
+                return ResourceManager.GetString("UserNotEligibleForDepartment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to User is not found..
         /// </summary>
         public static string UserNotFound {
             get {
                 return ResourceManager.GetString("UserNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User is not assigned to any department..
+        /// </summary>
+        public static string UserNotInDepartment {
+            get {
+                return ResourceManager.GetString("UserNotInDepartment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User has been removed from the department successfully..
+        /// </summary>
+        public static string UserRemovedSuccessfully {
+            get {
+                return ResourceManager.GetString("UserRemovedSuccessfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Could not find a specific academic role (Student/Doctor/Instructor) for this user..
+        /// </summary>
+        public static string UserRoleNotFound {
+            get {
+                return ResourceManager.GetString("UserRoleNotFound", resourceCulture);
             }
         }
         

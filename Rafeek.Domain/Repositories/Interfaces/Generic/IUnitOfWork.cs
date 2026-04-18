@@ -15,6 +15,7 @@ namespace Rafeek.Domain.Repositories.Interfaces.Generic
         IDepartmentRepository DepartmentRepository { get; }
         ICourseRepository CourseRepository { get; }
         IStudentAcademicProfileRepository StudentAcademicProfileRepository { get; }
+        IInstructorRepository InstructorRepository { get; }
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
         Task<IDbContextTransaction> BeginTransactionAsync(CancellationToken cancellationToken = default);

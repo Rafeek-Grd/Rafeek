@@ -1,4 +1,4 @@
-﻿using Rafeek.Domain.Entities;
+using Rafeek.Domain.Entities;
 
 namespace Rafeek.Application.Localization
 {
@@ -154,12 +154,22 @@ namespace Rafeek.Application.Localization
         public record Department
         {
             public static readonly KeyString DepartmentIdNotFound = new("DepartmentIdNotFound");
+            public static readonly KeyString DepartmentIdRequired = new("DepartmentIdRequired");
             public static readonly KeyString DepartmentNameRequired = new("DepartmentNameRequired");
             public static readonly KeyString DepartmentNameMaxLength = new("DepartmentNameMaxLength");
             public static readonly KeyString DepartmentCodeRequired = new("DepartmentCodeRequired");
             public static readonly KeyString DepartmentCodeMaxLength = new("DepartmentCodeMaxLength");
             public static readonly KeyString DepartmentCodeUnique = new("DepartmentCodeUnique");
             public static readonly KeyString DepartmentNotFound = new("DepartmentNotFound");
+            public static readonly KeyString CourseNotFound = new("CourseNotFound");
+            public static readonly KeyString CourseIdRequired = new("CourseIdRequired");
+            public static readonly KeyString UserNotEligibleForDepartment = new("UserNotEligibleForDepartment");
+            public static readonly KeyString CourseAssignedSuccessfully = new("CourseAssignedSuccessfully");
+            public static readonly KeyString UserAssignedSuccessfully = new("UserAssignedSuccessfully");
+            public static readonly KeyString CourseRemovedSuccessfully = new("CourseRemovedSuccessfully");
+            public static readonly KeyString UserRemovedSuccessfully = new("UserRemovedSuccessfully");
+            public static readonly KeyString UserRoleNotFound = new("UserRoleNotFound");
+            public static readonly KeyString UserNotInDepartment = new("UserNotInDepartment");
         }
 
         public record Student
