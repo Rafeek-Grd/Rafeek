@@ -36,6 +36,7 @@ namespace Rafeek.Application.Handlers.AIHandlers.Queries.GetStudentGrades
 
             var result = new StudentAIGradesDto
             {
+                StudentId = student.UniversityCode,
                 GPA = profile?.CGPA ?? 0
             };
 

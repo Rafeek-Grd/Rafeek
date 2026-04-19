@@ -96,5 +96,10 @@ namespace Rafeek.API.Routes
             public const string GetBatchDump = BaseAI + "/analytics/dump";
             public const string GetCatalog = BaseAI + "/course/catalog";
         }
+
+        public static class AiIntegration
+        {
+            public const string GetRecommendations = Base + "/ai/recommendations";
+        }
     }
 }

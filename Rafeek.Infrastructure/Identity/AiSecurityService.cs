@@ -1,15 +1,16 @@
-using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 using Rafeek.Application.Common.Interfaces;
+using Rafeek.Application.Common.Options;
 
 namespace Rafeek.Infrastructure.Identity
 {
     public class AiSecurityService : IAiSecurityService
     {
-        private readonly IConfiguration _configuration;
+        private readonly AiEngineSettings _aiEngineSettings;
 
-        public AiSecurityService(IConfiguration configuration)
+        public AiSecurityService(IOptions<AiEngineSettings> aiEngineSettings)
         {
-            _configuration = configuration;
+            _aiEngineSettings = aiEngineSettings.Value;
         }
 
         public bool ValidateApiKey(string apiKey)
@@ -17,8 +18,7 @@ namespace Rafeek.Infrastructure.Identity
             if (string.IsNullOrWhiteSpace(apiKey))
                 return false;
 
-            var expectedKey = _configuration.GetValue<string>("AiEngineSettings:ApiKey");
-            return apiKey.Equals(expectedKey);
+            return apiKey.Equals(_aiEngineSettings.ApiKey);
         }
     }
 }
