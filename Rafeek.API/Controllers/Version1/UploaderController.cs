@@ -1,4 +1,4 @@
-﻿using MediatR;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
@@ -32,13 +32,14 @@ namespace Rafeek.API.Controllers.Version1
         /// <exception cref="NotImplementedException"></exception>
         [HttpPost]
         [Route(ApiRoutes.Uploader.UploadImage)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> UploadImage([FromForm] UploadImageCommand request)
         {
             var response = await _mediator.Send(request);
-            return Ok(response);
+            return Created(ApiRoutes.Uploader.UploadImage, response);
         }
+
 
         /// <summary>
         /// Upload Video
@@ -47,13 +48,14 @@ namespace Rafeek.API.Controllers.Version1
         /// <exception cref="NotImplementedException"></exception>
         [HttpPost]
         [Route(ApiRoutes.Uploader.UploadVideo)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> UploadVideo([FromForm] UploadVideoCommand request)
         {
             var response = await _mediator.Send(request);
-            return Ok(response);
+            return Created(ApiRoutes.Uploader.UploadVideo, response);
         }
+
 
         /// <summary>
         /// Upload Audio
@@ -62,13 +64,14 @@ namespace Rafeek.API.Controllers.Version1
         /// <exception cref="NotImplementedException"></exception>
         [HttpPost]
         [Route(ApiRoutes.Uploader.UploadAudio)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> UploadAudio([FromForm] UploadAudioCommand request)
         {
             var response = await _mediator.Send(request);
-            return Ok(response);
+            return Created(ApiRoutes.Uploader.UploadAudio, response);
         }
+
 
         /// <summary>
         /// Upload File
@@ -77,13 +80,14 @@ namespace Rafeek.API.Controllers.Version1
         /// <exception cref="NotImplementedException"></exception>
         [HttpPost]
         [Route(ApiRoutes.Uploader.UploadFile)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> UploadFile([FromForm] UploadFileCommand request)
         {
             var response = await _mediator.Send(request);
-            return Ok(response);
+            return Created(ApiRoutes.Uploader.UploadFile, response);
         }
+
 
         /// <summary>
         /// Update Image
@@ -92,14 +96,15 @@ namespace Rafeek.API.Controllers.Version1
         /// <exception cref="NotImplementedException"></exception>
         [HttpPatch]
         [Route(ApiRoutes.Uploader.UpdateImage)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status202Accepted)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> UpdateImage(string name, [FromForm] UpdateImageCommand request)
         {
             request.ImageName = name;
             var response = await _mediator.Send(request);
-            return Ok(response);
+            return Accepted(response);
         }
+
 
         /// <summary>
         /// Update Video
@@ -108,14 +113,15 @@ namespace Rafeek.API.Controllers.Version1
         /// <exception cref="NotImplementedException"></exception>
         [HttpPatch]
         [Route(ApiRoutes.Uploader.UpdateVideo)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status202Accepted)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> UpdateVideo(string name ,[FromForm] UpdateVideoCommand request)
         {
             request.VideoName = name;
             var response = await _mediator.Send(request);
-            return Ok(response);
+            return Accepted(response);
         }
+
 
         /// <summary>
         /// Download File
@@ -124,13 +130,14 @@ namespace Rafeek.API.Controllers.Version1
         /// <exception cref="NotImplementedException"></exception>
         [HttpPost]
         [Route(ApiRoutes.Uploader.DownloadFile)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> DownloadFile([FromForm] DownloadFileCommand request)
         {
             var response = await _mediator.Send(request);
             return Ok(response);
         }
+
 
         /// <summary>
         /// Upload List Of Images
@@ -139,13 +146,14 @@ namespace Rafeek.API.Controllers.Version1
         /// <exception cref="NotImplementedException"></exception>
         [HttpPost]
         [Route(ApiRoutes.Uploader.UploadListImage)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(List<string>), StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> UploadListOfImages([FromForm] UploadMultipleImageCommand request)
         {
             var response = await _mediator.Send(request);
-            return Ok(response);
+            return Created(ApiRoutes.Uploader.UploadListImage, response);
         }
+
 
         /// <summary>
         /// Upload List Of Videos
@@ -154,12 +162,13 @@ namespace Rafeek.API.Controllers.Version1
         /// <exception cref="NotImplementedException"></exception>
         [HttpPost]
         [Route(ApiRoutes.Uploader.UploadListVideo)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(List<string>), StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> UploadListOfVideos([FromForm] UploadMultipleVideoCommand request)
         {
             var response = await _mediator.Send(request);
-            return Ok(response);
+            return Created(ApiRoutes.Uploader.UploadListVideo, response);
         }
+
     }
 }

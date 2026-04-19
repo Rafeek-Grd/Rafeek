@@ -33,13 +33,14 @@ namespace Rafeek.API.Controllers.Version1
         [HttpPost]
         [RoleAuthorize(nameof(UserType.Student))]
         [Route(ApiRoutes.Student.SendRequestToGuide)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(Guid), StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> SendRequestForGuidance([FromBody] SendRequestForAdvismentGuideCommand command)
         {
             var result = await _mediator.Send(command);
-            return Ok(result);
+            return Created(ApiRoutes.Advisor.GetAllGuidanceRequestsPagginated, result);
         }
+
 
         /// <summary>
         /// Get the profile of the currently logged-in student, including academic history.
@@ -48,13 +49,14 @@ namespace Rafeek.API.Controllers.Version1
         [HttpGet]
         [RoleAuthorize()]
         [Route(ApiRoutes.Student.GetProfile)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(StudentProfileDto), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetProfile()
         {
             var result = await _mediator.Send(new GetStudentProfileQuery());
             return Ok(result);
         }
+
 
         /// <summary>
         /// Get Student Dashboard data.
@@ -64,7 +66,7 @@ namespace Rafeek.API.Controllers.Version1
         [HttpGet]
         [Authorize]
         [Route(ApiRoutes.Student.GetDashboard)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(StudentDashboardDto), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetStudentDashboard(Guid userId, [FromQuery] GetStudentDashboardQuery query)
         {
@@ -72,5 +74,6 @@ namespace Rafeek.API.Controllers.Version1
             var result = await _mediator.Send(query);
             return Ok(result);
         }
+
     }
 }

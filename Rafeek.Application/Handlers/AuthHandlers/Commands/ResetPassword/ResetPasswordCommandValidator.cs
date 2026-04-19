@@ -26,7 +26,15 @@ namespace Rafeek.Application.Handlers.AuthHandlers.Commands.ResetPassword
 
             RuleFor(v => v.Token)
                 .NotNull().NotEmpty().WithMessage(_localizer[LocalizationKeys.TokenMessages.Required.Value])
-                .MustAsync(BeValidToken).WithMessage(_localizer[LocalizationKeys.GlobalValidationMessages.InvalidToken.Value]);
+                .MustAsync(async (command, token, cancellationToken) => 
+                {
+                    return await _signInManager.UserManager.Users
+                        .AnyAsync(u => (u.Email == command.Email || u.TemporaryEmail == command.Email) 
+                                    && u.PasswordResetToken == token 
+                                    && u.PasswordResetTokenExpiredTime > DateTime.UtcNow, cancellationToken);
+                })
+                .WithMessage(_localizer[LocalizationKeys.GlobalValidationMessages.InvalidToken.Value]);
+
 
             RuleFor(v => v.NewPassword)
                .NotNull().NotEmpty().WithMessage(_localizer[LocalizationKeys.UserMessages.PasswordRequired.Value])
@@ -55,10 +63,6 @@ namespace Rafeek.Application.Handlers.AuthHandlers.Commands.ResetPassword
             return await _signInManager.UserManager.Users.AnyAsync(u => u.Email == email || u.TemporaryEmail == email, cancellationToken);
         }
 
-        private async Task<bool> BeValidToken(string token, CancellationToken cancellationToken)
-        {
-            return await _signInManager.UserManager.Users
-                .AnyAsync(u => u.PasswordResetToken == token && u.PasswordResetTokenExpiredTime > DateTime.UtcNow, cancellationToken);
-        }
+
     }
 }

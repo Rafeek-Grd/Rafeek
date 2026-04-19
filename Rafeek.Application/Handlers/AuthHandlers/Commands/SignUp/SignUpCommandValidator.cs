@@ -1,4 +1,4 @@
-﻿using FluentValidation;
+using FluentValidation;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Localization;
 using Rafeek.Application.Localization;
@@ -28,7 +28,38 @@ namespace Rafeek.Application.Handlers.AuthHandlers.Commands.SignUp
                 .WithMessage(_localizer[LocalizationKeys.UserMessages.AdditionalRolesInvalid.Value]);
 
             RuleFor(v => v)
-                .Must(command => command.AdditionalRoles == null || !command.AdditionalRoles.Contains(command.PrimaryRole))
+                .Must(command => 
+                {
+                    var allRoles = new HashSet<UserType> { command.PrimaryRole };
+                    if (command.AdditionalRoles != null)
+                    {
+                        foreach (var r in command.AdditionalRoles) allRoles.Add(r);
+                    }
+
+                    // 1. Single Role Only Case
+                    if (allRoles.Count == 1) return true;
+
+                    // 2. Multi-Role Constraints
+                    // Students, Staff, and Instructors cannot have any other roles
+                    if (allRoles.Contains(UserType.Student) || 
+                        allRoles.Contains(UserType.Staff) || 
+                        allRoles.Contains(UserType.Instructor))
+                    {
+                        return false;
+                    }
+
+                    // Admin and SubAdmin can ONLY be combined with Doctor
+                    // They cannot be combined with each other
+                    if (allRoles.Contains(UserType.Admin) && allRoles.Contains(UserType.SubAdmin)) return false;
+
+                    if (allRoles.Contains(UserType.Admin) || allRoles.Contains(UserType.SubAdmin))
+                    {
+                        // If Admin/SubAdmin is present in a multi-role set, the ONLY other allowed role is Doctor
+                        return allRoles.All(r => r == UserType.Admin || r == UserType.SubAdmin || r == UserType.Doctor);
+                    }
+
+                    return false; // Any other multi-role combination is invalid
+                })
                 .WithMessage(_localizer[LocalizationKeys.UserMessages.PrimayRoleInvalid.Value]);
 
             RuleFor(v => v.FullName)

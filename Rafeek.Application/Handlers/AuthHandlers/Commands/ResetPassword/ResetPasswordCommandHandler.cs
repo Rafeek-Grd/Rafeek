@@ -25,18 +25,31 @@ namespace Rafeek.Application.Handlers.AuthHandlers.Commands.ResetPassword
         {
             var user = await _userManager.Users.FirstOrDefaultAsync(u => u.Email == request.Email || u.TemporaryEmail == request.Email);
 
+            if (user == null)
+            {
+                throw new NotFoundException(_localizer[LocalizationKeys.UserMessages.NotFound.Value]);
+            }
+
+
+            // Security: Double verify token in handler
+            if (user.PasswordResetToken != request.Token || user.PasswordResetTokenExpiredTime < DateTime.UtcNow)
+            {
+                throw new BadRequestException(_localizer[LocalizationKeys.GlobalValidationMessages.InvalidToken.Value]);
+            }
+
             var removePasswordResult = await _userManager.RemovePasswordAsync(user);
             if (!removePasswordResult.Succeeded)
             {
-                throw new BadRequestException(_localizer[LocalizationKeys.UserMessages.PasswordResetSuccess.Value]);
+                throw new BadRequestException(_localizer[LocalizationKeys.UserMessages.PasswordResetFailed.Value]);
             }
 
             var addPasswordResult = await _userManager.AddPasswordAsync(user, request.NewPassword);
             if (!addPasswordResult.Succeeded)
             {
-                throw new BadRequestException(_localizer[LocalizationKeys.UserMessages.PasswordResetSuccess.Value]);
+                throw new BadRequestException(_localizer[LocalizationKeys.UserMessages.PasswordResetFailed.Value]);
             }
 
+            // Clear token after successful reset
             user.PasswordResetToken = null;
             user.PasswordResetTokenExpiredTime = null;
             await _userManager.UpdateAsync(user);
@@ -45,6 +58,7 @@ namespace Rafeek.Application.Handlers.AuthHandlers.Commands.ResetPassword
             {
                 Message = _localizer[LocalizationKeys.UserMessages.PasswordResetSuccess.Value]
             };
+
         }
     }
 }

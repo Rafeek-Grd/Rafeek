@@ -10,6 +10,7 @@ using Rafeek.Application.Handlers.AcademicYearHandlers.Queries.GetAllAcademicYea
 using Rafeek.API.Filters;
 using Rafeek.Domain.Enums;
 using Rafeek.Application.Handlers.AcademicYearHandlers.Queries.GetAcademicYearById;
+using Rafeek.Application.Handlers.AcademicYearHandlers.DTOs;
 
 namespace Rafeek.API.Controllers.Version1
 {
@@ -31,13 +32,14 @@ namespace Rafeek.API.Controllers.Version1
         [HttpPost]
         [RoleAuthorize(nameof(UserType.Admin), nameof(UserType.SubAdmin))]
         [Route(ApiRoutes.AcademicYear.Create)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(Guid), StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Create([FromBody] AddAcademicYearCommand command)
         {
             var result = await _mediator.Send(command);
-            return Ok(result);
+            return Created(ApiRoutes.AcademicYear.GetById.Replace("{id}", result.ToString()), result);
         }
+
 
         /// <summary>
         /// Update existing academic year in the system. Only Admin and SubAdmin can perform this action.
@@ -48,14 +50,15 @@ namespace Rafeek.API.Controllers.Version1
         [HttpPatch]
         [RoleAuthorize(nameof(UserType.Admin), nameof(UserType.SubAdmin))]
         [Route(ApiRoutes.AcademicYear.Update)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(bool), StatusCodes.Status202Accepted)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Update(Guid id, [FromBody] UpdateAcademicYearCommand command)
         {
             command.Id = id;
             var result = await _mediator.Send(command);
-            return Ok(result);
+            return Accepted(result);
         }
+
 
         /// <summary>
         /// Delete academic year
@@ -65,14 +68,15 @@ namespace Rafeek.API.Controllers.Version1
         [HttpDelete]
         [RoleAuthorize(nameof(UserType.Admin))]
         [Route(ApiRoutes.AcademicYear.Delete)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(bool), StatusCodes.Status202Accepted)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Delete([FromRoute] Guid id)
         {
             var command = new DeleteAcademicYearCommand { Id = id };
             var result = await _mediator.Send(command);
-            return Ok(result);
+            return Deleted(result);
         }
+
 
         /// <summary>
         /// Get all academic years pagginated
@@ -98,7 +102,7 @@ namespace Rafeek.API.Controllers.Version1
         [HttpGet]
         [RoleAuthorize()]
         [Route(ApiRoutes.AcademicYear.GetById)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(AcademicYearDto), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetById([FromRoute] Guid id)
         {
@@ -106,5 +110,6 @@ namespace Rafeek.API.Controllers.Version1
             var result = await _mediator.Send(query);
             return Ok(result);
         }
+
     }
 }

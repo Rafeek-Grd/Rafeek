@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
 	<xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-		xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+				xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
 		<xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
 		<xsd:element name="root" msdata:IsDataSet="true">
 			<xsd:complexType>
@@ -27,12 +27,12 @@
 						<xsd:complexType>
 							<xsd:sequence>
 								<xsd:element name="value" type="xsd:string" minOccurs="0"
-									msdata:Ordinal="1" />
+											 msdata:Ordinal="1" />
 								<xsd:element name="comment" type="xsd:string" minOccurs="0"
-									msdata:Ordinal="2" />
+											 msdata:Ordinal="2" />
 							</xsd:sequence>
 							<xsd:attribute name="name" type="xsd:string" use="required"
-								msdata:Ordinal="1" />
+										   msdata:Ordinal="1" />
 							<xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
 							<xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
 							<xsd:attribute ref="xml:space" />
@@ -42,7 +42,7 @@
 						<xsd:complexType>
 							<xsd:sequence>
 								<xsd:element name="value" type="xsd:string" minOccurs="0"
-									msdata:Ordinal="1" />
+											 msdata:Ordinal="1" />
 							</xsd:sequence>
 							<xsd:attribute name="name" type="xsd:string" use="required" />
 						</xsd:complexType>
@@ -59,12 +59,16 @@
 		<value>2.0</value>
 	</resheader>
 	<resheader name="reader">
-		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0,
-			Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+		<value>
+			System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0,
+			Culture=neutral, PublicKeyToken=b77a5c561934e089
+		</value>
 	</resheader>
 	<resheader name="writer">
-		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0,
-			Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+		<value>
+			System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0,
+			Culture=neutral, PublicKeyToken=b77a5c561934e089
+		</value>
 	</resheader>
 
 	<data name="PlaceNotValid" xml:space="preserve">
@@ -184,6 +188,14 @@
 	<value>Password may be weak. Or it doesn't accepted cause of criteria.</value>
   </data>
 
+	<data name="PasswordResetFailed" xml:space="preserve">
+	<value>Password reset failed.</value>
+  </data>
+
+	<data name="PasswordValid" xml:space="preserve">
+	<value>Password may be weak. Or it doesn't accepted cause of criteria.</value>
+  </data>
+
 	<data name="PasswordConfirmNotEqual" xml:space="preserve">
 	<value>Password confirmation value not equals to password value.</value>
   </data>
@@ -280,258 +292,258 @@
 	<value>Reset Code Sent.</value>
   </data>
 	<data name="ResetTokenInvalid" xml:space="preserve">
-		<value>Invalid or expired password reset token.</value>
+	<value>Invalid or expired password reset token.</value>
   </data>
 
 	<data name="PasswordResetSuccess" xml:space="preserve">
-		<value>Password has been reset successfully.</value>
+	<value>Password has been reset successfully.</value>
   </data>
 
 	<data name="InvalidToken" xml:space="preserve">
-		<value>Token Invalid or expiration.</value>
+	<value>Token Invalid or expiration.</value>
   </data>
 
 	<data name="EmailNotFound" xml:space="preserve">
-		<value>Email is not found.</value>
+	<value>Email is not found.</value>
   </data>
 
 	<data name="SendUserCredentialsSubject" xml:space="preserve">
-		<value>Your University Account Credentials - Rafeek</value>
+	<value>Your University Account Credentials - Rafeek</value>
 	</data>
 
 	<data name="SendUserCredentialsTemplate" xml:space="preserve">
-		<value>&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&lt;meta charset="utf-8" /&gt;&lt;title&gt;Your University Credentials&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;h2&gt;Welcome to Rafeek University System&lt;/h2&gt;&lt;p&gt;Hello, @(Model.FullName) !&lt;/p&gt;&lt;p&gt;Your account has been successfully created. Below are your login credentials:&lt;/p&gt;&lt;p&gt;University Email: &lt;strong&gt;@(Model.Email)&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Temporary Password: &lt;strong&gt;@(Model.Password)&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Important:&lt;/strong&gt; For security reasons, please change your password after your first login.&lt;/p&gt;&lt;p&gt;You can now access the Rafeek University System using these credentials.&lt;/p&gt;&lt;p&gt;If you did not request this account, please contact support immediately.&lt;/p&gt;&lt;p&gt;Regards,&lt;/p&gt;&lt;p&gt;The Rafeek Team&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</value>
+	<value>&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&lt;meta charset="utf-8" /&gt;&lt;title&gt;Your University Credentials&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;h2&gt;Welcome to Rafeek University System&lt;/h2&gt;&lt;p&gt;Hello, @(Model.FullName) !&lt;/p&gt;&lt;p&gt;Your account has been successfully created. Below are your login credentials:&lt;/p&gt;&lt;p&gt;University Email: &lt;strong&gt;@(Model.Email)&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Temporary Password: &lt;strong&gt;@(Model.Password)&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Important:&lt;/strong&gt; For security reasons, please change your password after your first login.&lt;/p&gt;&lt;p&gt;You can now access the Rafeek University System using these credentials.&lt;/p&gt;&lt;p&gt;If you did not request this account, please contact support immediately.&lt;/p&gt;&lt;p&gt;Regards,&lt;/p&gt;&lt;p&gt;The Rafeek Team&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</value>
 	</data>
 
 	<data name="SendUserCredentialsMessage" xml:space="preserve">
-		<value>User credentials sent successfully to email.</value>
+	<value>User credentials sent successfully to email.</value>
 	</data>
 
 	<data name="EmailNotActivated" xml:space="preserve">
-		<value>Email is not activated yet.</value>
+	<value>Email is not activated yet.</value>
 	</data>
 
 	<data name="EmailActivatedSuccessfully" xml:space="preserve">
-		<value>Email is activated successfully.</value>
+	<value>Email is activated successfully.</value>
 	</data>
 
 	<data name="EmailAlreadyActivated" xml:space="preserve">
-		<value>Email is already activated.</value>
+	<value>Email is already activated.</value>
 	</data>
 
 	<data name="EventNameRequired" xml:space="preserve">
-		<value>Event name is required.</value>
+	<value>Event name is required.</value>
 	</data>
 
 	<data name="MaxLengthOfEventNameExceededRequiredLength" xml:space="preserve">
-		<value>Event name is exceeded the required length.</value>
+	<value>Event name is exceeded the required length.</value>
 	</data>
 
 	<data name="EventDateRequired" xml:space="preserve">
-		<value>Event date is required.</value>
+	<value>Event date is required.</value>
 	</data>
 
 	<data name="StartTimeRequired" xml:space="preserve">
-		<value>Start time is required.</value>
+	<value>Start time is required.</value>
 	</data>
 
 	<data name="EndTimeRequired" xml:space="preserve">
-		<value>End time is required.</value>
+	<value>End time is required.</value>
 	</data>
 
 	<data name="LocationRequired" xml:space="preserve">
-		<value>Location is required.</value>
+	<value>Location is required.</value>
 	</data>
 
 	<data name="MaxLengthOfLocationExceededRequiredLength" xml:space="preserve">
-		<value>Location of event must not exceeded the required length.</value>
+	<value>Location of event must not exceeded the required length.</value>
 	</data>
 
 	<data name="TargetUserIdRequired" xml:space="preserve">
-		<value>Targeted user Id is required.</value>
+	<value>Targeted user Id is required.</value>
 	</data>
 
 	<data name="EndTimeMustBeGreaterThanStartTime" xml:space="preserve">
-		<value>End time must be greater that a start time.</value>
+	<value>End time must be greater that a start time.</value>
 	</data>
 
 	<data name="EndDateMustBeGreaterThanOrEqualEventDate" xml:space="preserve">
-		<value>End date must be greater that or equal event date.</value>
+	<value>End date must be greater that or equal event date.</value>
 	</data>
 
 	<data name="RecurrenceEndDateRequired" xml:space="preserve">
-		<value>Recurrence end date is required.</value>
+	<value>Recurrence end date is required.</value>
 	</data>
 
 	<data name="RecurrenceEndDateMustBeAfterEventDate" xml:space="preserve">
-		<value>Recurrence end date must be after event date.</value>
+	<value>Recurrence end date must be after event date.</value>
 	</data>
 
 	<data name="CourseIdRequiredForExamEvent" xml:space="preserve">
-		<value>Course Id required for exam event.</value>
+	<value>Course Id required for exam event.</value>
 	</data>
 
 	<data name="AddedSuccessfully" xml:space="preserve">
-		<value>The record is added succefully.</value>
+	<value>The record is added succefully.</value>
 	</data>
 
 	<data name="UpdatedSuccessfully" xml:space="preserve">
-		<value>The record is updated succefully.</value>
+	<value>The record is updated succefully.</value>
 	</data>
 
 	<data name="DeletedSuccessfully" xml:space="preserve">
-		<value>The record is deleted succefully.</value>
+	<value>The record is deleted succefully.</value>
 	</data>
 
 	<data name="AddedFailed" xml:space="preserve">
-		<value>Failed to added a new record.</value>
+	<value>Failed to added a new record.</value>
 	</data>
 
 	<data name="UpdatedFailed" xml:space="preserve">
-		<value>Failed to updated a new record.</value>
+	<value>Failed to updated a new record.</value>
 	</data>
 
 	<data name="DeletedFailed" xml:space="preserve">
-		<value>Failed to deleted a new record.</value>
+	<value>Failed to deleted a new record.</value>
 	</data>
 
 	<data name="EventIdRequired" xml:space="preserve">
-		<value>Event Id Required.</value>
+	<value>Event Id Required.</value>
 	</data>
 
 	<data name="EventIdNotValid" xml:space="preserve">
-		<value>Event Id is not valid.</value>
+	<value>Event Id is not valid.</value>
 	</data>
 
 	<data name="AcademicYearNameRequired" xml:space="preserve">
-		<value>Academic year name is required.</value>
+	<value>Academic year name is required.</value>
 	</data>
 
 	<data name="StartDateRequired" xml:space="preserve">
-		<value>Start date of academic year is required.</value>
+	<value>Start date of academic year is required.</value>
 	</data>
 
 	<data name="EndDateRequired" xml:space="preserve">
-		<value>End date of academic year is required.</value>
+	<value>End date of academic year is required.</value>
 	</data>
 
 	<data name="EndDateMustBeGreaterThanStartDate" xml:space="preserve">
-		<value>End date of academic year must be greater than start date.</value>
+	<value>End date of academic year must be greater than start date.</value>
 	</data>
 
 	<data name="AcademicYearNotFound" xml:space="preserve">
-		<value>This Academic year is not found in our system.</value>
+	<value>This Academic year is not found in our system.</value>
 	</data>
 
 	<data name="AcademicTermNameRequired" xml:space="preserve">
-		<value>Academic term name is required.</value>
+	<value>Academic term name is required.</value>
 	</data>
 	<data name="AcademicTermIdRequired" xml:space="preserve">
-		<value>Academic year ID required.</value>
+	<value>Academic year ID required.</value>
 	</data>
 	<data name="AcademicTermStartDateRequired" xml:space="preserve">
-		<value>Academic start date is required.</value>
+	<value>Academic start date is required.</value>
 	</data>
 	<data name="AcademicTermEndDateRequired" xml:space="preserve">
-		<value>Academic term end date is required.</value>
+	<value>Academic term end date is required.</value>
 	</data>
 	<data name="EndDateMustBeGreaterThanStartDate" xml:space="preserve">
-		<value>Academic term end date must be greater than start date.</value>
+	<value>Academic term end date must be greater than start date.</value>
 	</data>
 	<data name="RegisterationEndDateMustBeGreaterThanRegistrationStartDate" xml:space="preserve">
-		<value>Academic term registration end date must be greater than registration start date.</value>
+	<value>Academic term registration end date must be greater than registration start date.</value>
 	</data>
 	<data name="ExamEndDateMustBeGreaterThanExamStartDate" xml:space="preserve">
-		<value>Academic term exam end date must be greater than exam start date.</value>
+	<value>Academic term exam end date must be greater than exam start date.</value>
 	</data>
 	<data name="RegistrationStartDateMustBeGreaterThanAcademicTermStartDate" xml:space="preserve">
-		<value>Academic term registration start date must be greater than academic term start date.</value>
+	<value>Academic term registration start date must be greater than academic term start date.</value>
 	</data>
 	<data name="ExamStartDateMustBeGreaterThanRegistrationStartDate" xml:space="preserve">
-		<value>Academic term exam start date must be greater than registration start date.</value>
+	<value>Academic term exam start date must be greater than registration start date.</value>
 	</data>
 	<data name="AcademicTermNotFound" xml:space="preserve">
-		<value>Academic term is not found in our system.</value>
+	<value>Academic term is not found in our system.</value>
 	</data>
 	<data name="StudentsNotFound" xml:space="preserve">
-		<value>That student list IDs are not found.</value>
+	<value>That student list IDs are not found.</value>
 	</data>
 	<data name="RequestIdRequired" xml:space="preserve">
-		<value>Request ID is required.</value>
+	<value>Request ID is required.</value>
 	</data>
 	<data name="YouAreNotAdvisorOfThatStudent" xml:space="preserve">
-		<value>The guidance request either not exist, or the current request status is not pending, or that student is not under your advisement.</value>
+	<value>The guidance request either not exist, or the current request status is not pending, or that student is not under your advisement.</value>
 	</data>
 	<data name="AdvisorIdRequired" xml:space="preserve">
-		<value>Advisor ID is required.</value>
+	<value>Advisor ID is required.</value>
 	</data>
 	<data name="AdvisorIdNotFound" xml:space="preserve">
-		<value>Advisor ID is not found.</value>
+	<value>Advisor ID is not found.</value>
 	</data>
 	<data name="DepartmentIdNotFound" xml:space="preserve">
-		<value>Department ID is not found.</value>
+	<value>Department ID is not found.</value>
 	</data>
 	<data name="StudentIdRequired" xml:space="preserve">
-		<value>Student ID is required.</value>
+	<value>Student ID is required.</value>
 	</data>
 	<data name="TitleRequired" xml:space="preserve">
-		<value>Title of guidence request is required.</value>
+	<value>Title of guidence request is required.</value>
 	</data>
 	<data name="DescriptionRequired" xml:space="preserve">
-		<value>Description of guidence request is required.</value>
+	<value>Description of guidence request is required.</value>
 	</data>
 	<data name="RequestIsSentSuccessfully" xml:space="preserve">
-		<value>Guidence support request is sent successfully.</value>
+	<value>Guidence support request is sent successfully.</value>
 	</data>
 	<data name="RequestIsFailedToSend" xml:space="preserve">
-		<value>Guidence support request is failed to send.</value>
+	<value>Guidence support request is failed to send.</value>
 	</data>
 	<data name="DepartmentNameRequired" xml:space="preserve">
-		<value>Department name is required.</value>
+	<value>Department name is required.</value>
 	</data>
 	<data name="DepartmentNameMaxLength" xml:space="preserve">
-		<value>Max length of department name must not exceeded 100 character.</value>
+	<value>Max length of department name must not exceeded 100 character.</value>
 	</data>
 	<data name="DepartmentCodeRequired" xml:space="preserve">
-		<value>Department code is required.</value>
+	<value>Department code is required.</value>
 	</data>
 	<data name="DepartmentCodeMaxLength" xml:space="preserve">
-		<value>Department code must not exceed 10 characters.</value>
+	<value>Department code must not exceed 10 characters.</value>
 	</data>
 	<data name="DepartmentCodeUnique" xml:space="preserve">
-		<value>Department code must not found before.</value>
+	<value>Department code must not found before.</value>
 	</data>
 	<data name="DepartmentNotFound" xml:space="preserve">
-		<value>Department is not found.</value>
+	<value>Department is not found.</value>
 	</data>
 	<data name="DepartmentIdRequired" xml:space="preserve">
-		<value>Department ID is required.</value>
+	<value>Department ID is required.</value>
 	</data>
 	<data name="CourseNotFound" xml:space="preserve">
-		<value>Course is not found.</value>
+	<value>Course is not found.</value>
 	</data>
 	<data name="CourseIdRequired" xml:space="preserve">
-		<value>Course ID is required.</value>
+	<value>Course ID is required.</value>
 	</data>
 	<data name="UserNotEligibleForDepartment" xml:space="preserve">
-		<value>This user type cannot be assigned to a department.</value>
+	<value>This user type cannot be assigned to a department.</value>
 	</data>
 	<data name="CourseAssignedSuccessfully" xml:space="preserve">
-		<value>Course has been assigned to the department successfully.</value>
+	<value>Course has been assigned to the department successfully.</value>
 	</data>
 	<data name="UserAssignedSuccessfully" xml:space="preserve">
-		<value>User has been assigned to the department successfully.</value>
+	<value>User has been assigned to the department successfully.</value>
 	</data>
 	<data name="CourseRemovedSuccessfully" xml:space="preserve">
-		<value>Course has been removed from the department successfully.</value>
+	<value>Course has been removed from the department successfully.</value>
 	</data>
 	<data name="UserRemovedSuccessfully" xml:space="preserve">
-		<value>User has been removed from the department successfully.</value>
+	<value>User has been removed from the department successfully.</value>
 	</data>
 	<data name="UserRoleNotFound" xml:space="preserve">
-		<value>Could not find a specific academic role (Student/Doctor/Instructor) for this user.</value>
+	<value>Could not find a specific academic role (Student/Doctor/Instructor) for this user.</value>
 	</data>
 	<data name="UserNotInDepartment" xml:space="preserve">
-		<value>User is not assigned to any department.</value>
+	<value>User is not assigned to any department.</value>
 	</data>
 </root>

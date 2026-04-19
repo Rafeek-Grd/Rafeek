@@ -6,7 +6,7 @@ namespace Rafeek.Application.Handlers.AcademicTermHandlers.Queries.GetAllPaggina
 {
     public class GetAllAcademicTermPagginatedQuery: IRequest<PagginatedResult<AcademicTermDto>>
     {
-        public int PageNumber { get; set; }
-        public int PageSize { get; set; }
+        public int PageNumber { get; set; } = 1;
+        public int PageSize { get; set; } = 20;
     }
 }

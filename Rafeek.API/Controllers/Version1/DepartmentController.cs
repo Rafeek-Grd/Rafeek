@@ -14,7 +14,8 @@ using Rafeek.Application.Handlers.DepartmentHandlers.Query.GetAllUsersInDepartme
 using Rafeek.Application.Handlers.DepartmentHandlers.Query.GetDepartmentByIdOrCode;
 using Rafeek.Application.Handlers.DepartmentHandlers.Query.GetAllCoursesInDepartmentPagginated;
 using Rafeek.Domain.Enums;
-using Rafeek.API.Filters;
+using Microsoft.Extensions.Localization;
+using Rafeek.Application.Localization;
 
 namespace Rafeek.API.Controllers.Version1
 {
@@ -23,10 +24,11 @@ namespace Rafeek.API.Controllers.Version1
     {
         private readonly IMediator _mediator;
 
-        public DepartmentController(IMediator mediator): base(mediator) 
+        public DepartmentController(IMediator mediator, IStringLocalizer<Messages> localizer): base(mediator, localizer) 
         {
             _mediator = mediator;
         }
+
 
         /// <summary>
         /// Add new department
@@ -36,13 +38,14 @@ namespace Rafeek.API.Controllers.Version1
         [HttpPost]
         [Route(ApiRoutes.Department.Create)]
         [RoleAuthorize(nameof(UserType.Admin), nameof(UserType.SubAdmin))]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(Guid), StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> CreateDepartment([FromBody] AddDepartmentCommand command)
         {
             var result = await _mediator.Send(command);
-            return Ok(result);
+            return Created(ApiRoutes.Department.GetByIdOrCode, result);
         }
+
 
         /// <summary>
         /// Update Deparment
@@ -53,14 +56,15 @@ namespace Rafeek.API.Controllers.Version1
         [HttpPatch]
         [Route(ApiRoutes.Department.Update)]
         [RoleAuthorize(nameof(UserType.Admin), nameof(UserType.SubAdmin))]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(bool), StatusCodes.Status202Accepted)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> UpdateDepartment(Guid id, [FromBody] UpdateDepartmentCommand command)
         {
             command.Id = id;
             var result = await _mediator.Send(command);
-            return Ok(result);
+            return Accepted(result);
         }
+
 
         /// <summary>
         /// Delete Department
@@ -70,13 +74,14 @@ namespace Rafeek.API.Controllers.Version1
         [HttpDelete]
         [Route(ApiRoutes.Department.Delete)]
         [RoleAuthorize(nameof(UserType.Admin))]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(bool), StatusCodes.Status202Accepted)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> DeleteDepartment(Guid id)
         {
             var result = await _mediator.Send(new DeleteDepartmentCommand() { Id = id });
-            return Ok(result);
+            return Deleted(result);
         }
+
 
         /// <summary>
         /// Assign course to department.
@@ -86,12 +91,13 @@ namespace Rafeek.API.Controllers.Version1
         [HttpPatch]
         [Route(ApiRoutes.Department.AssignCourse)]
         [RoleAuthorize(nameof(UserType.Admin), nameof(UserType.SubAdmin))]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(bool), StatusCodes.Status202Accepted)]
         public async Task<IActionResult> AssignCourse([FromBody] AssignCourseToDepartmentCommand command)
         {
             var result = await _mediator.Send(command);
-            return Ok(result);
+            return Accepted(result);
         }
+
 
         /// <summary>
         /// Assign user to department.
@@ -101,13 +107,14 @@ namespace Rafeek.API.Controllers.Version1
         [HttpPatch]
         [Route(ApiRoutes.Department.AssignUser)]
         [RoleAuthorize(nameof(UserType.Admin), nameof(UserType.SubAdmin))]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(bool), StatusCodes.Status202Accepted)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> AssignUser([FromBody] AssignUserToDepartmentCommand command)
         {
             var result = await _mediator.Send(command);
-            return Ok(result);
+            return Accepted(result);
         }
+
 
         /// <summary>
         /// Unassign course from department.
@@ -117,12 +124,13 @@ namespace Rafeek.API.Controllers.Version1
         [HttpPut]
         [Route(ApiRoutes.Department.RemoveCourse)]
         [RoleAuthorize(nameof(UserType.Admin))]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(bool), StatusCodes.Status202Accepted)]
         public async Task<IActionResult> RemoveCourse([FromRoute] Guid courseId)
         {
             var result = await _mediator.Send(new DeleteCourseFromDepartmentCommand { CourseId = courseId });
-            return Ok(result);
+            return Deleted(result);
         }
+
 
         /// <summary>
         /// Unassign user from department.
@@ -132,12 +140,13 @@ namespace Rafeek.API.Controllers.Version1
         [HttpPatch]
         [Route(ApiRoutes.Department.RemoveUser)]
         [RoleAuthorize(nameof(UserType.Admin), nameof(UserType.SubAdmin))]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(bool), StatusCodes.Status202Accepted)]
         public async Task<IActionResult> RemoveUser([FromBody] DeleteUserFromDepartmentCommand command)
         {
             var result = await _mediator.Send(command);
-            return Ok(result);
+            return Deleted(result);
         }
+
 
         /// <summary>
         /// Get all departments paginated.

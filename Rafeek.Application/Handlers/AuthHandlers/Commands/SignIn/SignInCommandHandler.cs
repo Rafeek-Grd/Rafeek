@@ -52,7 +52,8 @@ namespace Rafeek.Application.Handlers.AuthHandlers.Commands.SignIn
                 throw new UnauthorizedException(_localizer[LocalizationKeys.UserMessages.InvalidSignIn.Value]);
             }
 
-            var result = await _signInManager.PasswordSignInAsync(currentUser.Email!, request.Password, false, false, cancellationToken);
+            var result = await _signInManager.PasswordSignInAsync(currentUser.UserName!, request.Password, false, false, cancellationToken);
+
 
             if (!result.Succeeded)
             {

@@ -36,7 +36,19 @@ namespace Rafeek.Application.Handlers.AuthHandlers.Commands.ActivateUniversityEm
                 throw new BadRequestException(_localizer[LocalizationKeys.UserMessages.EmailAlreadyActivated.Value]);
             }
 
+            // Verify confirmation code
+            if (user.PasswordResetToken != request.ConfirmationCode || user.PasswordResetTokenExpiredTime < DateTime.Now)
+            {
+                throw new BadRequestException(_localizer[LocalizationKeys.UserMessages.ResetTokenInvalid.Value]);
+            }
+
             user.IsUniversityEmailActivated = true;
+            user.EmailConfirmed = true;
+            
+            // Clear token after activation
+            user.PasswordResetToken = null;
+            user.PasswordResetTokenExpiredTime = null;
+
             var result = await _userManager.UpdateAsync(user);
 
             if (!result.Succeeded)
@@ -45,6 +57,7 @@ namespace Rafeek.Application.Handlers.AuthHandlers.Commands.ActivateUniversityEm
             }
 
             return _localizer[LocalizationKeys.UserMessages.EmailActivatedSuccessfully.Value];
+
         }
     }
 }

@@ -11,6 +11,7 @@ using Rafeek.Application.Handlers.AcademicTermHandlers.Commands.DeleteAcademicTe
 using Rafeek.API.Filters;
 using Rafeek.Domain.Enums;
 using Rafeek.Application.Handlers.AcademicTermHandlers.Queries.GetAllPagginatedAcademicTerm;
+using Rafeek.Application.Handlers.AcademicTermHandlers.DTOs;
 
 namespace Rafeek.API.Controllers.Version1
 {
@@ -32,13 +33,14 @@ namespace Rafeek.API.Controllers.Version1
         [HttpPost]
         [RoleAuthorize(nameof(UserType.Admin), nameof(UserType.SubAdmin))]
         [Route(ApiRoutes.AcademicTerm.Create)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(Guid), StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Create([FromBody] CreateAcademicTermCommand command)
         {
             var result = await _mediator.Send(command);
-            return Ok(result);
+            return Created(ApiRoutes.AcademicTerm.GetById.Replace("{id}", result.ToString()), result);
         }
+
 
         /// <summary>
         /// Update Academic Term details.
@@ -49,14 +51,15 @@ namespace Rafeek.API.Controllers.Version1
         [HttpPatch]
         [RoleAuthorize(nameof(UserType.Admin), nameof(UserType.SubAdmin))]
         [Route(ApiRoutes.AcademicTerm.Update)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(bool), StatusCodes.Status202Accepted)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Update(Guid id, [FromBody] UpdateAcademicTermCommand command)
         {
             command.Id = id;
             var result = await _mediator.Send(command);
-            return Ok(result);
+            return Accepted(result);
         }
+
 
         /// <summary>
         /// Delete Academic Term
@@ -66,14 +69,15 @@ namespace Rafeek.API.Controllers.Version1
         [HttpDelete]
         [RoleAuthorize(nameof(UserType.Admin))]
         [Route(ApiRoutes.AcademicTerm.Delete)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(bool), StatusCodes.Status202Accepted)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Delete([FromRoute] Guid id)
         {
             var command = new DeleteAcademicTermCommand { Id = id };
             var result = await _mediator.Send(command);
-            return Ok(result);
+            return Deleted(result);
         }
+
 
         /// <summary>
         /// Get All Academic Terms Paginated
@@ -98,7 +102,7 @@ namespace Rafeek.API.Controllers.Version1
         [HttpGet]
         [RoleAuthorize()]
         [Route(ApiRoutes.AcademicTerm.GetById)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(AcademicTermDto), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetById([FromRoute] Guid id)
         {
@@ -106,5 +110,6 @@ namespace Rafeek.API.Controllers.Version1
             var result = await _mediator.Send(query);
             return Ok(result);
         }
+
     }
 }

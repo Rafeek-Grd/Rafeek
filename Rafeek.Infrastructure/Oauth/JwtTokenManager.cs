@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using Rafeek.Application.Common.Interfaces;
 using Rafeek.Application.Handlers.AuthHandlers.Commands;
@@ -26,6 +26,9 @@ namespace Squeak.Infrastructure.Oauth
         public async Task<AuthResult> GenerateClaimsTokenAsync(string email, CancellationToken cancellationToken = new CancellationToken())
         {
             var user = await _userManager.FindByEmailAsync(email);
+            if (user == null) return null;
+
+            var roles = await _userManager.GetRolesAsync(user);
 
             var tokenHandler = new JwtSecurityTokenHandler();
             tokenHandler.OutboundClaimTypeMap.Clear();
@@ -34,16 +37,25 @@ namespace Squeak.Infrastructure.Oauth
 
             var currentTime = DateTimeOffset.UtcNow;
 
+            var claims = new List<Claim>
+            {
+                new Claim(JwtRegisteredClaimNames.UniqueName, user.UserName),
+                new Claim(JwtRegisteredClaimNames.NameId, user.Id.ToString()),
+                new Claim(JwtRegisteredClaimNames.Email, user.Email),
+                new Claim(JwtRegisteredClaimNames.Nbf, currentTime.ToUnixTimeSeconds().ToString()),
+                new Claim(JwtRegisteredClaimNames.Exp, currentTime.Add(_jwtSettings.AccessTokenExpiration).ToUnixTimeSeconds().ToString()),
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                new Claim("UserTypes", ((int)user.UserTypes).ToString())
+            };
+
+            foreach (var role in roles)
+            {
+                claims.Add(new Claim(ClaimTypes.Role, role));
+            }
+
             var tokenDescriptor = new SecurityTokenDescriptor
             {
-                Subject = new ClaimsIdentity(new[]
-                {
-                    new Claim(JwtRegisteredClaimNames.UniqueName, user.UserName),
-                    new Claim(JwtRegisteredClaimNames.NameId, user.Id.ToString()),
-                    new Claim(JwtRegisteredClaimNames.Nbf, currentTime.ToUnixTimeSeconds().ToString()),
-                    new Claim(JwtRegisteredClaimNames.Exp, currentTime.Add(_jwtSettings.AccessTokenExpiration).ToUnixTimeSeconds().ToString()),
-                    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
-                }),
+                Subject = new ClaimsIdentity(claims),
                 Expires = currentTime.Add(_jwtSettings.AccessTokenExpiration).UtcDateTime,
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature),
                 Issuer = _jwtSettings.Issuer,

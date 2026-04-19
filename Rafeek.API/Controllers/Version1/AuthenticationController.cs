@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 using Rafeek.API.Filters;
 using Rafeek.API.Routes;
+using Rafeek.Application.Handlers.AuthHandlers.Commands;
 using Rafeek.Application.Handlers.AuthHandlers.Commands.ActivateUniversityEmail;
 using Rafeek.Application.Handlers.AuthHandlers.Commands.CheckFromConfirmationCode;
 using Rafeek.Application.Handlers.AuthHandlers.Commands.ForegetPassword;
@@ -34,13 +35,14 @@ namespace Rafeek.API.Controllers.Version1
         /// <returns></returns>
         [HttpPost]
         [Route(ApiRoutes.Authentication.SignUp)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(SignResponse), StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> SignUp([FromBody] SignUpCommand command)
         {
             var result = await _mediator.Send(command);
-            return Ok(result);
+            return Created(ApiRoutes.Authentication.GetUserProfile, result);
         }
+
 
         /// <summary>
         /// Sign in with email and password.
@@ -49,13 +51,14 @@ namespace Rafeek.API.Controllers.Version1
         /// <returns></returns>
         [HttpPost]
         [Route(ApiRoutes.Authentication.SignIn)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(SignResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> SignIn([FromBody] SignInCommand command)
         {
             var result = await _mediator.Send(command);
             return Ok(result);
         }
+
 
         /// <summary>
         /// Refresh the access token using the refresh token.
@@ -64,13 +67,14 @@ namespace Rafeek.API.Controllers.Version1
         /// <returns></returns>
         [HttpPost]
         [Route(ApiRoutes.Authentication.RefreshToken)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(AuthResult), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> RefreshToken([FromBody] RefreshTokenCommand command)
         {
             var result = await _mediator.Send(command);
             return Ok(result);
         }
+
 
         /// <summary>
         /// Reset the user password using the token received from forgot-password.
@@ -79,13 +83,14 @@ namespace Rafeek.API.Controllers.Version1
         /// <returns></returns>
         [HttpPost]
         [Route(ApiRoutes.Authentication.ResetPassword)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(bool), StatusCodes.Status202Accepted)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordCommand command)
         {
             var result = await _mediator.Send(command);
-            return Ok(result);
+            return Accepted(result);
         }
+
 
         /// <summary>
         /// Forgot password, send an email with a link to reset the password.
@@ -94,13 +99,14 @@ namespace Rafeek.API.Controllers.Version1
         /// <returns></returns>
         [HttpPost]
         [Route(ApiRoutes.Authentication.ForgotPassword)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(bool), StatusCodes.Status202Accepted)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> ForgotPassword([FromBody] ForegetPasswordCommand command)
         {
             var result = await _mediator.Send(command);
-            return Ok(result);
+            return Accepted(result);
         }
+
 
         /// <summary>
         /// Check if the confirmation code is valid for the given email.
@@ -109,13 +115,14 @@ namespace Rafeek.API.Controllers.Version1
         /// <returns></returns>
         [HttpPost]
         [Route(ApiRoutes.Authentication.CheckFromConfirmationCode)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(bool), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> CheckFromConfirmationCode([FromBody] CheckFromConfirmationCodeCommand command)
         {
             var result = await _mediator.Send(command);
             return Ok(result);
         }
+
 
         /// <summary>
         /// Activate university email for a user. Only admins can activate university emails.
@@ -125,13 +132,14 @@ namespace Rafeek.API.Controllers.Version1
         [HttpPost]
         [RoleAuthorize(nameof(UserType.Admin))]
         [Route(ApiRoutes.Authentication.ActivateUniversityEmail)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(bool), StatusCodes.Status202Accepted)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> ActivateUniversityEmail([FromBody] ActivateUniversityEmailCommand command)
         {
             var result = await _mediator.Send(command);
-            return Ok(result);
+            return Accepted(result);
         }
+
 
         /// <summary>
         /// Get Current User Profile
@@ -140,12 +148,13 @@ namespace Rafeek.API.Controllers.Version1
         [HttpGet]
         [RoleAuthorize]
         [Route(ApiRoutes.Authentication.GetUserProfile)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(SignResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetUserProfile()
         {
             var result = await _mediator.Send(new GetUserProfileQuery());
             return Ok(result);
         }
+
     }
 }

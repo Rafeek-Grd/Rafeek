@@ -1,12 +1,14 @@
-﻿namespace Rafeek.Domain.Enums
+namespace Rafeek.Domain.Enums
 {
+    [Flags]
     public enum UserType
     {
+        None = 0,
         Admin = 1,
         SubAdmin = 2,
-        Staff = 3,
-        Instructor = 4,
-        Doctor = 5,
-        Student = 6
+        Staff = 4,
+        Instructor = 8,
+        Doctor = 16,
+        Student = 32
     }
 }

@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Options;
@@ -61,7 +61,7 @@ namespace Rafeek.Infrastructure.Repostiories.Implementations
             await _emailNotificationService.SendAnyTemplateToEmailByUsingEmbeddedMailKitAsync(emailMessage, LocalizationKeys.EmailTemplates.ForgotPassword, ForgetPasswordTemplate.TemplatePath, Domain.Enums.EmailType.OTP);
         }
 
-        public async Task SendUserCredientialsViaEmailAsync(string email, string password, CancellationToken cancellationToken)
+        public async Task SendUserCredientialsViaEmailAsync(string email, string password, string confirmationCode, CancellationToken cancellationToken)
         {
             var user = await _signInManager.UserManager.Users.FirstOrDefaultAsync(u => u.Email == email, cancellationToken);
             if (user == null) return;
@@ -70,8 +70,10 @@ namespace Rafeek.Infrastructure.Repostiories.Implementations
                 user.FullName, 
                 user.Email!, 
                 password, 
+                confirmationCode,
                 _options.Value.BaseTemplatePath + _options.Value.Templates.SendUserCredentials
             );
+
 
             var emailMessage = new EmailMessage
             {

@@ -1,4 +1,4 @@
-﻿using MediatR;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 using Rafeek.API.Routes;
@@ -33,13 +33,14 @@ namespace Rafeek.API.Controllers
             _currentUserService = currentUserService;
         }
 
-        protected IActionResult Ok(string message) => base.Ok(ApiResponse<string>.Ok(null, message ?? _localizer[LocalizationKeys.AcionResultMessage.Ok.Value]));
-        protected IActionResult Ok<TData>(TData? data, string message = null!) => base.Ok(ApiResponse<TData>.Ok(data, message ?? _localizer[LocalizationKeys.AcionResultMessage.Ok.Value]));
-        protected IActionResult Ok2<TData>(TData? data, string message = null!) => base.Ok(Ok(data, message ?? _localizer[LocalizationKeys.AcionResultMessage.Ok.Value]));
-        protected IActionResult Deleted<TData>(string uri, TData data, string message = null!) => base.Accepted(uri, ApiResponse<TData>.Ok(data, message ?? _localizer[LocalizationKeys.AcionResultMessage.Deleted.Value]));
-        protected IActionResult Accepted<TData>(string uri, TData data, string message = null!) => base.Accepted(uri, ApiResponse<TData>.Ok(data, message ?? _localizer[LocalizationKeys.AcionResultMessage.Accepted.Value]));
-        protected IActionResult Created<TData>(string uri, TData data, string message = null!) => base.Created(uri, ApiResponse<TData>.Ok(data, message ?? _localizer[LocalizationKeys.AcionResultMessage.Created.Value]));
-        protected IActionResult Deleted<TData>(TData data, string message = null!) => base.Accepted(ApiResponse<TData>.Ok(data, message ?? _localizer[LocalizationKeys.AcionResultMessage.Deleted.Value]));
-        protected IActionResult Accepted<TData>(TData data, string message = null!) => base.Accepted(ApiResponse<TData>.Ok(data, message ?? _localizer[LocalizationKeys.AcionResultMessage.Accepted.Value]));
+        protected IActionResult Ok(string message) => base.Ok(ApiResponse<string>.Ok(null, message ?? _localizer?[LocalizationKeys.AcionResultMessage.Ok.Value] ?? "Success"));
+        protected IActionResult Ok<TData>(TData? data, string message = null!) => base.Ok(ApiResponse<TData>.Ok(data, message ?? _localizer?[LocalizationKeys.AcionResultMessage.Ok.Value] ?? "Success"));
+        protected IActionResult Ok2<TData>(TData? data, string message = null!) => base.Ok(Ok(data, message ?? _localizer?[LocalizationKeys.AcionResultMessage.Ok.Value] ?? "Success"));
+        protected IActionResult Deleted<TData>(string uri, TData data, string message = null!) => base.Accepted(uri, ApiResponse<TData>.Ok(data, message ?? _localizer?[LocalizationKeys.AcionResultMessage.Deleted.Value] ?? "Deleted Successfully"));
+        protected IActionResult Accepted<TData>(string uri, TData data, string message = null!) => base.Accepted(uri, ApiResponse<TData>.Ok(data, message ?? _localizer?[LocalizationKeys.AcionResultMessage.Accepted.Value] ?? "Accepted"));
+        protected IActionResult Created<TData>(string uri, TData data, string message = null!) => base.Created(uri, ApiResponse<TData>.Ok(data, message ?? _localizer?[LocalizationKeys.AcionResultMessage.Created.Value] ?? "Created Successfully"));
+        protected IActionResult Deleted<TData>(TData data, string message = null!) => base.Accepted(ApiResponse<TData>.Ok(data, message ?? _localizer?[LocalizationKeys.AcionResultMessage.Deleted.Value] ?? "Deleted Successfully"));
+        protected IActionResult Accepted<TData>(TData data, string message = null!) => base.Accepted(ApiResponse<TData>.Ok(data, message ?? _localizer?[LocalizationKeys.AcionResultMessage.Accepted.Value] ?? "Accepted"));
+
     }
 }

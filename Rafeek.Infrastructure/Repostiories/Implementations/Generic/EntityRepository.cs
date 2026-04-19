@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Rafeek.Domain.Repositories.Interfaces.Generic;
 using Rafeek.Persistence;
 using System.Linq.Expressions;
@@ -126,8 +126,9 @@ namespace Rafeek.Infrastructure.Repostiories.Implementations.Generic
 
         public IQueryable<T> IncludeAll(Expression<Func<T, bool>>? predicate)
         {
-            var query = GetAll(predicate!);
+            var query = predicate == null ? GetAll() : GetAll(predicate);
             var entityType = _context.Model.FindEntityType(typeof(T));
+
 
             if (entityType == null)
                 return query;

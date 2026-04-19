@@ -22,7 +22,8 @@ namespace Rafeek.Application.Handlers.AuthHandlers.Commands.SendUserCredentials
         public async Task<string> Handle(SendUserCredentialsCommand request, CancellationToken cancellationToken)
         {
 
-            await _userRepository.SendUserCredientialsViaEmailAsync(request.Email, request.Password, cancellationToken);
+            await _userRepository.SendUserCredientialsViaEmailAsync(request.Email, request.Password, request.ConfirmationCode, cancellationToken);
+
             return _localizer[LocalizationKeys.EmailTemplates.SendUserCredentials.Message.Value];
         }
     }

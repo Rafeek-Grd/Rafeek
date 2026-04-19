@@ -29,7 +29,11 @@ namespace Rafeek.Application.Handlers.AuthHandlers.Commands.ActivateUniversityEm
                 })
                 .WithMessage(_localizer[LocalizationKeys.GlobalValidationMessages.EmailDomainInvalid.Value])
                 .MustAsync(IsAlreadyActivatedEmail).WithMessage(_localizer[LocalizationKeys.UserMessages.EmailAlreadyActivated.Value]);
+
+            RuleFor(v => v.ConfirmationCode)
+                .NotNull().NotEmpty().WithMessage(_localizer[LocalizationKeys.UserMessages.ResetTokenInvalid.Value]);
         }
+
 
         private Task<bool> IsAlreadyActivatedEmail(string email, CancellationToken cancellationToken)
         {

@@ -30,13 +30,14 @@ namespace Rafeek.API.Controllers.Version1
         [Tags("Advisor")]
         [RoleAuthorize(nameof(UserType.Admin), nameof(UserType.SubAdmin))]
         [Route(ApiRoutes.Student.AssignStudentsToAcademicAdvisor)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(bool), StatusCodes.Status202Accepted)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> AssignToAcademicAdvisor([FromBody] AssignStudentsToAcademicAdvisorCommand command)
         {
             var result = await _mediator.Send(command);
-            return Ok(result);
+            return Accepted(result);
         }
+
 
         /// <summary>
         /// Get all guidance requests with pagination, filtering, and searching capabilities.
@@ -62,13 +63,14 @@ namespace Rafeek.API.Controllers.Version1
         [HttpPatch]
         [RoleAuthorize(nameof(UserType.Doctor), nameof(UserType.Admin), nameof(UserType.SubAdmin))]
         [Route(ApiRoutes.Advisor.UpdateGuidanceRequestStatus)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(bool), StatusCodes.Status202Accepted)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> UpdateGuidenceRequestStatus(Guid requestId, [FromBody] UpdateStatusOfGuidenceRequestCommand command)
         {
             command.RequestId = requestId;
             var result = await _mediator.Send(command);
-            return Ok(result);
+            return Accepted(result);
         }
+
     }
 }

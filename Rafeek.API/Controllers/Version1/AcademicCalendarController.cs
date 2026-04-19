@@ -37,13 +37,14 @@ namespace Rafeek.API.Controllers.Version1
         [HttpPost]
         [RoleAuthorize(nameof(UserType.Admin), nameof(UserType.Doctor), nameof(UserType.SubAdmin))]
         [Route(ApiRoutes.EventOfAcademicCalendar.AddEvent)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(AcademicCalendarDto), StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> AddEventToAcademicCalendar([FromBody] AddEventToAcademicCalendarCommand command)
         {
             var result = await _mediator.Send(command);
-            return Ok(result);
+            return Created(null!, result);
         }
+
 
         /// <summary>
         /// Update an existing event in the academic calendar.
@@ -53,13 +54,14 @@ namespace Rafeek.API.Controllers.Version1
         [HttpPatch]
         [RoleAuthorize(nameof(UserType.Admin), nameof(UserType.Doctor), nameof(UserType.SubAdmin))]
         [Route(ApiRoutes.EventOfAcademicCalendar.UpdateEvent)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(AcademicCalendarDto), StatusCodes.Status202Accepted)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> UpdateEventOfAcademicCalendar([FromBody] UpdateEventOfAcademicCalendarCommand command)
         {
             var result = await _mediator.Send(command);
-            return Ok(result);
+            return Accepted(result);
         }
+
 
         /// <summary>
         /// Delete Specific event from the academic calendar
@@ -70,13 +72,14 @@ namespace Rafeek.API.Controllers.Version1
         [HttpDelete]
         [RoleAuthorize(nameof(UserType.Admin))]
         [Route(ApiRoutes.EventOfAcademicCalendar.DeleteEvent)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(bool), StatusCodes.Status202Accepted)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> DeleteEventFromAcademicCalendar(string id)
         {
             var result = await _mediator.Send(new DeleteEventOfAcademicCalendarCommand() { AcademicEventId = id});
-            return Ok(result);
+            return Deleted(result);
         }
+
 
         /// <summary>
         /// Get All Events of the academic calendar in a paginated format.
@@ -102,12 +105,13 @@ namespace Rafeek.API.Controllers.Version1
         [HttpGet]
         [RoleAuthorize()]
         [Route(ApiRoutes.EventOfAcademicCalendar.GetEventById)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(AcademicCalendarDto), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetEventOfAcademicCalendarById(string id)
         {
             var result = await _mediator.Send(new GetEventOfAcademicCalendarByIdQuery { AcademicCalendarId = id.ToGuid() });
             return Ok(result);
         }
+
     }
 }

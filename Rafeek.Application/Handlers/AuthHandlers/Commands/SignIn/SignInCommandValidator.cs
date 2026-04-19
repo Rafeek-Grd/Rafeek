@@ -33,7 +33,8 @@ namespace Rafeek.Application.Handlers.AuthHandlers.Commands.SignIn
         private async Task<bool> IsActivatedUniversityEmail(string email, CancellationToken cancellationToken)
         {
             return await _signInManager.UserManager.Users
-                .AnyAsync(u => u.Email == email || u.TemporaryEmail == email && u.IsUniversityEmailActivated, cancellationToken);
+                .AnyAsync(u => (u.Email == email || u.TemporaryEmail == email) && u.IsUniversityEmailActivated, cancellationToken);
         }
+
     }
 }

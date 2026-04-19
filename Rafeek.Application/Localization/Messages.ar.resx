@@ -209,6 +209,9 @@
   <data name="PasswordValid" xml:space="preserve">
     <value>كلمة السر اما ضعيفة أو قد لا تستوفي المعايير المطلوبة.</value>
   </data>
+  <data name="PasswordResetFailed" xml:space="preserve">
+    <value>فشل إعادة تعيين كلمة السر.</value>
+  </data>
   <data name="PasswordConfirmNotEqual" xml:space="preserve">
     <value>حقل تاكيد كلمة السر لايتطابق مع حقل كلمة السر.</value>
   </data>

@@ -1,4 +1,4 @@
-﻿using Rafeek.Domain.Entities;
+using Rafeek.Domain.Entities;
 using Rafeek.Domain.Repositories.Interfaces.Generic;
 
 namespace Rafeek.Domain.Repositories.Interfaces
@@ -7,6 +7,7 @@ namespace Rafeek.Domain.Repositories.Interfaces
     {
         Task SendConfirmationCodeAsync(string email, CancellationToken cancellationToken);
 
-        Task SendUserCredientialsViaEmailAsync(string email, string password, CancellationToken cancellationToken);
+        Task SendUserCredientialsViaEmailAsync(string email, string password, string confirmationCode, CancellationToken cancellationToken);
+
     }
 }

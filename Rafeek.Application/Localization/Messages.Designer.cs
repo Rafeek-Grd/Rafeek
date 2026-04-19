@@ -745,6 +745,15 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Password reset failed..
+        /// </summary>
+        public static string PasswordResetFailed {
+            get {
+                return ResourceManager.GetString("PasswordResetFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Reset Code Sent..
         /// </summary>
         public static string PasswordResetMessage {

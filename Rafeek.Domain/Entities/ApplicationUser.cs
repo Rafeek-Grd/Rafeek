@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity;
+using Rafeek.Domain.Enums;
 
 namespace Rafeek.Domain.Entities
 {
@@ -17,10 +18,12 @@ namespace Rafeek.Domain.Entities
         public ICollection<UserFbTokens> UserFbTokens { get; set; } = new List<UserFbTokens>();
         public ICollection<AcademicCalendar> GuidanceEvents { get; set; } = new List<AcademicCalendar>();
         public UserCalendarPreference? CalendarPreference { get; set; }
+        public UserType UserTypes { get; set; } = UserType.None;
 
         public ApplicationUser()
         {
             Id = Guid.NewGuid();
+            UserTypes = UserType.None;
         }
     }
 }

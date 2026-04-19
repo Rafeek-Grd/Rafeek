@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity;
 using Rafeek.Application.Common.Interfaces;
 using Rafeek.Application.Common.Models;
 using Rafeek.Domain.Enums;
@@ -25,19 +25,29 @@ namespace Rafeek.Infrastructure.Identity
             _localizer = localizer;
         }
 
-        public async Task<Result> PasswordSignInAsync(string email, string password, bool isPersistent, bool LockoutOnFailure, CancellationToken cancellationToken)
+        public async Task<Result> PasswordSignInAsync(string loginIdentifier, string password, bool isPersistent, bool LockoutOnFailure, CancellationToken cancellationToken)
         {
             try
             {
-                var user = await _signInManager.UserManager.FindByEmailAsync(email);
-                var result = await _signInManager.CheckPasswordSignInAsync(user!, password, LockoutOnFailure);
-                return result.MapToResult(user!);
+                // Security: Find user by either Email or UserName to support temporary email login (via UserName)
+                var user = await _signInManager.UserManager.FindByEmailAsync(loginIdentifier)
+                        ?? await _signInManager.UserManager.FindByNameAsync(loginIdentifier);
+
+                if (user == null)
+                {
+                    // Fail gracefully if user not found instead of throwing NullReferenceException
+                    return Microsoft.AspNetCore.Identity.SignInResult.Failed.MapToResult();
+                }
+
+                var result = await _signInManager.CheckPasswordSignInAsync(user, password, LockoutOnFailure);
+                return result.MapToResult(user);
             }
             catch (Exception)
             {
                 throw;
             }
         }
+
 
         public async Task<Result> SignUpAsync(ApplicationUser user, string Password, IReadOnlyCollection<string> roles, CancellationToken cancellationToken)
         {

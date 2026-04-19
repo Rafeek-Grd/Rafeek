@@ -6,8 +6,8 @@ namespace Rafeek.Application.Handlers.DepartmentHandlers.Query.GetAllDepartments
 {
     public class GetAllDepartmentsPagginatedQuery : IRequest<PagginatedResult<DepartmentDto>>
     {
-        public int PageNumber { get; set; }
-        public int PageSize { get; set; }
+        public int PageNumber { get; set; } = 1;
+        public int PageSize { get; set; } = 20;
         public string? Search { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+using AutoMapper;
 using Microsoft.Extensions.Logging;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -86,11 +86,17 @@ namespace Rafeek.Application.Handlers.AuthHandlers.Commands.SignUp
                     };
 
                     var primaryRole = request.PrimaryRole;
+                    user.UserTypes = primaryRole;
 
                     var allRoles = new List<string> { primaryRole.ToString() };
                     if (request.AdditionalRoles != null && request.AdditionalRoles.Any())
                     {
-                        allRoles.AddRange(request.AdditionalRoles.Select(r => r.ToString()));
+                        foreach (var role in request.AdditionalRoles)
+                        {
+                            user.UserTypes |= role;
+                            if (!allRoles.Contains(role.ToString()))
+                                allRoles.Add(role.ToString());
+                        }
                     }
 
                     // Create user with all roles
@@ -101,11 +107,10 @@ namespace Rafeek.Application.Handlers.AuthHandlers.Commands.SignUp
                         throw new BadRequestException(_localizer[LocalizationKeys.UserMessages.FailedSignUp.Value]);
                     }
 
-                    if (primaryRole == UserType.Student)
+                    // 1. Student Profile
+                    if (allRoles.Contains(UserType.Student.ToString()))
                     {
-                        // Security & Performance: Generate unique 9-digit university code
                         string universityCode = await GenerateUniqueUniversityCodeAsync(cancellationToken);
-
                         var student = new Student
                         {
                             UserId = user.Id,
@@ -122,10 +127,11 @@ namespace Rafeek.Application.Handlers.AuthHandlers.Commands.SignUp
                                 Standing = Standing.Freshman.ToString()
                             }
                         };
-
                         await _dbContext.Students.AddAsync(student, cancellationToken);
                     }
-                    else if (primaryRole == UserType.Instructor)
+
+                    // 2. Instructor Profile
+                    if (allRoles.Contains(UserType.Instructor.ToString()))
                     {
                         string employeeCode = await GenerateUniqueEmployeeCodeAsync(cancellationToken);
                         var instructor = new Instructor
@@ -135,7 +141,9 @@ namespace Rafeek.Application.Handlers.AuthHandlers.Commands.SignUp
                         };
                         await _dbContext.Instructors.AddAsync(instructor, cancellationToken);
                     }
-                    else if (primaryRole == UserType.Doctor)
+
+                    // 3. Doctor Profile
+                    if (allRoles.Contains(UserType.Doctor.ToString()))
                     {
                         string employeeCode = await GenerateUniqueEmployeeCodeAsync(cancellationToken);
                         var doctor = new Doctor
@@ -146,7 +154,9 @@ namespace Rafeek.Application.Handlers.AuthHandlers.Commands.SignUp
                         };
                         await _dbContext.Doctors.AddAsync(doctor, cancellationToken);
                     }
-                    else if (primaryRole == UserType.Staff)
+
+                    // 4. Staff Profile
+                    if (allRoles.Contains(UserType.Staff.ToString()))
                     {
                         string employeeCode = await GenerateUniqueEmployeeCodeAsync(cancellationToken);
                         var staff = new Staff
@@ -187,18 +197,29 @@ namespace Rafeek.Application.Handlers.AuthHandlers.Commands.SignUp
                     ApplicationUser response = (ApplicationUser)signInResult.Data;
                     AuthResult tokens = (AuthResult)await _ctx.RefreshTokenRepository.GenerateTokens(response, cancellationToken);
 
+                    // Security: Generate 6-digit activation code for system activation
+                    string activationCode = Convert.ToString(RandomNumberGenerator.GetInt32(100000, 1000000));
+                    user.PasswordResetToken = activationCode;
+                    user.PasswordResetTokenExpiredTime = DateTime.UtcNow.AddHours(24);
+
                     await _ctx.SaveChangesAsync(cancellationToken);
                     await transaction.CommitAsync(cancellationToken);
 
                     try
                     {
-                        _logger.LogInformation("Attempting to send credentials email to newly created user: {Email}", user.Email);
-                        await _mediator.Send(new SendUserCredentialsCommand() { Email = user.Email, Password = request.Password }, cancellationToken);
+                        _logger.LogInformation("Attempting to send credentials email and activation code to newly created user: {Email}", user.Email);
+                        await _mediator.Send(new SendUserCredentialsCommand() 
+                        { 
+                            Email = user.Email, 
+                            Password = request.Password,
+                            ConfirmationCode = activationCode
+                        }, cancellationToken);
                     }
                     catch (Exception emailEx)
                     {
                         _logger.LogError(emailEx, "Failed to send credentials email to {Email}, but user was created successfully", user.Email);
                     }
+
 
                     var signResponse = _mapper.Map(tokens, new SignResponse());
                     _mapper.Map(user, signResponse);

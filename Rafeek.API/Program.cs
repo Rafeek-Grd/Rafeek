@@ -1,4 +1,4 @@
-﻿using AspNetCoreRateLimit;
+using AspNetCoreRateLimit;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.HttpOverrides;
@@ -12,6 +12,7 @@ using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Microsoft.AspNetCore.Identity;
 using Newtonsoft.Json.Serialization;
 using NLog.Web;
 using Rafeek.API.Filters;
@@ -22,6 +23,7 @@ using Rafeek.Application;
 using Rafeek.Application.Common.Interfaces;
 using Rafeek.Application.Common.Options;
 using Rafeek.Application.Localization;
+using Rafeek.Domain.Entities;
 using Rafeek.Infrastructure;
 using Rafeek.Infrastructure.Notifications.Emails;
 using Rafeek.Persistence;
@@ -33,6 +35,8 @@ using tusdotnet;
 using tusdotnet.Models;
 using tusdotnet.Models.Configuration;
 using tusdotnet.Stores;
+using Rafeek.Persistence.Seed;
+using Microsoft.EntityFrameworkCore;
 
 
 
@@ -248,6 +252,27 @@ try
 
     var app = builder.Build();
 
+    // Call seed logic
+    using (var scope = app.Services.CreateScope())
+    {
+        var services = scope.ServiceProvider;
+        try
+        {
+            var context = services.GetRequiredService<RafeekDbContext>();
+            var identityContext = services.GetRequiredService<RafeekIdentityDbContext>();
+            
+            // Ensure Database is Migrated before seeding
+            await identityContext.Database.MigrateAsync();
+            await context.Database.MigrateAsync();
+
+            var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
+            await RafeekDbSeeder.SeedAsync(context, identityContext, userManager);
+        }
+        catch (Exception ex)
+        {
+            logger.Error(ex, "An error occurred while seeding the database.");
+        }
+    }
 
     var provider = app.Services.GetRequiredService<IApiVersionDescriptionProvider>();
     var swaggerDocOptions = new SwaggerDocOptions();

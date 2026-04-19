@@ -14,7 +14,7 @@ namespace Rafeek.Application.Handlers.AdvisorHandlers.Queries.GetAllGuidenceSupp
         public Guid? AdvisorId { get; set; }
         public Guid? StudentId { get; set; }
 
-        public int PageNumber { get; set; }
-        public int PageSize { get; set; }
+        public int PageNumber { get; set; } = 1;
+        public int PageSize { get; set; } = 20;
     }
 }

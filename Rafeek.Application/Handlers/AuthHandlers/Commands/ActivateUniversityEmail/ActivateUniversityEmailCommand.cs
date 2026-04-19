@@ -5,5 +5,7 @@ namespace Rafeek.Application.Handlers.AuthHandlers.Commands.ActivateUniversityEm
     public class ActivateUniversityEmailCommand : IRequest<string>
     {
         public string Email { get; set; } = null!;
+        public string ConfirmationCode { get; set; } = null!;
     }
 }
+
