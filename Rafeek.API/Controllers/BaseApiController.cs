@@ -11,9 +11,9 @@ namespace Rafeek.API.Controllers
     [ApiController]
     public class BaseApiController : Controller
     {
-        private readonly IMediator _mediator;
+        protected readonly IMediator _mediator;
         private readonly IStringLocalizer<Messages>? _localizer;
-        private readonly ICurrentUserService _currentUserService;
+        private readonly ICurrentUserService? _currentUserService;
 
         protected BaseApiController(IMediator mediator)
         {

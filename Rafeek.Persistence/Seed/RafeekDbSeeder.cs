@@ -439,8 +439,21 @@ namespace Rafeek.Persistence.Seed
             var enrollments = await context.Enrollments.ToListAsync();
             var grades = await context.Grades.ToListAsync();
 
+            // Always clear and re-seed grades/enrollments to ensure GPA consistency and 100-scale scores
+            if (enrollments.Any() || grades.Any())
+            {
+                Log("[Seeder] Clearing existing enrollments and grades for fresh seeding...");
+                context.Grades.RemoveRange(grades);
+                context.Enrollments.RemoveRange(enrollments);
+                await context.SaveChangesAsync();
+                
+                enrollments = new List<Enrollment>();
+                grades = new List<Grade>();
+            }
+
             if (!enrollments.Any() && students.Any() && sections.Any())
             {
+                Log("[Seeder] Seeding Enrollments and calculating GPA/CGPA...");
                 foreach (var s in students)
                 {
                     var studentGrades = new List<float>();
@@ -505,6 +518,7 @@ namespace Rafeek.Persistence.Seed
                             Id = Guid.NewGuid(),
                             EnrollmentId = enr.Id,
                             GradeValue = gpaPoint,
+                            AbsoluteScore = score,
                             TermGPA = gpaPoint,
                             CGPA = gpaPoint,
                             CreatedAt = DateTime.UtcNow, CreatedBy = "Seeder", IsActive = true
@@ -512,14 +526,16 @@ namespace Rafeek.Persistence.Seed
                     }
 
                     var profile = studentProfiles.FirstOrDefault(p => p.StudentId == s.Id);
-                    if (profile != null && studentGrades.Any())
+                    if (profile != null)
                     {
-                        profile.GPA = (float)Math.Round(studentGrades.Average(), 2);
-                        profile.CGPA = (float)Math.Round(studentGrades.Average() - f.Random.Double(0, 0.1), 2);
+                        var avgGpa = studentGrades.Any() ? (float)Math.Round(studentGrades.Average(), 2) : (float)Math.Round(f.Random.Double(2.0, 3.8), 2);
+                        profile.GPA = Math.Clamp(avgGpa, 0.0f, 4.0f);
+                        profile.CGPA = Math.Clamp((float)Math.Round(profile.GPA - f.Random.Double(0, 0.2), 2), 0.0f, 4.0f);
                     }
                 }
                 context.Enrollments.AddRange(enrollments);
                 context.Grades.AddRange(grades);
+                context.StudentAcademicProfiles.UpdateRange(studentProfiles);
                 await context.SaveChangesAsync();
             }
 

@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
@@ -12,8 +12,8 @@ namespace Rafeek.API.Filters
             if (operation == null || context?.MethodInfo == null) return;
 
             // Gather attributes (true => include inherited attributes from base classes)
-            var actionAttrs = context.MethodInfo.GetCustomAttributes(inherit: true).OfType<object>();
-            var controllerAttrs = context.MethodInfo.DeclaringType?.GetCustomAttributes(inherit: true).OfType<object>() ?? Enumerable.Empty<object>();
+            var actionAttrs = context.MethodInfo.GetCustomAttributes(inherit: true).ToList();
+            var controllerAttrs = context.MethodInfo.DeclaringType?.GetCustomAttributes(inherit: true).ToList() ?? new List<object>();
 
             // If AllowAnonymous is present on action or controller, remove any security and return
             var hasAllowAnonymous = actionAttrs.OfType<AllowAnonymousAttribute>().Any() || controllerAttrs.OfType<AllowAnonymousAttribute>().Any();
@@ -23,35 +23,47 @@ namespace Rafeek.API.Filters
                 return;
             }
 
-            // If neither action nor controller has Authorize, remove security and return
+            // Check for Authorize or ApiKey attributes
             var hasAuthorize = actionAttrs.OfType<AuthorizeAttribute>().Any() || controllerAttrs.OfType<AuthorizeAttribute>().Any()
                               || actionAttrs.OfType<RoleAuthorizeAttribute>().Any() || controllerAttrs.OfType<RoleAuthorizeAttribute>().Any();
-            if (!hasAuthorize)
+            
+            var hasApiKey = actionAttrs.OfType<ApiKeyAttribute>().Any() || controllerAttrs.OfType<ApiKeyAttribute>().Any();
+
+            if (!hasAuthorize && !hasApiKey)
             {
                 operation.Security = null;
                 return;
             }
 
-            // Action/controller is protected: attach the Bearer requirement
             operation.Security ??= new List<OpenApiSecurityRequirement>();
 
-            var bearerScheme = new OpenApiSecurityScheme
+            // Attach Bearer requirement if authorized
+            if (hasAuthorize)
             {
-                Reference = new OpenApiReference
+                var bearerScheme = new OpenApiSecurityScheme
                 {
-                    Type = ReferenceType.SecurityScheme,
-                    Id = "Bearer"
-                }
-            };
+                    Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "Bearer" }
+                };
 
-            // Avoid duplicate entries
-            if (!operation.Security.Any(r => r.Keys.Any(k => k.Reference?.Id == "Bearer")))
-            {
-                operation.Security.Add(new OpenApiSecurityRequirement
+                if (!operation.Security.Any(r => r.Keys.Any(k => k.Reference?.Id == "Bearer")))
                 {
-                    [bearerScheme] = new string[] { }
-                });
+                    operation.Security.Add(new OpenApiSecurityRequirement { [bearerScheme] = new string[] { } });
+                }
+            }
+
+            // Attach AiApiKey requirement if ApiKey is used
+            if (hasApiKey)
+            {
+                var apiKeyScheme = new OpenApiSecurityScheme
+                {
+                    Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "AiApiKey" }
+                };
+
+                if (!operation.Security.Any(r => r.Keys.Any(k => k.Reference?.Id == "AiApiKey")))
+                {
+                    operation.Security.Add(new OpenApiSecurityRequirement { [apiKeyScheme] = new string[] { } });
+                }
             }
         }
     }
-}
+}

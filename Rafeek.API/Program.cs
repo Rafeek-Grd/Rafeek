@@ -143,14 +143,23 @@ try
         options.OperationFilter<AcceptLanguageOperationFilter>();
         options.OperationFilter<AuthorizeCheckOperationFilter>();
 
-        options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
-        {
-            Description = "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",
-            Name = "Authorization",
-            In = ParameterLocation.Header,
-            Type = SecuritySchemeType.ApiKey,
-            Scheme = "Bearer"
-        });
+            options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+            {
+                Description = "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",
+                Name = "Authorization",
+                In = ParameterLocation.Header,
+                Type = SecuritySchemeType.ApiKey,
+                Scheme = "Bearer"
+            });
+
+            options.AddSecurityDefinition("AiApiKey", new OpenApiSecurityScheme
+            {
+                Description = "API Key needed to access AI endpoints. Example: \"X-AI-API-KEY: {key}\"",
+                In = ParameterLocation.Header,
+                Name = "X-AI-API-KEY",
+                Type = SecuritySchemeType.ApiKey,
+                Scheme = "ApiKeyScheme"
+            });
 
         options.MapType<IFormFile>(() => new OpenApiSchema
         {
@@ -313,8 +322,8 @@ try
             var name = $"{swaggerDocOptions.Title} {description.GroupName.ToUpperInvariant()}";
             options.SwaggerEndpoint(endpoint, name);
 
-            options.InjectJavascript("/swagger/swagger-ui/language.js");
-            options.InjectStylesheet("/swagger/swagger-ui/custom.css");
+            //options.InjectJavascript("/swagger/swagger-ui/language.js");
+            //options.InjectStylesheet("/swagger/swagger-ui/custom.css");
         }
     });
 

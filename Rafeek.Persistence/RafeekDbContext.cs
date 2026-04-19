@@ -59,7 +59,13 @@ namespace Rafeek.Persistence
             builder.ApplyConfigurationsFromAssembly(typeof(RafeekDbContext).Assembly,
                 type => type.Namespace != null && type.Namespace.EndsWith("Configurations.RafeekConfiguration"));
 
-            builder.ApplyConfiguration(new Configurations.IdentityConfiguration.IdentityUserConfigurations());
+            builder.Ignore<ApplicationUser>();
+            builder.Ignore<IdentityRole<Guid>>();
+            builder.Ignore<IdentityUserClaim<Guid>>();
+            builder.Ignore<IdentityUserRole<Guid>>();
+            builder.Ignore<IdentityUserLogin<Guid>>();
+            builder.Ignore<IdentityRoleClaim<Guid>>();
+            builder.Ignore<IdentityUserToken<Guid>>();
 
             builder.HasDefaultSchema("dbo");
         }

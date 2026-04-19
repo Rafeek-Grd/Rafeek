@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
@@ -113,6 +113,7 @@ namespace Rafeek.Infrastructure
 
             services.AddScoped<IIdentityUnitOfWork, IdentityUnitOfWork>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IAiSecurityService, AiSecurityService>();
 
             services.AddTransient<IEmailNotificationService, EmailNotificationService>();
 

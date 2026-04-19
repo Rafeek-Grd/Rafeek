@@ -88,5 +88,13 @@ namespace Rafeek.API.Routes
             public const string GetByIdOrCode = Base + "/department/id-code";
             public const string GetAllCoursesInDepartment = Base + "/department/{id}/courses";
         }
+
+        public static class ExternalIntegration
+        {
+            public const string BaseAI = Base + "/ai";
+            public const string GetStudentGrades = BaseAI + "/student/{studentId}/grades";
+            public const string GetBatchDump = BaseAI + "/analytics/dump";
+            public const string GetCatalog = BaseAI + "/course/catalog";
+        }
     }
 }

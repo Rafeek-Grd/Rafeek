@@ -8,6 +8,7 @@ namespace Rafeek.Domain.Entities
         public Enrollment Enrollment { get; set; } = null!;
 
         public float GradeValue { get; set; }
+        public float AbsoluteScore { get; set; }
         public float TermGPA { get; set; }
         public float CGPA { get; set; }
     }
