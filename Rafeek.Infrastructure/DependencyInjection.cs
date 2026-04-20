@@ -21,6 +21,8 @@ using Squeak.Infrastructure.Oauth;
 using Rafeek.Infrastructure.Notifications.Emails;
 using Rafeek.Domain.Repositories.Interfaces;
 using Rafeek.Infrastructure.Repostiories.Implementations;
+using Rafeek.Infrastructure.Services;
+
 
 namespace Rafeek.Infrastructure
 {
@@ -116,6 +118,9 @@ namespace Rafeek.Infrastructure
             services.AddScoped<IAiSecurityService, AiSecurityService>();
 
             services.AddTransient<IEmailNotificationService, EmailNotificationService>();
+            
+            services.AddHttpClient<IAIService, AIService>();
+
 
             var dataProtectionOptionsConfig = new DataProtectionOptions();
             configuration.GetSection("DataProtection").Bind(dataProtectionOptionsConfig);

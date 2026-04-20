@@ -199,7 +199,6 @@ try
     builder.Services.AddOptions();
 
     builder.Services.Configure<TemplatePath>(builder.Configuration.GetSection("TemplatePath"));
-
     builder.Services.Configure<EmailConfiguration>(builder.Configuration.GetSection("EmailConfiguration"));
 
     builder.Services.AddMemoryCache();

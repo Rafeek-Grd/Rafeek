@@ -7,9 +7,8 @@ using Rafeek.Application.Localization;
 using Rafeek.API.Filters;
 using Rafeek.Domain.Enums;
 using Rafeek.Application.Handlers.StudentHandlers.Commands.SendRequestForAdvismentGuide;
-using Rafeek.Application.Handlers.StudentHandlers.Query;
 using Rafeek.Application.Handlers.StudentHandlers.DTOs;
-using Rafeek.Application.Common.Models;
+using Rafeek.Application.Handlers.StudentHandlers.Query.GetStudentDashboard;
 using Rafeek.Application.Handlers.StudentHandlers.Query.GetStudentProfile;
 using Rafeek.Application.Handlers.StudentHandlers.Query.GetStudentDashboard;
 using Rafeek.Application.Handlers.StudentHandlers.Query.GetChatHistory;
@@ -125,7 +124,6 @@ namespace Rafeek.API.Controllers.Version1
             var result = await _mediator.Send(query);
             return Ok(result);
         }
-
     }
 }
 

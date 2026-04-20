@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+using AutoMapper;
 using FluentValidation.AspNetCore;
 using MediatR;
 using Microsoft.AspNetCore.StaticFiles;
@@ -50,6 +50,8 @@ namespace Rafeek.Application
             UploadPaths.Configure(configuration);
 
             services.AddOptions<RafeekURL>().BindConfiguration(nameof(RafeekURL));
+            services.AddOptions<AiIntegrationSettings>().BindConfiguration(nameof(AiIntegrationSettings));
+            services.AddOptions<AiEngineSettings>().BindConfiguration(nameof(AiEngineSettings));
 
             return services;
         }
