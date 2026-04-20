@@ -23,6 +23,7 @@ namespace Rafeek.Application.Common.Interfaces
         DbSet<CareerSuggestion> CareerSuggestions { get; }
         DbSet<AcademicFeedback> AcademicFeedbacks { get; }
         DbSet<GPASimulatorLog> GPASimulatorLogs { get; }
+        DbSet<ChatSession> ChatSessions { get; }
         DbSet<ChatbotQuery> ChatbotQueries { get; }
         DbSet<LearningResource> LearningResources { get; }
         DbSet<StudyPlan> StudyPlans { get; }

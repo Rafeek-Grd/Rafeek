@@ -10,6 +10,8 @@ using Rafeek.Application.Handlers.StudentHandlers.Commands.SendRequestForAdvisme
 using Rafeek.Application.Handlers.StudentHandlers.DTOs;
 using Rafeek.Application.Handlers.StudentHandlers.Query.GetStudentDashboard;
 using Rafeek.Application.Handlers.StudentHandlers.Query.GetStudentProfile;
+using Rafeek.Application.Handlers.StudentHandlers.Query.GetStudentDashboard;
+using Rafeek.Application.Handlers.StudentHandlers.Query.GetChatHistory;
 
 namespace Rafeek.API.Controllers.Version1
 {
@@ -66,11 +68,13 @@ namespace Rafeek.API.Controllers.Version1
         [Route(ApiRoutes.Student.GetDashboard)]
         [ProducesResponseType(typeof(StudentDashboardDto), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> GetStudentDashboard(Guid userId, [FromQuery] GetStudentDashboardQuery query)
+        public async Task<IActionResult> GetStudentDashboard([FromRoute] Guid userId)
         {
-            query.UserId = userId;
+            var query = new GetStudentDashboardQuery { UserId = userId };
             var result = await _mediator.Send(query);
             return Ok(result);
         }
+
     }
 }
+

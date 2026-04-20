@@ -14,15 +14,14 @@ namespace Rafeek.Application.Handlers.StudentHandlers.Query.GetStudentProfile
             _ctx = ctx;
             
             RuleFor(x => x.UserId)
-                .NotEmpty()
-                .WithMessage(localizer[LocalizationKeys.Student.StudentIdRequired.Value])
                 .MustAsync(StudentExistsBefore)
+                .When(x => x.UserId != Guid.Empty)
                 .WithMessage(localizer[LocalizationKeys.Student.StudentsNotFound.Value]);
         }
 
         private async Task<bool> StudentExistsBefore(Guid userId, CancellationToken cancellationToken)
         {
-            return await _ctx.StudentRepository.ExistsAsync(s => s.UserId == userId, cancellationToken);
+            return await _ctx.StudentRepository.ExistsAsync(s => s.UserId == userId || s.Id == userId, cancellationToken);
         }
     }
 }

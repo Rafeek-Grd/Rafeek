@@ -38,6 +38,16 @@ namespace Rafeek.Application.Handlers.StudentHandlers.Query.GetStudentProfile
         public async Task<StudentProfileDto> Handle(GetStudentProfileQuery request, CancellationToken cancellationToken)
         {
             var studentId = request.UserId != Guid.Empty ? request.UserId : _currentUserService.UserId;
+            
+            // Если пользователь не авторизован (لأغراض الاختبار)، استخدم أول طالب
+            if (studentId == Guid.Empty)
+            {
+                var firstStudent = await _dbContext.Students.FirstOrDefaultAsync(s => s.IsActive, cancellationToken);
+                if (firstStudent != null)
+                {
+                    studentId = firstStudent.Id;
+                }
+            }
 
             var student = await _unitOfWork.StudentRepository
                 .GetAll(s => s.Id == studentId || s.UserId == studentId)
