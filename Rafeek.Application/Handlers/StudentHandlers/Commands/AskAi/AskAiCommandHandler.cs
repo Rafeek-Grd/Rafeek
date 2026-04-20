@@ -75,7 +75,7 @@ namespace Rafeek.Application.Handlers.StudentHandlers.Commands.AskAi
                 _ => (student?.Level ?? 1).ToString()
             };
 
-            // إنشاء الـ student_profile بالشكل المطلوب من سيرفر AI
+
             var aiStudentProfile = new
             {
                 level = levelText,
@@ -85,7 +85,7 @@ namespace Rafeek.Application.Handlers.StudentHandlers.Commands.AskAi
                 failed_courses = failedCoursesText
             };
 
-            // تحويل History إلى الشكل المطلوب
+            
             var history = (request.History ?? new List<ChatMessageDto>())
                 .Select(msg => new Dictionary<string, string>
                 {
