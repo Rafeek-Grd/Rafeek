@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Rafeek.Persistence;
 
@@ -11,9 +12,11 @@ using Rafeek.Persistence;
 namespace Rafeek.Persistence.Migrations.Rafeek
 {
     [DbContext(typeof(RafeekDbContext))]
-    partial class RafeekDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260420000930_AddAITimetable")]
+    partial class AddAITimetable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -301,6 +304,8 @@ namespace Rafeek.Persistence.Migrations.Rafeek
                     b.HasIndex("DepartmentId");
 
                     b.HasIndex("SectionId");
+
+                    b.HasIndex("TargetUserId");
 
                     b.ToTable("AcademicCalendars", "dbo");
                 });
@@ -772,49 +777,6 @@ namespace Rafeek.Persistence.Migrations.Rafeek
                     b.ToTable("CareerSuggestions", "dbo");
                 });
 
-            modelBuilder.Entity("Rafeek.Domain.Entities.ChatSession", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("DeletedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("DeletedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("UpdatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ChatSessions", "dbo");
-                });
-
             modelBuilder.Entity("Rafeek.Domain.Entities.ChatbotQuery", b =>
                 {
                     b.Property<Guid>("Id")
@@ -848,9 +810,6 @@ namespace Rafeek.Persistence.Migrations.Rafeek
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("SessionId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<Guid>("StudentId")
                         .HasColumnType("uniqueidentifier");
 
@@ -861,8 +820,6 @@ namespace Rafeek.Persistence.Migrations.Rafeek
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("SessionId");
 
                     b.HasIndex("StudentId");
 
@@ -1058,6 +1015,9 @@ namespace Rafeek.Persistence.Migrations.Rafeek
                     b.HasKey("Id");
 
                     b.HasIndex("DepartmentId");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
 
                     b.ToTable("Doctors", "dbo");
                 });
@@ -1312,6 +1272,9 @@ namespace Rafeek.Persistence.Migrations.Rafeek
 
                     b.HasIndex("DepartmentId");
 
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
                     b.ToTable("Instructors", "dbo");
                 });
 
@@ -1414,6 +1377,8 @@ namespace Rafeek.Persistence.Migrations.Rafeek
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Notifications", "dbo");
                 });
@@ -1551,6 +1516,9 @@ namespace Rafeek.Persistence.Migrations.Rafeek
 
                     b.HasKey("Id");
 
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
                     b.ToTable("Staffs", "dbo");
                 });
 
@@ -1618,6 +1586,9 @@ namespace Rafeek.Persistence.Migrations.Rafeek
                         .IsUnique();
 
                     b.HasIndex("DepartmentId");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
 
                     b.ToTable("Students", "dbo");
                 });
@@ -1827,6 +1798,9 @@ namespace Rafeek.Persistence.Migrations.Rafeek
 
                     b.HasKey("Id");
 
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
                     b.ToTable("UserCalendarPreferences", "dbo");
                 });
 
@@ -1876,6 +1850,8 @@ namespace Rafeek.Persistence.Migrations.Rafeek
 
                     b.HasKey("Id");
 
+                    b.HasIndex("UserId");
+
                     b.ToTable("UserFbTokens", "dbo");
                 });
 
@@ -1920,6 +1896,8 @@ namespace Rafeek.Persistence.Migrations.Rafeek
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("UserLoginHistories", "dbo");
                 });
@@ -1987,6 +1965,11 @@ namespace Rafeek.Persistence.Migrations.Rafeek
                         .HasForeignKey("SectionId")
                         .OnDelete(DeleteBehavior.NoAction);
 
+                    b.HasOne("Rafeek.Domain.Entities.ApplicationUser", "TargetUser")
+                        .WithMany("GuidanceEvents")
+                        .HasForeignKey("TargetUserId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
                     b.Navigation("AcademicTerm");
 
                     b.Navigation("Course");
@@ -1994,6 +1977,8 @@ namespace Rafeek.Persistence.Migrations.Rafeek
                     b.Navigation("Department");
 
                     b.Navigation("Section");
+
+                    b.Navigation("TargetUser");
                 });
 
             modelBuilder.Entity("Rafeek.Domain.Entities.AcademicFeedback", b =>
@@ -2061,19 +2046,11 @@ namespace Rafeek.Persistence.Migrations.Rafeek
 
             modelBuilder.Entity("Rafeek.Domain.Entities.ChatbotQuery", b =>
                 {
-                    b.HasOne("Rafeek.Domain.Entities.ChatSession", "ChatSession")
-                        .WithMany("ChatbotQueries")
-                        .HasForeignKey("SessionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Rafeek.Domain.Entities.Student", "Student")
                         .WithMany("ChatbotQueries")
                         .HasForeignKey("StudentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("ChatSession");
 
                     b.Navigation("Student");
                 });
@@ -2113,7 +2090,15 @@ namespace Rafeek.Persistence.Migrations.Rafeek
                         .WithMany()
                         .HasForeignKey("DepartmentId");
 
+                    b.HasOne("Rafeek.Domain.Entities.ApplicationUser", "User")
+                        .WithOne()
+                        .HasForeignKey("Rafeek.Domain.Entities.Doctor", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Department");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Rafeek.Domain.Entities.DocumentRequest", b =>
@@ -2182,7 +2167,15 @@ namespace Rafeek.Persistence.Migrations.Rafeek
                         .WithMany()
                         .HasForeignKey("DepartmentId");
 
+                    b.HasOne("Rafeek.Domain.Entities.ApplicationUser", "User")
+                        .WithOne()
+                        .HasForeignKey("Rafeek.Domain.Entities.Instructor", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Department");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Rafeek.Domain.Entities.LearningResource", b =>
@@ -2194,6 +2187,16 @@ namespace Rafeek.Persistence.Migrations.Rafeek
                         .IsRequired();
 
                     b.Navigation("Course");
+                });
+
+            modelBuilder.Entity("Rafeek.Domain.Entities.Notification", b =>
+                {
+                    b.HasOne("Rafeek.Domain.Entities.ApplicationUser", "User")
+                        .WithMany("Notifications")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Rafeek.Domain.Entities.Section", b =>
@@ -2215,6 +2218,17 @@ namespace Rafeek.Persistence.Migrations.Rafeek
                     b.Navigation("Instructor");
                 });
 
+            modelBuilder.Entity("Rafeek.Domain.Entities.Staff", b =>
+                {
+                    b.HasOne("Rafeek.Domain.Entities.ApplicationUser", "User")
+                        .WithOne()
+                        .HasForeignKey("Rafeek.Domain.Entities.Staff", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Rafeek.Domain.Entities.Student", b =>
                 {
                     b.HasOne("Rafeek.Domain.Entities.Doctor", "AcademicAdvisor")
@@ -2232,11 +2246,19 @@ namespace Rafeek.Persistence.Migrations.Rafeek
                         .WithMany("Students")
                         .HasForeignKey("DepartmentId");
 
+                    b.HasOne("Rafeek.Domain.Entities.ApplicationUser", "User")
+                        .WithOne()
+                        .HasForeignKey("Rafeek.Domain.Entities.Student", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("AcademicAdvisor");
 
                     b.Navigation("AcademicProfile");
 
                     b.Navigation("Department");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Rafeek.Domain.Entities.StudentSupport", b =>
@@ -2317,9 +2339,17 @@ namespace Rafeek.Persistence.Migrations.Rafeek
                     b.Navigation("Terms");
                 });
 
-            modelBuilder.Entity("Rafeek.Domain.Entities.ChatSession", b =>
+            modelBuilder.Entity("Rafeek.Domain.Entities.ApplicationUser", b =>
                 {
-                    b.Navigation("ChatbotQueries");
+                    b.Navigation("CalendarPreference");
+
+                    b.Navigation("GuidanceEvents");
+
+                    b.Navigation("LoginHistories");
+
+                    b.Navigation("Notifications");
+
+                    b.Navigation("UserFbTokens");
                 });
 
             modelBuilder.Entity("Rafeek.Domain.Entities.Course", b =>

@@ -202,5 +202,13 @@ namespace Rafeek.Application.Localization
                 Message = new("SendUserCredentialsMessage")
             };
         }
+
+        public record AI
+        {
+            public static readonly KeyString TimetableRequestRequired = new("TimetableRequest_Required");
+            public static readonly KeyString CoursesRequired = new("Courses_Required");
+            public static readonly KeyString LectureFull = new("Lecture_Full");
+            public static readonly KeyString RateLimitExceeded = new("RateLimit_Exceeded");
+        }
     }
 }

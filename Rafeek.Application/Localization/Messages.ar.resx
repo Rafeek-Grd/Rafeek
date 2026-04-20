@@ -500,4 +500,7 @@
 	<data name="UserNotInDepartment" xml:space="preserve">
 		<value>المستخدم غير معين في أي قسم.</value>
 	</data>
+	<data name="RateLimit_Exceeded" xml:space="preserve">
+		<value>تم تجاوز الحد المسموح به. يمكنك إنشاء 3 جداول فقط كل ساعة.</value>
+	</data>
 </root>

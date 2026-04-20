@@ -40,6 +40,8 @@ namespace Rafeek.Application.Common.Interfaces
         DbSet<UserLoginHistory> UserLoginHistories { get; }
         DbSet<AnalyticsReport> AnalyticsReports { get; }
         DbSet<Staff> Staffs { get; }
+        DbSet<AITimetable> AITimetables { get; set; }
+        DbSet<AITimetableItem> AITimetableItems { get; set; }
 
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);

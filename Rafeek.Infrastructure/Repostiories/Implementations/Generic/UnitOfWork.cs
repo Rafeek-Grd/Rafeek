@@ -25,6 +25,8 @@ namespace Rafeek.Infrastructure.Repostiories.Implementations.Generic
         private CourseRepository? _courseRepository;
         private InstructorRepository? _instructorRepository;
         private StudentAcademicProfileRepository? _studentAcademicProfileRepository;
+        private AITimetableRepository? _aiTimetableRepository;
+        private AITimetableItemRepository? _aiTimetableItemRepository;
 
         public UnitOfWork(
             IRafeekDbContext context,
@@ -49,6 +51,8 @@ namespace Rafeek.Infrastructure.Repostiories.Implementations.Generic
         public ICourseRepository CourseRepository => _courseRepository ??= new CourseRepository(_context);
         public IInstructorRepository InstructorRepository => _instructorRepository ??= new InstructorRepository(_context);
         public IStudentAcademicProfileRepository StudentAcademicProfileRepository => _studentAcademicProfileRepository ??= new StudentAcademicProfileRepository(_context);
+        public IAITimetableRepository AITimetableRepository => _aiTimetableRepository ??= new AITimetableRepository(_context);
+        public IAITimetableItemRepository AITimetableItemRepository => _aiTimetableItemRepository ??= new AITimetableItemRepository(_context);
 
         public async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
