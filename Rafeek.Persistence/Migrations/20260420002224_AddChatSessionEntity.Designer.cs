@@ -3,17 +3,20 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Rafeek.Persistence;
 
 #nullable disable
 
-namespace Rafeek.Persistence.Migrations.Rafeek
+namespace Rafeek.Persistence.Migrations
 {
     [DbContext(typeof(RafeekDbContext))]
-    partial class RafeekDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260420002224_AddChatSessionEntity")]
+    partial class AddChatSessionEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -89,6 +89,8 @@ try
         options.SerializerSettings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore;
     });
 
+    builder.Services.AddHttpClient();
+
     builder.Services.AddEndpointsApiExplorer();
 
     // Register API versioning with proper configuration

@@ -66,6 +66,9 @@ namespace Rafeek.API.Routes
             public const string AssignToAcademicAdvisor = Base + "/students/assign-advisor";
             public const string RequestGuidance = Base + "/students/request-guidance";
             public const string GetDashboard = Base + "/students/dashboard/{userId}";
+            public const string AskAi = Base + "/students/ai/ask";
+            public const string GetAiSessions = Base + "/students/ai/sessions";
+            public const string GetChatHistory = Base + "/students/ai/history";
         }
 
         public static class Advisor

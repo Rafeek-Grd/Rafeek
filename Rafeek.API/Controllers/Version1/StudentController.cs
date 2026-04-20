@@ -12,6 +12,7 @@ using Rafeek.Application.Handlers.StudentHandlers.DTOs;
 using Rafeek.Application.Common.Models;
 using Rafeek.Application.Handlers.StudentHandlers.Query.GetStudentProfile;
 using Rafeek.Application.Handlers.StudentHandlers.Query.GetStudentDashboard;
+using Rafeek.Application.Handlers.StudentHandlers.Query.GetChatHistory;
 
 namespace Rafeek.API.Controllers.Version1
 {
@@ -68,12 +69,63 @@ namespace Rafeek.API.Controllers.Version1
         [Route(ApiRoutes.Student.GetDashboard)]
         [ProducesResponseType(typeof(StudentDashboardDto), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> GetStudentDashboard(Guid userId, [FromQuery] GetStudentDashboardQuery query)
+        public async Task<IActionResult> GetStudentDashboard([FromRoute] Guid userId)
         {
-            query.UserId = userId;
+            var query = new GetStudentDashboardQuery { UserId = userId };
+            var result = await _mediator.Send(query);
+            return Ok(result);
+        }
+
+        /// <summary>
+        /// Ask the AI Chatbot a question.
+        /// </summary>
+        /// <param name="command"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Authorize]
+        [Route(ApiRoutes.Student.AskAi)]
+        [ProducesResponseType(typeof(AiChatResponseDto), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> AskAiChat([FromBody] Rafeek.Application.Handlers.StudentHandlers.Commands.AskAi.AskAiCommand command)
+        {
+            var result = await _mediator.Send(command);
+            return Ok(result);
+        }
+
+        /// <summary>
+        /// Get all AI Chatbot sessions for the currently logged-in student.
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Authorize]
+        [Route(ApiRoutes.Student.GetAiSessions)]
+        [ProducesResponseType(typeof(List<AiSessionDto>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> GetAiSessions()
+        {
+            var result = await _mediator.Send(new Rafeek.Application.Handlers.StudentHandlers.Query.GetAiSessions.GetAiSessionsQuery());
+            return Ok(result);
+        }
+
+        /// <summary>
+        /// Get the chat history of the currently logged-in student with the AI Chatbot.
+        /// </summary>
+        /// <param name="sessionId">The ID of the session to get history for (optional)</param>
+        /// <param name="page">Page number (default: 1)</param>
+        /// <param name="pageSize">Number of items per page (default: 20)</param>
+        /// <returns></returns>
+        [HttpGet]
+        [Authorize]
+        [Route(ApiRoutes.Student.GetChatHistory)]
+        [ProducesResponseType(typeof(List<ChatHistoryDto>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> GetChatHistory([FromQuery] Guid? sessionId, [FromQuery] int page = 1, [FromQuery] int pageSize = 20)
+        {
+            var query = new GetChatHistoryQuery { SessionId = sessionId, Page = page, PageSize = pageSize };
             var result = await _mediator.Send(query);
             return Ok(result);
         }
 
     }
 }
+

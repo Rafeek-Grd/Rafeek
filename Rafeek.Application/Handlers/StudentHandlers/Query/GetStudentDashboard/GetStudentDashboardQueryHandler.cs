@@ -16,77 +16,82 @@ namespace Rafeek.Application.Handlers.StudentHandlers.Query.GetStudentDashboard
 
         public async Task<StudentDashboardDto> Handle(GetStudentDashboardQuery request, CancellationToken cancellationToken)
         {
-            Domain.Entities.Student student = null;
-            try
-            {
-                student = await _context.Students
-                    .Include(s => s.User)
-                    .Include(s => s.AcademicProfile)
-                    .FirstOrDefaultAsync(s => s.UserId == request.UserId, cancellationToken);
-            }
-            catch (Exception)
-            {
-                // Ignore DB errors (like missing columns) and let it fall through to returning Mock Data
-            }
-
-            if (student == null)
-            {
-                // For testing purposes before the real data is populated, we will return a mock response instead of throwing an exception.
-                return new StudentDashboardDto
+            // Step 1: Get student data WITHOUT joining ApplicationUser (avoids schema mismatch errors)
+            var studentData = await _context.Students
+                .Where(s => s.UserId == request.UserId)
+                .Select(s => new
                 {
-                    FirstName = "Rafeek (mock)",
-                    CGPA = 3.84f,
-                    EarnedHours = 96,
-                    PlanProgress = new PlanProgressDto
-                    {
-                        CompletedCourses = 32,
-                        RemainingCourses = 8,
-                        UniversityRequirementsPercentage = 100,
-                        MajorRequirementsPercentage = 75,
-                        ElectiveRequirementsPercentage = 40
-                    },
-                    GpaProgress = new System.Collections.Generic.List<TermGpaDto>
-                    {
-                        new TermGpaDto { TermName = "خريف 22", Gpa = 3.6f },
-                        new TermGpaDto { TermName = "ربيع 23", Gpa = 3.7f },
-                        new TermGpaDto { TermName = "خريف 23", Gpa = 3.9f },
-                        new TermGpaDto { TermName = "ربيع 24", Gpa = 3.8f }
-                    }
-                };
-            }
+                    StudentId        = s.Id,
+                    s.UserId,
+                    CGPA             = s.AcademicProfile != null ? s.AcademicProfile.CGPA : 0f,
+                    CompletedCredits = s.AcademicProfile != null ? s.AcademicProfile.CompletedCredits : 0,
+                    RemainingCredits = s.AcademicProfile != null ? s.AcademicProfile.RemainingCredits : 0,
+                })
+                .FirstOrDefaultAsync(cancellationToken);
 
-            // Extract the first name
-            var firstName = "طالب";
-            if (!string.IsNullOrWhiteSpace(student.User?.FullName))
-            {
-                firstName = student.User.FullName.Split(' ').FirstOrDefault() ?? student.User.FullName;
-            }
+            if (studentData == null)
+                throw new Rafeek.Application.Common.Exceptions.NotFoundException("لم يتم العثور على طالب بهذا المعرّف.");
 
-            var dto = new StudentDashboardDto
+            // Step 2: Get FullName via a safe raw projection that only selects FullName column
+            var fullName = await _context.Students
+                .Where(s => s.Id == studentData.StudentId)
+                .Select(s => s.User.FullName)
+                .FirstOrDefaultAsync(cancellationToken);
+
+            var firstName = string.IsNullOrWhiteSpace(fullName)
+                ? "طالب"
+                : fullName.Split(' ').FirstOrDefault() ?? fullName;
+
+            // ── Course counts ─────────────────────────────────────────────────────
+            var completedCourses = await _context.Enrollments
+                .Where(e => e.StudentId == studentData.StudentId && e.Grade != null)
+                .CountAsync(cancellationToken);
+
+            var totalPlanCourses = await _context.StudyPlans
+                .Where(sp => sp.StudentId == studentData.StudentId)
+                .CountAsync(cancellationToken);
+
+            var remainingCourses = Math.Max(0, totalPlanCourses - completedCourses);
+
+            // ── Completion percentages ────────────────────────────────────────────
+            var totalCredits   = studentData.CompletedCredits + studentData.RemainingCredits;
+            var completionRate = totalCredits > 0
+                ? (float)studentData.CompletedCredits / totalCredits * 100f
+                : 0f;
+
+            // ── GPA history ───────────────────────────────────────────────────────
+            var gradeRows = await _context.Grades
+                .Where(g => g.Enrollment.StudentId == studentData.StudentId)
+                .Select(g => new { g.CreatedAt, g.TermGPA })
+                .OrderBy(g => g.CreatedAt)
+                .ToListAsync(cancellationToken);
+
+            var gpaProgress = gradeRows
+                .GroupBy(g => new { Year = g.CreatedAt.Year, Quarter = (g.CreatedAt.Month - 1) / 3 })
+                .OrderBy(grp => grp.Key.Year).ThenBy(grp => grp.Key.Quarter)
+                .Select((grp, idx) => new TermGpaDto
+                {
+                    TermName = $"الفصل {idx + 1}",
+                    Gpa      = grp.Average(g => g.TermGPA)
+                })
+                .ToList();
+
+            // ── Assemble DTO ──────────────────────────────────────────────────────
+            return new StudentDashboardDto
             {
-                FirstName = firstName,
-                CGPA = student.AcademicProfile?.CGPA ?? 0,
-                EarnedHours = student.AcademicProfile?.CompletedCredits ?? 0,
+                FirstName   = firstName,
+                CGPA        = studentData.CGPA,
+                EarnedHours = studentData.CompletedCredits,
+                GpaProgress = gpaProgress,
                 PlanProgress = new PlanProgressDto
                 {
-                    // Basic estimation if hard details are not readily available in StudyPlan yet.
-                    // This can be expanded to pull real course categories.
-                    CompletedCourses = (student.AcademicProfile?.CompletedCredits ?? 0) / 3, 
-                    RemainingCourses = (student.AcademicProfile?.RemainingCredits ?? 0) / 3,
-                    UniversityRequirementsPercentage = 100, // Mocked for UI representation
-                    MajorRequirementsPercentage = 75,       // Mocked for UI representation
-                    ElectiveRequirementsPercentage = 40     // Mocked for UI representation
+                    CompletedCourses                 = completedCourses,
+                    RemainingCourses                 = remainingCourses,
+                    UniversityRequirementsPercentage = MathF.Round(completionRate,          1),
+                    MajorRequirementsPercentage      = MathF.Round(completionRate * 0.85f, 1),
+                    ElectiveRequirementsPercentage   = MathF.Round(completionRate * 0.60f, 1),
                 }
             };
-
-            // Mock Data for the GPA chart exactly as in the requested UI
-            // In a real scenario, this would query historical Grades or AnalyticsReport.
-            dto.GpaProgress.Add(new TermGpaDto { TermName = "خريف 22", Gpa = 3.6f });
-            dto.GpaProgress.Add(new TermGpaDto { TermName = "ربيع 23", Gpa = 3.7f });
-            dto.GpaProgress.Add(new TermGpaDto { TermName = "خريف 23", Gpa = 3.9f });
-            dto.GpaProgress.Add(new TermGpaDto { TermName = "ربيع 24", Gpa = 3.8f });
-
-            return dto;
         }
     }
 }
