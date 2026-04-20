@@ -546,4 +546,19 @@
 	<data name="UserNotInDepartment" xml:space="preserve">
 	<value>User is not assigned to any department.</value>
 	</data>
+	<data name="RateLimit_Exceeded" xml:space="preserve">
+	<value>Rate limit exceeded. You can only generate 3 timetables per hour.</value>
+	</data>
+
+	<data name="TimetableRequest_Required" xml:space="preserve">
+	<value>Timetable request data is required.</value>
+	</data>
+
+	<data name="Courses_Required" xml:space="preserve">
+	<value>At least one course must be selected.</value>
+	</data>
+
+	<data name="Lecture_Full" xml:space="preserve">
+	<value>Lecture full for {0}.</value>
+	</data>
 </root>

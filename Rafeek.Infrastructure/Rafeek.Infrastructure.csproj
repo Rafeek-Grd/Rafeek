@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFramework>net8.0</TargetFramework>
@@ -22,6 +22,12 @@
 	<ItemGroup>
 		<EmbeddedResource Include="Notifications\Emails\Templates\ForgetPassword.txt" />
 		<EmbeddedResource Include="Notifications\Emails\Templates\SendUserCredentials.txt" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Update="AI\Prompts\*.txt">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
 	</ItemGroup>
 
 </Project>

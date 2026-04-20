@@ -50,6 +50,8 @@ namespace Rafeek.Persistence
         public DbSet<AnalyticsReport> AnalyticsReports { get; set; }
         public DbSet<UserLoginHistory> UserLoginHistories { get; set; }
         public DbSet<Staff> Staffs { get; set; }    
+        public DbSet<AITimetable> AITimetables { get; set; }
+        public DbSet<AITimetableItem> AITimetableItems { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -59,7 +61,8 @@ namespace Rafeek.Persistence
             builder.ApplyConfigurationsFromAssembly(typeof(RafeekDbContext).Assembly,
                 type => type.Namespace != null && type.Namespace.EndsWith("Configurations.RafeekConfiguration"));
 
-            builder.Ignore<ApplicationUser>();
+            builder.Entity<ApplicationUser>().ToTable("ApplicationUsers", "auth", t => t.ExcludeFromMigrations());
+
             builder.Ignore<IdentityRole<Guid>>();
             builder.Ignore<IdentityUserClaim<Guid>>();
             builder.Ignore<IdentityUserRole<Guid>>();

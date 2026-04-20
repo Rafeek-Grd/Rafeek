@@ -100,6 +100,8 @@ namespace Rafeek.API.Routes
         public static class AiIntegration
         {
             public const string GetRecommendations = Base + "/ai/recommendations";
+            public const string GenerateTimetable = Base + "/ai/timetable";
+            public const string SaveTimetable = Base + "/ai/timetable/save";
         }
     }
 }
