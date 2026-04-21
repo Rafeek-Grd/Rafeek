@@ -97,6 +97,25 @@ namespace Rafeek.API.Routes
             public const string GetCatalog = BaseAI + "/course/catalog";
         }
 
+        public static class Admin
+        {
+            public const string GetDashboard               = Base + "/admin/dashboard";
+            public const string GetStudentAcademicRecords   = Base + "/admin/students/academic-records";
+            public const string GetUsers                   = Base + "/admin/users";
+            public const string GetStudentProfile          = Base + "/admin/students/{studentId}/profile";
+            public const string GetStaffProfile            = Base + "/admin/staff/{userId}/profile";
+            public const string GetAcademicSchedules       = Base + "/admin/academic-schedules";
+            public const string GetExamsSchedule           = Base + "/admin/exams-schedule";
+            public const string GetExamResults             = Base + "/admin/exam-results";
+            public const string GetSecurityDashboard       = Base + "/admin/security/dashboard";
+        }
+
+        public static class Courses
+        {
+            public const string GetAll    = Base + "/courses";
+            public const string GetDetail = Base + "/courses/{courseId}";
+        }
+
         public static class AiIntegration
         {
             public const string GetRecommendations = Base + "/ai/recommendations";

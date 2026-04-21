@@ -1,10 +1,11 @@
-﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Localization;
 using Rafeek.Application.Common.Interfaces;
 using Rafeek.Application.Common.Models;
 using Rafeek.Application.Localization;
+using Rafeek.Domain.Enums;
 
 namespace Rafeek.API.Filters
 {
@@ -13,7 +14,7 @@ namespace Rafeek.API.Filters
     {
         private readonly string[] _roles = Array.Empty<string>();
 
-        // Keep constructors that can be used in attribute usage (no DI in attribute constructor)
+        // Accepts role names as strings (e.g. nameof(UserType.Admin))
         public RoleAuthorizeAttribute(params string[] roles)
         {
             _roles = roles;
@@ -37,14 +38,37 @@ namespace Rafeek.API.Filters
                 return;
             }
 
-            if (_roles.Any() && !_roles.Any(role => user.IsInRole(role)))
+            if (_roles.Any())
             {
-                var message = localizer[LocalizationKeys.ExceptionMessage.Unauthorized.Value];
-                var response = ApiResponse<object>.Error(new Dictionary<string, string[]>(), message, StatusCodes.Status403Forbidden);
-                context.Result = new ObjectResult(response)
+                // The JWT stores user roles as a bitmask integer in the "UserTypes" claim
+                // (e.g. Admin=1, SubAdmin=2, Doctor=16 — see UserType enum [Flags])
+                var userTypesClaim = user.FindFirst("UserTypes")?.Value;
+
+                bool hasRequiredRole = false;
+
+                if (int.TryParse(userTypesClaim, out var userTypesInt))
                 {
-                    StatusCode = StatusCodes.Status403Forbidden
-                };
+                    foreach (var roleName in _roles)
+                    {
+                        if (Enum.TryParse<UserType>(roleName, ignoreCase: true, out var requiredType)
+                            && requiredType != UserType.None
+                            && (userTypesInt & (int)requiredType) != 0)
+                        {
+                            hasRequiredRole = true;
+                            break;
+                        }
+                    }
+                }
+
+                if (!hasRequiredRole)
+                {
+                    var message = localizer[LocalizationKeys.ExceptionMessage.Unauthorized.Value];
+                    var response = ApiResponse<object>.Error(new Dictionary<string, string[]>(), message, StatusCodes.Status403Forbidden);
+                    context.Result = new ObjectResult(response)
+                    {
+                        StatusCode = StatusCodes.Status403Forbidden
+                    };
+                }
             }
         }
     }

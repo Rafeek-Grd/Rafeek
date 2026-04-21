@@ -10,7 +10,6 @@ using Rafeek.Application.Handlers.StudentHandlers.Commands.SendRequestForAdvisme
 using Rafeek.Application.Handlers.StudentHandlers.DTOs;
 using Rafeek.Application.Handlers.StudentHandlers.Query.GetStudentDashboard;
 using Rafeek.Application.Handlers.StudentHandlers.Query.GetStudentProfile;
-using Rafeek.Application.Handlers.StudentHandlers.Query.GetStudentDashboard;
 using Rafeek.Application.Handlers.StudentHandlers.Query.GetChatHistory;
 
 namespace Rafeek.API.Controllers.Version1
