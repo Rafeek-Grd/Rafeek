@@ -3,19 +3,19 @@ using Microsoft.Extensions.Localization;
 using Rafeek.Application.Localization;
 using Rafeek.Domain.Repositories.Interfaces.Generic;
 
-namespace Rafeek.Application.Handlers.CourseHandlers.Queries.GetCourseById
+namespace Rafeek.Application.Handlers.CourseHandlers.Queries.GetCourseDetail
 {
-    public class GetCourseByIdQueryValidator: AbstractValidator<GetCourseByIdQuery>
+    public class GetCourseDetailQueryValidator: AbstractValidator<GetCourseDetailQuery>
     {
         private readonly IUnitOfWork _ctx;
         private readonly IStringLocalizer<Messages> _localizer;
 
-        public GetCourseByIdQueryValidator(IUnitOfWork ctx, IStringLocalizer<Messages> localizer)
+        public GetCourseDetailQueryValidator(IUnitOfWork ctx, IStringLocalizer<Messages> localizer)
         {
             _ctx = ctx;
             _localizer = localizer;
 
-            RuleFor(x => x.Id)
+            RuleFor(x => x.CourseId)
                 .NotEmpty().WithMessage(_localizer[LocalizationKeys.Course.IdRequired.Value])
                 .MustAsync(CourseExists).WithMessage(_localizer[LocalizationKeys.Course.NotFound.Value]);
         }

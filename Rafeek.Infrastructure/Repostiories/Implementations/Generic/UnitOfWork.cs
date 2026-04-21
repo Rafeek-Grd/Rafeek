@@ -33,6 +33,8 @@ namespace Rafeek.Infrastructure.Repostiories.Implementations.Generic
         private GPASimulatorLogRepository? _gpaSimulatorLogRepository;
         private DocumentRequestRepository? _documentRequestRepository;
         private SectionRepository? _sectionRepository;
+        private EnrollmentRepository? _enrollmentRepository;
+        private NotificationRepository? _notificationRepository;
 
         public UnitOfWork(
             IRafeekDbContext context,
@@ -65,8 +67,10 @@ namespace Rafeek.Infrastructure.Repostiories.Implementations.Generic
         public ILearningResourceRepository LearningResourceRepository => _learningResourceRepository ??= new LearningResourceRepository(_context);
         public IGPASimulatorLogRepository GPASimulatorLogRepository => _gpaSimulatorLogRepository ??= new GPASimulatorLogRepository(_context);
         public IDocumentRequestRepository DocumentRequestRepository => _documentRequestRepository ??= new DocumentRequestRepository(_context);
-
         public ISectionRepository SectionRepository => _sectionRepository ??= new SectionRepository(_context);
+        public IEnrollmentRepository EnrollmentRepository => _enrollmentRepository ??= new EnrollmentRepository(_context);
+        public INotificationRepository NotificationRepository => _notificationRepository ??= new NotificationRepository(_context);
+
         public async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
             return await _context.SaveChangesAsync(cancellationToken);

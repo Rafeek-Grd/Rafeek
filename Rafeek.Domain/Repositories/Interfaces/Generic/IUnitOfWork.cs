@@ -25,6 +25,8 @@ namespace Rafeek.Domain.Repositories.Interfaces.Generic
         IGPASimulatorLogRepository GPASimulatorLogRepository { get; }
         IDocumentRequestRepository DocumentRequestRepository { get; }
         ISectionRepository SectionRepository { get; }
+        IEnrollmentRepository EnrollmentRepository { get; }
+        INotificationRepository NotificationRepository { get; }
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
         Task<IDbContextTransaction> BeginTransactionAsync(CancellationToken cancellationToken = default);
