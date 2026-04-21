@@ -1,5 +1,4 @@
 using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 using Rafeek.API.Filters;
@@ -19,10 +18,9 @@ namespace Rafeek.API.Controllers.Version1
     [RoleAuthorize]
     public class UploaderController : BaseApiController
     {
-        private readonly IMediator _mediator;
-        public UploaderController(IMediator mediator, IStringLocalizer<Messages> localizer) : base(mediator, localizer)
+        public UploaderController(IMediator mediator, IStringLocalizer<Messages> localizer) 
+            : base(mediator, localizer)
         {
-            _mediator = mediator;
         }
 
         /// <summary>

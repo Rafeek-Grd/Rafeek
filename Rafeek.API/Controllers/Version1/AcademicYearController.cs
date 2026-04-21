@@ -17,11 +17,9 @@ namespace Rafeek.API.Controllers.Version1
     [ApiVersion("1.0")]
     public class AcademicYearController : BaseApiController
     {
-        private readonly IMediator _mediator;
-
-        public AcademicYearController(IMediator mediator, IStringLocalizer<Messages> localizer) : base(mediator, localizer)
+        public AcademicYearController(IMediator mediator, IStringLocalizer<Messages> localizer) 
+            : base(mediator, localizer)
         {
-            _mediator = mediator;
         }
 
         /// <summary>

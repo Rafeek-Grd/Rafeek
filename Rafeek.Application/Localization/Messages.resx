@@ -561,4 +561,62 @@
 	<data name="Lecture_Full" xml:space="preserve">
 	<value>Lecture full for {0}.</value>
 	</data>
+
+	<!-- Reminder -->
+	<data name="Reminder_TitleRequired" xml:space="preserve">
+	<value>Reminder title is required.</value>
+	</data>
+	<data name="Reminder_TitleMaxLength" xml:space="preserve">
+	<value>Reminder title must not exceed 200 characters.</value>
+	</data>
+	<data name="Reminder_DueDateRequired" xml:space="preserve">
+	<value>Reminder due date is required.</value>
+	</data>
+	<data name="Reminder_IdRequired" xml:space="preserve">
+	<value>Reminder ID is required.</value>
+	</data>
+	<data name="Reminder_NotFound" xml:space="preserve">
+	<value>Reminder is not found.</value>
+	</data>
+
+	<!-- Course / Enrollment -->
+	<data name="StudentProfileNotFound" xml:space="preserve">
+	<value>Student profile not found.</value>
+	</data>
+	<data name="Course_NotFound" xml:space="preserve">
+	<value>Course is not found.</value>
+	</data>
+	<data name="Course_IdRequired" xml:space="preserve">
+	<value>Course ID is required.</value>
+	</data>
+	<data name="Course_SectionIdRequired" xml:space="preserve">
+	<value>Section ID is required.</value>
+	</data>
+	<data name="Course_AlreadyEnrolled" xml:space="preserve">
+	<value>You are already enrolled in this course.</value>
+	</data>
+	<data name="Course_EnrollmentNotFound" xml:space="preserve">
+	<value>Enrollment not found for this course.</value>
+	</data>
+	<data name="Course_SectionNotFound" xml:space="preserve">
+	<value>Section is not found.</value>
+	</data>
+	<data name="Course_CodeRequired" xml:space="preserve">
+	<value>Course code is required.</value>
+	</data>
+	<data name="Course_CodeMaxLength" xml:space="preserve">
+	<value>Course code must not exceed 50 characters.</value>
+	</data>
+	<data name="Course_TitleRequired" xml:space="preserve">
+	<value>Course title is required.</value>
+	</data>
+	<data name="Course_TitleMaxLength" xml:space="preserve">
+	<value>Course title must not exceed 200 characters.</value>
+	</data>
+	<data name="Course_CreditHoursRequired" xml:space="preserve">
+	<value>Credit hours are required.</value>
+	</data>
+	<data name="Course_CreditHoursInvalid" xml:space="preserve">
+	<value>Credit hours must be between 1 and 10.</value>
+	</data>
 </root>

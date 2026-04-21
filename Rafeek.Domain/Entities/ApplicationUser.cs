@@ -17,6 +17,7 @@ namespace Rafeek.Domain.Entities
         public ICollection<UserLoginHistory> LoginHistories { get; set; } = new HashSet<UserLoginHistory>();
         public ICollection<UserFbTokens> UserFbTokens { get; set; } = new List<UserFbTokens>();
         public ICollection<AcademicCalendar> GuidanceEvents { get; set; } = new List<AcademicCalendar>();
+        public ICollection<Reminder> Reminders { get; set; } = new HashSet<Reminder>();
         public UserCalendarPreference? CalendarPreference { get; set; }
         public UserType UserTypes { get; set; } = UserType.None;
 

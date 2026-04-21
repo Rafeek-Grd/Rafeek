@@ -1,5 +1,4 @@
 using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 using Rafeek.API.Routes;
@@ -10,19 +9,17 @@ using Rafeek.Application.Handlers.StudentHandlers.Commands.SendRequestForAdvisme
 using Rafeek.Application.Handlers.StudentHandlers.DTOs;
 using Rafeek.Application.Handlers.StudentHandlers.Query.GetStudentDashboard;
 using Rafeek.Application.Handlers.StudentHandlers.Query.GetStudentProfile;
-using Rafeek.Application.Handlers.StudentHandlers.Query.GetStudentDashboard;
-using Rafeek.Application.Handlers.StudentHandlers.Query.GetChatHistory;
+using Rafeek.Application.Handlers.StudentHandlers.Query.GetStudentSchedule;
 
 namespace Rafeek.API.Controllers.Version1
 {
     [ApiVersion("1.0")]
     public class StudentController : BaseApiController
     {
-        private readonly IMediator _mediator;
 
-        public StudentController(IMediator mediator, IStringLocalizer<Messages> localizer) : base(mediator, localizer)
+        public StudentController(IMediator mediator, IStringLocalizer<Messages> localizer) 
+            : base(mediator, localizer)
         {
-            _mediator = mediator;
         }
 
         /// <summary>
@@ -47,7 +44,7 @@ namespace Rafeek.API.Controllers.Version1
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [RoleAuthorize()]
+        [RoleAuthorize]
         [Route(ApiRoutes.Student.GetProfile)]
         [ProducesResponseType(typeof(StudentProfileDto), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -64,7 +61,7 @@ namespace Rafeek.API.Controllers.Version1
         /// <param name="userId"></param>
         /// <returns></returns>
         [HttpGet]
-        [Authorize]
+        [RoleAuthorize]
         [Route(ApiRoutes.Student.GetDashboard)]
         [ProducesResponseType(typeof(StudentDashboardDto), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -75,6 +72,20 @@ namespace Rafeek.API.Controllers.Version1
             return Ok(result);
         }
 
+        /// <summary>
+        /// Get Student Enrollments
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [RoleAuthorize(nameof(UserType.Student))]
+        [Route(ApiRoutes.Student.GetSchedule)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> GetStudentSchedule()
+        {
+            var result = await _mediator.Send(new GetStudentScheduleQuery());
+            return Ok(result);
+        }
     }
 }
 

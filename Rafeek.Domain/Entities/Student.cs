@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Identity;
 using Rafeek.Domain.Common;
 using Rafeek.Domain.Enums;
 
@@ -24,7 +23,8 @@ namespace Rafeek.Domain.Entities
         public ICollection<AcademicFeedback> AcademicFeedbacks { get; set; } = new HashSet<AcademicFeedback>();
         public ICollection<DocumentRequest> DocumentRequests { get; set; } = new HashSet<DocumentRequest>();
         public ICollection<Appointment> Appointments { get; set; } = new HashSet<Appointment>();
-
+        public ICollection<CareerSuggestion> CareerSuggestions { get; set; } = new HashSet<CareerSuggestion>();
+        public ICollection<GPASimulatorLog> GPASimulatorLogs { get; set; } = new HashSet<GPASimulatorLog>();
         public ICollection<StudentSupport> StudentSupports { get; set; } = new HashSet<StudentSupport>();
         public ICollection<AnalyticsReport> AnalyticsReports { get; set; } = new HashSet<AnalyticsReport>();
     }

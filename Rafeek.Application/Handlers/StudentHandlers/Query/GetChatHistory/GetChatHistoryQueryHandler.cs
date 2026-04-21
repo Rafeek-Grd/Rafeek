@@ -1,7 +1,7 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Rafeek.Application.Common.Interfaces;
-using Rafeek.Application.Handlers.StudentHandlers.DTOs;
+using Rafeek.Application.Handlers.AIHandlers.DTOs;
 
 namespace Rafeek.Application.Handlers.StudentHandlers.Query.GetChatHistory
 {

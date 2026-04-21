@@ -14,11 +14,9 @@ namespace Rafeek.API.Controllers.Version1
     [ApiVersion("1.0")]
     public class AdvisorController : BaseApiController
     {
-        private readonly IMediator _mediator;
-
-        public AdvisorController(IMediator mediator, IStringLocalizer<Messages> localizer) : base(mediator, localizer)
+        public AdvisorController(IMediator mediator, IStringLocalizer<Messages> localizer) 
+            : base(mediator, localizer)
         {
-            _mediator = mediator;
         }
 
         /// <summary>

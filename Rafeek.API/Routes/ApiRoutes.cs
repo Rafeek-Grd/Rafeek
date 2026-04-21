@@ -66,6 +66,8 @@ namespace Rafeek.API.Routes
             public const string AssignToAcademicAdvisor = Base + "/students/assign-advisor";
             public const string RequestGuidance = Base + "/students/request-guidance";
             public const string GetDashboard = Base + "/students/dashboard/{userId}";
+            public const string GetSchedule = Base + "/students/schedule";
+            public const string UpdateProfile = Base + "/students/profile";
         }
 
         public static class Advisor
@@ -105,6 +107,51 @@ namespace Rafeek.API.Routes
             public const string AskAi = Base + "/ai/ask";
             public const string GetAiSessions = Base + "/ai/sessions";
             public const string GetChatHistory = Base + "/ai/history";
+        }
+
+        public static class Course
+        {
+            public const string GetAllPagginated = Base + "/courses/getall/pagginated";
+            public const string GetById = Base + "/courses/{id}";
+            public const string Enroll = Base + "/courses/enroll";
+            public const string Drop = Base + "/courses/drop";
+            public const string Create = Base + "/courses/add";
+            public const string Update = Base + "/courses/{id}/update";
+            public const string Delete = Base + "/courses/{id}/delete";
+        }
+
+        public static class Reminder
+        {
+            public const string Create = Base + "/reminders/add";
+            public const string Update = Base + "/reminders/{id}/update";
+            public const string Delete = Base + "/reminders/{id}/delete";
+            public const string GetAllPagginated = Base + "/reminders/getall/pagginated";
+        }
+
+        public static class CareerSuggestion
+        {
+            public const string GetByStudent = Base + "/career-suggestions/student/{studentId}";
+        }
+
+        public static class StudyPlan
+        {
+            public const string GetByStudent = Base + "/study-plans/student/{studentId}";
+        }
+
+        public static class LearningResource
+        {
+            public const string GetAll = Base + "/learning-resources";
+        }
+
+        public static class GpaCalculator
+        {
+            public const string Simulate = Base + "/gpa-calculator/simulate";
+        }
+
+        public static class DocumentRequest
+        {
+            public const string Create = Base + "/document-requests";
+            public const string GetMyRequests = Base + "/document-requests/my";
         }
     }
 }

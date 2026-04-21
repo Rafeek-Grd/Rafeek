@@ -18,11 +18,9 @@ namespace Rafeek.API.Controllers.Version1
     [ApiVersion("1.0")]
     public class AcademicTermController : BaseApiController
     {
-        private readonly IMediator _mediator;
-
-        public AcademicTermController(IMediator mediator, IStringLocalizer<Messages> localizer) : base(mediator, localizer)
+        public AcademicTermController(IMediator mediator, IStringLocalizer<Messages> localizer) 
+            : base(mediator, localizer)
         {
-            _mediator = mediator;
         }
 
         /// <summary>

@@ -2,7 +2,7 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Rafeek.Application.Common.Interfaces;
-using Rafeek.Application.Handlers.StudentHandlers.DTOs;
+using Rafeek.Application.Handlers.AIHandlers.DTOs;
 using Rafeek.Domain.Entities;
 using System.Net.Http.Json;
 

@@ -177,6 +177,32 @@ namespace Rafeek.Application.Localization
         {
             public static readonly KeyString StudentIdRequired = new("StudentIdRequired");
             public static readonly KeyString StudentsNotFound = new("StudentsNotFound");
+            public static readonly KeyString StudentProfileNotFound = new("StudentProfileNotFound");
+        }
+
+        public record Reminder
+        {
+            public static readonly KeyString TitleRequired = new("Reminder_TitleRequired");
+            public static readonly KeyString TitleMaxLength = new("Reminder_TitleMaxLength");
+            public static readonly KeyString DueDateRequired = new("Reminder_DueDateRequired");
+            public static readonly KeyString IdRequired = new("Reminder_IdRequired");
+            public static readonly KeyString NotFound = new("Reminder_NotFound");
+        }
+
+        public record Course
+        {
+            public static readonly KeyString NotFound = new("Course_NotFound");
+            public static readonly KeyString IdRequired = new("Course_IdRequired");
+            public static readonly KeyString SectionIdRequired = new("Course_SectionIdRequired");
+            public static readonly KeyString AlreadyEnrolled = new("Course_AlreadyEnrolled");
+            public static readonly KeyString EnrollmentNotFound = new("Course_EnrollmentNotFound");
+            public static readonly KeyString SectionNotFound = new("Course_SectionNotFound");
+            public static readonly KeyString CodeRequired = new("Course_CodeRequired");
+            public static readonly KeyString CodeMaxLength = new("Course_CodeMaxLength");
+            public static readonly KeyString TitleRequired = new("Course_TitleRequired");
+            public static readonly KeyString TitleMaxLength = new("Course_TitleMaxLength");
+            public static readonly KeyString CreditHoursRequired = new("Course_CreditHoursRequired");
+            public static readonly KeyString CreditHoursInvalid = new("Course_CreditHoursInvalid");
         }
 
         public record EmailTemplates

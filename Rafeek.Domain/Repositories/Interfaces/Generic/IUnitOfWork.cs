@@ -18,6 +18,13 @@ namespace Rafeek.Domain.Repositories.Interfaces.Generic
         IInstructorRepository InstructorRepository { get; }
         IAITimetableRepository AITimetableRepository { get; }
         IAITimetableItemRepository AITimetableItemRepository { get; }
+        IReminderRepository ReminderRepository { get; }
+        ICareerSuggestionRepository CareerSuggestionRepository { get; }
+        IStudyPlanRepository StudyPlanRepository { get; }
+        ILearningResourceRepository LearningResourceRepository { get; }
+        IGPASimulatorLogRepository GPASimulatorLogRepository { get; }
+        IDocumentRequestRepository DocumentRequestRepository { get; }
+        ISectionRepository SectionRepository { get; }
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
         Task<IDbContextTransaction> BeginTransactionAsync(CancellationToken cancellationToken = default);

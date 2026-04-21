@@ -87,6 +87,8 @@ try
         // Example: use camelCase and ignore nulls — adapt to your project's conventions
         options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
         options.SerializerSettings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore;
+        // Serialize enums as strings for better readability in API responses
+        options.SerializerSettings.Converters.Add(new Newtonsoft.Json.Converters.StringEnumConverter());
     });
 
     builder.Services.AddHttpClient();

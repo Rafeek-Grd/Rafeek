@@ -1,7 +1,6 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
-using Microsoft.Identity.Client;
 using Rafeek.API.Filters;
 using Rafeek.API.Routes;
 using Rafeek.Application.Common.Extensions;
@@ -21,12 +20,9 @@ namespace Rafeek.API.Controllers.Version1
     [ApiVersion("1.0")]
     public class AcademicCalendarController : BaseApiController
     {
-        private readonly IMediator _mediator;
-        private readonly ICurrentUserService _currentUserService;
-        public AcademicCalendarController(IMediator mediator, IStringLocalizer<Messages> localizer, ICurrentUserService currentUserService) : base(mediator, localizer, currentUserService)
+        public AcademicCalendarController(IMediator mediator, IStringLocalizer<Messages> localizer, ICurrentUserService currentUserService) 
+            : base(mediator, localizer, currentUserService)
         {
-            _mediator = mediator;
-            _currentUserService = currentUserService;
         }
 
         /// <summary>
@@ -64,10 +60,9 @@ namespace Rafeek.API.Controllers.Version1
 
 
         /// <summary>
-        /// Delete Specific event from the academic calendar
+        /// Delete an event from the academic calendar by its id.
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="command"></param>
         /// <returns></returns>
         [HttpDelete]
         [RoleAuthorize(nameof(UserType.Admin))]

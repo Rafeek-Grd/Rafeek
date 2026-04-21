@@ -20,10 +20,9 @@ namespace Rafeek.API.Controllers.External
         }
 
         /// <summary>
-        /// Get student's grades and GPA for AI-driven personalized learning recommendations and performance analysis.
+        /// Get a specific student's grades and performance metrics for AI-driven personalized learning and support.
         /// </summary>
         /// <param name="studentId"></param>
-        /// <param name="query"></param>
         /// <returns></returns>
         [HttpGet()]
         [Route(ApiRoutes.ExternalIntegration.GetStudentGrades)]

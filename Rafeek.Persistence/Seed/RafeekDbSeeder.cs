@@ -18,6 +18,21 @@ namespace Rafeek.Persistence.Seed
             try { File.AppendAllText(LogPath, logEntry); } catch { }
         }
 
+        private static async Task SeedStageAsync(string stageName, Func<Task> seedAction)
+        {
+            Log($"[Seeder] --- {stageName} ---");
+            try
+            {
+                await seedAction();
+                Log($"[Seeder] Completed: {stageName}");
+            }
+            catch (Exception ex)
+            {
+                Log($"[Seeder] ERROR in {stageName}: {ex.Message}");
+                // We don't rethrow to allow subsequent stages to proceed
+            }
+        }
+
         public static async Task SeedAsync(RafeekDbContext context, RafeekIdentityDbContext identityContext, UserManager<ApplicationUser> userManager)
         {
             if (File.Exists(LogPath)) File.Delete(LogPath);
@@ -310,7 +325,7 @@ namespace Rafeek.Persistence.Seed
                 {
                     staffs.Add(new Staff { Id = Guid.NewGuid(), UserId = targetUsers[s].Id, EmployeeCode = $"STF{1000 + s}", CreatedAt = DateTime.UtcNow, CreatedBy = "Seeder", IsActive = true });
                 }
-                context.Staffs.AddRangeAsync(staffs);
+                await context.Staffs.AddRangeAsync(staffs);
                 await context.SaveChangesAsync();
             }
             else { staffs = existingStaffs; }
@@ -324,7 +339,7 @@ namespace Rafeek.Persistence.Seed
                 {
                     doctors.Add(new Doctor { Id = Guid.NewGuid(), UserId = targetUsers[d].Id, EmployeeCode = $"DOC{1000 + d}", DepartmentId = f.PickRandom(departments).Id, IsAcademicAdvisor = f.Random.Bool(0.7f), CreatedAt = DateTime.UtcNow, CreatedBy = "Seeder", IsActive = true });
                 }
-                context.Doctors.AddRangeAsync(doctors);
+                await context.Doctors.AddRangeAsync(doctors);
                 await context.SaveChangesAsync();
             }
             else { doctors = existingDoctors; }
@@ -349,7 +364,7 @@ namespace Rafeek.Persistence.Seed
                     }
                 }
 
-                context.Instructors.AddRangeAsync(instructors);
+                await context.Instructors.AddRangeAsync(instructors);
                 await context.SaveChangesAsync();
             }
             else { instructors = existingInstructors; }
@@ -393,8 +408,8 @@ namespace Rafeek.Persistence.Seed
                         CreatedAt = DateTime.UtcNow, CreatedBy = "Seeder", IsActive = true 
                     });
                 }
-                context.Students.AddRangeAsync(students);
-                context.StudentAcademicProfiles.AddRangeAsync(studentProfiles);
+                await context.Students.AddRangeAsync(students);
+                await context.StudentAcademicProfiles.AddRangeAsync(studentProfiles);
                 await context.SaveChangesAsync();
                 Log($"[Seeder] Seeded {students.Count} Student profiles.");
             }
@@ -539,195 +554,272 @@ namespace Rafeek.Persistence.Seed
                 await context.SaveChangesAsync();
             }
 
-            // 9. Course Prerequisites
-            var prerequisites = await context.CoursePrerequisites.ToListAsync();
-            if (!prerequisites.Any() && courses.Count > 1)
-            {
-                var prFaker = new Faker<CoursePrerequisite>("en")
-                    .RuleFor(x => x.Id, f => Guid.NewGuid())
-                    .RuleFor(x => x.CourseId, f => f.PickRandom(courses).Id)
-                    .RuleFor(x => x.PrerequisiteId, f => f.PickRandom(courses).Id)
-                    .RuleFor(s => s.CreatedAt, f => DateTime.UtcNow)
-                    .RuleFor(s => s.CreatedBy, f => "Seeder")
-                    .RuleFor(s => s.IsActive, f => true);
-                
-                context.CoursePrerequisites.AddRange(prFaker.Generate(10).Where(p => p.CourseId != p.PrerequisiteId));
-                await context.SaveChangesAsync();
-            }
+            // 11. Course Prerequisites
+            await SeedStageAsync("Course Prerequisites", async () => {
+                var prerequisites = await context.CoursePrerequisites.ToListAsync();
+                if (!prerequisites.Any() && courses.Count > 1)
+                {
+                    var prFaker = new Faker<CoursePrerequisite>("en")
+                        .RuleFor(x => x.Id, f => Guid.NewGuid())
+                        .RuleFor(x => x.CourseId, f => f.PickRandom(courses).Id)
+                        .RuleFor(x => x.PrerequisiteId, f => f.PickRandom(courses).Id)
+                        .RuleFor(s => s.CreatedAt, f => DateTime.UtcNow)
+                        .RuleFor(s => s.CreatedBy, f => "Seeder")
+                        .RuleFor(s => s.IsActive, f => true);
+
+                    context.CoursePrerequisites.AddRange(prFaker.Generate(10).Where(p => p.CourseId != p.PrerequisiteId));
+                    await context.SaveChangesAsync();
+                }
+            });
 
             // 10. AI & Academic Logs (50 records each)
-            Log("[Seeder] Stage 10: Seeding AI & Academic Logs (50 each)...");
-            if (!await context.GPASimulatorLogs.AnyAsync() && (students.Any() || users.Any()))
-            {
-                var studentSource = students.Any() ? students.Select(s => s.Id).ToList() : users.Take(10).Select(u => u.Id).ToList();
-                var gpaLogs = new Faker<GPASimulatorLog>("en").RuleFor(x => x.Id, Guid.NewGuid).RuleFor(x => x.StudentId, f => f.PickRandom(studentSource)).RuleFor(x=>x.ExpectedGPA, f=>(float)Math.Round(f.Random.Double(2.0, 4.0), 2)).RuleFor(x=>x.PredictedCGPA, f=>(float)Math.Round(f.Random.Double(2.0, 4.0), 2)).RuleFor(x=>x.CreatedAt, f=>DateTime.UtcNow).RuleFor(x=>x.CreatedBy, "Seeder").Generate(50);
-                context.GPASimulatorLogs.AddRange(gpaLogs);
-                await context.SaveChangesAsync();
-            }
+            await SeedStageAsync("AI & Academic Logs", async () => {
+                if (!await context.GPASimulatorLogs.AnyAsync() && (students.Any() || users.Any()))
+                {
+                    var studentSource = students.Any() ? students.Select(s => s.Id).ToList() : users.Take(10).Select(u => u.Id).ToList();
+                    var gpaLogs = new Faker<GPASimulatorLog>("en").RuleFor(x => x.Id, Guid.NewGuid).RuleFor(x => x.StudentId, f => f.PickRandom(studentSource)).RuleFor(x => x.ExpectedGPA, f => (float)Math.Round(f.Random.Double(2.0, 4.0), 2)).RuleFor(x => x.PredictedCGPA, f => (float)Math.Round(f.Random.Double(2.0, 4.0), 2)).RuleFor(x => x.CreatedAt, f => DateTime.UtcNow).RuleFor(x => x.CreatedBy, "Seeder").Generate(50);
+                    context.GPASimulatorLogs.AddRange(gpaLogs);
+                    await context.SaveChangesAsync();
+                }
 
-            if (!await context.AcademicFeedbacks.AnyAsync() && students.Any())
-            {
-                var feedbacks = new Faker<AcademicFeedback>("en").RuleFor(x => x.Id, Guid.NewGuid).RuleFor(x => x.StudentId, f => f.PickRandom(students).Id).RuleFor(x => x.Strength, f => f.Lorem.Word()).RuleFor(x => x.Weakness, f => f.Lorem.Word()).RuleFor(x => x.Recommendation, f => f.Lorem.Sentence()).RuleFor(x=>x.CreatedAt, f=>DateTime.UtcNow).RuleFor(x=>x.CreatedBy, "Seeder").Generate(50);
-                context.AcademicFeedbacks.AddRange(feedbacks);
-                await context.SaveChangesAsync();
-            }
+                if (!await context.AcademicFeedbacks.AnyAsync() && students.Any())
+                {
+                    var feedbacks = new Faker<AcademicFeedback>("en").RuleFor(x => x.Id, Guid.NewGuid).RuleFor(x => x.StudentId, f => f.PickRandom(students).Id).RuleFor(x => x.Strength, f => f.Lorem.Word()).RuleFor(x => x.Weakness, f => f.Lorem.Word()).RuleFor(x => x.Recommendation, f => f.Lorem.Sentence()).RuleFor(x => x.CreatedAt, f => DateTime.UtcNow).RuleFor(x => x.CreatedBy, "Seeder").Generate(50);
+                    context.AcademicFeedbacks.AddRange(feedbacks);
+                    await context.SaveChangesAsync();
+                }
 
-            if (!await context.AICourseRecommendations.AnyAsync() && students.Any())
-            {
-                var aiReco = new Faker<AICourseRecommendation>("en").RuleFor(x => x.Id, Guid.NewGuid).RuleFor(x => x.StudentId, f => f.PickRandom(students).Id).RuleFor(x => x.CourseId, f => f.PickRandom(courses).Id).RuleFor(x => x.Reason, f => f.Lorem.Sentence()).RuleFor(x=>x.CreatedAt, f=>DateTime.UtcNow).RuleFor(x=>x.CreatedBy, "Seeder").Generate(50);
-                context.AICourseRecommendations.AddRange(aiReco);
-                await context.SaveChangesAsync();
-            }
+                if (!await context.AICourseRecommendations.AnyAsync() && students.Any())
+                {
+                    var aiReco = new Faker<AICourseRecommendation>("en").RuleFor(x => x.Id, Guid.NewGuid).RuleFor(x => x.StudentId, f => f.PickRandom(students).Id).RuleFor(x => x.CourseId, f => f.PickRandom(courses).Id).RuleFor(x => x.Reason, f => f.Lorem.Sentence()).RuleFor(x => x.CreatedAt, f => DateTime.UtcNow).RuleFor(x => x.CreatedBy, "Seeder").Generate(50);
+                    context.AICourseRecommendations.AddRange(aiReco);
+                    await context.SaveChangesAsync();
+                }
 
-            if (!await context.ChatbotQueries.AnyAsync() && students.Any())
-            {
-                var chatbot = new Faker<ChatbotQuery>("en").RuleFor(x => x.Id, Guid.NewGuid).RuleFor(x => x.StudentId, f => f.PickRandom(students).Id).RuleFor(x => x.Query, f => f.Lorem.Sentence() + "?").RuleFor(x => x.Response, f => f.Lorem.Sentence()).RuleFor(x=>x.CreatedAt, f=>DateTime.UtcNow).RuleFor(x=>x.CreatedBy, "Seeder").Generate(50);
-                context.ChatbotQueries.AddRange(chatbot);
-                await context.SaveChangesAsync();
-            }
+                if (!await context.CareerSuggestions.AnyAsync() && students.Any())
+                {
+                    var careers = new Faker<CareerSuggestion>("en").RuleFor(x => x.Id, Guid.NewGuid).RuleFor(x => x.StudentId, f => f.PickRandom(students).Id).RuleFor(x => x.CareerPath, f => f.Name.JobTitle()).RuleFor(x => x.Justification, f => f.Lorem.Sentence()).RuleFor(x => x.CreatedAt, f => DateTime.UtcNow).RuleFor(x => x.CreatedBy, "Seeder").Generate(50);
+                    context.CareerSuggestions.AddRange(careers);
+                    await context.SaveChangesAsync();
+                }
 
-            if (!await context.CareerSuggestions.AnyAsync() && students.Any())
-            {
-                var careers = new Faker<CareerSuggestion>("en").RuleFor(x => x.Id, Guid.NewGuid).RuleFor(x => x.StudentId, f => f.PickRandom(students).Id).RuleFor(x => x.CareerPath, f => f.Name.JobTitle()).RuleFor(x => x.Justification, f => f.Lorem.Sentence()).RuleFor(x=>x.CreatedAt, f=>DateTime.UtcNow).RuleFor(x=>x.CreatedBy, "Seeder").Generate(50);
-                context.CareerSuggestions.AddRange(careers);
-                await context.SaveChangesAsync();
-            }
+                if (!await context.AnalyticsReports.AnyAsync() && students.Any())
+                {
+                    var analytics = new Faker<AnalyticsReport>("en").RuleFor(x => x.Id, Guid.NewGuid).RuleFor(x => x.StudentId, f => f.PickRandom(students).Id).RuleFor(x => x.CreatedAt, f => DateTime.UtcNow).RuleFor(x => x.CreatedBy, "Seeder").Generate(50);
+                    context.AnalyticsReports.AddRange(analytics);
+                    await context.SaveChangesAsync();
+                }
+            });
 
-            if (!await context.AnalyticsReports.AnyAsync() && students.Any())
-            {
-                var analytics = new Faker<AnalyticsReport>("en").RuleFor(x => x.Id, Guid.NewGuid).RuleFor(x => x.StudentId, f => f.PickRandom(students).Id).RuleFor(x=>x.CreatedAt, f=>DateTime.UtcNow).RuleFor(x=>x.CreatedBy, "Seeder").Generate(50);
-                context.AnalyticsReports.AddRange(analytics);
-                await context.SaveChangesAsync();
-            }
+            // 12. Study Plans
+            await SeedStageAsync("Study Plans", async () => {
+                bool studyPlansSeededOrUpdated = false;
+                
+                if (!await context.StudyPlans.AnyAsync() && students.Any())
+                {
+                    var studyPlans = new Faker<StudyPlan>("en")
+                        .RuleFor(x => x.Id, Guid.NewGuid)
+                        .RuleFor(x => x.StudentId, f => f.PickRandom(students).Id)
+                        .RuleFor(x => x.CourseId, f => f.PickRandom(courses).Id)
+                        .RuleFor(x => x.Semester, f => f.PickRandom<Rafeek.Domain.Enums.Semester>())
+                        .RuleFor(x => x.CreatedAt, f => DateTime.UtcNow)
+                        .RuleFor(x => x.CreatedBy, "Seeder")
+                        .Generate(50);
+                    
+                    context.StudyPlans.AddRange(studyPlans);
+                    studyPlansSeededOrUpdated = true;
+                }
+                else
+                {
+                    // Fix existing records that might be stuck on Semester 0 (First) due to the bug
+                    var existingBuggyStudyPlans = await context.StudyPlans
+                        .Where(sp => sp.Semester == Rafeek.Domain.Enums.Semester.First)
+                        .ToListAsync();
 
-            if (!await context.StudyPlans.AnyAsync() && students.Any())
-            {
-                var studyPlans = new Faker<StudyPlan>("en").RuleFor(x => x.Id, Guid.NewGuid).RuleFor(x => x.StudentId, f => f.PickRandom(students).Id).RuleFor(x => x.CourseId, f => f.PickRandom(courses).Id).RuleFor(x=>x.CreatedAt, f=>DateTime.UtcNow).RuleFor(x=>x.CreatedBy, "Seeder").Generate(50);
-                context.StudyPlans.AddRange(studyPlans);
-                await context.SaveChangesAsync();
-            }
+                    if (existingBuggyStudyPlans.Any())
+                    {
+                        var faker = new Faker();
+                        foreach (var sp in existingBuggyStudyPlans)
+                        {
+                            // Assign a random semester from Second to Eighth (1 to 7) to ensure they are varied
+                            // and fix the issue where everything is stuck on 0
+                            sp.Semester = (Rafeek.Domain.Enums.Semester)faker.Random.Int(1, 7);
+                        }
+                        context.StudyPlans.UpdateRange(existingBuggyStudyPlans);
+                        studyPlansSeededOrUpdated = true;
+                    }
+                }
 
-            if (!await context.StudentSupports.AnyAsync() && students.Any())
-            {
-                var supports = new Faker<StudentSupport>("en").RuleFor(x => x.Id, Guid.NewGuid).RuleFor(x => x.StudentId, f => f.PickRandom(students).Id).RuleFor(x => x.Title, f => f.Lorem.Sentence()).RuleFor(x => x.Description, f => f.Lorem.Paragraph()).RuleFor(x=>x.CreatedAt, f=>DateTime.UtcNow).RuleFor(x=>x.CreatedBy, "Seeder").Generate(50);
-                context.StudentSupports.AddRange(supports);
-                await context.SaveChangesAsync();
-            }
+                if (studyPlansSeededOrUpdated)
+                {
+                    await context.SaveChangesAsync();
+                }
+            });
 
-            if (!await context.Appointments.AnyAsync() && students.Any())
-            {
-                var appointmentsForSeed = new Faker<Appointment>("en")
-                    .RuleFor(x => x.Id, Guid.NewGuid)
-                    .RuleFor(x => x.StudentId, f => f.PickRandom(students).Id)
-                    .RuleFor(x => x.DoctorId, f => f.PickRandom(doctors).Id)
-                    .RuleFor(x => x.AppointmentDate, f => f.Date.Future())
-                    .RuleFor(x => x.StartTime, f => new TimeSpan(f.Random.Int(9, 15), 0, 0))
-                    .RuleFor(x => x.EndTime, (f, x) => x.StartTime.Add(new TimeSpan(0, 30, 0)))
-                    .RuleFor(x => x.Location, f => "Office " + f.Random.Number(100, 500))
-                    .RuleFor(x => x.Status, f => f.PickRandom<Rafeek.Domain.Enums.AppointmentStatus>())
-                    .RuleFor(x => x.Notes, f => f.Lorem.Sentence())
-                    .RuleFor(x => x.CreatedAt, f => DateTime.UtcNow)
-                    .RuleFor(x => x.CreatedBy, "Seeder")
-                    .Generate(50);
-                context.Appointments.AddRange(appointmentsForSeed);
-                await context.SaveChangesAsync();
-            }
+            // 13. Student Support & Appointments
+            await SeedStageAsync("Student Support & Appointments", async () => {
+                if (!await context.StudentSupports.AnyAsync() && students.Any())
+                {
+                    var supports = new Faker<StudentSupport>("en").RuleFor(x => x.Id, Guid.NewGuid).RuleFor(x => x.StudentId, f => f.PickRandom(students).Id).RuleFor(x => x.Title, f => f.Lorem.Sentence()).RuleFor(x => x.Description, f => f.Lorem.Paragraph()).RuleFor(x => x.CreatedAt, f => DateTime.UtcNow).RuleFor(x => x.CreatedBy, "Seeder").Generate(50);
+                    context.StudentSupports.AddRange(supports);
+                    await context.SaveChangesAsync();
+                }
 
-            if (!await context.DocumentRequests.AnyAsync() && students.Any())
-            {
-                var docsReqForSeed = new Faker<DocumentRequest>("en")
-                    .RuleFor(x => x.Id, Guid.NewGuid)
-                    .RuleFor(x => x.StudentId, f => f.PickRandom(students).Id)
-                    .RuleFor(x => x.DocumentType, f => f.PickRandom(new[] { "Transcript", "Enrollment Proof", "ID" }))
-                    .RuleFor(x => x.CreatedAt, f => DateTime.UtcNow)
-                    .RuleFor(x => x.CreatedBy, "Seeder")
-                    .Generate(50);
-                context.DocumentRequests.AddRange(docsReqForSeed);
-                await context.SaveChangesAsync();
-            }
+                if (!await context.Appointments.AnyAsync() && students.Any())
+                {
+                    var appointmentsForSeed = new Faker<Appointment>("en")
+                        .RuleFor(x => x.Id, Guid.NewGuid)
+                        .RuleFor(x => x.StudentId, f => f.PickRandom(students).Id)
+                        .RuleFor(x => x.DoctorId, f => f.PickRandom(doctors).Id)
+                        .RuleFor(x => x.AppointmentDate, f => f.Date.Future())
+                        .RuleFor(x => x.StartTime, f => new TimeSpan(f.Random.Int(9, 15), 0, 0))
+                        .RuleFor(x => x.EndTime, (f, x) => x.StartTime.Add(new TimeSpan(0, 30, 0)))
+                        .RuleFor(x => x.Location, f => "Office " + f.Random.Number(100, 500))
+                        .RuleFor(x => x.Status, f => f.PickRandom<Rafeek.Domain.Enums.AppointmentStatus>())
+                        .RuleFor(x => x.Notes, f => f.Lorem.Sentence())
+                        .RuleFor(x => x.CreatedAt, f => DateTime.UtcNow)
+                        .RuleFor(x => x.CreatedBy, "Seeder")
+                        .Generate(50);
+                    context.Appointments.AddRange(appointmentsForSeed);
+                    await context.SaveChangesAsync();
+                }
+            });
 
-            // 11. Learning Resources & Maps
-            if (!await context.LearningResources.AnyAsync() && courses.Any())
-            {
-                var resources = new Faker<LearningResource>("en").RuleFor(x => x.Id, Guid.NewGuid).RuleFor(x => x.CourseId, f => f.PickRandom(courses).Id).RuleFor(x=>x.CreatedAt, f=>DateTime.UtcNow).RuleFor(x=>x.CreatedBy, "Seeder").Generate(20);
-                context.LearningResources.AddRange(resources);
-                await context.SaveChangesAsync();
-            }
+            // 14. Documents, Learning Resources & Maps
+            await SeedStageAsync("Documents, Resources & Maps", async () => {
+                if (!await context.DocumentRequests.AnyAsync() && students.Any())
+                {
+                    var docsReqForSeed = new Faker<DocumentRequest>("en")
+                        .RuleFor(x => x.Id, Guid.NewGuid)
+                        .RuleFor(x => x.StudentId, f => f.PickRandom(students).Id)
+                        .RuleFor(x => x.DocumentType, f => f.PickRandom(new[] { "Transcript", "Enrollment Proof", "ID" }))
+                        .RuleFor(x => x.CreatedAt, f => DateTime.UtcNow)
+                        .RuleFor(x => x.CreatedBy, "Seeder")
+                        .Generate(50);
+                    context.DocumentRequests.AddRange(docsReqForSeed);
+                    await context.SaveChangesAsync();
+                }
 
-            if (!await context.CampusMapLocations.AnyAsync())
-            {
-                var maps = new Faker<CampusMapLocation>("en").RuleFor(x => x.Id, Guid.NewGuid).RuleFor(x => x.Place, f => f.Company.CompanyName()).RuleFor(x => x.Building, f => "Building " + f.Random.AlphaNumeric(1).ToUpper()).RuleFor(x => x.Floor, f => f.Random.Int(1, 5).ToString()).RuleFor(x=>x.CreatedAt, f=>DateTime.UtcNow).RuleFor(x=>x.CreatedBy, "Seeder").Generate(20);
-                context.CampusMapLocations.AddRange(maps);
-                await context.SaveChangesAsync();
-            }
+                if (!await context.LearningResources.AnyAsync() && courses.Any())
+                {
+                    var resources = new Faker<LearningResource>("en").RuleFor(x => x.Id, Guid.NewGuid).RuleFor(x => x.CourseId, f => f.PickRandom(courses).Id).RuleFor(x => x.CreatedAt, f => DateTime.UtcNow).RuleFor(x => x.CreatedBy, "Seeder").Generate(20);
+                    context.LearningResources.AddRange(resources);
+                    await context.SaveChangesAsync();
+                }
+
+                if (!await context.CampusMapLocations.AnyAsync())
+                {
+                    var maps = new Faker<CampusMapLocation>("en").RuleFor(x => x.Id, Guid.NewGuid).RuleFor(x => x.Place, f => f.Company.CompanyName()).RuleFor(x => x.Building, f => "Building " + f.Random.AlphaNumeric(1).ToUpper()).RuleFor(x => x.Floor, f => f.Random.Int(1, 5).ToString()).RuleFor(x => x.CreatedAt, f => DateTime.UtcNow).RuleFor(x => x.CreatedBy, "Seeder").Generate(20);
+                    context.CampusMapLocations.AddRange(maps);
+                    await context.SaveChangesAsync();
+                }
+            });
 
             // 12. Identity/User side entities (Notifications, Calendars)
-            Log("[Seeder] Stage 12: Seeding User-side entities...");
-            if (!await context.Notifications.AnyAsync() && users.Any())
-            {
-                var notifications = new Faker<Notification>("en").RuleFor(x => x.Id, Guid.NewGuid).RuleFor(x => x.UserId, f => f.PickRandom(users).Id).RuleFor(x => x.Title, f => f.Lorem.Sentence()).RuleFor(x => x.Message, f => f.Lorem.Paragraph()).RuleFor(x=>x.IsRead, f=>f.Random.Bool()).RuleFor(x=>x.CreatedAt, f=>DateTime.UtcNow).RuleFor(x=>x.CreatedBy, "Seeder").Generate(50);
-                context.Notifications.AddRange(notifications);
-                await context.SaveChangesAsync();
-            }
+            // 15. User-side entities (Notifications, RefreshTokens, Calendars, Chat & Reminders)
+            await SeedStageAsync("User-side entities", async () => {
+                if (!await context.Notifications.AnyAsync() && users.Any())
+                {
+                    var notifications = new Faker<Notification>("en").RuleFor(x => x.Id, Guid.NewGuid).RuleFor(x => x.UserId, f => f.PickRandom(users).Id).RuleFor(x => x.Title, f => f.Lorem.Sentence()).RuleFor(x => x.Message, f => f.Lorem.Paragraph()).RuleFor(x => x.IsRead, f => f.Random.Bool()).RuleFor(x => x.CreatedAt, f => DateTime.UtcNow).RuleFor(x => x.CreatedBy, "Seeder").Generate(50);
+                    context.Notifications.AddRange(notifications);
+                    await context.SaveChangesAsync();
+                }
 
-            if (!await context.UserCalendarPreferences.AnyAsync() && users.Any())
-            {
-                var userPreferences = users.Take(50).Select(u => new UserCalendarPreference { Id = Guid.NewGuid(), UserId = u.Id, CreatedAt = DateTime.UtcNow, CreatedBy = "Seeder" }).ToList();
-                context.UserCalendarPreferences.AddRange(userPreferences);
-                await context.SaveChangesAsync();
-            }
+                if (!await context.Reminders.AnyAsync() && users.Any())
+                {
+                    var reminders = new Faker<Reminder>("en")
+                        .RuleFor(x => x.Id, Guid.NewGuid)
+                        .RuleFor(x => x.UserId, f => f.PickRandom(users).Id)
+                        .RuleFor(x => x.Title, f => f.Lorem.Sentence())
+                        .RuleFor(x => x.Description, f => f.Lorem.Paragraph())
+                        .RuleFor(x => x.DueDate, f => f.Date.Future())
+                        .RuleFor(x => x.IsCompleted, f => f.Random.Bool())
+                        .RuleFor(x => x.CreatedAt, f => DateTime.UtcNow)
+                        .RuleFor(x => x.CreatedBy, "Seeder")
+                        .Generate(50);
+                    context.Reminders.AddRange(reminders);
+                    await context.SaveChangesAsync();
+                }
 
-            if (!await context.UserLoginHistories.AnyAsync() && users.Any())
-            {
-                var userLogins = new Faker<UserLoginHistory>("en").RuleFor(x => x.Id, Guid.NewGuid).RuleFor(x => x.UserId, f => f.PickRandom(users).Id).RuleFor(x=>x.LoginTime, f=>f.Date.Recent()).RuleFor(x=>x.CreatedAt, f=>DateTime.UtcNow).RuleFor(x=>x.CreatedBy, "Seeder").Generate(50);
-                context.UserLoginHistories.AddRange(userLogins);
-                await context.SaveChangesAsync();
-            }
+                if (!await context.ChatSessions.AnyAsync() && students.Any())
+                {
+                    var chatSessions = students.Take(20).Select(s => new ChatSession
+                    {
+                        Id = Guid.NewGuid(),
+                        UserId = s.UserId,
+                        Title = "Academic Session " + f.Date.Recent().ToShortDateString(),
+                        CreatedAt = DateTime.UtcNow,
+                        CreatedBy = "Seeder"
+                    }).ToList();
+                    context.ChatSessions.AddRange(chatSessions);
+                    await context.SaveChangesAsync();
 
-            if (!await context.FbTokens.AnyAsync() && users.Any())
-            {
-                var fbTokens = new Faker<UserFbTokens>("en").RuleFor(x => x.Id, Guid.NewGuid).RuleFor(x => x.UserId, f => f.PickRandom(users).Id).RuleFor(x => x.FbToken, f => f.Random.AlphaNumeric(64)).RuleFor(x=>x.CreatedAt, f=>DateTime.UtcNow).RuleFor(x=>x.CreatedBy, "Seeder").Generate(20);
-                context.FbTokens.AddRange(fbTokens);
-                await context.SaveChangesAsync();
-            }
-            
-            if (!await context.RefreshTokens.AnyAsync() && users.Any())
-            {
-                var refreshTokens = new Faker<RefreshToken>("en")
-                    .RuleFor(x => x.JwtId, f => Guid.NewGuid().ToString())
-                    .RuleFor(x => x.UserId, f => f.PickRandom(users).Id.ToString())
-                    .RuleFor(x => x.Token, f => f.Random.AlphaNumeric(32))
-                    .RuleFor(x => x.CreationDate, f => DateTime.UtcNow)
-                    .RuleFor(x => x.ExpirationDate, f => DateTime.UtcNow.AddDays(7))
-                    .RuleFor(x => x.RemoteIpAddress, f => f.Internet.Ip())
-                    .Generate(20);
-                context.RefreshTokens.AddRange(refreshTokens);
-                await context.SaveChangesAsync();
-            }
+                    // Now seed ChatbotQueries with valid Session IDs
+                    var sessionIds = chatSessions.Select(s => s.Id).ToList();
+                    var chatbot = new Faker<ChatbotQuery>("en")
+                        .RuleFor(x => x.Id, Guid.NewGuid)
+                        .RuleFor(x => x.StudentId, f => f.PickRandom(students).Id)
+                        .RuleFor(x => x.SessionId, f => f.PickRandom(sessionIds))
+                        .RuleFor(x => x.Query, f => f.Lorem.Sentence() + "?")
+                        .RuleFor(x => x.Response, f => f.Lorem.Sentence())
+                        .RuleFor(x => x.CreatedAt, f => DateTime.UtcNow)
+                        .RuleFor(x => x.CreatedBy, "Seeder").Generate(50);
+                    context.ChatbotQueries.AddRange(chatbot);
+                    await context.SaveChangesAsync();
+                }
 
-            if (!await context.AcademicCalendars.AnyAsync() && (users.Any() || instructors.Any()))
-            {
-                var targetSource = users.Any() ? users.Select(u => u.Id).ToList() : instructors.Select(i => i.UserId).ToList();
-                var calendars = new Faker<AcademicCalendar>("en")
-                    .RuleFor(x => x.Id, Guid.NewGuid)
-                    .RuleFor(x => x.TargetUserId, f => f.PickRandom(targetSource))
-                    .RuleFor(x => x.EventName, f => f.PickRandom(new[] { "Midterm Exam", "Final Project Due", "Academic Council Meeting", "Workshop: AI Ethics", "University Holiday" }))
-                    .RuleFor(x => x.Description, f => f.Lorem.Sentence())
-                    .RuleFor(x => x.EventDate, f => f.Date.Future())
-                    .RuleFor(x => x.EndDate, (f, x) => x.EventDate.AddDays(f.Random.Int(0, 2)))
-                    .RuleFor(x => x.StartTime, f => new TimeSpan(f.Random.Int(8, 16), 0, 0))
-                    .RuleFor(x => x.EndTime, (f, x) => x.StartTime.Add(new TimeSpan(f.Random.Int(1, 3), 0, 0)))
-                    .RuleFor(x => x.IsAllDay, f => f.Random.Bool(0.1f))
-                    .RuleFor(x => x.Location, f => "Main Hall " + f.Random.Number(1, 10))
-                    .RuleFor(x => x.EventType, f => f.PickRandom<Rafeek.Domain.Enums.AcademicCalendarEventType>())
-                    .RuleFor(x => x.Status, f => f.PickRandom<Rafeek.Domain.Enums.CalendarEventStatus>())
-                    .RuleFor(x => x.Visibility, f => f.PickRandom<Rafeek.Domain.Enums.EventVisibility>())
-                    .RuleFor(x => x.CreatedAt, f => DateTime.UtcNow)
-                    .RuleFor(x => x.CreatedBy, "Seeder")
-                    .Generate(50);
-                context.AcademicCalendars.AddRange(calendars);
-                await context.SaveChangesAsync();
-            }
+                if (!await context.UserCalendarPreferences.AnyAsync() && users.Any())
+                {
+                    var userPreferences = users.Take(50).Select(u => new UserCalendarPreference { Id = Guid.NewGuid(), UserId = u.Id, CreatedAt = DateTime.UtcNow, CreatedBy = "Seeder" }).ToList();
+                    context.UserCalendarPreferences.AddRange(userPreferences);
+                    await context.SaveChangesAsync();
+                }
+
+                if (!await context.UserLoginHistories.AnyAsync() && users.Any())
+                {
+                    var userLogins = new Faker<UserLoginHistory>("en").RuleFor(x => x.Id, Guid.NewGuid).RuleFor(x => x.UserId, f => f.PickRandom(users).Id).RuleFor(x => x.LoginTime, f => f.Date.Recent()).RuleFor(x => x.CreatedAt, f => DateTime.UtcNow).RuleFor(x => x.CreatedBy, "Seeder").Generate(50);
+                    context.UserLoginHistories.AddRange(userLogins);
+                    await context.SaveChangesAsync();
+                }
+
+                if (!await context.RefreshTokens.AnyAsync() && users.Any())
+                {
+                    var refreshTokens = new Faker<RefreshToken>("en")
+                        .RuleFor(x => x.JwtId, f => Guid.NewGuid().ToString())
+                        .RuleFor(x => x.UserId, f => f.PickRandom(users).Id.ToString())
+                        .RuleFor(x => x.Token, f => f.Random.AlphaNumeric(32))
+                        .RuleFor(x => x.CreationDate, f => DateTime.UtcNow)
+                        .RuleFor(x => x.ExpirationDate, f => DateTime.UtcNow.AddDays(7))
+                        .RuleFor(x => x.RemoteIpAddress, f => f.Internet.Ip())
+                        .Generate(20);
+                    context.RefreshTokens.AddRange(refreshTokens);
+                    await context.SaveChangesAsync();
+                }
+
+                if (!await context.AcademicCalendars.AnyAsync() && (users.Any() || instructors.Any()))
+                {
+                    var targetSource = users.Any() ? users.Select(u => u.Id).ToList() : instructors.Select(i => i.UserId).ToList();
+                    var calendars = new Faker<AcademicCalendar>("en")
+                        .RuleFor(x => x.Id, Guid.NewGuid)
+                        .RuleFor(x => x.TargetUserId, f => f.PickRandom(targetSource))
+                        .RuleFor(x => x.EventName, f => f.PickRandom(new[] { "Midterm Exam", "Final Project Due", "Academic Council Meeting", "Workshop: AI Ethics", "University Holiday" }))
+                        .RuleFor(x => x.Description, f => f.Lorem.Sentence())
+                        .RuleFor(x => x.EventDate, f => f.Date.Future())
+                        .RuleFor(x => x.EndDate, (f, x) => x.EventDate.AddDays(f.Random.Int(0, 2)))
+                        .RuleFor(x => x.StartTime, f => new TimeSpan(f.Random.Int(8, 16), 0, 0))
+                        .RuleFor(x => x.EndTime, (f, x) => x.StartTime.Add(new TimeSpan(f.Random.Int(1, 3), 0, 0)))
+                        .RuleFor(x => x.IsAllDay, f => f.Random.Bool(0.1f))
+                        .RuleFor(x => x.Location, f => "Main Hall " + f.Random.Number(1, 10))
+                        .RuleFor(x => x.EventType, f => f.PickRandom<Rafeek.Domain.Enums.AcademicCalendarEventType>())
+                        .RuleFor(x => x.Status, f => f.PickRandom<Rafeek.Domain.Enums.CalendarEventStatus>())
+                        .RuleFor(x => x.Visibility, f => f.PickRandom<Rafeek.Domain.Enums.EventVisibility>())
+                        .RuleFor(x => x.CreatedAt, f => DateTime.UtcNow)
+                        .RuleFor(x => x.CreatedBy, "Seeder")
+                        .Generate(50);
+                    context.AcademicCalendars.AddRange(calendars);
+                    await context.SaveChangesAsync();
+                }
+            });
 
             await context.SaveChangesAsync();
         }

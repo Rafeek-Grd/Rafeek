@@ -1,6 +1,4 @@
 using MediatR;
-using Microsoft.AspNetCore.Authorization;
-using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 using Rafeek.API.Filters;
@@ -11,8 +9,13 @@ using Rafeek.Application.Handlers.AIHandlers.Queries.GetAICourseRecommendations;
 using Rafeek.Application.Handlers.AIHandlers.Commands.GenerateAITimetable;
 using Rafeek.Application.Localization;
 using Rafeek.Domain.Enums;
-using Rafeek.Application.Handlers.StudentHandlers.DTOs;
 using Rafeek.Application.Handlers.StudentHandlers.Query.GetChatHistory;
+using Rafeek.Application.Handlers.CareerHandlers.Queries.GetCareerSuggestionsByStudent;
+using Rafeek.Application.Handlers.StudyPlanHandlers.Queries.GetStudyPlanByStudent;
+using Rafeek.Application.Handlers.LearningResourceHandlers.Queries.GetAllLearningResources;
+using Rafeek.Application.Handlers.AIHandlers.DTOs;
+using Rafeek.Application.Handlers.StudentHandlers.Query.GetAiSessions;
+using Rafeek.Application.Handlers.StudentHandlers.Commands.AskAi;
 
 namespace Rafeek.API.Controllers.Version1
 {
@@ -78,11 +81,11 @@ namespace Rafeek.API.Controllers.Version1
         /// <param name="command"></param>
         /// <returns></returns>
         [HttpPost]
-        [Authorize]
+        [RoleAuthorize]
         [Route(ApiRoutes.AiIntegration.AskAi)]
-        [ProducesResponseType(typeof(AiChatResponseDto), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> AskAiChat([FromBody] Rafeek.Application.Handlers.StudentHandlers.Commands.AskAi.AskAiCommand command)
+        public async Task<IActionResult> AskAiChat([FromBody] AskAiCommand command)
         {
             var result = await _mediator.Send(command);
             return Ok(result);
@@ -93,32 +96,77 @@ namespace Rafeek.API.Controllers.Version1
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [Authorize]
+        [RoleAuthorize]
         [Route(ApiRoutes.AiIntegration.GetAiSessions)]
-        [ProducesResponseType(typeof(List<AiSessionDto>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetAiSessions()
         {
-            var result = await _mediator.Send(new Rafeek.Application.Handlers.StudentHandlers.Query.GetAiSessions.GetAiSessionsQuery());
+            var result = await _mediator.Send(new GetAiSessionsQuery());
             return Ok(result);
         }
 
         /// <summary>
-        /// Get the chat history of the currently logged-in student with the AI Chatbot.
+        /// Get Chat History for a specific AI Chatbot session, with pagination support.
         /// </summary>
-        /// <param name="sessionId">The ID of the session to get history for (optional)</param>
-        /// <param name="page">Page number (default: 1)</param>
-        /// <param name="pageSize">Number of items per page (default: 20)</param>
+        /// <param name="query"></param>
         /// <returns></returns>
         [HttpGet]
-        [Authorize]
+        [RoleAuthorize]
         [Route(ApiRoutes.AiIntegration.GetChatHistory)]
         [ProducesResponseType(typeof(List<ChatHistoryDto>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> GetChatHistory([FromQuery] Guid? sessionId, [FromQuery] int page = 1, [FromQuery] int pageSize = 20)
+        public async Task<IActionResult> GetChatHistory([FromQuery] GetChatHistoryQuery query)
         {
-            var query = new GetChatHistoryQuery { SessionId = sessionId, Page = page, PageSize = pageSize };
             var result = await _mediator.Send(query);
+            return Ok(result);
+        }
+
+        /// <summary>
+        /// Get AI-driven career suggestions for a student.
+        /// </summary>
+        /// <param name="studentId"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [RoleAuthorize(nameof(UserType.Student))]
+        [Route(ApiRoutes.CareerSuggestion.GetByStudent)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> GetCareerSuggestionsByStudent(Guid studentId)
+        {
+            var result = await _mediator.Send(new GetCareerSuggestionsByStudentQuery { StudentId = studentId });
+            return Ok(result);
+        }
+
+        /// <summary>
+        /// Get Study Plan for a student.
+        /// </summary>
+        /// <param name="studentId"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [RoleAuthorize(nameof(UserType.Student))]
+        [Route(ApiRoutes.StudyPlan.GetByStudent)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> GetStudyPlansByStudent(Guid studentId)
+        {
+            var result = await _mediator.Send(new GetStudyPlanByStudentQueryPagginated { StudentId = studentId });
+            return Ok(result);
+        }
+
+        /// <summary>
+        /// Get All Learning Resources/
+        /// </summary>
+        /// <param name="resourceType"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [RoleAuthorize]
+        [Route(ApiRoutes.LearningResource.GetAll)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> GetAllLearningResources([FromQuery] ResourceType? resourceType)
+        {
+            var result = await _mediator.Send(new GetAllLearningResourcesQueryPagginated { ResourceType = resourceType });
             return Ok(result);
         }
     }

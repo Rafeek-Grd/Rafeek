@@ -1,5 +1,5 @@
 using MediatR;
-using Rafeek.Application.Handlers.StudentHandlers.DTOs;
+using Rafeek.Application.Handlers.AIHandlers.DTOs;
 
 namespace Rafeek.Application.Handlers.StudentHandlers.Query.GetAiSessions
 {

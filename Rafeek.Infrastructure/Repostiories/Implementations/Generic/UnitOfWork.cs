@@ -1,6 +1,5 @@
 using Microsoft.EntityFrameworkCore.Storage;
 using Rafeek.Application.Common.Interfaces;
-using Rafeek.Domain.Repositories;
 using Rafeek.Domain.Repositories.Interfaces;
 using Rafeek.Domain.Repositories.Interfaces.Generic;
 
@@ -27,6 +26,13 @@ namespace Rafeek.Infrastructure.Repostiories.Implementations.Generic
         private StudentAcademicProfileRepository? _studentAcademicProfileRepository;
         private AITimetableRepository? _aiTimetableRepository;
         private AITimetableItemRepository? _aiTimetableItemRepository;
+        private ReminderRepository? _reminderRepository;
+        private CareerSuggestionRepository? _careerSuggestionRepository;
+        private StudyPlanRepository? _studyPlanRepository;
+        private LearningResourceRepository? _learningResourceRepository;
+        private GPASimulatorLogRepository? _gpaSimulatorLogRepository;
+        private DocumentRequestRepository? _documentRequestRepository;
+        private SectionRepository? _sectionRepository;
 
         public UnitOfWork(
             IRafeekDbContext context,
@@ -53,7 +59,14 @@ namespace Rafeek.Infrastructure.Repostiories.Implementations.Generic
         public IStudentAcademicProfileRepository StudentAcademicProfileRepository => _studentAcademicProfileRepository ??= new StudentAcademicProfileRepository(_context);
         public IAITimetableRepository AITimetableRepository => _aiTimetableRepository ??= new AITimetableRepository(_context);
         public IAITimetableItemRepository AITimetableItemRepository => _aiTimetableItemRepository ??= new AITimetableItemRepository(_context);
+        public IReminderRepository ReminderRepository => _reminderRepository ??= new ReminderRepository(_context);
+        public ICareerSuggestionRepository CareerSuggestionRepository => _careerSuggestionRepository ??= new CareerSuggestionRepository(_context);
+        public IStudyPlanRepository StudyPlanRepository => _studyPlanRepository ??= new StudyPlanRepository(_context);
+        public ILearningResourceRepository LearningResourceRepository => _learningResourceRepository ??= new LearningResourceRepository(_context);
+        public IGPASimulatorLogRepository GPASimulatorLogRepository => _gpaSimulatorLogRepository ??= new GPASimulatorLogRepository(_context);
+        public IDocumentRequestRepository DocumentRequestRepository => _documentRequestRepository ??= new DocumentRequestRepository(_context);
 
+        public ISectionRepository SectionRepository => _sectionRepository ??= new SectionRepository(_context);
         public async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
             return await _context.SaveChangesAsync(cancellationToken);

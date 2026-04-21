@@ -1,5 +1,8 @@
 using AutoMapper;
 using Rafeek.Application.Common.Models.AI;
+using Rafeek.Application.Handlers.CareerHandlers.DTOs;
+using Rafeek.Application.Handlers.LearningResourceHandlers.DTOs;
+using Rafeek.Application.Handlers.StudyPlanHandlers.DTOs;
 using Rafeek.Domain.Entities;
 
 namespace Rafeek.Application.Mappings
@@ -25,6 +28,10 @@ namespace Rafeek.Application.Mappings
                 .ForMember(dest => dest.Priority, opt => opt.MapFrom(src => src.Priority))
                 .ForMember(dest => dest.Capacity, opt => opt.MapFrom(src => src.Capacity))
                 .ForMember(dest => dest.AvailableSeats, opt => opt.MapFrom(src => src.AvailableSeats));
+
+            CreateMap<CareerSuggestion, CareerSuggestionDto>();
+            CreateMap<StudyPlan, StudyPlanDto>();
+            CreateMap<LearningResource, LearningResourceDto>();
         }
     }
 }

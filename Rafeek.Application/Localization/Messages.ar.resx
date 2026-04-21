@@ -503,4 +503,62 @@
 	<data name="RateLimit_Exceeded" xml:space="preserve">
 		<value>تم تجاوز الحد المسموح به. يمكنك إنشاء 3 جداول فقط كل ساعة.</value>
 	</data>
+
+	<!-- Reminder -->
+	<data name="Reminder_TitleRequired" xml:space="preserve">
+		<value>عنوان التذكير مطلوب.</value>
+	</data>
+	<data name="Reminder_TitleMaxLength" xml:space="preserve">
+		<value>عنوان التذكير يجب ألا يتجاوز 200 حرف.</value>
+	</data>
+	<data name="Reminder_DueDateRequired" xml:space="preserve">
+		<value>تاريخ استحقاق التذكير مطلوب.</value>
+	</data>
+	<data name="Reminder_IdRequired" xml:space="preserve">
+		<value>مُعرف التذكير مطلوب.</value>
+	</data>
+	<data name="Reminder_NotFound" xml:space="preserve">
+		<value>التذكير غير موجود.</value>
+	</data>
+
+	<!-- Course / Enrollment -->
+	<data name="StudentProfileNotFound" xml:space="preserve">
+		<value>الملف الشخصي للطالب غير موجود.</value>
+	</data>
+	<data name="Course_NotFound" xml:space="preserve">
+		<value>المادة الدراسية غير موجودة.</value>
+	</data>
+	<data name="Course_IdRequired" xml:space="preserve">
+		<value>مُعرف المادة الدراسية مطلوب.</value>
+	</data>
+	<data name="Course_SectionIdRequired" xml:space="preserve">
+		<value>مُعرف الشعبة مطلوب.</value>
+	</data>
+	<data name="Course_AlreadyEnrolled" xml:space="preserve">
+		<value>أنت مسجل بالفعل في هذه المادة.</value>
+	</data>
+	<data name="Course_EnrollmentNotFound" xml:space="preserve">
+		<value>لم يتم العثور على تسجيل لك في هذه المادة.</value>
+	</data>
+	<data name="Course_SectionNotFound" xml:space="preserve">
+		<value>الشعبة غير موجودة.</value>
+	</data>
+	<data name="Course_CodeRequired" xml:space="preserve">
+		<value>رمز المادة مطلوب.</value>
+	</data>
+	<data name="Course_CodeMaxLength" xml:space="preserve">
+		<value>رمز المادة يجب ألا يتجاوز 50 حرفًا.</value>
+	</data>
+	<data name="Course_TitleRequired" xml:space="preserve">
+		<value>اسم المادة مطلوب.</value>
+	</data>
+	<data name="Course_TitleMaxLength" xml:space="preserve">
+		<value>اسم المادة يجب ألا يتجاوز 200 حرف.</value>
+	</data>
+	<data name="Course_CreditHoursRequired" xml:space="preserve">
+		<value>عدد الساعات المعتمدة مطلوب.</value>
+	</data>
+	<data name="Course_CreditHoursInvalid" xml:space="preserve">
+		<value>يجب أن يكون عدد الساعات المعتمدة بين 1 و 10.</value>
+	</data>
 </root>

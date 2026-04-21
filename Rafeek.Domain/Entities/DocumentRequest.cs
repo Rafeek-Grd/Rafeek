@@ -1,4 +1,4 @@
-﻿using Rafeek.Domain.Common;
+using Rafeek.Domain.Common;
 using Rafeek.Domain.Enums;
 
 namespace Rafeek.Domain.Entities
@@ -7,6 +7,7 @@ namespace Rafeek.Domain.Entities
     {
         public string DocumentType { get; set; } = string.Empty;
         public DocumentStatus Status { get; set; }
+        public string? Remarks { get; set; }
         public Guid StudentId { get; set; }
         public Student Student { get; set; } = null!;
     }
