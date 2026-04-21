@@ -71,22 +71,6 @@ namespace Rafeek.API.Controllers.Version1
         }
 
         /// <summary>
-        /// Retrieves all courses with pagination and optional search filter.
-        /// </summary>
-        /// <param name="query"></param>
-        /// <returns></returns>
-        [HttpGet]
-        [RoleAuthorize]
-        [Route(ApiRoutes.Course.GetAllPagginated)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> GetAllPagginated([FromQuery] GetAllCoursesPaginatedQuery query)
-        {
-            var result = await _mediator.Send(query);
-            return Ok(result);
-        }
-
-        /// <summary>
         /// Get All Courses Pagginated
         /// </summary>
         /// <param name="query"></param>
@@ -99,22 +83,6 @@ namespace Rafeek.API.Controllers.Version1
         public async Task<IActionResult> GetAllCoursesPagginated([FromQuery] GetCoursesQueryPagginated query)
         {
             var result = await _mediator.Send(query);
-            return Ok(result);
-        }
-
-        /// <summary>
-        /// Retrieves a single course by its ID.
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        [HttpGet]
-        [RoleAuthorize]
-        [Route(ApiRoutes.Course.GetById)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> GetById(Guid id)
-        {
-            var result = await _mediator.Send(new GetCourseByIdQuery { Id = id });
             return Ok(result);
         }
 
