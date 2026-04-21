@@ -8,9 +8,9 @@ using Rafeek.Application.Handlers.CourseHandlers.Commands.DeleteCourse;
 using Rafeek.Application.Handlers.CourseHandlers.Commands.UpdateCourse;
 using Rafeek.Application.Handlers.CourseHandlers.Commands.DropCourse;
 using Rafeek.Application.Handlers.CourseHandlers.Commands.EnrollStudent;
-using Rafeek.Application.Handlers.CourseHandlers.Queries.GetAllCoursesPaginated;
-using Rafeek.Application.Handlers.CourseHandlers.Queries.GetCourseById;
 using Rafeek.Application.Localization;
+using Rafeek.Application.Handlers.CourseHandlers.Queries.GetCourses;
+using Rafeek.Application.Handlers.CourseHandlers.Queries.GetCourseDetail;
 
 namespace Rafeek.API.Controllers.Version1
 {
@@ -87,6 +87,22 @@ namespace Rafeek.API.Controllers.Version1
         }
 
         /// <summary>
+        /// Get All Courses Pagginated
+        /// </summary>
+        /// <param name="query"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [RoleAuthorize]
+        [Route(ApiRoutes.Courses.GetAll)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> GetAllCoursesPagginated([FromQuery] GetCoursesQueryPagginated query)
+        {
+            var result = await _mediator.Send(query);
+            return Ok(result);
+        }
+
+        /// <summary>
         /// Retrieves a single course by its ID.
         /// </summary>
         /// <param name="id"></param>
@@ -131,6 +147,27 @@ namespace Rafeek.API.Controllers.Version1
         public async Task<IActionResult> Drop([FromBody] DropCourseCommand command)
         {
             var result = await _mediator.Send(command);
+            return Ok(result);
+        }
+
+        /// <summary>
+        /// Get Course Details.
+        /// </summary>
+        /// <param name="courseId"></param>
+        /// <param name="studentId"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [RoleAuthorize]
+        [Route(ApiRoutes.Courses.GetDetail)]
+        [ProducesResponseType( StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> GetCourseDetail([FromRoute] Guid courseId,[FromQuery] Guid? studentId)
+        {
+            var result = await _mediator.Send(new GetCourseDetailQuery
+            {
+                CourseId = courseId,
+                StudentId = studentId
+            });
             return Ok(result);
         }
     }
