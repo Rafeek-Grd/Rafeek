@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
 	<xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
 				xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
@@ -619,4 +619,34 @@
 	<data name="Course_CreditHoursInvalid" xml:space="preserve">
 	<value>Credit hours must be between 1 and 10.</value>
 	</data>
+	<data name="InstructorUserIdRequired" xml:space="preserve">
+	<value>Instructor user ID is required.</value>
+	</data>
+  <data name="Assignment_TitleRequired" xml:space="preserve">
+    <value>Assignment title is required.</value>
+  </data>
+  <data name="Assignment_TitleMaxLength" xml:space="preserve">
+    <value>Assignment title must not exceed 200 characters.</value>
+  </data>
+  <data name="Assignment_DescriptionRequired" xml:space="preserve">
+    <value>Assignment description is required.</value>
+  </data>
+  <data name="Assignment_DueDateRequired" xml:space="preserve">
+    <value>Due date is required.</value>
+  </data>
+  <data name="Assignment_DueDateMustBeFuture" xml:space="preserve">
+    <value>Due date must be in the future.</value>
+  </data>
+  <data name="Assignment_TotalScoreInvalid" xml:space="preserve">
+    <value>Total score must be greater than 0.</value>
+  </data>
+  <data name="Assignment_NotFound" xml:space="preserve">
+    <value>Assignment not found.</value>
+  </data>
+  <data name="Assignment_SubmissionIdRequired" xml:space="preserve">
+    <value>Submission ID is required.</value>
+  </data>
+  <data name="Assignment_ScoreInvalid" xml:space="preserve">
+    <value>Score must be 0 or greater.</value>
+  </data>
 </root>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -123,442 +123,472 @@
       Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="PlaceNotValid" xml:space="preserve">
-    <value>مكان الملف غير صالح.</value>
+    <value>Ù…ÙƒØ§Ù† Ø§Ù„Ù…Ù„Ù ØºÙŠØ± ØµØ§Ù„Ø­.</value>
   </data>
   <data name="PlaceNotSupported" xml:space="preserve">
-    <value>الملف غير مدعوم.</value>
+    <value>Ø§Ù„Ù…Ù„Ù ØºÙŠØ± Ù…Ø¯Ø¹ÙˆÙ….</value>
   </data>
   <data name="FilePalceNotValid" xml:space="preserve">
-    <value>مكان الملف غير صالح.</value>
+    <value>Ù…ÙƒØ§Ù† Ø§Ù„Ù…Ù„Ù ØºÙŠØ± ØµØ§Ù„Ø­.</value>
   </data>
   <data name="FileNotFound" xml:space="preserve">
-    <value>الملف غير موجود.</value>
+    <value>Ø§Ù„Ù…Ù„Ù ØºÙŠØ± Ù…ÙˆØ¬ÙˆØ¯.</value>
   </data>
   <data name="FileNameRequried" xml:space="preserve">
-    <value>اسم الملف مطلوب.</value>
+    <value>Ø§Ø³Ù… Ø§Ù„Ù…Ù„Ù Ù…Ø·Ù„ÙˆØ¨.</value>
   </data>
   <data name="FileNotValid" xml:space="preserve">
-    <value>الملف ليس من الامتداد الصحيح أو غير موجود.</value>
+    <value>Ø§Ù„Ù…Ù„Ù Ù„ÙŠØ³ Ù…Ù† Ø§Ù„Ø§Ù…ØªØ¯Ø§Ø¯ Ø§Ù„ØµØ­ÙŠØ­ Ø£Ùˆ ØºÙŠØ± Ù…ÙˆØ¬ÙˆØ¯.</value>
   </data>
   <data name="FileUploadFailed" xml:space="preserve">
-    <value>فشل رفع الملف.</value>
+    <value>ÙØ´Ù„ Ø±ÙØ¹ Ø§Ù„Ù…Ù„Ù.</value>
   </data>
   <data name="FaildToDeleted" xml:space="preserve">
-    <value>فشل إزالة الملف.</value>
+    <value>ÙØ´Ù„ Ø¥Ø²Ø§Ù„Ø© Ø§Ù„Ù…Ù„Ù.</value>
   </data>
   <data name="OkActionResultMessage" xml:space="preserve">
-    <value>تم تنفيذ العملية بنجاح.</value>
+    <value>ØªÙ… ØªÙ†ÙÙŠØ° Ø§Ù„Ø¹Ù…Ù„ÙŠØ© Ø¨Ù†Ø¬Ø§Ø­.</value>
   </data>
   <data name="CreatedActionResultMessage" xml:space="preserve">
-    <value>تم الإنشاء بنجاح.</value>
+    <value>ØªÙ… Ø§Ù„Ø¥Ù†Ø´Ø§Ø¡ Ø¨Ù†Ø¬Ø§Ø­.</value>
   </data>
   <data name="AcceptedActionResultMessage" xml:space="preserve">
-    <value>تم قبول الطلب بنجاح.</value>
+    <value>ØªÙ… Ù‚Ø¨ÙˆÙ„ Ø§Ù„Ø·Ù„Ø¨ Ø¨Ù†Ø¬Ø§Ø­.</value>
   </data>
   <data name="DeletedActionResultMessage" xml:space="preserve">
-    <value>تم الحذف بنجاح.</value>
+    <value>ØªÙ… Ø§Ù„Ø­Ø°Ù Ø¨Ù†Ø¬Ø§Ø­.</value>
   </data>
   <data name="ValidationExceptionMessage" xml:space="preserve">
-    <value>حدث استثناء في التحقق.</value>
+    <value>Ø­Ø¯Ø« Ø§Ø³ØªØ«Ù†Ø§Ø¡ ÙÙŠ Ø§Ù„ØªØ­Ù‚Ù‚.</value>
   </data>
   <data name="InvalidModelStateExceptionMessage" xml:space="preserve">
-    <value>حالة النموذج غير صالحة.</value>
+    <value>Ø­Ø§Ù„Ø© Ø§Ù„Ù†Ù…ÙˆØ°Ø¬ ØºÙŠØ± ØµØ§Ù„Ø­Ø©.</value>
   </data>
   <data name="NotFoundExceptionMessage" xml:space="preserve">
-    <value>المورد المطلوب غير موجود.</value>
+    <value>Ø§Ù„Ù…ÙˆØ±Ø¯ Ø§Ù„Ù…Ø·Ù„ÙˆØ¨ ØºÙŠØ± Ù…ÙˆØ¬ÙˆØ¯.</value>
   </data>
   <data name="BadRequestExceptionMessage" xml:space="preserve">
-    <value>طلب غير صالح.</value>
+    <value>Ø·Ù„Ø¨ ØºÙŠØ± ØµØ§Ù„Ø­.</value>
   </data>
   <data name="UnauthorizedExceptionMessage" xml:space="preserve">
-    <value>دخول غير مصرح به.</value>
+    <value>Ø¯Ø®ÙˆÙ„ ØºÙŠØ± Ù…ØµØ±Ø­ Ø¨Ù‡.</value>
   </data>
   <data name="UnknownExceptionMessage" xml:space="preserve">
-    <value>حدث خطأ غير معروف.</value>
+    <value>Ø­Ø¯Ø« Ø®Ø·Ø£ ØºÙŠØ± Ù…Ø¹Ø±ÙˆÙ.</value>
   </data>
   <data name="TokenNotValid" xml:space="preserve">
-    <value>التوكن غير صالح.</value>
+    <value>Ø§Ù„ØªÙˆÙƒÙ† ØºÙŠØ± ØµØ§Ù„Ø­.</value>
   </data>
   <data name="InvalidSignIn" xml:space="preserve">
-    <value>الايميل او كلمة المرور غير صالحة.</value>
+    <value>Ø§Ù„Ø§ÙŠÙ…ÙŠÙ„ Ø§Ùˆ ÙƒÙ„Ù…Ø© Ø§Ù„Ù…Ø±ÙˆØ± ØºÙŠØ± ØµØ§Ù„Ø­Ø©.</value>
   </data>
   <data name="NationalNumberExist" xml:space="preserve">
-    <value>الرقم القومي محجوز بالفعل.</value>
+    <value>Ø§Ù„Ø±Ù‚Ù… Ø§Ù„Ù‚ÙˆÙ…ÙŠ Ù…Ø­Ø¬ÙˆØ² Ø¨Ø§Ù„ÙØ¹Ù„.</value>
   </data>
   <data name="PhoneNumberExist" xml:space="preserve">
-    <value>رقم الهاتف محجوز بالفعل.</value>
+    <value>Ø±Ù‚Ù… Ø§Ù„Ù‡Ø§ØªÙ Ù…Ø­Ø¬ÙˆØ² Ø¨Ø§Ù„ÙØ¹Ù„.</value>
   </data>
   <data name="UserCodeExist" xml:space="preserve">
-    <value>حقل كلمة السر مطلوب.</value>
+    <value>Ø­Ù‚Ù„ ÙƒÙ„Ù…Ø© Ø§Ù„Ø³Ø± Ù…Ø·Ù„ÙˆØ¨.</value>
   </data>
   <data name="PhoneInvalid" xml:space="preserve">
-    <value>رقم الهاتف غير صالح</value>
+    <value>Ø±Ù‚Ù… Ø§Ù„Ù‡Ø§ØªÙ ØºÙŠØ± ØµØ§Ù„Ø­</value>
   </data>
   <data name="EmailInvalid" xml:space="preserve">
-    <value>الايميل غير صالح.</value>
+    <value>Ø§Ù„Ø§ÙŠÙ…ÙŠÙ„ ØºÙŠØ± ØµØ§Ù„Ø­.</value>
   </data>
   <data name="EmailAlreadyExistedbefore" xml:space="preserve">
-    <value>المستخدم موجود بالفعل</value>
+    <value>Ø§Ù„Ù…Ø³ØªØ®Ø¯Ù… Ù…ÙˆØ¬ÙˆØ¯ Ø¨Ø§Ù„ÙØ¹Ù„</value>
   </data>
   <data name="GenderIsNotValid" xml:space="preserve">
-    <value>الجنس غير صالح.</value>
+    <value>Ø§Ù„Ø¬Ù†Ø³ ØºÙŠØ± ØµØ§Ù„Ø­.</value>
   </data>
   <data name="PasswordRequired" xml:space="preserve">
-    <value>كلمة السر مطلوبة</value>
+    <value>ÙƒÙ„Ù…Ø© Ø§Ù„Ø³Ø± Ù…Ø·Ù„ÙˆØ¨Ø©</value>
   </data>
   <data name="PasswordValid" xml:space="preserve">
-    <value>كلمة السر اما ضعيفة أو قد لا تستوفي المعايير المطلوبة.</value>
+    <value>ÙƒÙ„Ù…Ø© Ø§Ù„Ø³Ø± Ø§Ù…Ø§ Ø¶Ø¹ÙŠÙØ© Ø£Ùˆ Ù‚Ø¯ Ù„Ø§ ØªØ³ØªÙˆÙÙŠ Ø§Ù„Ù…Ø¹Ø§ÙŠÙŠØ± Ø§Ù„Ù…Ø·Ù„ÙˆØ¨Ø©.</value>
   </data>
   <data name="PasswordResetFailed" xml:space="preserve">
-    <value>فشل إعادة تعيين كلمة السر.</value>
+    <value>ÙØ´Ù„ Ø¥Ø¹Ø§Ø¯Ø© ØªØ¹ÙŠÙŠÙ† ÙƒÙ„Ù…Ø© Ø§Ù„Ø³Ø±.</value>
   </data>
   <data name="PasswordConfirmNotEqual" xml:space="preserve">
-    <value>حقل تاكيد كلمة السر لايتطابق مع حقل كلمة السر.</value>
+    <value>Ø­Ù‚Ù„ ØªØ§ÙƒÙŠØ¯ ÙƒÙ„Ù…Ø© Ø§Ù„Ø³Ø± Ù„Ø§ÙŠØªØ·Ø§Ø¨Ù‚ Ù…Ø¹ Ø­Ù‚Ù„ ÙƒÙ„Ù…Ø© Ø§Ù„Ø³Ø±.</value>
   </data>
   <data name="FullNameRequired" xml:space="preserve">
-    <value>الاسم مطلوب.</value>
+    <value>Ø§Ù„Ø§Ø³Ù… Ù…Ø·Ù„ÙˆØ¨.</value>
   </data>
   <data name="PhoneRequired" xml:space="preserve">
-    <value>رقم الهاتف مطلوب.</value>
+    <value>Ø±Ù‚Ù… Ø§Ù„Ù‡Ø§ØªÙ Ù…Ø·Ù„ÙˆØ¨.</value>
   </data>
   <data name="EmailRequired" xml:space="preserve">
-    <value>الايميل مطلوب.</value>
+    <value>Ø§Ù„Ø§ÙŠÙ…ÙŠÙ„ Ù…Ø·Ù„ÙˆØ¨.</value>
   </data>
   <data name="NationalNumberRequired" xml:space="preserve">
-    <value>الرقم القومي مطلوب.</value>
+    <value>Ø§Ù„Ø±Ù‚Ù… Ø§Ù„Ù‚ÙˆÙ…ÙŠ Ù…Ø·Ù„ÙˆØ¨.</value>
   </data>
   <data name="PasswordMinLength" xml:space="preserve">
-    <value>الباسورد يجب ان تكون علي الاقل 8 حروف.</value>
+    <value>Ø§Ù„Ø¨Ø§Ø³ÙˆØ±Ø¯ ÙŠØ¬Ø¨ Ø§Ù† ØªÙƒÙˆÙ† Ø¹Ù„ÙŠ Ø§Ù„Ø§Ù‚Ù„ 8 Ø­Ø±ÙˆÙ.</value>
   </data>
   <data name="EmailDomainInvalid" xml:space="preserve">
-    <value>الايمل ينتهي بدومين غير صالح.</value>
+    <value>Ø§Ù„Ø§ÙŠÙ…Ù„ ÙŠÙ†ØªÙ‡ÙŠ Ø¨Ø¯ÙˆÙ…ÙŠÙ† ØºÙŠØ± ØµØ§Ù„Ø­.</value>
   </data>
   <data name="InvalidContentType" xml:space="preserve">
-    <value>نوع محتوي الملف غير صالح.</value>
+    <value>Ù†ÙˆØ¹ Ù…Ø­ØªÙˆÙŠ Ø§Ù„Ù…Ù„Ù ØºÙŠØ± ØµØ§Ù„Ø­.</value>
   </data>
   <data name="FailedSignUp" xml:space="preserve">
-    <value>فشل تسجيل هذا المستخدم.</value>
+    <value>ÙØ´Ù„ ØªØ³Ø¬ÙŠÙ„ Ù‡Ø°Ø§ Ø§Ù„Ù…Ø³ØªØ®Ø¯Ù….</value>
   </data>
   <data name="UniversityCodeMultipleAttemps" xml:space="preserve">
-    <value>فشل توليد الكود جامعي جديد.</value>
+    <value>ÙØ´Ù„ ØªÙˆÙ„ÙŠØ¯ Ø§Ù„ÙƒÙˆØ¯ Ø¬Ø§Ù…Ø¹ÙŠ Ø¬Ø¯ÙŠØ¯.</value>
   </data>
   <data name="UniversityEmailMultipleAttemps" xml:space="preserve">
-    <value>فشل توليد ايميل جامعي جديد.</value>
+    <value>ÙØ´Ù„ ØªÙˆÙ„ÙŠØ¯ Ø§ÙŠÙ…ÙŠÙ„ Ø¬Ø§Ù…Ø¹ÙŠ Ø¬Ø¯ÙŠØ¯.</value>
   </data>
   <data name="PrimayRoleInvalid" xml:space="preserve">
-    <value>الدور الأولي يجب أن يكون صحيح.</value>
+    <value>Ø§Ù„Ø¯ÙˆØ± Ø§Ù„Ø£ÙˆÙ„ÙŠ ÙŠØ¬Ø¨ Ø£Ù† ÙŠÙƒÙˆÙ† ØµØ­ÙŠØ­.</value>
   </data>
   <data name="AdditionalRolesInvalid" xml:space="preserve">
-    <value>كل الأدوار الإضافية يجب أن تكون صحيحة.</value>
+    <value>ÙƒÙ„ Ø§Ù„Ø£Ø¯ÙˆØ§Ø± Ø§Ù„Ø¥Ø¶Ø§ÙÙŠØ© ÙŠØ¬Ø¨ Ø£Ù† ØªÙƒÙˆÙ† ØµØ­ÙŠØ­Ø©.</value>
   </data>
   <data name="TokenNotFound" xml:space="preserve">
-    <value>التوكن غير موجود.</value>
+    <value>Ø§Ù„ØªÙˆÙƒÙ† ØºÙŠØ± Ù…ÙˆØ¬ÙˆØ¯.</value>
   </data>
   <data name="UserNotFound" xml:space="preserve">
-    <value>المُستخدم غير موجود.</value>
+    <value>Ø§Ù„Ù…ÙØ³ØªØ®Ø¯Ù… ØºÙŠØ± Ù…ÙˆØ¬ÙˆØ¯.</value>
   </data>
   <data name="TokenRequired" xml:space="preserve">
-    <value>التوكن مطلوب.</value>
+    <value>Ø§Ù„ØªÙˆÙƒÙ† Ù…Ø·Ù„ÙˆØ¨.</value>
   </data>
   <data name="TokenExpired" xml:space="preserve">
-    <value>التوكن تم انتهاء صلاحيته.</value>
+    <value>Ø§Ù„ØªÙˆÙƒÙ† ØªÙ… Ø§Ù†ØªÙ‡Ø§Ø¡ ØµÙ„Ø§Ø­ÙŠØªÙ‡.</value>
   </data>
   <data name="UserLocked" xml:space="preserve">
-    <value>حساب المُستخدم تم اغلاقه.</value>
+    <value>Ø­Ø³Ø§Ø¨ Ø§Ù„Ù…ÙØ³ØªØ®Ø¯Ù… ØªÙ… Ø§ØºÙ„Ø§Ù‚Ù‡.</value>
   </data>
   <data name="EmailUnVerified" xml:space="preserve">
-    <value>حساب المُستخدم لم يتم التحقق منه.</value>
+    <value>Ø­Ø³Ø§Ø¨ Ø§Ù„Ù…ÙØ³ØªØ®Ø¯Ù… Ù„Ù… ÙŠØªÙ… Ø§Ù„ØªØ­Ù‚Ù‚ Ù…Ù†Ù‡.</value>
   </data>
   <data name="EmailNotFoundBefore" xml:space="preserve">
-    <value>هذا الحساب غير موجود.</value>
+    <value>Ù‡Ø°Ø§ Ø§Ù„Ø­Ø³Ø§Ø¨ ØºÙŠØ± Ù…ÙˆØ¬ÙˆØ¯.</value>
   </data>
   <data name="PasswordResetSubject" xml:space="preserve">
-    <value>رمز التحقق لاعادة تعيين كلمة السر.</value>
+    <value>Ø±Ù…Ø² Ø§Ù„ØªØ­Ù‚Ù‚ Ù„Ø§Ø¹Ø§Ø¯Ø© ØªØ¹ÙŠÙŠÙ† ÙƒÙ„Ù…Ø© Ø§Ù„Ø³Ø±.</value>
   </data>
   <data name="PasswordResetTemplate" xml:space="preserve">
-    <value>&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&lt;meta charset="utf-8" /&gt;&lt;title&gt;إعادة تعيين كلمة المرور&lt;/title&gt;&lt;/head&gt;&lt;body style="direction: rtl; text-align: right;"&gt;&lt;h2&gt;إعادة تعيين كلمة المرور&lt;/h2&gt;&lt;p&gt;مرحبًا، @(Model.FullName) !&lt;/p&gt;&lt;p&gt;لقد طلبت إعادة تعيين كلمة المرور الخاصة بك لنظام رفيق. لإعادة تعيين كلمة المرور، يرجى استخدام رمز إعادة التعيين التالي:&lt;/p&gt;&lt;p&gt;رمز إعادة التعيين: &lt;strong&gt;@(Model.VerificationCode)&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;إذا لم تطلب إعادة تعيين كلمة المرور هذه، يمكنك تجاهل هذا البريد الإلكتروني بأمان.&lt;/p&gt;&lt;p&gt;مع تحيات،&lt;/p&gt;&lt;p&gt;فريق رفيق&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</value>
+    <value>&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&lt;meta charset="utf-8" /&gt;&lt;title&gt;Ø¥Ø¹Ø§Ø¯Ø© ØªØ¹ÙŠÙŠÙ† ÙƒÙ„Ù…Ø© Ø§Ù„Ù…Ø±ÙˆØ±&lt;/title&gt;&lt;/head&gt;&lt;body style="direction: rtl; text-align: right;"&gt;&lt;h2&gt;Ø¥Ø¹Ø§Ø¯Ø© ØªØ¹ÙŠÙŠÙ† ÙƒÙ„Ù…Ø© Ø§Ù„Ù…Ø±ÙˆØ±&lt;/h2&gt;&lt;p&gt;Ù…Ø±Ø­Ø¨Ù‹Ø§ØŒ @(Model.FullName) !&lt;/p&gt;&lt;p&gt;Ù„Ù‚Ø¯ Ø·Ù„Ø¨Øª Ø¥Ø¹Ø§Ø¯Ø© ØªØ¹ÙŠÙŠÙ† ÙƒÙ„Ù…Ø© Ø§Ù„Ù…Ø±ÙˆØ± Ø§Ù„Ø®Ø§ØµØ© Ø¨Ùƒ Ù„Ù†Ø¸Ø§Ù… Ø±ÙÙŠÙ‚. Ù„Ø¥Ø¹Ø§Ø¯Ø© ØªØ¹ÙŠÙŠÙ† ÙƒÙ„Ù…Ø© Ø§Ù„Ù…Ø±ÙˆØ±ØŒ ÙŠØ±Ø¬Ù‰ Ø§Ø³ØªØ®Ø¯Ø§Ù… Ø±Ù…Ø² Ø¥Ø¹Ø§Ø¯Ø© Ø§Ù„ØªØ¹ÙŠÙŠÙ† Ø§Ù„ØªØ§Ù„ÙŠ:&lt;/p&gt;&lt;p&gt;Ø±Ù…Ø² Ø¥Ø¹Ø§Ø¯Ø© Ø§Ù„ØªØ¹ÙŠÙŠÙ†: &lt;strong&gt;@(Model.VerificationCode)&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Ø¥Ø°Ø§ Ù„Ù… ØªØ·Ù„Ø¨ Ø¥Ø¹Ø§Ø¯Ø© ØªØ¹ÙŠÙŠÙ† ÙƒÙ„Ù…Ø© Ø§Ù„Ù…Ø±ÙˆØ± Ù‡Ø°Ù‡ØŒ ÙŠÙ…ÙƒÙ†Ùƒ ØªØ¬Ø§Ù‡Ù„ Ù‡Ø°Ø§ Ø§Ù„Ø¨Ø±ÙŠØ¯ Ø§Ù„Ø¥Ù„ÙƒØªØ±ÙˆÙ†ÙŠ Ø¨Ø£Ù…Ø§Ù†.&lt;/p&gt;&lt;p&gt;Ù…Ø¹ ØªØ­ÙŠØ§ØªØŒ&lt;/p&gt;&lt;p&gt;ÙØ±ÙŠÙ‚ Ø±ÙÙŠÙ‚&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</value>
   </data>
   <data name="PasswordResetMessage" xml:space="preserve">
-    <value>تم إرسال إعادة التعيين.</value>
+    <value>ØªÙ… Ø¥Ø±Ø³Ø§Ù„ Ø¥Ø¹Ø§Ø¯Ø© Ø§Ù„ØªØ¹ÙŠÙŠÙ†.</value>
   </data>
   <data name="ResetTokenInvalid" xml:space="preserve">
-    <value>كود التحقق غير صالح.</value>
+    <value>ÙƒÙˆØ¯ Ø§Ù„ØªØ­Ù‚Ù‚ ØºÙŠØ± ØµØ§Ù„Ø­.</value>
   </data>
   <data name="PasswordResetSuccess" xml:space="preserve">
-    <value>تم اعادة تعيين كلمة السر بنجاح.</value>
+    <value>ØªÙ… Ø§Ø¹Ø§Ø¯Ø© ØªØ¹ÙŠÙŠÙ† ÙƒÙ„Ù…Ø© Ø§Ù„Ø³Ø± Ø¨Ù†Ø¬Ø§Ø­.</value>
   </data>
   <data name="InvalidToken" xml:space="preserve">
-    <value>كود التأكيد غير صحيح أو تم انتهاء صلاحيته.</value>
+    <value>ÙƒÙˆØ¯ Ø§Ù„ØªØ£ÙƒÙŠØ¯ ØºÙŠØ± ØµØ­ÙŠØ­ Ø£Ùˆ ØªÙ… Ø§Ù†ØªÙ‡Ø§Ø¡ ØµÙ„Ø§Ø­ÙŠØªÙ‡.</value>
   </data>
   <data name="EmailNotFound" xml:space="preserve">
-    <value>الايميل غير موجود.</value>
+    <value>Ø§Ù„Ø§ÙŠÙ…ÙŠÙ„ ØºÙŠØ± Ù…ÙˆØ¬ÙˆØ¯.</value>
   </data>
   <data name="SendUserCredentialsSubject" xml:space="preserve">
-    <value>بيانات حساب الجامعة الخاص بك - رفيق</value>
+    <value>Ø¨ÙŠØ§Ù†Ø§Øª Ø­Ø³Ø§Ø¨ Ø§Ù„Ø¬Ø§Ù…Ø¹Ø© Ø§Ù„Ø®Ø§Øµ Ø¨Ùƒ - Ø±ÙÙŠÙ‚</value>
   </data>
   <data name="SendUserCredentialsTemplate" xml:space="preserve">
-    <value>&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&lt;meta charset="utf-8" /&gt;&lt;title&gt;بيانات حسابك الجامعي&lt;/title&gt;&lt;/head&gt;&lt;body style="direction: rtl; text-align: right;"&gt;&lt;h2&gt;مرحبًا بك في نظام رفيق الجامعي&lt;/h2&gt;&lt;p&gt;مرحبًا، @(Model.FullName) !&lt;/p&gt;&lt;p&gt;تم إنشاء حسابك بنجاح. فيما يلي بيانات تسجيل الدخول الخاصة بك:&lt;/p&gt;&lt;p&gt;البريد الجامعي: &lt;strong&gt;@(Model.Email)&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;كلمة المرور المؤقتة: &lt;strong&gt;@(Model.Password)&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;مهم:&lt;/strong&gt; لأسباب أمنية، يرجى تغيير كلمة المرور الخاصة بك بعد أول تسجيل دخول.&lt;/p&gt;&lt;p&gt;يمكنك الآن الوصول إلى نظام رفيق الجامعي باستخدام هذه البيانات.&lt;/p&gt;&lt;p&gt;إذا لم تطلب هذا الحساب، يرجى الاتصال بالدعم الفني فورًا.&lt;/p&gt;&lt;p&gt;مع تحيات،&lt;/p&gt;&lt;p&gt;فريق رفيق&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</value>
+    <value>&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&lt;meta charset="utf-8" /&gt;&lt;title&gt;Ø¨ÙŠØ§Ù†Ø§Øª Ø­Ø³Ø§Ø¨Ùƒ Ø§Ù„Ø¬Ø§Ù…Ø¹ÙŠ&lt;/title&gt;&lt;/head&gt;&lt;body style="direction: rtl; text-align: right;"&gt;&lt;h2&gt;Ù…Ø±Ø­Ø¨Ù‹Ø§ Ø¨Ùƒ ÙÙŠ Ù†Ø¸Ø§Ù… Ø±ÙÙŠÙ‚ Ø§Ù„Ø¬Ø§Ù…Ø¹ÙŠ&lt;/h2&gt;&lt;p&gt;Ù…Ø±Ø­Ø¨Ù‹Ø§ØŒ @(Model.FullName) !&lt;/p&gt;&lt;p&gt;ØªÙ… Ø¥Ù†Ø´Ø§Ø¡ Ø­Ø³Ø§Ø¨Ùƒ Ø¨Ù†Ø¬Ø§Ø­. ÙÙŠÙ…Ø§ ÙŠÙ„ÙŠ Ø¨ÙŠØ§Ù†Ø§Øª ØªØ³Ø¬ÙŠÙ„ Ø§Ù„Ø¯Ø®ÙˆÙ„ Ø§Ù„Ø®Ø§ØµØ© Ø¨Ùƒ:&lt;/p&gt;&lt;p&gt;Ø§Ù„Ø¨Ø±ÙŠØ¯ Ø§Ù„Ø¬Ø§Ù…Ø¹ÙŠ: &lt;strong&gt;@(Model.Email)&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;ÙƒÙ„Ù…Ø© Ø§Ù„Ù…Ø±ÙˆØ± Ø§Ù„Ù…Ø¤Ù‚ØªØ©: &lt;strong&gt;@(Model.Password)&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Ù…Ù‡Ù…:&lt;/strong&gt; Ù„Ø£Ø³Ø¨Ø§Ø¨ Ø£Ù…Ù†ÙŠØ©ØŒ ÙŠØ±Ø¬Ù‰ ØªØºÙŠÙŠØ± ÙƒÙ„Ù…Ø© Ø§Ù„Ù…Ø±ÙˆØ± Ø§Ù„Ø®Ø§ØµØ© Ø¨Ùƒ Ø¨Ø¹Ø¯ Ø£ÙˆÙ„ ØªØ³Ø¬ÙŠÙ„ Ø¯Ø®ÙˆÙ„.&lt;/p&gt;&lt;p&gt;ÙŠÙ…ÙƒÙ†Ùƒ Ø§Ù„Ø¢Ù† Ø§Ù„ÙˆØµÙˆÙ„ Ø¥Ù„Ù‰ Ù†Ø¸Ø§Ù… Ø±ÙÙŠÙ‚ Ø§Ù„Ø¬Ø§Ù…Ø¹ÙŠ Ø¨Ø§Ø³ØªØ®Ø¯Ø§Ù… Ù‡Ø°Ù‡ Ø§Ù„Ø¨ÙŠØ§Ù†Ø§Øª.&lt;/p&gt;&lt;p&gt;Ø¥Ø°Ø§ Ù„Ù… ØªØ·Ù„Ø¨ Ù‡Ø°Ø§ Ø§Ù„Ø­Ø³Ø§Ø¨ØŒ ÙŠØ±Ø¬Ù‰ Ø§Ù„Ø§ØªØµØ§Ù„ Ø¨Ø§Ù„Ø¯Ø¹Ù… Ø§Ù„ÙÙ†ÙŠ ÙÙˆØ±Ù‹Ø§.&lt;/p&gt;&lt;p&gt;Ù…Ø¹ ØªØ­ÙŠØ§ØªØŒ&lt;/p&gt;&lt;p&gt;ÙØ±ÙŠÙ‚ Ø±ÙÙŠÙ‚&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</value>
   </data>
   <data name="SendUserCredentialsMessage" xml:space="preserve">
-    <value>تم إرسال بيانات المستخدم بنجاح إلى البريد الإلكتروني.</value>
+    <value>ØªÙ… Ø¥Ø±Ø³Ø§Ù„ Ø¨ÙŠØ§Ù†Ø§Øª Ø§Ù„Ù…Ø³ØªØ®Ø¯Ù… Ø¨Ù†Ø¬Ø§Ø­ Ø¥Ù„Ù‰ Ø§Ù„Ø¨Ø±ÙŠØ¯ Ø§Ù„Ø¥Ù„ÙƒØªØ±ÙˆÙ†ÙŠ.</value>
   </data>
   <data name="EmailNotActivated" xml:space="preserve">
-    <value>الايميل لم يتم تفعيله بعد.</value>
+    <value>Ø§Ù„Ø§ÙŠÙ…ÙŠÙ„ Ù„Ù… ÙŠØªÙ… ØªÙØ¹ÙŠÙ„Ù‡ Ø¨Ø¹Ø¯.</value>
   </data>
   <data name="EmailActivatedSuccessfully" xml:space="preserve">
-    <value>تم تفعيل الايميل بنجاح.</value>
+    <value>ØªÙ… ØªÙØ¹ÙŠÙ„ Ø§Ù„Ø§ÙŠÙ…ÙŠÙ„ Ø¨Ù†Ø¬Ø§Ø­.</value>
   </data>
   <data name="EmailAlreadyActivated" xml:space="preserve">
-    <value>الايميل بالفعل تم تفعيله من قبل.</value>
+    <value>Ø§Ù„Ø§ÙŠÙ…ÙŠÙ„ Ø¨Ø§Ù„ÙØ¹Ù„ ØªÙ… ØªÙØ¹ÙŠÙ„Ù‡ Ù…Ù† Ù‚Ø¨Ù„.</value>
   </data>
   <data name="EventNameRequired" xml:space="preserve">
-    <value>اسم الحدث مطلوب.</value>
+    <value>Ø§Ø³Ù… Ø§Ù„Ø­Ø¯Ø« Ù…Ø·Ù„ÙˆØ¨.</value>
   </data>
   <data name="MaxLengthOfEventNameExceededRequiredLength" xml:space="preserve">
-    <value>اسم الحدث تجاوز عدد الحروف المطلوبه.</value>
+    <value>Ø§Ø³Ù… Ø§Ù„Ø­Ø¯Ø« ØªØ¬Ø§ÙˆØ² Ø¹Ø¯Ø¯ Ø§Ù„Ø­Ø±ÙˆÙ Ø§Ù„Ù…Ø·Ù„ÙˆØ¨Ù‡.</value>
   </data>
   <data name="EventDateRequired" xml:space="preserve">
-    <value>تاريخ الحدث مطلوب.</value>
+    <value>ØªØ§Ø±ÙŠØ® Ø§Ù„Ø­Ø¯Ø« Ù…Ø·Ù„ÙˆØ¨.</value>
   </data>
   <data name="StartTimeRequired" xml:space="preserve">
-    <value>موعد بدء الحدث مطلوب.</value>
+    <value>Ù…ÙˆØ¹Ø¯ Ø¨Ø¯Ø¡ Ø§Ù„Ø­Ø¯Ø« Ù…Ø·Ù„ÙˆØ¨.</value>
   </data>
   <data name="EndTimeRequired" xml:space="preserve">
-    <value>موعد انتهاء الحدث مطلوب.</value>
+    <value>Ù…ÙˆØ¹Ø¯ Ø§Ù†ØªÙ‡Ø§Ø¡ Ø§Ù„Ø­Ø¯Ø« Ù…Ø·Ù„ÙˆØ¨.</value>
   </data>
   <data name="LocationRequired" xml:space="preserve">
-    <value>موقع الحدث مطلوب.</value>
+    <value>Ù…ÙˆÙ‚Ø¹ Ø§Ù„Ø­Ø¯Ø« Ù…Ø·Ù„ÙˆØ¨.</value>
   </data>
   <data name="MaxLengthOfLocationExceededRequiredLength" xml:space="preserve">
-    <value>موقع الحدث لا يجب ان يتجاوز الحد الاقصي للحروف المطلوبة.</value>
+    <value>Ù…ÙˆÙ‚Ø¹ Ø§Ù„Ø­Ø¯Ø« Ù„Ø§ ÙŠØ¬Ø¨ Ø§Ù† ÙŠØªØ¬Ø§ÙˆØ² Ø§Ù„Ø­Ø¯ Ø§Ù„Ø§Ù‚ØµÙŠ Ù„Ù„Ø­Ø±ÙˆÙ Ø§Ù„Ù…Ø·Ù„ÙˆØ¨Ø©.</value>
   </data>
   <data name="TargetUserIdRequired" xml:space="preserve">
-    <value>يجب أن يكون موعد انتهاء الحدث اكبر من موعد البداية.</value>
+    <value>ÙŠØ¬Ø¨ Ø£Ù† ÙŠÙƒÙˆÙ† Ù…ÙˆØ¹Ø¯ Ø§Ù†ØªÙ‡Ø§Ø¡ Ø§Ù„Ø­Ø¯Ø« Ø§ÙƒØ¨Ø± Ù…Ù† Ù…ÙˆØ¹Ø¯ Ø§Ù„Ø¨Ø¯Ø§ÙŠØ©.</value>
   </data>
   <data name="EndTimeMustBeGreaterThanStartTime" xml:space="preserve">
-    <value>موعد انتهاء الحدث يجب ان يكون بعد موعد البداية وليس العكس</value>
+    <value>Ù…ÙˆØ¹Ø¯ Ø§Ù†ØªÙ‡Ø§Ø¡ Ø§Ù„Ø­Ø¯Ø« ÙŠØ¬Ø¨ Ø§Ù† ÙŠÙƒÙˆÙ† Ø¨Ø¹Ø¯ Ù…ÙˆØ¹Ø¯ Ø§Ù„Ø¨Ø¯Ø§ÙŠØ© ÙˆÙ„ÙŠØ³ Ø§Ù„Ø¹ÙƒØ³</value>
   </data>
   <data name="EndDateMustBeGreaterThanOrEqualEventDate" xml:space="preserve">
-    <value>تاريخ انتهاء الحدث يجب ان يكون اكبر من او مُساوٍ ل تاريخ بداية الحدث.</value>
+    <value>ØªØ§Ø±ÙŠØ® Ø§Ù†ØªÙ‡Ø§Ø¡ Ø§Ù„Ø­Ø¯Ø« ÙŠØ¬Ø¨ Ø§Ù† ÙŠÙƒÙˆÙ† Ø§ÙƒØ¨Ø± Ù…Ù† Ø§Ùˆ Ù…ÙØ³Ø§ÙˆÙ Ù„ ØªØ§Ø±ÙŠØ® Ø¨Ø¯Ø§ÙŠØ© Ø§Ù„Ø­Ø¯Ø«.</value>
   </data>
   <data name="RecurrenceEndDateRequired" xml:space="preserve">
-    <value>تاريخ انتهاء التكرار مطلوب.</value>
+    <value>ØªØ§Ø±ÙŠØ® Ø§Ù†ØªÙ‡Ø§Ø¡ Ø§Ù„ØªÙƒØ±Ø§Ø± Ù…Ø·Ù„ÙˆØ¨.</value>
   </data>
   <data name="RecurrenceEndDateMustBeAfterEventDate" xml:space="preserve">
-    <value>تاريخ انتهاء التكرار يجب ان يكون بعد تاريخ بداية الحدث.</value>
+    <value>ØªØ§Ø±ÙŠØ® Ø§Ù†ØªÙ‡Ø§Ø¡ Ø§Ù„ØªÙƒØ±Ø§Ø± ÙŠØ¬Ø¨ Ø§Ù† ÙŠÙƒÙˆÙ† Ø¨Ø¹Ø¯ ØªØ§Ø±ÙŠØ® Ø¨Ø¯Ø§ÙŠØ© Ø§Ù„Ø­Ø¯Ø«.</value>
   </data>
   <data name="CourseIdRequiredForExamEvent" xml:space="preserve">
-    <value>مُعرف الدورة مطلوب من اجل حدث الامتحانات.</value>
+    <value>Ù…ÙØ¹Ø±Ù Ø§Ù„Ø¯ÙˆØ±Ø© Ù…Ø·Ù„ÙˆØ¨ Ù…Ù† Ø§Ø¬Ù„ Ø­Ø¯Ø« Ø§Ù„Ø§Ù…ØªØ­Ø§Ù†Ø§Øª.</value>
   </data>
   <data name="AddedSuccessfully" xml:space="preserve">
-    <value>تم الإضافة بنجاح.</value>
+    <value>ØªÙ… Ø§Ù„Ø¥Ø¶Ø§ÙØ© Ø¨Ù†Ø¬Ø§Ø­.</value>
   </data>
   <data name="UpdatedSuccessfully" xml:space="preserve">
-    <value>تم التعديل بنجاح.</value>
+    <value>ØªÙ… Ø§Ù„ØªØ¹Ø¯ÙŠÙ„ Ø¨Ù†Ø¬Ø§Ø­.</value>
   </data>
   <data name="DeletedSuccessfully" xml:space="preserve">
-    <value>تم الحذف بنجاح.</value>
+    <value>ØªÙ… Ø§Ù„Ø­Ø°Ù Ø¨Ù†Ø¬Ø§Ø­.</value>
   </data>
   <data name="AddedFailed" xml:space="preserve">
-    <value>فشل الإضافة.</value>
+    <value>ÙØ´Ù„ Ø§Ù„Ø¥Ø¶Ø§ÙØ©.</value>
   </data>
   <data name="UpdatedFailed" xml:space="preserve">
-    <value>فشل التعديل.</value>
+    <value>ÙØ´Ù„ Ø§Ù„ØªØ¹Ø¯ÙŠÙ„.</value>
   </data>
   <data name="DeletedFailed" xml:space="preserve">
-    <value>فشل الحذف.</value>
+    <value>ÙØ´Ù„ Ø§Ù„Ø­Ø°Ù.</value>
   </data>
   <data name="EventIdRequired" xml:space="preserve">
-    <value>مُعرف الحدث مطلوب.</value>
+    <value>Ù…ÙØ¹Ø±Ù Ø§Ù„Ø­Ø¯Ø« Ù…Ø·Ù„ÙˆØ¨.</value>
   </data>
   <data name="EventIdNotValid" xml:space="preserve">
-    <value>مُعرف الحدث غير صالح.</value>
+    <value>Ù…ÙØ¹Ø±Ù Ø§Ù„Ø­Ø¯Ø« ØºÙŠØ± ØµØ§Ù„Ø­.</value>
   </data>
   <data name="AcademicYearNameRequired" xml:space="preserve">
-    <value>اسم السنة الأكاديمية مطلوب</value>
+    <value>Ø§Ø³Ù… Ø§Ù„Ø³Ù†Ø© Ø§Ù„Ø£ÙƒØ§Ø¯ÙŠÙ…ÙŠØ© Ù…Ø·Ù„ÙˆØ¨</value>
   </data>
   <data name="StartDateRequired" xml:space="preserve">
-    <value>تاريخ بداية السنة الدراسية مطلوب.</value>
+    <value>ØªØ§Ø±ÙŠØ® Ø¨Ø¯Ø§ÙŠØ© Ø§Ù„Ø³Ù†Ø© Ø§Ù„Ø¯Ø±Ø§Ø³ÙŠØ© Ù…Ø·Ù„ÙˆØ¨.</value>
   </data>
   <data name="EndDateRequired" xml:space="preserve">
-    <value>تاريخ نهاية السنة الدراسية مطلوب.</value>
+    <value>ØªØ§Ø±ÙŠØ® Ù†Ù‡Ø§ÙŠØ© Ø§Ù„Ø³Ù†Ø© Ø§Ù„Ø¯Ø±Ø§Ø³ÙŠØ© Ù…Ø·Ù„ÙˆØ¨.</value>
   </data>
   <data name="EndDateMustBeGreaterThanStartDate" xml:space="preserve">
-    <value>تاريخ نهاية السنة الدراسية يجب أن يكون أكبر من تاريخ البداية.</value>
+    <value>ØªØ§Ø±ÙŠØ® Ù†Ù‡Ø§ÙŠØ© Ø§Ù„Ø³Ù†Ø© Ø§Ù„Ø¯Ø±Ø§Ø³ÙŠØ© ÙŠØ¬Ø¨ Ø£Ù† ÙŠÙƒÙˆÙ† Ø£ÙƒØ¨Ø± Ù…Ù† ØªØ§Ø±ÙŠØ® Ø§Ù„Ø¨Ø¯Ø§ÙŠØ©.</value>
   </data>
   <data name="AcademicYearNotFound" xml:space="preserve">
-    <value>تلك السنة الدراسية غير موجودة في النظام.</value>
+    <value>ØªÙ„Ùƒ Ø§Ù„Ø³Ù†Ø© Ø§Ù„Ø¯Ø±Ø§Ø³ÙŠØ© ØºÙŠØ± Ù…ÙˆØ¬ÙˆØ¯Ø© ÙÙŠ Ø§Ù„Ù†Ø¸Ø§Ù….</value>
   </data>
   <data name="AcademicTermNameRequired" xml:space="preserve">
-    <value>اسم التيرم الأكاديمي مطلوب.</value>
+    <value>Ø§Ø³Ù… Ø§Ù„ØªÙŠØ±Ù… Ø§Ù„Ø£ÙƒØ§Ø¯ÙŠÙ…ÙŠ Ù…Ø·Ù„ÙˆØ¨.</value>
   </data>
   <data name="AcademicTermIdRequired" xml:space="preserve">
-    <value>مُعرف السنة الدراسية مطلوب.</value>
+    <value>Ù…ÙØ¹Ø±Ù Ø§Ù„Ø³Ù†Ø© Ø§Ù„Ø¯Ø±Ø§Ø³ÙŠØ© Ù…Ø·Ù„ÙˆØ¨.</value>
   </data>
   <data name="AcademicTermStartDateRequired" xml:space="preserve">
-    <value>تاريخ بداية التيرم الأكاديمي مطلوب.</value>
+    <value>ØªØ§Ø±ÙŠØ® Ø¨Ø¯Ø§ÙŠØ© Ø§Ù„ØªÙŠØ±Ù… Ø§Ù„Ø£ÙƒØ§Ø¯ÙŠÙ…ÙŠ Ù…Ø·Ù„ÙˆØ¨.</value>
   </data>
   <data name="AcademicTermEndDateRequired" xml:space="preserve">
-    <value>تاريخ نهاية التيرم الأكاديمي مطلوب.</value>
+    <value>ØªØ§Ø±ÙŠØ® Ù†Ù‡Ø§ÙŠØ© Ø§Ù„ØªÙŠØ±Ù… Ø§Ù„Ø£ÙƒØ§Ø¯ÙŠÙ…ÙŠ Ù…Ø·Ù„ÙˆØ¨.</value>
   </data>
   <data name="EndDateMustBeGreaterThanStartDate" xml:space="preserve">
-    <value>تاريخ نهاية التيرم الأكاديمي يجب أن يكون أكبر من تاريخ بداية التيرم الدراسي.</value>
+    <value>ØªØ§Ø±ÙŠØ® Ù†Ù‡Ø§ÙŠØ© Ø§Ù„ØªÙŠØ±Ù… Ø§Ù„Ø£ÙƒØ§Ø¯ÙŠÙ…ÙŠ ÙŠØ¬Ø¨ Ø£Ù† ÙŠÙƒÙˆÙ† Ø£ÙƒØ¨Ø± Ù…Ù† ØªØ§Ø±ÙŠØ® Ø¨Ø¯Ø§ÙŠØ© Ø§Ù„ØªÙŠØ±Ù… Ø§Ù„Ø¯Ø±Ø§Ø³ÙŠ.</value>
   </data>
   <data name="RegisterationEndDateMustBeGreaterThanRegistrationStartDate" xml:space="preserve">
-    <value>تاريخ نهاية التسجيل في التيرم الأكاديمي يجب أن يكون أكبر من تاريخ البداية</value>
+    <value>ØªØ§Ø±ÙŠØ® Ù†Ù‡Ø§ÙŠØ© Ø§Ù„ØªØ³Ø¬ÙŠÙ„ ÙÙŠ Ø§Ù„ØªÙŠØ±Ù… Ø§Ù„Ø£ÙƒØ§Ø¯ÙŠÙ…ÙŠ ÙŠØ¬Ø¨ Ø£Ù† ÙŠÙƒÙˆÙ† Ø£ÙƒØ¨Ø± Ù…Ù† ØªØ§Ø±ÙŠØ® Ø§Ù„Ø¨Ø¯Ø§ÙŠØ©</value>
   </data>
   <data name="ExamEndDateMustBeGreaterThanExamStartDate" xml:space="preserve">
-    <value>تاريخ نهاية الامتحانات في التيرم الأكاديمي يجب أن يكون أكبر من تاريخ البداية</value>
+    <value>ØªØ§Ø±ÙŠØ® Ù†Ù‡Ø§ÙŠØ© Ø§Ù„Ø§Ù…ØªØ­Ø§Ù†Ø§Øª ÙÙŠ Ø§Ù„ØªÙŠØ±Ù… Ø§Ù„Ø£ÙƒØ§Ø¯ÙŠÙ…ÙŠ ÙŠØ¬Ø¨ Ø£Ù† ÙŠÙƒÙˆÙ† Ø£ÙƒØ¨Ø± Ù…Ù† ØªØ§Ø±ÙŠØ® Ø§Ù„Ø¨Ø¯Ø§ÙŠØ©</value>
   </data>
   <data name="RegistrationStartDateMustBeGreaterThanAcademicTermStartDate" xml:space="preserve">
-    <value>تاريخ بداية التسجيل في التيرم الأكاديمي يجب أن يكون أكبر من تاريخ بداية التيرم الدراسي.</value>
+    <value>ØªØ§Ø±ÙŠØ® Ø¨Ø¯Ø§ÙŠØ© Ø§Ù„ØªØ³Ø¬ÙŠÙ„ ÙÙŠ Ø§Ù„ØªÙŠØ±Ù… Ø§Ù„Ø£ÙƒØ§Ø¯ÙŠÙ…ÙŠ ÙŠØ¬Ø¨ Ø£Ù† ÙŠÙƒÙˆÙ† Ø£ÙƒØ¨Ø± Ù…Ù† ØªØ§Ø±ÙŠØ® Ø¨Ø¯Ø§ÙŠØ© Ø§Ù„ØªÙŠØ±Ù… Ø§Ù„Ø¯Ø±Ø§Ø³ÙŠ.</value>
   </data>
   <data name="ExamStartDateMustBeGreaterThanRegistrationStartDate" xml:space="preserve">
-    <value>تاريخ بداية الامتحانات في التيرم الأكاديمي يجب أن يكون أكبر من تاريخ بداية التسجيل.</value>
+    <value>ØªØ§Ø±ÙŠØ® Ø¨Ø¯Ø§ÙŠØ© Ø§Ù„Ø§Ù…ØªØ­Ø§Ù†Ø§Øª ÙÙŠ Ø§Ù„ØªÙŠØ±Ù… Ø§Ù„Ø£ÙƒØ§Ø¯ÙŠÙ…ÙŠ ÙŠØ¬Ø¨ Ø£Ù† ÙŠÙƒÙˆÙ† Ø£ÙƒØ¨Ø± Ù…Ù† ØªØ§Ø±ÙŠØ® Ø¨Ø¯Ø§ÙŠØ© Ø§Ù„ØªØ³Ø¬ÙŠÙ„.</value>
   </data>
   <data name="AcademicTermNotFound" xml:space="preserve">
-    <value>مُعرف التيرم الأكاديمي  خاظئ أو غير موجود.</value>
+    <value>Ù…ÙØ¹Ø±Ù Ø§Ù„ØªÙŠØ±Ù… Ø§Ù„Ø£ÙƒØ§Ø¯ÙŠÙ…ÙŠ  Ø®Ø§Ø¸Ø¦ Ø£Ùˆ ØºÙŠØ± Ù…ÙˆØ¬ÙˆØ¯.</value>
   </data>
   <data name="StudentsNotFound" xml:space="preserve">
-    <value>قائمة مُعرفات الطلاب المُقدَمَة غير موجودة.</value>
+    <value>Ù‚Ø§Ø¦Ù…Ø© Ù…ÙØ¹Ø±ÙØ§Øª Ø§Ù„Ø·Ù„Ø§Ø¨ Ø§Ù„Ù…ÙÙ‚Ø¯ÙŽÙ…ÙŽØ© ØºÙŠØ± Ù…ÙˆØ¬ÙˆØ¯Ø©.</value>
   </data>
   <data name="RequestIdRequired" xml:space="preserve">
-    <value>مُعرف طلب الإرشاد الأكاديمي مطلوب.</value>
+    <value>Ù…ÙØ¹Ø±Ù Ø·Ù„Ø¨ Ø§Ù„Ø¥Ø±Ø´Ø§Ø¯ Ø§Ù„Ø£ÙƒØ§Ø¯ÙŠÙ…ÙŠ Ù…Ø·Ù„ÙˆØ¨.</value>
   </data>
   <data name="YouAreNotAdvisorOfThatStudent" xml:space="preserve">
-    <value>طلب الإرشاد إما غير موجود أو الحالة الحالية للطلب ليست قيد الانتظار أو أنك لست المُرشد الأكاديمي الخاص بذلك الطالب.</value>
+    <value>Ø·Ù„Ø¨ Ø§Ù„Ø¥Ø±Ø´Ø§Ø¯ Ø¥Ù…Ø§ ØºÙŠØ± Ù…ÙˆØ¬ÙˆØ¯ Ø£Ùˆ Ø§Ù„Ø­Ø§Ù„Ø© Ø§Ù„Ø­Ø§Ù„ÙŠØ© Ù„Ù„Ø·Ù„Ø¨ Ù„ÙŠØ³Øª Ù‚ÙŠØ¯ Ø§Ù„Ø§Ù†ØªØ¸Ø§Ø± Ø£Ùˆ Ø£Ù†Ùƒ Ù„Ø³Øª Ø§Ù„Ù…ÙØ±Ø´Ø¯ Ø§Ù„Ø£ÙƒØ§Ø¯ÙŠÙ…ÙŠ Ø§Ù„Ø®Ø§Øµ Ø¨Ø°Ù„Ùƒ Ø§Ù„Ø·Ø§Ù„Ø¨.</value>
   </data>
   <data name="AdvisorIdRequired" xml:space="preserve">
-    <value>المُعرف الخاص بالمُرشد الأكاديمي مطلوب.</value>
+    <value>Ø§Ù„Ù…ÙØ¹Ø±Ù Ø§Ù„Ø®Ø§Øµ Ø¨Ø§Ù„Ù…ÙØ±Ø´Ø¯ Ø§Ù„Ø£ÙƒØ§Ø¯ÙŠÙ…ÙŠ Ù…Ø·Ù„ÙˆØ¨.</value>
   </data>
   <data name="AdvisorIdNotFound" xml:space="preserve">
-    <value>مُعرف المُرشد الأكاديمي غير صحيح.</value>
+    <value>Ù…ÙØ¹Ø±Ù Ø§Ù„Ù…ÙØ±Ø´Ø¯ Ø§Ù„Ø£ÙƒØ§Ø¯ÙŠÙ…ÙŠ ØºÙŠØ± ØµØ­ÙŠØ­.</value>
   </data>
   <data name="DepartmentIdNotFound" xml:space="preserve">
-    <value>مُعرف القسم غير صحيح.</value>
+    <value>Ù…ÙØ¹Ø±Ù Ø§Ù„Ù‚Ø³Ù… ØºÙŠØ± ØµØ­ÙŠØ­.</value>
   </data>
   <data name="StudentIdRequired" xml:space="preserve">
-    <value>مُعرف الطالب مطلوب.</value>
+    <value>Ù…ÙØ¹Ø±Ù Ø§Ù„Ø·Ø§Ù„Ø¨ Ù…Ø·Ù„ÙˆØ¨.</value>
   </data>
   <data name="TitleRequired" xml:space="preserve">
-    <value>عنوان طلب الإرشاد الاكاديمي مطلوب.</value>
+    <value>Ø¹Ù†ÙˆØ§Ù† Ø·Ù„Ø¨ Ø§Ù„Ø¥Ø±Ø´Ø§Ø¯ Ø§Ù„Ø§ÙƒØ§Ø¯ÙŠÙ…ÙŠ Ù…Ø·Ù„ÙˆØ¨.</value>
   </data>
   <data name="DescriptionRequired" xml:space="preserve">
-    <value>وصف طلب الإرشاد الاكاديمي مطلوب.</value>
+    <value>ÙˆØµÙ Ø·Ù„Ø¨ Ø§Ù„Ø¥Ø±Ø´Ø§Ø¯ Ø§Ù„Ø§ÙƒØ§Ø¯ÙŠÙ…ÙŠ Ù…Ø·Ù„ÙˆØ¨.</value>
   </data>
   <data name="RequestIsSentSuccessfully" xml:space="preserve">
-    <value>تم إرسال طلب الإرشاد الأكاديمي بنجاح.</value>
+    <value>ØªÙ… Ø¥Ø±Ø³Ø§Ù„ Ø·Ù„Ø¨ Ø§Ù„Ø¥Ø±Ø´Ø§Ø¯ Ø§Ù„Ø£ÙƒØ§Ø¯ÙŠÙ…ÙŠ Ø¨Ù†Ø¬Ø§Ø­.</value>
   </data>
   <data name="RequestIsFailedToSend" xml:space="preserve">
-    <value>فشل إرسال طلب الإرشاد الاكاديمي.</value>
+    <value>ÙØ´Ù„ Ø¥Ø±Ø³Ø§Ù„ Ø·Ù„Ø¨ Ø§Ù„Ø¥Ø±Ø´Ø§Ø¯ Ø§Ù„Ø§ÙƒØ§Ø¯ÙŠÙ…ÙŠ.</value>
   </data>
   <data name="DepartmentNameRequired" xml:space="preserve">
-    <value>اسم القسم مطلوب.</value>
+    <value>Ø§Ø³Ù… Ø§Ù„Ù‚Ø³Ù… Ù…Ø·Ù„ÙˆØ¨.</value>
   </data>
   <data name="DepartmentNameMaxLength" xml:space="preserve">
-    <value>أقصي حد حروف لاسم القسم لا يجب أن يتجاوز 100 حرف.</value>
+    <value>Ø£Ù‚ØµÙŠ Ø­Ø¯ Ø­Ø±ÙˆÙ Ù„Ø§Ø³Ù… Ø§Ù„Ù‚Ø³Ù… Ù„Ø§ ÙŠØ¬Ø¨ Ø£Ù† ÙŠØªØ¬Ø§ÙˆØ² 100 Ø­Ø±Ù.</value>
   </data>
   <data name="DepartmentCodeRequired" xml:space="preserve">
-    <value>كود القسم مطلوب.</value>
+    <value>ÙƒÙˆØ¯ Ø§Ù„Ù‚Ø³Ù… Ù…Ø·Ù„ÙˆØ¨.</value>
   </data>
   <data name="DepartmentCodeMaxLength" xml:space="preserve">
-    <value>كود القسم لا يجب أن يتجاوز 10 أحرف.</value>
+    <value>ÙƒÙˆØ¯ Ø§Ù„Ù‚Ø³Ù… Ù„Ø§ ÙŠØ¬Ø¨ Ø£Ù† ÙŠØªØ¬Ø§ÙˆØ² 10 Ø£Ø­Ø±Ù.</value>
   </data>
   <data name="DepartmentCodeUnique" xml:space="preserve">
-    <value>هذا الكود موجود بالفعل من قبل.</value>
+    <value>Ù‡Ø°Ø§ Ø§Ù„ÙƒÙˆØ¯ Ù…ÙˆØ¬ÙˆØ¯ Ø¨Ø§Ù„ÙØ¹Ù„ Ù…Ù† Ù‚Ø¨Ù„.</value>
   </data>
   <data name="DepartmentNotFound" xml:space="preserve">
-    <value>هذا القسم غير موجود.</value>
+    <value>Ù‡Ø°Ø§ Ø§Ù„Ù‚Ø³Ù… ØºÙŠØ± Ù…ÙˆØ¬ÙˆØ¯.</value>
   </data>
   <data name="DepartmentIdRequired" xml:space="preserve">
-    <value>مُعرف القسم مطلوب.</value>
+    <value>Ù…ÙØ¹Ø±Ù Ø§Ù„Ù‚Ø³Ù… Ù…Ø·Ù„ÙˆØ¨.</value>
   </data>
 	<data name="CourseNotFound" xml:space="preserve">
-		<value>المادة غير موجودة.</value>
+		<value>Ø§Ù„Ù…Ø§Ø¯Ø© ØºÙŠØ± Ù…ÙˆØ¬ÙˆØ¯Ø©.</value>
 	</data>
 	<data name="CourseIdRequired" xml:space="preserve">
-		<value>مُعرف المادة مطلوب.</value>
+		<value>Ù…ÙØ¹Ø±Ù Ø§Ù„Ù…Ø§Ø¯Ø© Ù…Ø·Ù„ÙˆØ¨.</value>
 	</data>
 	<data name="UserNotEligibleForDepartment" xml:space="preserve">
-		<value>نوع المستخدم هذا لا يمكن تعيينه لقسم.</value>
+		<value>Ù†ÙˆØ¹ Ø§Ù„Ù…Ø³ØªØ®Ø¯Ù… Ù‡Ø°Ø§ Ù„Ø§ ÙŠÙ…ÙƒÙ† ØªØ¹ÙŠÙŠÙ†Ù‡ Ù„Ù‚Ø³Ù….</value>
 	</data>
 	<data name="CourseAssignedSuccessfully" xml:space="preserve">
-		<value>تم تعيين المادة للقسم بنجاح.</value>
+		<value>ØªÙ… ØªØ¹ÙŠÙŠÙ† Ø§Ù„Ù…Ø§Ø¯Ø© Ù„Ù„Ù‚Ø³Ù… Ø¨Ù†Ø¬Ø§Ø­.</value>
 	</data>
 	<data name="UserAssignedSuccessfully" xml:space="preserve">
-		<value>تم تعيين المستخدم للقسم بنجاح.</value>
+		<value>ØªÙ… ØªØ¹ÙŠÙŠÙ† Ø§Ù„Ù…Ø³ØªØ®Ø¯Ù… Ù„Ù„Ù‚Ø³Ù… Ø¨Ù†Ø¬Ø§Ø­.</value>
 	</data>
 	<data name="CourseRemovedSuccessfully" xml:space="preserve">
-		<value>تم حذف المادة من القسم بنجاح.</value>
+		<value>ØªÙ… Ø­Ø°Ù Ø§Ù„Ù…Ø§Ø¯Ø© Ù…Ù† Ø§Ù„Ù‚Ø³Ù… Ø¨Ù†Ø¬Ø§Ø­.</value>
 	</data>
 	<data name="UserRemovedSuccessfully" xml:space="preserve">
-		<value>تم حذف المستخدم من القسم بنجاح.</value>
+		<value>ØªÙ… Ø­Ø°Ù Ø§Ù„Ù…Ø³ØªØ®Ø¯Ù… Ù…Ù† Ø§Ù„Ù‚Ø³Ù… Ø¨Ù†Ø¬Ø§Ø­.</value>
 	</data>
 	<data name="UserRoleNotFound" xml:space="preserve">
-		<value>لم يتم العثور على دور أكاديمي (طالب/دكتور/محاضر) لهذا المستخدم.</value>
+		<value>Ù„Ù… ÙŠØªÙ… Ø§Ù„Ø¹Ø«ÙˆØ± Ø¹Ù„Ù‰ Ø¯ÙˆØ± Ø£ÙƒØ§Ø¯ÙŠÙ…ÙŠ (Ø·Ø§Ù„Ø¨/Ø¯ÙƒØªÙˆØ±/Ù…Ø­Ø§Ø¶Ø±) Ù„Ù‡Ø°Ø§ Ø§Ù„Ù…Ø³ØªØ®Ø¯Ù….</value>
 	</data>
 	<data name="UserNotInDepartment" xml:space="preserve">
-		<value>المستخدم غير معين في أي قسم.</value>
+		<value>Ø§Ù„Ù…Ø³ØªØ®Ø¯Ù… ØºÙŠØ± Ù…Ø¹ÙŠÙ† ÙÙŠ Ø£ÙŠ Ù‚Ø³Ù….</value>
 	</data>
 	<data name="RateLimit_Exceeded" xml:space="preserve">
-		<value>تم تجاوز الحد المسموح به. يمكنك إنشاء 3 جداول فقط كل ساعة.</value>
+		<value>ØªÙ… ØªØ¬Ø§ÙˆØ² Ø§Ù„Ø­Ø¯ Ø§Ù„Ù…Ø³Ù…ÙˆØ­ Ø¨Ù‡. ÙŠÙ…ÙƒÙ†Ùƒ Ø¥Ù†Ø´Ø§Ø¡ 3 Ø¬Ø¯Ø§ÙˆÙ„ ÙÙ‚Ø· ÙƒÙ„ Ø³Ø§Ø¹Ø©.</value>
 	</data>
 
 	<!-- Reminder -->
 	<data name="Reminder_TitleRequired" xml:space="preserve">
-		<value>عنوان التذكير مطلوب.</value>
+		<value>Ø¹Ù†ÙˆØ§Ù† Ø§Ù„ØªØ°ÙƒÙŠØ± Ù…Ø·Ù„ÙˆØ¨.</value>
 	</data>
 	<data name="Reminder_TitleMaxLength" xml:space="preserve">
-		<value>عنوان التذكير يجب ألا يتجاوز 200 حرف.</value>
+		<value>Ø¹Ù†ÙˆØ§Ù† Ø§Ù„ØªØ°ÙƒÙŠØ± ÙŠØ¬Ø¨ Ø£Ù„Ø§ ÙŠØªØ¬Ø§ÙˆØ² 200 Ø­Ø±Ù.</value>
 	</data>
 	<data name="Reminder_DueDateRequired" xml:space="preserve">
-		<value>تاريخ استحقاق التذكير مطلوب.</value>
+		<value>ØªØ§Ø±ÙŠØ® Ø§Ø³ØªØ­Ù‚Ø§Ù‚ Ø§Ù„ØªØ°ÙƒÙŠØ± Ù…Ø·Ù„ÙˆØ¨.</value>
 	</data>
 	<data name="Reminder_IdRequired" xml:space="preserve">
-		<value>مُعرف التذكير مطلوب.</value>
+		<value>Ù…ÙØ¹Ø±Ù Ø§Ù„ØªØ°ÙƒÙŠØ± Ù…Ø·Ù„ÙˆØ¨.</value>
 	</data>
 	<data name="Reminder_NotFound" xml:space="preserve">
-		<value>التذكير غير موجود.</value>
+		<value>Ø§Ù„ØªØ°ÙƒÙŠØ± ØºÙŠØ± Ù…ÙˆØ¬ÙˆØ¯.</value>
 	</data>
 
 	<!-- Course / Enrollment -->
 	<data name="StudentProfileNotFound" xml:space="preserve">
-		<value>الملف الشخصي للطالب غير موجود.</value>
+		<value>Ø§Ù„Ù…Ù„Ù Ø§Ù„Ø´Ø®ØµÙŠ Ù„Ù„Ø·Ø§Ù„Ø¨ ØºÙŠØ± Ù…ÙˆØ¬ÙˆØ¯.</value>
 	</data>
 	<data name="Course_NotFound" xml:space="preserve">
-		<value>المادة الدراسية غير موجودة.</value>
+		<value>Ø§Ù„Ù…Ø§Ø¯Ø© Ø§Ù„Ø¯Ø±Ø§Ø³ÙŠØ© ØºÙŠØ± Ù…ÙˆØ¬ÙˆØ¯Ø©.</value>
 	</data>
 	<data name="Course_IdRequired" xml:space="preserve">
-		<value>مُعرف المادة الدراسية مطلوب.</value>
+		<value>Ù…ÙØ¹Ø±Ù Ø§Ù„Ù…Ø§Ø¯Ø© Ø§Ù„Ø¯Ø±Ø§Ø³ÙŠØ© Ù…Ø·Ù„ÙˆØ¨.</value>
 	</data>
 	<data name="Course_SectionIdRequired" xml:space="preserve">
-		<value>مُعرف الشعبة مطلوب.</value>
+		<value>Ù…ÙØ¹Ø±Ù Ø§Ù„Ø´Ø¹Ø¨Ø© Ù…Ø·Ù„ÙˆØ¨.</value>
 	</data>
 	<data name="Course_AlreadyEnrolled" xml:space="preserve">
-		<value>أنت مسجل بالفعل في هذه المادة.</value>
+		<value>Ø£Ù†Øª Ù…Ø³Ø¬Ù„ Ø¨Ø§Ù„ÙØ¹Ù„ ÙÙŠ Ù‡Ø°Ù‡ Ø§Ù„Ù…Ø§Ø¯Ø©.</value>
 	</data>
 	<data name="Course_EnrollmentNotFound" xml:space="preserve">
-		<value>لم يتم العثور على تسجيل لك في هذه المادة.</value>
+		<value>Ù„Ù… ÙŠØªÙ… Ø§Ù„Ø¹Ø«ÙˆØ± Ø¹Ù„Ù‰ ØªØ³Ø¬ÙŠÙ„ Ù„Ùƒ ÙÙŠ Ù‡Ø°Ù‡ Ø§Ù„Ù…Ø§Ø¯Ø©.</value>
 	</data>
 	<data name="Course_SectionNotFound" xml:space="preserve">
-		<value>الشعبة غير موجودة.</value>
+		<value>Ø§Ù„Ø´Ø¹Ø¨Ø© ØºÙŠØ± Ù…ÙˆØ¬ÙˆØ¯Ø©.</value>
 	</data>
 	<data name="Course_CodeRequired" xml:space="preserve">
-		<value>رمز المادة مطلوب.</value>
+		<value>Ø±Ù…Ø² Ø§Ù„Ù…Ø§Ø¯Ø© Ù…Ø·Ù„ÙˆØ¨.</value>
 	</data>
 	<data name="Course_CodeMaxLength" xml:space="preserve">
-		<value>رمز المادة يجب ألا يتجاوز 50 حرفًا.</value>
+		<value>Ø±Ù…Ø² Ø§Ù„Ù…Ø§Ø¯Ø© ÙŠØ¬Ø¨ Ø£Ù„Ø§ ÙŠØªØ¬Ø§ÙˆØ² 50 Ø­Ø±ÙÙ‹Ø§.</value>
 	</data>
 	<data name="Course_TitleRequired" xml:space="preserve">
-		<value>اسم المادة مطلوب.</value>
+		<value>Ø§Ø³Ù… Ø§Ù„Ù…Ø§Ø¯Ø© Ù…Ø·Ù„ÙˆØ¨.</value>
 	</data>
 	<data name="Course_TitleMaxLength" xml:space="preserve">
-		<value>اسم المادة يجب ألا يتجاوز 200 حرف.</value>
+		<value>Ø§Ø³Ù… Ø§Ù„Ù…Ø§Ø¯Ø© ÙŠØ¬Ø¨ Ø£Ù„Ø§ ÙŠØªØ¬Ø§ÙˆØ² 200 Ø­Ø±Ù.</value>
 	</data>
 	<data name="Course_CreditHoursRequired" xml:space="preserve">
-		<value>عدد الساعات المعتمدة مطلوب.</value>
+		<value>Ø¹Ø¯Ø¯ Ø§Ù„Ø³Ø§Ø¹Ø§Øª Ø§Ù„Ù…Ø¹ØªÙ…Ø¯Ø© Ù…Ø·Ù„ÙˆØ¨.</value>
 	</data>
 	<data name="Course_CreditHoursInvalid" xml:space="preserve">
-		<value>يجب أن يكون عدد الساعات المعتمدة بين 1 و 10.</value>
+		<value>ÙŠØ¬Ø¨ Ø£Ù† ÙŠÙƒÙˆÙ† Ø¹Ø¯Ø¯ Ø§Ù„Ø³Ø§Ø¹Ø§Øª Ø§Ù„Ù…Ø¹ØªÙ…Ø¯Ø© Ø¨ÙŠÙ† 1 Ùˆ 10.</value>
 	</data>
+	<data name="InstructorUserIdRequired" xml:space="preserve">
+		<value>Ù…ÙØ¹Ø±Ù Ø§Ù„Ù…Ø³ØªØ®Ø¯Ù… Ù„Ù„Ù…ÙØ¹ÙŠØ¯ Ù…Ø·Ù„ÙˆØ¨.</value>
+	</data>
+  <data name="Assignment_TitleRequired" xml:space="preserve">
+    <value>عنوان التكليف مطلوب.</value>
+  </data>
+  <data name="Assignment_TitleMaxLength" xml:space="preserve">
+    <value>عنوان التكليف يجب ألا يتجاوز 200 حرف.</value>
+  </data>
+  <data name="Assignment_DescriptionRequired" xml:space="preserve">
+    <value>وصف التكليف مطلوب.</value>
+  </data>
+  <data name="Assignment_DueDateRequired" xml:space="preserve">
+    <value>تاريخ الاستحقاق مطلوب.</value>
+  </data>
+  <data name="Assignment_DueDateMustBeFuture" xml:space="preserve">
+    <value>يجب أن يكون تاريخ الاستحقاق في المستقبل.</value>
+  </data>
+  <data name="Assignment_TotalScoreInvalid" xml:space="preserve">
+    <value>الدرجة الإجمالية يجب أن تكون أكبر من صفر.</value>
+  </data>
+  <data name="Assignment_NotFound" xml:space="preserve">
+    <value>التكليف غير موجود.</value>
+  </data>
+  <data name="Assignment_SubmissionIdRequired" xml:space="preserve">
+    <value>معرف التسليم مطلوب.</value>
+  </data>
+  <data name="Assignment_ScoreInvalid" xml:space="preserve">
+    <value>الدرجة يجب أن تكون صفراً أو أكثر.</value>
+  </data>
 </root>

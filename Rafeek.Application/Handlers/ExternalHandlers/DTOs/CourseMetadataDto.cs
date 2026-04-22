@@ -1,4 +1,4 @@
-namespace Rafeek.Application.Common.Models.AI
+namespace Rafeek.Application.Handlers.ExternalHandlers.DTOs
 {
     public class CourseMetadataDto
     {

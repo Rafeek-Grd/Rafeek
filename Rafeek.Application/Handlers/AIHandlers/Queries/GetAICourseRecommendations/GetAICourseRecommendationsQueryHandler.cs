@@ -1,7 +1,7 @@
 using MediatR;
 using Rafeek.Application.Common.Interfaces;
-using Rafeek.Application.Common.Models.AI;
 using Rafeek.Application.Handlers.AIHandlers.Queries.GetStudentGrades;
+using Rafeek.Application.Handlers.ExternalHandlers.DTOs;
 
 namespace Rafeek.Application.Handlers.AIHandlers.Queries.GetAICourseRecommendations
 {

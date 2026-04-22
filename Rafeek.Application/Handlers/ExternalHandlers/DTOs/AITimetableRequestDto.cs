@@ -1,7 +1,7 @@
 using Newtonsoft.Json;
 using System.Text.Json.Serialization;
 
-namespace Rafeek.Application.Common.Models.AI
+namespace Rafeek.Application.Handlers.ExternalHandlers.DTOs
 {
     public class AITimetableRequestDto
     {

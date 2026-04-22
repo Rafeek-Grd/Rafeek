@@ -1,7 +1,7 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Rafeek.Application.Common.Interfaces;
-using Rafeek.Application.Common.Models.AI;
+using Rafeek.Application.Handlers.ExternalHandlers.DTOs;
 using Rafeek.Domain.Repositories.Interfaces.Generic;
 
 namespace Rafeek.Application.Handlers.AIHandlers.Queries.GetStudentGrades

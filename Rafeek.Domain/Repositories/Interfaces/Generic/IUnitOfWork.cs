@@ -27,7 +27,8 @@ namespace Rafeek.Domain.Repositories.Interfaces.Generic
         ISectionRepository SectionRepository { get; }
         IEnrollmentRepository EnrollmentRepository { get; }
         INotificationRepository NotificationRepository { get; }
-
+        IAssignmentRepository AssignmentRepository { get; }
+        IAssignmentSubmissionRepository AssignmentSubmissionRepository { get; }
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
         Task<IDbContextTransaction> BeginTransactionAsync(CancellationToken cancellationToken = default);
         IExecutionStrategy CreateExecutionStrategy();

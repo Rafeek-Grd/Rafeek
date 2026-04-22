@@ -1,6 +1,6 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Rafeek.Application.Common.Models.AI;
+using Rafeek.Application.Handlers.ExternalHandlers.DTOs;
 using Rafeek.Domain.Repositories.Interfaces.Generic;
 using System.Collections.Generic;
 using System.Linq;
