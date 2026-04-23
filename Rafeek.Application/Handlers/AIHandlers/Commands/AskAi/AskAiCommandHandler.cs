@@ -92,6 +92,10 @@ namespace Rafeek.Application.Handlers.AIHandlers.Commands.AskAi
 
             
             var history = (request.History ?? new List<ChatMessageDto>())
+                .Where(msg => !string.IsNullOrWhiteSpace(msg.Role)
+                           && !string.IsNullOrWhiteSpace(msg.Content)
+                           && msg.Role != "string"
+                           && msg.Content != "string")
                 .Select(msg => new Dictionary<string, string>
                 {
                     { "role", msg.Role },
