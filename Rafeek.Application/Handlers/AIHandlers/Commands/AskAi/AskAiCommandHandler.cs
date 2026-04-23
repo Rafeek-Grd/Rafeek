@@ -83,11 +83,11 @@ namespace Rafeek.Application.Handlers.AIHandlers.Commands.AskAi
 
             var aiStudentProfile = new
             {
-                level = levelText,
-                department = student?.Department?.Name ?? "عام",
-                status = "منتظم",
-                gpa = (student?.AcademicProfile?.CGPA ?? 0f).ToString("0.00", System.Globalization.CultureInfo.InvariantCulture),
-                failed_courses = failedCoursesText
+                level = " ",
+                department = " ",
+                status = " ",
+                gpa = " ",
+                failed_courses = " "
             };
 
             
