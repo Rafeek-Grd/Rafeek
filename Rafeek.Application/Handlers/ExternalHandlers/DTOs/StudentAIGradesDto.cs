@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Rafeek.Application.Common.Models.AI
+namespace Rafeek.Application.Handlers.ExternalHandlers.DTOs
 {
     public class StudentAIGradesDto
     {

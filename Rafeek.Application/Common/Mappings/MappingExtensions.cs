@@ -13,10 +13,10 @@ namespace Rafeek.Application.Common.Mappings
             return PagginatedResult<TDestination>.Create(items, count, pageNumber, pageSize);
         }
 
-        public static async Task<PagginatedResult<TDestination>> PaginatedListAsync<TDestination>(this IQueryable<TDestination> queryable, int pageNumber = 1, int pageSize = 20)
+        public static async Task<PagginatedResult<TDestination>> PaginatedListAsync<TDestination>(this IQueryable<TDestination> queryable, int pageNumber = 1, int pageSize = 20, CancellationToken cancellationToken = default)
         {
-            var count = await queryable.CountAsync();
-            var items = await queryable.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToListAsync();
+            var count = await queryable.CountAsync(cancellationToken);
+            var items = await queryable.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToListAsync(cancellationToken);
 
             return PagginatedResult<TDestination>.Create(items, count, pageNumber, pageSize);
         }

@@ -140,7 +140,7 @@ namespace Rafeek.Infrastructure.Repostiories.Implementations.Generic
                 query = query.Include(property.Name);
             }
 
-            return query;
+            return query.AsSplitQuery();
         }
 
         public IQueryable<T> GetFirstIncludingAll(Expression<Func<T, bool>> predicate)

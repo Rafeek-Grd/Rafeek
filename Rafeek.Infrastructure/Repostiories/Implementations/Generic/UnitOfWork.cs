@@ -35,7 +35,8 @@ namespace Rafeek.Infrastructure.Repostiories.Implementations.Generic
         private SectionRepository? _sectionRepository;
         private EnrollmentRepository? _enrollmentRepository;
         private NotificationRepository? _notificationRepository;
-
+        private AssignmentRepository? _assignmentRepository;
+        private AssignmentSubmissionRepository? _assignmentSubmissionRepository;
         public UnitOfWork(
             IRafeekDbContext context,
             IJwtTokenManager jwtTokenManager,
@@ -70,7 +71,8 @@ namespace Rafeek.Infrastructure.Repostiories.Implementations.Generic
         public ISectionRepository SectionRepository => _sectionRepository ??= new SectionRepository(_context);
         public IEnrollmentRepository EnrollmentRepository => _enrollmentRepository ??= new EnrollmentRepository(_context);
         public INotificationRepository NotificationRepository => _notificationRepository ??= new NotificationRepository(_context);
-
+        public IAssignmentRepository AssignmentRepository => _assignmentRepository ??= new AssignmentRepository(_context);
+        public IAssignmentSubmissionRepository AssignmentSubmissionRepository => _assignmentSubmissionRepository ??= new AssignmentSubmissionRepository(_context);
         public async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
             return await _context.SaveChangesAsync(cancellationToken);

@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 using Rafeek.API.Filters;
 using Rafeek.API.Routes;
-using Rafeek.Application.Common.Models.AI;
 using Rafeek.Application.Handlers.AIHandlers.Commands.SaveAITimetable;
 using Rafeek.Application.Handlers.AIHandlers.Queries.GetAICourseRecommendations;
 using Rafeek.Application.Handlers.AIHandlers.Commands.GenerateAITimetable;
@@ -16,6 +15,7 @@ using Rafeek.Application.Handlers.LearningResourceHandlers.Queries.GetAllLearnin
 using Rafeek.Application.Handlers.AIHandlers.DTOs;
 using Rafeek.Application.Handlers.StudentHandlers.Query.GetAiSessions;
 using Rafeek.Application.Handlers.StudentHandlers.Commands.AskAi;
+using Rafeek.Application.Handlers.ExternalHandlers.DTOs;
 
 namespace Rafeek.API.Controllers.Version1
 {

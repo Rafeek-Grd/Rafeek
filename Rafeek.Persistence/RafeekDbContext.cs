@@ -54,7 +54,8 @@ namespace Rafeek.Persistence
         public DbSet<AITimetable> AITimetables { get; set; }
         public DbSet<AITimetableItem> AITimetableItems { get; set; }
         public DbSet<Reminder> Reminders { get; set; }
-
+        public DbSet<Assignment> Assignments { get; set; }
+        public DbSet<AssignmentSubmission> AssignmentSubmissions { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

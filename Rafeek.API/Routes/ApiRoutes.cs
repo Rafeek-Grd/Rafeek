@@ -174,5 +174,23 @@ namespace Rafeek.API.Routes
             public const string Create = Base + "/document-requests";
             public const string GetMyRequests = Base + "/document-requests/my";
         }
+
+        public static class Instructor
+        {
+            public const string GetDashboard = Base + "/instructor/dashboard";
+            public const string GetSections = Base + "/instructor/sections";
+            public const string GetSectionStudents = Base + "/instructor/sections/{sectionId}/students";
+            public const string GetStudentProfile = Base + "/instructor/students/{studentId}/profile";
+            public const string SubmitGrades = Base + "/instructor/sections/{sectionId}/grades";
+            public const string GetExamSchedule = Base + "/instructor/exam-schedule";
+            public const string GetNotifications = Base + "/instructor/notifications";
+        }
+
+        public static class Assignments
+        {
+            public const string GetBySection = Base + "/assignments/section/{sectionId}";
+            public const string Create = Base + "/assignments";
+            public const string GradeSubmission = Base + "/assignments/submissions/{submissionId}/grade";
+        }
     }
 }

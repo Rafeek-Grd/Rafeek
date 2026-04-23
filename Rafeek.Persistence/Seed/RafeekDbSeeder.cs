@@ -715,7 +715,48 @@ namespace Rafeek.Persistence.Seed
                 }
             });
 
-            // 12. Identity/User side entities (Notifications, Calendars)
+            // 15. Assignments & Submissions
+            await SeedStageAsync("Assignments & Submissions", async () => {
+                if (!await context.Assignments.AnyAsync() && sections.Any())
+                {
+                    var assignments = new Faker<Assignment>("en")
+                        .RuleFor(x => x.Id, Guid.NewGuid)
+                        .RuleFor(x => x.SectionId, f => f.PickRandom(sections).Id)
+                        .RuleFor(x => x.Title, f => "Assignment: " + f.Lorem.Word())
+                        .RuleFor(x => x.Description, f => f.Lorem.Sentence())
+                        .RuleFor(x => x.DueDate, f => f.Date.Future())
+                        .RuleFor(x => x.TotalScore, f => f.Random.Float(10, 100))
+                        .RuleFor(x => x.IsActive, f => true)
+                        .RuleFor(x => x.CreatedAt, f => DateTime.UtcNow)
+                        .RuleFor(x => x.CreatedBy, "Seeder")
+                        .Generate(50);
+                    context.Assignments.AddRange(assignments);
+                    await context.SaveChangesAsync();
+                }
+
+                if (!await context.AssignmentSubmissions.AnyAsync() && students.Any())
+                {
+                    var assignmentsList = await context.Assignments.ToListAsync();
+                    if (assignmentsList.Any())
+                    {
+                        var submissions = new Faker<AssignmentSubmission>("en")
+                            .RuleFor(x => x.Id, Guid.NewGuid)
+                            .RuleFor(x => x.AssignmentId, f => f.PickRandom(assignmentsList).Id)
+                            .RuleFor(x => x.StudentId, f => f.PickRandom(students).Id)
+                            .RuleFor(x => x.SubmissionUrl, f => f.Internet.Url())
+                            .RuleFor(x => x.Feedback, f => f.Lorem.Sentence())
+                            .RuleFor(x => x.Score, (f, x) => f.Random.Float(0, assignmentsList.First(a => a.Id == x.AssignmentId).TotalScore))
+                            .RuleFor(x => x.SubmittedAt, f => f.Date.Recent())
+                            .RuleFor(x => x.CreatedAt, f => DateTime.UtcNow)
+                            .RuleFor(x => x.CreatedBy, "Seeder")
+                            .Generate(100);
+                        context.AssignmentSubmissions.AddRange(submissions);
+                        await context.SaveChangesAsync();
+                    }
+                }
+            });
+
+            // 16. Identity/User side entities (Notifications, Calendars)
             // 15. User-side entities (Notifications, RefreshTokens, Calendars, Chat & Reminders)
             await SeedStageAsync("User-side entities", async () => {
                 if (!await context.Notifications.AnyAsync() && users.Any())
@@ -813,6 +854,7 @@ namespace Rafeek.Persistence.Seed
                         .RuleFor(x => x.EventType, f => f.PickRandom<Rafeek.Domain.Enums.AcademicCalendarEventType>())
                         .RuleFor(x => x.Status, f => f.PickRandom<Rafeek.Domain.Enums.CalendarEventStatus>())
                         .RuleFor(x => x.Visibility, f => f.PickRandom<Rafeek.Domain.Enums.EventVisibility>())
+                        .RuleFor(x => x.AcademicTermId, f => f.PickRandom(academicTerms).Id)
                         .RuleFor(x => x.CreatedAt, f => DateTime.UtcNow)
                         .RuleFor(x => x.CreatedBy, "Seeder")
                         .Generate(50);

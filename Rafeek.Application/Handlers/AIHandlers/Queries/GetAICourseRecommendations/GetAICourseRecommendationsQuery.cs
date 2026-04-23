@@ -1,5 +1,5 @@
 using MediatR;
-using Rafeek.Application.Common.Models.AI;
+using Rafeek.Application.Handlers.ExternalHandlers.DTOs;
 using System.Text.Json.Serialization;
 
 namespace Rafeek.Application.Handlers.AIHandlers.Queries.GetAICourseRecommendations

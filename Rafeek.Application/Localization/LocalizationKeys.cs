@@ -59,6 +59,11 @@ namespace Rafeek.Application.Localization
             public static readonly KeyString PasswordResetFailed = new("PasswordResetFailed");
         }
 
+        public record InstructorMessages
+        {
+            public static readonly KeyString InsructorUserIdRequired = new("InstructorUserIdRequired");
+        }
+
         public record UploadFileMessages
         {
             public static readonly KeyString PalceRequried = new("PlaceNotValid");
@@ -235,6 +240,19 @@ namespace Rafeek.Application.Localization
             public static readonly KeyString CoursesRequired = new("Courses_Required");
             public static readonly KeyString LectureFull = new("Lecture_Full");
             public static readonly KeyString RateLimitExceeded = new("RateLimit_Exceeded");
+        }
+
+        public record Assignment
+        {
+            public static readonly KeyString TitleRequired = new("Assignment_TitleRequired");
+            public static readonly KeyString TitleMaxLength = new("Assignment_TitleMaxLength");
+            public static readonly KeyString DescriptionRequired = new("Assignment_DescriptionRequired");
+            public static readonly KeyString DueDateRequired = new("Assignment_DueDateRequired");
+            public static readonly KeyString DueDateMustBeFuture = new("Assignment_DueDateMustBeFuture");
+            public static readonly KeyString TotalScoreInvalid = new("Assignment_TotalScoreInvalid");
+            public static readonly KeyString NotFound = new("Assignment_NotFound");
+            public static readonly KeyString SubmissionIdRequired = new("Assignment_SubmissionIdRequired");
+            public static readonly KeyString ScoreInvalid = new("Assignment_ScoreInvalid");
         }
     }
 }

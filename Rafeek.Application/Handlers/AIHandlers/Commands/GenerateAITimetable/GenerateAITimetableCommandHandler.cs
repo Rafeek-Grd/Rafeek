@@ -3,7 +3,7 @@ using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Localization;
 using Rafeek.Application.Common.Exceptions;
 using Rafeek.Application.Common.Interfaces;
-using Rafeek.Application.Common.Models.AI;
+using Rafeek.Application.Handlers.ExternalHandlers.DTOs;
 using Rafeek.Application.Localization;
 
 namespace Rafeek.Application.Handlers.AIHandlers.Commands.GenerateAITimetable

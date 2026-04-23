@@ -1,6 +1,6 @@
 using AutoMapper;
-using Rafeek.Application.Common.Models.AI;
 using Rafeek.Application.Handlers.CareerHandlers.DTOs;
+using Rafeek.Application.Handlers.ExternalHandlers.DTOs;
 using Rafeek.Application.Handlers.LearningResourceHandlers.DTOs;
 using Rafeek.Application.Handlers.StudyPlanHandlers.DTOs;
 using Rafeek.Domain.Entities;

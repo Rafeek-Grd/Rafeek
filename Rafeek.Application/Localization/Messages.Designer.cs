@@ -187,6 +187,114 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You are already enrolled in this course..
+        /// </summary>
+        public static string Course_AlreadyEnrolled {
+            get {
+                return ResourceManager.GetString("Course_AlreadyEnrolled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Course code must not exceed 50 characters..
+        /// </summary>
+        public static string Course_CodeMaxLength {
+            get {
+                return ResourceManager.GetString("Course_CodeMaxLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Course code is required..
+        /// </summary>
+        public static string Course_CodeRequired {
+            get {
+                return ResourceManager.GetString("Course_CodeRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Credit hours must be between 1 and 10..
+        /// </summary>
+        public static string Course_CreditHoursInvalid {
+            get {
+                return ResourceManager.GetString("Course_CreditHoursInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Credit hours are required..
+        /// </summary>
+        public static string Course_CreditHoursRequired {
+            get {
+                return ResourceManager.GetString("Course_CreditHoursRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enrollment not found for this course..
+        /// </summary>
+        public static string Course_EnrollmentNotFound {
+            get {
+                return ResourceManager.GetString("Course_EnrollmentNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Course ID is required..
+        /// </summary>
+        public static string Course_IdRequired {
+            get {
+                return ResourceManager.GetString("Course_IdRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Course is not found..
+        /// </summary>
+        public static string Course_NotFound {
+            get {
+                return ResourceManager.GetString("Course_NotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Section ID is required..
+        /// </summary>
+        public static string Course_SectionIdRequired {
+            get {
+                return ResourceManager.GetString("Course_SectionIdRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Section is not found..
+        /// </summary>
+        public static string Course_SectionNotFound {
+            get {
+                return ResourceManager.GetString("Course_SectionNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Course title must not exceed 200 characters..
+        /// </summary>
+        public static string Course_TitleMaxLength {
+            get {
+                return ResourceManager.GetString("Course_TitleMaxLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Course title is required..
+        /// </summary>
+        public static string Course_TitleRequired {
+            get {
+                return ResourceManager.GetString("Course_TitleRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Course has been assigned to the department successfully..
         /// </summary>
         public static string CourseAssignedSuccessfully {
@@ -228,6 +336,15 @@ namespace Rafeek.Application.Localization {
         public static string CourseRemovedSuccessfully {
             get {
                 return ResourceManager.GetString("CourseRemovedSuccessfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to At least one course must be selected..
+        /// </summary>
+        public static string Courses_Required {
+            get {
+                return ResourceManager.GetString("Courses_Required", resourceCulture);
             }
         }
         
@@ -619,6 +736,15 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Instructor user ID is required..
+        /// </summary>
+        public static string InstructorUserIdRequired {
+            get {
+                return ResourceManager.GetString("InstructorUserIdRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Content type is not valid..
         /// </summary>
         public static string InvalidContentType {
@@ -651,6 +777,15 @@ namespace Rafeek.Application.Localization {
         public static string InvalidToken {
             get {
                 return ResourceManager.GetString("InvalidToken", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lecture full for {0}..
+        /// </summary>
+        public static string Lecture_Full {
+            get {
+                return ResourceManager.GetString("Lecture_Full", resourceCulture);
             }
         }
         
@@ -853,6 +988,15 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Rate limit exceeded. You can only generate 3 timetables per hour..
+        /// </summary>
+        public static string RateLimit_Exceeded {
+            get {
+                return ResourceManager.GetString("RateLimit_Exceeded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Recurrence end date must be after event date..
         /// </summary>
         public static string RecurrenceEndDateMustBeAfterEventDate {
@@ -885,6 +1029,51 @@ namespace Rafeek.Application.Localization {
         public static string RegistrationStartDateMustBeGreaterThanAcademicTermStartDate {
             get {
                 return ResourceManager.GetString("RegistrationStartDateMustBeGreaterThanAcademicTermStartDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reminder due date is required..
+        /// </summary>
+        public static string Reminder_DueDateRequired {
+            get {
+                return ResourceManager.GetString("Reminder_DueDateRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reminder ID is required..
+        /// </summary>
+        public static string Reminder_IdRequired {
+            get {
+                return ResourceManager.GetString("Reminder_IdRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reminder is not found..
+        /// </summary>
+        public static string Reminder_NotFound {
+            get {
+                return ResourceManager.GetString("Reminder_NotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reminder title must not exceed 200 characters..
+        /// </summary>
+        public static string Reminder_TitleMaxLength {
+            get {
+                return ResourceManager.GetString("Reminder_TitleMaxLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reminder title is required..
+        /// </summary>
+        public static string Reminder_TitleRequired {
+            get {
+                return ResourceManager.GetString("Reminder_TitleRequired", resourceCulture);
             }
         }
         
@@ -979,6 +1168,15 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Student profile not found..
+        /// </summary>
+        public static string StudentProfileNotFound {
+            get {
+                return ResourceManager.GetString("StudentProfileNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to That student list IDs are not found..
         /// </summary>
         public static string StudentsNotFound {
@@ -993,6 +1191,15 @@ namespace Rafeek.Application.Localization {
         public static string TargetUserIdRequired {
             get {
                 return ResourceManager.GetString("TargetUserIdRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Timetable request data is required..
+        /// </summary>
+        public static string TimetableRequest_Required {
+            get {
+                return ResourceManager.GetString("TimetableRequest_Required", resourceCulture);
             }
         }
         
