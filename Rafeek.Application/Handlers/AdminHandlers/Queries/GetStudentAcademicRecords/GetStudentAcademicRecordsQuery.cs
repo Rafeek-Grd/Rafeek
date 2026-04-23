@@ -14,6 +14,9 @@ namespace Rafeek.Application.Handlers.AdminHandlers.Queries.GetStudentAcademicRe
         /// <summary>بحث بالاسم أو الرقم الجامعي أو الإيميل</summary>
         public string? SearchTerm { get; set; }
 
+        /// <summary>بحث بمعدل تراكمي محدد (CGPA)</summary>
+        public float? Cgpa { get; set; }
+
         /// <summary>فلتر بمعرّف القسم</summary>
         public Guid? DepartmentId { get; set; }
 

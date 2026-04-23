@@ -39,6 +39,35 @@ namespace Rafeek.API.Controllers.Version1
             return Created(ApiRoutes.Advisor.GetAllGuidanceRequestsPagginated, result);
         }
 
+        /// <summary>
+        /// جلب البيانات المبدئية لنموذج حجز خدمة أكاديمية (بيانات الطالب وتفاصيل المشرف).
+        /// </summary>
+        [HttpGet]
+        [RoleAuthorize(nameof(UserType.Student))]
+        [Route(ApiRoutes.Student.GetAcademicServiceInitialData)]
+        [ProducesResponseType(typeof(Rafeek.Application.Handlers.StudentHandlers.Query.GetAcademicServiceInitialData.AcademicServiceInitialDataDto), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> GetAcademicServiceInitialData()
+        {
+            var result = await _mediator.Send(new Rafeek.Application.Handlers.StudentHandlers.Query.GetAcademicServiceInitialData.GetAcademicServiceInitialDataQuery());
+            return Ok(result);
+        }
+
+        /// <summary>
+        /// حجز خدمة أكاديمية (موعد مع المشرف الأكاديمي).
+        /// تفاصيل المشرف يتم سحبها تلقائياً للملء.
+        /// </summary>
+        [HttpPost]
+        [RoleAuthorize(nameof(UserType.Student))]
+        [Route(ApiRoutes.Student.BookAcademicService)]
+        [ProducesResponseType(typeof(Guid), StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> BookAcademicService([FromBody] Rafeek.Application.Handlers.StudentHandlers.Commands.BookAcademicService.BookAcademicServiceCommand command)
+        {
+            var result = await _mediator.Send(command);
+            return Created(string.Empty, result);
+        }
+
 
         /// <summary>
         /// Get the profile of the currently logged-in student, including academic history.

@@ -65,6 +65,8 @@ namespace Rafeek.API.Routes
             public const string GetProfile = Base + "/students/profile";
             public const string AssignToAcademicAdvisor = Base + "/students/assign-advisor";
             public const string RequestGuidance = Base + "/students/request-guidance";
+            public const string BookAcademicService = Base + "/students/academic-service/book";
+            public const string GetAcademicServiceInitialData = Base + "/students/academic-service/initial-data";
             public const string GetDashboard = Base + "/students/dashboard/{userId}";
             public const string GetSchedule = Base + "/students/schedule";
             public const string UpdateProfile = Base + "/students/profile";

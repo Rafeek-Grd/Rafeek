@@ -30,25 +30,56 @@ namespace Rafeek.Application.Handlers.AdminHandlers.Queries.GetStudentAcademicRe
             if (!string.IsNullOrWhiteSpace(request.SearchTerm))
             {
                 var term = request.SearchTerm.Trim();
-                query = query.Where(s =>
-                    s.User.FullName.Contains(term) ||
-                    s.User.Email!.Contains(term) ||
-                    s.UniversityCode.Contains(term));
+
+                if (float.TryParse(term, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out float parsedCgpa))
+                {
+                    query = query.Where(s =>
+                        s.User.FullName.Contains(term) ||
+                        s.User.Email!.Contains(term) ||
+                        s.UniversityCode.Contains(term) ||
+                        (s.AcademicProfile != null && s.AcademicProfile.CGPA >= parsedCgpa - 0.001f && s.AcademicProfile.CGPA <= parsedCgpa + 0.001f));
+                }
+                else
+                {
+                    query = query.Where(s =>
+                        s.User.FullName.Contains(term) ||
+                        s.User.Email!.Contains(term) ||
+                        s.UniversityCode.Contains(term));
+                }
             }
 
             if (request.DepartmentId.HasValue)
                 query = query.Where(s => s.DepartmentId == request.DepartmentId);
 
+            if (request.Cgpa.HasValue)
+            {
+                query = query.Where(s => s.AcademicProfile != null && 
+                                         s.AcademicProfile.CGPA >= request.Cgpa.Value - 0.001f && 
+                                         s.AcademicProfile.CGPA <= request.Cgpa.Value + 0.001f);
+            }
+
             // الحالة الأكاديمية بناءً على المعدل التراكمي
             if (!string.IsNullOrWhiteSpace(request.AcademicStatus))
             {
-                query = request.AcademicStatus.Trim().ToLower() switch
+                var status = request.AcademicStatus.Trim().ToLower();
+
+                if (float.TryParse(status, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out float parsedCgpa))
                 {
-                    "stable"    => query.Where(s => s.AcademicProfile != null && s.AcademicProfile.CGPA >= 2.0f),
-                    "warning"   => query.Where(s => s.AcademicProfile != null && s.AcademicProfile.CGPA >= 1.0f && s.AcademicProfile.CGPA < 2.0f),
-                    "probation" => query.Where(s => s.AcademicProfile != null && s.AcademicProfile.CGPA < 1.0f),
-                    _           => query
-                };
+                    // Search by exact CGPA with a tiny margin for float precision issues
+                    query = query.Where(s => s.AcademicProfile != null && 
+                                             s.AcademicProfile.CGPA >= parsedCgpa - 0.001f && 
+                                             s.AcademicProfile.CGPA <= parsedCgpa + 0.001f);
+                }
+                else
+                {
+                    query = status switch
+                    {
+                        "stable"    => query.Where(s => s.AcademicProfile != null && s.AcademicProfile.CGPA >= 2.0f),
+                        "warning"   => query.Where(s => s.AcademicProfile != null && s.AcademicProfile.CGPA >= 1.0f && s.AcademicProfile.CGPA < 2.0f),
+                        "probation" => query.Where(s => s.AcademicProfile != null && s.AcademicProfile.CGPA < 1.0f),
+                        _           => query
+                    };
+                }
             }
 
             // ── Count ────────────────────────────────────────────────────────────

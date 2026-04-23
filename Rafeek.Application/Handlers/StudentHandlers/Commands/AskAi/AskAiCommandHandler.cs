@@ -115,6 +115,17 @@ namespace Rafeek.Application.Handlers.StudentHandlers.Commands.AskAi
                 // حفظ المحادثة في قاعدة البيانات
                 if (student != null)
                 {
+                    // الحماية ضد الـ GUIDs الوهمية (مثل التي تأتي من Swagger بشكل افتراضي)
+                    if (request.SessionId != null)
+                    {
+                        var sessionExists = await _dbContext.ChatSessions.AnyAsync(s => s.Id == request.SessionId.Value, cancellationToken);
+                        if (!sessionExists)
+                        {
+                            request.SessionId = null;
+                            sessionId = Guid.NewGuid();
+                        }
+                    }
+
                     if (request.SessionId == null)
                     {
                         var chatSession = new ChatSession
