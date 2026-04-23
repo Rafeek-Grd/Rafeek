@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Rafeek.Application.Common.Interfaces;
 using Rafeek.Application.Handlers.AIHandlers.DTOs;
 
-namespace Rafeek.Application.Handlers.StudentHandlers.Query.GetAiSessions
+namespace Rafeek.Application.Handlers.AIHandlers.Queries.GetAiSessions
 {
     public class GetAiSessionsQueryHandler : IRequestHandler<GetAiSessionsQuery, List<AiSessionDto>>
     {

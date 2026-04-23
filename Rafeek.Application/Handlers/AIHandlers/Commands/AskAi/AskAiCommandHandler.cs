@@ -1,12 +1,14 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 using Rafeek.Application.Common.Interfaces;
+using Rafeek.Application.Common.Options;
 using Rafeek.Application.Handlers.AIHandlers.DTOs;
 using Rafeek.Domain.Entities;
 using System.Net.Http.Json;
 
-namespace Rafeek.Application.Handlers.StudentHandlers.Commands.AskAi
+namespace Rafeek.Application.Handlers.AIHandlers.Commands.AskAi
 {
     public class AskAiCommandHandler : IRequestHandler<AskAiCommand, AiChatResponseDto>
     {
@@ -14,23 +16,26 @@ namespace Rafeek.Application.Handlers.StudentHandlers.Commands.AskAi
         private readonly IConfiguration _configuration;
         private readonly IRafeekDbContext _dbContext;
         private readonly ICurrentUserService _currentUserService;
+        private readonly AiIntegrationSettings _options;
 
         public AskAiCommandHandler(
             IHttpClientFactory httpClientFactory,
             IConfiguration configuration,
             IRafeekDbContext dbContext,
-            ICurrentUserService currentUserService)
+            ICurrentUserService currentUserService, 
+            IOptions<AiIntegrationSettings> options)
         {
             _httpClientFactory = httpClientFactory;
             _configuration = configuration;
             _dbContext = dbContext;
             _currentUserService = currentUserService;
+            _options = options.Value;
         }
 
         public async Task<AiChatResponseDto> Handle(AskAiCommand request, CancellationToken cancellationToken)
         {
             var httpClient = _httpClientFactory.CreateClient();
-            var baseUrl = _configuration["AiService:BaseUrl"] ?? "https://rafiq-bot-g003.onrender.com";
+            var baseUrl = _options.ChatBotBaseUrl;
 
             // جلب UserId من التوكن (أو Guid.Empty إذا لم يكن مسجلاً - للاختبار فقط)
             var userId = _currentUserService.UserId;

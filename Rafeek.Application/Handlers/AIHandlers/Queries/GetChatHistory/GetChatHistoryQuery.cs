@@ -1,7 +1,7 @@
 using MediatR;
 using Rafeek.Application.Handlers.AIHandlers.DTOs;
 
-namespace Rafeek.Application.Handlers.StudentHandlers.Query.GetChatHistory
+namespace Rafeek.Application.Handlers.AIHandlers.Queries.GetChatHistory
 {
     public class GetChatHistoryQuery : IRequest<List<ChatHistoryDto>>
     {

@@ -4,6 +4,7 @@
     {
         public string BaseUrl { get; set; } = string.Empty;
         public string TimeTableBaseUrl { get; set; } = string.Empty;
+        public string ChatBotBaseUrl { get; set; } = string.Empty;
         public AiServices Services { get; set; } = null!;
     }
 

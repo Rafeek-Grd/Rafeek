@@ -8,14 +8,14 @@ using Rafeek.Application.Handlers.AIHandlers.Queries.GetAICourseRecommendations;
 using Rafeek.Application.Handlers.AIHandlers.Commands.GenerateAITimetable;
 using Rafeek.Application.Localization;
 using Rafeek.Domain.Enums;
-using Rafeek.Application.Handlers.StudentHandlers.Query.GetChatHistory;
 using Rafeek.Application.Handlers.CareerHandlers.Queries.GetCareerSuggestionsByStudent;
 using Rafeek.Application.Handlers.StudyPlanHandlers.Queries.GetStudyPlanByStudent;
 using Rafeek.Application.Handlers.LearningResourceHandlers.Queries.GetAllLearningResources;
 using Rafeek.Application.Handlers.AIHandlers.DTOs;
-using Rafeek.Application.Handlers.StudentHandlers.Query.GetAiSessions;
-using Rafeek.Application.Handlers.StudentHandlers.Commands.AskAi;
 using Rafeek.Application.Handlers.ExternalHandlers.DTOs;
+using Rafeek.Application.Handlers.AIHandlers.Commands.AskAi;
+using Rafeek.Application.Handlers.AIHandlers.Queries.GetChatHistory;
+using Rafeek.Application.Handlers.AIHandlers.Queries.GetAiSessions;
 
 namespace Rafeek.API.Controllers.Version1
 {

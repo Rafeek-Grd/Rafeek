@@ -1,7 +1,7 @@
 using MediatR;
 using Rafeek.Application.Handlers.AIHandlers.DTOs;
 
-namespace Rafeek.Application.Handlers.StudentHandlers.Commands.AskAi
+namespace Rafeek.Application.Handlers.AIHandlers.Commands.AskAi
 {
     public class AskAiCommand : IRequest<AiChatResponseDto>
     {
