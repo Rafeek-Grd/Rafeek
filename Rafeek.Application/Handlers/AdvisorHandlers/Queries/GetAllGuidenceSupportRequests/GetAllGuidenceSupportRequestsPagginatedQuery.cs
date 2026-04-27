@@ -8,7 +8,6 @@ namespace Rafeek.Application.Handlers.AdvisorHandlers.Queries.GetAllGuidenceSupp
     public class GetAllGuidenceSupportRequestsPagginatedQuery: IRequest<PagginatedResult<GuidanceRequestDto>>
     {
         public StudentSupportStatus? RequestStatus { get; set; }
-        // search by user fullname or email
         public string? SearchTerm { get; set; }
         public Guid? DepartmentId { get; set; }
         public Guid? AdvisorId { get; set; }

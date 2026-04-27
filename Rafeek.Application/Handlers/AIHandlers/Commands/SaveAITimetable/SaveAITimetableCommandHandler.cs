@@ -2,6 +2,7 @@ using AutoMapper;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
+using Microsoft.Extensions.Logging;
 using Rafeek.Application.Common.Exceptions;
 using Rafeek.Application.Common.Interfaces;
 using Rafeek.Application.Localization;
@@ -15,66 +16,76 @@ namespace Rafeek.Application.Handlers.AIHandlers.Commands.SaveAITimetable
         private readonly IUnitOfWork _ctx;
         private readonly IMapper _mapper;
         private readonly IStringLocalizer<Messages> _localizer;
+        private readonly ILogger<SaveAITimetableCommandHandler> _logger;
 
-        public SaveAITimetableCommandHandler(IUnitOfWork ctx, IMapper mapper, IStringLocalizer<Messages> localizer)
+        public SaveAITimetableCommandHandler(IUnitOfWork ctx, IMapper mapper, IStringLocalizer<Messages> localizer, ILogger<SaveAITimetableCommandHandler> logger)
         {
             _ctx = ctx;
             _mapper = mapper;
             _localizer = localizer;
+            _logger = logger;
         }
 
         public async Task<Guid> Handle(SaveAITimetableCommand request, CancellationToken cancellationToken)
         {
-            // Verify student exists
-            var studentExists = await _ctx.StudentRepository.ExistsByKeyAsync(request.StudentId, cancellationToken);
-            if (!studentExists)
-                throw new NotFoundException(nameof(Student), request.StudentId);
-
-            AITimetable? timetable = null;
-
-            if (request.Id.HasValue)
+            try
             {
-                timetable = await _ctx.AITimetableRepository.GetAll()
-                    .Include(x => x.Items)
-                    .FirstOrDefaultAsync(x => x.Id == request.Id.Value, cancellationToken);
+                // Verify student exists
+                var studentExists = await _ctx.StudentRepository.ExistsByKeyAsync(request.StudentId, cancellationToken);
+                if (!studentExists)
+                    throw new NotFoundException(nameof(Student), request.StudentId);
 
-                if (timetable != null)
+                AITimetable? timetable = null;
+
+                if (request.Id.HasValue)
                 {
-                    // Map basic properties from Stats
-                    _mapper.Map(request.TimetableData, timetable);
-                    timetable.TimetableName = request.TimetableName ?? timetable.TimetableName;
-                    timetable.IsActive = true;
+                    timetable = await _ctx.AITimetableRepository.GetAll()
+                        .Include(x => x.Items)
+                        .FirstOrDefaultAsync(x => x.Id == request.Id.Value, cancellationToken);
 
-                    // Clear existing items to replacement
-                    if (timetable.Items.Any())
+                    if (timetable != null)
                     {
-                        _ctx.AITimetableItemRepository.DeleteRange(timetable.Items);
-                        timetable.Items.Clear();
-                    }
+                        // Map basic properties from Stats
+                        _mapper.Map(request.TimetableData, timetable);
+                        timetable.TimetableName = request.TimetableName ?? timetable.TimetableName;
+                        timetable.IsActive = true;
 
-                    // Map new items
-                    var newItems = _mapper.Map<List<AITimetableItem>>(request.TimetableData.Schedule);
-                    foreach (var item in newItems)
-                    {
-                        item.TimetableId = timetable.Id;
-                        timetable.Items.Add(item);
+                        // Clear existing items to replacement
+                        if (timetable.Items.Any())
+                        {
+                            _ctx.AITimetableItemRepository.DeleteRange(timetable.Items);
+                            timetable.Items.Clear();
+                        }
+
+                        // Map new items
+                        var newItems = _mapper.Map<List<AITimetableItem>>(request.TimetableData.Schedule);
+                        foreach (var item in newItems)
+                        {
+                            item.TimetableId = timetable.Id;
+                            timetable.Items.Add(item);
+                        }
                     }
                 }
-            }
 
-            if (timetable == null)
+                if (timetable == null)
+                {
+                    timetable = _mapper.Map<AITimetable>(request.TimetableData);
+                    timetable.StudentId = request.StudentId;
+                    timetable.TimetableName = request.TimetableName;
+                    timetable.IsActive = true;
+
+                    _ctx.AITimetableRepository.Add(timetable);
+                }
+
+                await _ctx.SaveChangesAsync(cancellationToken);
+
+                return timetable.Id;
+            }
+            catch (Exception ex)
             {
-                timetable = _mapper.Map<AITimetable>(request.TimetableData);
-                timetable.StudentId = request.StudentId;
-                timetable.TimetableName = request.TimetableName;
-                timetable.IsActive = true;
-                
-                _ctx.AITimetableRepository.Add(timetable);
+                _logger.LogError(ex, "Error occurred while saving AI timetable.");
+                throw;
             }
-
-            await _ctx.SaveChangesAsync(cancellationToken);
-
-            return timetable.Id;
         }
     }
 }

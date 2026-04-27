@@ -43,29 +43,29 @@ namespace Rafeek.Persistence.Seed
 
             var departmentsData = new[]
             {
-                new { Name = "Computer Science & IT", Code = "CS" },
-                new { Name = "Artificial Intelligence", Code = "AI" },
-                new { Name = "Information Technology", Code = "IT" },
+                new { Name = "Computer Science", Code = "CS" },
                 new { Name = "Information Systems", Code = "IS" },
+                new { Name = "Information Technology", Code = "IT" },
+                new { Name = "Bioinformatics", Code = "BIO" },
                 new { Name = "Software Engineering", Code = "SWE" },
-                new { Name = "Engineering", Code = "ENG" },
-                new { Name = "Business Administration", Code = "BUS" },
-                new { Name = "Faculty of Medicine", Code = "MED" },
-                new { Name = "Faculty of Arts", Code = "ART" }
+                new { Name = "Artificial Intelligence", Code = "AI" }
             };
 
-            var coursesData = new Dictionary<string, (string Code, string Title)[]>
+            var coursesData = new Dictionary<string, List<(string Code, string Title)>>();
+            foreach (var d in departmentsData)
             {
-                ["CS"] = new[] { ("CS101", "Introduction to Programming"), ("CS102", "Advanced Programming"), ("CS201", "Data Structures"), ("CS301", "Database Systems") },
-                ["AI"] = new[] { ("AI201", "Machine Learning Foundations"), ("AI202", "Neural Networks & Deep Learning"), ("AI401", "Expert Systems") },
-                ["IT"] = new[] { ("IT301", "Network Administration"), ("IT302", "Cloud Infrastructure") },
-                ["IS"] = new[] { ("IS401", "Management Information Systems"), ("IS402", "Enterprise Resource Planning") },
-                ["SWE"] = new[] { ("SWE501", "Software Architecture"), ("SWE502", "Quality Assurance & Testing") },
-                ["ENG"] = new[] { ("ENG105", "Circuit Analysis"), ("ENG210", "Thermodynamics"), ("ENG315", "Material Science") },
-                ["BUS"] = new[] { ("BUS110", "Macroeconomics"), ("BUS220", "Financial Accounting"), ("BUS330", "Marketing Principles") },
-                ["MED"] = new[] { ("MED101", "Human Anatomy"), ("MED201", "Biochemistry"), ("MED301", "Pathology") },
-                ["ART"] = new[] { ("ART100", "History of Art"), ("ART210", "Modern Philosophy") }
-            };
+                var deptCourses = new List<(string Code, string Title)>();
+                for (int level = 1; level <= 4; level++)
+                {
+                    for (int i = 1; i <= 6; i++)
+                    {
+                        string code = $"{d.Code}{level}{i:D2}";
+                        string title = $"{d.Name} Level {level} Part {i}";
+                        deptCourses.Add((code, title));
+                    }
+                }
+                coursesData[d.Code] = deptCourses;
+            }
 
             // 1. Roles
             Log("[Seeder] Stage 1: Seeding Roles...");
