@@ -1,4 +1,4 @@
-﻿using MediatR;
+using MediatR;
 using Microsoft.Extensions.Localization;
 using Rafeek.Application.Localization;
 using Rafeek.Domain.Repositories.Interfaces;
@@ -19,7 +19,14 @@ namespace Rafeek.Application.Handlers.AuthHandlers.Commands.ForegetPassword
 
         public async Task<string> Handle(ForegetPasswordCommand request, CancellationToken cancellationToken)
         {
-            await _userRepository.SendConfirmationCodeAsync(request.Email, cancellationToken);
+            try
+            {
+                await _userRepository.SendConfirmationCodeAsync(request.Email, cancellationToken);
+            }
+            catch (Exception)
+            {
+                
+            }
 
             return _localizer[LocalizationKeys.EmailTemplates.ForgotPassword.Message.Value];
         }
