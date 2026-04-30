@@ -28,16 +28,22 @@ namespace Rafeek.Application.Handlers.AuthHandlers.Commands.ActivateUniversityEm
                            email.EndsWith("@mans.edu.eg", StringComparison.OrdinalIgnoreCase);
                 })
                 .WithMessage(_localizer[LocalizationKeys.GlobalValidationMessages.EmailDomainInvalid.Value])
-                .MustAsync(IsAlreadyActivatedEmail).WithMessage(_localizer[LocalizationKeys.UserMessages.EmailAlreadyActivated.Value]);
+                .MustAsync(IsNotActivatedEmail).WithMessage(_localizer[LocalizationKeys.UserMessages.EmailAlreadyActivated.Value]);
 
             RuleFor(v => v.ConfirmationCode)
-                .NotNull().NotEmpty().WithMessage(_localizer[LocalizationKeys.UserMessages.ResetTokenInvalid.Value]);
+                .NotNull().NotEmpty().WithMessage(_localizer[LocalizationKeys.UserMessages.ResetTokenInvalid.Value])
+                .MustAsync(IsNotExpiredActivationCode).WithMessage("Invalid or expired confirmation code.");
         }
 
 
-        private Task<bool> IsAlreadyActivatedEmail(string email, CancellationToken cancellationToken)
+        private Task<bool> IsNotActivatedEmail(string email, CancellationToken cancellationToken)
         {
-            return _signInManager.UserManager.Users.AnyAsync(u => u.Email == email && u.IsUniversityEmailActivated, cancellationToken);
+            return _signInManager.UserManager.Users.AnyAsync(u => u.Email == email && !u.IsUniversityEmailActivated, cancellationToken);
+        }
+
+        private Task<bool> IsNotExpiredActivationCode(ActivateUniversityEmailCommand command, string confirmationCode, ValidationContext<ActivateUniversityEmailCommand> context, CancellationToken cancellationToken)
+        {
+            return _signInManager.UserManager.Users.AnyAsync(u => u.Email == command.Email && u.PasswordResetToken == confirmationCode && u.PasswordResetTokenExpiredTime > DateTime.UtcNow, cancellationToken);
         }
     }
 }

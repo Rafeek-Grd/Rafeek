@@ -37,7 +37,7 @@ namespace Rafeek.Application.Handlers.AuthHandlers.Commands.ActivateUniversityEm
             }
 
             // Verify confirmation code
-            if (user.PasswordResetToken != request.ConfirmationCode || user.PasswordResetTokenExpiredTime < DateTime.Now)
+            if (user.PasswordResetToken != request.ConfirmationCode || user.PasswordResetTokenExpiredTime < DateTime.UtcNow)
             {
                 throw new BadRequestException(_localizer[LocalizationKeys.UserMessages.ResetTokenInvalid.Value]);
             }

@@ -127,7 +127,7 @@ namespace Rafeek.API.Controllers.Version1
         /// <param name="command"></param>
         /// <returns></returns>
         [HttpPost]
-        [RoleAuthorize(nameof(UserType.Admin))]
+        [RoleAuthorize()]
         [Route(ApiRoutes.Authentication.ActivateUniversityEmail)]
         [ProducesResponseType(typeof(bool), StatusCodes.Status202Accepted)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

@@ -197,12 +197,14 @@ namespace Rafeek.Application.Handlers.AuthHandlers.Commands.SignUp
                     ApplicationUser response = (ApplicationUser)signInResult.Data;
                     AuthResult tokens = (AuthResult)await _ctx.RefreshTokenRepository.GenerateTokens(response, cancellationToken);
 
-                    // Security: Generate 6-digit activation code for system activation
-                    string activationCode = Convert.ToString(RandomNumberGenerator.GetInt32(100000, 1000000));
-                    user.PasswordResetToken = activationCode;
-                    user.PasswordResetTokenExpiredTime = DateTime.UtcNow.AddHours(24);
+                    // Re-fetch to get fresh ConcurrencyStamp after Identity created the user
+                    var savedUser = await _userManager.FindByEmailAsync(user.Email);
 
-                    await _ctx.SaveChangesAsync(cancellationToken);
+                    string activationCode = Convert.ToString(RandomNumberGenerator.GetInt32(100000, 1000000));
+                    savedUser!.PasswordResetToken = activationCode;
+                    savedUser.PasswordResetTokenExpiredTime = DateTime.UtcNow.AddHours(1);
+
+                    await _userManager.UpdateAsync(savedUser);
                     await transaction.CommitAsync(cancellationToken);
 
                     try
