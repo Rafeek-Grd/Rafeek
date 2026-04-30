@@ -20,11 +20,11 @@ namespace Rafeek.Application.Handlers.AuthHandlers.Commands.ForegetPassword
             RuleFor(x => x.Email)
                 .NotNull().WithMessage(_localizer[LocalizationKeys.UserMessages.EmailRequired.Value])
                 .NotEmpty().WithMessage(_localizer[LocalizationKeys.UserMessages.EmailRequired.Value])
-                .EmailAddress().WithMessage(_localizer[LocalizationKeys.GlobalValidationMessages.EmailInvalid.Value])
-                .MustAsync(IsValidEmail).WithMessage(_localizer[LocalizationKeys.UserMessages.EmailNotFoundBefore.Value])
-                .MustAsync(IsActivatedUniversityEmail).WithMessage(_localizer[LocalizationKeys.GlobalValidationMessages.EmailNotActivated.Value]);
+                .EmailAddress().WithMessage(_localizer[LocalizationKeys.GlobalValidationMessages.EmailInvalid.Value]);
+                //.MustAsync(IsValidEmail).WithMessage(_localizer[LocalizationKeys.UserMessages.EmailNotFoundBefore.Value])
+                //.MustAsync(IsActivatedUniversityEmail).WithMessage(_localizer[LocalizationKeys.GlobalValidationMessages.EmailNotActivated.Value]);
         }
-        public Task<bool> IsValidEmail(string email, CancellationToken cancellationToken)
+        private Task<bool> IsValidEmail(string email, CancellationToken cancellationToken)
         {
             return _signInManager.UserManager.Users.AnyAsync(u => u.Email == email || u.TemporaryEmail == email, cancellationToken);
         }
