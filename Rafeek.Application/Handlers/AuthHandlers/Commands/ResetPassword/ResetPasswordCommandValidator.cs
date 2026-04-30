@@ -38,24 +38,24 @@ namespace Rafeek.Application.Handlers.AuthHandlers.Commands.ResetPassword
 
             RuleFor(v => v.NewPassword)
                .NotNull().NotEmpty().WithMessage(_localizer[LocalizationKeys.UserMessages.PasswordRequired.Value])
-               .MinimumLength(8).WithMessage(_localizer[LocalizationKeys.UserMessages.PasswordMinLength.Value])
-               .Must(password =>
-               {
-                   if (string.IsNullOrEmpty(password)) return false;
+               .MinimumLength(8).WithMessage(_localizer[LocalizationKeys.UserMessages.PasswordMinLength.Value]);
+               //.Must(password =>
+               //{
+               //    if (string.IsNullOrEmpty(password)) return false;
 
-                   bool hasUpperCase = Regex.IsMatch(password, @"[A-Z]");
+               //    bool hasUpperCase = Regex.IsMatch(password, @"[A-Z]");
 
-                   bool hasLowerCase = Regex.IsMatch(password, @"[a-z]");
+               //    bool hasLowerCase = Regex.IsMatch(password, @"[a-z]");
 
-                   bool hasDigit = Regex.IsMatch(password, @"\d");
+               //    bool hasDigit = Regex.IsMatch(password, @"\d");
 
-                   bool hasSpecialChar = Regex.IsMatch(password, @"[!@#$%^&*()_+=\-{}\[\]:;""'|\\<>,.?/~`]");
+               //    bool hasSpecialChar = Regex.IsMatch(password, @"[!@#$%^&*()_+=\-{}\[\]:;""'|\\<>,.?/~`]");
 
-                   bool isValidFormat = Regex.IsMatch(password, @"^[a-zA-Z0-9!@#$%^&*()_+=\-{}\[\]:;""'|\\<>,.?/~`]+$");
+               //    bool isValidFormat = Regex.IsMatch(password, @"^[a-zA-Z0-9!@#$%^&*()_+=\-{}\[\]:;""'|\\<>,.?/~`]+$");
 
-                   return hasUpperCase && hasLowerCase && hasDigit && hasSpecialChar && isValidFormat;
-               })
-               .WithMessage(_localizer[LocalizationKeys.UserMessages.PasswordValid.Value]);
+               //    return hasUpperCase && hasLowerCase && hasDigit && hasSpecialChar && isValidFormat;
+               //})
+               //.WithMessage(_localizer[LocalizationKeys.UserMessages.PasswordValid.Value]);
         }
 
         private async Task<bool> BeValidEmail(string email, CancellationToken cancellationToken)
