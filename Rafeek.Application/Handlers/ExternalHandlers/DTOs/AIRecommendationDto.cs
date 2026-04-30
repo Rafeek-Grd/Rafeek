@@ -8,8 +8,8 @@ namespace Rafeek.Application.Handlers.ExternalHandlers.DTOs
         [JsonPropertyName("status")]
         public string Status { get; set; } = null!;
 
-        [JsonPropertyName("student_id")]
-        public long StudentId { get; set; }
+        [JsonPropertyName("source")]
+        public string Source { get; set; } = null!;
 
         [JsonPropertyName("dominant_track")]
         public string DominantTrack { get; set; } = null!;
@@ -26,8 +26,11 @@ namespace Rafeek.Application.Handlers.ExternalHandlers.DTOs
 
     public class CourseRecommendationDto
     {
-        [JsonPropertyName("course")]
-        public string Course { get; set; } = null!;
+        [JsonPropertyName("course_code")]
+        public string CourseCode { get; set; } = null!;
+
+        [JsonPropertyName("course_name")]
+        public string CourseName { get; set; } = null!;
 
         [JsonPropertyName("score")]
         public double Score { get; set; }
