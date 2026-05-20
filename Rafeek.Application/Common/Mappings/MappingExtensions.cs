@@ -8,7 +8,17 @@ namespace Rafeek.Application.Common.Mappings
         public static PagginatedResult<TDestination> PaginatedList<TDestination>(this IQueryable<TDestination> queryable, int pageNumber = 1, int pageSize = 20)
         {
             var count = queryable.Count();
-            var items = queryable.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
+            
+            List<TDestination> items;
+            if (pageSize == -1)
+            {
+                items = queryable.ToList();
+            }
+            else
+            {
+                var size = pageSize <= 0 ? 20 : pageSize;
+                items = queryable.Skip((pageNumber - 1) * size).Take(size).ToList();
+            }
 
             return PagginatedResult<TDestination>.Create(items, count, pageNumber, pageSize);
         }
@@ -16,7 +26,17 @@ namespace Rafeek.Application.Common.Mappings
         public static async Task<PagginatedResult<TDestination>> PaginatedListAsync<TDestination>(this IQueryable<TDestination> queryable, int pageNumber = 1, int pageSize = 20, CancellationToken cancellationToken = default)
         {
             var count = await queryable.CountAsync(cancellationToken);
-            var items = await queryable.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToListAsync(cancellationToken);
+            
+            List<TDestination> items;
+            if (pageSize == -1)
+            {
+                items = await queryable.ToListAsync(cancellationToken);
+            }
+            else
+            {
+                var size = pageSize <= 0 ? 20 : pageSize;
+                items = await queryable.Skip((pageNumber - 1) * size).Take(size).ToListAsync(cancellationToken);
+            }
 
             return PagginatedResult<TDestination>.Create(items, count, pageNumber, pageSize);
         }

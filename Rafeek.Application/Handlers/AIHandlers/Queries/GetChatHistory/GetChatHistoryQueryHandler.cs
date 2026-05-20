@@ -37,19 +37,25 @@ namespace Rafeek.Application.Handlers.AIHandlers.Queries.GetChatHistory
                 query = query.Where(q => q.SessionId == request.SessionId.Value);
             }
 
-            var history = await query
-                .OrderByDescending(q => q.CreatedAt)
-                .Skip((request.Page - 1) * request.PageSize)
-                .Take(request.PageSize)
-                .Select(q => new ChatHistoryDto
-                {
-                    Id = q.Id,
-                    SessionId = q.SessionId,
-                    Question = q.Query,
-                    Answer = q.Response,
-                    AskedAt = q.CreatedAt
-                })
-                .ToListAsync(cancellationToken);
+            var orderedQuery = query.OrderByDescending(q => q.CreatedAt);
+
+            var projectedQuery = orderedQuery.Select(q => new ChatHistoryDto
+            {
+                Id = q.Id,
+                SessionId = q.SessionId,
+                Question = q.Query,
+                Answer = q.Response,
+                AskedAt = q.CreatedAt
+            });
+
+            if (request.PageSize != -1)
+            {
+                projectedQuery = projectedQuery
+                    .Skip((request.Page - 1) * request.PageSize)
+                    .Take(request.PageSize);
+            }
+
+            var history = await projectedQuery.ToListAsync(cancellationToken);
 
             return history;
         }

@@ -9,6 +9,7 @@ using Rafeek.Application.Localization;
 using Rafeek.Domain.Entities;
 using Rafeek.Domain.Enums;
 using Rafeek.Domain.Repositories.Interfaces.Generic;
+using Rafeek.Application.Common.Extensions;
 using System.Security.Cryptography;
 using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Identity;
@@ -226,7 +227,7 @@ namespace Rafeek.Application.Handlers.AuthHandlers.Commands.SignUp
                     var signResponse = _mapper.Map(tokens, new SignResponse());
                     _mapper.Map(user, signResponse);
 
-                    signResponse.Roles = allRoles;
+                    signResponse.Role = await user.GetUserRoleStringAsync(_dbContext, cancellationToken);
 
                     return signResponse;
                 }

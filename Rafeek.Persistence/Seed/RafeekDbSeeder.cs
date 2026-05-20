@@ -41,14 +41,17 @@ namespace Rafeek.Persistence.Seed
             Randomizer.Seed = new Random(8675309);
             context.ChangeTracker.AutoDetectChangesEnabled = false;
 
+            var fEn = new Faker("en");
+            var fAr = new Faker("ar");
+
             var departmentsData = new[]
             {
-                new { Name = "Computer Science", Code = "CS" },
-                new { Name = "Information Systems", Code = "IS" },
-                new { Name = "Information Technology", Code = "IT" },
-                new { Name = "Bioinformatics", Code = "BIO" },
-                new { Name = "Software Engineering", Code = "SWE" },
-                new { Name = "Artificial Intelligence", Code = "AI" }
+                new { Name = "علوم الحاسب", Code = "CS", Description = "قسم علوم الحاسب يركز على التميز الأكاديمي والبحث العلمي والتطوير التكنولوجي." },
+                new { Name = "نظم المعلومات", Code = "IS", Description = "قسم نظم المعلومات يركز على إدارة وتحليل النظم والبيانات لدعم اتخاذ القرارات." },
+                new { Name = "تكنولوجيا المعلومات", Code = "IT", Description = "قسم تكنولوجيا المعلومات يركز على البنية التحتية للشبكات وأمن المعلومات وحلول الويب." },
+                new { Name = "المعلوماتية الحيوية", Code = "BIO", Description = "قسم المعلوماتية الحيوية يدمج بين علوم الحاسب وعلم الأحياء لتحليل البيانات الطبية والحيوية." },
+                new { Name = "هندسة البرمجيات", Code = "SWE", Description = "قسم هندسة البرمجيات يركز على تصميم وتطوير وإدارة النظم البرمجية المعقدة بكفاءة وجودة عالية." },
+                new { Name = "الذكاء الاصطناعي", Code = "AI", Description = "قسم الذكاء الاصطناعي يركز على تقنيات التعلم الآلي والأنظمة الذكية والروبوتات لمعالجة التحديات الحديثة." }
             };
 
             var coursesData = new Dictionary<string, List<(string Code, string Title)>>();
@@ -60,7 +63,7 @@ namespace Rafeek.Persistence.Seed
                     for (int i = 1; i <= 6; i++)
                     {
                         string code = $"{d.Code}{level}{i:D2}";
-                        string title = $"{d.Name} Level {level} Part {i}";
+                        string title = $"{d.Name} - المستوى {level} - الجزء {i}";
                         deptCourses.Add((code, title));
                     }
                 }
@@ -87,7 +90,7 @@ namespace Rafeek.Persistence.Seed
                     Id = Guid.NewGuid(),
                     Name = d.Name,
                     Code = d.Code,
-                    Description = $"The {d.Name} department focusing on academic excellence and research.",
+                    Description = d.Description,
                     CreatedAt = DateTime.UtcNow,
                     CreatedBy = "Seeder",
                     IsActive = true
@@ -112,7 +115,7 @@ namespace Rafeek.Persistence.Seed
                                 Id = Guid.NewGuid(),
                                 Code = cData.Code,
                                 Title = cData.Title,
-                                Description = $"An intensive course on {cData.Title} providing core foundational knowledge.",
+                                Description = $"مقرر دراسي مكثف في {cData.Title} يقدم المعارف والمهارات الأساسية والمتقدمة في هذا المجال.",
                                 CreditHours = new Random().Next(2, 4),
                                 DepartmentId = dept.Id,
                                 CreatedAt = DateTime.UtcNow,
@@ -163,8 +166,14 @@ namespace Rafeek.Persistence.Seed
                 .RuleFor(t => t.AcademicYearId, f => f.PickRandom(academicYears).Id)
                 .RuleFor(t => (int)t.TermType, f => f.Random.Int(0, 2)) // 0: Fall, 1: Spring, 2: Summer
                 .RuleFor(t => t.Name, (f, t) => {
-                    var yearName = academicYears.First(y => y.Id == t.AcademicYearId).Name.Split('/')[0];
-                    return $"{t.TermType} {yearName}";
+                    var yearName = academicYears.First(y => y.Id == t.AcademicYearId).Name;
+                    var termTypeName = t.TermType switch {
+                        Rafeek.Domain.Enums.TermType.Fall => "الفصل الدراسي الأول (الخريف)",
+                        Rafeek.Domain.Enums.TermType.Spring => "الفصل الدراسي الثاني (الربيع)",
+                        Rafeek.Domain.Enums.TermType.Summer => "الفصل الصيفي",
+                        _ => t.TermType.ToString()
+                    };
+                    return $"{termTypeName} للعام الجامعي {yearName}";
                 })
                 .RuleFor(t => t.StartDate, (f, t) => {
                     var year = academicYears.First(y => y.Id == t.AcademicYearId);
@@ -191,20 +200,31 @@ namespace Rafeek.Persistence.Seed
             // 6. Users - Existing or New (Max 50 if empty)
             Log("[Seeder] Stage 6: Checking Users...");
             var users = await identityContext.Users.ToListAsync();
-            var f = new Faker("en");
+
+            var existingFallback = users.FirstOrDefault(u => u.UserName == "admin_fallback" || u.Email == "admin@rafeek.edu");
+            if (existingFallback != null && existingFallback.UserTypes != UserType.Admin)
+            {
+                Log("[Seeder] Correcting existing fallback admin's UserTypes to Admin...");
+                existingFallback.UserTypes = UserType.Admin;
+                await userManager.UpdateAsync(existingFallback);
+                await identityContext.SaveChangesAsync();
+                
+                // Refresh list
+                users = await identityContext.Users.ToListAsync();
+            }
             
             if (!users.Any())
             {
                 Log("[Seeder] No users found. Generating 50 new users...");
-                var userFaker = new Faker<ApplicationUser>("en")
+                var userFaker = new Faker<ApplicationUser>("ar")
                     .RuleFor(u => u.Id, f => Guid.NewGuid())
-                    .RuleFor(u => u.UserName, f => f.Internet.UserName() + f.UniqueIndex)
+                    .RuleFor(u => u.UserName, f => fEn.Internet.UserName() + f.UniqueIndex)
                     .RuleFor(u => u.Email, (f, u) => $"{u.UserName}@rafeek.edu")
                     .RuleFor(u => u.FullName, f => f.Name.FullName())
-                    .RuleFor(u => u.NationalId, f => "29" + f.Random.Number(70, 99) + f.Random.Replace("##########").Substring(0, 10))
+                    .RuleFor(u => u.NationalId, f => "29" + fEn.Random.Number(70, 99) + fEn.Random.Replace("##########").Substring(0, 10))
                     .RuleFor(u => u.IsUniversityEmailActivated, f => true)
                     .RuleFor(u => u.Address, f => f.Address.FullAddress())
-                    .RuleFor(u => u.PhoneNumber, f => f.PickRandom(new[] { "010", "011", "012", "015" }) + f.Random.Replace("########"));
+                    .RuleFor(u => u.PhoneNumber, f => fEn.PickRandom(new[] { "010", "011", "012", "015" }) + fEn.Random.Replace("########"));
 
                 var generatedUsers = userFaker.Generate(50);
                 int successCount = 0;
@@ -218,7 +238,7 @@ namespace Rafeek.Persistence.Seed
                         {
                             successCount++;
                             var userRoles = new List<string>();
-                            var dice = f.Random.Double();
+                            var dice = fEn.Random.Double();
 
                             // Enrollment logic based on 8 valid combinations
                             if (dice < 0.60) // 60% Students
@@ -283,7 +303,7 @@ namespace Rafeek.Persistence.Seed
                 if (successCount == 0)
                 {
                     Log("[Seeder] Critical: 0 users created. Attempting fallback admin user...");
-                    var fallbackAdmin = new ApplicationUser { UserName = "admin_fallback", Email = "admin@rafeek.edu", FullName = "System Admin", NationalId = "00000000000000", UserTypes = UserType.Staff };
+                    var fallbackAdmin = new ApplicationUser { UserName = "admin_fallback", Email = "admin@rafeek.edu", FullName = "مدير النظام", NationalId = "00000000000000", UserTypes = UserType.Admin };
                     var res = await userManager.CreateAsync(fallbackAdmin, "P@ssw0rd123!");
                     if (res.Succeeded) await userManager.AddToRoleAsync(fallbackAdmin, "Admin");
                 }
@@ -337,7 +357,7 @@ namespace Rafeek.Persistence.Seed
                 var targetUsers = doctorUsers.Any() ? doctorUsers : users.Skip(5).Take(10).ToList();
                 for (int d = 0; d < targetUsers.Count; d++)
                 {
-                    doctors.Add(new Doctor { Id = Guid.NewGuid(), UserId = targetUsers[d].Id, EmployeeCode = $"DOC{1000 + d}", DepartmentId = f.PickRandom(departments).Id, IsAcademicAdvisor = f.Random.Bool(0.7f), CreatedAt = DateTime.UtcNow, CreatedBy = "Seeder", IsActive = true });
+                    doctors.Add(new Doctor { Id = Guid.NewGuid(), UserId = targetUsers[d].Id, EmployeeCode = $"DOC{1000 + d}", DepartmentId = fEn.PickRandom(departments).Id, IsAcademicAdvisor = fEn.Random.Bool(0.7f), CreatedAt = DateTime.UtcNow, CreatedBy = "Seeder", IsActive = true });
                 }
                 await context.Doctors.AddRangeAsync(doctors);
                 await context.SaveChangesAsync();
@@ -352,7 +372,7 @@ namespace Rafeek.Persistence.Seed
                 var targetUsers = instructorUsers.Any() ? instructorUsers : users.Skip(15).Take(10).ToList();
                 foreach (var user in targetUsers)
                 {
-                    instructors.Add(new Instructor { Id = Guid.NewGuid(), UserId = user.Id, EmployeeCode = $"INS{f.Random.Number(1000, 9999)}", DepartmentId = f.PickRandom(departments).Id, CreatedAt = DateTime.UtcNow, CreatedBy = "Seeder", IsActive = true });
+                    instructors.Add(new Instructor { Id = Guid.NewGuid(), UserId = user.Id, EmployeeCode = $"INS{fEn.Random.Number(1000, 9999)}", DepartmentId = fEn.PickRandom(departments).Id, CreatedAt = DateTime.UtcNow, CreatedBy = "Seeder", IsActive = true });
                 }
                 
                 // Also ensure Doctors are Instructors (common for Professors)
@@ -360,7 +380,7 @@ namespace Rafeek.Persistence.Seed
                 {
                     if (!instructors.Any(i => i.UserId == doc.UserId))
                     {
-                        instructors.Add(new Instructor { Id = Guid.NewGuid(), UserId = doc.UserId, EmployeeCode = $"INS-DOC{f.Random.Number(100, 999)}", DepartmentId = doc.DepartmentId, CreatedAt = DateTime.UtcNow, CreatedBy = "Seeder", IsActive = true });
+                        instructors.Add(new Instructor { Id = Guid.NewGuid(), UserId = doc.UserId, EmployeeCode = $"INS-DOC{fEn.Random.Number(100, 999)}", DepartmentId = doc.DepartmentId, CreatedAt = DateTime.UtcNow, CreatedBy = "Seeder", IsActive = true });
                     }
                 }
 
@@ -381,16 +401,16 @@ namespace Rafeek.Persistence.Seed
                     var studentId = Guid.NewGuid();
                     var profileId = Guid.NewGuid();
 
-                    var level = f.Random.Int(1, 4);
-                    var term = (level * 2) - f.Random.Int(0, 1);
+                    var level = fEn.Random.Int(1, 4);
+                    var term = (level * 2) - fEn.Random.Int(0, 1);
                     
                     students.Add(new Student { 
                         Id = studentId, 
                         UserId = user.Id, 
                         UniversityCode = $"{DateTime.UtcNow.Year}{10000 + i}", 
-                        DepartmentId = f.PickRandom(departments).Id, 
+                        DepartmentId = fEn.PickRandom(departments).Id, 
                         AcademicProfileId = profileId,
-                        AcademicAdvisorId = advisorList.Any() ? f.PickRandom(advisorList).Id : (doctors.Any() ? f.PickRandom(doctors).Id : null),
+                        AcademicAdvisorId = advisorList.Any() ? fEn.PickRandom(advisorList).Id : (doctors.Any() ? fEn.PickRandom(doctors).Id : null),
                         Level = level,
                         Term = term,
                         Status = Rafeek.Domain.Enums.StudentStatus.Active,
@@ -402,7 +422,7 @@ namespace Rafeek.Persistence.Seed
                         StudentId = studentId,
                         GPA = 0.0f,
                         CGPA = 0.0f,
-                        CompletedCredits = (level - 1) * 30 + f.Random.Int(0, 15),
+                        CompletedCredits = (level - 1) * 30 + fEn.Random.Int(0, 15),
                         RemainingCredits = 144 - ((level - 1) * 30),
                         Standing = "Good Standing",
                         CreatedAt = DateTime.UtcNow, CreatedBy = "Seeder", IsActive = true 
@@ -426,20 +446,20 @@ namespace Rafeek.Persistence.Seed
                 foreach (var course in courses)
                 {
                     // Every course gets at least 2 sections
-                    var sectionCount = f.Random.Int(2, 4);
+                    var sectionCount = fEn.Random.Int(2, 4);
                     for (int i = 0; i < sectionCount; i++)
                     {
-                        var startTime = new TimeSpan(f.PickRandom(new[] { 8, 10, 12, 14, 16 }), 0, 0);
+                        var startTime = new TimeSpan(fEn.PickRandom(new[] { 8, 10, 12, 14, 16 }), 0, 0);
                         sections.Add(new Section
                         {
                             Id = Guid.NewGuid(),
                             CourseId = course.Id,
-                            InstructorId = instructors.Any() ? f.PickRandom(instructors).Id : (doctors.Any() ? f.PickRandom(doctors).Id : Guid.Empty),
-                            Day = f.PickRandom(new[] { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday" }),
+                            InstructorId = instructors.Any() ? fEn.PickRandom(instructors).Id : (doctors.Any() ? fEn.PickRandom(doctors).Id : Guid.Empty),
+                            Day = fEn.PickRandom(new[] { "الأحد", "الإثنين", "الثلاثاء", "الأربعاء", "الخميس" }),
                             StartTime = startTime,
                             EndTime = startTime.Add(new TimeSpan(2, 0, 0)),
                             Time = $"{startTime:hh\\:mm} - {startTime.Add(new TimeSpan(2, 0, 0)):hh\\:mm}",
-                            Capacity = f.Random.Int(30, 60),
+                            Capacity = fEn.Random.Int(30, 60),
                             CreatedAt = DateTime.UtcNow,
                             CreatedBy = "Seeder",
                             IsActive = true
@@ -478,30 +498,30 @@ namespace Rafeek.Persistence.Seed
                     var majorSections = sections.Where(sec => sec.Course.DepartmentId == s.DepartmentId).ToList();
                     var electiveSections = sections.Where(sec => sec.Course.DepartmentId != s.DepartmentId).ToList();
 
-                    var enrCount = f.Random.Int(5, 7);
+                    var enrCount = fEn.Random.Int(5, 7);
                     var majorCount = (int)(enrCount * 0.7);
                     
                     if (majorSections.Any())
-                        coursesToEnroll.AddRange(f.PickRandom(majorSections, Math.Min(majorCount, majorSections.Count)));
+                        coursesToEnroll.AddRange(fEn.PickRandom(majorSections, Math.Min(majorCount, majorSections.Count)));
                     
                     if (electiveSections.Any())
-                        coursesToEnroll.AddRange(f.PickRandom(electiveSections, Math.Min(enrCount - coursesToEnroll.Count, electiveSections.Count)));
+                        coursesToEnroll.AddRange(fEn.PickRandom(electiveSections, Math.Min(enrCount - coursesToEnroll.Count, electiveSections.Count)));
 
                     foreach (var sec in coursesToEnroll)
                     {
                         // Bell-curve grade distribution simulation
                         // WeightedRandom: 10% Excellent (90-95), 40% Good (80-89), 30% Fair (70-79), 15% Pass (60-69), 5% Fail (<60)
-                        var gradeCategory = f.Random.WeightedRandom(
+                        var gradeCategory = fEn.Random.WeightedRandom(
                             new[] { "A", "B", "C", "D", "F" },
                             new[] { 0.10f, 0.40f, 0.30f, 0.15f, 0.05f }
                         );
 
                         float score = gradeCategory switch {
-                            "A" => (float)Math.Round(f.Random.Double(90.0, 98.0), 2),
-                            "B" => (float)Math.Round(f.Random.Double(80.0, 89.0), 2),
-                            "C" => (float)Math.Round(f.Random.Double(70.0, 79.0), 2),
-                            "D" => (float)Math.Round(f.Random.Double(60.0, 69.0), 2),
-                            _ => (float)Math.Round(f.Random.Double(40.0, 59.0), 2)
+                            "A" => (float)Math.Round(fEn.Random.Double(90.0, 98.0), 2),
+                            "B" => (float)Math.Round(fEn.Random.Double(80.0, 89.0), 2),
+                            "C" => (float)Math.Round(fEn.Random.Double(70.0, 79.0), 2),
+                            "D" => (float)Math.Round(fEn.Random.Double(60.0, 69.0), 2),
+                            _ => (float)Math.Round(fEn.Random.Double(40.0, 59.0), 2)
                         };
                         
                         string gradeLetter;
@@ -543,9 +563,9 @@ namespace Rafeek.Persistence.Seed
                     var profile = studentProfiles.FirstOrDefault(p => p.StudentId == s.Id);
                     if (profile != null)
                     {
-                        var avgGpa = studentGrades.Any() ? (float)Math.Round(studentGrades.Average(), 2) : (float)Math.Round(f.Random.Double(2.0, 3.8), 2);
+                        var avgGpa = studentGrades.Any() ? (float)Math.Round(studentGrades.Average(), 2) : (float)Math.Round(fEn.Random.Double(2.0, 3.8), 2);
                         profile.GPA = Math.Clamp(avgGpa, 0.0f, 4.0f);
-                        profile.CGPA = Math.Clamp((float)Math.Round(profile.GPA - f.Random.Double(0, 0.2), 2), 0.0f, 4.0f);
+                        profile.CGPA = Math.Clamp((float)Math.Round(profile.GPA - fEn.Random.Double(0, 0.2), 2), 0.0f, 4.0f);
                     }
                 }
                 context.Enrollments.AddRange(enrollments);
@@ -584,21 +604,67 @@ namespace Rafeek.Persistence.Seed
 
                 if (!await context.AcademicFeedbacks.AnyAsync() && students.Any())
                 {
-                    var feedbacks = new Faker<AcademicFeedback>("en").RuleFor(x => x.Id, Guid.NewGuid).RuleFor(x => x.StudentId, f => f.PickRandom(students).Id).RuleFor(x => x.Strength, f => f.Lorem.Word()).RuleFor(x => x.Weakness, f => f.Lorem.Word()).RuleFor(x => x.Recommendation, f => f.Lorem.Sentence()).RuleFor(x => x.CreatedAt, f => DateTime.UtcNow).RuleFor(x => x.CreatedBy, "Seeder").Generate(50);
+                    var strengths = new[] { "الالتزام بالحضور", "سرعة الفهم والاستيعاب", "مهارات متميزة في حل المشكلات", "التفكير التحليلي القوي", "العمل الجماعي الرائع", "المهارات التنظيمية العالية" };
+                    var weaknesses = new[] { "إدارة الوقت أثناء الامتحانات", "التسويف في تسليم المشاريع", "المشاركة الخجولة في المحاضرات", "التردد في طرح الأسئلة", "تحتاج مهارات البرمجة إلى تدريب إضافي" };
+                    var recommendations = new[] {
+                        "الاستمرار في المشاركة الفعالة في الأنشطة الطلابية.",
+                        "المشاركة في ورش العمل التقنية لزيادة المهارات العملية.",
+                        "التركيز على تنظيم جدول المذاكرة وحل التدريبات السابقة.",
+                        "استشارة المرشد الأكاديمي لمراجعة خطة التسجيل الدراسي.",
+                        "حضور الساعات المكتبية للدعم والمراجعة المستمرة."
+                    };
+                    var feedbacks = new Faker<AcademicFeedback>("ar")
+                        .RuleFor(x => x.Id, Guid.NewGuid)
+                        .RuleFor(x => x.StudentId, f => f.PickRandom(students).Id)
+                        .RuleFor(x => x.Strength, f => f.PickRandom(strengths))
+                        .RuleFor(x => x.Weakness, f => f.PickRandom(weaknesses))
+                        .RuleFor(x => x.Recommendation, f => f.PickRandom(recommendations))
+                        .RuleFor(x => x.CreatedAt, f => DateTime.UtcNow)
+                        .RuleFor(x => x.CreatedBy, "Seeder")
+                        .Generate(50);
                     context.AcademicFeedbacks.AddRange(feedbacks);
                     await context.SaveChangesAsync();
                 }
 
                 if (!await context.AICourseRecommendations.AnyAsync() && students.Any())
                 {
-                    var aiReco = new Faker<AICourseRecommendation>("en").RuleFor(x => x.Id, Guid.NewGuid).RuleFor(x => x.StudentId, f => f.PickRandom(students).Id).RuleFor(x => x.CourseId, f => f.PickRandom(courses).Id).RuleFor(x => x.Reason, f => f.Lorem.Sentence()).RuleFor(x => x.CreatedAt, f => DateTime.UtcNow).RuleFor(x => x.CreatedBy, "Seeder").Generate(50);
+                    var reasons = new[] {
+                        "يتماشى هذا المقرر مع اهتمامك بمجال الذكاء الاصطناعي وتطوير الأنظمة.",
+                        "يساعدك هذا المقرر على تحسين مستواك وتلبية متطلبات التخرج.",
+                        "يُنصح به بناءً على أدائك الممتاز في المقررات التمهيدية السابقة.",
+                        "يعد هذا المقرر أساسياً ومطلوباً لفتح مسارات دراسية متقدمة في هندسة البرمجيات.",
+                        "سيعزز هذا المقرر مهاراتك العملية والتقنية المطلوبة بشدة في سوق العمل."
+                    };
+                    var aiReco = new Faker<AICourseRecommendation>("ar")
+                        .RuleFor(x => x.Id, Guid.NewGuid)
+                        .RuleFor(x => x.StudentId, f => f.PickRandom(students).Id)
+                        .RuleFor(x => x.CourseId, f => f.PickRandom(courses).Id)
+                        .RuleFor(x => x.Reason, f => f.PickRandom(reasons))
+                        .RuleFor(x => x.CreatedAt, f => DateTime.UtcNow)
+                        .RuleFor(x => x.CreatedBy, "Seeder")
+                        .Generate(50);
                     context.AICourseRecommendations.AddRange(aiReco);
                     await context.SaveChangesAsync();
                 }
 
                 if (!await context.CareerSuggestions.AnyAsync() && students.Any())
                 {
-                    var careers = new Faker<CareerSuggestion>("en").RuleFor(x => x.Id, Guid.NewGuid).RuleFor(x => x.StudentId, f => f.PickRandom(students).Id).RuleFor(x => x.CareerPath, f => f.Name.JobTitle()).RuleFor(x => x.Justification, f => f.Lorem.Sentence()).RuleFor(x => x.CreatedAt, f => DateTime.UtcNow).RuleFor(x => x.CreatedBy, "Seeder").Generate(50);
+                    var careerPaths = new[] { "مطور برمجيات كاملة (Full-Stack Developer)", "مهندس بيانات ضخمة (Data Engineer)", "أخصائي أمن سيبراني (Cybersecurity Specialist)", "مهندس تعلم آلي (Machine Learning Engineer)", "محلل نظم معلومات (Systems Analyst)", "مدير مشاريع تقنية (IT Project Manager)" };
+                    var justifications = new[] {
+                        "أظهرت أداءً متميزاً في المقررات البرمجية والتحليلية.",
+                        "لديك شغف ومهارات قوية في تحليل البيانات وحل المشكلات المعقدة.",
+                        "يتطابق ملفك الأكاديمي واهتماماتك مع متطلبات هذا المسار المهني الواعد.",
+                        "تميزك في مشاريع التخرج والعمل الجماعي يجعلك مؤهلاً للقيادة التقنية.",
+                        "سوق العمل يطلب بشدة هذه التخصصات، وأداؤك الأكاديمي يدعم تميزك فيها."
+                    };
+                    var careers = new Faker<CareerSuggestion>("ar")
+                        .RuleFor(x => x.Id, Guid.NewGuid)
+                        .RuleFor(x => x.StudentId, f => f.PickRandom(students).Id)
+                        .RuleFor(x => x.CareerPath, f => f.PickRandom(careerPaths))
+                        .RuleFor(x => x.Justification, f => f.PickRandom(justifications))
+                        .RuleFor(x => x.CreatedAt, f => DateTime.UtcNow)
+                        .RuleFor(x => x.CreatedBy, "Seeder")
+                        .Generate(50);
                     context.CareerSuggestions.AddRange(careers);
                     await context.SaveChangesAsync();
                 }
@@ -660,23 +726,39 @@ namespace Rafeek.Persistence.Seed
             await SeedStageAsync("Student Support & Appointments", async () => {
                 if (!await context.StudentSupports.AnyAsync() && students.Any())
                 {
-                    var supports = new Faker<StudentSupport>("en").RuleFor(x => x.Id, Guid.NewGuid).RuleFor(x => x.StudentId, f => f.PickRandom(students).Id).RuleFor(x => x.Title, f => f.Lorem.Sentence()).RuleFor(x => x.Description, f => f.Lorem.Paragraph()).RuleFor(x => x.CreatedAt, f => DateTime.UtcNow).RuleFor(x => x.CreatedBy, "Seeder").Generate(50);
+                    var supportTitles = new[] { "دعم أكاديمي في الرياضيات", "طلب إرشاد نفسي واجتماعي", "تسهيلات لأصحاب الهمم", "دعم مهارات البرمجة الأساسية", "المساعدة في إدارة التوتر قبل الامتحانات" };
+                    var supportDescriptions = new[] {
+                        "جلسات مخصصة لمراجعة المبادئ الأساسية وحل المسائل الصعبة.",
+                        "توفير بيئة داعمة ومستشاري إرشاد للتحدث ومواجهة التحديات اليومية والأكاديمية.",
+                        "توفير قاعات مهيأة وأدوات مساعدة لضمان تجربة تعليمية متميزة.",
+                        "مراجعة إضافية للمفاهيم الأساسية وتطبيقات عملية مع مهندسي المعمل.",
+                        "ورشة عمل وجلسات حوارية لمناقشة أساليب الدراسة الفعالة والتعامل مع ضغط الاختبارات."
+                    };
+                    var supports = new Faker<StudentSupport>("ar")
+                        .RuleFor(x => x.Id, Guid.NewGuid)
+                        .RuleFor(x => x.StudentId, f => f.PickRandom(students).Id)
+                        .RuleFor(x => x.Title, f => f.PickRandom(supportTitles))
+                        .RuleFor(x => x.Description, f => f.PickRandom(supportDescriptions))
+                        .RuleFor(x => x.CreatedAt, f => DateTime.UtcNow)
+                        .RuleFor(x => x.CreatedBy, "Seeder")
+                        .Generate(50);
                     context.StudentSupports.AddRange(supports);
                     await context.SaveChangesAsync();
                 }
 
                 if (!await context.Appointments.AnyAsync() && students.Any())
                 {
-                    var appointmentsForSeed = new Faker<Appointment>("en")
+                    var appointmentNotes = new[] { "مناقشة الخطة الدراسية للفصل القادم", "مراجعة درجات الامتحان والاعتراضات إن وجدت", "تقديم استشارة بخصوص التدريب الصيفي", "متابعة الحالة الأكاديمية والإنذارات", "مناقشة فكرة مشروع التخرج" };
+                    var appointmentsForSeed = new Faker<Appointment>("ar")
                         .RuleFor(x => x.Id, Guid.NewGuid)
                         .RuleFor(x => x.StudentId, f => f.PickRandom(students).Id)
                         .RuleFor(x => x.DoctorId, f => f.PickRandom(doctors).Id)
                         .RuleFor(x => x.AppointmentDate, f => f.Date.Future())
-                        .RuleFor(x => x.StartTime, f => new TimeSpan(f.Random.Int(9, 15), 0, 0))
+                        .RuleFor(x => x.StartTime, f => new TimeSpan(fEn.Random.Int(9, 15), 0, 0))
                         .RuleFor(x => x.EndTime, (f, x) => x.StartTime.Add(new TimeSpan(0, 30, 0)))
-                        .RuleFor(x => x.Location, f => "Office " + f.Random.Number(100, 500))
+                        .RuleFor(x => x.Location, f => "مكتب رقم " + fEn.Random.Number(100, 500))
                         .RuleFor(x => x.Status, f => f.PickRandom<Rafeek.Domain.Enums.AppointmentStatus>())
-                        .RuleFor(x => x.Notes, f => f.Lorem.Sentence())
+                        .RuleFor(x => x.Notes, f => f.PickRandom(appointmentNotes))
                         .RuleFor(x => x.CreatedAt, f => DateTime.UtcNow)
                         .RuleFor(x => x.CreatedBy, "Seeder")
                         .Generate(50);
@@ -689,10 +771,11 @@ namespace Rafeek.Persistence.Seed
             await SeedStageAsync("Documents, Resources & Maps", async () => {
                 if (!await context.DocumentRequests.AnyAsync() && students.Any())
                 {
-                    var docsReqForSeed = new Faker<DocumentRequest>("en")
+                    var documentTypes = new[] { "بيان درجات رسمي (Transcript)", "إثبات قيد طالب (Enrollment Proof)", "خطاب تدريب صيفي (Summer Internship)", "استخراج بطاقة جامعية (ID Card Request)" };
+                    var docsReqForSeed = new Faker<DocumentRequest>("ar")
                         .RuleFor(x => x.Id, Guid.NewGuid)
                         .RuleFor(x => x.StudentId, f => f.PickRandom(students).Id)
-                        .RuleFor(x => x.DocumentType, f => f.PickRandom(new[] { "Transcript", "Enrollment Proof", "ID" }))
+                        .RuleFor(x => x.DocumentType, f => f.PickRandom(documentTypes))
                         .RuleFor(x => x.CreatedAt, f => DateTime.UtcNow)
                         .RuleFor(x => x.CreatedBy, "Seeder")
                         .Generate(50);
@@ -702,14 +785,31 @@ namespace Rafeek.Persistence.Seed
 
                 if (!await context.LearningResources.AnyAsync() && courses.Any())
                 {
-                    var resources = new Faker<LearningResource>("en").RuleFor(x => x.Id, Guid.NewGuid).RuleFor(x => x.CourseId, f => f.PickRandom(courses).Id).RuleFor(x => x.CreatedAt, f => DateTime.UtcNow).RuleFor(x => x.CreatedBy, "Seeder").Generate(20);
+                    var resources = new Faker<LearningResource>("ar")
+                        .RuleFor(x => x.Id, Guid.NewGuid)
+                        .RuleFor(x => x.CourseId, f => f.PickRandom(courses).Id)
+                        .RuleFor(x => x.ResourceType, ResourceType.External)
+                        .RuleFor(x => x.ResourceUrl, f => fEn.Internet.Url())
+                        .RuleFor(x => x.Description, (f, lr) => "مرجع تعليمي وقراءة إضافية مساعدة لفهم مقرر " + courses.First(c => c.Id == lr.CourseId).Title)
+                        .RuleFor(x => x.CreatedAt, f => DateTime.UtcNow)
+                        .RuleFor(x => x.CreatedBy, "Seeder")
+                        .Generate(20);
                     context.LearningResources.AddRange(resources);
                     await context.SaveChangesAsync();
                 }
 
                 if (!await context.CampusMapLocations.AnyAsync())
                 {
-                    var maps = new Faker<CampusMapLocation>("en").RuleFor(x => x.Id, Guid.NewGuid).RuleFor(x => x.Place, f => f.Company.CompanyName()).RuleFor(x => x.Building, f => "Building " + f.Random.AlphaNumeric(1).ToUpper()).RuleFor(x => x.Floor, f => f.Random.Int(1, 5).ToString()).RuleFor(x => x.CreatedAt, f => DateTime.UtcNow).RuleFor(x => x.CreatedBy, "Seeder").Generate(20);
+                    var places = new[] { "المكتبة المركزية", "مبنى شؤون الطلاب", "مدرج أورمان", "مدرج ابن خلدون", "معمل الحاسبات الرئيسي", "كافتيريا الكلية", "ملعب الرياضة الرئيسي", "مبنى العميد والوكلاء", "عيادة الكلية الصحية", "مسجد الكلية" };
+                    var maps = new Faker<CampusMapLocation>("ar")
+                        .RuleFor(x => x.Id, Guid.NewGuid)
+                        .RuleFor(x => x.Place, f => f.PickRandom(places))
+                        .RuleFor(x => x.Building, f => "مبنى " + fEn.Random.AlphaNumeric(1).ToUpper())
+                        .RuleFor(x => x.Floor, f => fEn.Random.Int(1, 5).ToString())
+                        .RuleFor(x => x.FloorLevel, f => f.PickRandom<Rafeek.Domain.Enums.Floor>())
+                        .RuleFor(x => x.CreatedAt, f => DateTime.UtcNow)
+                        .RuleFor(x => x.CreatedBy, "Seeder")
+                        .Generate(20);
                     context.CampusMapLocations.AddRange(maps);
                     await context.SaveChangesAsync();
                 }
@@ -719,13 +819,13 @@ namespace Rafeek.Persistence.Seed
             await SeedStageAsync("Assignments & Submissions", async () => {
                 if (!await context.Assignments.AnyAsync() && sections.Any())
                 {
-                    var assignments = new Faker<Assignment>("en")
+                    var assignments = new Faker<Assignment>("ar")
                         .RuleFor(x => x.Id, Guid.NewGuid)
                         .RuleFor(x => x.SectionId, f => f.PickRandom(sections).Id)
-                        .RuleFor(x => x.Title, f => "Assignment: " + f.Lorem.Word())
-                        .RuleFor(x => x.Description, f => f.Lorem.Sentence())
+                        .RuleFor(x => x.Title, f => "واجب: " + f.Lorem.Word())
+                        .RuleFor(x => x.Description, f => "يرجى حل الأسئلة المرفقة وتقديم الحل قبل الموعد المحدد: " + f.Lorem.Sentence())
                         .RuleFor(x => x.DueDate, f => f.Date.Future())
-                        .RuleFor(x => x.TotalScore, f => f.Random.Float(10, 100))
+                        .RuleFor(x => x.TotalScore, f => fEn.Random.Float(10, 100))
                         .RuleFor(x => x.IsActive, f => true)
                         .RuleFor(x => x.CreatedAt, f => DateTime.UtcNow)
                         .RuleFor(x => x.CreatedBy, "Seeder")
@@ -739,13 +839,13 @@ namespace Rafeek.Persistence.Seed
                     var assignmentsList = await context.Assignments.ToListAsync();
                     if (assignmentsList.Any())
                     {
-                        var submissions = new Faker<AssignmentSubmission>("en")
+                        var submissions = new Faker<AssignmentSubmission>("ar")
                             .RuleFor(x => x.Id, Guid.NewGuid)
                             .RuleFor(x => x.AssignmentId, f => f.PickRandom(assignmentsList).Id)
                             .RuleFor(x => x.StudentId, f => f.PickRandom(students).Id)
-                            .RuleFor(x => x.SubmissionUrl, f => f.Internet.Url())
-                            .RuleFor(x => x.Feedback, f => f.Lorem.Sentence())
-                            .RuleFor(x => x.Score, (f, x) => f.Random.Float(0, assignmentsList.First(a => a.Id == x.AssignmentId).TotalScore))
+                            .RuleFor(x => x.SubmissionUrl, f => fEn.Internet.Url())
+                            .RuleFor(x => x.Feedback, f => f.PickRandom(new[] { "عمل ممتاز وتنسيق رائع!", "إجابات صحيحة ومجهود تشكر عليه.", "يرجى الانتباه لبعض التفاصيل البرمجية في المرة القادمة.", "حل جيد ولكن يحتاج لمزيد من التوضيح.", "تسليم مكتمل ومتقن." }))
+                            .RuleFor(x => x.Score, (f, x) => fEn.Random.Float(0, assignmentsList.First(a => a.Id == x.AssignmentId).TotalScore))
                             .RuleFor(x => x.SubmittedAt, f => f.Date.Recent())
                             .RuleFor(x => x.CreatedAt, f => DateTime.UtcNow)
                             .RuleFor(x => x.CreatedBy, "Seeder")
@@ -761,18 +861,42 @@ namespace Rafeek.Persistence.Seed
             await SeedStageAsync("User-side entities", async () => {
                 if (!await context.Notifications.AnyAsync() && users.Any())
                 {
-                    var notifications = new Faker<Notification>("en").RuleFor(x => x.Id, Guid.NewGuid).RuleFor(x => x.UserId, f => f.PickRandom(users).Id).RuleFor(x => x.Title, f => f.Lorem.Sentence()).RuleFor(x => x.Message, f => f.Lorem.Paragraph()).RuleFor(x => x.IsRead, f => f.Random.Bool()).RuleFor(x => x.CreatedAt, f => DateTime.UtcNow).RuleFor(x => x.CreatedBy, "Seeder").Generate(50);
+                    var notificationTitles = new[] { "تم تسجيل مقرر جديد", "تنبيه: موعد امتحان منتصف الفصل", "تم تحديث جدول المحاضرات", "رسالة جديدة من المرشد الأكاديمي", "تذكير: تسليم الواجب المتأخر" };
+                    var notificationMessages = new[] {
+                        "لقد تم تسجيلك بنجاح في المقررات الدراسية للفصل الحالي.",
+                        "نود تذكيركم بأن اختبار منتصف الفصل سيبدأ الأسبوع المقبل. بالتوفيق للجميع.",
+                        "يرجى مراجعة الجدول الدراسي لوجود تعديلات طفيفة في مواعيد المحاضرات والمعامل.",
+                        "قام مرشدك الأكاديمي بإرسال ملاحظة جديدة بخصوص خطتك الدراسية.",
+                        "لديك واجب مستحق التسليم خلال 24 ساعة القادمة، يرجى تقديم الحل لتفادي خصم الدرجات."
+                    };
+                    var notifications = new Faker<Notification>("ar")
+                        .RuleFor(x => x.Id, Guid.NewGuid)
+                        .RuleFor(x => x.UserId, f => f.PickRandom(users).Id)
+                        .RuleFor(x => x.Title, f => f.PickRandom(notificationTitles))
+                        .RuleFor(x => x.Message, f => f.PickRandom(notificationMessages))
+                        .RuleFor(x => x.IsRead, f => f.Random.Bool())
+                        .RuleFor(x => x.CreatedAt, f => DateTime.UtcNow)
+                        .RuleFor(x => x.CreatedBy, "Seeder")
+                        .Generate(50);
                     context.Notifications.AddRange(notifications);
                     await context.SaveChangesAsync();
                 }
 
                 if (!await context.Reminders.AnyAsync() && users.Any())
                 {
-                    var reminders = new Faker<Reminder>("en")
+                    var reminderTitles = new[] { "مذاكرة محاضرة الخوارزميات", "شراء الكتب الدراسية", "حجز موعد مع المرشد", "مراجعة مشروع التخرج", "التحضير لعرض الأسبوع المقبل" };
+                    var reminderDescriptions = new[] {
+                        "تجهيز وتلخيص المفاهيم وحل المسائل البرمجية الخاصة بالباب الثالث.",
+                        "زيارة مكتبة الجامعة لشراء الكتب والمراجع المقررة للفصل الحالي.",
+                        "حجز موعد عبر نظام رفيق لمناقشة تعديل وحذف بعض المواد.",
+                        "كتابة التقرير الأولي وعمل المخططات المعمارية للمشروع وتقديمها للدكتور المشرف.",
+                        "تحضير الشرائح التقديمية وتجربة الإلقاء الفردي استعداداً ليوم العرض."
+                    };
+                    var reminders = new Faker<Reminder>("ar")
                         .RuleFor(x => x.Id, Guid.NewGuid)
                         .RuleFor(x => x.UserId, f => f.PickRandom(users).Id)
-                        .RuleFor(x => x.Title, f => f.Lorem.Sentence())
-                        .RuleFor(x => x.Description, f => f.Lorem.Paragraph())
+                        .RuleFor(x => x.Title, f => f.PickRandom(reminderTitles))
+                        .RuleFor(x => x.Description, f => f.PickRandom(reminderDescriptions))
                         .RuleFor(x => x.DueDate, f => f.Date.Future())
                         .RuleFor(x => x.IsCompleted, f => f.Random.Bool())
                         .RuleFor(x => x.CreatedAt, f => DateTime.UtcNow)
@@ -788,7 +912,7 @@ namespace Rafeek.Persistence.Seed
                     {
                         Id = Guid.NewGuid(),
                         UserId = s.UserId,
-                        Title = "Academic Session " + f.Date.Recent().ToShortDateString(),
+                        Title = "جلسة إرشادية " + DateTime.UtcNow.ToShortDateString(),
                         CreatedAt = DateTime.UtcNow,
                         CreatedBy = "Seeder"
                     }).ToList();
@@ -797,12 +921,23 @@ namespace Rafeek.Persistence.Seed
 
                     // Now seed ChatbotQueries with valid Session IDs
                     var sessionIds = chatSessions.Select(s => s.Id).ToList();
-                    var chatbot = new Faker<ChatbotQuery>("en")
+                    var chatbotQuestions = new[] { "كيف يمكنني حساب المعدل التراكمي المتوقع؟", "ما هي المواد الاختيارية المتاحة لقسم علوم الحاسب؟", "من هو المرشد الأكاديمي الخاص بي وكيف أتواصل معه؟", "ما هي شروط رفع الإنذار الأكاديمي؟", "هل يمكنني تسجيل 18 ساعة معتمدة هذا الفصل؟" };
+                    var chatbotAnswers = new[] {
+                        "يمكنك حساب معدلك المتوقع باستخدام أداة محاكاة المعدل التراكمي المدمجة في نظام رفيق.",
+                        "المواد الاختيارية المتاحة تشمل أمن الشبكات، معالجة الصور الرقمية، والتعلم العميق.",
+                        "يمكنك معرفة مرشدك وحجز موعد معه مباشرة من خلال قسم اللقاءات والدعم الأكاديمي.",
+                        "لرفع الإنذار، يجب رفع معدلك التراكمي التراكمي إلى 2.0 على الأقل في الفصل القادم.",
+                        "نعم، يُسمح بتسجيل 18 ساعة إذا كان معدلك التراكمي أعلى من 2.5 وبموافقة مرشدك."
+                    };
+                    var chatbot = new Faker<ChatbotQuery>("ar")
                         .RuleFor(x => x.Id, Guid.NewGuid)
                         .RuleFor(x => x.StudentId, f => f.PickRandom(students).Id)
                         .RuleFor(x => x.SessionId, f => f.PickRandom(sessionIds))
-                        .RuleFor(x => x.Query, f => f.Lorem.Sentence() + "?")
-                        .RuleFor(x => x.Response, f => f.Lorem.Sentence())
+                        .RuleFor(x => x.Query, f => f.PickRandom(chatbotQuestions))
+                        .RuleFor(x => x.Response, (f, x) => {
+                            var idx = Array.IndexOf(chatbotQuestions, x.Query);
+                            return idx >= 0 ? chatbotAnswers[idx] : "أنا هنا لمساعدتك في أي استفسار أكاديمي!";
+                        })
                         .RuleFor(x => x.CreatedAt, f => DateTime.UtcNow)
                         .RuleFor(x => x.CreatedBy, "Seeder").Generate(50);
                     context.ChatbotQueries.AddRange(chatbot);
@@ -840,17 +975,28 @@ namespace Rafeek.Persistence.Seed
                 if (!await context.AcademicCalendars.AnyAsync() && (users.Any() || instructors.Any()))
                 {
                     var targetSource = users.Any() ? users.Select(u => u.Id).ToList() : instructors.Select(i => i.UserId).ToList();
-                    var calendars = new Faker<AcademicCalendar>("en")
+                    var eventNames = new[] { "امتحان منتصف الفصل الدراسي", "تسليم المشروع النهائي", "اجتماع المجلس الأكاديمي", "ورشة عمل: أخلاقيات الذكاء الاصطناعي", "إجازة رسمية بالجامعة" };
+                    var eventDescriptions = new[] {
+                        "امتحان تحريري يشمل المحاضرات من الأولى إلى السادسة.",
+                        "يرجى رفع ملفات المشروع البرمجية والتقرير على منصة رفيق.",
+                        "اجتماع عمادة الكلية لمناقشة خطة التطوير للفصل القادم.",
+                        "جلسة تفاعلية حول تأثير الذكاء الاصطناعي على المجتمع والتعليم.",
+                        "عطلة رسمية لجميع الطلاب وأعضاء هيئة التدريس والعاملين."
+                    };
+                    var calendars = new Faker<AcademicCalendar>("ar")
                         .RuleFor(x => x.Id, Guid.NewGuid)
                         .RuleFor(x => x.TargetUserId, f => f.PickRandom(targetSource))
-                        .RuleFor(x => x.EventName, f => f.PickRandom(new[] { "Midterm Exam", "Final Project Due", "Academic Council Meeting", "Workshop: AI Ethics", "University Holiday" }))
-                        .RuleFor(x => x.Description, f => f.Lorem.Sentence())
+                        .RuleFor(x => x.EventName, f => f.PickRandom(eventNames))
+                        .RuleFor(x => x.Description, (f, x) => {
+                            var idx = Array.IndexOf(eventNames, x.EventName);
+                            return idx >= 0 ? eventDescriptions[idx] : f.Lorem.Sentence();
+                        })
                         .RuleFor(x => x.EventDate, f => f.Date.Future())
-                        .RuleFor(x => x.EndDate, (f, x) => x.EventDate.AddDays(f.Random.Int(0, 2)))
-                        .RuleFor(x => x.StartTime, f => new TimeSpan(f.Random.Int(8, 16), 0, 0))
-                        .RuleFor(x => x.EndTime, (f, x) => x.StartTime.Add(new TimeSpan(f.Random.Int(1, 3), 0, 0)))
-                        .RuleFor(x => x.IsAllDay, f => f.Random.Bool(0.1f))
-                        .RuleFor(x => x.Location, f => "Main Hall " + f.Random.Number(1, 10))
+                        .RuleFor(x => x.EndDate, (f, x) => x.EventDate.AddDays(fEn.Random.Int(0, 2)))
+                        .RuleFor(x => x.StartTime, f => new TimeSpan(fEn.Random.Int(8, 16), 0, 0))
+                        .RuleFor(x => x.EndTime, (f, x) => x.StartTime.Add(new TimeSpan(fEn.Random.Int(1, 3), 0, 0)))
+                        .RuleFor(x => x.IsAllDay, f => fEn.Random.Bool(0.1f))
+                        .RuleFor(x => x.Location, f => "القاعة رقم " + fEn.Random.Number(1, 10))
                         .RuleFor(x => x.EventType, f => f.PickRandom<Rafeek.Domain.Enums.AcademicCalendarEventType>())
                         .RuleFor(x => x.Status, f => f.PickRandom<Rafeek.Domain.Enums.CalendarEventStatus>())
                         .RuleFor(x => x.Visibility, f => f.PickRandom<Rafeek.Domain.Enums.EventVisibility>())

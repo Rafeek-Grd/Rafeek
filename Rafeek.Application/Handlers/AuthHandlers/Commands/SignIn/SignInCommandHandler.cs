@@ -9,6 +9,7 @@ using Rafeek.Application.Handlers.AuthHandlers.Commands;
 using Rafeek.Application.Localization;
 using Rafeek.Domain.Entities;
 using Rafeek.Domain.Enums;
+using Rafeek.Application.Common.Extensions;
 using Rafeek.Domain.Repositories.Interfaces.Generic;
 
 namespace Rafeek.Application.Handlers.AuthHandlers.Commands.SignIn
@@ -92,8 +93,7 @@ namespace Rafeek.Application.Handlers.AuthHandlers.Commands.SignIn
             var signResponse = _mapper.Map<AuthResult, SignResponse>(authResult);
             _mapper.Map(currentUser, signResponse);
 
-            var roles = await _userManager.GetRolesAsync(currentUser);
-            signResponse.Roles = roles.ToList();
+            signResponse.Role = await currentUser.GetUserRoleStringAsync(_dbContext, cancellationToken);
 
             return signResponse;
         }

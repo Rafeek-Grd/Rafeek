@@ -37,11 +37,16 @@ namespace Rafeek.Application.Handlers.ReminderHandlers.Queries.GetRemindersPagin
 
             var totalCount = await query.CountAsync(cancellationToken);
 
-            var entities = await query
-                .OrderBy(x => x.DueDate)
-                .Skip((request.PageNumber - 1) * request.PageSize)
-                .Take(request.PageSize)
-                .ToListAsync(cancellationToken);
+            var orderedQuery = query.OrderBy(x => x.DueDate).AsQueryable();
+
+            if (request.PageSize != -1)
+            {
+                orderedQuery = orderedQuery
+                    .Skip((request.PageNumber - 1) * request.PageSize)
+                    .Take(request.PageSize);
+            }
+
+            var entities = await orderedQuery.ToListAsync(cancellationToken);
 
             var dtos = _mapper.Map<List<ReminderDto>>(entities);
 

@@ -86,30 +86,36 @@ namespace Rafeek.Application.Handlers.AdminHandlers.Queries.GetStudentAcademicRe
             var totalCount = await query.CountAsync(cancellationToken);
 
            
-            var items = await query
-                .OrderBy(s => s.User.FullName)
-                .Skip((request.PageNumber - 1) * request.PageSize)
-                .Take(request.PageSize)
-                .Select(s => new StudentAcademicRecordDto
-                {
-                    StudentId        = s.Id,
-                    FullName         = s.User.FullName,
-                    UniversityEmail  = s.User.Email!,
-                    UniversityCode   = s.UniversityCode,
-                    DepartmentName   = s.Department != null ? s.Department.Name : null,
-                    Cgpa             = s.AcademicProfile != null ? s.AcademicProfile.CGPA : 0f,
-                    Level            = s.Level,
-                    Term             = s.Term,
-                    AcademicStatus   = s.AcademicProfile == null ? "Stable"
-                                     : s.AcademicProfile.CGPA >= 2.0f ? "Stable"
-                                     : s.AcademicProfile.CGPA >= 1.0f ? "Warning"
-                                     : "Probation",
-                    AcademicStatusLabel = s.AcademicProfile == null ? "منتظم"
-                                        : s.AcademicProfile.CGPA >= 2.0f ? "منتظم"
-                                        : s.AcademicProfile.CGPA >= 1.0f ? "تحذير"
-                                        : "إنذار أول"
-                })
-                .ToListAsync(cancellationToken);
+            var orderedQuery = query.OrderBy(s => s.User.FullName);
+
+            var projectedQuery = orderedQuery.Select(s => new StudentAcademicRecordDto
+            {
+                StudentId        = s.Id,
+                FullName         = s.User.FullName,
+                UniversityEmail  = s.User.Email!,
+                UniversityCode   = s.UniversityCode,
+                DepartmentName   = s.Department != null ? s.Department.Name : null,
+                Cgpa             = s.AcademicProfile != null ? s.AcademicProfile.CGPA : 0f,
+                Level            = s.Level,
+                Term             = s.Term,
+                AcademicStatus   = s.AcademicProfile == null ? "Stable"
+                                 : s.AcademicProfile.CGPA >= 2.0f ? "Stable"
+                                 : s.AcademicProfile.CGPA >= 1.0f ? "Warning"
+                                 : "Probation",
+                AcademicStatusLabel = s.AcademicProfile == null ? "منتظم"
+                                    : s.AcademicProfile.CGPA >= 2.0f ? "منتظم"
+                                    : s.AcademicProfile.CGPA >= 1.0f ? "تحذير"
+                                    : "إنذار أول"
+            });
+
+            if (request.PageSize != -1)
+            {
+                projectedQuery = projectedQuery
+                    .Skip((request.PageNumber - 1) * request.PageSize)
+                    .Take(request.PageSize);
+            }
+
+            var items = await projectedQuery.ToListAsync(cancellationToken);
 
             return PagginatedResult<StudentAcademicRecordDto>.Create(
                 items.AsReadOnly(),

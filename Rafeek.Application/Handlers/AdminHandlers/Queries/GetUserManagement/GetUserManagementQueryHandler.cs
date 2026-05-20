@@ -45,22 +45,27 @@ namespace Rafeek.Application.Handlers.AdminHandlers.Queries.GetUserManagement
 
                 totalCount = await query.CountAsync(cancellationToken);
 
-                items = await query
-                    .OrderBy(x => x.User.FullName)
-                    .Skip((request.PageNumber - 1) * request.PageSize)
-                    .Take(request.PageSize)
-                    .Select(x => new UserManagementListItemDto
-                    {
-                        UserId = x.UserId,
-                        FullName = x.User.FullName,
-                        Email = x.User.Email!,
-                        Role = "Student",
-                        DepartmentName = x.Department != null ? x.Department.Name : null,
-                        IdentificationNumber = x.UniversityCode,
-                        Status = x.User.IsUniversityEmailActivated ? "Active" : "Inactive",
-                        StatusLabel = x.User.IsUniversityEmailActivated ? "نشط" : "غير نشط"
-                    })
-                    .ToListAsync(cancellationToken);
+                var orderedQuery = query.OrderBy(x => x.User.FullName);
+                var projectedQuery = orderedQuery.Select(x => new UserManagementListItemDto
+                {
+                    UserId = x.UserId,
+                    FullName = x.User.FullName,
+                    Email = x.User.Email!,
+                    Role = "Student",
+                    DepartmentName = x.Department != null ? x.Department.Name : null,
+                    IdentificationNumber = x.UniversityCode,
+                    Status = x.User.IsUniversityEmailActivated ? "Active" : "Inactive",
+                    StatusLabel = x.User.IsUniversityEmailActivated ? "نشط" : "غير نشط"
+                });
+
+                if (request.PageSize != -1)
+                {
+                    projectedQuery = projectedQuery
+                        .Skip((request.PageNumber - 1) * request.PageSize)
+                        .Take(request.PageSize);
+                }
+
+                items = await projectedQuery.ToListAsync(cancellationToken);
             }
             else if (request.TabRole == UserType.Instructor)
             {
@@ -87,22 +92,27 @@ namespace Rafeek.Application.Handlers.AdminHandlers.Queries.GetUserManagement
 
                 totalCount = await query.CountAsync(cancellationToken);
 
-                items = await query
-                    .OrderBy(x => x.User.FullName)
-                    .Skip((request.PageNumber - 1) * request.PageSize)
-                    .Take(request.PageSize)
-                    .Select(x => new UserManagementListItemDto
-                    {
-                        UserId = x.UserId,
-                        FullName = x.User.FullName,
-                        Email = x.User.Email!,
-                        Role = "Instructor",
-                        DepartmentName = x.Department != null ? x.Department.Name : null,
-                        IdentificationNumber = x.EmployeeCode ?? "-",
-                        Status = x.User.IsUniversityEmailActivated ? "Active" : "Inactive",
-                        StatusLabel = x.User.IsUniversityEmailActivated ? "نشط" : "غير نشط"
-                    })
-                    .ToListAsync(cancellationToken);
+                var orderedQuery = query.OrderBy(x => x.User.FullName);
+                var projectedQuery = orderedQuery.Select(x => new UserManagementListItemDto
+                {
+                    UserId = x.UserId,
+                    FullName = x.User.FullName,
+                    Email = x.User.Email!,
+                    Role = "Instructor",
+                    DepartmentName = x.Department != null ? x.Department.Name : null,
+                    IdentificationNumber = x.EmployeeCode ?? "-",
+                    Status = x.User.IsUniversityEmailActivated ? "Active" : "Inactive",
+                    StatusLabel = x.User.IsUniversityEmailActivated ? "نشط" : "غير نشط"
+                });
+
+                if (request.PageSize != -1)
+                {
+                    projectedQuery = projectedQuery
+                        .Skip((request.PageNumber - 1) * request.PageSize)
+                        .Take(request.PageSize);
+                }
+
+                items = await projectedQuery.ToListAsync(cancellationToken);
             }
             else if (request.TabRole == UserType.Doctor)
             {
@@ -134,22 +144,27 @@ namespace Rafeek.Application.Handlers.AdminHandlers.Queries.GetUserManagement
 
                 totalCount = await query.CountAsync(cancellationToken);
 
-                items = await query
-                    .OrderBy(x => x.User.FullName)
-                    .Skip((request.PageNumber - 1) * request.PageSize)
-                    .Take(request.PageSize)
-                    .Select(x => new UserManagementListItemDto
-                    {
-                        UserId = x.UserId,
-                        FullName = x.User.FullName,
-                        Email = x.User.Email!,
-                        Role = x.IsAcademicAdvisor ? "Advisor" : "Doctor",
-                        DepartmentName = x.Department != null ? x.Department.Name : null,
-                        IdentificationNumber = x.EmployeeCode ?? "-",
-                        Status = x.User.IsUniversityEmailActivated ? "Active" : "Inactive",
-                        StatusLabel = x.User.IsUniversityEmailActivated ? "نشط" : "غير نشط"
-                    })
-                    .ToListAsync(cancellationToken);
+                var orderedQuery = query.OrderBy(x => x.User.FullName);
+                var projectedQuery = orderedQuery.Select(x => new UserManagementListItemDto
+                {
+                    UserId = x.UserId,
+                    FullName = x.User.FullName,
+                    Email = x.User.Email!,
+                    Role = x.IsAcademicAdvisor ? "Advisor" : "Doctor",
+                    DepartmentName = x.Department != null ? x.Department.Name : null,
+                    IdentificationNumber = x.EmployeeCode ?? "-",
+                    Status = x.User.IsUniversityEmailActivated ? "Active" : "Inactive",
+                    StatusLabel = x.User.IsUniversityEmailActivated ? "نشط" : "غير نشط"
+                });
+
+                if (request.PageSize != -1)
+                {
+                    projectedQuery = projectedQuery
+                        .Skip((request.PageNumber - 1) * request.PageSize)
+                        .Take(request.PageSize);
+                }
+
+                items = await projectedQuery.ToListAsync(cancellationToken);
             }
             else if (request.TabRole == UserType.Staff)
             {
@@ -172,22 +187,27 @@ namespace Rafeek.Application.Handlers.AdminHandlers.Queries.GetUserManagement
 
                 totalCount = await query.CountAsync(cancellationToken);
 
-                items = await query
-                    .OrderBy(x => x.User.FullName)
-                    .Skip((request.PageNumber - 1) * request.PageSize)
-                    .Take(request.PageSize)
-                    .Select(x => new UserManagementListItemDto
-                    {
-                        UserId = x.UserId,
-                        FullName = x.User.FullName,
-                        Email = x.User.Email!,
-                        Role = "Staff",
-                        DepartmentName = null,
-                        IdentificationNumber = x.EmployeeCode ?? "-",
-                        Status = x.User.IsUniversityEmailActivated ? "Active" : "Inactive",
-                        StatusLabel = x.User.IsUniversityEmailActivated ? "نشط" : "غير نشط"
-                    })
-                    .ToListAsync(cancellationToken);
+                var orderedQuery = query.OrderBy(x => x.User.FullName);
+                var projectedQuery = orderedQuery.Select(x => new UserManagementListItemDto
+                {
+                    UserId = x.UserId,
+                    FullName = x.User.FullName,
+                    Email = x.User.Email!,
+                    Role = "Staff",
+                    DepartmentName = null,
+                    IdentificationNumber = x.EmployeeCode ?? "-",
+                    Status = x.User.IsUniversityEmailActivated ? "Active" : "Inactive",
+                    StatusLabel = x.User.IsUniversityEmailActivated ? "نشط" : "غير نشط"
+                });
+
+                if (request.PageSize != -1)
+                {
+                    projectedQuery = projectedQuery
+                        .Skip((request.PageNumber - 1) * request.PageSize)
+                        .Take(request.PageSize);
+                }
+
+                items = await projectedQuery.ToListAsync(cancellationToken);
             }
 
             return PagginatedResult<UserManagementListItemDto>.Create(
