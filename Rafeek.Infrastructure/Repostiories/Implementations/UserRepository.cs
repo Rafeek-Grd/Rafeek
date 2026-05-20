@@ -20,7 +20,6 @@ namespace Rafeek.Infrastructure.Repostiories.Implementations
     {
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IOptions<TemplatePath> _options;
-        private readonly IRafeekIdentityDbContext _context;
         private readonly IStringLocalizer<Messages> _localizer;
         private readonly IEmailNotificationService _emailNotificationService;
 

@@ -6,8 +6,7 @@ namespace Rafeek.Application.Handlers.AdminHandlers.Queries.GetStudentAcademicRe
     public class GetStudentAcademicRecordsQuery : IRequest<PagginatedResult<StudentAcademicRecordDto>>
     {
         /// <summary>
-        /// فلتر الحالة الأكاديمية — القيم: "Stable" | "Warning" | "Probation"
-        /// اتركه فارغاً لإرجاع جميع الطلاب.
+        
         /// </summary>
         public string? AcademicStatus { get; set; }
 

@@ -82,10 +82,10 @@ namespace Rafeek.Application.Handlers.AdminHandlers.Queries.GetStudentAcademicRe
                 }
             }
 
-            // ── Count ────────────────────────────────────────────────────────────
+           
             var totalCount = await query.CountAsync(cancellationToken);
 
-            // ── Paginate & Project ───────────────────────────────────────────────
+           
             var items = await query
                 .OrderBy(s => s.User.FullName)
                 .Skip((request.PageNumber - 1) * request.PageSize)

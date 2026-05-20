@@ -69,7 +69,7 @@ namespace Rafeek.Infrastructure.Repostiories.Implementations
                     UserId = userId
                 };
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return null;
             }
@@ -104,7 +104,7 @@ namespace Rafeek.Infrastructure.Repostiories.Implementations
 
                 return jwtToken;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw new UnauthorizedAccessException(LocalizationKeys.TokenMessages.NotValid.Value);
             }
