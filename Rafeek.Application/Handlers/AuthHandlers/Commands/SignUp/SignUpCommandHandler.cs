@@ -11,6 +11,7 @@ using Rafeek.Domain.Enums;
 using Rafeek.Domain.Repositories.Interfaces.Generic;
 using Rafeek.Application.Common.Extensions;
 using System.Security.Cryptography;
+using System.Text;
 using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Identity;
 using Rafeek.Application.Handlers.AuthHandlers.Commands.SendUserCredentials;
@@ -242,9 +243,22 @@ namespace Rafeek.Application.Handlers.AuthHandlers.Commands.SignUp
 
         private async Task<string> GenerateUniqueUniversityEmailAsync(string fullName, UserType userType, CancellationToken cancellationToken)
         {
-            var normalizedName = Regex.Replace(fullName.Trim().ToLowerInvariant(), @"[^a-z\s]", "");
+            if (string.IsNullOrWhiteSpace(fullName))
+            {
+                throw new BadRequestException(_localizer[LocalizationKeys.UserMessages.FullNameRequired.Value]);
+            }
+
+            // تحويل الأحرف العربية إلى لاتينية
+            var transliteratedName = TransliterateArabicToLatin(fullName);
+
+            var normalizedName = Regex.Replace(transliteratedName.Trim().ToLowerInvariant(), @"[^a-z\s]", "").Trim();
             var nameParts = normalizedName.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-            
+
+            if (nameParts.Length == 0)
+            {
+                throw new BadRequestException(_localizer[LocalizationKeys.UserMessages.FullNameRequired.Value]);
+            }
+
             string baseEmail;
             if (nameParts.Length >= 2)
             {
@@ -259,7 +273,7 @@ namespace Rafeek.Application.Handlers.AuthHandlers.Commands.SignUp
             string email = baseEmail + domain;
 
             var exists = await _userManager.Users.AnyAsync(u => u.Email == email, cancellationToken);
-            
+
             if (!exists)
             {
                 return email;
@@ -267,17 +281,17 @@ namespace Rafeek.Application.Handlers.AuthHandlers.Commands.SignUp
 
             int counter = 1;
             const int maxAttempts = 100;
-            
+
             while (counter < maxAttempts)
             {
                 email = $"{baseEmail}{counter}{domain}";
                 exists = await _userManager.Users.AnyAsync(u => u.Email == email, cancellationToken);
-                
+
                 if (!exists)
                 {
                     return email;
                 }
-                
+
                 counter++;
             }
 
@@ -368,6 +382,59 @@ namespace Rafeek.Application.Handlers.AuthHandlers.Commands.SignUp
             }
 
             return new string(password);
+        }
+
+        /// <summary>
+        /// تحويل الأحرف العربية إلى ما يقابلها باللاتينية
+        /// يدعم الأحرف العربية الشائعة والحروف العربية المشددة
+        /// مثال: "محمد علي" → "muhamad ali"
+        /// </summary>
+        private string TransliterateArabicToLatin(string arabicText)
+        {
+            if (string.IsNullOrWhiteSpace(arabicText))
+                return arabicText;
+
+            // قاموس تحويل الأحرف العربية إلى اللاتينية
+            var arabicToLatinMap = new Dictionary<string, string>
+            {
+                // الحروف العربية الأساسية
+                { "ا", "a" }, { "أ", "a" }, { "إ", "i" }, { "آ", "aa" },
+                { "ب", "b" }, { "ت", "t" }, { "ث", "th" }, { "ج", "j" },
+                { "ح", "h" }, { "خ", "kh" }, { "د", "d" }, { "ذ", "dh" },
+                { "ر", "r" }, { "ز", "z" }, { "س", "s" }, { "ش", "sh" },
+                { "ص", "s" }, { "ض", "d" }, { "ط", "t" }, { "ظ", "z" },
+                { "ع", "a" }, { "غ", "gh" }, { "ف", "f" }, { "ق", "q" },
+                { "ك", "k" }, { "ل", "l" }, { "م", "m" }, { "ن", "n" },
+                { "ه", "h" }, { "و", "w" }, { "ي", "i" }, { "ة", "a" },
+                { "ء", "a" },
+
+                // الأحرف العربية الممدودة (مع التشكيل)
+                { "َ", "" }, // فتحة
+                { "ِ", "" }, // كسرة
+                { "ُ", "" }, // ضمة
+                { "ّ", "" }, // شدة
+                { "ْ", "" }, // سكون
+                { "َّ", "" }, // فتحة مع شدة
+                { "ِّ", "" }, // كسرة مع شدة
+                { "ُّ", "" }, // ضمة مع شدة
+            };
+
+            var result = new StringBuilder();
+            foreach (var ch in arabicText)
+            {
+                var chStr = ch.ToString();
+                if (arabicToLatinMap.TryGetValue(chStr, out var latinChar))
+                {
+                    result.Append(latinChar);
+                }
+                else
+                {
+                    // احفظ الأحرف الإنجليزية والأرقام والمسافات كما هي
+                    result.Append(ch);
+                }
+            }
+
+            return result.ToString();
         }
     }
 }
