@@ -50,7 +50,7 @@ namespace Rafeek.Application.Handlers.AIHandlers.Queries.GetAllStudentsGradesBat
             {
                 var dto = new BatchStudentAIGradesDto
                 {
-                    UniversityCode = s.UniversityCode,
+                    StudentId = s.Id.ToString(),
                     GPA = profiles.GetValueOrDefault(s.AcademicProfileId)
                 };
 

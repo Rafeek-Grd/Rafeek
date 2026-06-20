@@ -2,18 +2,22 @@ using AspNetCoreRateLimit;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using Microsoft.AspNetCore.Identity;
+using NET_Tracker.Extensions;
 using Newtonsoft.Json.Serialization;
+using NLog.Fluent;
 using NLog.Web;
 using Rafeek.API.Filters;
 using Rafeek.API.Options;
@@ -27,6 +31,7 @@ using Rafeek.Domain.Entities;
 using Rafeek.Infrastructure;
 using Rafeek.Infrastructure.Notifications.Emails;
 using Rafeek.Persistence;
+using Rafeek.Persistence.Seed;
 using System.Globalization;
 using System.IO.Compression;
 using System.Reflection;
@@ -35,8 +40,6 @@ using tusdotnet;
 using tusdotnet.Models;
 using tusdotnet.Models.Configuration;
 using tusdotnet.Stores;
-using Rafeek.Persistence.Seed;
-using Microsoft.EntityFrameworkCore;
 
 
 
@@ -82,7 +85,11 @@ try
 
         // Add size limits for large file uploads
         options.MaxModelValidationErrors = 50;
-    }).AddNewtonsoftJson(options =>
+
+        // Hide NET-Tracker controllers from Swagger/Scalar without removing them from routing
+        options.Conventions.Add(new HideNetTrackerControllersConvention());
+    })
+    .AddNewtonsoftJson(options =>
     {
         // Example: use camelCase and ignore nulls — adapt to your project's conventions
         options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
@@ -103,6 +110,14 @@ try
         options.DefaultApiVersion = new ApiVersion(1, 0);
         options.ReportApiVersions = true;
     });
+    //.AddMvc(options =>
+    //{
+    //    options.Conventions.Controller(typeof(NET_Tracker.Controllers.TrackerController)).IsApiVersionNeutral();
+    //    options.Conventions.Controller(typeof(NET_Tracker.Controllers.HealthController)).IsApiVersionNeutral();
+    //    options.Conventions.Controller(typeof(NET_Tracker.Controllers.HomeController)).IsApiVersionNeutral();
+    //    options.Conventions.Controller(typeof(NET_Tracker.Controllers.HttpTransactionsController)).IsApiVersionNeutral();
+    //    options.Conventions.Controller(typeof(NET_Tracker.Controllers.StatisticsController)).IsApiVersionNeutral();
+    //});
 
     builder.Services.AddVersionedApiExplorer(options =>
     {
@@ -121,6 +136,8 @@ try
             options.SuppressModelStateInvalidFilter = true;
         });
 
+
+    builder.Services.AddNetTracker(builder.Configuration);
 
     builder.Services.Configure<KestrelServerOptions>(options =>
     {
@@ -264,6 +281,21 @@ try
 
     var app = builder.Build();
 
+    // --- NetTracker Table Creation Workaround ---
+    using (var scope = app.Services.CreateScope())
+    {
+        var trackerDb = scope.ServiceProvider.GetRequiredService<NET_Tracker.Data.ApplicationDbContext>();
+        var dbCreator = trackerDb.Database.GetService<Microsoft.EntityFrameworkCore.Storage.IRelationalDatabaseCreator>();
+        try
+        {
+            await dbCreator.CreateTablesAsync();
+        }
+        catch (Exception)
+        {
+            // Ignore exception if the table already exists
+        }
+    }
+
     // Call seed logic
     using (var scope = app.Services.CreateScope())
     {
@@ -366,6 +398,9 @@ try
         app.UseHttpsRedirection();
     }
 
+    // NET-Tracker middleware — placed early so it intercepts all requests
+    app.UseNetTracker(app.Configuration);
+
     // CRITICAL: UseRouting must come BEFORE authentication and authorization
     // This ensures the routing system can match requests to endpoints
     app.UseRouting();
@@ -410,6 +445,18 @@ try
 
     app.MapControllers();
 
+    app.MapControllerRoute(
+    name: "netTrackerDashboard",
+    pattern: "net-tracker/dashboard",
+    defaults: new { controller = "Tracker", action = "Index" });
+    app.MapControllerRoute(
+        name: "netTrackerHome",
+        pattern: "net-tracker",
+        defaults: new { controller = "Home", action = "Index" });
+    app.MapControllerRoute(
+        name: "default",
+        pattern: "{controller=Tracker}/{action=Index}/{id?}");
+
     app.MapGet("/", () => Results.Redirect("/swagger"));
 
     app.Run();
@@ -424,4 +471,20 @@ finally
 {
     // Ensure to flush and stop internal timers/threads before application-exit (Avoid segmentation fault on Linux)
     NLog.LogManager.Shutdown();
+}
+
+public class HideNetTrackerControllersConvention : Microsoft.AspNetCore.Mvc.ApplicationModels.IControllerModelConvention
+{
+    public void Apply(Microsoft.AspNetCore.Mvc.ApplicationModels.ControllerModel controller)
+    {
+        if (controller.ControllerType.Assembly.FullName != null && controller.ControllerType.Assembly.FullName.Contains("NetTracker", StringComparison.OrdinalIgnoreCase) ||
+            (controller.ControllerType.Namespace != null && controller.ControllerType.Namespace.Contains("Tracker", StringComparison.OrdinalIgnoreCase)))
+        {
+            controller.ApiExplorer.IsVisible = false;
+            foreach (var action in controller.Actions)
+            {
+                action.ApiExplorer.IsVisible = false;
+            }
+        }
+    }
 }

@@ -53,6 +53,12 @@ namespace Rafeek.Application.Handlers.AuthHandlers.Commands.SignIn
                 throw new UnauthorizedException(_localizer[LocalizationKeys.UserMessages.InvalidSignIn.Value]);
             }
 
+            if (currentUser.IsUniversityEmailActivated && !currentUser.EmailConfirmed)
+            {
+                currentUser.EmailConfirmed = true;
+                await _userManager.UpdateAsync(currentUser);
+            }
+
             var result = await _signInManager.PasswordSignInAsync(currentUser.UserName!, request.Password, false, false, cancellationToken);
 
 

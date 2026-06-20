@@ -22,12 +22,19 @@ namespace Rafeek.Application.Handlers.AuthHandlers.Commands.SignIn
                 .WithMessage(localizer[LocalizationKeys.UserMessages.EmailRequired.Value])
                 .EmailAddress()
                 .WithMessage(localizer[LocalizationKeys.GlobalValidationMessages.EmailInvalid.Value])
+                .MustAsync(EmailExists).WithMessage(localizer[LocalizationKeys.GlobalValidationMessages.EmailNotFound.Value])
                 .MustAsync(IsActivatedUniversityEmail).WithMessage(localizer[LocalizationKeys.GlobalValidationMessages.EmailNotActivated.Value]);
 
             RuleFor(v => v.Password)
                 .NotNull()
                 .NotEmpty()
                 .WithMessage(localizer[LocalizationKeys.UserMessages.PasswordRequired.Value]);
+        }
+
+        private async Task<bool> EmailExists(string email, CancellationToken cancellationToken)
+        {
+            return await _signInManager.UserManager.Users
+                .AnyAsync(u => u.Email == email || u.TemporaryEmail == email, cancellationToken);
         }
 
         private async Task<bool> IsActivatedUniversityEmail(string email, CancellationToken cancellationToken)
