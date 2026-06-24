@@ -1,12 +1,13 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Rafeek.Application.Common.Interfaces;
+using Rafeek.Application.Common.Models;
 using Rafeek.Domain.Enums;
 using System.Globalization;
 
 namespace Rafeek.Application.Handlers.AdminHandlers.Queries.GetExamsSchedule
 {
-    public class GetExamsScheduleQueryHandler : IRequestHandler<GetExamsScheduleQuery, List<ExamDayGroupDto>>
+    public class GetExamsScheduleQueryHandler : IRequestHandler<GetExamsScheduleQuery, PagginatedResult<ExamDayGroupDto>>
     {
         private readonly IRafeekDbContext _context;
 
@@ -15,7 +16,7 @@ namespace Rafeek.Application.Handlers.AdminHandlers.Queries.GetExamsSchedule
             _context = context;
         }
 
-        public async Task<List<ExamDayGroupDto>> Handle(GetExamsScheduleQuery request, CancellationToken cancellationToken)
+        public async Task<PagginatedResult<ExamDayGroupDto>> Handle(GetExamsScheduleQuery request, CancellationToken cancellationToken)
         {
             var query = _context.AcademicCalendars
                 .AsNoTracking()
@@ -80,7 +81,22 @@ namespace Rafeek.Application.Handlers.AdminHandlers.Queries.GetExamsSchedule
                 })
                 .ToList();
 
-            return grouped;
+            var totalCount = grouped.Count;
+            List<ExamDayGroupDto> items;
+
+            if (request.PageNumber == -1)
+            {
+                items = grouped;
+            }
+            else
+            {
+                items = grouped
+                    .Skip((request.PageNumber - 1) * request.PageSize)
+                    .Take(request.PageSize)
+                    .ToList();
+            }
+
+            return new PagginatedResult<ExamDayGroupDto>(items, totalCount, request.PageNumber, request.PageSize);
         }
 
         private string GetArabicDayName(DayOfWeek day)

@@ -1,12 +1,13 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Rafeek.Application.Common.Interfaces;
+using Rafeek.Application.Common.Models;
 using Rafeek.Application.Handlers.ExternalHandlers.DTOs;
 using Rafeek.Domain.Repositories.Interfaces.Generic;
 
 namespace Rafeek.Application.Handlers.AIHandlers.Queries.GetAllStudentsGradesBatch
 {
-    public class GetAllStudentsGradesBatchQueryHandler : IRequestHandler<GetAllStudentsGradesBatchQuery, List<BatchStudentAIGradesDto>>
+    public class GetAllStudentsGradesBatchQueryHandler : IRequestHandler<GetAllStudentsGradesBatchQuery, PagginatedResult<BatchStudentAIGradesDto>>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IRafeekDbContext _dbContext;
@@ -17,23 +18,19 @@ namespace Rafeek.Application.Handlers.AIHandlers.Queries.GetAllStudentsGradesBat
             _dbContext = dbContext;
         }
 
-        public async Task<List<BatchStudentAIGradesDto>> Handle(GetAllStudentsGradesBatchQuery request, CancellationToken cancellationToken)
+        public async Task<PagginatedResult<BatchStudentAIGradesDto>> Handle(GetAllStudentsGradesBatchQuery request, CancellationToken cancellationToken)
         {
-            // 1. Fetch Students and their Academic Profile IDs
             var students = await _unitOfWork.StudentRepository
                 .GetAll()
                 .AsNoTracking()
                 .Select(s => new { s.Id, s.UniversityCode, s.AcademicProfileId })
                 .ToListAsync(cancellationToken);
 
-            // 2. Fetch all Academic Profiles to get CGPA
             var profiles = await _unitOfWork.StudentAcademicProfileRepository
                 .GetAll()
                 .AsNoTracking()
                 .ToDictionaryAsync(p => p.Id, p => p.CGPA, cancellationToken);
 
-            // 3. Fetch all Enrollments with Courses and their latest Grade
-            // To handle "Bulk" efficiently, we fetch all relevant data and group it.
             var enrollments = await _dbContext.Enrollments
                 .AsNoTracking()
                 .Include(e => e.Course)
@@ -70,7 +67,22 @@ namespace Rafeek.Application.Handlers.AIHandlers.Queries.GetAllStudentsGradesBat
                 result.Add(dto);
             }
 
-            return result;
+            var totalCount = result.Count;
+            List<BatchStudentAIGradesDto> items;
+
+            if (request.PageNumber == -1)
+            {
+                items = result;
+            }
+            else
+            {
+                items = result
+                    .Skip((request.PageNumber - 1) * request.PageSize)
+                    .Take(request.PageSize)
+                    .ToList();
+            }
+
+            return new PagginatedResult<BatchStudentAIGradesDto>(items, totalCount, request.PageNumber, request.PageSize);
         }
     }
 }

@@ -2,15 +2,12 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Rafeek.Application.Common.Exceptions;
 using Rafeek.Application.Common.Interfaces;
+using Rafeek.Application.Common.Models;
 using Rafeek.Application.Handlers.StudentHandlers.DTOs;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Rafeek.Application.Handlers.StudentHandlers.Query.GetStudentSchedule
 {
-    public class GetStudentScheduleQueryHandler : IRequestHandler<GetStudentScheduleQuery, List<ScheduleItemDto>>
+    public class GetStudentScheduleQueryHandler : IRequestHandler<GetStudentScheduleQuery, PagginatedResult<ScheduleItemDto>>
     {
         private readonly IRafeekDbContext _context;
         private readonly ICurrentUserService _currentUserService;
@@ -21,14 +18,16 @@ namespace Rafeek.Application.Handlers.StudentHandlers.Query.GetStudentSchedule
             _currentUserService = currentUserService;
         }
 
-        public async Task<List<ScheduleItemDto>> Handle(GetStudentScheduleQuery request, CancellationToken cancellationToken)
+        public async Task<PagginatedResult<ScheduleItemDto>> Handle(GetStudentScheduleQuery request, CancellationToken cancellationToken)
         {
             var student = await _context.Students
+                .AsNoTracking()
                 .FirstOrDefaultAsync(s => s.UserId == _currentUserService.UserId, cancellationToken);
-            
+
             if (student == null) throw new UnauthorizedException("Student profile not found.");
 
-            var schedule = await _context.Enrollments
+            var query = _context.Enrollments
+                .AsNoTracking()
                 .Include(e => e.Course)
                 .Include(e => e.Section)
                 .Where(e => e.StudentId == student.Id)
@@ -41,10 +40,26 @@ namespace Rafeek.Application.Handlers.StudentHandlers.Query.GetStudentSchedule
                     Day = e.Section.Day,
                     Time = e.Section.Time,
                     Status = e.Status
-                })
-                .ToListAsync(cancellationToken);
+                });
 
-            return schedule;
+            List<ScheduleItemDto> items;
+            int totalCount;
+
+            if (request.PageNumber == -1)
+            {
+                items = await query.ToListAsync(cancellationToken);
+                totalCount = items.Count;
+            }
+            else
+            {
+                totalCount = await query.CountAsync(cancellationToken);
+                items = await query
+                    .Skip((request.PageNumber - 1) * request.PageSize)
+                    .Take(request.PageSize)
+                    .ToListAsync(cancellationToken);
+            }
+
+            return new PagginatedResult<ScheduleItemDto>(items, totalCount, request.PageNumber, request.PageSize);
         }
     }
 }

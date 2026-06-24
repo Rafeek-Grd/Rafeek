@@ -4,12 +4,10 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 using Rafeek.Application.Common.Exceptions;
+using Rafeek.Application.Common.Extensions;
 using Rafeek.Application.Common.Interfaces;
-using Rafeek.Application.Handlers.AuthHandlers.Commands;
 using Rafeek.Application.Localization;
 using Rafeek.Domain.Entities;
-using Rafeek.Domain.Enums;
-using Rafeek.Application.Common.Extensions;
 using Rafeek.Domain.Repositories.Interfaces.Generic;
 
 namespace Rafeek.Application.Handlers.AuthHandlers.Commands.SignIn

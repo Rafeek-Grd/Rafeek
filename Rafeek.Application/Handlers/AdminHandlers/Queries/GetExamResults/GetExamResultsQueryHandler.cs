@@ -1,10 +1,11 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Rafeek.Application.Common.Interfaces;
+using Rafeek.Application.Common.Models;
 
 namespace Rafeek.Application.Handlers.AdminHandlers.Queries.GetExamResults
 {
-    public class GetExamResultsQueryHandler : IRequestHandler<GetExamResultsQuery, List<ExamResultItemDto>>
+    public class GetExamResultsQueryHandler : IRequestHandler<GetExamResultsQuery, PagginatedResult<ExamResultItemDto>>
     {
         private readonly IRafeekDbContext _context;
 
@@ -13,7 +14,7 @@ namespace Rafeek.Application.Handlers.AdminHandlers.Queries.GetExamResults
             _context = context;
         }
 
-        public async Task<List<ExamResultItemDto>> Handle(GetExamResultsQuery request, CancellationToken cancellationToken)
+        public async Task<PagginatedResult<ExamResultItemDto>> Handle(GetExamResultsQuery request, CancellationToken cancellationToken)
         {
             var query = _context.Enrollments
                 .AsNoTracking()
@@ -64,7 +65,22 @@ namespace Rafeek.Application.Handlers.AdminHandlers.Queries.GetExamResults
                 }
             }
 
-            return items;
+            var totalCount = items.Count;
+            List<ExamResultItemDto> result;
+
+            if (request.PageNumber == -1)
+            {
+                result = items;
+            }
+            else
+            {
+                result = items
+                    .Skip((request.PageNumber - 1) * request.PageSize)
+                    .Take(request.PageSize)
+                    .ToList();
+            }
+
+            return new PagginatedResult<ExamResultItemDto>(result, totalCount, request.PageNumber, request.PageSize);
         }
     }
 }
