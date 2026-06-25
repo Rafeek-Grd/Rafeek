@@ -15,6 +15,9 @@ using Rafeek.Application.Handlers.AdminHandlers.Queries.GetUserManagement;
 using Rafeek.Application.Common.Models;
 using Rafeek.Application.Localization;
 using Rafeek.Domain.Enums;
+using Rafeek.Application.Handlers.SettingsHandlers.Commands.UpdateAcademicSettings;
+using Rafeek.Application.Handlers.SettingsHandlers.Queries.GetAcademicSettings;
+using Rafeek.Application.Handlers.SettingsHandlers.DTOs;
 
 namespace Rafeek.API.Controllers.Version1
 {
@@ -167,6 +170,38 @@ namespace Rafeek.API.Controllers.Version1
         public async Task<IActionResult> GetSecurityDashboard([FromQuery] GetSecurityDashboardQuery query)
         {
             var result = await _mediator.Send(query);
+            return Ok(result);
+        }
+
+        /// <summary>
+        /// Get general academic settings and grading scales.
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [RoleAuthorize(nameof(UserType.Admin))]
+        [Route(ApiRoutes.Admin.GetSettings)]
+        [ProducesResponseType(typeof(AcademicSettingsDto), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        public async Task<IActionResult> GetSettings()
+        {
+            var result = await _mediator.Send(new GetAcademicSettingsQuery());
+            return Ok(result);
+        }
+
+        /// <summary>
+        /// Update academic settings and grading scales.
+        /// </summary>
+        /// <param name="command"></param>
+        /// <returns></returns>
+        [HttpPut]
+        [RoleAuthorize(nameof(UserType.Admin))]
+        [Route(ApiRoutes.Admin.UpdateSettings)]
+        [ProducesResponseType(typeof(bool), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        public async Task<IActionResult> UpdateSettings([FromBody] UpdateAcademicSettingsCommand command)
+        {
+            var result = await _mediator.Send(command);
             return Ok(result);
         }
     }
