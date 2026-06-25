@@ -73,6 +73,7 @@ namespace Rafeek.Application.Handlers.AdminHandlers.Queries.GetUserManagement
                     .AsNoTracking()
                     .Include(d => d.User)
                     .Include(d => d.Department)
+                    .Where(x => !x.IsAcademicAdvisor)
                     .AsQueryable();
 
                 if (!string.IsNullOrWhiteSpace(request.SearchTerm))
@@ -90,9 +91,52 @@ namespace Rafeek.Application.Handlers.AdminHandlers.Queries.GetUserManagement
                     query = query.Where(x => x.User.IsUniversityEmailActivated == isActive);
                 }
 
-                if (request.IsAdvisor.HasValue)
+                totalCount = await query.CountAsync(cancellationToken);
+
+                var orderedQuery = query.OrderBy(x => x.User.FullName);
+                var projectedQuery = orderedQuery.Select(x => new UserManagementListItemDto
                 {
-                    query = query.Where(x => x.IsAcademicAdvisor == request.IsAdvisor.Value);
+                    UserId = x.UserId,
+                    FullName = x.User.FullName,
+                    Email = x.User.Email!,
+                    Role = "Professor",
+                    DepartmentName = x.Department != null ? x.Department.Name : null,
+                    IdentificationNumber = x.EmployeeCode ?? "-",
+                    Status = x.User.IsUniversityEmailActivated ? "Active" : "Inactive",
+                    StatusLabel = x.User.IsUniversityEmailActivated ? "نشط" : "غير نشط"
+                });
+
+                if (request.PageNumber != -1)
+                {
+                    projectedQuery = projectedQuery
+                        .Skip((request.PageNumber - 1) * request.PageSize)
+                        .Take(request.PageSize);
+                }
+
+                items = await projectedQuery.ToListAsync(cancellationToken);
+            }
+            else if (request.TabRole == UserType.Mentor)
+            {
+                var query = _context.Doctors
+                    .AsNoTracking()
+                    .Include(d => d.User)
+                    .Include(d => d.Department)
+                    .Where(x => x.IsAcademicAdvisor)
+                    .AsQueryable();
+
+                if (!string.IsNullOrWhiteSpace(request.SearchTerm))
+                {
+                    var term = request.SearchTerm.Trim();
+                    query = query.Where(x => x.User.FullName.Contains(term) || x.User.Email!.Contains(term) || (x.EmployeeCode != null && x.EmployeeCode.Contains(term)));
+                }
+
+                if (request.DepartmentId.HasValue)
+                    query = query.Where(x => x.DepartmentId == request.DepartmentId.Value);
+
+                if (!string.IsNullOrWhiteSpace(request.Status))
+                {
+                    bool isActive = request.Status.Equals("Active", StringComparison.OrdinalIgnoreCase);
+                    query = query.Where(x => x.User.IsUniversityEmailActivated == isActive);
                 }
 
                 totalCount = await query.CountAsync(cancellationToken);
@@ -103,7 +147,7 @@ namespace Rafeek.Application.Handlers.AdminHandlers.Queries.GetUserManagement
                     UserId = x.UserId,
                     FullName = x.User.FullName,
                     Email = x.User.Email!,
-                    Role = x.IsAcademicAdvisor ? "Mentor" : "Professor",
+                    Role = "Mentor",
                     DepartmentName = x.Department != null ? x.Department.Name : null,
                     IdentificationNumber = x.EmployeeCode ?? "-",
                     Status = x.User.IsUniversityEmailActivated ? "Active" : "Inactive",

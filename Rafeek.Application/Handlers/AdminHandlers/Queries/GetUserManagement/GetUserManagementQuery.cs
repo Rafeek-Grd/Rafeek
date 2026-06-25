@@ -27,13 +27,6 @@ namespace Rafeek.Application.Handlers.AdminHandlers.Queries.GetUserManagement
         /// <summary>فلتر بالقسم الأكاديمي (إن وُجد)</summary>
         public Guid? DepartmentId { get; set; }
 
-        /// <summary>
-        /// (خاص بتبويب المرشدين الأكاديميين)
-        /// أرسله true لجلب المرشدين فقط، أو false لجلب أعضاء هيئة التدريس العاديين.
-        /// (يعمل هذا الفلتر عندما يكون TabRole = 8 यानी Professor)
-        /// </summary>
-        public bool? IsAdvisor { get; set; }
-
         public int PageNumber { get; set; } = 1;
         public int PageSize { get; set; } = 10;
     }
