@@ -5,10 +5,9 @@ namespace Rafeek.Domain.Enums
     {
         None = 0,
         Admin = 1,
-        SubAdmin = 2,
-        Staff = 4,
-        Instructor = 8,
-        Doctor = 16,
-        Student = 32
+        Staff = 2,
+        Mentor = 4,
+        Professor = 8,
+        Student = 16
     }
 }
