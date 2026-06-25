@@ -978,6 +978,36 @@ namespace Rafeek.Persistence.Seed
                 }
             });
 
+            await SeedStageAsync("Academic Settings & Grade Scales", async () => {
+                if (!await context.AcademicSettings.AnyAsync())
+                {
+                    context.AcademicSettings.Add(new AcademicSetting
+                    {
+                        Id = Guid.NewGuid(),
+                        MaxHoursPerSemester = 18,
+                        CourseCreditHours = 3,
+                        AllowOverload = true,
+                        IncludeTransferHours = true,
+                        CreatedAt = DateTime.UtcNow,
+                        CreatedBy = "Seeder"
+                    });
+                    await context.SaveChangesAsync();
+                }
+
+                if (!await context.GradeScales.AnyAsync())
+                {
+                    var gradeScales = new List<GradeScale>
+                    {
+                        new GradeScale { Id = Guid.NewGuid(), GradeLetter = "A+", MinPercentage = 93, GpaPoints = 4.0, ArabicDescription = "ممتاز", CreatedAt = DateTime.UtcNow, CreatedBy = "Seeder" },
+                        new GradeScale { Id = Guid.NewGuid(), GradeLetter = "A-", MinPercentage = 90, GpaPoints = 3.7, ArabicDescription = "جيد جداً", CreatedAt = DateTime.UtcNow, CreatedBy = "Seeder" },
+                        new GradeScale { Id = Guid.NewGuid(), GradeLetter = "B+", MinPercentage = 87, GpaPoints = 3.3, ArabicDescription = "جيد", CreatedAt = DateTime.UtcNow, CreatedBy = "Seeder" },
+                        new GradeScale { Id = Guid.NewGuid(), GradeLetter = "B", MinPercentage = 83, GpaPoints = 3.0, ArabicDescription = "جيد", CreatedAt = DateTime.UtcNow, CreatedBy = "Seeder" }
+                    };
+                    context.GradeScales.AddRange(gradeScales);
+                    await context.SaveChangesAsync();
+                }
+            });
+
             await context.SaveChangesAsync();
         }
     }

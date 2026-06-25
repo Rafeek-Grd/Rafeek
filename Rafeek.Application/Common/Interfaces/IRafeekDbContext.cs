@@ -43,6 +43,8 @@ namespace Rafeek.Application.Common.Interfaces
         DbSet<AITimetable> AITimetables { get; set; }
         DbSet<AITimetableItem> AITimetableItems { get; set; }
         DbSet<Reminder> Reminders { get; set; }
+        DbSet<AcademicSetting> AcademicSettings { get; }
+        DbSet<GradeScale> GradeScales { get; }
 
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);

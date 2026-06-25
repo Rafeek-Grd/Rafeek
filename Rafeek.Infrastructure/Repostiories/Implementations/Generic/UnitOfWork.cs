@@ -36,6 +36,8 @@ namespace Rafeek.Infrastructure.Repostiories.Implementations.Generic
         private NotificationRepository? _notificationRepository;
         private AssignmentRepository? _assignmentRepository;
         private AssignmentSubmissionRepository? _assignmentSubmissionRepository;
+        private AcademicSettingRepository? _academicSettingRepository;
+        private GradeScaleRepository? _gradeScaleRepository;
         public UnitOfWork(
             IRafeekDbContext context,
             IJwtTokenManager jwtTokenManager,
@@ -71,6 +73,8 @@ namespace Rafeek.Infrastructure.Repostiories.Implementations.Generic
         public INotificationRepository NotificationRepository => _notificationRepository ??= new NotificationRepository(_context);
         public IAssignmentRepository AssignmentRepository => _assignmentRepository ??= new AssignmentRepository(_context);
         public IAssignmentSubmissionRepository AssignmentSubmissionRepository => _assignmentSubmissionRepository ??= new AssignmentSubmissionRepository(_context);
+        public IAcademicSettingRepository AcademicSettingRepository => _academicSettingRepository ??= new AcademicSettingRepository(_context);
+        public IGradeScaleRepository GradeScaleRepository => _gradeScaleRepository ??= new GradeScaleRepository(_context);
         public async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
             return await _context.SaveChangesAsync(cancellationToken);
