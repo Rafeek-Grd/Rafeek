@@ -1,0 +1,143 @@
+Use this prompt directly with Claude Code, Codex, Cursor, Windsurf, or ChatGPT working on the repository:
+
+Analyze the entire repository and refactor the authorization and role system to use the following UserType enum as the single source of truth:
+
+[Flags]
+public enum UserType
+{
+    None = 0,
+    Admin = 1,
+    Staff = 2,
+    Mentor = 4,
+    Professor = 8,
+    Student = 16
+}
+
+Current codebase contains old roles such as:
+- SubAdmin
+- Instructor
+- Doctor
+- Staff (with different value)
+- Student (with different value)
+
+Your task is to completely migrate the system and fix all inconsistencies.
+
+Requirements:
+
+1. Search the entire solution for:
+   - UserType
+   - UserTypes
+   - RoleAuthorize
+   - Authorization attributes
+   - JWT claims
+   - Signup logic
+   - Login logic
+   - Role validation
+   - Seeders
+   - Permissions
+   - Controllers
+   - Commands
+   - Queries
+   - DTOs
+   - Validators
+   - Extension methods
+   - Migrations
+   - Swagger descriptions
+   - Documentation
+
+2. Replace old roles with the new business roles:
+   - SubAdmin → Staff
+   - Instructor → Professor
+   - Doctor → Professor
+   - Keep Admin
+   - Keep Student
+   - Add Mentor
+
+3. Update all authorization attributes:
+   Example:
+   [RoleAuthorize(nameof(UserType.Instructor))]
+   becomes
+   [RoleAuthorize(nameof(UserType.Professor))]
+
+4. Update all role checks:
+   - Enum comparisons
+   - HasFlag checks
+   - Bitwise checks
+   - Switch expressions
+   - Conditional logic
+
+5. Ensure every role-related operation uses the new enum values only.
+
+6. Review JWT generation:
+   - UserTypes claim
+   - Role claims
+   - Token creation
+   - Token validation
+
+7. Review RoleAuthorizationFilter:
+   - Ensure bitwise flag authorization still works correctly.
+   - Remove references to old roles.
+   - Update comments and documentation.
+
+8. Review ApplicationUser:
+   - Ensure UserTypes property works correctly with the new enum.
+   - Ensure multi-role assignments remain supported.
+
+9. Review ApplicationUserExtensions:
+   - Remove obsolete methods.
+   - Create/update:
+     IsAdmin()
+     IsStaff()
+     IsMentor()
+     IsProfessor()
+     IsStudent()
+
+10. Review all validators and requests:
+    - Prevent invalid role assignments.
+    - Allow only:
+      Admin
+      Staff
+      Mentor
+      Professor
+      Student
+
+11. Review all controllers:
+    - Verify endpoint permissions.
+    - Replace obsolete role references.
+    - Ensure authorization still reflects intended business rules.
+
+12. Review database seeders:
+    - Replace old roles.
+    - Ensure seeded users receive valid new roles.
+
+13. Review EF Core migrations and persisted data:
+    - Detect if UserTypes values are stored in database.
+    - Generate required migration(s).
+    - Generate data migration code to remap existing values safely.
+
+14. Search for magic numbers used for role flags and replace them with enum references.
+
+15. Remove every remaining reference to:
+    - SubAdmin
+    - Instructor
+    - Doctor
+
+16. Build the solution mentally and identify:
+    - Compilation errors
+    - Runtime errors
+    - Authorization bugs
+    - Data migration risks
+
+17. Apply fixes automatically.
+
+Output:
+- List of all modified files.
+- Exact code changes.
+- Required migration code.
+- Required data migration logic.
+- Any breaking changes.
+- Any endpoints whose authorization behavior changed.
+
+Do not stop after updating the enum. Perform a complete repository-wide migration and consistency audit until no references to the old role model remain.
+
+This prompt is strong enough to make the AI inspect the whole repository and fix all role-related inconsistencies, not just UserType.cs.
