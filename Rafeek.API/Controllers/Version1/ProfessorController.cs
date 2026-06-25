@@ -17,9 +17,9 @@ namespace Rafeek.API.Controllers.Version1
 {
     [ApiVersion("1.0")]
     [RoleAuthorize(nameof(UserType.Professor))]
-    public class InstructorController : BaseApiController
+    public class ProfessorController : BaseApiController
     {
-        public InstructorController(IMediator mediator, IStringLocalizer<Messages> localizer)
+        public ProfessorController(IMediator mediator, IStringLocalizer<Messages> localizer)
             : base(mediator, localizer)
         {
         }
