@@ -28,16 +28,15 @@ namespace Rafeek.Application.Handlers.AdminHandlers.Queries.GetSecurityDashboard
             dto.NewUsersCount = allUsers.Count(u => !u.IsUniversityEmailActivated);
 
             var studentCount = await _context.Students.AsNoTracking().CountAsync(cancellationToken);
-            var instructorCount = await _context.Instructors.AsNoTracking().CountAsync(cancellationToken);
             var doctorCount = await _context.Doctors.AsNoTracking().CountAsync(cancellationToken);
             var staffCount = await _context.Staffs.AsNoTracking().CountAsync(cancellationToken);
-            int total = studentCount + instructorCount + doctorCount + staffCount;
+            int total = studentCount + doctorCount + staffCount;
 
             dto.SystemUsageRate = new List<ChartItemDto>();
             if (total > 0)
             {
                 dto.SystemUsageRate.Add(new ChartItemDto { Label = "طلاب", Percentage = (int)Math.Round((double)studentCount / total * 100), ColorHex = "#1D4ED8" });
-                dto.SystemUsageRate.Add(new ChartItemDto { Label = "هيئة تدريس", Percentage = (int)Math.Round((double)(instructorCount + doctorCount) / total * 100), ColorHex = "#93C5FD" });
+                dto.SystemUsageRate.Add(new ChartItemDto { Label = "هيئة تدريس", Percentage = (int)Math.Round((double)doctorCount / total * 100), ColorHex = "#93C5FD" });
                 dto.SystemUsageRate.Add(new ChartItemDto { Label = "إداريون", Percentage = (int)Math.Round((double)staffCount / total * 100), ColorHex = "#EFF6FF" });
             }
 

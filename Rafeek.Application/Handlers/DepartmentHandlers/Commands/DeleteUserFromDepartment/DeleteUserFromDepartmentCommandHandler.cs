@@ -22,13 +22,10 @@ namespace Rafeek.Application.Handlers.DepartmentHandlers.Commands.DeleteUserFrom
         {
             var studentTask = _unitOfWork.StudentRepository.GetAll(s => s.UserId == request.UserId).FirstOrDefaultAsync(cancellationToken);
             var doctorTask = _unitOfWork.DoctorRepository.GetAll(d => d.UserId == request.UserId).FirstOrDefaultAsync(cancellationToken);
-            var instructorTask = _unitOfWork.InstructorRepository.GetAll(i => i.UserId == request.UserId).FirstOrDefaultAsync(cancellationToken);
-
-            await Task.WhenAll(studentTask, doctorTask, instructorTask);
+            await Task.WhenAll(studentTask, doctorTask);
 
             var student = studentTask.Result;
             var doctor = doctorTask.Result;
-            var instructor = instructorTask.Result;
 
             if (student != null)
             {
@@ -38,11 +35,6 @@ namespace Rafeek.Application.Handlers.DepartmentHandlers.Commands.DeleteUserFrom
             if (doctor != null)
             {
                 doctor.DepartmentId = null;
-            }
-
-            if (instructor != null)
-            {
-                instructor.DepartmentId = null;
             }
 
             await _unitOfWork.SaveChangesAsync(cancellationToken);

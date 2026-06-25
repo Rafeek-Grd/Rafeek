@@ -12,7 +12,7 @@ namespace Rafeek.Application.Handlers.AdminHandlers.Queries.GetUserManagement
 
         /// <summary>
         /// دور المستخدم. القيم الممكنة:
-        /// "Student", "Instructor", "Doctor", "Advisor", "Staff", "Admin"
+        /// "Student", "Professor", "Mentor", "Staff", "Admin"
         /// </summary>
         public string Role { get; set; } = null!;
 

@@ -18,12 +18,6 @@ namespace Rafeek.Application.Handlers.AdminHandlers.Queries.GetStaffProfile
         {
             var userId = request.UserId;
 
-            var instructor = await _context.Instructors
-                .AsNoTracking()
-                .Include(i => i.User)
-                .Include(i => i.Department)
-                .FirstOrDefaultAsync(i => i.UserId == userId, cancellationToken);
-
             var doctor = await _context.Doctors
                 .AsNoTracking()
                 .Include(d => d.User)
@@ -35,7 +29,7 @@ namespace Rafeek.Application.Handlers.AdminHandlers.Queries.GetStaffProfile
                 .Include(s => s.User)
                 .FirstOrDefaultAsync(s => s.UserId == userId, cancellationToken);
 
-            var user = instructor?.User ?? doctor?.User ?? staff?.User;
+            var user = doctor?.User ?? staff?.User;
 
             if (user == null)
             {
@@ -56,35 +50,16 @@ namespace Rafeek.Application.Handlers.AdminHandlers.Queries.GetStaffProfile
                 dto.Title = doctor.IsAcademicAdvisor ? "أستاذ / مرشد أكاديمي" : "أستاذ دكتور";
                 dto.DepartmentName = doctor.Department?.Name ?? "عام";
 
-                if (instructor != null)
-                {
-                    var sections = await _context.Sections
-                        .AsNoTracking()
-                        .Include(s => s.Course)
-                        .Include(s => s.CalendarEvents)
-                            .ThenInclude(ce => ce.AcademicTerm)
-                                .ThenInclude(at => at!.AcademicYear)
-                        .Where(s => s.InstructorId == instructor.Id)
-                        .ToListAsync(cancellationToken);
-
-                    ProcessSections(sections, dto, doctor.User.FullName);
-                }
-            }
-            else if (instructor != null)
-            {
-                dto.Title = "مدرس مساعد";
-                dto.DepartmentName = instructor.Department?.Name ?? "عام";
-
                 var sections = await _context.Sections
                     .AsNoTracking()
                     .Include(s => s.Course)
                     .Include(s => s.CalendarEvents)
                         .ThenInclude(ce => ce.AcademicTerm)
                             .ThenInclude(at => at!.AcademicYear)
-                    .Where(s => s.InstructorId == instructor.Id)
+                    .Where(s => s.DoctorId == doctor.Id)
                     .ToListAsync(cancellationToken);
 
-                ProcessSections(sections, dto, instructor.User.FullName);
+                ProcessSections(sections, dto, doctor.User.FullName);
             }
             else if (staff != null)
             {

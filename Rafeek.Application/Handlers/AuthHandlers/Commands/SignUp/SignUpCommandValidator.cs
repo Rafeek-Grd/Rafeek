@@ -40,22 +40,23 @@ namespace Rafeek.Application.Handlers.AuthHandlers.Commands.SignUp
                     if (allRoles.Count == 1) return true;
 
                     // 2. Multi-Role Constraints
-                    // Students, Staff, and Instructors cannot have any other roles
-                    if (allRoles.Contains(UserType.Student) || 
-                        allRoles.Contains(UserType.Staff) || 
-                        allRoles.Contains(UserType.Instructor))
+                    // Students and Staff cannot have any other roles
+                    if (allRoles.Contains(UserType.Student) || allRoles.Contains(UserType.Staff))
                     {
                         return false;
                     }
 
-                    // Admin and SubAdmin can ONLY be combined with Doctor
-                    // They cannot be combined with each other
-                    if (allRoles.Contains(UserType.Admin) && allRoles.Contains(UserType.SubAdmin)) return false;
-
-                    if (allRoles.Contains(UserType.Admin) || allRoles.Contains(UserType.SubAdmin))
+                    // Admin can be combined with Professor
+                    // Professor can be combined with Mentor (academic advisor)
+                    if (allRoles.Contains(UserType.Admin))
                     {
-                        // If Admin/SubAdmin is present in a multi-role set, the ONLY other allowed role is Doctor
-                        return allRoles.All(r => r == UserType.Admin || r == UserType.SubAdmin || r == UserType.Doctor);
+                        return allRoles.All(r => r == UserType.Admin || r == UserType.Professor);
+                    }
+
+                    // Professor + Mentor is the only allowed multi-role for non-Admin
+                    if (allRoles.Contains(UserType.Professor) && allRoles.Contains(UserType.Mentor) && allRoles.Count == 2)
+                    {
+                        return true;
                     }
 
                     return false; // Any other multi-role combination is invalid

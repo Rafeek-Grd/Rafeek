@@ -19,8 +19,8 @@ namespace Rafeek.Application.Handlers.AdminHandlers.Queries.GetAcademicSchedules
             var query = _context.Sections
                 .AsNoTracking()
                 .Include(s => s.Course)
-                .Include(s => s.Instructor)
-                    .ThenInclude(i => i.User)
+                .Include(s => s.Doctor)
+                    .ThenInclude(d => d.User)
                 .Include(s => s.CalendarEvents)
                 .AsQueryable();
 
@@ -45,7 +45,7 @@ namespace Rafeek.Application.Handlers.AdminHandlers.Queries.GetAcademicSchedules
                     SectionId = section.Id,
                     CourseTitle = section.Course.Title,
                     CourseCode = section.Course.Code,
-                    InstructorName = section.Instructor?.User?.FullName ?? "غير محدد",
+                    InstructorName = section.Doctor?.User?.FullName ?? "غير محدد",
                     Room = room,
                     Day = section.Day ?? "-",
                     Time = section.Time ?? "-",

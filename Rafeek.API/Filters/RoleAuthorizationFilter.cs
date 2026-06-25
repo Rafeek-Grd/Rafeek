@@ -41,7 +41,7 @@ namespace Rafeek.API.Filters
             if (_roles.Any())
             {
                 // The JWT stores user roles as a bitmask integer in the "UserTypes" claim
-                // (e.g. Admin=1, SubAdmin=2, Doctor=16 — see UserType enum [Flags])
+                // (e.g. Admin=1, Staff=2, Mentor=4, Professor=8, Student=16 — see UserType enum [Flags])
                 var userTypesClaim = user.FindFirst("UserTypes")?.Value;
 
                 bool hasRequiredRole = false;

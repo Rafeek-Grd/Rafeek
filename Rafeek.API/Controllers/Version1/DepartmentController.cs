@@ -34,7 +34,7 @@ namespace Rafeek.API.Controllers.Version1
         /// <param name="command"></param>
         /// <returns></returns>
         [HttpPost]
-        [RoleAuthorize(nameof(UserType.Admin), nameof(UserType.SubAdmin))]
+        [RoleAuthorize(nameof(UserType.Admin), nameof(UserType.Staff))]
         [Route(ApiRoutes.Department.Create)]
         [ProducesResponseType(typeof(Guid), StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -52,7 +52,7 @@ namespace Rafeek.API.Controllers.Version1
         /// <param name="command"></param>
         /// <returns></returns>
         [HttpPatch]
-        [RoleAuthorize(nameof(UserType.Admin), nameof(UserType.SubAdmin))]
+        [RoleAuthorize(nameof(UserType.Admin), nameof(UserType.Staff))]
         [Route(ApiRoutes.Department.Update)]
         [ProducesResponseType(typeof(bool), StatusCodes.Status202Accepted)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -87,7 +87,7 @@ namespace Rafeek.API.Controllers.Version1
         /// <param name="command"></param>
         /// <returns></returns>
         [HttpPatch]
-        [RoleAuthorize(nameof(UserType.Admin), nameof(UserType.SubAdmin))]
+        [RoleAuthorize(nameof(UserType.Admin), nameof(UserType.Staff))]
         [Route(ApiRoutes.Department.AssignCourse)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -104,7 +104,7 @@ namespace Rafeek.API.Controllers.Version1
         /// <param name="command"></param>
         /// <returns></returns>
         [HttpPatch]
-        [RoleAuthorize(nameof(UserType.Admin), nameof(UserType.SubAdmin))]
+        [RoleAuthorize(nameof(UserType.Admin), nameof(UserType.Staff))]
         [Route(ApiRoutes.Department.AssignUser)]
         [ProducesResponseType(typeof(bool), StatusCodes.Status202Accepted)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -138,7 +138,7 @@ namespace Rafeek.API.Controllers.Version1
         /// <param name="command"></param>
         /// <returns></returns>
         [HttpPatch]
-        [RoleAuthorize(nameof(UserType.Admin), nameof(UserType.SubAdmin))]
+        [RoleAuthorize(nameof(UserType.Admin), nameof(UserType.Staff))]
         [Route(ApiRoutes.Department.RemoveUser)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -155,7 +155,7 @@ namespace Rafeek.API.Controllers.Version1
         /// <param name="query"></param>
         /// <returns></returns>
         [HttpGet]
-        [RoleAuthorize(nameof(UserType.Admin), nameof(UserType.SubAdmin), nameof(UserType.Staff), nameof(UserType.Doctor))]
+        [RoleAuthorize(nameof(UserType.Admin), nameof(UserType.Staff), nameof(UserType.Mentor), nameof(UserType.Professor))]
         [Route(ApiRoutes.Department.GetAllPagginated)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -172,7 +172,7 @@ namespace Rafeek.API.Controllers.Version1
         /// <param name="query"></param>
         /// <returns></returns>
         [HttpGet]
-        [RoleAuthorize(nameof(UserType.Admin), nameof(UserType.SubAdmin))]
+        [RoleAuthorize(nameof(UserType.Admin), nameof(UserType.Staff))]
         [Route(ApiRoutes.Department.GetAllUsersInDepartmentPagginated)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -189,7 +189,7 @@ namespace Rafeek.API.Controllers.Version1
         /// <param name="query"></param>
         /// <returns></returns>
         [HttpGet]
-        [RoleAuthorize(nameof(UserType.Admin), nameof(UserType.SubAdmin), nameof(UserType.Staff), nameof(UserType.Doctor))]
+        [RoleAuthorize(nameof(UserType.Admin), nameof(UserType.Staff), nameof(UserType.Mentor), nameof(UserType.Professor))]
         [Route(ApiRoutes.Department.GetByIdOrCode)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -206,7 +206,7 @@ namespace Rafeek.API.Controllers.Version1
         /// <param name="query"></param>
         /// <returns></returns>
         [HttpGet]
-        [RoleAuthorize(nameof(UserType.Admin), nameof(UserType.SubAdmin), nameof(UserType.Staff), nameof(UserType.Doctor))]
+        [RoleAuthorize(nameof(UserType.Admin), nameof(UserType.Staff), nameof(UserType.Mentor), nameof(UserType.Professor))]
         [Route(ApiRoutes.Department.GetAllCoursesInDepartment)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

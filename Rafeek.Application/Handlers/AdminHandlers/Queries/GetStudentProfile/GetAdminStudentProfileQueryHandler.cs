@@ -28,8 +28,8 @@ namespace Rafeek.Application.Handlers.AdminHandlers.Queries.GetStudentProfile
                     .ThenInclude(e => e.Course)
                 .Include(s => s.Enrollments)
                     .ThenInclude(e => e.Section)
-                        .ThenInclude(sec => sec.Instructor)
-                            .ThenInclude(i => i.User)
+                        .ThenInclude(sec => sec.Doctor)
+                            .ThenInclude(d => d.User)
                 .Include(s => s.Enrollments)
                     .ThenInclude(e => e.Section)
                         .ThenInclude(sec => sec.CalendarEvents)
@@ -77,7 +77,7 @@ namespace Rafeek.Application.Handlers.AdminHandlers.Queries.GetStudentProfile
                     {
                         CourseCode = enrollment.Course.Code,
                         CourseTitle = enrollment.Course.Title,
-                        InstructorName = enrollment.Section?.Instructor?.User?.FullName ?? "-",
+                        InstructorName = enrollment.Section?.Doctor?.User?.FullName ?? "-",
                         Status = "Enrolled",
                         StatusLabel = "مسجل"
                     });

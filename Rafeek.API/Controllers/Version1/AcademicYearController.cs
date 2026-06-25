@@ -28,7 +28,7 @@ namespace Rafeek.API.Controllers.Version1
         /// <param name="command"></param>
         /// <returns></returns>
         [HttpPost]
-        [RoleAuthorize(nameof(UserType.Admin), nameof(UserType.SubAdmin))]
+        [RoleAuthorize(nameof(UserType.Admin), nameof(UserType.Staff))]
         [Route(ApiRoutes.AcademicYear.Create)]
         [ProducesResponseType(typeof(Guid), StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -46,7 +46,7 @@ namespace Rafeek.API.Controllers.Version1
         /// <param name="command"></param>
         /// <returns></returns>
         [HttpPatch]
-        [RoleAuthorize(nameof(UserType.Admin), nameof(UserType.SubAdmin))]
+        [RoleAuthorize(nameof(UserType.Admin), nameof(UserType.Staff))]
         [Route(ApiRoutes.AcademicYear.Update)]
         [ProducesResponseType(typeof(bool), StatusCodes.Status202Accepted)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

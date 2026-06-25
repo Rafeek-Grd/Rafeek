@@ -9,7 +9,7 @@ namespace Rafeek.Application.Common.Extensions
     {
         public static async Task<string> GetUserRoleStringAsync(this ApplicationUser user, IRafeekDbContext dbContext, CancellationToken cancellationToken)
         {
-            if (user.UserTypes.HasFlag(UserType.Admin) || user.UserTypes.HasFlag(UserType.SubAdmin))
+            if (user.UserTypes.HasFlag(UserType.Admin))
             {
                 return "admin";
             }
@@ -19,7 +19,12 @@ namespace Rafeek.Application.Common.Extensions
                 return "staff";
             }
 
-            if (user.UserTypes.HasFlag(UserType.Doctor))
+            if (user.UserTypes.HasFlag(UserType.Mentor))
+            {
+                return "mentor";
+            }
+
+            if (user.UserTypes.HasFlag(UserType.Professor))
             {
                 var localDoctor = dbContext.Doctors.Local.FirstOrDefault(d => d.UserId == user.Id);
                 if (localDoctor != null)
@@ -33,11 +38,6 @@ namespace Rafeek.Application.Common.Extensions
                     .FirstOrDefaultAsync(cancellationToken);
 
                 return isAdvisor ? "mentor" : "professor";
-            }
-
-            if (user.UserTypes.HasFlag(UserType.Instructor))
-            {
-                return "professor";
             }
 
             if (user.UserTypes.HasFlag(UserType.Student))

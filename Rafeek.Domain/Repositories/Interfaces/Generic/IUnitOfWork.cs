@@ -15,7 +15,7 @@ namespace Rafeek.Domain.Repositories.Interfaces.Generic
         IDepartmentRepository DepartmentRepository { get; }
         ICourseRepository CourseRepository { get; }
         IStudentAcademicProfileRepository StudentAcademicProfileRepository { get; }
-        IInstructorRepository InstructorRepository { get; }
+
         IAITimetableRepository AITimetableRepository { get; }
         IAITimetableItemRepository AITimetableItemRepository { get; }
         IReminderRepository ReminderRepository { get; }

@@ -33,8 +33,7 @@ namespace Rafeek.Application.Handlers.AuthHandlers.Query
                 .Where(s => s.UserId == user.Id)
                 .Select(s => new { Priority = 1, Code = s.UniversityCode })
                 .Concat(_dbContext.Staffs.AsNoTracking().Where(s => s.UserId == user.Id).Select(s => new { Priority = 2, Code = s.EmployeeCode ?? string.Empty }))
-                .Concat(_dbContext.Instructors.AsNoTracking().Where(i => i.UserId == user.Id).Select(i => new { Priority = 3, Code = i.EmployeeCode ?? string.Empty }))
-                .Concat(_dbContext.Doctors.AsNoTracking().Where(d => d.UserId == user.Id).Select(d => new { Priority = 4, Code = d.EmployeeCode ?? string.Empty }))
+                .Concat(_dbContext.Doctors.AsNoTracking().Where(d => d.UserId == user.Id).Select(d => new { Priority = 3, Code = d.EmployeeCode ?? string.Empty }))
                 .OrderBy(x => x.Priority)
                 .Select(x => x.Code)
                 .FirstOrDefaultAsync(cancellationToken);

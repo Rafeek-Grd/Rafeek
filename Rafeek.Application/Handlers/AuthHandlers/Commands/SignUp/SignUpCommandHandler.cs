@@ -132,20 +132,8 @@ namespace Rafeek.Application.Handlers.AuthHandlers.Commands.SignUp
                         await _dbContext.Students.AddAsync(student, cancellationToken);
                     }
 
-                    // 2. Instructor Profile
-                    if (allRoles.Contains(UserType.Instructor.ToString()))
-                    {
-                        string employeeCode = await GenerateUniqueEmployeeCodeAsync(cancellationToken);
-                        var instructor = new Instructor
-                        {
-                            UserId = user.Id,
-                            EmployeeCode = employeeCode
-                        };
-                        await _dbContext.Instructors.AddAsync(instructor, cancellationToken);
-                    }
-
-                    // 3. Doctor Profile
-                    if (allRoles.Contains(UserType.Doctor.ToString()))
+                    // 2. Professor Profile
+                    if (allRoles.Contains(UserType.Professor.ToString()))
                     {
                         string employeeCode = await GenerateUniqueEmployeeCodeAsync(cancellationToken);
                         var doctor = new Doctor
@@ -336,10 +324,8 @@ namespace Rafeek.Application.Handlers.AuthHandlers.Commands.SignUp
                     .AnyAsync(s => s.EmployeeCode == employeeCode, cancellationToken);
                 var existsInDoctors = await _dbContext.Doctors
                     .AnyAsync(d => d.EmployeeCode == employeeCode, cancellationToken);
-                var existsInInstructors = await _dbContext.Instructors
-                    .AnyAsync(i => i.EmployeeCode == employeeCode, cancellationToken);
 
-                if (!existsInStaff && !existsInDoctors && !existsInInstructors)
+                if (!existsInStaff && !existsInDoctors)
                 {
                     return employeeCode;
                 }

@@ -41,7 +41,7 @@ namespace Rafeek.Persistence
             builder.Ignore<AcademicTerm>();
             builder.Ignore<AcademicYear>();
             builder.Ignore<Enrollment>();
-            builder.Ignore<Instructor>();
+
             builder.Ignore<LearningResource>();
             builder.Ignore<StudyPlan>();
             builder.Ignore<Student>();

@@ -72,7 +72,7 @@ namespace Rafeek.Persistence.Seed
 
             // 1. Roles
             Log("[Seeder] Stage 1: Seeding Roles...");
-            var roles = new[] { "Admin", "SubAdmin", "Student", "Instructor", "Doctor", "Staff" };
+            var roles = new[] { "Admin", "Staff", "Student", "Professor", "Mentor" };
             foreach (var role in roles)
             {
                 if (!await identityContext.Roles.AnyAsync(r => r.Name == role))
@@ -251,37 +251,31 @@ namespace Rafeek.Persistence.Seed
                                 userRoles.Add("Staff");
                                 user.UserTypes = UserType.Staff;
                             }
-                            else if (dice < 0.80) // 10% Instructor
+                            else if (dice < 0.88) // 8% Professor
                             {
-                                userRoles.Add("Instructor");
-                                user.UserTypes = UserType.Instructor;
-                            }
-                            else if (dice < 0.88) // 8% Doctor
-                            {
-                                userRoles.Add("Doctor");
-                                user.UserTypes = UserType.Doctor;
+                                userRoles.Add("Professor");
+                                user.UserTypes = UserType.Professor;
                             }
                             else if (dice < 0.92) // 4% Admin
                             {
                                 userRoles.Add("Admin");
                                 user.UserTypes = UserType.Admin;
                             }
-                            else if (dice < 0.94) // 2% SubAdmin
+                            else if (dice < 0.94) // 2% Staff
                             {
-                                userRoles.Add("SubAdmin");
-                                user.UserTypes = UserType.SubAdmin;
+                                userRoles.Add("Staff");
+                                user.UserTypes = UserType.Staff;
                             }
-                            else if (dice < 0.97) // 3% Doctor + Admin
+                            else if (dice < 0.97) // 3% Mentor
                             {
-                                userRoles.Add("Doctor");
-                                userRoles.Add("Admin");
-                                user.UserTypes = UserType.Doctor | UserType.Admin;
+                                userRoles.Add("Mentor");
+                                user.UserTypes = UserType.Mentor;
                             }
-                            else // 3% Doctor + SubAdmin
+                            else // 3% Professor + Mentor
                             {
-                                userRoles.Add("Doctor");
-                                userRoles.Add("SubAdmin");
-                                user.UserTypes = UserType.Doctor | UserType.SubAdmin;
+                                userRoles.Add("Professor");
+                                userRoles.Add("Mentor");
+                                user.UserTypes = UserType.Professor | UserType.Mentor;
                             }
 
                             await userManager.AddToRolesAsync(user, userRoles);
@@ -317,21 +311,20 @@ namespace Rafeek.Persistence.Seed
             
             // Identify role-based user lists
             var studentUsers = new List<ApplicationUser>();
-            var instructorUsers = new List<ApplicationUser>();
-            var doctorUsers = new List<ApplicationUser>();
+            var professorUsers = new List<ApplicationUser>();
+            var mentorUsers = new List<ApplicationUser>();
             var staffUsers = new List<ApplicationUser>();
 
             foreach (var user in users)
             {
                 var rolesList = await userManager.GetRolesAsync(user);
                 if (rolesList.Contains("Student")) studentUsers.Add(user);
-                if (rolesList.Contains("Instructor")) instructorUsers.Add(user);
-                if (rolesList.Contains("Doctor")) doctorUsers.Add(user);
+                if (rolesList.Contains("Professor")) professorUsers.Add(user);
+                if (rolesList.Contains("Mentor")) mentorUsers.Add(user);
                 if (rolesList.Contains("Staff")) staffUsers.Add(user);
             }
 
             var students = new List<Student>();
-            var instructors = new List<Instructor>();
             var doctors = new List<Doctor>();
             var staffs = new List<Staff>();
 
@@ -350,44 +343,20 @@ namespace Rafeek.Persistence.Seed
             }
             else { staffs = existingStaffs; }
 
-            // Create Doctors
+            // Create Doctors (for Professor users)
             var existingDoctors = await context.Doctors.ToListAsync();
             if (!existingDoctors.Any())
             {
-                var targetUsers = doctorUsers.Any() ? doctorUsers : users.Skip(5).Take(10).ToList();
+                var targetUsers = professorUsers.Any() ? professorUsers : users.Skip(5).Take(10).ToList();
                 for (int d = 0; d < targetUsers.Count; d++)
                 {
-                    doctors.Add(new Doctor { Id = Guid.NewGuid(), UserId = targetUsers[d].Id, EmployeeCode = $"DOC{1000 + d}", DepartmentId = fEn.PickRandom(departments).Id, IsAcademicAdvisor = fEn.Random.Bool(0.7f), CreatedAt = DateTime.UtcNow, CreatedBy = "Seeder", IsActive = true });
+                    var isMentor = mentorUsers.Contains(targetUsers[d]);
+                    doctors.Add(new Doctor { Id = Guid.NewGuid(), UserId = targetUsers[d].Id, EmployeeCode = $"DOC{1000 + d}", DepartmentId = fEn.PickRandom(departments).Id, IsAcademicAdvisor = isMentor || fEn.Random.Bool(0.7f), CreatedAt = DateTime.UtcNow, CreatedBy = "Seeder", IsActive = true });
                 }
                 await context.Doctors.AddRangeAsync(doctors);
                 await context.SaveChangesAsync();
             }
             else { doctors = existingDoctors; }
-
-            // Create Instructors
-            var existingInstructors = await context.Instructors.ToListAsync();
-            if (!existingInstructors.Any())
-            {
-                // Instructors can be the specific list + all Doctors
-                var targetUsers = instructorUsers.Any() ? instructorUsers : users.Skip(15).Take(10).ToList();
-                foreach (var user in targetUsers)
-                {
-                    instructors.Add(new Instructor { Id = Guid.NewGuid(), UserId = user.Id, EmployeeCode = $"INS{fEn.Random.Number(1000, 9999)}", DepartmentId = fEn.PickRandom(departments).Id, CreatedAt = DateTime.UtcNow, CreatedBy = "Seeder", IsActive = true });
-                }
-                
-                // Also ensure Doctors are Instructors (common for Professors)
-                foreach (var doc in doctors)
-                {
-                    if (!instructors.Any(i => i.UserId == doc.UserId))
-                    {
-                        instructors.Add(new Instructor { Id = Guid.NewGuid(), UserId = doc.UserId, EmployeeCode = $"INS-DOC{fEn.Random.Number(100, 999)}", DepartmentId = doc.DepartmentId, CreatedAt = DateTime.UtcNow, CreatedBy = "Seeder", IsActive = true });
-                    }
-                }
-
-                await context.Instructors.AddRangeAsync(instructors);
-                await context.SaveChangesAsync();
-            }
-            else { instructors = existingInstructors; }
 
             // Create Students and Academic Profiles
             var studentProfiles = new List<StudentAcademicProfile>();
@@ -454,7 +423,7 @@ namespace Rafeek.Persistence.Seed
                         {
                             Id = Guid.NewGuid(),
                             CourseId = course.Id,
-                            InstructorId = instructors.Any() ? fEn.PickRandom(instructors).Id : (doctors.Any() ? fEn.PickRandom(doctors).Id : Guid.Empty),
+                            DoctorId = doctors.Any() ? fEn.PickRandom(doctors).Id : null,
                             Day = fEn.PickRandom(new[] { "الأحد", "الإثنين", "الثلاثاء", "الأربعاء", "الخميس" }),
                             StartTime = startTime,
                             EndTime = startTime.Add(new TimeSpan(2, 0, 0)),
@@ -972,9 +941,9 @@ namespace Rafeek.Persistence.Seed
                     await context.SaveChangesAsync();
                 }
 
-                if (!await context.AcademicCalendars.AnyAsync() && (users.Any() || instructors.Any()))
+                if (!await context.AcademicCalendars.AnyAsync() && (users.Any() || doctors.Any()))
                 {
-                    var targetSource = users.Any() ? users.Select(u => u.Id).ToList() : instructors.Select(i => i.UserId).ToList();
+                    var targetSource = users.Any() ? users.Select(u => u.Id).ToList() : doctors.Select(d => d.UserId).ToList();
                     var eventNames = new[] { "امتحان منتصف الفصل الدراسي", "تسليم المشروع النهائي", "اجتماع المجلس الأكاديمي", "ورشة عمل: أخلاقيات الذكاء الاصطناعي", "إجازة رسمية بالجامعة" };
                     var eventDescriptions = new[] {
                         "امتحان تحريري يشمل المحاضرات من الأولى إلى السادسة.",

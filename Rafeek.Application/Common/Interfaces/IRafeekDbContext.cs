@@ -10,7 +10,7 @@ namespace Rafeek.Application.Common.Interfaces
     {
         DbSet<Department> Departments { get; }
         DbSet<Student> Students { get; }
-        DbSet<Instructor> Instructors { get; }
+
         DbSet<StudentAcademicProfile> StudentAcademicProfiles { get; }
         DbSet<Course> Courses { get; }
         DbSet<UserFbTokens> FbTokens { get; }

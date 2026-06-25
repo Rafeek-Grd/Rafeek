@@ -1,0 +1,42 @@
+      FROM [dbo].[__AppMigrationsHistory]
+      ORDER BY [MigrationId];
+Applying migration '20260625172837_RemoveInstructorEntityAndUpdateRoles'.
+25/06/2026 20:29:10.972 RelationalEventId.MigrationApplying[20402] (Microsoft.EntityFrameworkCore.Migrations) 
+      Applying migration '20260625172837_RemoveInstructorEntityAndUpdateRoles'.
+25/06/2026 20:29:11.377 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (81ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      ALTER TABLE [dbo].[Sections] DROP CONSTRAINT [FK_Sections_Instructors_InstructorId];
+25/06/2026 20:29:11.459 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (81ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      DROP TABLE [dbo].[Instructors];
+25/06/2026 20:29:11.877 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (418ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      EXEC sp_rename N'[dbo].[Sections].[InstructorId]', N'DoctorId', N'COLUMN';
+25/06/2026 20:29:11.961 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (84ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      EXEC sp_rename N'[dbo].[Sections].[IX_Sections_InstructorId]', N'IX_Sections_DoctorId', N'INDEX';
+Failed executing DbCommand (103ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+ALTER TABLE [dbo].[Sections] ADD CONSTRAINT [FK_Sections_Doctors_DoctorId] FOREIGN KEY ([DoctorId]) REFERENCES [dbo].[Doctors] ([Id]) ON DELETE CASCADE;
+fail: 25/06/2026 20:29:12.066 RelationalEventId.CommandError[20102] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Failed executing DbCommand (103ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      ALTER TABLE [dbo].[Sections] ADD CONSTRAINT [FK_Sections_Doctors_DoctorId] FOREIGN KEY ([DoctorId]) REFERENCES [dbo].[Doctors] ([Id]) ON DELETE CASCADE;
+Microsoft.Data.SqlClient.SqlException (0x80131904): The ALTER TABLE statement conflicted with the FOREIGN KEY constraint "FK_Sections_Doctors_DoctorId". The conflict occurred in database "db43195", table "dbo.Doctors", column 'Id'.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteNonQueryTds(String methodName, Boolean isAsync, Int32 timeout, Boolean asyncWrite)
+   at Microsoft.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String methodName)
+   at Microsoft.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteNonQuery(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Migrations.MigrationCommand.ExecuteNonQuery(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.MigrationCommandExecutor.ExecuteNonQuery(IEnumerable`1 migrationCommands, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.Migrator.Migrate(String targetMigration)
+   at Microsoft.EntityFrameworkCore.Design.Internal.MigrationsOperations.UpdateDatabase(String targetMigration, String connectionString, String contextType)
+   at Microsoft.EntityFrameworkCore.Design.OperationExecutor.UpdateDatabaseImpl(String targetMigration, String connectionString, String contextType)
+   at Microsoft.EntityFrameworkCore.Design.OperationExecutor.UpdateDatabase.<>c__DisplayClass0_0.<.ctor>b__0()
+   at Microsoft.EntityFrameworkCore.Design.OperationExecutor.OperationBase.Execute(Action action)
+ClientConnectionId:2501955a-182c-4de4-970e-4ff59a10142f
+Error Number:547,State:0,Class:16
+The ALTER TABLE statement conflicted with the FOREIGN KEY constraint "FK_Sections_Doctors_DoctorId". The conflict occurred in database "db43195", table "dbo.Doctors", column 'Id'.
+PM> 

@@ -28,12 +28,9 @@ namespace Rafeek.Application.Handlers.DepartmentHandlers.Query.GetAllUsersInDepa
                 .Select(s => new { s.UserId, UniversityCode = s.UniversityCode, Role = UserType.Student.ToString() });
 
             var doctorQuery = _unitOfWork.DoctorRepository.GetAll(d => d.DepartmentId == request.DepartmentId)
-                .Select(d => new { d.UserId, UniversityCode = d.EmployeeCode, Role = UserType.Doctor.ToString() });
+                .Select(d => new { d.UserId, UniversityCode = d.EmployeeCode, Role = "Professor" });
 
-            var instructorQuery = _unitOfWork.InstructorRepository.GetAll(i => i.DepartmentId == request.DepartmentId)
-                .Select(i => new { i.UserId, UniversityCode = i.EmployeeCode, Role = UserType.Instructor.ToString() });
-
-            var combinedQuery = studentQuery.Concat(doctorQuery).Concat(instructorQuery);
+            var combinedQuery = studentQuery.Concat(doctorQuery);
 
             var pagedItems = await combinedQuery.AsNoTracking().PaginatedListAsync(request.PageNumber, request.PageSize);
 

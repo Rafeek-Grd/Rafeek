@@ -7,8 +7,8 @@ namespace Rafeek.Domain.Entities
         public Guid CourseId { get; set; }
         public Course Course { get; set; } = null!;
 
-        public Guid InstructorId { get; set; }
-        public Instructor Instructor { get; set; } = null!;
+        public Guid? DoctorId { get; set; }
+        public Doctor? Doctor { get; set; }
 
         public string Day { get; set; } = null!;
         public string Time { get; set; } = null!;

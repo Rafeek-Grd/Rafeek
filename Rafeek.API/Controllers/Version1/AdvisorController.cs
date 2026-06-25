@@ -26,7 +26,7 @@ namespace Rafeek.API.Controllers.Version1
         /// <returns></returns>
         [HttpPost]
         [Tags("Advisor")]
-        [RoleAuthorize(nameof(UserType.Admin), nameof(UserType.SubAdmin))]
+        [RoleAuthorize(nameof(UserType.Admin), nameof(UserType.Staff))]
         [Route(ApiRoutes.Student.AssignStudentsToAcademicAdvisor)]
         [ProducesResponseType(typeof(bool), StatusCodes.Status202Accepted)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -59,7 +59,7 @@ namespace Rafeek.API.Controllers.Version1
         /// <param name="command">The command containing the new status and any additional information.</param>
         /// <returns></returns>
         [HttpPatch]
-        [RoleAuthorize(nameof(UserType.Doctor), nameof(UserType.Admin), nameof(UserType.SubAdmin))]
+        [RoleAuthorize(nameof(UserType.Professor), nameof(UserType.Admin), nameof(UserType.Staff))]
         [Route(ApiRoutes.Advisor.UpdateGuidanceRequestStatus)]
         [ProducesResponseType(typeof(bool), StatusCodes.Status202Accepted)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

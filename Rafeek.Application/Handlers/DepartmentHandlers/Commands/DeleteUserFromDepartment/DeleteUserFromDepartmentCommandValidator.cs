@@ -26,8 +26,7 @@ namespace Rafeek.Application.Handlers.DepartmentHandlers.Commands.DeleteUserFrom
                     var isDoctor = await _unitOfWork.DoctorRepository.ExistsAsync(d => d.UserId == userId, cancellationToken);
                     if (isDoctor) return true;
 
-                    var isInstructor = await _unitOfWork.InstructorRepository.ExistsAsync(i => i.UserId == userId, cancellationToken);
-                    return isInstructor;
+                    return isDoctor;
                 })
                 .WithMessage(localizer[LocalizationKeys.Department.UserRoleNotFound.Value]);
 
@@ -42,8 +41,7 @@ namespace Rafeek.Application.Handlers.DepartmentHandlers.Commands.DeleteUserFrom
             if (isStudent) return true;
             var isDoctor = await _unitOfWork.DoctorRepository.ExistsAsync(d => d.UserId == userId && d.DepartmentId != null, cancellationToken);
             if (isDoctor) return true;
-            var isInstructor = await _unitOfWork.InstructorRepository.ExistsAsync(i => i.UserId == userId && i.DepartmentId != null, cancellationToken);
-            if (isInstructor) return true;
+            if (isDoctor) return true;
             return false;
         }
     }

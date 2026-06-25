@@ -22,7 +22,7 @@ namespace Rafeek.Application.Mappings
                 .ForMember(d => d.IsTheoretical, opt => opt.MapFrom(s => true))
                 .ForMember(d => d.IsPractical, opt => opt.MapFrom(s => false))
                 .ForMember(d => d.TargetLevel, opt => opt.MapFrom(s => 3))
-                .ForMember(d => d.Instructors, opt => opt.MapFrom(s => s.Enrollments.Select(e => e.Section.Instructor).Distinct().Select(i => new CourseInstructorDto
+                .ForMember(d => d.Instructors, opt => opt.MapFrom(s => s.Enrollments.Select(e => e.Section.Doctor).Where(d => d != null).Distinct().Select(i => new CourseInstructorDto
                 {
                     InstructorId = i.Id,
                     FullName = i.User.FullName,

@@ -58,4 +58,4 @@ No test project exists. Do not assume a test framework or run test commands.
 - `appsettings.json` is minimal; secrets live in `appsettings.Development.json` / `appsettings.Live.json`.
 - `OpenCode.json` sets `"edit": "ask"` — edits require confirmation.
 - Existing agent instruction files: `.agents/rules/rafeek.md` (system rules) and `.agents/workflows/rafeekworkflow.md` (feature workflow with checkpoints). Refer to those for detailed coding conventions.
-- `permission_matrix.md` documents role-based access (Admin, SubAdmin, Staff, Doctor, Instructor, Student) in Arabic.
+- `permission_matrix.md` documents role-based access (Admin, Staff, Professor, Mentor, Student) in Arabic.

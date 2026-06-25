@@ -77,7 +77,7 @@ namespace Rafeek.Application.Handlers.CourseHandlers.Queries.GetCourses
                     DepartmentName = c.Department != null ? c.Department.Name : null,
                     EnrolledCount = c.Enrollments.Count,
                     Capacity = c.Enrollments.Select(e => e.Section.Capacity).FirstOrDefault(),
-                    InstructorName = c.Enrollments.Select(e => e.Section.Instructor.User.FullName).FirstOrDefault(),
+                    InstructorName = c.Enrollments.Select(e => e.Section.Doctor != null ? e.Section.Doctor.User.FullName : null).FirstOrDefault(),
                     PrerequisiteCodes = c.Prerequisites.Select(p => p.Prerequisite.Code).ToList(),
                     AcademicTermName = c.Enrollments
                         .SelectMany(e => e.Section.CalendarEvents)

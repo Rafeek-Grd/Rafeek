@@ -25,7 +25,7 @@ namespace Rafeek.Application.Handlers.InstructorHandlers.Queries.GetInstructorSe
 
             return await _ctx.SectionRepository
                 .IncludeAll(null)
-                .Where(x => x.Instructor.UserId == instructorUserId)
+                .Where(x => x.Doctor.UserId == instructorUserId)
                 .AsNoTracking()
                 .Select(x => new InstructorSectionDto
                 {

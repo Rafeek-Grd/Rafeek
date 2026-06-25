@@ -59,11 +59,6 @@ namespace Rafeek.Application.Localization
             public static readonly KeyString PasswordResetFailed = new("PasswordResetFailed");
         }
 
-        public record InstructorMessages
-        {
-            public static readonly KeyString InsructorUserIdRequired = new("InstructorUserIdRequired");
-        }
-
         public record UploadFileMessages
         {
             public static readonly KeyString PalceRequried = new("PlaceNotValid");

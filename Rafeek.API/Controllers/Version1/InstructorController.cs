@@ -16,7 +16,7 @@ using Rafeek.Domain.Enums;
 namespace Rafeek.API.Controllers.Version1
 {
     [ApiVersion("1.0")]
-    [RoleAuthorize(nameof(UserType.Instructor), nameof(UserType.Doctor))]
+    [RoleAuthorize(nameof(UserType.Professor))]
     public class InstructorController : BaseApiController
     {
         public InstructorController(IMediator mediator, IStringLocalizer<Messages> localizer)
@@ -29,7 +29,7 @@ namespace Rafeek.API.Controllers.Version1
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [Route(ApiRoutes.Instructor.GetDashboard)]
+        [Route(ApiRoutes.Professor.GetDashboard)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetDashboard()
@@ -43,7 +43,7 @@ namespace Rafeek.API.Controllers.Version1
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [Route(ApiRoutes.Instructor.GetSections)]
+        [Route(ApiRoutes.Professor.GetSections)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetSections()
@@ -58,7 +58,7 @@ namespace Rafeek.API.Controllers.Version1
         /// <param name="sectionId"></param>
         /// <returns></returns>
         [HttpGet]
-        [Route(ApiRoutes.Instructor.GetSectionStudents)]
+        [Route(ApiRoutes.Professor.GetSectionStudents)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetSectionStudents([FromRoute] Guid sectionId)
@@ -73,7 +73,7 @@ namespace Rafeek.API.Controllers.Version1
         /// <param name="studentId"></param>
         /// <returns></returns>
         [HttpGet]
-        [Route(ApiRoutes.Instructor.GetStudentProfile)]
+        [Route(ApiRoutes.Professor.GetStudentProfile)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetStudentProfile([FromRoute] Guid studentId)
@@ -89,7 +89,7 @@ namespace Rafeek.API.Controllers.Version1
         /// <param name="command"></param>
         /// <returns></returns>
         [HttpPost]
-        [Route(ApiRoutes.Instructor.SubmitGrades)]
+        [Route(ApiRoutes.Professor.SubmitGrades)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> SubmitGrades([FromRoute] Guid sectionId, [FromBody] SubmitSectionGradesCommand command)
@@ -104,7 +104,7 @@ namespace Rafeek.API.Controllers.Version1
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [Route(ApiRoutes.Instructor.GetExamSchedule)]
+        [Route(ApiRoutes.Professor.GetExamSchedule)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetExamSchedule()
@@ -118,7 +118,7 @@ namespace Rafeek.API.Controllers.Version1
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [Route(ApiRoutes.Instructor.GetNotifications)]
+        [Route(ApiRoutes.Professor.GetNotifications)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType (StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetNotifications()

@@ -31,7 +31,7 @@ namespace Rafeek.API.Controllers.Version1
         /// <param name="command"></param>
         /// <returns></returns>
         [HttpPost]
-        [RoleAuthorize(nameof(UserType.Admin), nameof(UserType.Doctor), nameof(UserType.SubAdmin))]
+        [RoleAuthorize(nameof(UserType.Admin), nameof(UserType.Professor), nameof(UserType.Staff))]
         [Route(ApiRoutes.EventOfAcademicCalendar.AddEvent)]
         [ProducesResponseType(typeof(AcademicCalendarDto), StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -48,7 +48,7 @@ namespace Rafeek.API.Controllers.Version1
         /// <param name="command"></param>
         /// <returns></returns>
         [HttpPatch]
-        [RoleAuthorize(nameof(UserType.Admin), nameof(UserType.Doctor), nameof(UserType.SubAdmin))]
+        [RoleAuthorize(nameof(UserType.Admin), nameof(UserType.Professor), nameof(UserType.Staff))]
         [Route(ApiRoutes.EventOfAcademicCalendar.UpdateEvent)]
         [ProducesResponseType(typeof(AcademicCalendarDto), StatusCodes.Status202Accepted)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

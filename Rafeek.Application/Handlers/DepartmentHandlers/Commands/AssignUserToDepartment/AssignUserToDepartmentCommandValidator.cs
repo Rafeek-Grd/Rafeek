@@ -37,8 +37,7 @@ namespace Rafeek.Application.Handlers.DepartmentHandlers.Commands.AssignUserToDe
                     var isDoctor = await _unitOfWork.DoctorRepository.ExistsAsync(d => d.UserId == userId, cancellationToken);
                     if (isDoctor) return true;
 
-                    var isInstructor = await _unitOfWork.InstructorRepository.ExistsAsync(i => i.UserId == userId, cancellationToken);
-                    return isInstructor;
+                    return isDoctor;
                 })
                 .WithMessage(localizer[LocalizationKeys.Department.UserRoleNotFound.Value]);
         }

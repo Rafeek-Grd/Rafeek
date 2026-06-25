@@ -22,7 +22,6 @@ namespace Rafeek.Infrastructure.Repostiories.Implementations.Generic
         private StudentSupportRepository? _studentSupportRepository;
         private DepartmentRepository? _departmentRepository;
         private CourseRepository? _courseRepository;
-        private InstructorRepository? _instructorRepository;
         private StudentAcademicProfileRepository? _studentAcademicProfileRepository;
         private AITimetableRepository? _aiTimetableRepository;
         private AITimetableItemRepository? _aiTimetableItemRepository;
@@ -58,7 +57,6 @@ namespace Rafeek.Infrastructure.Repostiories.Implementations.Generic
         public IStudentSupportRepository StudentSupportRepository => _studentSupportRepository ??= new StudentSupportRepository(_context);
         public IDepartmentRepository DepartmentRepository => _departmentRepository ??= new DepartmentRepository(_context);
         public ICourseRepository CourseRepository => _courseRepository ??= new CourseRepository(_context);
-        public IInstructorRepository InstructorRepository => _instructorRepository ??= new InstructorRepository(_context);
         public IStudentAcademicProfileRepository StudentAcademicProfileRepository => _studentAcademicProfileRepository ??= new StudentAcademicProfileRepository(_context);
         public IAITimetableRepository AITimetableRepository => _aiTimetableRepository ??= new AITimetableRepository(_context);
         public IAITimetableItemRepository AITimetableItemRepository => _aiTimetableItemRepository ??= new AITimetableItemRepository(_context);

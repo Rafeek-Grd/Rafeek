@@ -49,7 +49,7 @@ namespace Rafeek.API.Controllers.Version1
         /// <param name="command"></param>
         /// <returns></returns>
         [HttpPost]
-        [RoleAuthorize(nameof(UserType.Instructor), nameof(UserType.Doctor))]
+        [RoleAuthorize(nameof(UserType.Professor))]
         [Route(ApiRoutes.Assignments.Create)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -67,7 +67,7 @@ namespace Rafeek.API.Controllers.Version1
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
         [HttpPut]
-        [RoleAuthorize(nameof(UserType.Instructor), nameof(UserType.Doctor))]
+        [RoleAuthorize(nameof(UserType.Professor))]
         [Route(ApiRoutes.Assignments.GradeSubmission)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

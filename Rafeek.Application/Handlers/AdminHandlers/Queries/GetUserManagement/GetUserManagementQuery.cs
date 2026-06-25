@@ -9,7 +9,7 @@ namespace Rafeek.Application.Handlers.AdminHandlers.Queries.GetUserManagement
         /// <summary>
         /// نوع الحساب المراد جلبه. (مطلوب لتمثيل الـ Tabs بالشاشة)
         /// القيمة الافتراضية: Student
-        /// أمثلة: 32 = الطلاب (Student)، 8 = طاقم التدريس (Instructor)، 16 = المرشدين (Doctor)، 4 = (Staff)
+        /// أمثلة: 16 = الطلاب (Student)، 8 = الأساتذة (Professor)، 4 = المرشدون (Mentor)، 2 = (Staff)
         /// </summary>
         public UserType TabRole { get; set; } = UserType.Student;
 
@@ -30,7 +30,7 @@ namespace Rafeek.Application.Handlers.AdminHandlers.Queries.GetUserManagement
         /// <summary>
         /// (خاص بتبويب المرشدين الأكاديميين)
         /// أرسله true لجلب المرشدين فقط، أو false لجلب أعضاء هيئة التدريس العاديين.
-        /// (يعمل هذا الفلتر عندما يكون TabRole = 16 यानी Doctor)
+        /// (يعمل هذا الفلتر عندما يكون TabRole = 8 यानी Professor)
         /// </summary>
         public bool? IsAdvisor { get; set; }
 

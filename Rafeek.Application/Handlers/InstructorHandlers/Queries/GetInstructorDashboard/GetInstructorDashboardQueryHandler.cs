@@ -23,7 +23,7 @@ namespace Rafeek.Application.Handlers.InstructorHandlers.Queries.GetInstructorDa
 
             var sectionIds = await _ctx.SectionRepository
                 .IncludeAll(null)
-                .Where(x => x.Instructor.UserId == instructorUserId)
+                .Where(x => x.Doctor.UserId == instructorUserId)
                 .AsNoTracking()
                 .Select(x => x.Id)
                 .ToListAsync(cancellationToken);
