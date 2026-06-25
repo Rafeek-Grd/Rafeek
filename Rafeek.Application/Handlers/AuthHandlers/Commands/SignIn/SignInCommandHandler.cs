@@ -4,12 +4,10 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 using Rafeek.Application.Common.Exceptions;
+using Rafeek.Application.Common.Extensions;
 using Rafeek.Application.Common.Interfaces;
-using Rafeek.Application.Handlers.AuthHandlers.Commands;
 using Rafeek.Application.Localization;
 using Rafeek.Domain.Entities;
-using Rafeek.Domain.Enums;
-using Rafeek.Application.Common.Extensions;
 using Rafeek.Domain.Repositories.Interfaces.Generic;
 
 namespace Rafeek.Application.Handlers.AuthHandlers.Commands.SignIn
@@ -51,6 +49,12 @@ namespace Rafeek.Application.Handlers.AuthHandlers.Commands.SignIn
             if (currentUser is null)
             {
                 throw new UnauthorizedException(_localizer[LocalizationKeys.UserMessages.InvalidSignIn.Value]);
+            }
+
+            if (currentUser.IsUniversityEmailActivated && !currentUser.EmailConfirmed)
+            {
+                currentUser.EmailConfirmed = true;
+                await _userManager.UpdateAsync(currentUser);
             }
 
             var result = await _signInManager.PasswordSignInAsync(currentUser.UserName!, request.Password, false, false, cancellationToken);

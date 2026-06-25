@@ -2,6 +2,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 using Rafeek.API.Routes;
+using Rafeek.Application.Common.Models;
 using Rafeek.Application.Localization;
 using Rafeek.API.Filters;
 using Rafeek.Domain.Enums;
@@ -108,11 +109,11 @@ namespace Rafeek.API.Controllers.Version1
         [HttpGet]
         [RoleAuthorize(nameof(UserType.Student))]
         [Route(ApiRoutes.Student.GetSchedule)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(PagginatedResult<ScheduleItemDto>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> GetStudentSchedule()
+        public async Task<IActionResult> GetStudentSchedule([FromQuery] GetStudentScheduleQuery query)
         {
-            var result = await _mediator.Send(new GetStudentScheduleQuery());
+            var result = await _mediator.Send(query);
             return Ok(result);
         }
     }

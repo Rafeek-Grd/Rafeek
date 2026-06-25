@@ -14,9 +14,19 @@ namespace Rafeek.Application.Common.Models
 
         public PagginatedResult(IReadOnlyCollection<T> items, int count, int pageNumber, int pageSize)
         {
-            PageNumber = pageNumber <= 0 ? 1 : pageNumber;
-            PageSize = pageSize == -1 ? (count > 0 ? count : 1) : (pageSize <= 0 ? 20 : pageSize);
-            TotalPages = PageSize == 0 ? 0 : (int)Math.Ceiling(count / (double)PageSize);
+            if (pageNumber == -1)
+            {
+                PageNumber = 1;
+                PageSize = count > 0 ? count : 1;
+                TotalPages = 1;
+            }
+            else
+            {
+                PageNumber = pageNumber <= 0 ? 1 : pageNumber;
+                PageSize = pageSize <= 0 ? 20 : pageSize;
+                TotalPages = PageSize == 0 ? 0 : (int)Math.Ceiling(count / (double)PageSize);
+            }
+
             TotalCount = count;
             Items = items;
         }

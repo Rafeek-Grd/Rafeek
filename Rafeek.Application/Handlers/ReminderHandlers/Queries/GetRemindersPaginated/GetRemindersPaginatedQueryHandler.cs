@@ -27,6 +27,7 @@ namespace Rafeek.Application.Handlers.ReminderHandlers.Queries.GetRemindersPagin
             CancellationToken cancellationToken)
         {
             var query = _ctx.ReminderRepository.GetAll()
+                .AsNoTracking()
                 .Where(x => x.UserId == _currentUserService.UserId);
 
             if (!string.IsNullOrEmpty(request.SearchTerm))
@@ -39,7 +40,7 @@ namespace Rafeek.Application.Handlers.ReminderHandlers.Queries.GetRemindersPagin
 
             var orderedQuery = query.OrderBy(x => x.DueDate).AsQueryable();
 
-            if (request.PageSize != -1)
+            if (request.PageNumber != -1)
             {
                 orderedQuery = orderedQuery
                     .Skip((request.PageNumber - 1) * request.PageSize)

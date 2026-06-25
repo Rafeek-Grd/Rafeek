@@ -2,9 +2,11 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 using Rafeek.API.Routes;
+using Rafeek.Application.Common.Models;
 using Rafeek.Application.Handlers.AIHandlers.Queries.GetAllStudentsGradesBatch;
 using Rafeek.Application.Handlers.AIHandlers.Queries.GetCourseCatalogMetadata;
 using Rafeek.Application.Handlers.AIHandlers.Queries.GetStudentGrades;
+using Rafeek.Application.Handlers.ExternalHandlers.DTOs;
 using Rafeek.Application.Localization;
 using Rafeek.API.Filters;
 
@@ -40,11 +42,11 @@ namespace Rafeek.API.Controllers.External
         /// <returns></returns>
         [HttpGet()]
         [Route(ApiRoutes.ExternalIntegration.GetBatchDump)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(PagginatedResult<BatchStudentAIGradesDto>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        public async Task<IActionResult> GetBatchDump()
+        public async Task<IActionResult> GetBatchDump([FromQuery] GetAllStudentsGradesBatchQuery query)
         {
-            var result = await _mediator.Send(new GetAllStudentsGradesBatchQuery());
+            var result = await _mediator.Send(query);
             return Ok(result);
         }
 
@@ -54,11 +56,11 @@ namespace Rafeek.API.Controllers.External
         /// <returns></returns>
         [HttpGet()]
         [Route(ApiRoutes.ExternalIntegration.GetCatalog)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(PagginatedResult<CourseMetadataDto>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        public async Task<IActionResult> GetCatalog()
+        public async Task<IActionResult> GetCatalog([FromQuery] GetCourseCatalogMetadataQuery query)
         {
-            var result = await _mediator.Send(new GetCourseCatalogMetadataQuery());
+            var result = await _mediator.Send(query);
             return Ok(result);
         }
     }

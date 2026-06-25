@@ -24,8 +24,9 @@ namespace Rafeek.Application.Handlers.AcademicYearHandlers.Queries.GetAllAcademi
         {
             return await _ctx.AcademicYearRepository
                 .IncludeAll(null)
+                .AsNoTracking()
                 .ProjectTo<AcademicYearDto>(_mapper.ConfigurationProvider)
-                .PaginatedListAsync(request.PageNumber, request.PageSize);
+                .PaginatedListAsync(request.PageNumber, request.PageSize, cancellationToken);
         }
     }
 }

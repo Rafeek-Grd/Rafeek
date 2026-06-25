@@ -108,7 +108,7 @@ namespace Rafeek.Application.Handlers.AdminHandlers.Queries.GetStudentAcademicRe
                                     : "إنذار أول"
             });
 
-            if (request.PageSize != -1)
+            if (request.PageNumber != -1)
             {
                 projectedQuery = projectedQuery
                     .Skip((request.PageNumber - 1) * request.PageSize)

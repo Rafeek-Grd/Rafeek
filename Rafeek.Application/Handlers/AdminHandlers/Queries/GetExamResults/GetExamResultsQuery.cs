@@ -1,11 +1,13 @@
 using MediatR;
-using System.Collections.Generic;
+using Rafeek.Application.Common.Models;
 
 namespace Rafeek.Application.Handlers.AdminHandlers.Queries.GetExamResults
 {
-    public class GetExamResultsQuery : IRequest<List<ExamResultItemDto>>
+    public class GetExamResultsQuery : IRequest<PagginatedResult<ExamResultItemDto>>
     {
-        public string? TabName { get; set; } // e.g. "AI", "SWE", "1st General"
+        public string? TabName { get; set; }
+        public int PageNumber { get; set; } = -1;
+        public int PageSize { get; set; } = 20;
     }
 
     public class ExamResultItemDto

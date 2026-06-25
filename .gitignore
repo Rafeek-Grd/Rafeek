@@ -21,3 +21,5 @@ Rafeek.API/logs/
 Rafeek.API/Properties/PublishProfiles/
 /Rafeek.API/Properties/PublishProfiles/site51752-WebDeploy.pubxml
 /Rafeek.API/SeedingLog.txt
+/Rafeek.API/Prompts/error.txt
+/Rafeek.API/Prompts/prompt.txt

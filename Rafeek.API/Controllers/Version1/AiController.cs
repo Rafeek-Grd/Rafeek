@@ -11,6 +11,7 @@ using Rafeek.Domain.Enums;
 using Rafeek.Application.Handlers.CareerHandlers.Queries.GetCareerSuggestionsByStudent;
 using Rafeek.Application.Handlers.StudyPlanHandlers.Queries.GetStudyPlanByStudent;
 using Rafeek.Application.Handlers.LearningResourceHandlers.Queries.GetAllLearningResources;
+using Rafeek.Application.Common.Models;
 using Rafeek.Application.Handlers.AIHandlers.DTOs;
 using Rafeek.Application.Handlers.ExternalHandlers.DTOs;
 using Rafeek.Application.Handlers.AIHandlers.Commands.AskAi;
@@ -98,11 +99,11 @@ namespace Rafeek.API.Controllers.Version1
         [HttpGet]
         [RoleAuthorize]
         [Route(ApiRoutes.AiIntegration.GetAiSessions)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(PagginatedResult<AiSessionDto>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> GetAiSessions()
+        public async Task<IActionResult> GetAiSessions([FromQuery] GetAiSessionsQuery query)
         {
-            var result = await _mediator.Send(new GetAiSessionsQuery());
+            var result = await _mediator.Send(query);
             return Ok(result);
         }
 
@@ -114,7 +115,7 @@ namespace Rafeek.API.Controllers.Version1
         [HttpGet]
         [RoleAuthorize]
         [Route(ApiRoutes.AiIntegration.GetChatHistory)]
-        [ProducesResponseType(typeof(List<ChatHistoryDto>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(PagginatedResult<ChatHistoryDto>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetChatHistory([FromQuery] GetChatHistoryQuery query)
         {

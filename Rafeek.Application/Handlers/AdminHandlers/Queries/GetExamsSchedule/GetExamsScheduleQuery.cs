@@ -1,12 +1,14 @@
 using MediatR;
-using System.Collections.Generic;
+using Rafeek.Application.Common.Models;
 
 namespace Rafeek.Application.Handlers.AdminHandlers.Queries.GetExamsSchedule
 {
-    public class GetExamsScheduleQuery : IRequest<List<ExamDayGroupDto>>
+    public class GetExamsScheduleQuery : IRequest<PagginatedResult<ExamDayGroupDto>>
     {
         public string? TermId { get; set; }
         public string? SearchText { get; set; }
+        public int PageNumber { get; set; } = -1;
+        public int PageSize { get; set; } = 20;
     }
 
     public class ExamDayGroupDto
@@ -25,6 +27,6 @@ namespace Rafeek.Application.Handlers.AdminHandlers.Queries.GetExamsSchedule
         public string CourseCode { get; set; } = null!;
         public string CourseTitle { get; set; } = null!;
         public string Location { get; set; } = null!;
-        public string TargetLevel { get; set; } = null!; // e.g. Undergrad Year 1
+        public string TargetLevel { get; set; } = null!;
     }
 }

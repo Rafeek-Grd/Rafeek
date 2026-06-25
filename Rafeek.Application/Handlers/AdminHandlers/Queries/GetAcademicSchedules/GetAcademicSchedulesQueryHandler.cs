@@ -1,10 +1,11 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Rafeek.Application.Common.Interfaces;
+using Rafeek.Application.Common.Models;
 
 namespace Rafeek.Application.Handlers.AdminHandlers.Queries.GetAcademicSchedules
 {
-    public class GetAcademicSchedulesQueryHandler : IRequestHandler<GetAcademicSchedulesQuery, List<AcademicScheduleDto>>
+    public class GetAcademicSchedulesQueryHandler : IRequestHandler<GetAcademicSchedulesQuery, PagginatedResult<AcademicScheduleDto>>
     {
         private readonly IRafeekDbContext _context;
 
@@ -13,7 +14,7 @@ namespace Rafeek.Application.Handlers.AdminHandlers.Queries.GetAcademicSchedules
             _context = context;
         }
 
-        public async Task<List<AcademicScheduleDto>> Handle(GetAcademicSchedulesQuery request, CancellationToken cancellationToken)
+        public async Task<PagginatedResult<AcademicScheduleDto>> Handle(GetAcademicSchedulesQuery request, CancellationToken cancellationToken)
         {
             var query = _context.Sections
                 .AsNoTracking()
@@ -52,7 +53,22 @@ namespace Rafeek.Application.Handlers.AdminHandlers.Queries.GetAcademicSchedules
                 });
             }
 
-            return schedules;
+            var totalCount = schedules.Count;
+            List<AcademicScheduleDto> items;
+
+            if (request.PageNumber == -1)
+            {
+                items = schedules;
+            }
+            else
+            {
+                items = schedules
+                    .Skip((request.PageNumber - 1) * request.PageSize)
+                    .Take(request.PageSize)
+                    .ToList();
+            }
+
+            return new PagginatedResult<AcademicScheduleDto>(items, totalCount, request.PageNumber, request.PageSize);
         }
     }
 }

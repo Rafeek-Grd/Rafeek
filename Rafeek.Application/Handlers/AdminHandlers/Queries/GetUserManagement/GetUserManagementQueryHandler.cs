@@ -58,7 +58,7 @@ namespace Rafeek.Application.Handlers.AdminHandlers.Queries.GetUserManagement
                     StatusLabel = x.User.IsUniversityEmailActivated ? "نشط" : "غير نشط"
                 });
 
-                if (request.PageSize != -1)
+                if (request.PageNumber != -1)
                 {
                     projectedQuery = projectedQuery
                         .Skip((request.PageNumber - 1) * request.PageSize)
@@ -105,7 +105,7 @@ namespace Rafeek.Application.Handlers.AdminHandlers.Queries.GetUserManagement
                     StatusLabel = x.User.IsUniversityEmailActivated ? "نشط" : "غير نشط"
                 });
 
-                if (request.PageSize != -1)
+                if (request.PageNumber != -1)
                 {
                     projectedQuery = projectedQuery
                         .Skip((request.PageNumber - 1) * request.PageSize)
@@ -157,7 +157,7 @@ namespace Rafeek.Application.Handlers.AdminHandlers.Queries.GetUserManagement
                     StatusLabel = x.User.IsUniversityEmailActivated ? "نشط" : "غير نشط"
                 });
 
-                if (request.PageSize != -1)
+                if (request.PageNumber != -1)
                 {
                     projectedQuery = projectedQuery
                         .Skip((request.PageNumber - 1) * request.PageSize)
@@ -200,7 +200,7 @@ namespace Rafeek.Application.Handlers.AdminHandlers.Queries.GetUserManagement
                     StatusLabel = x.User.IsUniversityEmailActivated ? "نشط" : "غير نشط"
                 });
 
-                if (request.PageSize != -1)
+                if (request.PageNumber != -1)
                 {
                     projectedQuery = projectedQuery
                         .Skip((request.PageNumber - 1) * request.PageSize)

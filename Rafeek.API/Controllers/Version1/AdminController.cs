@@ -120,7 +120,7 @@ namespace Rafeek.API.Controllers.Version1
         [HttpGet]
         [RoleAuthorize(nameof(UserType.Admin), nameof(UserType.SubAdmin))]
         [Route(ApiRoutes.Admin.GetAcademicSchedules)]
-        [ProducesResponseType(typeof(List<AcademicScheduleDto>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(PagginatedResult<AcademicScheduleDto>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> GetAcademicSchedules([FromQuery] GetAcademicSchedulesQuery query)
         {
@@ -134,7 +134,7 @@ namespace Rafeek.API.Controllers.Version1
         [HttpGet]
         [RoleAuthorize(nameof(UserType.Admin), nameof(UserType.SubAdmin))]
         [Route(ApiRoutes.Admin.GetExamsSchedule)]
-        [ProducesResponseType(typeof(List<ExamDayGroupDto>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(PagginatedResult<ExamDayGroupDto>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> GetExamsSchedule([FromQuery] GetExamsScheduleQuery query)
         {
@@ -148,7 +148,7 @@ namespace Rafeek.API.Controllers.Version1
         [HttpGet]
         [RoleAuthorize(nameof(UserType.Admin), nameof(UserType.SubAdmin))]
         [Route(ApiRoutes.Admin.GetExamResults)]
-        [ProducesResponseType(typeof(List<ExamResultItemDto>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(PagginatedResult<ExamResultItemDto>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> GetExamResults([FromQuery] GetExamResultsQuery query)
         {

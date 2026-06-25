@@ -65,9 +65,7 @@ namespace Rafeek.Application.Handlers.CourseHandlers.Queries.GetCourses
                 }
             }
 
-            int totalCount = await query.CountAsync(cancellationToken);
-
-            var rawItems = await query
+            var result = await query
                 .OrderBy(c => c.Code)
                 .Select(c => new
                 {
@@ -87,33 +85,30 @@ namespace Rafeek.Application.Handlers.CourseHandlers.Queries.GetCourses
                         .Select(ev => ev.AcademicTerm!.Name)
                         .FirstOrDefault()
                 })
-                .PaginatedListAsync(request.PageNumber,request.PageSize);
+                .PaginatedListAsync(request.PageNumber, request.PageSize, cancellationToken);
 
-            var items = rawItems.Items.Select(c =>
+            var items = result.Items.Select(c => new CourseListItemDto
             {
-                return new CourseListItemDto
-                {
-                    CourseId = c.Id,
-                    Code = c.Code,
-                    Title = c.Title,
-                    CreditHours = c.CreditHours,
-                    DepartmentId = c.DepartmentId,
-                    DepartmentName = c.DepartmentName,
-                    InstructorName = c.InstructorName,
-                    EnrolledStudents = c.EnrolledCount,
-                    Capacity = c.Capacity,
-                    PrerequisiteCodes = c.PrerequisiteCodes,
-                    AcademicTerm = c.AcademicTermName,
-                    Status = c.Capacity == 0 ? "Closed" : (c.EnrolledCount >= c.Capacity ? "Full" : "Open"),
-                    StatusLabel = c.Capacity == 0 ? "إلغاء التسجيل" : (c.EnrolledCount >= c.Capacity ? "مكتمل" : "متاح")
-                };
+                CourseId = c.Id,
+                Code = c.Code,
+                Title = c.Title,
+                CreditHours = c.CreditHours,
+                DepartmentId = c.DepartmentId,
+                DepartmentName = c.DepartmentName,
+                InstructorName = c.InstructorName,
+                EnrolledStudents = c.EnrolledCount,
+                Capacity = c.Capacity,
+                PrerequisiteCodes = c.PrerequisiteCodes,
+                AcademicTerm = c.AcademicTermName,
+                Status = c.Capacity == 0 ? "Closed" : (c.EnrolledCount >= c.Capacity ? "Full" : "Open"),
+                StatusLabel = c.Capacity == 0 ? "إلغاء التسجيل" : (c.EnrolledCount >= c.Capacity ? "مكتمل" : "متاح")
             }).ToList();
 
-            return PagginatedResult<CourseListItemDto>.Create(
+            return new PagginatedResult<CourseListItemDto>(
                 items.AsReadOnly(),
-                totalCount,
-                request.PageNumber,
-                request.PageSize);
+                result.TotalCount,
+                result.PageNumber,
+                result.PageSize);
         }
     }
 }
