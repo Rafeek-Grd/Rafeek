@@ -116,6 +116,11 @@ namespace Rafeek.API.Routes
             public const string UpdateSettings             = Base + "/admin/settings";
         }
 
+        public static class Generic
+        {
+            public const string GetProfilesForAdmins = Base + "/generic/profiles";
+        }
+
         public static class Courses
         {
             public const string GetAll    = Base + "/courses";

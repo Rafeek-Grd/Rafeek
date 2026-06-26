@@ -1,14 +1,10 @@
 ﻿using MediatR;
+using Rafeek.Domain.Enums;
 
 namespace Rafeek.Application.Handlers.GenericHandlers.GetProfilesForAdmins
 {
-    public class GetProfilesForAdminsQuery: IRequest<GetProfilesForAdminsResponse>
-    {
-        public Guid? StaffId { get; set; }
-        public Guid? StudentId { get; set; }
-        public Guid? MentorId { get; set; }
-        public Guid? ProfessorId { get; set; }
-    }
+    public sealed record GetProfilesForAdminsQuery(
+        Guid UserId,
+        List<UserType>? UserTypes
+    ) : IRequest<GetProfilesForAdminsResponse>;
 }
-
-
