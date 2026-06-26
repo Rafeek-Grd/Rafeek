@@ -1,31 +1,97 @@
-// 7. Sections
-Log("[Seeder] Stage 8: Seeding Sections...");
-var sections = await context.LectureGroups.ToListAsync();
-if (!sections.Any())
-{
-    foreach (var course in courses)
-    {
-        // Every course gets at least 2 sections
-        var sectionCount = fEn.Random.Int(2, 4);
-        for (int i = 0; i < sectionCount; i++)
-        {
-            var startTime = new TimeSpan(fEn.PickRandom(new[] { 8, 10, 12, 14, 16 }), 0, 0);
-            sections.Add(new LectureGroup
-            {
-                Id = Guid.NewGuid(),
-                CourseId = course.Id,
-                DoctorId = doctors.Any() ? fEn.PickRandom(doctors).Id : null,
-                Day = fEn.PickRandom(new[] { "الأحد", "الإثنين", "الثلاثاء", "الأربعاء", "الخميس" }),
-                StartTime = startTime,
-                EndTime = startTime.Add(new TimeSpan(2, 0, 0)),
-                Time = $"{startTime:hh\\:mm} - {startTime.Add(new TimeSpan(2, 0, 0)):hh\\:mm}",
-                Capacity = fEn.Random.Int(30, 60),
-                CreatedAt = DateTime.UtcNow,
-                CreatedBy = "Seeder",
-                IsActive = true
-            });
-        }
-    }
-    context.LectureGroups.AddRange(sections);
-    await context.SaveChangesAsync();
-}
+nfo\: NET_Tracker.Services.HttpLogsCleanupService[0]
+﻿      HTTP Logs Cleanup Service started. Retention policy: 30 days
+﻿Info\: Microsoft.Hosting.Lifetime[0]
+﻿      Application started. Press Ctrl+C to shut down.
+﻿Info\: Microsoft.Hosting.Lifetime[0]
+﻿      Hosting environment: Development
+﻿Info\: Microsoft.Hosting.Lifetime[0]
+﻿      Content root path: E:\Rafeek\Rafeek.API
+﻿Info\: NET_Tracker.Services.QueuedHttpTransactionLogger[0]
+﻿      QueuedHttpTransactionLogger background processor started.
+﻿Erro\: Rafeek.Application.Handlers.AdminHandlers.Queries.GetUserManagement.GetUserManagementQuery[0]
+﻿      Squeak Request: Unhandled Exception for Request "GetUserManagementQuery" {"TabRole":"Mentor", "PageNumber":1, "PageSize":10}System.InvalidOperationException: Cannot use multiple context instances within a single query execution. Ensure the query uses a single context instance.
+﻿   at Microsoft.EntityFrameworkCore.Query.Internal.ParameterExtractingExpressionVisitor.VisitExtension(Expression extensionExpression)
+﻿   at System.Dynamic.Utils.ExpressionVisitorUtils.VisitArguments(ExpressionVisitor visitor, IArgumentProvider nodes)
+﻿   at System.Linq.Expressions.ExpressionVisitor.VisitMethodCall(MethodCallExpression node)
+﻿   at Microsoft.EntityFrameworkCore.Query.Internal.ParameterExtractingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+﻿   at System.Dynamic.Utils.ExpressionVisitorUtils.VisitArguments(ExpressionVisitor visitor, IArgumentProvider nodes)
+﻿   at System.Linq.Expressions.ExpressionVisitor.VisitMethodCall(MethodCallExpression node)
+﻿   at Microsoft.EntityFrameworkCore.Query.Internal.ParameterExtractingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+﻿   at System.Dynamic.Utils.ExpressionVisitorUtils.VisitArguments(ExpressionVisitor visitor, IArgumentProvider nodes)
+﻿   at System.Linq.Expressions.ExpressionVisitor.VisitMethodCall(MethodCallExpression node)
+﻿   at Microsoft.EntityFrameworkCore.Query.Internal.ParameterExtractingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+﻿   at System.Dynamic.Utils.ExpressionVisitorUtils.VisitArguments(ExpressionVisitor visitor, IArgumentProvider nodes)
+﻿   at System.Linq.Expressions.ExpressionVisitor.VisitMethodCall(MethodCallExpression node)
+﻿   at Microsoft.EntityFrameworkCore.Query.Internal.ParameterExtractingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+﻿   at System.Dynamic.Utils.ExpressionVisitorUtils.VisitArguments(ExpressionVisitor visitor, IArgumentProvider nodes)
+﻿   at System.Linq.Expressions.ExpressionVisitor.VisitMethodCall(MethodCallExpression node)
+﻿   at Microsoft.EntityFrameworkCore.Query.Internal.ParameterExtractingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+﻿   at System.Dynamic.Utils.ExpressionVisitorUtils.VisitArguments(ExpressionVisitor visitor, IArgumentProvider nodes)
+﻿   at System.Linq.Expressions.ExpressionVisitor.VisitMethodCall(MethodCallExpression node)
+﻿   at Microsoft.EntityFrameworkCore.Query.Internal.ParameterExtractingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+﻿   at System.Dynamic.Utils.ExpressionVisitorUtils.VisitArguments(ExpressionVisitor visitor, IArgumentProvider nodes)
+﻿   at System.Linq.Expressions.ExpressionVisitor.VisitMethodCall(MethodCallExpression node)
+﻿   at Microsoft.EntityFrameworkCore.Query.Internal.ParameterExtractingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+﻿   at Microsoft.EntityFrameworkCore.Query.Internal.ParameterExtractingExpressionVisitor.ExtractParameters(Expression expression, Boolean clearEvaluatedValues)
+﻿   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.ExecuteAsync[TResult](Expression query, CancellationToken cancellationToken)
+﻿   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ExecuteAsync[TSource,TResult](MethodInfo operatorMethodInfo, IQueryable`1 source, Expression expression, CancellationToken cancellationToken)
+﻿   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ExecuteAsync[TSource,TResult](MethodInfo operatorMethodInfo, IQueryable`1 source, CancellationToken cancellationToken)
+﻿   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.CountAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+﻿   at Rafeek.Application.Handlers.AdminHandlers.Queries.GetUserManagement.GetUserManagementQueryHandler.Handle(GetUserManagementQuery request, CancellationToken cancellationToken) in E:\Rafeek\Rafeek.Application\Handlers\AdminHandlers\Queries\GetUserManagement\GetUserManagementQueryHandler.cs:line 167
+﻿   at Rafeek.Application.Common.Behaviours.PerformanceBehaviour`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next) in E:\Rafeek\Rafeek.Application\Common\Behaviours\PerformanceBehaviour.cs:line 23
+﻿   at Rafeek.Application.Common.Behaviours.ValidationBehaviour`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next) in E:\Rafeek\Rafeek.Application\Common\Behaviours\ValidationBehaviour.cs:line 28
+﻿   at Rafeek.Application.Common.Behaviours.UnhandledExceptionBehaviour`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next) in E:\Rafeek\Rafeek.Application\Common\Behaviours\UnhandledExceptionBehaviour.cs:line 20
+﻿Erro\: Rafeek.API.Filters.ApiExceptionFilterAttribute[0]
+﻿      An unhandled exception has occurred while executing the request.System.InvalidOperationException: Cannot use multiple context instances within a single query execution. Ensure the query uses a single context instance.
+﻿   at Microsoft.EntityFrameworkCore.Query.Internal.ParameterExtractingExpressionVisitor.VisitExtension(Expression extensionExpression)
+﻿   at System.Dynamic.Utils.ExpressionVisitorUtils.VisitArguments(ExpressionVisitor visitor, IArgumentProvider nodes)
+﻿   at System.Linq.Expressions.ExpressionVisitor.VisitMethodCall(MethodCallExpression node)
+﻿   at Microsoft.EntityFrameworkCore.Query.Internal.ParameterExtractingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+﻿   at System.Dynamic.Utils.ExpressionVisitorUtils.VisitArguments(ExpressionVisitor visitor, IArgumentProvider nodes)
+﻿   at System.Linq.Expressions.ExpressionVisitor.VisitMethodCall(MethodCallExpression node)
+﻿   at Microsoft.EntityFrameworkCore.Query.Internal.ParameterExtractingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+﻿   at System.Dynamic.Utils.ExpressionVisitorUtils.VisitArguments(ExpressionVisitor visitor, IArgumentProvider nodes)
+﻿   at System.Linq.Expressions.ExpressionVisitor.VisitMethodCall(MethodCallExpression node)
+﻿   at Microsoft.EntityFrameworkCore.Query.Internal.ParameterExtractingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+﻿   at System.Dynamic.Utils.ExpressionVisitorUtils.VisitArguments(ExpressionVisitor visitor, IArgumentProvider nodes)
+﻿   at System.Linq.Expressions.ExpressionVisitor.VisitMethodCall(MethodCallExpression node)
+﻿   at Microsoft.EntityFrameworkCore.Query.Internal.ParameterExtractingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+﻿   at System.Dynamic.Utils.ExpressionVisitorUtils.VisitArguments(ExpressionVisitor visitor, IArgumentProvider nodes)
+﻿   at System.Linq.Expressions.ExpressionVisitor.VisitMethodCall(MethodCallExpression node)
+﻿   at Microsoft.EntityFrameworkCore.Query.Internal.ParameterExtractingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+﻿   at System.Dynamic.Utils.ExpressionVisitorUtils.VisitArguments(ExpressionVisitor visitor, IArgumentProvider nodes)
+﻿   at System.Linq.Expressions.ExpressionVisitor.VisitMethodCall(MethodCallExpression node)
+﻿   at Microsoft.EntityFrameworkCore.Query.Internal.ParameterExtractingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+﻿   at System.Dynamic.Utils.ExpressionVisitorUtils.VisitArguments(ExpressionVisitor visitor, IArgumentProvider nodes)
+﻿   at System.Linq.Expressions.ExpressionVisitor.VisitMethodCall(MethodCallExpression node)
+﻿   at Microsoft.EntityFrameworkCore.Query.Internal.ParameterExtractingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+﻿   at Microsoft.EntityFrameworkCore.Query.Internal.ParameterExtractingExpressionVisitor.ExtractParameters(Expression expression, Boolean clearEvaluatedValues)
+﻿   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.ExecuteAsync[TResult](Expression query, CancellationToken cancellationToken)
+﻿   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ExecuteAsync[TSource,TResult](MethodInfo operatorMethodInfo, IQueryable`1 source, Expression expression, CancellationToken cancellationToken)
+﻿   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ExecuteAsync[TSource,TResult](MethodInfo operatorMethodInfo, IQueryable`1 source, CancellationToken cancellationToken)
+﻿   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.CountAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+﻿   at Rafeek.Application.Handlers.AdminHandlers.Queries.GetUserManagement.GetUserManagementQueryHandler.Handle(GetUserManagementQuery request, CancellationToken cancellationToken) in E:\Rafeek\Rafeek.Application\Handlers\AdminHandlers\Queries\GetUserManagement\GetUserManagementQueryHandler.cs:line 167
+﻿   at Rafeek.Application.Common.Behaviours.PerformanceBehaviour`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next) in E:\Rafeek\Rafeek.Application\Common\Behaviours\PerformanceBehaviour.cs:line 23
+﻿   at Rafeek.Application.Common.Behaviours.ValidationBehaviour`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next) in E:\Rafeek\Rafeek.Application\Common\Behaviours\ValidationBehaviour.cs:line 28
+﻿   at Rafeek.Application.Common.Behaviours.UnhandledExceptionBehaviour`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next) in E:\Rafeek\Rafeek.Application\Common\Behaviours\UnhandledExceptionBehaviour.cs:line 20
+﻿   at MediatR.Pipeline.RequestExceptionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+﻿   at MediatR.Pipeline.RequestExceptionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+﻿   at MediatR.Pipeline.RequestExceptionActionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+﻿   at MediatR.Pipeline.RequestExceptionActionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+﻿   at MediatR.Pipeline.RequestPostProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+﻿   at MediatR.Pipeline.RequestPreProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+﻿   at Rafeek.API.Controllers.Version1.AdminController.GetUsers(GetUserManagementQuery query) in E:\Rafeek\Rafeek.API\Controllers\Version1\AdminController.cs:line 80
+﻿   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+﻿   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+﻿   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+﻿   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+﻿   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+﻿   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+﻿--- End of stack trace from previous location ---
+﻿   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextExceptionFilterAsync>g__Awaited|26_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+﻿Info\: Microsoft.EntityFrameworkCore.Database.Command[0]
+﻿      Executed DbCommand (113ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (Size = 256), @p2='?' (DbType = Int64), @p3='?' (Size = 4000), @p4='?' (Size = 45), @p5='?' (Size = 10), @p6='?' (Size = 2000), @p7='?' (Size = 4000), @p8='?' (Size = 4000), @p9='?' (Size = 100), @p10='?' (DbType = Int32), @p11='?' (Size = 4000), @p12='?' (Size = 4000), @p13='?' (DbType = Int32), @p14='?' (Size = 4000), @p15='?' (DbType = Int32), @p16='?' (DbType = Boolean), @p17='?' (DbType = DateTime2), @p18='?' (Size = 2000), @p19='?' (Size = 500), @p20='?' (Size = 256)], CommandType='Text', CommandTimeout='30']
+﻿SET IMPLICIT_TRANSACTIONS OFF;
+﻿SET NOCOUNT ON;
+﻿INSERT INTO [HttpTransactions] ([Id], [ContentType], [DurationMs], [ErrorMessage], [IpAddress], [Method], [QueryString], [RequestBody], [RequestHeaders], [RequestId], [RequestSize], [ResponseBody], [ResponseHeaders], [ResponseSize], [StackTrace], [StatusCode], [Success], [Timestamp], [Url], [UserAgent], [UserId])
+﻿VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14, @p15, @p16, @p17, @p18, @p19, @p20);

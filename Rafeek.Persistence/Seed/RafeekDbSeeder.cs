@@ -271,11 +271,10 @@ namespace Rafeek.Persistence.Seed
                                 userRoles.Add("Mentor");
                                 user.UserTypes = UserType.Mentor;
                             }
-                            else // 3% Professor + Mentor
+                            else // 3% Professor (previously Professor + Mentor)
                             {
                                 userRoles.Add("Professor");
-                                userRoles.Add("Mentor");
-                                user.UserTypes = UserType.Professor | UserType.Mentor;
+                                user.UserTypes = UserType.Professor;
                             }
 
                             await userManager.AddToRolesAsync(user, userRoles);
@@ -352,13 +351,48 @@ namespace Rafeek.Persistence.Seed
                     : users.Skip(5).Take(10).ToList();
                 for (int d = 0; d < targetUsers.Count; d++)
                 {
-                    var isMentor = mentorUsers.Contains(targetUsers[d]);
-                    doctors.Add(new Doctor { Id = Guid.NewGuid(), UserId = targetUsers[d].Id, EmployeeCode = $"DOC{1000 + d}", DepartmentId = fEn.PickRandom(departments).Id, IsAcademicAdvisor = isMentor || fEn.Random.Bool(0.7f), CreatedAt = DateTime.UtcNow, CreatedBy = "Seeder", IsActive = true });
+                    doctors.Add(new Doctor { Id = Guid.NewGuid(), UserId = targetUsers[d].Id, EmployeeCode = $"DOC{1000 + d}", DepartmentId = fEn.PickRandom(departments).Id, IsAcademicAdvisor = targetUsers[d].UserTypes.HasFlag(UserType.Mentor), CreatedAt = DateTime.UtcNow, CreatedBy = "Seeder", IsActive = true });
                 }
                 await context.Doctors.AddRangeAsync(doctors);
                 await context.SaveChangesAsync();
             }
             else { doctors = existingDoctors; }
+
+            // Fixup: Change any user with UserType 12 (Professor|Mentor) to 8 (Professor only)
+            bool anyUserTypeFixed = false;
+            foreach (var u in users)
+            {
+                if (u.UserTypes == (UserType.Professor | UserType.Mentor))
+                {
+                    u.UserTypes = UserType.Professor;
+                    anyUserTypeFixed = true;
+                }
+            }
+            if (anyUserTypeFixed)
+            {
+                await identityContext.SaveChangesAsync();
+                Log("[Seeder] Fixed users with combined Professor|Mentor type to Professor only.");
+            }
+
+            // Sync IsAcademicAdvisor with actual UserTypes for all doctors
+            bool anyAdvisorFixed = false;
+            foreach (var doctor in doctors)
+            {
+                var user = users.FirstOrDefault(u => u.Id == doctor.UserId);
+                if (user == null) continue;
+                var shouldBeAdvisor = user.UserTypes.HasFlag(UserType.Mentor);
+                if (doctor.IsAcademicAdvisor != shouldBeAdvisor)
+                {
+                    doctor.IsAcademicAdvisor = shouldBeAdvisor;
+                    anyAdvisorFixed = true;
+                }
+            }
+            if (anyAdvisorFixed)
+            {
+                context.Doctors.UpdateRange(doctors);
+                await context.SaveChangesAsync();
+                Log($"[Seeder] Synced IsAcademicAdvisor for {doctors.Count(d => d.IsAcademicAdvisor)} doctors with Mentor flag.");
+            }
 
             // Create Students and Academic Profiles
             var studentProfiles = new List<StudentAcademicProfile>();

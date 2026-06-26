@@ -71,7 +71,7 @@ namespace Rafeek.Application.Handlers.GenericHandlers.GetProfilesForAdmins
             Staff? staff = null;
             Student? student = null;
 
-            var needsDoctor = types.Any(t => t is UserType.Mentor or UserType.Professor or UserType.Staff);
+            var needsDoctor = types.Any(t => t is UserType.Mentor or UserType.Professor);
             var needsStaff = types.Contains(UserType.Staff);
             var needsStudent = types.Contains(UserType.Student);
 
