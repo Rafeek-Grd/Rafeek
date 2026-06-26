@@ -431,6 +431,7 @@ namespace Rafeek.Persistence.Seed
                             EndTime = startTime.Add(new TimeSpan(2, 0, 0)),
                             Time = $"{startTime:hh\\:mm} - {startTime.Add(new TimeSpan(2, 0, 0)):hh\\:mm}",
                             Capacity = fEn.Random.Int(30, 60),
+                            Location = $"مبنى {fEn.Random.AlphaNumeric(1).ToUpper()} - الطابق {fEn.Random.Int(1, 5)} - قاعة {fEn.Random.Number(100, 500)}",
                             CreatedAt = DateTime.UtcNow,
                             CreatedBy = "Seeder",
                             IsActive = true

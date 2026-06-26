@@ -219,7 +219,9 @@ namespace Rafeek.Application.Handlers.GenericHandlers.GetProfilesForAdmins
                     {
                         Day = first.Day,
                         StartTime = first.StartTime?.ToString(@"hh\:mm"),
-                        EndTime = first.EndTime?.ToString(@"hh\:mm")
+                        EndTime = first.EndTime?.ToString(@"hh\:mm"),
+                        Location = first.Location,
+                        Capacity = first.Capacity
                     };
                 })
                 .ToList();
