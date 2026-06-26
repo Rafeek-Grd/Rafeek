@@ -28,7 +28,7 @@ namespace Rafeek.Application.Handlers.ReminderHandlers.Queries.GetRemindersPagin
         {
             var query = _ctx.ReminderRepository.GetAll()
                 .AsNoTracking()
-                .Where(x => x.UserId == _currentUserService.UserId);
+                .Where(x => x.UserId == _currentUserService.UserId && x.IsActive && !x.IsDeleted);
 
             if (!string.IsNullOrEmpty(request.SearchTerm))
                 query = query.Where(x => x.Title.Contains(request.SearchTerm) || (x.Description != null && x.Description.Contains(request.SearchTerm)));
