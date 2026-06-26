@@ -19,7 +19,7 @@ namespace Rafeek.Application.Handlers.InstructorHandlers.Queries.GetStudentsInSe
         public async Task<PagginatedResult<SectionStudentDto>> Handle(GetStudentsInSectionQueryPagginated request, CancellationToken cancellationToken)
         {
             return await _ctx.EnrollmentRepository
-                .IncludeAll(e => e.SectionId == request.SectionId)
+                .IncludeAll(e => e.LectureGroupId == request.LectureGroupId)
                 .AsNoTracking()
                 .Select(e => new SectionStudentDto
                 {

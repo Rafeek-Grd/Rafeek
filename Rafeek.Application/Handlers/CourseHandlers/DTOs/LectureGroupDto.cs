@@ -2,7 +2,7 @@ using System;
 
 namespace Rafeek.Application.Handlers.CourseHandlers.DTOs
 {
-    public class SectionDto
+    public class LectureGroupDto
     {
         public Guid Id { get; set; }
         public Guid CourseId { get; set; }

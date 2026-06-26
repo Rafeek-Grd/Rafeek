@@ -10,8 +10,8 @@ namespace Rafeek.Domain.Entities
         public Guid CourseId { get; set; }
         public Course Course { get; set; } = null!;
 
-        public Guid SectionId { get; set; }
-        public Section Section { get; set; } = null!;
+        public Guid LectureGroupId { get; set; }
+        public LectureGroup LectureGroup { get; set; } = null!;
 
         public string Status { get; set; } = null!;
         public string? Grade { get; set; }

@@ -27,11 +27,11 @@ namespace Rafeek.Application.Handlers.AdminHandlers.Queries.GetStudentProfile
                 .Include(s => s.Enrollments)
                     .ThenInclude(e => e.Course)
                 .Include(s => s.Enrollments)
-                    .ThenInclude(e => e.Section)
+                    .ThenInclude(e => e.LectureGroup)
                         .ThenInclude(sec => sec.Doctor)
                             .ThenInclude(d => d.User)
                 .Include(s => s.Enrollments)
-                    .ThenInclude(e => e.Section)
+                    .ThenInclude(e => e.LectureGroup)
                         .ThenInclude(sec => sec.CalendarEvents)
                             .ThenInclude(ce => ce.AcademicTerm)
                                 .ThenInclude(at => at!.AcademicYear)
@@ -77,7 +77,7 @@ namespace Rafeek.Application.Handlers.AdminHandlers.Queries.GetStudentProfile
                     {
                         CourseCode = enrollment.Course.Code,
                         CourseTitle = enrollment.Course.Title,
-                        InstructorName = enrollment.Section?.Doctor?.User?.FullName ?? "-",
+                        InstructorName = enrollment.LectureGroup?.Doctor?.User?.FullName ?? "-",
                         Status = "Enrolled",
                         StatusLabel = "مسجل"
                     });
@@ -86,7 +86,7 @@ namespace Rafeek.Application.Handlers.AdminHandlers.Queries.GetStudentProfile
                 {
                     var finalGradeDetails = enrollment.Grades.OrderByDescending(g => g.AbsoluteScore).FirstOrDefault();
                     
-                    var term = enrollment.Section?.CalendarEvents?
+                    var term = enrollment.LectureGroup?.CalendarEvents?
                         .Select(ce => ce.AcademicTerm)
                         .FirstOrDefault(at => at != null);
                     

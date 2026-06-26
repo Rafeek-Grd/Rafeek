@@ -15,14 +15,14 @@ namespace Rafeek.Application.Handlers.InstructorHandlers.Queries.GetStudentsInSe
             _ctx = ctx;
             _localizer = localizer;
 
-            RuleFor(x => x.SectionId)
+            RuleFor(x => x.LectureGroupId)
                 .NotEmpty().WithMessage(_localizer[LocalizationKeys.Course.SectionNotFound.Value])
                 .MustAsync(SectionExists).WithMessage(_localizer[LocalizationKeys.Course.SectionNotFound.Value]);
         }
 
-        private async Task<bool> SectionExists(Guid sectionId, CancellationToken cancellationToken)
+        private async Task<bool> SectionExists(Guid lectureGroupId, CancellationToken cancellationToken)
         {
-            return await _ctx.SectionRepository.ExistsAsync(x => x.Id == sectionId, cancellationToken);
+            return await _ctx.LectureGroupRepository.ExistsAsync(x => x.Id == lectureGroupId, cancellationToken);
         }
     }
 }

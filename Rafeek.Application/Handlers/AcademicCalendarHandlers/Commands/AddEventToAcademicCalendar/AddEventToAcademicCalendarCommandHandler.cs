@@ -36,7 +36,7 @@ namespace Rafeek.Application.Handlers.AcademicCalendarHandlers.Commands.AddEvent
                 AcademicTermId = request.AcademicTermId,
                 DepartmentId = request.DepartmentId,
                 CourseId = request.CourseId,
-                SectionId = request.SectionId
+                LectureGroupId = request.LectureGroupId
             };
 
             await _ctx.AcademicCalendarRepository.AddAsync(entity, cancellationToken);

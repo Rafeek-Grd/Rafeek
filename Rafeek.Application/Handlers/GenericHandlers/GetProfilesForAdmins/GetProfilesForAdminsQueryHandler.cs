@@ -201,7 +201,7 @@ namespace Rafeek.Application.Handlers.GenericHandlers.GetProfilesForAdmins
         private static async Task<(List<OfficeHourDto> OfficeHours, List<TeachingCourseDto> TeachingCourses)> LoadTeachingDataAsync(
             Doctor doctor, IRafeekDbContext context, CancellationToken ct)
         {
-            var sections = await context.Sections
+            var sections = await context.LectureGroups
                 .AsNoTracking()
                 .Include(s => s.Course)
                 .Include(s => s.CalendarEvents)
@@ -261,10 +261,10 @@ namespace Rafeek.Application.Handlers.GenericHandlers.GetProfilesForAdmins
             var enrollments = await context.Enrollments
                 .AsNoTracking()
                 .Include(e => e.Course)
-                .Include(e => e.Section)
+                .Include(e => e.LectureGroup)
                     .ThenInclude(sec => sec!.Doctor)
                         .ThenInclude(d => d!.User)
-                .Include(e => e.Section)
+                .Include(e => e.LectureGroup)
                     .ThenInclude(sec => sec.CalendarEvents)
                         .ThenInclude(ce => ce.AcademicTerm)
                             .ThenInclude(at => at!.AcademicYear)
@@ -309,7 +309,7 @@ namespace Rafeek.Application.Handlers.GenericHandlers.GetProfilesForAdmins
                     {
                         CourseCode = enrollment.Course.Code,
                         CourseTitle = enrollment.Course.Title,
-                        InstructorName = enrollment.Section?.Doctor?.User?.FullName ?? "-",
+                        InstructorName = enrollment.LectureGroup?.Doctor?.User?.FullName ?? "-",
                         Status = "Enrolled",
                         StatusLabel = "مسجل"
                     });
@@ -320,7 +320,7 @@ namespace Rafeek.Application.Handlers.GenericHandlers.GetProfilesForAdmins
                         .OrderByDescending(g => g.AbsoluteScore)
                         .FirstOrDefault();
 
-                    var term = enrollment.Section?.CalendarEvents?
+                    var term = enrollment.LectureGroup?.CalendarEvents?
                         .Select(ce => ce.AcademicTerm)
                         .FirstOrDefault(t => t != null);
 
@@ -368,7 +368,7 @@ namespace Rafeek.Application.Handlers.GenericHandlers.GetProfilesForAdmins
             }
 
             var sections = doctor != null
-                ? await context.Sections
+                ? await context.LectureGroups
                     .AsNoTracking()
                     .Include(s => s.Course)
                     .Include(s => s.CalendarEvents)
@@ -376,7 +376,7 @@ namespace Rafeek.Application.Handlers.GenericHandlers.GetProfilesForAdmins
                             .ThenInclude(at => at!.AcademicYear)
                     .Where(s => s.DoctorId == doctor.Id && !s.IsDeleted)
                     .ToListAsync(ct)
-                : new List<Section>();
+                : new List<LectureGroup>();
 
             var staffSection = new StaffProfileSection
             {

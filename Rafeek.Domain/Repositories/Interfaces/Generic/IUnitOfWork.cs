@@ -24,7 +24,7 @@ namespace Rafeek.Domain.Repositories.Interfaces.Generic
         ILearningResourceRepository LearningResourceRepository { get; }
         IGPASimulatorLogRepository GPASimulatorLogRepository { get; }
         IDocumentRequestRepository DocumentRequestRepository { get; }
-        ISectionRepository SectionRepository { get; }
+        ILectureGroupRepository LectureGroupRepository { get; }
         IEnrollmentRepository EnrollmentRepository { get; }
         INotificationRepository NotificationRepository { get; }
         IAssignmentRepository AssignmentRepository { get; }

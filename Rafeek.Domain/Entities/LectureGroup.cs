@@ -2,7 +2,7 @@ using Rafeek.Domain.Common;
 
 namespace Rafeek.Domain.Entities
 {
-    public class Section : BaseEntity
+    public class LectureGroup : BaseEntity
     {
         public Guid CourseId { get; set; }
         public Course Course { get; set; } = null!;
@@ -15,6 +15,7 @@ namespace Rafeek.Domain.Entities
         public TimeSpan? StartTime { get; set; }
         public TimeSpan? EndTime { get; set; }
         public int Capacity { get; set; }
+        public string? Location { get; set; }
 
         public ICollection<Enrollment> Enrollments { get; set; } = new HashSet<Enrollment>();
         public ICollection<AcademicCalendar> CalendarEvents { get; set; } = new HashSet<AcademicCalendar>();

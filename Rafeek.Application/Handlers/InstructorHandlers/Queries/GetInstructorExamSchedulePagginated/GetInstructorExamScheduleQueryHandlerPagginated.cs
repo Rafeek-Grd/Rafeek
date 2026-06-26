@@ -24,7 +24,7 @@ namespace Rafeek.Application.Handlers.InstructorHandlers.Queries.GetInstructorEx
         {
             var instructorUserId = _currentUserService.UserId;
 
-            var sectionIds = await _ctx.SectionRepository
+            var sectionIds = await _ctx.LectureGroupRepository
                 .IncludeAll(null)
                 .Where(x => x.Doctor.UserId == instructorUserId)
                 .AsNoTracking()
@@ -33,8 +33,8 @@ namespace Rafeek.Application.Handlers.InstructorHandlers.Queries.GetInstructorEx
 
             return await _ctx.AcademicCalendarRepository
                 .IncludeAll(e => e.EventType == AcademicCalendarEventType.Exam
-                              && e.SectionId.HasValue
-                              && sectionIds.Contains(e.SectionId.Value))
+                              && e.LectureGroupId.HasValue
+                              && sectionIds.Contains(e.LectureGroupId.Value))
                 .AsNoTracking()
                 .Select(e => new InstructorExamScheduleDto
                 {

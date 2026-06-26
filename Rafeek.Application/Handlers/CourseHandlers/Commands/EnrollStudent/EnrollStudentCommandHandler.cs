@@ -32,16 +32,16 @@ namespace Rafeek.Application.Handlers.CourseHandlers.Commands.EnrollStudent
 
             if (existingEnrollment != null) throw new BadRequestException("Already enrolled in this course.");
 
-            var section = await _context.Sections
-                .FirstOrDefaultAsync(s => s.Id == request.SectionId && s.CourseId == request.CourseId, cancellationToken);
+            var lectureGroup = await _context.LectureGroups
+                .FirstOrDefaultAsync(s => s.Id == request.LectureGroupId && s.CourseId == request.CourseId, cancellationToken);
 
-            if (section == null) throw new NotFoundException(nameof(Section), request.SectionId);
+            if (lectureGroup == null) throw new NotFoundException(nameof(LectureGroup), request.LectureGroupId);
 
             var enrollment = new Enrollment
             {
                 StudentId = student.Id,
                 CourseId = request.CourseId,
-                SectionId = request.SectionId,
+                LectureGroupId = request.LectureGroupId,
                 Status = "Active"
             };
 

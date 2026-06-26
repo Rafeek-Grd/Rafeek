@@ -21,7 +21,7 @@ namespace Rafeek.Application.Handlers.InstructorHandlers.Queries.GetInstructorDa
         {
             var instructorUserId = _currentUserService.UserId;
 
-            var sectionIds = await _ctx.SectionRepository
+            var sectionIds = await _ctx.LectureGroupRepository
                 .IncludeAll(null)
                 .Where(x => x.Doctor.UserId == instructorUserId)
                 .AsNoTracking()
@@ -29,14 +29,14 @@ namespace Rafeek.Application.Handlers.InstructorHandlers.Queries.GetInstructorDa
                 .ToListAsync(cancellationToken);
 
             var totalStudents = await _ctx.EnrollmentRepository
-                .GetAll(e => sectionIds.Contains(e.SectionId))
+                .GetAll(e => sectionIds.Contains(e.LectureGroupId))
                 .Select(e => e.StudentId)
                 .Distinct()
                 .CountAsync(cancellationToken);
 
             var pendingToGrade = await _ctx.AssignmentSubmissionRepository
                 .IncludeAll(null)
-                .Where(s => sectionIds.Contains(s.Assignment.SectionId) && s.Score == null)
+                .Where(s => sectionIds.Contains(s.Assignment.LectureGroupId) && s.Score == null)
                 .CountAsync(cancellationToken);
 
             return new InstructorDashboardDto

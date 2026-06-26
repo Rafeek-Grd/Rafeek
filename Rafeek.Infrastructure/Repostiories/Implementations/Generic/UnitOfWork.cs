@@ -31,7 +31,7 @@ namespace Rafeek.Infrastructure.Repostiories.Implementations.Generic
         private LearningResourceRepository? _learningResourceRepository;
         private GPASimulatorLogRepository? _gpaSimulatorLogRepository;
         private DocumentRequestRepository? _documentRequestRepository;
-        private SectionRepository? _sectionRepository;
+        private LectureGroupRepository? _lectureGroupRepository;
         private EnrollmentRepository? _enrollmentRepository;
         private NotificationRepository? _notificationRepository;
         private AssignmentRepository? _assignmentRepository;
@@ -68,7 +68,7 @@ namespace Rafeek.Infrastructure.Repostiories.Implementations.Generic
         public ILearningResourceRepository LearningResourceRepository => _learningResourceRepository ??= new LearningResourceRepository(_context);
         public IGPASimulatorLogRepository GPASimulatorLogRepository => _gpaSimulatorLogRepository ??= new GPASimulatorLogRepository(_context);
         public IDocumentRequestRepository DocumentRequestRepository => _documentRequestRepository ??= new DocumentRequestRepository(_context);
-        public ISectionRepository SectionRepository => _sectionRepository ??= new SectionRepository(_context);
+        public ILectureGroupRepository LectureGroupRepository => _lectureGroupRepository ??= new LectureGroupRepository(_context);
         public IEnrollmentRepository EnrollmentRepository => _enrollmentRepository ??= new EnrollmentRepository(_context);
         public INotificationRepository NotificationRepository => _notificationRepository ??= new NotificationRepository(_context);
         public IAssignmentRepository AssignmentRepository => _assignmentRepository ??= new AssignmentRepository(_context);

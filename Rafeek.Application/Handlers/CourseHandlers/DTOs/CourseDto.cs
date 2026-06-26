@@ -7,6 +7,6 @@ namespace Rafeek.Application.Handlers.CourseHandlers.DTOs
         public string Title { get; set; } = null!;
         public string? Description { get; set; }
         public int CreditHours { get; set; }
-        public List<SectionDto> Sections { get; set; } = new List<SectionDto>();
+        public List<LectureGroupDto> LectureGroups { get; set; } = new List<LectureGroupDto>();
     }
 }

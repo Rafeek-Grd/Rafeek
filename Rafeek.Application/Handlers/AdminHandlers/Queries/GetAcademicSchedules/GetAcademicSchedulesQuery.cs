@@ -12,7 +12,7 @@ namespace Rafeek.Application.Handlers.AdminHandlers.Queries.GetAcademicSchedules
 
     public class AcademicScheduleDto
     {
-        public Guid SectionId { get; set; }
+        public Guid LectureGroupId { get; set; }
         public string CourseTitle { get; set; } = null!;
         public string CourseCode { get; set; } = null!;
         public string InstructorName { get; set; } = null!;

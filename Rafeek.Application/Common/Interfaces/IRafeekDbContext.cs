@@ -16,7 +16,7 @@ namespace Rafeek.Application.Common.Interfaces
         DbSet<UserFbTokens> FbTokens { get; }
         DbSet<RefreshToken> RefreshTokens { get; }
         DbSet<CoursePrerequisite> CoursePrerequisites { get; }
-        DbSet<Section> Sections { get; }
+        DbSet<LectureGroup> LectureGroups { get; }
         DbSet<Enrollment> Enrollments { get; }
         DbSet<Grade> Grades { get; set; }
         DbSet<AICourseRecommendation> AICourseRecommendations { get; }

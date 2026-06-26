@@ -38,7 +38,7 @@ namespace Rafeek.Application.Handlers.CourseHandlers.Queries.GetCourses
             {
                 query = query.Where(c =>
                     c.Enrollments.Any(e =>
-                        e.Section.CalendarEvents.Any(ev =>
+                        e.LectureGroup.CalendarEvents.Any(ev =>
                             ev.AcademicTerm != null &&
                             (int)ev.AcademicTerm.TermType == request.Semester.Value)));
             }
@@ -49,19 +49,19 @@ namespace Rafeek.Application.Handlers.CourseHandlers.Queries.GetCourses
                 if (status == "full")
                 {
                     query = query.Where(c => 
-                        c.Enrollments.Select(e => e.Section.Capacity).FirstOrDefault() > 0 &&
-                        c.Enrollments.Count >= c.Enrollments.Select(e => e.Section.Capacity).FirstOrDefault());
+                        c.Enrollments.Select(e => e.LectureGroup.Capacity).FirstOrDefault() > 0 &&
+                        c.Enrollments.Count >= c.Enrollments.Select(e => e.LectureGroup.Capacity).FirstOrDefault());
                 }
                 else if (status == "closed")
                 {
                     query = query.Where(c => 
-                        c.Enrollments.Select(e => e.Section.Capacity).FirstOrDefault() == 0);
+                        c.Enrollments.Select(e => e.LectureGroup.Capacity).FirstOrDefault() == 0);
                 }
                 else if (status == "open")
                 {
                     query = query.Where(c => 
-                        c.Enrollments.Select(e => e.Section.Capacity).FirstOrDefault() > 0 &&
-                        c.Enrollments.Count < c.Enrollments.Select(e => e.Section.Capacity).FirstOrDefault());
+                        c.Enrollments.Select(e => e.LectureGroup.Capacity).FirstOrDefault() > 0 &&
+                        c.Enrollments.Count < c.Enrollments.Select(e => e.LectureGroup.Capacity).FirstOrDefault());
                 }
             }
 
@@ -76,11 +76,11 @@ namespace Rafeek.Application.Handlers.CourseHandlers.Queries.GetCourses
                     c.DepartmentId,
                     DepartmentName = c.Department != null ? c.Department.Name : null,
                     EnrolledCount = c.Enrollments.Count,
-                    Capacity = c.Enrollments.Select(e => e.Section.Capacity).FirstOrDefault(),
-                    InstructorName = c.Enrollments.Select(e => e.Section.Doctor != null ? e.Section.Doctor.User.FullName : null).FirstOrDefault(),
+                    Capacity = c.Enrollments.Select(e => e.LectureGroup.Capacity).FirstOrDefault(),
+                    InstructorName = c.Enrollments.Select(e => e.LectureGroup.Doctor != null ? e.LectureGroup.Doctor.User.FullName : null).FirstOrDefault(),
                     PrerequisiteCodes = c.Prerequisites.Select(p => p.Prerequisite.Code).ToList(),
                     AcademicTermName = c.Enrollments
-                        .SelectMany(e => e.Section.CalendarEvents)
+                        .SelectMany(e => e.LectureGroup.CalendarEvents)
                         .Where(ev => ev.AcademicTerm != null)
                         .Select(ev => ev.AcademicTerm!.Name)
                         .FirstOrDefault()

@@ -25,9 +25,9 @@ namespace Rafeek.Persistence.Configurations.RafeekConfiguration
             builder.Property(x => x.TotalScore)
                 .IsRequired();
 
-            builder.HasOne(x => x.Section)
+            builder.HasOne(x => x.LectureGroup)
                 .WithMany()
-                .HasForeignKey(x => x.SectionId)
+                .HasForeignKey(x => x.LectureGroupId)
                 .OnDelete(DeleteBehavior.Restrict);
         }
     }

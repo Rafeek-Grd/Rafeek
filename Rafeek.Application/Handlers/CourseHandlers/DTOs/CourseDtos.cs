@@ -19,7 +19,7 @@ namespace Rafeek.Application.Handlers.CourseHandlers.DTOs
         /// <summary>عدد الطلاب المسجلين حالياً</summary>
         public int EnrolledStudents { get; set; }
 
-        /// <summary>الطاقة الاستيعابية القصوى (يُحدَّد من Section.Capacity)</summary>
+        /// <summary>الطاقة الاستيعابية القصوى (يُحدَّد من LectureGroup.Capacity)</summary>
         public int Capacity { get; set; }
 
         /// <summary>

@@ -132,15 +132,15 @@ namespace Rafeek.Application.Handlers.AuthHandlers.Commands.SignUp
                         await _dbContext.Students.AddAsync(student, cancellationToken);
                     }
 
-                    // 2. Professor Profile
-                    if (allRoles.Contains(UserType.Professor.ToString()))
+                    // 2. Doctor Profile (Professor / Mentor)
+                    if (allRoles.Contains(UserType.Professor.ToString()) || allRoles.Contains(UserType.Mentor.ToString()))
                     {
                         string employeeCode = await GenerateUniqueEmployeeCodeAsync(cancellationToken);
                         var doctor = new Doctor
                         {
                             UserId = user.Id,
                             EmployeeCode = employeeCode,
-                            IsAcademicAdvisor = request.IsAcademicAdvisor
+                            IsAcademicAdvisor = allRoles.Contains(UserType.Mentor.ToString())
                         };
                         await _dbContext.Doctors.AddAsync(doctor, cancellationToken);
                     }

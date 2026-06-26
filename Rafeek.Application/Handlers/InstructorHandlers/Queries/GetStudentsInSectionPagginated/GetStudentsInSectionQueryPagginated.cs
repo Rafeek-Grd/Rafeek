@@ -6,7 +6,7 @@ namespace Rafeek.Application.Handlers.InstructorHandlers.Queries.GetStudentsInSe
 {
     public class GetStudentsInSectionQueryPagginated : IRequest<PagginatedResult<SectionStudentDto>>
     {
-        public Guid SectionId { get; set; }
+        public Guid LectureGroupId { get; set; }
         public int PageNumber { get; set; } = 1;
         public int PageSize { get; set; } = 20;
     }

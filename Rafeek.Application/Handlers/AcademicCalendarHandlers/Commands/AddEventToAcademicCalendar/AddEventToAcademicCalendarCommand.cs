@@ -26,6 +26,6 @@ namespace Rafeek.Application.Handlers.AcademicCalendarHandlers.Commands.AddEvent
         public Guid? AcademicTermId { get; set; }
         public Guid? DepartmentId { get; set; }
         public Guid? CourseId { get; set; }
-        public Guid? SectionId { get; set; }
+        public Guid? LectureGroupId { get; set; }
     }
 }

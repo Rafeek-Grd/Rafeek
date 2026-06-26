@@ -5,10 +5,10 @@ using Rafeek.Infrastructure.Repostiories.Implementations.Generic;
 
 namespace Rafeek.Infrastructure.Repostiories.Implementations
 {
-    public class SectionRepository: BaseEntityRepository<Section, Guid>, ISectionRepository
+    public class LectureGroupRepository: BaseEntityRepository<LectureGroup, Guid>, ILectureGroupRepository
     {
 
-        public SectionRepository(IRafeekDbContext rafeekDbContext): base(rafeekDbContext)
+        public LectureGroupRepository(IRafeekDbContext rafeekDbContext): base(rafeekDbContext)
         {
         }
     }

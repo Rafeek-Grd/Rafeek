@@ -8,7 +8,7 @@ namespace Rafeek.Application.Handlers.AssignmentHandlers.DTOs
         public DateTime DueDate { get; set; }
         public float TotalScore { get; set; }
         public bool IsActive { get; set; }
-        public Guid SectionId { get; set; }
+        public Guid LectureGroupId { get; set; }
         public DateTime CreatedAt { get; set; }
     }
 }

@@ -90,11 +90,11 @@ namespace Rafeek.Application.Handlers.StudentHandlers.Query.GetStudentProfile
             {
                 var enrollmentIds = enrollments.Select(e => e.Id).ToList();
                 var courseIds = enrollments.Select(e => e.CourseId).Distinct().ToList();
-                var sectionIds = enrollments.Select(e => e.SectionId).Distinct().ToList();
+                var sectionIds = enrollments.Select(e => e.LectureGroupId).Distinct().ToList();
 
                 var gradesTask = _dbContext.Grades.AsNoTracking().Where(g => enrollmentIds.Contains(g.EnrollmentId)).ToListAsync(cancellationToken);
                 var coursesTask = _dbContext.Courses.AsNoTracking().Where(c => courseIds.Contains(c.Id)).ToListAsync(cancellationToken);
-                var sectionsTask = _dbContext.Sections.AsNoTracking().Where(s => sectionIds.Contains(s.Id)).ToListAsync(cancellationToken);
+                var sectionsTask = _dbContext.LectureGroups.AsNoTracking().Where(s => sectionIds.Contains(s.Id)).ToListAsync(cancellationToken);
 
                 await Task.WhenAll(gradesTask, coursesTask, sectionsTask);
 
@@ -103,7 +103,7 @@ namespace Rafeek.Application.Handlers.StudentHandlers.Query.GetStudentProfile
                 var sections = sectionsTask.Result;
 
                 var calendarEvents = await _dbContext.AcademicCalendars.AsNoTracking()
-                    .Where(ce => sectionIds.Contains(ce.SectionId ?? Guid.Empty))
+                    .Where(ce => sectionIds.Contains(ce.LectureGroupId ?? Guid.Empty))
                     .ToListAsync(cancellationToken);
                 
                 var termIds = calendarEvents.Select(ce => ce.AcademicTermId).Where(id => id.HasValue).Select(id => id!.Value).Distinct().ToList();
@@ -115,20 +115,20 @@ namespace Rafeek.Application.Handlers.StudentHandlers.Query.GetStudentProfile
                 var coursesDict = courses.ToDictionary(c => c.Id);
                 var sectionsDict = sections.ToDictionary(s => s.Id);
                 var gradesByEnrollment = grades.GroupBy(g => g.EnrollmentId).ToDictionary(g => g.Key, g => g.ToList());
-                var calendarBySection = calendarEvents.GroupBy(ce => ce.SectionId).ToDictionary(g => g.Key, g => g.ToList());
+                var calendarBySection = calendarEvents.GroupBy(ce => ce.LectureGroupId).ToDictionary(g => g.Key, g => g.ToList());
                 var termsDict = terms.ToDictionary(t => t.Id);
                 var yearsDict = years.ToDictionary(y => y.Id);
 
                 foreach (var enrollment in enrollments)
                 {
                     enrollment.Course = coursesDict.GetValueOrDefault(enrollment.CourseId)!;
-                    enrollment.Section = sectionsDict.GetValueOrDefault(enrollment.SectionId)!;
+                    enrollment.LectureGroup = sectionsDict.GetValueOrDefault(enrollment.LectureGroupId)!;
                     enrollment.Grades = gradesByEnrollment.GetValueOrDefault(enrollment.Id) ?? new List<Grade>();
                     
-                    if (enrollment.Section != null)
+                    if (enrollment.LectureGroup != null)
                     {
-                        enrollment.Section.CalendarEvents = calendarBySection.GetValueOrDefault(enrollment.SectionId) ?? new List<AcademicCalendar>();
-                        foreach (var ce in enrollment.Section.CalendarEvents)
+                        enrollment.LectureGroup.CalendarEvents = calendarBySection.GetValueOrDefault(enrollment.LectureGroupId) ?? new List<AcademicCalendar>();
+                        foreach (var ce in enrollment.LectureGroup.CalendarEvents)
                         {
                             if (ce.AcademicTermId.HasValue)
                             {
@@ -149,7 +149,7 @@ namespace Rafeek.Application.Handlers.StudentHandlers.Query.GetStudentProfile
 
             var enrollmentsByTerm = student.Enrollments
                 .GroupBy(e => {
-                    var term = e.Section?.CalendarEvents?
+                    var term = e.LectureGroup?.CalendarEvents?
                         .OrderBy(ce => ce.CreatedAt)
                         .Select(ce => ce.AcademicTerm)
                         .FirstOrDefault(t => t != null);

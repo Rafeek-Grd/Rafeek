@@ -27,7 +27,7 @@ namespace Rafeek.Persistence
         public DbSet<UserFbTokens> FbTokens { get; set; }
         public DbSet<RefreshToken> RefreshTokens { get; set; }
         public DbSet<CoursePrerequisite> CoursePrerequisites { get; set; }
-        public DbSet<Section> Sections { get; set; }
+        public DbSet<LectureGroup> LectureGroups { get; set; }
         public DbSet<Enrollment> Enrollments { get; set; }
         public DbSet<Grade> Grades { get; set; }
         public DbSet<AICourseRecommendation> AICourseRecommendations { get; set; }

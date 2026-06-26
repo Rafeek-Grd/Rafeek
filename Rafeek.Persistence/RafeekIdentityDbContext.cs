@@ -37,7 +37,7 @@ namespace Rafeek.Persistence
             builder.Ignore<UserCalendarPreference>();
             builder.Ignore<Course>();
             builder.Ignore<CoursePrerequisite>();
-            builder.Ignore<Section>();
+            builder.Ignore<LectureGroup>();
             builder.Ignore<AcademicTerm>();
             builder.Ignore<AcademicYear>();
             builder.Ignore<Enrollment>();

@@ -23,7 +23,7 @@ namespace Rafeek.Application.Handlers.AssignmentHandlers.Queries.GetAssignmentsB
         public async Task<PagginatedResult<AssignmentDto>> Handle(GetAssignmentsBySectionQueryPaginated request, CancellationToken cancellationToken)
         {
             return await _ctx.AssignmentRepository
-                .GetAll(a => a.SectionId == request.SectionId && a.IsActive)
+                .GetAll(a => a.LectureGroupId == request.LectureGroupId && a.IsActive)
                 .AsNoTracking()
                 .OrderByDescending(a => a.DueDate)
                 .ProjectTo<AssignmentDto>(_mapper.ConfigurationProvider)

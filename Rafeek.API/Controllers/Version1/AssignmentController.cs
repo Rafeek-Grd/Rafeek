@@ -35,7 +35,7 @@ namespace Rafeek.API.Controllers.Version1
         {
             var query = new GetAssignmentsBySectionQueryPaginated()
             {
-                SectionId = sectionId,
+                LectureGroupId = sectionId,
                 PageNumber = pageNumber,
                 PageSize = pageSize
             };

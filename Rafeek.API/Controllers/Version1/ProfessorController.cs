@@ -63,7 +63,7 @@ namespace Rafeek.API.Controllers.Version1
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetSectionStudents([FromRoute] Guid sectionId)
         {
-            var result = await _mediator.Send(new GetStudentsInSectionQueryPagginated { SectionId = sectionId });
+            var result = await _mediator.Send(new GetStudentsInSectionQueryPagginated { LectureGroupId = sectionId });
             return Ok(result);
         }
 
@@ -94,7 +94,7 @@ namespace Rafeek.API.Controllers.Version1
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> SubmitGrades([FromRoute] Guid sectionId, [FromBody] SubmitSectionGradesCommand command)
         {
-            command.SectionId = sectionId;
+            command.LectureGroupId = sectionId;
             await _mediator.Send(command);
             return Ok<object>(null);
         }

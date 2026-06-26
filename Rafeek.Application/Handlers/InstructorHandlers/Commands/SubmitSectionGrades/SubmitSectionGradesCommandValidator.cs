@@ -13,7 +13,7 @@ namespace Rafeek.Application.Handlers.InstructorHandlers.Commands.SubmitSectionG
         {
             _ctx = ctx;
 
-            RuleFor(x => x.SectionId)
+            RuleFor(x => x.LectureGroupId)
                 .NotEmpty().WithMessage(localizer[LocalizationKeys.Course.SectionIdRequired.Value])
                 .MustAsync(SectionExists).WithMessage(localizer[LocalizationKeys.Course.SectionNotFound.Value]);
 
@@ -21,9 +21,9 @@ namespace Rafeek.Application.Handlers.InstructorHandlers.Commands.SubmitSectionG
                 .NotEmpty().WithMessage(localizer[LocalizationKeys.GlobalValidationMessages.AddedFailed.Value]);
         }
 
-        private async Task<bool> SectionExists(Guid sectionId, CancellationToken cancellationToken)
+        private async Task<bool> SectionExists(Guid lectureGroupId, CancellationToken cancellationToken)
         {
-            return await _ctx.SectionRepository.ExistsAsync(s => s.Id == sectionId, cancellationToken);
+            return await _ctx.LectureGroupRepository.ExistsAsync(s => s.Id == lectureGroupId, cancellationToken);
         }
     }
 }

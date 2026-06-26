@@ -23,7 +23,7 @@ namespace Rafeek.Application.Handlers.InstructorHandlers.Queries.GetInstructorSe
         {
             var instructorUserId = _currentUserService.UserId;
 
-            return await _ctx.SectionRepository
+            return await _ctx.LectureGroupRepository
                 .IncludeAll(null)
                 .Where(x => x.Doctor.UserId == instructorUserId)
                 .AsNoTracking()
@@ -35,6 +35,7 @@ namespace Rafeek.Application.Handlers.InstructorHandlers.Queries.GetInstructorSe
                     Day = x.Day,
                     Time = x.Time,
                     Capacity = x.Capacity,
+                    Location = x.Location,
                     EnrolledCount = x.Enrollments.Count
                 })
                 .PaginatedListAsync(request.PageNumber, request.PageSize);

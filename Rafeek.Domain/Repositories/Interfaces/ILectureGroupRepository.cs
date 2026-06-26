@@ -1,9 +1,9 @@
-﻿using Rafeek.Domain.Entities;
+using Rafeek.Domain.Entities;
 using Rafeek.Domain.Repositories.Interfaces.Generic;
 
 namespace Rafeek.Domain.Repositories.Interfaces
 {
-    public interface ISectionRepository: IGenericRepository<Section, Guid>
+    public interface ILectureGroupRepository: IGenericRepository<LectureGroup, Guid>
     {
     }
 }

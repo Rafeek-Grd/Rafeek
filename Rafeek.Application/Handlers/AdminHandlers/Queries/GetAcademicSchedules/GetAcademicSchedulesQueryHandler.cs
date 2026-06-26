@@ -16,7 +16,7 @@ namespace Rafeek.Application.Handlers.AdminHandlers.Queries.GetAcademicSchedules
 
         public async Task<PagginatedResult<AcademicScheduleDto>> Handle(GetAcademicSchedulesQuery request, CancellationToken cancellationToken)
         {
-            var query = _context.Sections
+            var query = _context.LectureGroups
                 .AsNoTracking()
                 .Include(s => s.Course)
                 .Include(s => s.Doctor)
@@ -42,7 +42,7 @@ namespace Rafeek.Application.Handlers.AdminHandlers.Queries.GetAcademicSchedules
 
                 schedules.Add(new AcademicScheduleDto
                 {
-                    SectionId = section.Id,
+                    LectureGroupId = section.Id,
                     CourseTitle = section.Course.Title,
                     CourseCode = section.Course.Code,
                     InstructorName = section.Doctor?.User?.FullName ?? "غير محدد",

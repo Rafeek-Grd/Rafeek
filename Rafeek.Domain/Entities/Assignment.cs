@@ -10,8 +10,8 @@ namespace Rafeek.Domain.Entities
         public float TotalScore { get; set; }
         public bool IsActive { get; set; } = true;
 
-        public Guid SectionId { get; set; }
-        public Section Section { get; set; } = null!;
+        public Guid LectureGroupId { get; set; }
+        public LectureGroup LectureGroup { get; set; } = null!;
 
         public ICollection<AssignmentSubmission> Submissions { get; set; } = new HashSet<AssignmentSubmission>();
     }

@@ -19,7 +19,7 @@ namespace Rafeek.Application.Handlers.CourseHandlers.Commands.EnrollStudent
                 .NotEmpty()
                 .MustAsync(CourseExists).WithMessage(_localizer[LocalizationKeys.Course.NotFound.Value]);
 
-            RuleFor(x => x.SectionId)
+            RuleFor(x => x.LectureGroupId)
                 .NotEmpty()
                 .MustAsync(SectionExists).WithMessage(_localizer[LocalizationKeys.ExceptionMessage.NotFound.Value]);
         }
@@ -29,9 +29,9 @@ namespace Rafeek.Application.Handlers.CourseHandlers.Commands.EnrollStudent
             return await _ctx.CourseRepository.ExistsAsync(c => c.Id == courseId, cancellationToken);
         }
 
-        private async Task<bool> SectionExists(Guid sectionId, CancellationToken cancellationToken)
+        private async Task<bool> SectionExists(Guid lectureGroupId, CancellationToken cancellationToken)
         {
-            return await _ctx.SectionRepository.ExistsAsync(s => s.Id == sectionId, cancellationToken);
+            return await _ctx.LectureGroupRepository.ExistsAsync(s => s.Id == lectureGroupId, cancellationToken);
         }
     }
 }

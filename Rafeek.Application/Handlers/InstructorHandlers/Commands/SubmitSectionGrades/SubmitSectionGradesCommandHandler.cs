@@ -20,11 +20,11 @@ namespace Rafeek.Application.Handlers.InstructorHandlers.Commands.SubmitSectionG
             var enrollmentIds = request.Grades.Select(g => g.EnrollmentId).ToList();
 
             var enrollments = await _ctx.EnrollmentRepository
-                .GetAll(e => enrollmentIds.Contains(e.Id) && e.SectionId == request.SectionId)
+                .GetAll(e => enrollmentIds.Contains(e.Id) && e.LectureGroupId == request.LectureGroupId)
                 .ToListAsync(cancellationToken);
 
             if (enrollments.Count == 0)
-                throw new NotFoundException("Section", request.SectionId);
+                throw new NotFoundException("LectureGroup", request.LectureGroupId);
 
             using var transaction = await _ctx.BeginTransactionAsync(cancellationToken);
             try

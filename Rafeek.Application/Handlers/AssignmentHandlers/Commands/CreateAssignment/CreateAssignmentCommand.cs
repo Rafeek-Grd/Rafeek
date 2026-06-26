@@ -9,6 +9,6 @@ namespace Rafeek.Application.Handlers.AssignmentHandlers.Commands.CreateAssignme
         public string Description { get; set; } = null!;
         public DateTime DueDate { get; set; }
         public float TotalScore { get; set; }
-        public Guid SectionId { get; set; }
+        public Guid LectureGroupId { get; set; }
     }
 }

@@ -50,7 +50,7 @@ namespace Rafeek.Application.Handlers.AdminHandlers.Queries.GetStaffProfile
                 dto.Title = doctor.IsAcademicAdvisor ? "أستاذ / مرشد أكاديمي" : "أستاذ دكتور";
                 dto.DepartmentName = doctor.Department?.Name ?? "عام";
 
-                var sections = await _context.Sections
+                var sections = await _context.LectureGroups
                     .AsNoTracking()
                     .Include(s => s.Course)
                     .Include(s => s.CalendarEvents)
@@ -75,7 +75,7 @@ namespace Rafeek.Application.Handlers.AdminHandlers.Queries.GetStaffProfile
             return dto;
         }
 
-        private void ProcessSections(List<Domain.Entities.Section> sections, AdminStaffProfileDto dto, string staffName)
+        private void ProcessSections(List<Domain.Entities.LectureGroup> sections, AdminStaffProfileDto dto, string staffName)
         {
             var coursesSet = new HashSet<Guid>();
 

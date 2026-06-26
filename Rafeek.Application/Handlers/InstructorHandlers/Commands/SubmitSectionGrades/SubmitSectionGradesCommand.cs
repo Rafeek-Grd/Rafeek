@@ -5,7 +5,7 @@ namespace Rafeek.Application.Handlers.InstructorHandlers.Commands.SubmitSectionG
 {
     public class SubmitSectionGradesCommand : IRequest<Unit>
     {
-        public Guid SectionId { get; set; }
+        public Guid LectureGroupId { get; set; }
         public List<SectionGradeEntryDto> Grades { get; set; } = new();
     }
 }

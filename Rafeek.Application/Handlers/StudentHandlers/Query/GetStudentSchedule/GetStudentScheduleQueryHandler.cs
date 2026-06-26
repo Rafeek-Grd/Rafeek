@@ -29,16 +29,16 @@ namespace Rafeek.Application.Handlers.StudentHandlers.Query.GetStudentSchedule
             var query = _context.Enrollments
                 .AsNoTracking()
                 .Include(e => e.Course)
-                .Include(e => e.Section)
+                .Include(e => e.LectureGroup)
                 .Where(e => e.StudentId == student.Id)
                 .Select(e => new ScheduleItemDto
                 {
                     CourseId = e.CourseId,
                     CourseCode = e.Course.Code,
                     CourseTitle = e.Course.Title,
-                    SectionId = e.SectionId,
-                    Day = e.Section.Day,
-                    Time = e.Section.Time,
+                    LectureGroupId = e.LectureGroupId,
+                    Day = e.LectureGroup.Day,
+                    Time = e.LectureGroup.Time,
                     Status = e.Status
                 });
 

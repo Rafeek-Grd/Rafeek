@@ -343,11 +343,13 @@ namespace Rafeek.Persistence.Seed
             }
             else { staffs = existingStaffs; }
 
-            // Create Doctors (for Professor users)
+            // Create Doctors (for Professor + Mentor users)
             var existingDoctors = await context.Doctors.ToListAsync();
             if (!existingDoctors.Any())
             {
-                var targetUsers = professorUsers.Any() ? professorUsers : users.Skip(5).Take(10).ToList();
+                var targetUsers = professorUsers.Any() || mentorUsers.Any()
+                    ? professorUsers.Union(mentorUsers).ToList()
+                    : users.Skip(5).Take(10).ToList();
                 for (int d = 0; d < targetUsers.Count; d++)
                 {
                     var isMentor = mentorUsers.Contains(targetUsers[d]);
@@ -409,7 +411,7 @@ namespace Rafeek.Persistence.Seed
 
             // 7. Sections
             Log("[Seeder] Stage 8: Seeding Sections...");
-            var sections = await context.Sections.ToListAsync();
+            var sections = await context.LectureGroups.ToListAsync();
             if (!sections.Any())
             {
                 foreach (var course in courses)
@@ -419,7 +421,7 @@ namespace Rafeek.Persistence.Seed
                     for (int i = 0; i < sectionCount; i++)
                     {
                         var startTime = new TimeSpan(fEn.PickRandom(new[] { 8, 10, 12, 14, 16 }), 0, 0);
-                        sections.Add(new Section
+                        sections.Add(new LectureGroup
                         {
                             Id = Guid.NewGuid(),
                             CourseId = course.Id,
@@ -435,7 +437,7 @@ namespace Rafeek.Persistence.Seed
                         });
                     }
                 }
-                context.Sections.AddRange(sections);
+                context.LectureGroups.AddRange(sections);
                 await context.SaveChangesAsync();
             }
 
@@ -461,7 +463,7 @@ namespace Rafeek.Persistence.Seed
                 foreach (var s in students)
                 {
                     var studentGrades = new List<float>();
-                    var coursesToEnroll = new List<Section>();
+                    var coursesToEnroll = new List<LectureGroup>();
                     
                     // 70% focus on Major (Department) courses, 30% Electives
                     var majorSections = sections.Where(sec => sec.Course.DepartmentId == s.DepartmentId).ToList();
@@ -511,7 +513,7 @@ namespace Rafeek.Persistence.Seed
                             Id = Guid.NewGuid(),
                             StudentId = s.Id,
                             CourseId = sec.CourseId,
-                            SectionId = sec.Id,
+                            LectureGroupId = sec.Id,
                             Status = "Completed",
                             Grade = gradeLetter,
                             CreatedAt = DateTime.UtcNow, CreatedBy = "Seeder", IsActive = true
@@ -790,7 +792,7 @@ namespace Rafeek.Persistence.Seed
                 {
                     var assignments = new Faker<Assignment>("ar")
                         .RuleFor(x => x.Id, Guid.NewGuid)
-                        .RuleFor(x => x.SectionId, f => f.PickRandom(sections).Id)
+                        .RuleFor(x => x.LectureGroupId, f => f.PickRandom(sections).Id)
                         .RuleFor(x => x.Title, f => "واجب: " + f.Lorem.Word())
                         .RuleFor(x => x.Description, f => "يرجى حل الأسئلة المرفقة وتقديم الحل قبل الموعد المحدد: " + f.Lorem.Sentence())
                         .RuleFor(x => x.DueDate, f => f.Date.Future())
