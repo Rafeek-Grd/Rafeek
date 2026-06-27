@@ -1,4 +1,4 @@
-﻿using MediatR;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Rafeek.API.Filters;
 using Rafeek.API.Routes;
@@ -21,11 +21,11 @@ namespace Rafeek.API.Controllers.Version1
         [HttpGet]
         [Route(ApiRoutes.Staff.GetStaffDashboard)]
         [RoleAuthorize(nameof(UserType.Staff))]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(GetStaffDashboardDto), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        public async Task<IActionResult> GetStaffDashboard()
+        public async Task<IActionResult> GetStaffDashboard([FromQuery] GetStaffDashboardQuery query)
         {
-            var result = await _mediator.Send(new GetStaffDashboardQuery());
+            var result = await _mediator.Send(query);
             return Ok(result);
         }
     }

@@ -104,7 +104,7 @@ namespace Rafeek.API.Routes
         public static class Admin
         {
             public const string GetDashboard               = Base + "/admin/dashboard";
-            public const string GetStudentAcademicRecords   = Base + "/admin/students/academic-records";
+
             public const string GetUsers                   = Base + "/admin/users";
             public const string GetStudentProfile          = Base + "/admin/student/{studentId}/profile";
             public const string GetStaffProfile            = Base + "/admin/staff/{userId}/profile";
@@ -119,6 +119,7 @@ namespace Rafeek.API.Routes
         public static class Staff
         {
             public const string GetStaffDashboard = Base + "/staff/dashboard";
+
         }
 
         public static class Generic
@@ -196,6 +197,7 @@ namespace Rafeek.API.Routes
             public const string SubmitGrades = Base + "/professor/sections/{sectionId}/grades";
             public const string GetExamSchedule = Base + "/professor/exam-schedule";
             public const string GetNotifications = Base + "/professor/notifications";
+
         }
 
         public static class Assignments

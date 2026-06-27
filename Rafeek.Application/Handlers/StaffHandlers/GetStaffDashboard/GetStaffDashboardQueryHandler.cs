@@ -1,7 +1,13 @@
-﻿using MediatR;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Rafeek.Application.Common.Interfaces;
+using Rafeek.Application.Common.Models;
+using Rafeek.Application.Handlers.AdminHandlers.Queries;
 using Rafeek.Application.Handlers.AdminHandlers.Queries.GetAdminDashboard;
+using System;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Rafeek.Application.Handlers.StaffHandlers.GetStaffDashboard
 {
@@ -16,6 +22,7 @@ namespace Rafeek.Application.Handlers.StaffHandlers.GetStaffDashboard
 
         public async Task<GetStaffDashboardDto> Handle(GetStaffDashboardQuery request, CancellationToken cancellationToken)
         {
+            // ── 1. Statistics ────────────────────────────
             var allStudents = await _context.Students
                 .AsNoTracking()
                 .Select(s => s.Level)
@@ -80,6 +87,70 @@ namespace Rafeek.Application.Handlers.StaffHandlers.GetStaffDashboard
                 })
                 .ToList();
 
+            // ── 2. Student Academic Records ────────────────────────────
+            var recordsQuery = _context.Students
+                .AsNoTracking()
+                .Include(s => s.User)
+                .Include(s => s.Department)
+                .Include(s => s.AcademicProfile)
+                .AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(request.SearchTerm))
+            {
+                var term = request.SearchTerm.Trim();
+                recordsQuery = recordsQuery.Where(s =>
+                    s.User.FullName.Contains(term) ||
+                    s.UniversityCode.Contains(term) ||
+                    (s.User.Email != null && s.User.Email.Contains(term)));
+            }
+
+            if (!string.IsNullOrWhiteSpace(request.AcademicStatus))
+            {
+                recordsQuery = recordsQuery.Where(s => s.AcademicProfile != null && s.AcademicProfile.Standing == request.AcademicStatus);
+            }
+
+            if (request.Cgpa.HasValue)
+            {
+                recordsQuery = recordsQuery.Where(s => s.AcademicProfile != null && s.AcademicProfile.CGPA == request.Cgpa.Value);
+            }
+
+            if (request.DepartmentId.HasValue)
+            {
+                recordsQuery = recordsQuery.Where(s => s.DepartmentId == request.DepartmentId.Value);
+            }
+
+            var totalRecordsCount = await recordsQuery.CountAsync(cancellationToken);
+
+            var recordItems = await recordsQuery
+                .OrderBy(s => s.User.FullName)
+                .Skip((request.PageNumber - 1) * request.PageSize)
+                .Take(request.PageSize)
+                .Select(s => new StudentAcademicRecordDto
+                {
+                    StudentId = s.Id,
+                    FullName = s.User.FullName,
+                    UniversityEmail = s.User.Email!,
+                    UniversityCode = s.UniversityCode,
+                    DepartmentName = s.Department != null ? s.Department.Name : null,
+                    Cgpa = s.AcademicProfile != null ? s.AcademicProfile.CGPA : 0f,
+                    AcademicStatus = s.AcademicProfile != null ? s.AcademicProfile.Standing : "Stable",
+                    AcademicStatusLabel = s.AcademicProfile == null ? "منتظم"
+                                        : s.AcademicProfile.Standing == "Stable" ? "منتظم"
+                                        : s.AcademicProfile.Standing == "Warning" ? "تحذير"
+                                        : s.AcademicProfile.Standing == "Probation" ? "إنذار أول"
+                                        : s.AcademicProfile.Standing,
+                    Level = s.Level,
+                    Term = s.Term
+                })
+                .ToListAsync(cancellationToken);
+
+            var studentAcademicRecords = new PagginatedResult<StudentAcademicRecordDto>(
+                recordItems.AsReadOnly(),
+                totalRecordsCount,
+                request.PageNumber,
+                request.PageSize);
+
+            // ── 3. Assemble ────────────────────────────
             return new GetStaffDashboardDto
             {
                 AcademicLevelTrend = new AcademicLevelTrendDto
@@ -104,7 +175,8 @@ namespace Rafeek.Application.Handlers.StaffHandlers.GetStaffDashboard
                     RegistrationHolds = registrationHolds,
                     AcademicProbation = academicProbation,
                     MissingRequirements = missingRequirements
-                }
+                },
+                StudentAcademicRecords = studentAcademicRecords
             };
         }
     }

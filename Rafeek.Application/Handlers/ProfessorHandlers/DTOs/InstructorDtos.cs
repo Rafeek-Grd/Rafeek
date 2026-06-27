@@ -1,3 +1,6 @@
+using Rafeek.Application.Common.Models;
+using Rafeek.Application.Handlers.AdminHandlers.Queries;
+
 namespace Rafeek.Application.Handlers.InstructorHandlers.DTOs
 {
     public class InstructorDashboardDto
@@ -5,6 +8,7 @@ namespace Rafeek.Application.Handlers.InstructorHandlers.DTOs
         public int TotalSections { get; set; }
         public int TotalStudents { get; set; }
         public int PendingAssignmentsToGrade { get; set; }
+        public PagginatedResult<StudentAcademicRecordDto> StudentAcademicRecords { get; set; } = null!;
     }
 
     public class InstructorSectionDto
