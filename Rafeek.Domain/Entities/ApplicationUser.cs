@@ -22,10 +22,16 @@ namespace Rafeek.Domain.Entities
         public UserType UserTypes { get; set; } = UserType.None;
         public bool MustChangePassword { get; set; } = false;
 
+        /// <summary>
+        /// تاريخ آخر تغيير لكلمة المرور.
+        /// </summary>
+        public DateTime? LastPasswordChangedAt { get; set; }
+
         public ApplicationUser()
         {
             Id = Guid.NewGuid();
             UserTypes = UserType.None;
+            LastPasswordChangedAt = DateTime.UtcNow;
         }
     }
 }

@@ -54,7 +54,18 @@ namespace Rafeek.Application.Handlers.AdminHandlers.Commands.UpdateSecurityDashb
                     .ToListAsync(ct);
 
                 foreach (var user in allUsers)
-                    user.MustChangePassword = request.IsForcePasswordChangeEnabled.Value;
+                {
+                    if (request.IsForcePasswordChangeEnabled.Value)
+                    {
+                        var lastChange = user.LastPasswordChangedAt ?? DateTime.MinValue;
+                        var daysSinceChange = (DateTime.UtcNow - lastChange).TotalDays;
+                        user.MustChangePassword = daysSinceChange >= 90;
+                    }
+                    else
+                    {
+                        user.MustChangePassword = false;
+                    }
+                }
 
                 foreach (var user in allUsers)
                     await _userManager.UpdateAsync(user);
