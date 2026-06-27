@@ -169,17 +169,17 @@ namespace Rafeek.API.Controllers.Version1
         /// Get all users in a department paginated.
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="query"></param>
+        /// <param name="PageNumber"></param>
+        /// <param name="PageSize"></param>
         /// <returns></returns>
         [HttpGet]
         [RoleAuthorize(nameof(UserType.Admin), nameof(UserType.Staff))]
         [Route(ApiRoutes.Department.GetAllUsersInDepartmentPagginated)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> GetAllUsers([FromRoute] Guid id, [FromQuery] GetAllUsersInDepartmentPagginatedQuery query)
+        public async Task<IActionResult> GetAllUsers([FromRoute] Guid id, int PageNumber = 1, int PageSize = 20)
         {
-            query.DepartmentId = id;
-            var result = await _mediator.Send(query);
+            var result = await _mediator.Send(new GetAllUsersInDepartmentPagginatedQuery { DepartmentId = id, PageNumber = PageNumber, PageSize = PageSize });
             return Ok(result);
         }
 
