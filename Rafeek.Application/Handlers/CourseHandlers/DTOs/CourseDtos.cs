@@ -75,9 +75,14 @@ namespace Rafeek.Application.Handlers.CourseHandlers.DTOs
 
         // ── الخطة الدراسية (توزيع الساعات) ────────────────────────────────────
         public StudyPlanDistributionDto StudyPlanDistribution { get; set; } = new();
+        public WeeklyHoursDto WeeklyHours { get; set; } = new();
+        public GradeDistributionDto GradeDistribution { get; set; } = new();
 
         // ── مدرسو المادة ───────────────────────────────────────────────────────
         public List<CourseInstructorDto> Instructors { get; set; } = new();
+
+        // ── شُعب المحاضرات والمواعيد ──────────────────────────────────────────
+        public List<LectureGroupDto> LectureGroups { get; set; } = new();
 
         // ── إشعارات خاصة بالمقرر ──────────────────────────────────────────────
         public List<CourseNotificationDto> Notifications { get; set; } = new();
@@ -111,6 +116,19 @@ namespace Rafeek.Application.Handlers.CourseHandlers.DTOs
         public float UniversityRequirementPercentage { get; set; }
         public float MajorRequirementPercentage { get; set; }
         public float ElectivePercentage { get; set; }
+    }
+
+    public class WeeklyHoursDto
+    {
+        public int LectureHours { get; set; }
+        public int LabHours { get; set; }
+    }
+
+    public class GradeDistributionDto
+    {
+        public int MidtermPercent { get; set; }
+        public int FinalPercent { get; set; }
+        public int ProjectPercent { get; set; }
     }
 
     public class CourseInstructorDto

@@ -11,6 +11,8 @@ namespace Rafeek.Domain.Entities
         public bool IsRead { get; set; }
         public Guid? UserId { get; set; }
         public ApplicationUser? User { get; set; }
+        public Guid? CourseId { get; set; }
+        public Course? Course { get; set; }
         public Notification()
         {
             IsRead = false;

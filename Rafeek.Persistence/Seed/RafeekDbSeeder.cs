@@ -1,4 +1,4 @@
-using Bogus;
+ using Bogus;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Rafeek.Domain.Entities;
@@ -118,6 +118,11 @@ namespace Rafeek.Persistence.Seed
                                 Description = $"مقرر دراسي مكثف في {cData.Title} يقدم المعارف والمهارات الأساسية والمتقدمة في هذا المجال.",
                                 CreditHours = new Random().Next(2, 4),
                                 DepartmentId = dept.Id,
+                                WeeklyLectureHours = 2,
+                                WeeklyLabHours = 1,
+                                MidtermPercent = 25,
+                                FinalPercent = 45,
+                                ProjectPercent = 30,
                                 CreatedAt = DateTime.UtcNow,
                                 CreatedBy = "Seeder",
                                 IsActive = true
@@ -126,6 +131,22 @@ namespace Rafeek.Persistence.Seed
                     }
                 }
                 context.Courses.AddRange(courses);
+                await context.SaveChangesAsync();
+            }
+            else
+            {
+                foreach (var course in courses)
+                {
+                    if (course.WeeklyLectureHours == 0 && course.WeeklyLabHours == 0)
+                    {
+                        course.WeeklyLectureHours = 2;
+                        course.WeeklyLabHours = 1;
+                        course.MidtermPercent = 25;
+                        course.FinalPercent = 45;
+                        course.ProjectPercent = 30;
+                    }
+                }
+                context.Courses.UpdateRange(courses);
                 await context.SaveChangesAsync();
             }
 
@@ -885,6 +906,65 @@ namespace Rafeek.Persistence.Seed
                         .RuleFor(x => x.CreatedBy, "Seeder")
                         .Generate(50);
                     context.Notifications.AddRange(notifications);
+                    await context.SaveChangesAsync();
+                }
+
+                // Add global announcements if not already present
+                if (!await context.Notifications.AnyAsync(n => n.UserId == null && n.CourseId == null))
+                {
+                    var globalNotifications = new List<Notification>
+                    {
+                        new Notification
+                        {
+                            Id = Guid.NewGuid(),
+                            Title = "تنبيه: تحديث النظام الأكاديمي",
+                            Message = "يرجى العلم أنه تم تحديث النظام الأكاديمي رفيق لإضافة ميزات الجداول والتقارير الجديدة.",
+                            IsRead = false,
+                            CreatedAt = DateTime.UtcNow.AddDays(-5),
+                            CreatedBy = "System"
+                        },
+                        new Notification
+                        {
+                            Id = Guid.NewGuid(),
+                            Title = "إشعار عام: إجازة عيد الأضحى المبارك",
+                            Message = "تهنئكم إدارة الجامعة بحلول عيد الأضحى المبارك، ونود إعلامكم بأن الإجازة ستبدأ من الأحد القادم.",
+                            IsRead = false,
+                            CreatedAt = DateTime.UtcNow.AddDays(-2),
+                            CreatedBy = "System"
+                        }
+                    };
+                    context.Notifications.AddRange(globalNotifications);
+                    await context.SaveChangesAsync();
+                }
+
+                // Add course-specific notifications if not already present
+                if (!await context.Notifications.AnyAsync(n => n.CourseId != null) && courses.Any())
+                {
+                    var courseNotifications = new List<Notification>();
+                    foreach (var course in courses.Take(15))
+                    {
+                        courseNotifications.Add(new Notification
+                        {
+                            Id = Guid.NewGuid(),
+                            Title = "تم تحديث جدول اختبار نصف العام",
+                            Message = $"برجاء العلم أنه تم تأجيل أسبوع اختبارات نصف العام لمقرر {course.Title} ليبدأ من 15 نوفمبر.",
+                            CourseId = course.Id,
+                            IsRead = false,
+                            CreatedAt = DateTime.UtcNow.AddDays(-3),
+                            CreatedBy = "System"
+                        });
+                        courseNotifications.Add(new Notification
+                        {
+                            Id = Guid.NewGuid(),
+                            Title = "تم تحديد آخر موعد للتسليمات",
+                            Message = $"آخر موعد لتسليم المشروع الخاص بمقرر {course.Title} هو 12 نوفمبر. يرجى التواصل مع المعيد في حال وجود أي استفسار.",
+                            CourseId = course.Id,
+                            IsRead = false,
+                            CreatedAt = DateTime.UtcNow.AddDays(-1),
+                            CreatedBy = "System"
+                        });
+                    }
+                    context.Notifications.AddRange(courseNotifications);
                     await context.SaveChangesAsync();
                 }
 

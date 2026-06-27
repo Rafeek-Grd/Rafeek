@@ -8,6 +8,11 @@ namespace Rafeek.Domain.Entities
         public string Title { get; set; } = null!;
         public string? Description { get; set; }
         public int CreditHours { get; set; }
+        public int WeeklyLectureHours { get; set; }
+        public int WeeklyLabHours { get; set; }
+        public int MidtermPercent { get; set; }
+        public int FinalPercent { get; set; }
+        public int ProjectPercent { get; set; }
         public Guid? DepartmentId { get; set; }
         public Department? Department { get; set; }
         

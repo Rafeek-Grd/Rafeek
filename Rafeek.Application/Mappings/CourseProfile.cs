@@ -9,7 +9,10 @@ namespace Rafeek.Application.Mappings
         public CourseProfile()
         {
             CreateMap<Course, CourseDto>();
-            CreateMap<LectureGroup, LectureGroupDto>();
+            CreateMap<LectureGroup, LectureGroupDto>()
+                .ForMember(d => d.DoctorName, opt => opt.MapFrom(s => s.Doctor != null ? s.Doctor.User.FullName : null))
+                .ForMember(d => d.Location, opt => opt.MapFrom(s => s.Location))
+                .ForMember(d => d.EnrolledStudentsCount, opt => opt.MapFrom(s => s.Enrollments.Count));
 
             CreateMap<Course, CourseDetailDto>()
                 .ForMember(d => d.CourseId, opt => opt.MapFrom(s => s.Id))
@@ -22,7 +25,18 @@ namespace Rafeek.Application.Mappings
                 .ForMember(d => d.IsTheoretical, opt => opt.MapFrom(s => true))
                 .ForMember(d => d.IsPractical, opt => opt.MapFrom(s => false))
                 .ForMember(d => d.TargetLevel, opt => opt.MapFrom(s => 3))
-                .ForMember(d => d.Instructors, opt => opt.MapFrom(s => s.Enrollments.Select(e => e.LectureGroup.Doctor).Where(d => d != null).Distinct().Select(i => new CourseInstructorDto
+                .ForMember(d => d.WeeklyHours, opt => opt.MapFrom(s => new WeeklyHoursDto
+                {
+                    LectureHours = s.WeeklyLectureHours,
+                    LabHours = s.WeeklyLabHours
+                }))
+                .ForMember(d => d.GradeDistribution, opt => opt.MapFrom(s => new GradeDistributionDto
+                {
+                    MidtermPercent = s.MidtermPercent,
+                    FinalPercent = s.FinalPercent,
+                    ProjectPercent = s.ProjectPercent
+                }))
+                .ForMember(d => d.Instructors, opt => opt.MapFrom(s => s.LectureGroups.Select(lg => lg.Doctor).Where(d => d != null).Distinct().Select(i => new CourseInstructorDto
                 {
                     InstructorId = i.Id,
                     FullName = i.User.FullName,
@@ -35,6 +49,7 @@ namespace Rafeek.Application.Mappings
                     Code = p.Prerequisite.Code,
                     Title = p.Prerequisite.Title
                 })))
+                .ForMember(d => d.LectureGroups, opt => opt.MapFrom(s => s.LectureGroups))
                 .ForMember(d => d.RegistrationStatus, opt => opt.Ignore())
                 .ForMember(d => d.RegistrationStatusLabel, opt => opt.Ignore())
                 .ForMember(d => d.StudyPlanDistribution, opt => opt.Ignore())

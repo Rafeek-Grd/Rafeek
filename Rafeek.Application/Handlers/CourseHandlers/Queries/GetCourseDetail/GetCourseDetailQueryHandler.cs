@@ -84,7 +84,7 @@ namespace Rafeek.Application.Handlers.CourseHandlers.Queries.GetCourseDetail
 
             courseDetail.Notifications = await _ctx.NotificationRepository.GetAll()
                 .AsNoTracking()
-                .Where(n => n.UserId == null)
+                .Where(n => n.CourseId == request.CourseId || (n.CourseId == null && n.UserId == null))
                 .OrderByDescending(n => n.CreatedAt)
                 .Take(5)
                 .Select(n => new CourseNotificationDto

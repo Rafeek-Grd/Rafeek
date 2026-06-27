@@ -14,6 +14,12 @@ namespace Rafeek.Persistence.Configurations.RafeekConfiguration
                    .HasForeignKey(n => n.UserId)
                    .OnDelete(DeleteBehavior.Restrict);
 
+            builder.HasOne(n => n.Course)
+                   .WithMany()
+                   .HasForeignKey(n => n.CourseId)
+                   .IsRequired(false)
+                   .OnDelete(DeleteBehavior.Cascade);
+
             builder.HasQueryFilter(n => !n.IsDeleted);
         }
     }
