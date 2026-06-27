@@ -204,5 +204,13 @@ namespace Rafeek.API.Routes
             public const string Create = Base + "/assignments";
             public const string GradeSubmission = Base + "/assignments/submissions/{submissionId}/grade";
         }
+
+        public static class Announcement
+        {
+            public const string Create = Base + "/announcements";
+            public const string GetAllPagginated = Base + "/announcements";
+            public const string Deactivate = Base + "/announcements/{id}/deactivate";
+            public const string Postpone = Base + "/announcements/{id}/postpone";
+        }
     }
 }

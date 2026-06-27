@@ -34,6 +34,8 @@ namespace Rafeek.Infrastructure.Repostiories.Implementations.Generic
         private LectureGroupRepository? _lectureGroupRepository;
         private EnrollmentRepository? _enrollmentRepository;
         private NotificationRepository? _notificationRepository;
+        private AnnouncementRepository? _announcementRepository;
+        private CourseRegistrationPeriodRepository? _courseRegistrationPeriodRepository;
         private AssignmentRepository? _assignmentRepository;
         private AssignmentSubmissionRepository? _assignmentSubmissionRepository;
         private AcademicSettingRepository? _academicSettingRepository;
@@ -71,6 +73,8 @@ namespace Rafeek.Infrastructure.Repostiories.Implementations.Generic
         public ILectureGroupRepository LectureGroupRepository => _lectureGroupRepository ??= new LectureGroupRepository(_context);
         public IEnrollmentRepository EnrollmentRepository => _enrollmentRepository ??= new EnrollmentRepository(_context);
         public INotificationRepository NotificationRepository => _notificationRepository ??= new NotificationRepository(_context);
+        public IAnnouncementRepository AnnouncementRepository => _announcementRepository ??= new AnnouncementRepository(_context);
+        public ICourseRegistrationPeriodRepository CourseRegistrationPeriodRepository => _courseRegistrationPeriodRepository ??= new CourseRegistrationPeriodRepository(_context);
         public IAssignmentRepository AssignmentRepository => _assignmentRepository ??= new AssignmentRepository(_context);
         public IAssignmentSubmissionRepository AssignmentSubmissionRepository => _assignmentSubmissionRepository ??= new AssignmentSubmissionRepository(_context);
         public IAcademicSettingRepository AcademicSettingRepository => _academicSettingRepository ??= new AcademicSettingRepository(_context);

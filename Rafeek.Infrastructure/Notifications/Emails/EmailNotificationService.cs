@@ -1,4 +1,4 @@
-﻿using MailKit.Security;
+using MailKit.Security;
 using Microsoft.Extensions.Options;
 using Microsoft.Extensions.Logging;
 using MimeKit;
@@ -78,6 +78,44 @@ namespace Rafeek.Infrastructure.Notifications.Emails
             catch (Exception ex)
             {
                 throw new InvalidOperationException("Failed to send email notification.", ex);
+            }
+        }
+
+        public async Task SendRawEmailAsync(string to, string subject, string body, EmailType emailType = EmailType.Default)
+        {
+            try
+            {
+                var settings = _emailConfig.Value.EmailSettings?.FirstOrDefault(x => x.EmailType == emailType)
+                              ?? _emailConfig.Value.EmailSettings?.FirstOrDefault(x => x.EmailType == EmailType.Default);
+
+                if (settings == null)
+                {
+                    throw new InvalidOperationException("SMTP settings not found for this email type.");
+                }
+
+                var email = new MimeMessage();
+                email.From.Add(new MailboxAddress(settings.Email, settings.Email));
+                email.To.Add(new MailboxAddress(to, to));
+                email.Subject = subject;
+
+                var bodyBuilder = new BodyBuilder
+                {
+                    TextBody = body
+                };
+                email.Body = bodyBuilder.ToMessageBody();
+
+                using (var smtp = new MailKit.Net.Smtp.SmtpClient())
+                {
+                    await smtp.ConnectAsync(settings.Host, settings.Port, SecureSocketOptions.StartTls);
+                    smtp.AuthenticationMechanisms.Remove("XOAUTH2");
+                    await smtp.AuthenticateAsync(settings.Email, settings.Password);
+                    await smtp.SendAsync(email);
+                    await smtp.DisconnectAsync(true);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new InvalidOperationException("Failed to send raw email notification.", ex);
             }
         }
 

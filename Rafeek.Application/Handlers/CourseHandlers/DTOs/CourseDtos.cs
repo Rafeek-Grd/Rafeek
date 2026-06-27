@@ -60,6 +60,9 @@ namespace Rafeek.Application.Handlers.CourseHandlers.DTOs
         /// <summary>تاريخ فتح التسجيل</summary>
         public DateTime? RegistrationOpenDate { get; set; }
 
+        /// <summary>تاريخ إغلاق التسجيل</summary>
+        public DateTime? RegistrationCloseDate { get; set; }
+
         /// <summary>الفصل الدراسي المربوط بالمقرر</summary>
         public string? AcademicTerm { get; set; }
 

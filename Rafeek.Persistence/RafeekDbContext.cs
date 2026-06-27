@@ -34,6 +34,8 @@ namespace Rafeek.Persistence
         public DbSet<CareerSuggestion> CareerSuggestions { get; set; }
         public DbSet<AcademicFeedback> AcademicFeedbacks { get; set; }
         public DbSet<Notification> Notifications { get; set; }
+        public DbSet<Announcement> Announcements { get; set; }
+        public DbSet<CourseRegistrationPeriod> CourseRegistrationPeriods { get; set; }
         public DbSet<GPASimulatorLog> GPASimulatorLogs { get; set; }
         public DbSet<ChatSession> ChatSessions { get; set; }
         public DbSet<ChatbotQuery> ChatbotQueries { get; set; }

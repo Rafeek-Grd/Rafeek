@@ -118,6 +118,8 @@ namespace Rafeek.Infrastructure
             services.AddScoped<IAiSecurityService, AiSecurityService>();
 
             services.AddTransient<IEmailNotificationService, EmailNotificationService>();
+            services.AddTransient<ISmsService, Rafeek.Infrastructure.Notifications.Sms.SmsService>();
+            services.AddHostedService<Rafeek.Infrastructure.Services.AnnouncementSchedulerService>();
             
             services.AddHttpClient<IAIService, AIService>();
 

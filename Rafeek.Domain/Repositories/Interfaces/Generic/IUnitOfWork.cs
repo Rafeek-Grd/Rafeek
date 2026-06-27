@@ -27,6 +27,8 @@ namespace Rafeek.Domain.Repositories.Interfaces.Generic
         ILectureGroupRepository LectureGroupRepository { get; }
         IEnrollmentRepository EnrollmentRepository { get; }
         INotificationRepository NotificationRepository { get; }
+        IAnnouncementRepository AnnouncementRepository { get; }
+        ICourseRegistrationPeriodRepository CourseRegistrationPeriodRepository { get; }
         IAssignmentRepository AssignmentRepository { get; }
         IAssignmentSubmissionRepository AssignmentSubmissionRepository { get; }
         IAcademicSettingRepository AcademicSettingRepository { get; }

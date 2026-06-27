@@ -968,6 +968,93 @@ namespace Rafeek.Persistence.Seed
                     await context.SaveChangesAsync();
                 }
 
+                // Add Announcements if not already present
+                if (!await context.Announcements.AnyAsync() && departments.Any())
+                {
+                    var announcements = new List<Announcement>
+                    {
+                        new Announcement
+                        {
+                            Id = Guid.NewGuid(),
+                            Title = "إغلاق المكتبة الرئيسية",
+                            Content = "برجاء العلم أنه سيتم إغلاق المكتبة الرئيسية للصيانة الدورية اليوم الساعة 5:00 مساءً.",
+                            AudienceType = 0, // AllStudents
+                            SendInApp = true,
+                            SendEmail = true,
+                            SendSMS = false,
+                            IsUrgent = true,
+                            ScheduledAt = DateTime.UtcNow.AddHours(-1),
+                            IsDeactivated = false,
+                            IsSent = true,
+                            CreatedAt = DateTime.UtcNow.AddDays(-1),
+                            CreatedBy = "System",
+                            IsActive = true
+                        },
+                        new Announcement
+                        {
+                            Id = Guid.NewGuid(),
+                            Title = "فتح باب التسجيل في المقررات للفصل القادم",
+                            Content = "يبدأ التسجيل للفصل الدراسي الخريفي القادم يوم الاثنين الساعة 9:00 صباحاً عبر البوابة الأكاديمية.",
+                            AudienceType = 0, // AllStudents
+                            SendInApp = true,
+                            SendEmail = true,
+                            SendSMS = true,
+                            IsUrgent = false,
+                            ScheduledAt = DateTime.UtcNow.AddDays(1),
+                            IsDeactivated = false,
+                            IsSent = false,
+                            CreatedAt = DateTime.UtcNow,
+                            CreatedBy = "System",
+                            IsActive = true
+                        },
+                        new Announcement
+                        {
+                            Id = Guid.NewGuid(),
+                            Title = "بدء فترة حذف وإضافة المقررات",
+                            Content = "فترة الحذف والإضافة للمقررات الدراسية ستبدأ غداً وتستمر لمدة أسبوع كامل.",
+                            AudienceType = 1, // SpecificDepartments
+                            DepartmentId = departments.First().Id,
+                            SendInApp = true,
+                            SendEmail = false,
+                            SendSMS = false,
+                            IsUrgent = false,
+                            ScheduledAt = DateTime.UtcNow.AddHours(2),
+                            IsDeactivated = false,
+                            IsSent = false,
+                            CreatedAt = DateTime.UtcNow,
+                            CreatedBy = "System",
+                            IsActive = true
+                        }
+                    };
+                    context.Announcements.AddRange(announcements);
+                    await context.SaveChangesAsync();
+                }
+
+                // Add CourseRegistrationPeriods if not already present
+                if (!await context.CourseRegistrationPeriods.AnyAsync() && courses.Any() && academicTerms.Any())
+                {
+                    var periods = new List<CourseRegistrationPeriod>();
+                    foreach (var course in courses)
+                    {
+                        foreach (var term in academicTerms)
+                        {
+                            periods.Add(new CourseRegistrationPeriod
+                            {
+                                Id = Guid.NewGuid(),
+                                CourseId = course.Id,
+                                AcademicTermId = term.Id,
+                                RegistrationOpeningDate = term.StartDate.AddDays(-14),
+                                RegistrationClosingDate = term.StartDate.AddDays(7),
+                                CreatedAt = DateTime.UtcNow,
+                                CreatedBy = "Seeder",
+                                IsActive = true
+                            });
+                        }
+                    }
+                    context.CourseRegistrationPeriods.AddRange(periods);
+                    await context.SaveChangesAsync();
+                }
+
                 if (!await context.Reminders.AnyAsync() && users.Any())
                 {
                     var reminderTitles = new[] { "مذاكرة محاضرة الخوارزميات", "شراء الكتب الدراسية", "حجز موعد مع المرشد", "مراجعة مشروع التخرج", "التحضير لعرض الأسبوع المقبل" };
