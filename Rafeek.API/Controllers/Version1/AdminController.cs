@@ -37,7 +37,7 @@ namespace Rafeek.API.Controllers.Version1
         /// تحليل الحالة الأكاديمية، والعوائق الأكاديمية.
         /// </summary>
         [HttpGet]
-        [RoleAuthorize(nameof(UserType.Admin), nameof(UserType.Staff))]
+        [RoleAuthorize(nameof(UserType.Admin))]
         [Route(ApiRoutes.Admin.GetDashboard)]
         [ProducesResponseType(typeof(AdminDashboardDto), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
