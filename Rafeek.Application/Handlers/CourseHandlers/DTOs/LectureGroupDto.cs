@@ -11,6 +11,7 @@ namespace Rafeek.Application.Handlers.CourseHandlers.DTOs
         public string Time { get; set; } = null!;
         public int Capacity { get; set; }
         public string? DoctorName { get; set; }
+        public string? DoctorEmail { get; set; }
         public string? Location { get; set; }
         public int EnrolledStudentsCount { get; set; }
     }

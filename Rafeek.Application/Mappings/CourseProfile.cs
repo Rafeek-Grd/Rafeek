@@ -11,6 +11,7 @@ namespace Rafeek.Application.Mappings
             CreateMap<Course, CourseDto>();
             CreateMap<LectureGroup, LectureGroupDto>()
                 .ForMember(d => d.DoctorName, opt => opt.MapFrom(s => s.Doctor != null ? s.Doctor.User.FullName : null))
+                .ForMember(d => d.DoctorEmail, opt => opt.MapFrom(s => s.Doctor != null ? s.Doctor.User.Email : null))
                 .ForMember(d => d.Location, opt => opt.MapFrom(s => s.Location))
                 .ForMember(d => d.EnrolledStudentsCount, opt => opt.MapFrom(s => s.Enrollments.Count));
 
