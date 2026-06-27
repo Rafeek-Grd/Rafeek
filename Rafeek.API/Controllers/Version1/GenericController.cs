@@ -20,7 +20,7 @@ namespace Rafeek.API.Controllers.Version1
         /// <param name="query"></param>
         /// <returns></returns>
         [HttpGet]
-        [RoleAuthorize(nameof(UserType.Admin))]
+        [RoleAuthorize(nameof(UserType.Admin), nameof(UserType.Staff))]
         [Route(ApiRoutes.Generic.GetProfilesForAdmins)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
