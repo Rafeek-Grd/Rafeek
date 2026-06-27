@@ -1,6 +1,6 @@
 using Rafeek.Domain.Enums;
 
-namespace Rafeek.Application.Handlers.AdminHandlers.Queries.GetStudentAcademicRecords
+namespace Rafeek.Application.Handlers.AdminHandlers.Queries
 {
     /// <summary>
     /// بيانات طالب واحد في جدول سجلات الطلاب الأكاديمية بلوحة تحكم الأدمن.

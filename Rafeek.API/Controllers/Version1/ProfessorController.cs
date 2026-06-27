@@ -3,11 +3,14 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 using Rafeek.API.Filters;
 using Rafeek.API.Routes;
+
 using Rafeek.Application.Handlers.InstructorHandlers.Commands.SubmitSectionGrades;
+using Rafeek.Application.Handlers.InstructorHandlers.DTOs;
 using Rafeek.Application.Handlers.InstructorHandlers.Queries.GetInstructorDashboard;
 using Rafeek.Application.Handlers.InstructorHandlers.Queries.GetInstructorExamSchedule;
 using Rafeek.Application.Handlers.InstructorHandlers.Queries.GetInstructorNotifications;
 using Rafeek.Application.Handlers.InstructorHandlers.Queries.GetInstructorSections;
+
 using Rafeek.Application.Handlers.InstructorHandlers.Queries.GetStudentProfileForInstructor;
 using Rafeek.Application.Handlers.InstructorHandlers.Queries.GetStudentsInSection;
 using Rafeek.Application.Localization;
@@ -30,11 +33,11 @@ namespace Rafeek.API.Controllers.Version1
         /// <returns></returns>
         [HttpGet]
         [Route(ApiRoutes.Professor.GetDashboard)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(InstructorDashboardDto), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> GetDashboard()
+        public async Task<IActionResult> GetDashboard([FromQuery] GetInstructorDashboardQuery query)
         {
-            var result = await _mediator.Send(new GetInstructorDashboardQuery());
+            var result = await _mediator.Send(query);
             return Ok(result);
         }
 

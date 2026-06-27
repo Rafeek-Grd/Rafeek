@@ -1,3 +1,5 @@
+using Rafeek.Application.Common.Models;
+
 namespace Rafeek.Application.Handlers.AdminHandlers.Queries.GetAdminDashboard
 {
     public class AdminDashboardDto
@@ -6,6 +8,7 @@ namespace Rafeek.Application.Handlers.AdminHandlers.Queries.GetAdminDashboard
         public BatchDistributionDto BatchDistribution { get; set; } = new();
         public AcademicStatusAnalysisDto AcademicStatusAnalysis { get; set; } = new();
         public AcademicObstaclesDto AcademicObstacles { get; set; } = new();
+        public PagginatedResult<StudentAcademicRecordDto> StudentAcademicRecords { get; set; } = null!;
     }
 
     public class AcademicLevelTrendDto

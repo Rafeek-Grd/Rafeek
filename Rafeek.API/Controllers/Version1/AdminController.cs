@@ -9,7 +9,6 @@ using Rafeek.Application.Handlers.AdminHandlers.Queries.GetExamsSchedule;
 using Rafeek.Application.Handlers.AdminHandlers.Queries.GetAcademicSchedules;
 using Rafeek.Application.Handlers.AdminHandlers.Queries.GetAdminDashboard;
 using Rafeek.Application.Handlers.AdminHandlers.Queries.GetStaffProfile;
-using Rafeek.Application.Handlers.AdminHandlers.Queries.GetStudentAcademicRecords;
 using Rafeek.Application.Handlers.AdminHandlers.Queries.GetStudentProfile;
 using Rafeek.Application.Handlers.AdminHandlers.Queries.GetUserManagement;
 using Rafeek.Application.Common.Models;
@@ -41,27 +40,14 @@ namespace Rafeek.API.Controllers.Version1
         [Route(ApiRoutes.Admin.GetDashboard)]
         [ProducesResponseType(typeof(AdminDashboardDto), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        public async Task<IActionResult> GetDashboard()
-        {
-            var result = await _mediator.Send(new GetAdminDashboardQuery());
-            return Ok(result);
-        }
-
-
-        /// <summary>
-        /// سجلات الطلاب الأكاديمية مع دعم الترقيم والفلترة والبحث.
-        /// </summary>
-        /// <param name="query">معاملات الفلترة والترقيم</param>
-        [HttpGet]
-        [RoleAuthorize(nameof(UserType.Admin))]
-        [Route(ApiRoutes.Admin.GetStudentAcademicRecords)]
-        [ProducesResponseType(typeof(PagginatedResult<StudentAcademicRecordDto>), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        public async Task<IActionResult> GetStudentAcademicRecords([FromQuery] GetStudentAcademicRecordsQuery query)
+        public async Task<IActionResult> GetDashboard([FromQuery] GetAdminDashboardQuery query)
         {
             var result = await _mediator.Send(query);
             return Ok(result);
         }
+
+
+
 
         /// <summary>
         /// قائمة إدارة المستخدمين: تدعم التبويبات (الطلاب، طاقم التدريس، إلخ) عبر المعامل TabRole.
