@@ -92,6 +92,7 @@ namespace Rafeek.Application.Localization
             public static readonly KeyString AddedFailed = new("AddedFailed");
             public static readonly KeyString UpdatedFailed = new("UpdatedFailed");
             public static readonly KeyString DeletedFailed = new("DeletedFailed");
+            public static readonly KeyString SessionTimeoutInvalid = new("SessionTimeoutInvalid");
         }
 
         public record AcademicCalendar

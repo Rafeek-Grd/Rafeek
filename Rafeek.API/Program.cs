@@ -459,6 +459,19 @@ try
 
     app.MapGet("/", () => Results.Redirect("/swagger"));
 
+    // Seed SecuritySettingCache from DB on startup
+    using (var scope = app.Services.CreateScope())
+    {
+        var dbContext = scope.ServiceProvider.GetRequiredService<IRafeekDbContext>();
+        var cache = scope.ServiceProvider.GetRequiredService<ISecuritySettingCache>();
+
+        var setting = await dbContext.SecuritySettings.FirstOrDefaultAsync();
+        if (setting != null)
+        {
+            cache.Update(setting.SessionTimeoutMinutes, setting.IsForcePasswordChangeEnabled);
+        }
+    }
+
     app.Run();
 }
 catch (Exception ex) when (ex is not Microsoft.Extensions.Hosting.HostAbortedException)

@@ -33,6 +33,7 @@ namespace Rafeek.Infrastructure
             // Register JwtToken Manager
             services.AddTransient<IJwtTokenManager, JwtTokenManager>();
             services.AddTransient<ISignInManager, SignInManager>();
+            services.AddSingleton<ISecuritySettingCache, SecuritySettingCache>();
 
             // Register Generic Repositories
             services.AddScoped(typeof(IEntityRepository<,>), typeof(EntityRepository<,>));

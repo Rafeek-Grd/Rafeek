@@ -12,5 +12,10 @@ namespace Rafeek.Application.Handlers.AuthHandlers.Commands
         public string RefreshToken { get; set; } = null!;
         public string TokenType { get; set; } = null!;
         public object ExpiresIn { get; set; } = null!;
+
+        /// <summary>
+        /// إذا كانت true، يجب توجيه المستخدم لصفحة تغيير كلمة المرور فوراً.
+        /// </summary>
+        public bool MustChangePassword { get; set; } = false;
     }
 }

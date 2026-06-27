@@ -47,6 +47,8 @@ namespace Rafeek.Application.Common.Interfaces
         DbSet<Reminder> Reminders { get; set; }
         DbSet<AcademicSetting> AcademicSettings { get; }
         DbSet<GradeScale> GradeScales { get; }
+        DbSet<SecuritySetting> SecuritySettings { get; }
+        DbSet<RolePermission> RolePermissions { get; }
 
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);

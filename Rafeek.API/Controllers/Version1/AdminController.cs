@@ -17,6 +17,7 @@ using Rafeek.Domain.Enums;
 using Rafeek.Application.Handlers.SettingsHandlers.Commands.UpdateAcademicSettings;
 using Rafeek.Application.Handlers.SettingsHandlers.Queries.GetAcademicSettings;
 using Rafeek.Application.Handlers.SettingsHandlers.DTOs;
+using Rafeek.Application.Handlers.AdminHandlers.Commands.UpdateSecurityDashboard;
 
 namespace Rafeek.API.Controllers.Version1
 {
@@ -187,6 +188,21 @@ namespace Rafeek.API.Controllers.Version1
         {
             var result = await _mediator.Send(command);
             return Ok(result);
+        }
+
+        /// <summary>
+        /// تحديث الإعدادات الأمنية وصلاحيات الأدوار.
+        /// </summary>
+        [HttpPut]
+        [RoleAuthorize(nameof(UserType.Admin))]
+        [Route(ApiRoutes.Admin.UpdateSecurityDashboard)]
+        [ProducesResponseType(typeof(bool), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        public async Task<IActionResult> UpdateSecurityDashboard([FromBody] UpdateSecurityDashboardCommand command, CancellationToken ct)
+        {
+            var result = await _mediator.Send(command, ct);
+            return result ? Ok(new { message = "تم تحديث إعدادات الأمان بنجاح" }) : BadRequest();
         }
     }
 }

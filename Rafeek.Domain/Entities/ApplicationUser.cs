@@ -20,6 +20,7 @@ namespace Rafeek.Domain.Entities
         public ICollection<Reminder> Reminders { get; set; } = new HashSet<Reminder>();
         public UserCalendarPreference? CalendarPreference { get; set; }
         public UserType UserTypes { get; set; } = UserType.None;
+        public bool MustChangePassword { get; set; } = false;
 
         public ApplicationUser()
         {
