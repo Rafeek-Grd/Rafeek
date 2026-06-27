@@ -15,7 +15,7 @@ namespace Rafeek.Application.Mappings
                 .ForMember(d => d.CourseId, opt => opt.MapFrom(s => s.Id))
                 .ForMember(d => d.DepartmentName, opt => opt.MapFrom(s => s.Department != null ? s.Department.Name : null))
                 .ForMember(d => d.EnrolledStudents, opt => opt.MapFrom(s => s.Enrollments.Count))
-                .ForMember(d => d.Capacity, opt => opt.MapFrom(s => s.Enrollments.Select(e => e.LectureGroup.Capacity).FirstOrDefault()))
+                .ForMember(d => d.Capacity, opt => opt.MapFrom(s => s.LectureGroups.Sum(lg => lg.Capacity)))
                 .ForMember(d => d.StartDate, opt => opt.MapFrom(s => s.Enrollments.SelectMany(e => e.LectureGroup.CalendarEvents).OrderBy(ev => ev.EventDate).Select(ev => (DateTime?)ev.EventDate).FirstOrDefault()))
                 .ForMember(d => d.RegistrationOpenDate, opt => opt.MapFrom(s => s.Enrollments.SelectMany(e => e.LectureGroup.CalendarEvents).OrderBy(ev => ev.EventDate).Select(ev => (DateTime?)ev.EventDate).FirstOrDefault()))
                 .ForMember(d => d.AcademicTerm, opt => opt.MapFrom(s => s.Enrollments.SelectMany(e => e.LectureGroup.CalendarEvents).Where(ev => ev.AcademicTerm != null).Select(ev => ev.AcademicTerm!.Name).FirstOrDefault()))
