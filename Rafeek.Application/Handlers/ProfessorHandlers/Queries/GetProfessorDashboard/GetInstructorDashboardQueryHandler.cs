@@ -1,11 +1,8 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Rafeek.Application.Common.Exceptions;
 using Rafeek.Application.Common.Interfaces;
-using Rafeek.Application.Common.Models;
 using Rafeek.Application.Handlers.AdminHandlers.Queries;
 using Rafeek.Application.Handlers.InstructorHandlers.DTOs;
-using Rafeek.Domain.Entities;
 using Rafeek.Domain.Repositories.Interfaces.Generic;
 using System;
 using System.Collections.Generic;
@@ -57,15 +54,11 @@ namespace Rafeek.Application.Handlers.InstructorHandlers.Queries.GetInstructorDa
                 .AsNoTracking()
                 .FirstOrDefaultAsync(d => d.UserId == instructorUserId, cancellationToken);
 
-            PagginatedResult<StudentAcademicRecordDto> studentAcademicRecords;
+            List<StudentAcademicRecordDto> studentAcademicRecords;
 
             if (doctor == null)
             {
-                studentAcademicRecords = new PagginatedResult<StudentAcademicRecordDto>(
-                    new List<StudentAcademicRecordDto>().AsReadOnly(),
-                    0,
-                    request.PageNumber,
-                    request.PageSize);
+                studentAcademicRecords = new List<StudentAcademicRecordDto>();
             }
             else
             {
@@ -92,11 +85,7 @@ namespace Rafeek.Application.Handlers.InstructorHandlers.Queries.GetInstructorDa
 
                 if (skipRecords || !doctorLectureGroupIds.Any())
                 {
-                    studentAcademicRecords = new PagginatedResult<StudentAcademicRecordDto>(
-                        new List<StudentAcademicRecordDto>().AsReadOnly(),
-                        0,
-                        request.PageNumber,
-                        request.PageSize);
+                    studentAcademicRecords = new List<StudentAcademicRecordDto>();
                 }
                 else
                 {
@@ -110,11 +99,7 @@ namespace Rafeek.Application.Handlers.InstructorHandlers.Queries.GetInstructorDa
 
                     if (!studentIds.Any())
                     {
-                        studentAcademicRecords = new PagginatedResult<StudentAcademicRecordDto>(
-                            new List<StudentAcademicRecordDto>().AsReadOnly(),
-                            0,
-                            request.PageNumber,
-                            request.PageSize);
+                        studentAcademicRecords = new List<StudentAcademicRecordDto>();
                     }
                     else
                     {
@@ -127,7 +112,6 @@ namespace Rafeek.Application.Handlers.InstructorHandlers.Queries.GetInstructorDa
                             .Include(s => s.AcademicProfile)
                             .AsQueryable();
 
-                        // ── Filtering ────────────────────────────────────────────────────────
                         if (!string.IsNullOrWhiteSpace(request.SearchTerm))
                         {
                             var term = request.SearchTerm.Trim();
@@ -138,21 +122,13 @@ namespace Rafeek.Application.Handlers.InstructorHandlers.Queries.GetInstructorDa
                         }
 
                         if (!string.IsNullOrWhiteSpace(request.AcademicStatus))
-                        {
                             recordsQuery = recordsQuery.Where(s => s.AcademicProfile != null && s.AcademicProfile.Standing == request.AcademicStatus);
-                        }
 
                         if (request.Cgpa.HasValue)
-                        {
                             recordsQuery = recordsQuery.Where(s => s.AcademicProfile != null && s.AcademicProfile.CGPA == request.Cgpa.Value);
-                        }
 
-                        var totalRecordsCount = await recordsQuery.CountAsync(cancellationToken);
-
-                        var recordItems = await recordsQuery
+                        studentAcademicRecords = await recordsQuery
                             .OrderBy(s => s.User.FullName)
-                            .Skip((request.PageNumber - 1) * request.PageSize)
-                            .Take(request.PageSize)
                             .Select(s => new StudentAcademicRecordDto
                             {
                                 StudentId = s.Id,
@@ -171,12 +147,6 @@ namespace Rafeek.Application.Handlers.InstructorHandlers.Queries.GetInstructorDa
                                 Term = s.Term
                             })
                             .ToListAsync(cancellationToken);
-
-                        studentAcademicRecords = new PagginatedResult<StudentAcademicRecordDto>(
-                            recordItems.AsReadOnly(),
-                            totalRecordsCount,
-                            request.PageNumber,
-                            request.PageSize);
                     }
                 }
             }

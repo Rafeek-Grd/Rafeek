@@ -1,6 +1,6 @@
-using Rafeek.Application.Common.Models;
 using Rafeek.Application.Handlers.AdminHandlers.Queries;
 using Rafeek.Application.Handlers.AdminHandlers.Queries.GetAdminDashboard;
+using System.Collections.Generic;
 
 namespace Rafeek.Application.Handlers.StaffHandlers.GetStaffDashboard
 {
@@ -10,6 +10,6 @@ namespace Rafeek.Application.Handlers.StaffHandlers.GetStaffDashboard
         public BatchDistributionDto BatchDistribution { get; set; } = new();
         public AcademicStatusAnalysisDto AcademicStatusAnalysis { get; set; } = new();
         public AcademicObstaclesDto AcademicObstacles { get; set; } = new();
-        public PagginatedResult<StudentAcademicRecordDto> StudentAcademicRecords { get; set; } = null!;
+        public List<StudentAcademicRecordDto> StudentAcademicRecords { get; set; } = new();
     }
 }
