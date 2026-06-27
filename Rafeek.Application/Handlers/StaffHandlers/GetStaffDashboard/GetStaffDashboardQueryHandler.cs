@@ -1,7 +1,6 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Rafeek.Application.Common.Interfaces;
-using Rafeek.Application.Common.Models;
 using Rafeek.Application.Handlers.AdminHandlers.Queries;
 using Rafeek.Application.Handlers.AdminHandlers.Queries.GetAdminDashboard;
 using System;
@@ -119,12 +118,8 @@ namespace Rafeek.Application.Handlers.StaffHandlers.GetStaffDashboard
                 recordsQuery = recordsQuery.Where(s => s.DepartmentId == request.DepartmentId.Value);
             }
 
-            var totalRecordsCount = await recordsQuery.CountAsync(cancellationToken);
-
-            var recordItems = await recordsQuery
+            var studentAcademicRecords = await recordsQuery
                 .OrderBy(s => s.User.FullName)
-                .Skip((request.PageNumber - 1) * request.PageSize)
-                .Take(request.PageSize)
                 .Select(s => new StudentAcademicRecordDto
                 {
                     StudentId = s.Id,
@@ -143,12 +138,6 @@ namespace Rafeek.Application.Handlers.StaffHandlers.GetStaffDashboard
                     Term = s.Term
                 })
                 .ToListAsync(cancellationToken);
-
-            var studentAcademicRecords = new PagginatedResult<StudentAcademicRecordDto>(
-                recordItems.AsReadOnly(),
-                totalRecordsCount,
-                request.PageNumber,
-                request.PageSize);
 
             // ── 3. Assemble ────────────────────────────
             return new GetStaffDashboardDto

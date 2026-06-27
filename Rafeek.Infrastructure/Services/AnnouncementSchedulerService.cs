@@ -49,8 +49,7 @@ namespace Rafeek.Infrastructure.Services
 
         private async Task ProcessPendingAnnouncementsAsync(CancellationToken cancellationToken)
         {
-            using (var scope = _serviceProvider.CreateScope())
-            {
+            await using var scope = _serviceProvider.CreateAsyncScope();
                 var unitOfWork = scope.ServiceProvider.GetRequiredService<IUnitOfWork>();
                 var emailService = scope.ServiceProvider.GetRequiredService<IEmailNotificationService>();
                 var smsService = scope.ServiceProvider.GetRequiredService<ISmsService>();
@@ -155,7 +154,6 @@ namespace Rafeek.Infrastructure.Services
                         _logger.LogError(ex, $"Error occurred while processing announcement {announcement.Id}");
                     }
                 }
-            }
         }
     }
 }

@@ -122,10 +122,15 @@ namespace Rafeek.Application.Handlers.AdminHandlers.Queries.GetAdminDashboard
 
             var totalRecordsCount = await recordsQuery.CountAsync(cancellationToken);
 
-            var recordItems = await recordsQuery
-                .OrderBy(s => s.User.FullName)
-                .Skip((request.PageNumber - 1) * request.PageSize)
-                .Take(request.PageSize)
+            bool returnAll = request.PageNumber == -1;
+
+            var orderedQuery = recordsQuery.OrderBy(s => s.User.FullName);
+
+            var recordItems = await (returnAll
+                ? orderedQuery
+                : orderedQuery
+                    .Skip((request.PageNumber - 1) * request.PageSize)
+                    .Take(request.PageSize))
                 .Select(s => new StudentAcademicRecordDto
                 {
                     StudentId = s.Id,
@@ -144,12 +149,6 @@ namespace Rafeek.Application.Handlers.AdminHandlers.Queries.GetAdminDashboard
                     Term = s.Term
                 })
                 .ToListAsync(cancellationToken);
-
-            var studentAcademicRecords = new PagginatedResult<StudentAcademicRecordDto>(
-                recordItems.AsReadOnly(),
-                totalRecordsCount,
-                request.PageNumber,
-                request.PageSize);
 
             // ── Assemble ─────────────────────────────────────────────────────────
             return new AdminDashboardDto
@@ -177,7 +176,7 @@ namespace Rafeek.Application.Handlers.AdminHandlers.Queries.GetAdminDashboard
                     AcademicProbation   = academicProbation,
                     MissingRequirements = missingRequirements
                 },
-                StudentAcademicRecords = studentAcademicRecords
+                StudentAcademicRecords = recordItems
             };
         }
     }

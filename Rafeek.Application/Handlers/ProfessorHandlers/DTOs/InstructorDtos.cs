@@ -1,5 +1,5 @@
-using Rafeek.Application.Common.Models;
 using Rafeek.Application.Handlers.AdminHandlers.Queries;
+using System.Collections.Generic;
 
 namespace Rafeek.Application.Handlers.InstructorHandlers.DTOs
 {
@@ -8,7 +8,7 @@ namespace Rafeek.Application.Handlers.InstructorHandlers.DTOs
         public int TotalSections { get; set; }
         public int TotalStudents { get; set; }
         public int PendingAssignmentsToGrade { get; set; }
-        public PagginatedResult<StudentAcademicRecordDto> StudentAcademicRecords { get; set; } = null!;
+        public List<StudentAcademicRecordDto> StudentAcademicRecords { get; set; } = new();
     }
 
     public class InstructorSectionDto
