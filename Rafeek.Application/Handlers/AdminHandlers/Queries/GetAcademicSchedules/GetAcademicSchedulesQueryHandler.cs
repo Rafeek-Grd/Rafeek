@@ -43,10 +43,12 @@ namespace Rafeek.Application.Handlers.AdminHandlers.Queries.GetAcademicSchedules
                 schedules.Add(new AcademicScheduleDto
                 {
                     LectureGroupId = section.Id,
+                    CourseId = section.CourseId,
                     CourseTitle = section.Course.Title,
                     CourseCode = section.Course.Code,
                     InstructorName = section.Doctor?.User?.FullName ?? "غير محدد",
                     Room = room,
+                    Location = section.Location ?? room,
                     Day = section.Day ?? "-",
                     Time = section.Time ?? "-",
                     Status = status
