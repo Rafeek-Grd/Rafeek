@@ -30,7 +30,9 @@ namespace Rafeek.Application.Mappings
                 .ForMember(dest => dest.AvailableSeats, opt => opt.MapFrom(src => src.AvailableSeats));
 
             CreateMap<CareerSuggestion, CareerSuggestionDto>();
-            CreateMap<StudyPlan, StudyPlanDto>();
+            CreateMap<StudyPlan, StudyPlanDto>()
+                .ForMember(dest => dest.CourseCode, opt => opt.MapFrom(src => src.Course != null ? src.Course.Code : null))
+                .ForMember(dest => dest.CourseName, opt => opt.MapFrom(src => src.Course != null ? src.Course.Title : null));
             CreateMap<LearningResource, LearningResourceDto>();
         }
     }

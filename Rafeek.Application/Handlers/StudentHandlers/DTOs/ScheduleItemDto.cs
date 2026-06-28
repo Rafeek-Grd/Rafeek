@@ -10,6 +10,7 @@ namespace Rafeek.Application.Handlers.StudentHandlers.DTOs
         public Guid LectureGroupId { get; set; }
         public string Day { get; set; } = null!;
         public string Time { get; set; } = null!;
+        public string? Location { get; set; }
         public string Status { get; set; } = null!;
     }
 }

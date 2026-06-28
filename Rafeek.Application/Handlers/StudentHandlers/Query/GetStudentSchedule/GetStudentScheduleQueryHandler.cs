@@ -39,6 +39,7 @@ namespace Rafeek.Application.Handlers.StudentHandlers.Query.GetStudentSchedule
                     LectureGroupId = e.LectureGroupId,
                     Day = e.LectureGroup.Day,
                     Time = e.LectureGroup.Time,
+                    Location = e.LectureGroup.Location,
                     Status = e.Status
                 });
 
