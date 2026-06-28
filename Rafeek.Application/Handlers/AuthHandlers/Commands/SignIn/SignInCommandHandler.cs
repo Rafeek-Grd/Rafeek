@@ -98,6 +98,7 @@ namespace Rafeek.Application.Handlers.AuthHandlers.Commands.SignIn
             _mapper.Map(currentUser, signResponse);
 
             signResponse.Role = await currentUser.GetUserRoleStringAsync(_dbContext, cancellationToken);
+            signResponse.MustChangePassword = currentUser.MustChangePassword;
 
             return signResponse;
         }

@@ -112,6 +112,7 @@ namespace Rafeek.API.Routes
             public const string GetExamsSchedule           = Base + "/admin/exams-schedule";
             public const string GetExamResults             = Base + "/admin/exam-results";
             public const string GetSecurityDashboard       = Base + "/admin/security/dashboard";
+            public const string UpdateSecurityDashboard    = Base + "/admin/security/dashboard";
             public const string GetSettings                = Base + "/admin/settings";
             public const string UpdateSettings             = Base + "/admin/settings";
         }

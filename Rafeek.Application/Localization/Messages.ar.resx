@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -590,5 +590,8 @@
   </data>
   <data name="Assignment_ScoreInvalid" xml:space="preserve">
     <value>الدرجة يجب أن تكون صفراً أو أكثر.</value>
+  </data>
+  <data name="SessionTimeoutInvalid" xml:space="preserve">
+    <value>مهلة الجلسة يجب أن تكون أكبر من 0 دقيقة.</value>
   </data>
 </root>

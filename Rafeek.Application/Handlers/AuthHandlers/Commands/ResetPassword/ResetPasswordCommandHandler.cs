@@ -52,6 +52,8 @@ namespace Rafeek.Application.Handlers.AuthHandlers.Commands.ResetPassword
             // Clear token after successful reset
             user.PasswordResetToken = null;
             user.PasswordResetTokenExpiredTime = null;
+            user.LastPasswordChangedAt = DateTime.UtcNow;
+            user.MustChangePassword = false;
             await _userManager.UpdateAsync(user);
 
             return new ResetPasswordResponse

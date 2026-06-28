@@ -15,12 +15,14 @@ namespace Squeak.Infrastructure.Oauth
         private readonly JwtSettings _jwtSettings;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly TokenValidationParameters _tokenValidationParameters;
+        private readonly ISecuritySettingCache _securitySettingCache;
 
-        public JwtTokenManager(JwtSettings jwtSettings, UserManager<ApplicationUser> userManager, TokenValidationParameters tokenValidationParameters)
+        public JwtTokenManager(JwtSettings jwtSettings, UserManager<ApplicationUser> userManager, TokenValidationParameters tokenValidationParameters, ISecuritySettingCache securitySettingCache)
         {
             _jwtSettings = jwtSettings;
             _userManager = userManager;
             _tokenValidationParameters = tokenValidationParameters;
+            _securitySettingCache = securitySettingCache;
         }
 
         public async Task<AuthResult> GenerateClaimsTokenAsync(string email, CancellationToken cancellationToken = new CancellationToken())
@@ -43,7 +45,7 @@ namespace Squeak.Infrastructure.Oauth
                 new Claim(JwtRegisteredClaimNames.NameId, user.Id.ToString()),
                 new Claim(JwtRegisteredClaimNames.Email, user.Email),
                 new Claim(JwtRegisteredClaimNames.Nbf, currentTime.ToUnixTimeSeconds().ToString()),
-                new Claim(JwtRegisteredClaimNames.Exp, currentTime.Add(_jwtSettings.AccessTokenExpiration).ToUnixTimeSeconds().ToString()),
+                new Claim(JwtRegisteredClaimNames.Exp, currentTime.Add(_securitySettingCache.TokenLifetime).ToUnixTimeSeconds().ToString()),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 new Claim("UserTypes", ((int)user.UserTypes).ToString())
             };
@@ -56,7 +58,7 @@ namespace Squeak.Infrastructure.Oauth
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(claims),
-                Expires = currentTime.Add(_jwtSettings.AccessTokenExpiration).UtcDateTime,
+                Expires = currentTime.Add(_securitySettingCache.TokenLifetime).UtcDateTime,
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature),
                 Issuer = _jwtSettings.Issuer,
                 TokenType = "Bearer"

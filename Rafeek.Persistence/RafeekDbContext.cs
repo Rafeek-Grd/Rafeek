@@ -60,6 +60,8 @@ namespace Rafeek.Persistence
         public DbSet<AssignmentSubmission> AssignmentSubmissions { get; set; }
         public DbSet<AcademicSetting> AcademicSettings { get; set; }
         public DbSet<GradeScale> GradeScales { get; set; }
+        public DbSet<SecuritySetting> SecuritySettings { get; set; }
+        public DbSet<RolePermission> RolePermissions { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
