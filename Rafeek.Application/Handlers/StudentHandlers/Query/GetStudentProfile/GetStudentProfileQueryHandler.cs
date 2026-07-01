@@ -2,6 +2,7 @@ using AutoMapper;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
+using Rafeek.Application.Common.Exceptions;
 using Rafeek.Application.Common.Interfaces;
 using Rafeek.Application.Handlers.StudentHandlers.DTOs;
 using Rafeek.Application.Localization;
@@ -54,21 +55,29 @@ namespace Rafeek.Application.Handlers.StudentHandlers.Query.GetStudentProfile
                 .AsNoTracking()
                 .FirstOrDefaultAsync(cancellationToken);
 
-            var userTask = _identityUnitOfWork.ApplicationUserRepository.GetAll().AsNoTracking().FirstOrDefaultAsync(u => u.Id == student!.UserId, cancellationToken);
-            var departmentTask = student!.DepartmentId.HasValue 
-                ? _unitOfWork.DepartmentRepository.GetAll(d => d.Id == student.DepartmentId).AsNoTracking().FirstOrDefaultAsync(cancellationToken) 
-                : Task.FromResult<Department?>(null);
-            var advisorTask = student.AcademicAdvisorId.HasValue 
-                ? _unitOfWork.DoctorRepository.GetAll(doc => doc.Id == student.AcademicAdvisorId).AsNoTracking().FirstOrDefaultAsync(cancellationToken) 
-                : Task.FromResult<Doctor?>(null);
-            var profileTask = _unitOfWork.StudentAcademicProfileRepository.GetAll(p => p.Id == student.AcademicProfileId).AsNoTracking().FirstOrDefaultAsync(cancellationToken);
+            if (student == null)
+            {
+                throw new NotFoundException(_localizer[LocalizationKeys.Student.StudentProfileNotFound]);
+            }
 
-            await Task.WhenAll(userTask, departmentTask, advisorTask, profileTask);
+            var user = await _identityUnitOfWork.ApplicationUserRepository.GetAll()
+                .AsNoTracking()
+                .FirstOrDefaultAsync(u => u.Id == student.UserId, cancellationToken);
 
-            student.User = userTask.Result!;
-            student.Department = departmentTask.Result;
-            student.AcademicAdvisor = advisorTask.Result;
-            student.AcademicProfile = profileTask.Result;
+            var department = student.DepartmentId.HasValue 
+                ? await _unitOfWork.DepartmentRepository.GetAll(d => d.Id == student.DepartmentId).AsNoTracking().FirstOrDefaultAsync(cancellationToken) 
+                : null;
+
+            var advisor = student.AcademicAdvisorId.HasValue 
+                ? await _unitOfWork.DoctorRepository.GetAll(doc => doc.Id == student.AcademicAdvisorId).AsNoTracking().FirstOrDefaultAsync(cancellationToken) 
+                : null;
+
+            var profile = await _unitOfWork.StudentAcademicProfileRepository.GetAll(p => p.Id == student.AcademicProfileId).AsNoTracking().FirstOrDefaultAsync(cancellationToken);
+
+            student.User = user!;
+            student.Department = department;
+            student.AcademicAdvisor = advisor;
+            student.AcademicProfile = profile;
 
             // 2.1 Fetch Advisor's User data if advisor exists (Zero Joins manual aggregation)
             if (student.AcademicAdvisor != null)
@@ -92,15 +101,9 @@ namespace Rafeek.Application.Handlers.StudentHandlers.Query.GetStudentProfile
                 var courseIds = enrollments.Select(e => e.CourseId).Distinct().ToList();
                 var sectionIds = enrollments.Select(e => e.LectureGroupId).Distinct().ToList();
 
-                var gradesTask = _dbContext.Grades.AsNoTracking().Where(g => enrollmentIds.Contains(g.EnrollmentId)).ToListAsync(cancellationToken);
-                var coursesTask = _dbContext.Courses.AsNoTracking().Where(c => courseIds.Contains(c.Id)).ToListAsync(cancellationToken);
-                var sectionsTask = _dbContext.LectureGroups.AsNoTracking().Where(s => sectionIds.Contains(s.Id)).ToListAsync(cancellationToken);
-
-                await Task.WhenAll(gradesTask, coursesTask, sectionsTask);
-
-                var grades = gradesTask.Result;
-                var courses = coursesTask.Result;
-                var sections = sectionsTask.Result;
+                var grades = await _dbContext.Grades.AsNoTracking().Where(g => enrollmentIds.Contains(g.EnrollmentId)).ToListAsync(cancellationToken);
+                var courses = await _dbContext.Courses.AsNoTracking().Where(c => courseIds.Contains(c.Id)).ToListAsync(cancellationToken);
+                var sections = await _dbContext.LectureGroups.AsNoTracking().Where(s => sectionIds.Contains(s.Id)).ToListAsync(cancellationToken);
 
                 var calendarEvents = await _dbContext.AcademicCalendars.AsNoTracking()
                     .Where(ce => sectionIds.Contains(ce.LectureGroupId ?? Guid.Empty))
