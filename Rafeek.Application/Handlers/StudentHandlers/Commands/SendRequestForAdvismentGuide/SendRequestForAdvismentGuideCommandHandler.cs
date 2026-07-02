@@ -1,4 +1,4 @@
-﻿using MediatR;
+using MediatR;
 using Microsoft.Extensions.Localization;
 using Rafeek.Application.Localization;
 using Rafeek.Domain.Entities;
@@ -20,9 +20,15 @@ namespace Rafeek.Application.Handlers.StudentHandlers.Commands.SendRequestForAdv
 
         public async Task<string> Handle(SendRequestForAdvismentGuideCommand request, CancellationToken cancellationToken)
         {
+            var student = await _ctx.StudentRepository.GetFirstAsync(x => x.UserId == request.StudentId, cancellationToken);
+            if (student == null)
+            {
+                throw new Rafeek.Application.Common.Exceptions.NotFoundException(nameof(Student), request.StudentId);
+            }
+
             var studentSupport = new StudentSupport()
             {
-                StudentId = request.StudentId,
+                StudentId = student.Id,
                 Title = request.Title,
                 Description = request.Description,
                 StudentSupportStatus = StudentSupportStatus.Pending
