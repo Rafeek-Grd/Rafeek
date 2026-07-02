@@ -57,6 +57,7 @@ namespace Rafeek.Application.Localization
             public static readonly KeyString FailedToActivateEmail = new("FailedToActivateEmail");
             public static readonly KeyString EmailActivatedSuccessfully = new("EmailActivatedSuccessfully");
             public static readonly KeyString PasswordResetFailed = new("PasswordResetFailed");
+            public static readonly KeyString TwoFactorRequired = new("TwoFactorRequired");
         }
 
         public record UploadFileMessages

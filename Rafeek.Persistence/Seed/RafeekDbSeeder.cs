@@ -466,7 +466,7 @@ namespace Rafeek.Persistence.Seed
 
             // 7. Sections
             Log("[Seeder] Stage 8: Seeding Sections...");
-            var sections = await context.LectureGroups.ToListAsync();
+            var sections = await context.LectureGroups.Include(s => s.Course).ToListAsync();
             if (!sections.Any())
             {
                 foreach (var course in courses)
@@ -501,14 +501,8 @@ namespace Rafeek.Persistence.Seed
             var enrollments = await context.Enrollments.ToListAsync();
             var grades = await context.Grades.ToListAsync();
 
-            // Always clear and re-seed grades/enrollments to ensure GPA consistency and 100-scale scores
             if (enrollments.Any() || grades.Any())
             {
-                Log("[Seeder] Clearing existing enrollments and grades for fresh seeding...");
-                context.Grades.RemoveRange(grades);
-                context.Enrollments.RemoveRange(enrollments);
-                await context.SaveChangesAsync();
-                
                 enrollments = new List<Enrollment>();
                 grades = new List<Grade>();
             }
