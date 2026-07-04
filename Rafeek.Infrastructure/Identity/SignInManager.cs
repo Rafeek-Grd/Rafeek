@@ -29,9 +29,11 @@ namespace Rafeek.Infrastructure.Identity
         {
             try
             {
-                // Security: Find user by either Email or UserName to support temporary email login (via UserName)
-                var user = await _signInManager.UserManager.FindByEmailAsync(loginIdentifier)
-                        ?? await _signInManager.UserManager.FindByNameAsync(loginIdentifier);
+                // Security: Find user by Email, UserName, or TemporaryEmail
+                var user = await _signInManager.UserManager.Users
+                    .FirstOrDefaultAsync(u => u.Email == loginIdentifier
+                        || u.UserName == loginIdentifier
+                        || u.TemporaryEmail == loginIdentifier, cancellationToken);
 
                 if (user == null)
                 {

@@ -5,6 +5,7 @@ namespace Rafeek.Application.Handlers.StudentHandlers.DTOs
 {
     public class StudentProfileDto
     {
+        public Guid Id { get; set; }
         public string FullName { get; set; } = null!;
         public string UniversityCode { get; set; } = null!;
         public string? DepartmentName { get; set; }

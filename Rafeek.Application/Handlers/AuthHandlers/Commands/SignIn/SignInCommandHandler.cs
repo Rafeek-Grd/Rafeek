@@ -57,22 +57,12 @@ namespace Rafeek.Application.Handlers.AuthHandlers.Commands.SignIn
                 await _userManager.UpdateAsync(currentUser);
             }
 
-            var result = await _signInManager.PasswordSignInAsync(currentUser.UserName!, request.Password, false, false, cancellationToken);
+            var result = await _signInManager.PasswordSignInAsync(currentUser.Email!, request.Password, false, false, cancellationToken);
 
 
             if (!result.Succeeded)
             {
                 var signInResult = (SignInResult)result.MainResult!;
-
-                if (signInResult.IsLockedOut)
-                {
-                    throw new UnauthorizedException(_localizer[LocalizationKeys.UserMessages.Locked.Value]);
-                }
-
-                if (signInResult.IsNotAllowed)
-                {
-                    throw new UnauthorizedException(_localizer[LocalizationKeys.UserMessages.EmailUnVerified.Value]);
-                }
 
                 throw new UnauthorizedException(_localizer[LocalizationKeys.UserMessages.InvalidSignIn.Value]);
             }

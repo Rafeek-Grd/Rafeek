@@ -266,9 +266,12 @@
   <data name="UserLocked" xml:space="preserve">
     <value>Ø­Ø³Ø§Ø¨ Ø§Ù„Ù…ÙØ³ØªØ®Ø¯Ù… ØªÙ… Ø§ØºÙ„Ø§Ù‚Ù‡.</value>
   </data>
-  <data name="EmailUnVerified" xml:space="preserve">
-    <value>Ø­Ø³Ø§Ø¨ Ø§Ù„Ù…ÙØ³ØªØ®Ø¯Ù… Ù„Ù… ÙŠØªÙ… Ø§Ù„ØªØ­Ù‚Ù‚ Ù…Ù†Ù‡.</value>
-  </data>
+	<data name="EmailUnVerified" xml:space="preserve">
+		<value>Ø­Ø³Ø§Ø¨ Ø§Ù„Ù…ÙØ³ØªØ®Ø¯Ù… Ù„Ù… ÙŠØªÙ… Ø§Ù„ØªØ­Ù‚Ù‚ Ù…Ù†Ù‡.</value>
+	</data>
+	<data name="TwoFactorRequired" xml:space="preserve">
+		<value>Ø§Ù„ØªØ­Ù‚Ù‚ Ø¨Ø§Ù„Ø¹Ø§Ù…Ù„ÙŠÙ† Ù…Ø·Ù„ÙˆØ¨.</value>
+	</data>
   <data name="EmailNotFoundBefore" xml:space="preserve">
     <value>Ù‡Ø°Ø§ Ø§Ù„Ø­Ø³Ø§Ø¨ ØºÙŠØ± Ù…ÙˆØ¬ÙˆØ¯.</value>
   </data>
