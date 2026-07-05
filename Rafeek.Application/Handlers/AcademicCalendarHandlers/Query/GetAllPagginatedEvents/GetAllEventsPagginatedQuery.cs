@@ -7,6 +7,7 @@ namespace Rafeek.Application.Handlers.AcademicCalendarHandlers.Query.GetAllPaggi
 {
     public class GetAllEventsPagginatedQuery: IRequest<PagginatedResult<AcademicCalendarDto>>
     {
+        public DateTime? EventDate { get; set; }
         public int PageNumber { get; set; } = 1;
         public int PageSize { get; set; } = 20;
     }
