@@ -758,6 +758,7 @@ namespace Rafeek.Persistence.Seed
                     var supports = new Faker<StudentSupport>("ar")
                         .RuleFor(x => x.Id, Guid.NewGuid)
                         .RuleFor(x => x.StudentId, f => f.PickRandom(students).Id)
+                        .RuleFor(x => x.Email, f => f.Internet.Email())
                         .RuleFor(x => x.Title, f => f.PickRandom(supportTitles))
                         .RuleFor(x => x.Description, f => f.PickRandom(supportDescriptions))
                         .RuleFor(x => x.CreatedAt, f => DateTime.UtcNow)

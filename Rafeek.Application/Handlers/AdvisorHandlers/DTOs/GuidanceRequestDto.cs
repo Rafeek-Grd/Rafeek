@@ -8,9 +8,10 @@ namespace Rafeek.Application.Handlers.AdvisorHandlers.DTOs
         public Guid Id { get; set; }
         public string Title { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
+        public string? Email { get; set; }
         public StudentSupportStatus StudentSupportStatus { get; set; }
-        public Guid StudentId { get; set; }
-        public StudentDto Student { get; set; } = null!;
+        public Guid? StudentId { get; set; }
+        public StudentDto? Student { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
     }

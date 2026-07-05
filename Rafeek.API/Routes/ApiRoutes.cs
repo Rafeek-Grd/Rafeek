@@ -219,5 +219,15 @@ namespace Rafeek.API.Routes
             public const string Deactivate = Base + "/announcements/{id}/deactivate";
             public const string Postpone = Base + "/announcements/{id}/postpone";
         }
+
+        public static class StudentSupport
+        {
+            public const string Create = Base + "/support";
+            public const string GetAll = Base + "/support";
+            public const string GetMyActive = Base + "/support/my";
+            public const string GetById = Base + "/support/{id}";
+            public const string Update = Base + "/support/{id}";
+            public const string Delete = Base + "/support/{id}";
+        }
     }
 }

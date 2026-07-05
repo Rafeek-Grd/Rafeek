@@ -7,9 +7,11 @@ namespace Rafeek.Domain.Entities
     {
         public string Title { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
+        public string? Email { get; set; }
         public StudentSupportStatus StudentSupportStatus { get; set; }
+        public StudentSupportType TicketType { get; set; }
 
-        public Guid StudentId { get; set; }
-        public Student Student { get; set; } = null!;
+        public Guid? StudentId { get; set; }
+        public Student? Student { get; set; }
     }
 }

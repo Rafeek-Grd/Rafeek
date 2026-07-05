@@ -33,9 +33,10 @@ namespace Rafeek.Application.Handlers.AdvisorHandlers.Queries.GetAllGuidenceSupp
                      Id = x.Id,
                      Title = x.Title,
                      Description = x.Description,
+                     Email = x.Email,
                      StudentSupportStatus = x.StudentSupportStatus,
                      StudentId = x.StudentId,
-                     Student = new StudentDto
+                     Student = x.Student == null ? null : new StudentDto
                      {
                          FullName = x.Student.User.FullName,
                          Email = x.Student.User.Email!,
