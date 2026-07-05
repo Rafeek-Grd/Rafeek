@@ -78,11 +78,11 @@ namespace Rafeek.Application.Handlers.StudentHandlers.Commands.AskAi
 
             var aiStudentProfile = new
             {
-                level = " ",
-                department = " ",
-                status = " ",
-                gpa = " ",
-                failed_courses = " "
+                level = levelText,
+                department = student?.Department?.Name ?? "عام",
+                status = student?.Status.ToString() ?? "نشط",
+                gpa = student?.AcademicProfile?.CGPA.ToString() ?? "0.00",
+                failed_courses = failedCoursesText
             };
 
             
