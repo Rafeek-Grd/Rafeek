@@ -26,10 +26,20 @@ namespace Rafeek.Application.Handlers.AcademicCalendarHandlers.Query.GetAllPaggi
 
         public async Task<PagginatedResult<AcademicCalendarDto>> Handle(GetAllEventsPagginatedQuery request, CancellationToken cancellationToken)
         {
-            return await _ctx
+            var query = _ctx
                 .AcademicCalendarRepository
                 .IncludeAll(null)
-                .AsNoTracking()
+                .AsNoTracking();
+
+            if (request.EventDate.HasValue)
+            {
+                var date = request.EventDate.Value;
+                query = query.Where(e => e.EventDate.Year == date.Year
+                                      && e.EventDate.Month == date.Month
+                                      && e.EventDate.Day == date.Day);
+            }
+
+            return await query
                 .ProjectTo<AcademicCalendarDto>(_mapper.ConfigurationProvider)
                 .PaginatedListAsync(request.PageNumber, request.PageSize);
         }
