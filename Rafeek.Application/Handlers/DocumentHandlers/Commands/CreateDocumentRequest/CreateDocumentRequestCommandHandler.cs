@@ -21,7 +21,9 @@ namespace Rafeek.Application.Handlers.DocumentHandlers.Commands.CreateDocumentRe
                 StudentId = request.StudentId,
                 DocumentType = request.DocumentType,
                 Status = DocumentStatus.Pending,
-                Remarks = request.Remarks
+                Remarks = request.Remarks,
+                Topic = request.Topic,
+                AttachmentUrl = request.AttachmentUrl
             };
 
             _ctx.DocumentRequestRepository.Add(entity);

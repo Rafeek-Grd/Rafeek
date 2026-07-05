@@ -7,5 +7,7 @@ namespace Rafeek.Application.Handlers.DocumentHandlers.Commands.CreateDocumentRe
         public Guid StudentId { get; set; }
         public string DocumentType { get; set; } = null!;
         public string? Remarks { get; set; }
+        public string? Topic { get; set; }
+        public string? AttachmentUrl { get; set; }
     }
 }

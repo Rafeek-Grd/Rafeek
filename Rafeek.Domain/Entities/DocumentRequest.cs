@@ -8,6 +8,8 @@ namespace Rafeek.Domain.Entities
         public string DocumentType { get; set; } = string.Empty;
         public DocumentStatus Status { get; set; }
         public string? Remarks { get; set; }
+        public string? Topic { get; set; }
+        public string? AttachmentUrl { get; set; }
         public Guid StudentId { get; set; }
         public Student Student { get; set; } = null!;
     }
