@@ -24,6 +24,27 @@ namespace Rafeek.Application.Handlers.StudentSupportHandlers.Queries.GetAllActiv
 
         public async Task<List<NewStudentSupportDto>> Handle(GetAllActiveStudentSupportForCurrentUserQuery request, CancellationToken cancellationToken)
         {
+            if (!string.IsNullOrWhiteSpace(request.Email))
+            {
+                return await _ctx.StudentSupportRepository
+                    .GetAll()
+                    .AsNoTracking()
+                    .Where(x => x.Email == request.Email && x.IsActive)
+                    .OrderByDescending(x => x.CreatedAt)
+                    .Select(x => new NewStudentSupportDto
+                    {
+                        Id = x.Id,
+                        Title = x.Title,
+                        Description = x.Description,
+                        Email = x.Email ?? string.Empty,
+                        TicketType = x.TicketType,
+                        StudentSupportStatus = x.StudentSupportStatus,
+                        IsActive = x.IsActive,
+                        IsDeleted = x.IsDeleted
+                    })
+                    .ToListAsync(cancellationToken);
+            }
+
             var student = await _ctx.StudentRepository
                 .GetAll()
                 .AsNoTracking()
@@ -41,6 +62,7 @@ namespace Rafeek.Application.Handlers.StudentSupportHandlers.Queries.GetAllActiv
                     Title = x.Title,
                     Description = x.Description,
                     Email = x.Email ?? string.Empty,
+                    TicketType = x.TicketType,
                     StudentSupportStatus = x.StudentSupportStatus,
                     IsActive = x.IsActive,
                     IsDeleted = x.IsDeleted

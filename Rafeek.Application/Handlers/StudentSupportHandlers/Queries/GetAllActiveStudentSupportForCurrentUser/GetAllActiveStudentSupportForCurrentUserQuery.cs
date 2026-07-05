@@ -5,5 +5,6 @@ namespace Rafeek.Application.Handlers.StudentSupportHandlers.Queries.GetAllActiv
 {
     public class GetAllActiveStudentSupportForCurrentUserQuery : IRequest<List<NewStudentSupportDto>>
     {
+        public string? Email { get; set; }
     }
 }
