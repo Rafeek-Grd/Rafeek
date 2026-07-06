@@ -227,7 +227,7 @@ namespace Rafeek.API.Routes
             public const string GetMyActive = Base + "/support/my";
             public const string GetById = Base + "/support/{id}";
             public const string Update = Base + "/support/{id}";
-            public const string Delete = Base + "/support/{id}";
+            public const string Delete = Base + "/support/delete";
         }
     }
 }

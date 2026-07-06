@@ -135,6 +135,7 @@ namespace Rafeek.Persistence.Seed
             }
             else
             {
+                bool anyUpdated = false;
                 foreach (var course in courses)
                 {
                     if (course.WeeklyLectureHours == 0 && course.WeeklyLabHours == 0)
@@ -144,10 +145,14 @@ namespace Rafeek.Persistence.Seed
                         course.MidtermPercent = 25;
                         course.FinalPercent = 45;
                         course.ProjectPercent = 30;
+                        anyUpdated = true;
                     }
                 }
-                context.Courses.UpdateRange(courses);
-                await context.SaveChangesAsync();
+                if (anyUpdated)
+                {
+                    context.Courses.UpdateRange(courses);
+                    await context.SaveChangesAsync();
+                }
             }
 
             // 4. Academic Years
@@ -500,12 +505,6 @@ namespace Rafeek.Persistence.Seed
             // 8. Enrollments & Grades
             var enrollments = await context.Enrollments.ToListAsync();
             var grades = await context.Grades.ToListAsync();
-
-            if (enrollments.Any() || grades.Any())
-            {
-                enrollments = new List<Enrollment>();
-                grades = new List<Grade>();
-            }
 
             if (!enrollments.Any() && students.Any() && sections.Any())
             {

@@ -121,9 +121,8 @@ namespace Rafeek.API.Controllers.Version1
         [Route(ApiRoutes.StudentSupport.Delete)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        public async Task<IActionResult> Delete([FromRoute] Guid? id)
+        public async Task<IActionResult> Delete([FromQuery]DeleteStudentSupportTicketCommand command)
         {
-            var command = new DeleteStudentSupportTicketCommand { MessageSupportId = id };
             var result = await _mediator.Send(command);
             return Ok(result);
         }
