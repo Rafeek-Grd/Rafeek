@@ -40,6 +40,9 @@
 
   <ItemGroup>
     <Folder Include="Common\Enums\" />
+    <Folder Include="Handlers\ExamSchedules\Commands\CreateExamSchdules\" />
+    <Folder Include="Handlers\ExamSchedules\Commands\DeleteExamSchdules\" />
+    <Folder Include="Handlers\ExamSchedules\Commands\UpdateExamSchdules\" />
     <Folder Include="Hubs\" />
   </ItemGroup>
 

@@ -1,22 +1,12 @@
-using MediatR;
-using Rafeek.Application.Common.Models;
-
-namespace Rafeek.Application.Handlers.AdminHandlers.Queries.GetAcademicSchedules
+﻿namespace Rafeek.Application.Handlers.AcademicSchedules.DTOs
 {
-    public class GetAcademicSchedulesQuery : IRequest<PagginatedResult<AcademicScheduleDto>>
-    {
-        public Guid? TermId { get; set; }
-        public int PageNumber { get; set; } = -1;
-        public int PageSize { get; set; } = 20;
-    }
-
     public class AcademicScheduleDto
     {
         public Guid LectureGroupId { get; set; }
         public Guid CourseId { get; set; }
         public string CourseTitle { get; set; } = null!;
         public string CourseCode { get; set; } = null!;
-        public string InstructorName { get; set; } = null!;
+        public string DoctorName { get; set; } = null!;
         public string Room { get; set; } = null!;
         public string? Location { get; set; }
         public string Day { get; set; } = null!;

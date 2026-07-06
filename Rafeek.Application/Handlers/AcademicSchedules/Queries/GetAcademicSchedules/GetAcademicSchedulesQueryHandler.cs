@@ -1,9 +1,10 @@
-using MediatR;
+﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Rafeek.Application.Common.Interfaces;
 using Rafeek.Application.Common.Models;
+using Rafeek.Application.Handlers.AcademicSchedules.DTOs;
 
-namespace Rafeek.Application.Handlers.AdminHandlers.Queries.GetAcademicSchedules
+namespace Rafeek.Application.Handlers.AcademicSchedules.Queries.GetAcademicSchedules
 {
     public class GetAcademicSchedulesQueryHandler : IRequestHandler<GetAcademicSchedulesQuery, PagginatedResult<AcademicScheduleDto>>
     {
@@ -36,7 +37,7 @@ namespace Rafeek.Application.Handlers.AdminHandlers.Queries.GetAcademicSchedules
             foreach (var section in sections)
             {
                 var calendarEvent = section.CalendarEvents?.FirstOrDefault();
-                
+
                 string room = calendarEvent?.Location ?? "غير محدد";
                 string status = calendarEvent?.Status.ToString() ?? "Published";
 
@@ -46,7 +47,7 @@ namespace Rafeek.Application.Handlers.AdminHandlers.Queries.GetAcademicSchedules
                     CourseId = section.CourseId,
                     CourseTitle = section.Course.Title,
                     CourseCode = section.Course.Code,
-                    InstructorName = section.Doctor?.User?.FullName ?? "غير محدد",
+                    DoctorName = section.Doctor?.User?.FullName ?? "غير محدد",
                     Room = room,
                     Location = section.Location ?? room,
                     Day = section.Day ?? "-",

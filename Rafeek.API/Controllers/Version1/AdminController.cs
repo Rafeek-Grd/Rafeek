@@ -5,8 +5,8 @@ using Rafeek.API.Filters;
 using Rafeek.API.Routes;
 using Rafeek.Application.Handlers.AdminHandlers.Queries.GetSecurityDashboard;
 using Rafeek.Application.Handlers.AdminHandlers.Queries.GetExamResults;
-using Rafeek.Application.Handlers.AdminHandlers.Queries.GetExamsSchedule;
-using Rafeek.Application.Handlers.AdminHandlers.Queries.GetAcademicSchedules;
+using Rafeek.Application.Handlers.ExamSchedules.DTOs;
+using Rafeek.Application.Handlers.ExamSchedules.Queries.GetExamsSchedule;
 using Rafeek.Application.Handlers.AdminHandlers.Queries.GetAdminDashboard;
 using Rafeek.Application.Handlers.AdminHandlers.Queries.GetStaffProfile;
 using Rafeek.Application.Handlers.AdminHandlers.Queries.GetStudentProfile;
@@ -98,34 +98,6 @@ namespace Rafeek.API.Controllers.Version1
         public async Task<IActionResult> GetStaffProfile([FromRoute] Guid userId)
         {
             var query = new GetAdminStaffProfileQuery { UserId = userId };
-            var result = await _mediator.Send(query);
-            return Ok(result);
-        }
-
-        /// <summary>
-        /// جلب جميع الجداول الدراسية (المجموعات / المقاطع الدراسية) للوحة الإدارة
-        /// </summary>
-        [HttpGet]
-        [RoleAuthorize(nameof(UserType.Admin))]
-        [Route(ApiRoutes.Admin.GetAcademicSchedules)]
-        [ProducesResponseType(typeof(PagginatedResult<AcademicScheduleDto>), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        public async Task<IActionResult> GetAcademicSchedules([FromQuery] GetAcademicSchedulesQuery query)
-        {
-            var result = await _mediator.Send(query);
-            return Ok(result);
-        }
-
-        /// <summary>
-        /// جلب جميع جداول الامتحانات مبوبة حسب الأيام
-        /// </summary>
-        [HttpGet]
-        [RoleAuthorize(nameof(UserType.Admin))]
-        [Route(ApiRoutes.Admin.GetExamsSchedule)]
-        [ProducesResponseType(typeof(PagginatedResult<ExamDayGroupDto>), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        public async Task<IActionResult> GetExamsSchedule([FromQuery] GetExamsScheduleQuery query)
-        {
             var result = await _mediator.Send(query);
             return Ok(result);
         }

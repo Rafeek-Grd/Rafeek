@@ -1,11 +1,12 @@
-using MediatR;
+﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Rafeek.Application.Common.Interfaces;
 using Rafeek.Application.Common.Models;
+using Rafeek.Application.Handlers.ExamSchedules.DTOs;
 using Rafeek.Domain.Enums;
 using System.Globalization;
 
-namespace Rafeek.Application.Handlers.AdminHandlers.Queries.GetExamsSchedule
+namespace Rafeek.Application.Handlers.ExamSchedules.Queries.GetExamsSchedule
 {
     public class GetExamsScheduleQueryHandler : IRequestHandler<GetExamsScheduleQuery, PagginatedResult<ExamDayGroupDto>>
     {
@@ -21,8 +22,7 @@ namespace Rafeek.Application.Handlers.AdminHandlers.Queries.GetExamsSchedule
             var query = _context.AcademicCalendars
                 .AsNoTracking()
                 .Include(ac => ac.Course)
-                .Where(ac => ac.EventType == AcademicCalendarEventType.Exam)
-                .AsQueryable();
+                .Where(ac => ac.EventType == AcademicCalendarEventType.Exam);
 
             if (!string.IsNullOrWhiteSpace(request.SearchText))
             {
@@ -32,21 +32,34 @@ namespace Rafeek.Application.Handlers.AdminHandlers.Queries.GetExamsSchedule
                     ac.EventName.ToLower().Contains(lowerSearch));
             }
 
-            var exams = await query
-                .OrderBy(ac => ac.EventDate)
-                .ThenBy(ac => ac.StartTime)
-                .ToListAsync(cancellationToken);
+            var totalCount = await query.CountAsync(cancellationToken);
+
+            IQueryable<Domain.Entities.AcademicCalendar> paginatedQuery;
+
+            if (request.PageNumber == -1)
+            {
+                paginatedQuery = query.OrderBy(ac => ac.EventDate).ThenBy(ac => ac.StartTime);
+            }
+            else
+            {
+                paginatedQuery = query
+                    .OrderBy(ac => ac.EventDate).ThenBy(ac => ac.StartTime)
+                    .Skip((request.PageNumber - 1) * request.PageSize)
+                    .Take(request.PageSize);
+            }
+
+            var exams = await paginatedQuery.ToListAsync(cancellationToken);
 
             var grouped = exams
                 .GroupBy(e => e.EventDate.Date)
                 .Select(g =>
                 {
-                    string dayName = GetArabicDayName(g.Key.DayOfWeek);
-                    string monthName = GetArabicMonthName(g.Key.Month);
-                    string formattedDate = $"{dayName} {g.Key.Day} {monthName} {g.Key.Year}";
+                    var dayName = GetArabicDayName(g.Key.DayOfWeek);
+                    var monthName = GetArabicMonthName(g.Key.Month);
+                    var formattedDate = $"{dayName} {g.Key.Day} {monthName} {g.Key.Year}";
 
-                    int count = g.Count();
-                    string examCountLabel = count == 1 ? "1 امتحان" : $"{count} امتحانات";
+                    var count = g.Count();
+                    var examCountLabel = count == 1 ? "1 امتحان" : $"{count} امتحانات";
 
                     return new ExamDayGroupDto
                     {
@@ -59,12 +72,12 @@ namespace Rafeek.Application.Handlers.AdminHandlers.Queries.GetExamsSchedule
                                 .Replace("AM", "صباحاً")
                                 .Replace("PM", "مساءً")
                                 .Replace("طهرًا", "ظهراً");
-                                
+
                             var durationHours = (e.EndTime - e.StartTime).TotalHours;
-                            string durationLabel = durationHours == 1 ? "1 ساعة" :
-                                                   durationHours == 2 ? "ساعتان" :
-                                                   durationHours > 2 && durationHours < 11 ? $"{durationHours} ساعات" :
-                                                   $"{durationHours} ساعة";
+                            var durationLabel = durationHours == 1 ? "1 ساعة" :
+                                                durationHours == 2 ? "ساعتان" :
+                                                durationHours > 2 && durationHours < 11 ? $"{durationHours} ساعات" :
+                                                $"{durationHours} ساعة";
 
                             return new ExamItemDto
                             {
@@ -81,25 +94,10 @@ namespace Rafeek.Application.Handlers.AdminHandlers.Queries.GetExamsSchedule
                 })
                 .ToList();
 
-            var totalCount = grouped.Count;
-            List<ExamDayGroupDto> items;
-
-            if (request.PageNumber == -1)
-            {
-                items = grouped;
-            }
-            else
-            {
-                items = grouped
-                    .Skip((request.PageNumber - 1) * request.PageSize)
-                    .Take(request.PageSize)
-                    .ToList();
-            }
-
-            return new PagginatedResult<ExamDayGroupDto>(items, totalCount, request.PageNumber, request.PageSize);
+            return new PagginatedResult<ExamDayGroupDto>(grouped, totalCount, request.PageNumber, request.PageSize);
         }
 
-        private string GetArabicDayName(DayOfWeek day)
+        private static string GetArabicDayName(DayOfWeek day)
         {
             return day switch
             {
@@ -114,7 +112,7 @@ namespace Rafeek.Application.Handlers.AdminHandlers.Queries.GetExamsSchedule
             };
         }
 
-        private string GetArabicMonthName(int month)
+        private static string GetArabicMonthName(int month)
         {
             return month switch
             {

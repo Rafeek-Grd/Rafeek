@@ -104,17 +104,32 @@ namespace Rafeek.API.Routes
         public static class Admin
         {
             public const string GetDashboard               = Base + "/admin/dashboard";
-
             public const string GetUsers                   = Base + "/admin/users";
             public const string GetStudentProfile          = Base + "/admin/student/{studentId}/profile";
             public const string GetStaffProfile            = Base + "/admin/staff/{userId}/profile";
-            public const string GetAcademicSchedules       = Base + "/admin/academic-schedules";
-            public const string GetExamsSchedule           = Base + "/admin/exams-schedule";
             public const string GetExamResults             = Base + "/admin/exam-results";
             public const string GetSecurityDashboard       = Base + "/admin/security/dashboard";
             public const string UpdateSecurityDashboard    = Base + "/admin/security/dashboard";
             public const string GetSettings                = Base + "/admin/settings";
             public const string UpdateSettings             = Base + "/admin/settings";
+        }
+
+        public static class AcademicSchedules
+        {
+            public const string GetAll = Base + "/academic-schedules";
+            public const string GetById = Base + "/academic-schedules/{id}";
+            public const string Create = Base + "/academic-schedules/add";
+            public const string Update = Base + "/academic-schedules/{id}/update";
+            public const string Delete = Base + "/academic-schedules/delete";
+        }
+
+        public static class ExamSchedules
+        {
+            public const string GetAll = Base + "/exam-schedules";
+            public const string GetById = Base + "/exam-schedules/{id}";
+            public const string Create = Base + "/exam-schedules/add";
+            public const string Update = Base + "/exam-schedules/{id}/update";
+            public const string Delete = Base + "/exam-schedules/delete";
         }
 
         public static class Staff
