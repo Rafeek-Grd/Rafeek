@@ -24,7 +24,7 @@ namespace Rafeek.API.Controllers.Version1
         /// <returns></returns>
         [HttpGet]
         [Route(ApiRoutes.ExamSchedules.GetAll)]
-        [RoleAuthorize(nameof(UserType.Admin))]
+        [RoleAuthorize(nameof(UserType.Admin), nameof(UserType.Mentor), nameof(UserType.Professor))]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> GetAll()
@@ -40,7 +40,7 @@ namespace Rafeek.API.Controllers.Version1
         /// <returns></returns>
         [HttpGet]
         [Route(ApiRoutes.ExamSchedules.GetById)]
-        [RoleAuthorize(nameof(UserType.Admin))]
+        [RoleAuthorize(nameof(UserType.Admin), nameof(UserType.Mentor), nameof(UserType.Professor))]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]

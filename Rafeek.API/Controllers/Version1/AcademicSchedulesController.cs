@@ -24,7 +24,7 @@ namespace Rafeek.API.Controllers.Version1
         /// <param name="query"></param>
         /// <returns></returns>
         [HttpGet]
-        [RoleAuthorize(nameof(UserType.Admin))]
+        [RoleAuthorize(nameof(UserType.Admin), nameof(UserType.Mentor), nameof(UserType.Professor))]
         [Route(ApiRoutes.AcademicSchedules.GetAll)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
@@ -40,7 +40,7 @@ namespace Rafeek.API.Controllers.Version1
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet]
-        [RoleAuthorize(nameof(UserType.Admin))]
+        [RoleAuthorize(nameof(UserType.Admin), nameof(UserType.Mentor), nameof(UserType.Professor))]
         [Route(ApiRoutes.AcademicSchedules.GetById)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
