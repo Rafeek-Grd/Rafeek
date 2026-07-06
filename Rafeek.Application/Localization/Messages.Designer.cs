@@ -61,7 +61,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Academic term end date is required..
+        ///   Looks up a localized string similar to تاريخ نهاية الترم الأكاديمي مطلوب.
         /// </summary>
         public static string AcademicTermEndDateRequired {
             get {
@@ -70,7 +70,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Academic year ID required..
+        ///   Looks up a localized string similar to معرف السنة الدراسية مطلوب.
         /// </summary>
         public static string AcademicTermIdRequired {
             get {
@@ -79,7 +79,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Academic term name is required..
+        ///   Looks up a localized string similar to اسم الترم الأكاديمي مطلوب.
         /// </summary>
         public static string AcademicTermNameRequired {
             get {
@@ -88,7 +88,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Academic term is not found in our system..
+        ///   Looks up a localized string similar to الترم الأكاديمي غير موجود.
         /// </summary>
         public static string AcademicTermNotFound {
             get {
@@ -97,7 +97,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Academic start date is required..
+        ///   Looks up a localized string similar to تاريخ بداية الترم الأكاديمي مطلوب.
         /// </summary>
         public static string AcademicTermStartDateRequired {
             get {
@@ -106,7 +106,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Academic year name is required..
+        ///   Looks up a localized string similar to اسم السنة الأكاديمية مطلوب.
         /// </summary>
         public static string AcademicYearNameRequired {
             get {
@@ -115,7 +115,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This Academic year is not found in our system..
+        ///   Looks up a localized string similar to السنة الدراسية غير موجودة في النظام.
         /// </summary>
         public static string AcademicYearNotFound {
             get {
@@ -124,7 +124,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Request accepted successfully..
+        ///   Looks up a localized string similar to تم قبول الطلب بنجاح.
         /// </summary>
         public static string AcceptedActionResultMessage {
             get {
@@ -133,7 +133,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Failed to added a new record..
+        ///   Looks up a localized string similar to فشلت الإضافة.
         /// </summary>
         public static string AddedFailed {
             get {
@@ -142,7 +142,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The record is added succefully..
+        ///   Looks up a localized string similar to تمت الإضافة بنجاح.
         /// </summary>
         public static string AddedSuccessfully {
             get {
@@ -151,7 +151,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to All additional roles must be a valid role type..
+        ///   Looks up a localized string similar to جميع الأدوار الإضافية يجب أن تكون صحيحة.
         /// </summary>
         public static string AdditionalRolesInvalid {
             get {
@@ -160,7 +160,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Advisor ID is not found..
+        ///   Looks up a localized string similar to معرف المرشد الأكاديمي غير صحيح.
         /// </summary>
         public static string AdvisorIdNotFound {
             get {
@@ -169,7 +169,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Advisor ID is required..
+        ///   Looks up a localized string similar to معرف المرشد الأكاديمي مطلوب.
         /// </summary>
         public static string AdvisorIdRequired {
             get {
@@ -178,7 +178,88 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bad request..
+        ///   Looks up a localized string similar to وصف التكليف مطلوب.
+        /// </summary>
+        public static string Assignment_DescriptionRequired {
+            get {
+                return ResourceManager.GetString("Assignment_DescriptionRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to يجب أن يكون تاريخ الاستحقاق في المستقبل.
+        /// </summary>
+        public static string Assignment_DueDateMustBeFuture {
+            get {
+                return ResourceManager.GetString("Assignment_DueDateMustBeFuture", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to تاريخ الاستحقاق مطلوب.
+        /// </summary>
+        public static string Assignment_DueDateRequired {
+            get {
+                return ResourceManager.GetString("Assignment_DueDateRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to التكليف غير موجود.
+        /// </summary>
+        public static string Assignment_NotFound {
+            get {
+                return ResourceManager.GetString("Assignment_NotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to الدرجة يجب أن تكون صفراً أو أكثر.
+        /// </summary>
+        public static string Assignment_ScoreInvalid {
+            get {
+                return ResourceManager.GetString("Assignment_ScoreInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to معرف التسليم مطلوب.
+        /// </summary>
+        public static string Assignment_SubmissionIdRequired {
+            get {
+                return ResourceManager.GetString("Assignment_SubmissionIdRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to عنوان التكليف يجب ألا يتجاوز 200 حرف.
+        /// </summary>
+        public static string Assignment_TitleMaxLength {
+            get {
+                return ResourceManager.GetString("Assignment_TitleMaxLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to عنوان التكليف مطلوب.
+        /// </summary>
+        public static string Assignment_TitleRequired {
+            get {
+                return ResourceManager.GetString("Assignment_TitleRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to الدرجة الإجمالية يجب أن تكون أكبر من صفر.
+        /// </summary>
+        public static string Assignment_TotalScoreInvalid {
+            get {
+                return ResourceManager.GetString("Assignment_TotalScoreInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to طلب غير صالح.
         /// </summary>
         public static string BadRequestExceptionMessage {
             get {
@@ -187,7 +268,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You are already enrolled in this course..
+        ///   Looks up a localized string similar to أنت مسجل بالفعل في هذه المادة.
         /// </summary>
         public static string Course_AlreadyEnrolled {
             get {
@@ -196,7 +277,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Course code must not exceed 50 characters..
+        ///   Looks up a localized string similar to رمز المادة يجب ألا يتجاوز 50 حرفاً.
         /// </summary>
         public static string Course_CodeMaxLength {
             get {
@@ -205,7 +286,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Course code is required..
+        ///   Looks up a localized string similar to رمز المادة مطلوب.
         /// </summary>
         public static string Course_CodeRequired {
             get {
@@ -214,7 +295,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Credit hours must be between 1 and 10..
+        ///   Looks up a localized string similar to يجب أن يكون عدد الساعات المعتمدة بين 1 و 10.
         /// </summary>
         public static string Course_CreditHoursInvalid {
             get {
@@ -223,7 +304,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Credit hours are required..
+        ///   Looks up a localized string similar to عدد الساعات المعتمدة مطلوب.
         /// </summary>
         public static string Course_CreditHoursRequired {
             get {
@@ -232,7 +313,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Enrollment not found for this course..
+        ///   Looks up a localized string similar to لم يتم العثور على تسجيل لك في هذه المادة.
         /// </summary>
         public static string Course_EnrollmentNotFound {
             get {
@@ -241,7 +322,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Course ID is required..
+        ///   Looks up a localized string similar to معرف المادة الدراسية مطلوب.
         /// </summary>
         public static string Course_IdRequired {
             get {
@@ -250,7 +331,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Course is not found..
+        ///   Looks up a localized string similar to المادة الدراسية غير موجودة.
         /// </summary>
         public static string Course_NotFound {
             get {
@@ -259,7 +340,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Section ID is required..
+        ///   Looks up a localized string similar to معرف الشعبة مطلوب.
         /// </summary>
         public static string Course_SectionIdRequired {
             get {
@@ -268,7 +349,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Section is not found..
+        ///   Looks up a localized string similar to الشعبة غير موجودة.
         /// </summary>
         public static string Course_SectionNotFound {
             get {
@@ -277,7 +358,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Course title must not exceed 200 characters..
+        ///   Looks up a localized string similar to اسم المادة يجب ألا يتجاوز 200 حرف.
         /// </summary>
         public static string Course_TitleMaxLength {
             get {
@@ -286,7 +367,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Course title is required..
+        ///   Looks up a localized string similar to اسم المادة مطلوب.
         /// </summary>
         public static string Course_TitleRequired {
             get {
@@ -295,7 +376,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Course has been assigned to the department successfully..
+        ///   Looks up a localized string similar to تم تعيين المادة للقسم بنجاح.
         /// </summary>
         public static string CourseAssignedSuccessfully {
             get {
@@ -304,7 +385,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Course ID is required..
+        ///   Looks up a localized string similar to معرف المادة مطلوب.
         /// </summary>
         public static string CourseIdRequired {
             get {
@@ -313,7 +394,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Course Id required for exam event..
+        ///   Looks up a localized string similar to معرف المادة مطلوب من أجل حدث الامتحانات.
         /// </summary>
         public static string CourseIdRequiredForExamEvent {
             get {
@@ -322,7 +403,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Course is not found..
+        ///   Looks up a localized string similar to المادة غير موجودة.
         /// </summary>
         public static string CourseNotFound {
             get {
@@ -331,7 +412,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Course has been removed from the department successfully..
+        ///   Looks up a localized string similar to تم حذف المادة من القسم بنجاح.
         /// </summary>
         public static string CourseRemovedSuccessfully {
             get {
@@ -340,7 +421,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to At least one course must be selected..
+        ///   Looks up a localized string similar to يجب اختيار مادة واحدة على الأقل.
         /// </summary>
         public static string Courses_Required {
             get {
@@ -349,7 +430,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Created successfully..
+        ///   Looks up a localized string similar to تم الإنشاء بنجاح.
         /// </summary>
         public static string CreatedActionResultMessage {
             get {
@@ -358,7 +439,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Deleted successfully..
+        ///   Looks up a localized string similar to تم الحذف بنجاح.
         /// </summary>
         public static string DeletedActionResultMessage {
             get {
@@ -367,7 +448,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Failed to deleted a new record..
+        ///   Looks up a localized string similar to فشل الحذف.
         /// </summary>
         public static string DeletedFailed {
             get {
@@ -376,7 +457,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The record is deleted succefully..
+        ///   Looks up a localized string similar to تم الحذف بنجاح.
         /// </summary>
         public static string DeletedSuccessfully {
             get {
@@ -385,7 +466,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Department code must not exceed 10 characters..
+        ///   Looks up a localized string similar to كود القسم يجب ألا يتجاوز 10 أحرف.
         /// </summary>
         public static string DepartmentCodeMaxLength {
             get {
@@ -394,7 +475,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Department code is required..
+        ///   Looks up a localized string similar to كود القسم مطلوب.
         /// </summary>
         public static string DepartmentCodeRequired {
             get {
@@ -403,7 +484,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Department code must not found before..
+        ///   Looks up a localized string similar to هذا الكود موجود بالفعل.
         /// </summary>
         public static string DepartmentCodeUnique {
             get {
@@ -412,7 +493,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Department ID is not found..
+        ///   Looks up a localized string similar to معرف القسم غير صحيح.
         /// </summary>
         public static string DepartmentIdNotFound {
             get {
@@ -421,7 +502,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Department ID is required..
+        ///   Looks up a localized string similar to معرف القسم مطلوب.
         /// </summary>
         public static string DepartmentIdRequired {
             get {
@@ -430,7 +511,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Max length of department name must not exceeded 100 character..
+        ///   Looks up a localized string similar to أقصى طول لاسم القسم يجب ألا يتجاوز 100 حرف.
         /// </summary>
         public static string DepartmentNameMaxLength {
             get {
@@ -439,7 +520,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Department name is required..
+        ///   Looks up a localized string similar to اسم القسم مطلوب.
         /// </summary>
         public static string DepartmentNameRequired {
             get {
@@ -448,7 +529,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Department is not found..
+        ///   Looks up a localized string similar to القسم غير موجود.
         /// </summary>
         public static string DepartmentNotFound {
             get {
@@ -457,7 +538,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Description of guidence request is required..
+        ///   Looks up a localized string similar to وصف طلب الإرشاد الأكاديمي مطلوب.
         /// </summary>
         public static string DescriptionRequired {
             get {
@@ -466,7 +547,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Email is activated successfully..
+        ///   Looks up a localized string similar to تم تفعيل البريد الإلكتروني بنجاح.
         /// </summary>
         public static string EmailActivatedSuccessfully {
             get {
@@ -475,7 +556,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Email is already activated..
+        ///   Looks up a localized string similar to البريد الإلكتروني مفعل بالفعل.
         /// </summary>
         public static string EmailAlreadyActivated {
             get {
@@ -484,7 +565,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to User already exists before..
+        ///   Looks up a localized string similar to المستخدم موجود بالفعل.
         /// </summary>
         public static string EmailAlreadyExistedbefore {
             get {
@@ -493,7 +574,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Email ends with invalid domain..
+        ///   Looks up a localized string similar to البريد الإلكتروني ينتهي بنطاق غير صالح.
         /// </summary>
         public static string EmailDomainInvalid {
             get {
@@ -502,7 +583,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Invalid email..
+        ///   Looks up a localized string similar to البريد الإلكتروني غير صالح.
         /// </summary>
         public static string EmailInvalid {
             get {
@@ -511,7 +592,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Email is not activated yet..
+        ///   Looks up a localized string similar to البريد الإلكتروني لم يتم تفعيله بعد.
         /// </summary>
         public static string EmailNotActivated {
             get {
@@ -520,7 +601,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Email is not found..
+        ///   Looks up a localized string similar to البريد الإلكتروني غير موجود.
         /// </summary>
         public static string EmailNotFound {
             get {
@@ -529,7 +610,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to User email is not found before..
+        ///   Looks up a localized string similar to هذا الحساب غير موجود.
         /// </summary>
         public static string EmailNotFoundBefore {
             get {
@@ -538,7 +619,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Email required..
+        ///   Looks up a localized string similar to البريد الإلكتروني مطلوب.
         /// </summary>
         public static string EmailRequired {
             get {
@@ -547,7 +628,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to User email is unverified..
+        ///   Looks up a localized string similar to البريد الإلكتروني غير محقق.
         /// </summary>
         public static string EmailUnVerified {
             get {
@@ -556,7 +637,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to End date must be greater that or equal event date..
+        ///   Looks up a localized string similar to تاريخ الانتهاء يجب أن يكون أكبر من أو يساوي تاريخ بداية الحدث.
         /// </summary>
         public static string EndDateMustBeGreaterThanOrEqualEventDate {
             get {
@@ -565,7 +646,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Academic term end date must be greater than start date..
+        ///   Looks up a localized string similar to تاريخ النهاية يجب أن يكون أكبر من تاريخ البداية.
         /// </summary>
         public static string EndDateMustBeGreaterThanStartDate {
             get {
@@ -574,7 +655,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to End date of academic year is required..
+        ///   Looks up a localized string similar to تاريخ نهاية السنة الدراسية مطلوب.
         /// </summary>
         public static string EndDateRequired {
             get {
@@ -583,7 +664,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to End time must be greater that a start time..
+        ///   Looks up a localized string similar to وقت الانتهاء يجب أن يكون بعد وقت البداية.
         /// </summary>
         public static string EndTimeMustBeGreaterThanStartTime {
             get {
@@ -592,7 +673,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to End time is required..
+        ///   Looks up a localized string similar to وقت انتهاء الحدث مطلوب.
         /// </summary>
         public static string EndTimeRequired {
             get {
@@ -601,7 +682,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Event date is required..
+        ///   Looks up a localized string similar to تاريخ الحدث مطلوب.
         /// </summary>
         public static string EventDateRequired {
             get {
@@ -610,7 +691,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Event Id is not valid..
+        ///   Looks up a localized string similar to معرف الحدث غير صالح.
         /// </summary>
         public static string EventIdNotValid {
             get {
@@ -619,7 +700,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Event Id Required..
+        ///   Looks up a localized string similar to معرف الحدث مطلوب.
         /// </summary>
         public static string EventIdRequired {
             get {
@@ -628,7 +709,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Event name is required..
+        ///   Looks up a localized string similar to اسم الحدث مطلوب.
         /// </summary>
         public static string EventNameRequired {
             get {
@@ -637,7 +718,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Academic term exam end date must be greater than exam start date..
+        ///   Looks up a localized string similar to تاريخ نهاية الامتحانات يجب أن يكون أكبر من تاريخ بدايتها.
         /// </summary>
         public static string ExamEndDateMustBeGreaterThanExamStartDate {
             get {
@@ -646,7 +727,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Academic term exam start date must be greater than registration start date..
+        ///   Looks up a localized string similar to تاريخ بداية الامتحانات يجب أن يكون أكبر من تاريخ بداية التسجيل.
         /// </summary>
         public static string ExamStartDateMustBeGreaterThanRegistrationStartDate {
             get {
@@ -655,7 +736,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to File Deletion Failed..
+        ///   Looks up a localized string similar to فشل إزالة الملف.
         /// </summary>
         public static string FaildToDeleted {
             get {
@@ -664,7 +745,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Failed to sign up that user..
+        ///   Looks up a localized string similar to فشل تسجيل هذا المستخدم.
         /// </summary>
         public static string FailedSignUp {
             get {
@@ -673,7 +754,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to File Name Requried.
+        ///   Looks up a localized string similar to اسم الملف مطلوب.
         /// </summary>
         public static string FileNameRequried {
             get {
@@ -682,7 +763,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to File Not Found.
+        ///   Looks up a localized string similar to الملف غير موجود.
         /// </summary>
         public static string FileNotFound {
             get {
@@ -691,7 +772,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to File has incorrect extension or does not exist.
+        ///   Looks up a localized string similar to الملف ليس من الامتداد الصحيح أو غير موجود.
         /// </summary>
         public static string FileNotValid {
             get {
@@ -700,7 +781,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Place of file is not valid..
+        ///   Looks up a localized string similar to مكان الملف غير صالح.
         /// </summary>
         public static string FilePalceNotValid {
             get {
@@ -709,7 +790,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to File Upload Failed..
+        ///   Looks up a localized string similar to فشل رفع الملف.
         /// </summary>
         public static string FileUploadFailed {
             get {
@@ -718,7 +799,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Fullname required..
+        ///   Looks up a localized string similar to الاسم الكامل مطلوب.
         /// </summary>
         public static string FullNameRequired {
             get {
@@ -727,7 +808,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Invalid gender..
+        ///   Looks up a localized string similar to الجنس غير صالح.
         /// </summary>
         public static string GenderIsNotValid {
             get {
@@ -736,7 +817,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Instructor user ID is required..
+        ///   Looks up a localized string similar to معرف المستخدم للمعيد مطلوب.
         /// </summary>
         public static string InstructorUserIdRequired {
             get {
@@ -745,7 +826,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Content type is not valid..
+        ///   Looks up a localized string similar to نوع محتوى الملف غير صالح.
         /// </summary>
         public static string InvalidContentType {
             get {
@@ -754,7 +835,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Invalid model state..
+        ///   Looks up a localized string similar to حالة النموذج غير صالحة.
         /// </summary>
         public static string InvalidModelStateExceptionMessage {
             get {
@@ -763,7 +844,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Invalid email or password!..
+        ///   Looks up a localized string similar to البريد الإلكتروني أو كلمة المرور غير صحيحة.
         /// </summary>
         public static string InvalidSignIn {
             get {
@@ -772,7 +853,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Token Invalid or expiration..
+        ///   Looks up a localized string similar to رمز التأكيد غير صحيح أو منتهي الصلاحية.
         /// </summary>
         public static string InvalidToken {
             get {
@@ -781,7 +862,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Lecture full for {0}..
+        ///   Looks up a localized string similar to المحاضرة ممتلئة لـ {0}.
         /// </summary>
         public static string Lecture_Full {
             get {
@@ -790,7 +871,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Location is required..
+        ///   Looks up a localized string similar to موقع الحدث مطلوب.
         /// </summary>
         public static string LocationRequired {
             get {
@@ -799,7 +880,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Event name is exceeded the required length..
+        ///   Looks up a localized string similar to اسم الحدث تجاوز الحد المسموح به.
         /// </summary>
         public static string MaxLengthOfEventNameExceededRequiredLength {
             get {
@@ -808,7 +889,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Location of event must not exceeded the required length..
+        ///   Looks up a localized string similar to موقع الحدث تجاوز الحد المسموح به.
         /// </summary>
         public static string MaxLengthOfLocationExceededRequiredLength {
             get {
@@ -817,7 +898,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to National Number is already taken..
+        ///   Looks up a localized string similar to الرقم القومي محجوز بالفعل.
         /// </summary>
         public static string NationalNumberExist {
             get {
@@ -826,7 +907,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to National number required..
+        ///   Looks up a localized string similar to الرقم القومي مطلوب.
         /// </summary>
         public static string NationalNumberRequired {
             get {
@@ -835,7 +916,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The requested resource was not found..
+        ///   Looks up a localized string similar to الموارد المطلوب غير موجود.
         /// </summary>
         public static string NotFoundExceptionMessage {
             get {
@@ -844,7 +925,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Operation successfully..
+        ///   Looks up a localized string similar to تم تنفيذ العملية بنجاح.
         /// </summary>
         public static string OkActionResultMessage {
             get {
@@ -853,7 +934,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Password confirmation value not equals to password value..
+        ///   Looks up a localized string similar to تأكيد كلمة المرور لا يتطابق مع كلمة المرور.
         /// </summary>
         public static string PasswordConfirmNotEqual {
             get {
@@ -862,7 +943,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Password minimum length must be 8 characters..
+        ///   Looks up a localized string similar to كلمة المرور يجب أن تكون 8 أحرف على الأقل.
         /// </summary>
         public static string PasswordMinLength {
             get {
@@ -871,7 +952,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Password required..
+        ///   Looks up a localized string similar to كلمة المرور مطلوبة.
         /// </summary>
         public static string PasswordRequired {
             get {
@@ -880,7 +961,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Password reset failed..
+        ///   Looks up a localized string similar to فشل إعادة تعيين كلمة المرور.
         /// </summary>
         public static string PasswordResetFailed {
             get {
@@ -889,7 +970,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Reset Code Sent..
+        ///   Looks up a localized string similar to تم إرسال رمز إعادة التعيين.
         /// </summary>
         public static string PasswordResetMessage {
             get {
@@ -898,7 +979,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Password Reset Code for Rafeek..
+        ///   Looks up a localized string similar to رمز التحقق لإعادة تعيين كلمة المرور - رفيق.
         /// </summary>
         public static string PasswordResetSubject {
             get {
@@ -907,7 +988,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Password has been reset successfully..
+        ///   Looks up a localized string similar to تم إعادة تعيين كلمة المرور بنجاح.
         /// </summary>
         public static string PasswordResetSuccess {
             get {
@@ -916,7 +997,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;title&gt;Password Reset&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;h2&gt;Password Reset&lt;/h2&gt;&lt;p&gt;Hello, @(Model.FullName) !&lt;/p&gt;&lt;p&gt;You have requested to reset your password for Rafeek. To reset your password, please use the following reset code:&lt;/p&gt;&lt;p&gt;Reset Code: &lt;strong&gt;@(Model.VerificationCode)&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;If you didn&apos;t request this password reset, you can safely ignore this email.&lt;/p&gt;&lt;p&gt;Regards,&lt;/p&gt;&lt;p&gt;The Rafeek Team&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;.
+        ///   Looks up a localized string similar to &amp;lt;!DOCTYPE html&amp;gt;&amp;lt;html&amp;gt;&amp;lt;head&amp;gt;&amp;lt;meta charset=&quot;utf-8&quot; /&amp;gt;&amp;lt;title&amp;gt;إعادة تعيين كلمة المرور&amp;lt;/title&amp;gt;&amp;lt;/head&amp;gt;&amp;lt;body style=&quot;direction: rtl; text-align: right;&quot;&amp;gt;&amp;lt;h2&amp;gt;إعادة تعيين كلمة المرور&amp;lt;/h2&amp;gt;&amp;lt;p&amp;gt;مرحباً، @(Model.FullName) !&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;لقد طلبت إعادة تعيين كلمة المرور الخاصة بك لنظام رفيق. لإعادة تعيين كلمة المرور، يرجى استخدام رمز إعادة التعيين التالي:&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;رمز إعادة التعيين: &amp;lt;strong&amp;gt;@(Model.VerificationCode)&amp;lt;/strong&amp;gt;&amp;lt;/p&amp;gt [rest of string was truncated]&quot;;.
         /// </summary>
         public static string PasswordResetTemplate {
             get {
@@ -925,7 +1006,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Password may be weak. Or it doesn&apos;t accepted cause of criteria..
+        ///   Looks up a localized string similar to كلمة المرور إما ضعيفة أو قد لا تستوفي المعايير المطلوبة.
         /// </summary>
         public static string PasswordValid {
             get {
@@ -934,7 +1015,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Invalid phone number..
+        ///   Looks up a localized string similar to رقم الهاتف غير صالح.
         /// </summary>
         public static string PhoneInvalid {
             get {
@@ -943,7 +1024,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Phone number is already taken..
+        ///   Looks up a localized string similar to رقم الهاتف محجوز بالفعل.
         /// </summary>
         public static string PhoneNumberExist {
             get {
@@ -952,7 +1033,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Phone number required..
+        ///   Looks up a localized string similar to رقم الهاتف مطلوب.
         /// </summary>
         public static string PhoneRequired {
             get {
@@ -961,7 +1042,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Place file Not Supported..
+        ///   Looks up a localized string similar to الملف غير مدعوم.
         /// </summary>
         public static string PlaceNotSupported {
             get {
@@ -970,7 +1051,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Place of file is not valid..
+        ///   Looks up a localized string similar to مكان الملف غير صالح.
         /// </summary>
         public static string PlaceNotValid {
             get {
@@ -979,7 +1060,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Primary role must be a valid role type..
+        ///   Looks up a localized string similar to الدور الأساسي يجب أن يكون صحيحاً.
         /// </summary>
         public static string PrimayRoleInvalid {
             get {
@@ -988,7 +1069,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Rate limit exceeded. You can only generate 3 timetables per hour..
+        ///   Looks up a localized string similar to تم تجاوز الحد المسموح به. يمكنك إنشاء 3 جداول فقط كل ساعة.
         /// </summary>
         public static string RateLimit_Exceeded {
             get {
@@ -997,7 +1078,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Recurrence end date must be after event date..
+        ///   Looks up a localized string similar to تاريخ انتهاء التكرار يجب أن يكون بعد تاريخ بداية الحدث.
         /// </summary>
         public static string RecurrenceEndDateMustBeAfterEventDate {
             get {
@@ -1006,7 +1087,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Recurrence end date is required..
+        ///   Looks up a localized string similar to تاريخ انتهاء التكرار مطلوب.
         /// </summary>
         public static string RecurrenceEndDateRequired {
             get {
@@ -1015,7 +1096,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Academic term registration end date must be greater than registration start date..
+        ///   Looks up a localized string similar to تاريخ نهاية التسجيل يجب أن يكون أكبر من تاريخ بداية التسجيل.
         /// </summary>
         public static string RegisterationEndDateMustBeGreaterThanRegistrationStartDate {
             get {
@@ -1024,7 +1105,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Academic term registration start date must be greater than academic term start date..
+        ///   Looks up a localized string similar to تاريخ بداية التسجيل يجب أن يكون أكبر من تاريخ بداية الترم الدراسي.
         /// </summary>
         public static string RegistrationStartDateMustBeGreaterThanAcademicTermStartDate {
             get {
@@ -1033,7 +1114,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Reminder due date is required..
+        ///   Looks up a localized string similar to تاريخ استحقاق التذكير مطلوب.
         /// </summary>
         public static string Reminder_DueDateRequired {
             get {
@@ -1042,7 +1123,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Reminder ID is required..
+        ///   Looks up a localized string similar to معرف التذكير مطلوب.
         /// </summary>
         public static string Reminder_IdRequired {
             get {
@@ -1051,7 +1132,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Reminder is not found..
+        ///   Looks up a localized string similar to التذكير غير موجود.
         /// </summary>
         public static string Reminder_NotFound {
             get {
@@ -1060,7 +1141,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Reminder title must not exceed 200 characters..
+        ///   Looks up a localized string similar to عنوان التذكير يجب ألا يتجاوز 200 حرف.
         /// </summary>
         public static string Reminder_TitleMaxLength {
             get {
@@ -1069,7 +1150,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Reminder title is required..
+        ///   Looks up a localized string similar to عنوان التذكير مطلوب.
         /// </summary>
         public static string Reminder_TitleRequired {
             get {
@@ -1078,7 +1159,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Request ID is required..
+        ///   Looks up a localized string similar to معرف الطلب مطلوب.
         /// </summary>
         public static string RequestIdRequired {
             get {
@@ -1087,7 +1168,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Guidence support request is failed to send..
+        ///   Looks up a localized string similar to فشل إرسال طلب الإرشاد الأكاديمي.
         /// </summary>
         public static string RequestIsFailedToSend {
             get {
@@ -1096,7 +1177,16 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Guidence support request is sent successfully..
+        ///   Looks up a localized string similar to فشل إرسال طلب الإرشاد الأكاديمي.
+        /// </summary>
+        public static string RequestIsFailedToSend1 {
+            get {
+                return ResourceManager.GetString("RequestIsFailedToSend1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to تم إرسال طلب الإرشاد الأكاديمي بنجاح.
         /// </summary>
         public static string RequestIsSentSuccessfully {
             get {
@@ -1105,7 +1195,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Invalid or expired password reset token..
+        ///   Looks up a localized string similar to رمز التحقق غير صالح أو منتهي الصلاحية.
         /// </summary>
         public static string ResetTokenInvalid {
             get {
@@ -1114,7 +1204,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to User credentials sent successfully to email..
+        ///   Looks up a localized string similar to تم إرسال بيانات المستخدم بنجاح إلى البريد الإلكتروني.
         /// </summary>
         public static string SendUserCredentialsMessage {
             get {
@@ -1123,7 +1213,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your University Account Credentials - Rafeek.
+        ///   Looks up a localized string similar to بيانات حسابك الجامعي - رفيق.
         /// </summary>
         public static string SendUserCredentialsSubject {
             get {
@@ -1132,7 +1222,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;title&gt;Your University Credentials&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;h2&gt;Welcome to Rafeek University System&lt;/h2&gt;&lt;p&gt;Hello, @(Model.FullName) !&lt;/p&gt;&lt;p&gt;Your account has been successfully created. Below are your login credentials:&lt;/p&gt;&lt;p&gt;University Email: &lt;strong&gt;@(Model.Email)&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Temporary Password: &lt;strong&gt;@(Model.Password)&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Important:&lt;/strong&gt; For security reasons, please change your password after your first login.&lt;/p&gt;&lt;p&gt;You can now acces [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to &amp;lt;!DOCTYPE html&amp;gt;&amp;lt;html&amp;gt;&amp;lt;head&amp;gt;&amp;lt;meta charset=&quot;utf-8&quot; /&amp;gt;&amp;lt;title&amp;gt;بيانات حسابك الجامعي&amp;lt;/title&amp;gt;&amp;lt;/head&amp;gt;&amp;lt;body style=&quot;direction: rtl; text-align: right;&quot;&amp;gt;&amp;lt;h2&amp;gt;مرحباً بك في نظام رفيق الجامعي&amp;lt;/h2&amp;gt;&amp;lt;p&amp;gt;مرحباً، @(Model.FullName) !&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;تم إنشاء حسابك بنجاح. فيما يلي بيانات تسجيل الدخول الخاصة بك:&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;البريد الجامعي: &amp;lt;strong&amp;gt;@(Model.Email)&amp;lt;/strong&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;كلمة المرور المؤقتة: &amp;lt;strong&amp;gt;@(Model.Password)&amp;lt;/s [rest of string was truncated]&quot;;.
         /// </summary>
         public static string SendUserCredentialsTemplate {
             get {
@@ -1141,7 +1231,16 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Start date of academic year is required..
+        ///   Looks up a localized string similar to مهلة الجلسة يجب أن تكون أكبر من 0 دقيقة.
+        /// </summary>
+        public static string SessionTimeoutInvalid {
+            get {
+                return ResourceManager.GetString("SessionTimeoutInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to تاريخ بداية السنة الدراسية مطلوب.
         /// </summary>
         public static string StartDateRequired {
             get {
@@ -1150,7 +1249,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Start time is required..
+        ///   Looks up a localized string similar to وقت بدء الحدث مطلوب.
         /// </summary>
         public static string StartTimeRequired {
             get {
@@ -1159,7 +1258,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Student ID is required..
+        ///   Looks up a localized string similar to معرف الطالب مطلوب.
         /// </summary>
         public static string StudentIdRequired {
             get {
@@ -1168,7 +1267,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Student profile not found..
+        ///   Looks up a localized string similar to الملف الشخصي للطالب غير موجود.
         /// </summary>
         public static string StudentProfileNotFound {
             get {
@@ -1177,7 +1276,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to That student list IDs are not found..
+        ///   Looks up a localized string similar to قائمة معرفات الطلاب غير موجودة.
         /// </summary>
         public static string StudentsNotFound {
             get {
@@ -1186,7 +1285,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Targeted user Id is required..
+        ///   Looks up a localized string similar to معرف المستخدم المستهدف مطلوب.
         /// </summary>
         public static string TargetUserIdRequired {
             get {
@@ -1195,7 +1294,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Timetable request data is required..
+        ///   Looks up a localized string similar to بيانات طلب الجدول مطلوبة.
         /// </summary>
         public static string TimetableRequest_Required {
             get {
@@ -1204,7 +1303,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Title of guidence request is required..
+        ///   Looks up a localized string similar to عنوان طلب الإرشاد الأكاديمي مطلوب.
         /// </summary>
         public static string TitleRequired {
             get {
@@ -1213,7 +1312,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to now, Token is expired..
+        ///   Looks up a localized string similar to التوكن منتهي الصلاحية.
         /// </summary>
         public static string TokenExpired {
             get {
@@ -1222,7 +1321,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Token is not found..
+        ///   Looks up a localized string similar to التوكن غير موجود.
         /// </summary>
         public static string TokenNotFound {
             get {
@@ -1231,7 +1330,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Invalid Token..
+        ///   Looks up a localized string similar to التوكن غير صالح.
         /// </summary>
         public static string TokenNotValid {
             get {
@@ -1240,7 +1339,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Token is required..
+        ///   Looks up a localized string similar to التوكن مطلوب.
         /// </summary>
         public static string TokenRequired {
             get {
@@ -1249,7 +1348,16 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unauthorized access..
+        ///   Looks up a localized string similar to التحقق الثنائي مطلوب.
+        /// </summary>
+        public static string TwoFactorRequired {
+            get {
+                return ResourceManager.GetString("TwoFactorRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to دخول غير مصرح به.
         /// </summary>
         public static string UnauthorizedExceptionMessage {
             get {
@@ -1258,7 +1366,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unable to generate unique university code after multiple attempts..
+        ///   Looks up a localized string similar to فشل توليد كود جامعي جديد.
         /// </summary>
         public static string UniversityCodeMultipleAttemps {
             get {
@@ -1267,7 +1375,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unable to generate unique university email after multiple attempts..
+        ///   Looks up a localized string similar to فشل توليد بريد جامعي جديد.
         /// </summary>
         public static string UniversityEmailMultipleAttemps {
             get {
@@ -1276,7 +1384,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An unknown error occurred..
+        ///   Looks up a localized string similar to حدث خطأ غير معروف.
         /// </summary>
         public static string UnknownExceptionMessage {
             get {
@@ -1285,7 +1393,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Failed to updated a new record..
+        ///   Looks up a localized string similar to فشل التحديث.
         /// </summary>
         public static string UpdatedFailed {
             get {
@@ -1294,7 +1402,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The record is updated succefully..
+        ///   Looks up a localized string similar to تم التحديث بنجاح.
         /// </summary>
         public static string UpdatedSuccessfully {
             get {
@@ -1303,7 +1411,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to User has been assigned to the department successfully..
+        ///   Looks up a localized string similar to تم تعيين المستخدم للقسم بنجاح.
         /// </summary>
         public static string UserAssignedSuccessfully {
             get {
@@ -1312,7 +1420,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to User Code is already taken..
+        ///   Looks up a localized string similar to كود المستخدم محجوز بالفعل.
         /// </summary>
         public static string UserCodeExist {
             get {
@@ -1321,7 +1429,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to User account is locked out..
+        ///   Looks up a localized string similar to حساب المستخدم مغلق.
         /// </summary>
         public static string UserLocked {
             get {
@@ -1330,7 +1438,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This user type cannot be assigned to a department..
+        ///   Looks up a localized string similar to نوع المستخدم هذا لا يمكن تعيينه لقسم.
         /// </summary>
         public static string UserNotEligibleForDepartment {
             get {
@@ -1339,7 +1447,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to User is not found..
+        ///   Looks up a localized string similar to المستخدم غير موجود.
         /// </summary>
         public static string UserNotFound {
             get {
@@ -1348,7 +1456,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to User is not assigned to any department..
+        ///   Looks up a localized string similar to المستخدم غير معين في أي قسم.
         /// </summary>
         public static string UserNotInDepartment {
             get {
@@ -1357,7 +1465,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to User has been removed from the department successfully..
+        ///   Looks up a localized string similar to تم حذف المستخدم من القسم بنجاح.
         /// </summary>
         public static string UserRemovedSuccessfully {
             get {
@@ -1366,7 +1474,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Could not find a specific academic role (Student/Doctor/Instructor) for this user..
+        ///   Looks up a localized string similar to لم يتم العثور على دور أكاديمي (طالب/دكتور/محاضر) لهذا المستخدم.
         /// </summary>
         public static string UserRoleNotFound {
             get {
@@ -1375,7 +1483,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Validation exception occurred..
+        ///   Looks up a localized string similar to حدث استثناء في التحقق.
         /// </summary>
         public static string ValidationExceptionMessage {
             get {
@@ -1384,7 +1492,7 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The guidance request either not exist, or the current request status is not pending, or that student is not under your advisement..
+        ///   Looks up a localized string similar to طلب الإرشاد غير موجود أو حالة الطلب ليست قيد الانتظار أو أن الطالب ليس تحت إرشادك.
         /// </summary>
         public static string YouAreNotAdvisorOfThatStudent {
             get {

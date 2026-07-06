@@ -1,658 +1,600 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-	<xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-				xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-		<xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
-		<xsd:element name="root" msdata:IsDataSet="true">
-			<xsd:complexType>
-				<xsd:choice maxOccurs="unbounded">
-					<xsd:element name="metadata">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="value" type="xsd:string" minOccurs="0" />
-							</xsd:sequence>
-							<xsd:attribute name="name" use="required" type="xsd:string" />
-							<xsd:attribute name="type" type="xsd:string" />
-							<xsd:attribute name="mimetype" type="xsd:string" />
-							<xsd:attribute ref="xml:space" />
-						</xsd:complexType>
-					</xsd:element>
-					<xsd:element name="assembly">
-						<xsd:complexType>
-							<xsd:attribute name="alias" type="xsd:string" />
-							<xsd:attribute name="name" type="xsd:string" />
-						</xsd:complexType>
-					</xsd:element>
-					<xsd:element name="data">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="value" type="xsd:string" minOccurs="0"
-											 msdata:Ordinal="1" />
-								<xsd:element name="comment" type="xsd:string" minOccurs="0"
-											 msdata:Ordinal="2" />
-							</xsd:sequence>
-							<xsd:attribute name="name" type="xsd:string" use="required"
-										   msdata:Ordinal="1" />
-							<xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-							<xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-							<xsd:attribute ref="xml:space" />
-						</xsd:complexType>
-					</xsd:element>
-					<xsd:element name="resheader">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="value" type="xsd:string" minOccurs="0"
-											 msdata:Ordinal="1" />
-							</xsd:sequence>
-							<xsd:attribute name="name" type="xsd:string" use="required" />
-						</xsd:complexType>
-					</xsd:element>
-				</xsd:choice>
-			</xsd:complexType>
-		</xsd:element>
-	</xsd:schema>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
 
-	<resheader name="resmimetype">
-		<value>text/microsoft-resx</value>
-	</resheader>
-	<resheader name="version">
-		<value>2.0</value>
-	</resheader>
-	<resheader name="reader">
-		<value>
-			System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0,
-			Culture=neutral, PublicKeyToken=b77a5c561934e089
-		</value>
-	</resheader>
-	<resheader name="writer">
-		<value>
-			System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0,
-			Culture=neutral, PublicKeyToken=b77a5c561934e089
-		</value>
-	</resheader>
-
-	<data name="PlaceNotValid" xml:space="preserve">
-	<value>Place of file is not valid.</value>
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="PlaceNotValid" xml:space="preserve">
+    <value>مكان الملف غير صالح</value>
   </data>
-
-
-	<data name="PlaceNotSupported" xml:space="preserve">
-	<value>Place file Not Supported.</value>
+  <data name="PlaceNotSupported" xml:space="preserve">
+    <value>الملف غير مدعوم</value>
   </data>
-
-	<data name="FilePalceNotValid" xml:space="preserve">
-	<value>Place of file is not valid.</value>
+  <data name="FilePalceNotValid" xml:space="preserve">
+    <value>مكان الملف غير صالح</value>
   </data>
-
-	<data name="FileNotFound" xml:space="preserve">
-	<value>File Not Found</value>
+  <data name="FileNotFound" xml:space="preserve">
+    <value>الملف غير موجود</value>
   </data>
-
-	<data name="FileNameRequried" xml:space="preserve">
-	<value>File Name Requried</value>
+  <data name="FileNameRequried" xml:space="preserve">
+    <value>اسم الملف مطلوب</value>
   </data>
-
-	<data name="FileNotValid" xml:space="preserve">
-	<value>File has incorrect extension or does not exist</value>
+  <data name="FileNotValid" xml:space="preserve">
+    <value>الملف ليس من الامتداد الصحيح أو غير موجود</value>
   </data>
-
-	<data name="FileUploadFailed" xml:space="preserve">
-	<value>File Upload Failed.</value>
-	</data>
-
-	<data name="FaildToDeleted" xml:space="preserve">
-	<value>File Deletion Failed.</value>
-	</data>
-
-	<data name="OkActionResultMessage" xml:space="preserve">
-	<value>Operation successfully.</value>
+  <data name="FileUploadFailed" xml:space="preserve">
+    <value>فشل رفع الملف</value>
   </data>
-
-	<data name="CreatedActionResultMessage" xml:space="preserve">
-	<value>Created successfully.</value>
+  <data name="FaildToDeleted" xml:space="preserve">
+    <value>فشل إزالة الملف</value>
   </data>
-
-	<data name="AcceptedActionResultMessage" xml:space="preserve">
-	<value>Request accepted successfully.</value>
+  <data name="OkActionResultMessage" xml:space="preserve">
+    <value>تم تنفيذ العملية بنجاح</value>
   </data>
-
-	<data name="DeletedActionResultMessage" xml:space="preserve">
-	<value>Deleted successfully.</value>
+  <data name="CreatedActionResultMessage" xml:space="preserve">
+    <value>تم الإنشاء بنجاح</value>
   </data>
-
-	<data name="ValidationExceptionMessage" xml:space="preserve">
-	<value>Validation exception occurred.</value>
+  <data name="AcceptedActionResultMessage" xml:space="preserve">
+    <value>تم قبول الطلب بنجاح</value>
   </data>
-
-	<data name="InvalidModelStateExceptionMessage" xml:space="preserve">
-	<value>Invalid model state.</value>
+  <data name="DeletedActionResultMessage" xml:space="preserve">
+    <value>تم الحذف بنجاح</value>
   </data>
-
-	<data name="NotFoundExceptionMessage" xml:space="preserve">
-	<value>The requested resource was not found.</value>
+  <data name="ValidationExceptionMessage" xml:space="preserve">
+    <value>حدث استثناء في التحقق</value>
   </data>
-
-	<data name="BadRequestExceptionMessage" xml:space="preserve">
-	<value>Bad request.</value>
+  <data name="InvalidModelStateExceptionMessage" xml:space="preserve">
+    <value>حالة النموذج غير صالحة</value>
   </data>
-
-	<data name="UnauthorizedExceptionMessage" xml:space="preserve">
-	<value>Unauthorized access.</value>
+  <data name="NotFoundExceptionMessage" xml:space="preserve">
+    <value>الموارد المطلوب غير موجود</value>
   </data>
-
-	<data name="UnknownExceptionMessage" xml:space="preserve">
-	<value>An unknown error occurred.</value>
+  <data name="BadRequestExceptionMessage" xml:space="preserve">
+    <value>طلب غير صالح</value>
   </data>
-
-	<data name="TokenNotValid" xml:space="preserve">
-	<value>Invalid Token.</value>
+  <data name="UnauthorizedExceptionMessage" xml:space="preserve">
+    <value>دخول غير مصرح به</value>
   </data>
-
-	<data name="InvalidSignIn" xml:space="preserve">
-	<value>Invalid email or password!.</value>
+  <data name="UnknownExceptionMessage" xml:space="preserve">
+    <value>حدث خطأ غير معروف</value>
   </data>
-
-	<data name="NationalNumberExist" xml:space="preserve">
-	<value>National Number is already taken.</value>
+  <data name="TokenNotValid" xml:space="preserve">
+    <value>التوكن غير صالح</value>
   </data>
-
-	<data name="PhoneNumberExist" xml:space="preserve">
-	<value>Phone number is already taken.</value>
+  <data name="InvalidSignIn" xml:space="preserve">
+    <value>البريد الإلكتروني أو كلمة المرور غير صحيحة</value>
   </data>
-
-	<data name="UserCodeExist" xml:space="preserve">
-	<value>User Code is already taken.</value>
+  <data name="NationalNumberExist" xml:space="preserve">
+    <value>الرقم القومي محجوز بالفعل</value>
   </data>
-
-	<data name="PhoneInvalid" xml:space="preserve">
-	<value>Invalid phone number.</value>
+  <data name="PhoneNumberExist" xml:space="preserve">
+    <value>رقم الهاتف محجوز بالفعل</value>
   </data>
-
-	<data name="EmailInvalid" xml:space="preserve">
-	<value>Invalid email.</value>
+  <data name="UserCodeExist" xml:space="preserve">
+    <value>كود المستخدم محجوز بالفعل</value>
   </data>
-
-	<data name="EmailAlreadyExistedbefore" xml:space="preserve">
-	<value>User already exists before.</value>
+  <data name="PhoneInvalid" xml:space="preserve">
+    <value>رقم الهاتف غير صالح</value>
   </data>
-
-	<data name="GenderIsNotValid" xml:space="preserve">
-	<value>Invalid gender.</value>
+  <data name="EmailInvalid" xml:space="preserve">
+    <value>البريد الإلكتروني غير صالح</value>
   </data>
-
-	<data name="PasswordRequired" xml:space="preserve">
-	<value>Password required.</value>
+  <data name="EmailAlreadyExistedbefore" xml:space="preserve">
+    <value>المستخدم موجود بالفعل</value>
   </data>
-
-	<data name="PasswordValid" xml:space="preserve">
-	<value>Password may be weak. Or it doesn't accepted cause of criteria.</value>
+  <data name="GenderIsNotValid" xml:space="preserve">
+    <value>الجنس غير صالح</value>
   </data>
-
-	<data name="PasswordResetFailed" xml:space="preserve">
-	<value>Password reset failed.</value>
+  <data name="PasswordRequired" xml:space="preserve">
+    <value>كلمة المرور مطلوبة</value>
   </data>
-
-	<data name="PasswordValid" xml:space="preserve">
-	<value>Password may be weak. Or it doesn't accepted cause of criteria.</value>
+  <data name="PasswordValid" xml:space="preserve">
+    <value>كلمة المرور إما ضعيفة أو قد لا تستوفي المعايير المطلوبة</value>
   </data>
-
-	<data name="PasswordConfirmNotEqual" xml:space="preserve">
-	<value>Password confirmation value not equals to password value.</value>
+  <data name="PasswordResetFailed" xml:space="preserve">
+    <value>فشل إعادة تعيين كلمة المرور</value>
   </data>
-
-	<data name="FullNameRequired" xml:space="preserve">
-	<value>Fullname required.</value>
+  <data name="PasswordConfirmNotEqual" xml:space="preserve">
+    <value>تأكيد كلمة المرور لا يتطابق مع كلمة المرور</value>
   </data>
-
-	<data name="PhoneRequired" xml:space="preserve">
-	<value>Phone number required.</value>
+  <data name="FullNameRequired" xml:space="preserve">
+    <value>الاسم الكامل مطلوب</value>
   </data>
-
-	<data name="EmailRequired" xml:space="preserve">
-	<value>Email required.</value>
+  <data name="PhoneRequired" xml:space="preserve">
+    <value>رقم الهاتف مطلوب</value>
   </data>
-
-	<data name="NationalNumberRequired" xml:space="preserve">
-	<value>National number required.</value>
+  <data name="EmailRequired" xml:space="preserve">
+    <value>البريد الإلكتروني مطلوب</value>
   </data>
-
-	<data name="NationalNumberRequired" xml:space="preserve">
-	<value>National number required.</value>
+  <data name="NationalNumberRequired" xml:space="preserve">
+    <value>الرقم القومي مطلوب</value>
   </data>
-
-	<data name="PasswordMinLength" xml:space="preserve">
-	<value>Password minimum length must be 8 characters.</value>
+  <data name="PasswordMinLength" xml:space="preserve">
+    <value>كلمة المرور يجب أن تكون 8 أحرف على الأقل</value>
   </data>
-
-	<data name="EmailDomainInvalid" xml:space="preserve">
-	<value>Email ends with invalid domain.</value>
+  <data name="EmailDomainInvalid" xml:space="preserve">
+    <value>البريد الإلكتروني ينتهي بنطاق غير صالح</value>
   </data>
-
-	<data name="InvalidContentType" xml:space="preserve">
-	<value>Content type is not valid.</value>
+  <data name="InvalidContentType" xml:space="preserve">
+    <value>نوع محتوى الملف غير صالح</value>
   </data>
-
-	<data name="FailedSignUp" xml:space="preserve">
-	<value>Failed to sign up that user.</value>
+  <data name="FailedSignUp" xml:space="preserve">
+    <value>فشل تسجيل هذا المستخدم</value>
   </data>
-
-	<data name="UniversityCodeMultipleAttemps" xml:space="preserve">
-	<value>Unable to generate unique university code after multiple attempts.</value>
+  <data name="UniversityCodeMultipleAttemps" xml:space="preserve">
+    <value>فشل توليد كود جامعي جديد</value>
   </data>
-
-	<data name="UniversityEmailMultipleAttemps" xml:space="preserve">
-	<value>Unable to generate unique university email after multiple attempts.</value>
+  <data name="UniversityEmailMultipleAttemps" xml:space="preserve">
+    <value>فشل توليد بريد جامعي جديد</value>
   </data>
-
-	<data name="PrimayRoleInvalid" xml:space="preserve">
-	<value>Primary role must be a valid role type.</value>
+  <data name="PrimayRoleInvalid" xml:space="preserve">
+    <value>الدور الأساسي يجب أن يكون صحيحاً</value>
   </data>
-
-	<data name="AdditionalRolesInvalid" xml:space="preserve">
-	<value>All additional roles must be a valid role type.</value>
+  <data name="AdditionalRolesInvalid" xml:space="preserve">
+    <value>جميع الأدوار الإضافية يجب أن تكون صحيحة</value>
   </data>
-
-	<data name="TokenNotFound" xml:space="preserve">
-	<value>Token is not found.</value>
+  <data name="TokenNotFound" xml:space="preserve">
+    <value>التوكن غير موجود</value>
   </data>
-
-	<data name="UserNotFound" xml:space="preserve">
-	<value>User is not found.</value>
+  <data name="UserNotFound" xml:space="preserve">
+    <value>المستخدم غير موجود</value>
   </data>
-
-	<data name="TokenRequired" xml:space="preserve">
-	<value>Token is required.</value>
+  <data name="TokenRequired" xml:space="preserve">
+    <value>التوكن مطلوب</value>
   </data>
-
-	<data name="TokenExpired" xml:space="preserve">
-	<value>now, Token is expired.</value>
+  <data name="TokenExpired" xml:space="preserve">
+    <value>التوكن منتهي الصلاحية</value>
   </data>
-
-	<data name="UserLocked" xml:space="preserve">
-	<value>User account is locked out.</value>
+  <data name="UserLocked" xml:space="preserve">
+    <value>حساب المستخدم مغلق</value>
   </data>
-
-	<data name="EmailUnVerified" xml:space="preserve">
-	<value>User email is unverified.</value>
-	</data>
-	<data name="TwoFactorRequired" xml:space="preserve">
-	<value>Two-factor authentication is required.</value>
-	</data>
-
-	<data name="EmailNotFoundBefore" xml:space="preserve">
-	<value>User email is not found before.</value>
+  <data name="EmailUnVerified" xml:space="preserve">
+    <value>البريد الإلكتروني غير محقق</value>
   </data>
-
-	<data name="PasswordResetSubject" xml:space="preserve">
-	<value>Password Reset Code for Rafeek.</value>
+  <data name="TwoFactorRequired" xml:space="preserve">
+    <value>التحقق الثنائي مطلوب</value>
   </data>
-
-	<data name="PasswordResetTemplate" xml:space="preserve">
-	<value>&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&lt;meta charset="utf-8" /&gt;&lt;title&gt;Password Reset&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;h2&gt;Password Reset&lt;/h2&gt;&lt;p&gt;Hello, @(Model.FullName) !&lt;/p&gt;&lt;p&gt;You have requested to reset your password for Rafeek. To reset your password, please use the following reset code:&lt;/p&gt;&lt;p&gt;Reset Code: &lt;strong&gt;@(Model.VerificationCode)&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;If you didn't request this password reset, you can safely ignore this email.&lt;/p&gt;&lt;p&gt;Regards,&lt;/p&gt;&lt;p&gt;The Rafeek Team&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</value>
+  <data name="EmailNotFoundBefore" xml:space="preserve">
+    <value>هذا الحساب غير موجود</value>
   </data>
-
-	<data name="PasswordResetMessage" xml:space="preserve">
-	<value>Reset Code Sent.</value>
+  <data name="PasswordResetSubject" xml:space="preserve">
+    <value>رمز التحقق لإعادة تعيين كلمة المرور - رفيق</value>
   </data>
-	<data name="ResetTokenInvalid" xml:space="preserve">
-	<value>Invalid or expired password reset token.</value>
+  <data name="PasswordResetTemplate" xml:space="preserve">
+    <value>&amp;lt;!DOCTYPE html&amp;gt;&amp;lt;html&amp;gt;&amp;lt;head&amp;gt;&amp;lt;meta charset="utf-8" /&amp;gt;&amp;lt;title&amp;gt;إعادة تعيين كلمة المرور&amp;lt;/title&amp;gt;&amp;lt;/head&amp;gt;&amp;lt;body style="direction: rtl; text-align: right;"&amp;gt;&amp;lt;h2&amp;gt;إعادة تعيين كلمة المرور&amp;lt;/h2&amp;gt;&amp;lt;p&amp;gt;مرحباً، @(Model.FullName) !&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;لقد طلبت إعادة تعيين كلمة المرور الخاصة بك لنظام رفيق. لإعادة تعيين كلمة المرور، يرجى استخدام رمز إعادة التعيين التالي:&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;رمز إعادة التعيين: &amp;lt;strong&amp;gt;@(Model.VerificationCode)&amp;lt;/strong&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;إذا لم تطلب إعادة تعيين كلمة المرور هذه، يمكنك تجاهل هذا البريد الإلكتروني بأمان.&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;مع تحياتي،&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;فريق رفيق&amp;lt;/p&amp;gt;&amp;lt;/body&amp;gt;&amp;lt;/html&amp;gt;</value>
   </data>
-
-	<data name="PasswordResetSuccess" xml:space="preserve">
-	<value>Password has been reset successfully.</value>
+  <data name="PasswordResetMessage" xml:space="preserve">
+    <value>تم إرسال رمز إعادة التعيين</value>
   </data>
-
-	<data name="InvalidToken" xml:space="preserve">
-	<value>Token Invalid or expiration.</value>
+  <data name="ResetTokenInvalid" xml:space="preserve">
+    <value>رمز التحقق غير صالح أو منتهي الصلاحية</value>
   </data>
-
-	<data name="EmailNotFound" xml:space="preserve">
-	<value>Email is not found.</value>
+  <data name="PasswordResetSuccess" xml:space="preserve">
+    <value>تم إعادة تعيين كلمة المرور بنجاح</value>
   </data>
-
-	<data name="SendUserCredentialsSubject" xml:space="preserve">
-	<value>Your University Account Credentials - Rafeek</value>
-	</data>
-
-	<data name="SendUserCredentialsTemplate" xml:space="preserve">
-	<value>&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&lt;meta charset="utf-8" /&gt;&lt;title&gt;Your University Credentials&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;h2&gt;Welcome to Rafeek University System&lt;/h2&gt;&lt;p&gt;Hello, @(Model.FullName) !&lt;/p&gt;&lt;p&gt;Your account has been successfully created. Below are your login credentials:&lt;/p&gt;&lt;p&gt;University Email: &lt;strong&gt;@(Model.Email)&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Temporary Password: &lt;strong&gt;@(Model.Password)&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Important:&lt;/strong&gt; For security reasons, please change your password after your first login.&lt;/p&gt;&lt;p&gt;You can now access the Rafeek University System using these credentials.&lt;/p&gt;&lt;p&gt;If you did not request this account, please contact support immediately.&lt;/p&gt;&lt;p&gt;Regards,&lt;/p&gt;&lt;p&gt;The Rafeek Team&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</value>
-	</data>
-
-	<data name="SendUserCredentialsMessage" xml:space="preserve">
-	<value>User credentials sent successfully to email.</value>
-	</data>
-
-	<data name="EmailNotActivated" xml:space="preserve">
-	<value>Email is not activated yet.</value>
-	</data>
-
-	<data name="EmailActivatedSuccessfully" xml:space="preserve">
-	<value>Email is activated successfully.</value>
-	</data>
-
-	<data name="EmailAlreadyActivated" xml:space="preserve">
-	<value>Email is already activated.</value>
-	</data>
-
-	<data name="EventNameRequired" xml:space="preserve">
-	<value>Event name is required.</value>
-	</data>
-
-	<data name="MaxLengthOfEventNameExceededRequiredLength" xml:space="preserve">
-	<value>Event name is exceeded the required length.</value>
-	</data>
-
-	<data name="EventDateRequired" xml:space="preserve">
-	<value>Event date is required.</value>
-	</data>
-
-	<data name="StartTimeRequired" xml:space="preserve">
-	<value>Start time is required.</value>
-	</data>
-
-	<data name="EndTimeRequired" xml:space="preserve">
-	<value>End time is required.</value>
-	</data>
-
-	<data name="LocationRequired" xml:space="preserve">
-	<value>Location is required.</value>
-	</data>
-
-	<data name="MaxLengthOfLocationExceededRequiredLength" xml:space="preserve">
-	<value>Location of event must not exceeded the required length.</value>
-	</data>
-
-	<data name="TargetUserIdRequired" xml:space="preserve">
-	<value>Targeted user Id is required.</value>
-	</data>
-
-	<data name="EndTimeMustBeGreaterThanStartTime" xml:space="preserve">
-	<value>End time must be greater that a start time.</value>
-	</data>
-
-	<data name="EndDateMustBeGreaterThanOrEqualEventDate" xml:space="preserve">
-	<value>End date must be greater that or equal event date.</value>
-	</data>
-
-	<data name="RecurrenceEndDateRequired" xml:space="preserve">
-	<value>Recurrence end date is required.</value>
-	</data>
-
-	<data name="RecurrenceEndDateMustBeAfterEventDate" xml:space="preserve">
-	<value>Recurrence end date must be after event date.</value>
-	</data>
-
-	<data name="CourseIdRequiredForExamEvent" xml:space="preserve">
-	<value>Course Id required for exam event.</value>
-	</data>
-
-	<data name="AddedSuccessfully" xml:space="preserve">
-	<value>The record is added succefully.</value>
-	</data>
-
-	<data name="UpdatedSuccessfully" xml:space="preserve">
-	<value>The record is updated succefully.</value>
-	</data>
-
-	<data name="DeletedSuccessfully" xml:space="preserve">
-	<value>The record is deleted succefully.</value>
-	</data>
-
-	<data name="AddedFailed" xml:space="preserve">
-	<value>Failed to added a new record.</value>
-	</data>
-
-	<data name="UpdatedFailed" xml:space="preserve">
-	<value>Failed to updated a new record.</value>
-	</data>
-
-	<data name="DeletedFailed" xml:space="preserve">
-	<value>Failed to deleted a new record.</value>
-	</data>
-
-	<data name="EventIdRequired" xml:space="preserve">
-	<value>Event Id Required.</value>
-	</data>
-
-	<data name="EventIdNotValid" xml:space="preserve">
-	<value>Event Id is not valid.</value>
-	</data>
-
-	<data name="AcademicYearNameRequired" xml:space="preserve">
-	<value>Academic year name is required.</value>
-	</data>
-
-	<data name="StartDateRequired" xml:space="preserve">
-	<value>Start date of academic year is required.</value>
-	</data>
-
-	<data name="EndDateRequired" xml:space="preserve">
-	<value>End date of academic year is required.</value>
-	</data>
-
-	<data name="EndDateMustBeGreaterThanStartDate" xml:space="preserve">
-	<value>End date of academic year must be greater than start date.</value>
-	</data>
-
-	<data name="AcademicYearNotFound" xml:space="preserve">
-	<value>This Academic year is not found in our system.</value>
-	</data>
-
-	<data name="AcademicTermNameRequired" xml:space="preserve">
-	<value>Academic term name is required.</value>
-	</data>
-	<data name="AcademicTermIdRequired" xml:space="preserve">
-	<value>Academic year ID required.</value>
-	</data>
-	<data name="AcademicTermStartDateRequired" xml:space="preserve">
-	<value>Academic start date is required.</value>
-	</data>
-	<data name="AcademicTermEndDateRequired" xml:space="preserve">
-	<value>Academic term end date is required.</value>
-	</data>
-	<data name="EndDateMustBeGreaterThanStartDate" xml:space="preserve">
-	<value>Academic term end date must be greater than start date.</value>
-	</data>
-	<data name="RegisterationEndDateMustBeGreaterThanRegistrationStartDate" xml:space="preserve">
-	<value>Academic term registration end date must be greater than registration start date.</value>
-	</data>
-	<data name="ExamEndDateMustBeGreaterThanExamStartDate" xml:space="preserve">
-	<value>Academic term exam end date must be greater than exam start date.</value>
-	</data>
-	<data name="RegistrationStartDateMustBeGreaterThanAcademicTermStartDate" xml:space="preserve">
-	<value>Academic term registration start date must be greater than academic term start date.</value>
-	</data>
-	<data name="ExamStartDateMustBeGreaterThanRegistrationStartDate" xml:space="preserve">
-	<value>Academic term exam start date must be greater than registration start date.</value>
-	</data>
-	<data name="AcademicTermNotFound" xml:space="preserve">
-	<value>Academic term is not found in our system.</value>
-	</data>
-	<data name="StudentsNotFound" xml:space="preserve">
-	<value>That student list IDs are not found.</value>
-	</data>
-	<data name="RequestIdRequired" xml:space="preserve">
-	<value>Request ID is required.</value>
-	</data>
-	<data name="YouAreNotAdvisorOfThatStudent" xml:space="preserve">
-	<value>The guidance request either not exist, or the current request status is not pending, or that student is not under your advisement.</value>
-	</data>
-	<data name="AdvisorIdRequired" xml:space="preserve">
-	<value>Advisor ID is required.</value>
-	</data>
-	<data name="AdvisorIdNotFound" xml:space="preserve">
-	<value>Advisor ID is not found.</value>
-	</data>
-	<data name="DepartmentIdNotFound" xml:space="preserve">
-	<value>Department ID is not found.</value>
-	</data>
-	<data name="StudentIdRequired" xml:space="preserve">
-	<value>Student ID is required.</value>
-	</data>
-	<data name="TitleRequired" xml:space="preserve">
-	<value>Title of guidence request is required.</value>
-	</data>
-	<data name="DescriptionRequired" xml:space="preserve">
-	<value>Description of guidence request is required.</value>
-	</data>
-	<data name="RequestIsSentSuccessfully" xml:space="preserve">
-	<value>Guidence support request is sent successfully.</value>
-	</data>
-	<data name="RequestIsFailedToSend" xml:space="preserve">
-	<value>Guidence support request is failed to send.</value>
-	</data>
-	<data name="DepartmentNameRequired" xml:space="preserve">
-	<value>Department name is required.</value>
-	</data>
-	<data name="DepartmentNameMaxLength" xml:space="preserve">
-	<value>Max length of department name must not exceeded 100 character.</value>
-	</data>
-	<data name="DepartmentCodeRequired" xml:space="preserve">
-	<value>Department code is required.</value>
-	</data>
-	<data name="DepartmentCodeMaxLength" xml:space="preserve">
-	<value>Department code must not exceed 10 characters.</value>
-	</data>
-	<data name="DepartmentCodeUnique" xml:space="preserve">
-	<value>Department code must not found before.</value>
-	</data>
-	<data name="DepartmentNotFound" xml:space="preserve">
-	<value>Department is not found.</value>
-	</data>
-	<data name="DepartmentIdRequired" xml:space="preserve">
-	<value>Department ID is required.</value>
-	</data>
-	<data name="CourseNotFound" xml:space="preserve">
-	<value>Course is not found.</value>
-	</data>
-	<data name="CourseIdRequired" xml:space="preserve">
-	<value>Course ID is required.</value>
-	</data>
-	<data name="UserNotEligibleForDepartment" xml:space="preserve">
-	<value>This user type cannot be assigned to a department.</value>
-	</data>
-	<data name="CourseAssignedSuccessfully" xml:space="preserve">
-	<value>Course has been assigned to the department successfully.</value>
-	</data>
-	<data name="UserAssignedSuccessfully" xml:space="preserve">
-	<value>User has been assigned to the department successfully.</value>
-	</data>
-	<data name="CourseRemovedSuccessfully" xml:space="preserve">
-	<value>Course has been removed from the department successfully.</value>
-	</data>
-	<data name="UserRemovedSuccessfully" xml:space="preserve">
-	<value>User has been removed from the department successfully.</value>
-	</data>
-	<data name="UserRoleNotFound" xml:space="preserve">
-	<value>Could not find a specific academic role (Student/Doctor/Instructor) for this user.</value>
-	</data>
-	<data name="UserNotInDepartment" xml:space="preserve">
-	<value>User is not assigned to any department.</value>
-	</data>
-	<data name="RateLimit_Exceeded" xml:space="preserve">
-	<value>Rate limit exceeded. You can only generate 3 timetables per hour.</value>
-	</data>
-
-	<data name="TimetableRequest_Required" xml:space="preserve">
-	<value>Timetable request data is required.</value>
-	</data>
-
-	<data name="Courses_Required" xml:space="preserve">
-	<value>At least one course must be selected.</value>
-	</data>
-
-	<data name="Lecture_Full" xml:space="preserve">
-	<value>Lecture full for {0}.</value>
-	</data>
-
-	<!-- Reminder -->
-	<data name="Reminder_TitleRequired" xml:space="preserve">
-	<value>Reminder title is required.</value>
-	</data>
-	<data name="Reminder_TitleMaxLength" xml:space="preserve">
-	<value>Reminder title must not exceed 200 characters.</value>
-	</data>
-	<data name="Reminder_DueDateRequired" xml:space="preserve">
-	<value>Reminder due date is required.</value>
-	</data>
-	<data name="Reminder_IdRequired" xml:space="preserve">
-	<value>Reminder ID is required.</value>
-	</data>
-	<data name="Reminder_NotFound" xml:space="preserve">
-	<value>Reminder is not found.</value>
-	</data>
-
-	<!-- Course / Enrollment -->
-	<data name="StudentProfileNotFound" xml:space="preserve">
-	<value>Student profile not found.</value>
-	</data>
-	<data name="Course_NotFound" xml:space="preserve">
-	<value>Course is not found.</value>
-	</data>
-	<data name="Course_IdRequired" xml:space="preserve">
-	<value>Course ID is required.</value>
-	</data>
-	<data name="Course_SectionIdRequired" xml:space="preserve">
-	<value>Section ID is required.</value>
-	</data>
-	<data name="Course_AlreadyEnrolled" xml:space="preserve">
-	<value>You are already enrolled in this course.</value>
-	</data>
-	<data name="Course_EnrollmentNotFound" xml:space="preserve">
-	<value>Enrollment not found for this course.</value>
-	</data>
-	<data name="Course_SectionNotFound" xml:space="preserve">
-	<value>Section is not found.</value>
-	</data>
-	<data name="Course_CodeRequired" xml:space="preserve">
-	<value>Course code is required.</value>
-	</data>
-	<data name="Course_CodeMaxLength" xml:space="preserve">
-	<value>Course code must not exceed 50 characters.</value>
-	</data>
-	<data name="Course_TitleRequired" xml:space="preserve">
-	<value>Course title is required.</value>
-	</data>
-	<data name="Course_TitleMaxLength" xml:space="preserve">
-	<value>Course title must not exceed 200 characters.</value>
-	</data>
-	<data name="Course_CreditHoursRequired" xml:space="preserve">
-	<value>Credit hours are required.</value>
-	</data>
-	<data name="Course_CreditHoursInvalid" xml:space="preserve">
-	<value>Credit hours must be between 1 and 10.</value>
-	</data>
-	<data name="InstructorUserIdRequired" xml:space="preserve">
-	<value>Instructor user ID is required.</value>
-	</data>
+  <data name="InvalidToken" xml:space="preserve">
+    <value>رمز التأكيد غير صحيح أو منتهي الصلاحية</value>
+  </data>
+  <data name="EmailNotFound" xml:space="preserve">
+    <value>البريد الإلكتروني غير موجود</value>
+  </data>
+  <data name="SendUserCredentialsSubject" xml:space="preserve">
+    <value>بيانات حسابك الجامعي - رفيق</value>
+  </data>
+  <data name="SendUserCredentialsTemplate" xml:space="preserve">
+    <value>&amp;lt;!DOCTYPE html&amp;gt;&amp;lt;html&amp;gt;&amp;lt;head&amp;gt;&amp;lt;meta charset="utf-8" /&amp;gt;&amp;lt;title&amp;gt;بيانات حسابك الجامعي&amp;lt;/title&amp;gt;&amp;lt;/head&amp;gt;&amp;lt;body style="direction: rtl; text-align: right;"&amp;gt;&amp;lt;h2&amp;gt;مرحباً بك في نظام رفيق الجامعي&amp;lt;/h2&amp;gt;&amp;lt;p&amp;gt;مرحباً، @(Model.FullName) !&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;تم إنشاء حسابك بنجاح. فيما يلي بيانات تسجيل الدخول الخاصة بك:&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;البريد الجامعي: &amp;lt;strong&amp;gt;@(Model.Email)&amp;lt;/strong&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;كلمة المرور المؤقتة: &amp;lt;strong&amp;gt;@(Model.Password)&amp;lt;/strong&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;lt;strong&amp;gt;مهم:&amp;lt;/strong&amp;gt; لأسباب أمنية، يرجى تغيير كلمة المرور الخاصة بك بعد أول تسجيل دخول.&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;يمكنك الآن الوصول إلى نظام رفيق الجامعي باستخدام هذه البيانات.&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;إذا لم تطلب هذا الحساب، يرجى الاتصال بالدعم الفني فوراً.&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;مع تحياتي،&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;فريق رفيق&amp;lt;/p&amp;gt;&amp;lt;/body&amp;gt;&amp;lt;/html&amp;gt;</value>
+  </data>
+  <data name="SendUserCredentialsMessage" xml:space="preserve">
+    <value>تم إرسال بيانات المستخدم بنجاح إلى البريد الإلكتروني</value>
+  </data>
+  <data name="EmailNotActivated" xml:space="preserve">
+    <value>البريد الإلكتروني لم يتم تفعيله بعد</value>
+  </data>
+  <data name="EmailActivatedSuccessfully" xml:space="preserve">
+    <value>تم تفعيل البريد الإلكتروني بنجاح</value>
+  </data>
+  <data name="EmailAlreadyActivated" xml:space="preserve">
+    <value>البريد الإلكتروني مفعل بالفعل</value>
+  </data>
+  <data name="EventNameRequired" xml:space="preserve">
+    <value>اسم الحدث مطلوب</value>
+  </data>
+  <data name="MaxLengthOfEventNameExceededRequiredLength" xml:space="preserve">
+    <value>اسم الحدث تجاوز الحد المسموح به</value>
+  </data>
+  <data name="EventDateRequired" xml:space="preserve">
+    <value>تاريخ الحدث مطلوب</value>
+  </data>
+  <data name="StartTimeRequired" xml:space="preserve">
+    <value>وقت بدء الحدث مطلوب</value>
+  </data>
+  <data name="EndTimeRequired" xml:space="preserve">
+    <value>وقت انتهاء الحدث مطلوب</value>
+  </data>
+  <data name="LocationRequired" xml:space="preserve">
+    <value>موقع الحدث مطلوب</value>
+  </data>
+  <data name="MaxLengthOfLocationExceededRequiredLength" xml:space="preserve">
+    <value>موقع الحدث تجاوز الحد المسموح به</value>
+  </data>
+  <data name="TargetUserIdRequired" xml:space="preserve">
+    <value>معرف المستخدم المستهدف مطلوب</value>
+  </data>
+  <data name="EndTimeMustBeGreaterThanStartTime" xml:space="preserve">
+    <value>وقت الانتهاء يجب أن يكون بعد وقت البداية</value>
+  </data>
+  <data name="EndDateMustBeGreaterThanOrEqualEventDate" xml:space="preserve">
+    <value>تاريخ الانتهاء يجب أن يكون أكبر من أو يساوي تاريخ بداية الحدث</value>
+  </data>
+  <data name="RecurrenceEndDateRequired" xml:space="preserve">
+    <value>تاريخ انتهاء التكرار مطلوب</value>
+  </data>
+  <data name="RecurrenceEndDateMustBeAfterEventDate" xml:space="preserve">
+    <value>تاريخ انتهاء التكرار يجب أن يكون بعد تاريخ بداية الحدث</value>
+  </data>
+  <data name="CourseIdRequiredForExamEvent" xml:space="preserve">
+    <value>معرف المادة مطلوب من أجل حدث الامتحانات</value>
+  </data>
+  <data name="AddedSuccessfully" xml:space="preserve">
+    <value>تمت الإضافة بنجاح</value>
+  </data>
+  <data name="UpdatedSuccessfully" xml:space="preserve">
+    <value>تم التحديث بنجاح</value>
+  </data>
+  <data name="DeletedSuccessfully" xml:space="preserve">
+    <value>تم الحذف بنجاح</value>
+  </data>
+  <data name="AddedFailed" xml:space="preserve">
+    <value>فشلت الإضافة</value>
+  </data>
+  <data name="UpdatedFailed" xml:space="preserve">
+    <value>فشل التحديث</value>
+  </data>
+  <data name="DeletedFailed" xml:space="preserve">
+    <value>فشل الحذف</value>
+  </data>
+  <data name="EventIdRequired" xml:space="preserve">
+    <value>معرف الحدث مطلوب</value>
+  </data>
+  <data name="EventIdNotValid" xml:space="preserve">
+    <value>معرف الحدث غير صالح</value>
+  </data>
+  <data name="AcademicYearNameRequired" xml:space="preserve">
+    <value>اسم السنة الأكاديمية مطلوب</value>
+  </data>
+  <data name="StartDateRequired" xml:space="preserve">
+    <value>تاريخ بداية السنة الدراسية مطلوب</value>
+  </data>
+  <data name="EndDateRequired" xml:space="preserve">
+    <value>تاريخ نهاية السنة الدراسية مطلوب</value>
+  </data>
+  <data name="EndDateMustBeGreaterThanStartDate" xml:space="preserve">
+    <value>تاريخ النهاية يجب أن يكون أكبر من تاريخ البداية</value>
+  </data>
+  <data name="AcademicYearNotFound" xml:space="preserve">
+    <value>السنة الدراسية غير موجودة في النظام</value>
+  </data>
+  <data name="AcademicTermNameRequired" xml:space="preserve">
+    <value>اسم الترم الأكاديمي مطلوب</value>
+  </data>
+  <data name="AcademicTermIdRequired" xml:space="preserve">
+    <value>معرف السنة الدراسية مطلوب</value>
+  </data>
+  <data name="AcademicTermStartDateRequired" xml:space="preserve">
+    <value>تاريخ بداية الترم الأكاديمي مطلوب</value>
+  </data>
+  <data name="AcademicTermEndDateRequired" xml:space="preserve">
+    <value>تاريخ نهاية الترم الأكاديمي مطلوب</value>
+  </data>
+  <data name="RegisterationEndDateMustBeGreaterThanRegistrationStartDate" xml:space="preserve">
+    <value>تاريخ نهاية التسجيل يجب أن يكون أكبر من تاريخ بداية التسجيل</value>
+  </data>
+  <data name="ExamEndDateMustBeGreaterThanExamStartDate" xml:space="preserve">
+    <value>تاريخ نهاية الامتحانات يجب أن يكون أكبر من تاريخ بدايتها</value>
+  </data>
+  <data name="RegistrationStartDateMustBeGreaterThanAcademicTermStartDate" xml:space="preserve">
+    <value>تاريخ بداية التسجيل يجب أن يكون أكبر من تاريخ بداية الترم الدراسي</value>
+  </data>
+  <data name="ExamStartDateMustBeGreaterThanRegistrationStartDate" xml:space="preserve">
+    <value>تاريخ بداية الامتحانات يجب أن يكون أكبر من تاريخ بداية التسجيل</value>
+  </data>
+  <data name="AcademicTermNotFound" xml:space="preserve">
+    <value>الترم الأكاديمي غير موجود</value>
+  </data>
+  <data name="StudentsNotFound" xml:space="preserve">
+    <value>قائمة معرفات الطلاب غير موجودة</value>
+  </data>
+  <data name="RequestIdRequired" xml:space="preserve">
+    <value>معرف الطلب مطلوب</value>
+  </data>
+  <data name="YouAreNotAdvisorOfThatStudent" xml:space="preserve">
+    <value>طلب الإرشاد غير موجود أو حالة الطلب ليست قيد الانتظار أو أن الطالب ليس تحت إرشادك</value>
+  </data>
+  <data name="AdvisorIdRequired" xml:space="preserve">
+    <value>معرف المرشد الأكاديمي مطلوب</value>
+  </data>
+  <data name="AdvisorIdNotFound" xml:space="preserve">
+    <value>معرف المرشد الأكاديمي غير صحيح</value>
+  </data>
+  <data name="DepartmentIdNotFound" xml:space="preserve">
+    <value>معرف القسم غير صحيح</value>
+  </data>
+  <data name="StudentIdRequired" xml:space="preserve">
+    <value>معرف الطالب مطلوب</value>
+  </data>
+  <data name="TitleRequired" xml:space="preserve">
+    <value>عنوان طلب الإرشاد الأكاديمي مطلوب</value>
+  </data>
+  <data name="DescriptionRequired" xml:space="preserve">
+    <value>وصف طلب الإرشاد الأكاديمي مطلوب</value>
+  </data>
+  <data name="RequestIsSentSuccessfully" xml:space="preserve">
+    <value>تم إرسال طلب الإرشاد الأكاديمي بنجاح</value>
+  </data>
+  <data name="RequestIsFailedToSend" xml:space="preserve">
+    <value>فشل إرسال طلب الإرشاد الأكاديمي</value>
+  </data>
+  <data name="RequestIsFailedToSend1" xml:space="preserve">
+    <value>فشل إرسال طلب الإرشاد الأكاديمي</value>
+  </data>
+  <data name="DepartmentNameRequired" xml:space="preserve">
+    <value>اسم القسم مطلوب</value>
+  </data>
+  <data name="DepartmentNameMaxLength" xml:space="preserve">
+    <value>أقصى طول لاسم القسم يجب ألا يتجاوز 100 حرف</value>
+  </data>
+  <data name="DepartmentCodeRequired" xml:space="preserve">
+    <value>كود القسم مطلوب</value>
+  </data>
+  <data name="DepartmentCodeMaxLength" xml:space="preserve">
+    <value>كود القسم يجب ألا يتجاوز 10 أحرف</value>
+  </data>
+  <data name="DepartmentCodeUnique" xml:space="preserve">
+    <value>هذا الكود موجود بالفعل</value>
+  </data>
+  <data name="DepartmentNotFound" xml:space="preserve">
+    <value>القسم غير موجود</value>
+  </data>
+  <data name="DepartmentIdRequired" xml:space="preserve">
+    <value>معرف القسم مطلوب</value>
+  </data>
+  <data name="CourseNotFound" xml:space="preserve">
+    <value>المادة غير موجودة</value>
+  </data>
+  <data name="CourseIdRequired" xml:space="preserve">
+    <value>معرف المادة مطلوب</value>
+  </data>
+  <data name="UserNotEligibleForDepartment" xml:space="preserve">
+    <value>نوع المستخدم هذا لا يمكن تعيينه لقسم</value>
+  </data>
+  <data name="CourseAssignedSuccessfully" xml:space="preserve">
+    <value>تم تعيين المادة للقسم بنجاح</value>
+  </data>
+  <data name="UserAssignedSuccessfully" xml:space="preserve">
+    <value>تم تعيين المستخدم للقسم بنجاح</value>
+  </data>
+  <data name="CourseRemovedSuccessfully" xml:space="preserve">
+    <value>تم حذف المادة من القسم بنجاح</value>
+  </data>
+  <data name="UserRemovedSuccessfully" xml:space="preserve">
+    <value>تم حذف المستخدم من القسم بنجاح</value>
+  </data>
+  <data name="UserRoleNotFound" xml:space="preserve">
+    <value>لم يتم العثور على دور أكاديمي (طالب/دكتور/محاضر) لهذا المستخدم</value>
+  </data>
+  <data name="UserNotInDepartment" xml:space="preserve">
+    <value>المستخدم غير معين في أي قسم</value>
+  </data>
+  <data name="RateLimit_Exceeded" xml:space="preserve">
+    <value>تم تجاوز الحد المسموح به. يمكنك إنشاء 3 جداول فقط كل ساعة</value>
+  </data>
+  <data name="TimetableRequest_Required" xml:space="preserve">
+    <value>بيانات طلب الجدول مطلوبة</value>
+  </data>
+  <data name="Courses_Required" xml:space="preserve">
+    <value>يجب اختيار مادة واحدة على الأقل</value>
+  </data>
+  <data name="Lecture_Full" xml:space="preserve">
+    <value>المحاضرة ممتلئة لـ {0}</value>
+  </data>
+  <data name="Reminder_TitleRequired" xml:space="preserve">
+    <value>عنوان التذكير مطلوب</value>
+  </data>
+  <data name="Reminder_TitleMaxLength" xml:space="preserve">
+    <value>عنوان التذكير يجب ألا يتجاوز 200 حرف</value>
+  </data>
+  <data name="Reminder_DueDateRequired" xml:space="preserve">
+    <value>تاريخ استحقاق التذكير مطلوب</value>
+  </data>
+  <data name="Reminder_IdRequired" xml:space="preserve">
+    <value>معرف التذكير مطلوب</value>
+  </data>
+  <data name="Reminder_NotFound" xml:space="preserve">
+    <value>التذكير غير موجود</value>
+  </data>
+  <data name="StudentProfileNotFound" xml:space="preserve">
+    <value>الملف الشخصي للطالب غير موجود</value>
+  </data>
+  <data name="Course_NotFound" xml:space="preserve">
+    <value>المادة الدراسية غير موجودة</value>
+  </data>
+  <data name="Course_IdRequired" xml:space="preserve">
+    <value>معرف المادة الدراسية مطلوب</value>
+  </data>
+  <data name="Course_SectionIdRequired" xml:space="preserve">
+    <value>معرف الشعبة مطلوب</value>
+  </data>
+  <data name="Course_AlreadyEnrolled" xml:space="preserve">
+    <value>أنت مسجل بالفعل في هذه المادة</value>
+  </data>
+  <data name="Course_EnrollmentNotFound" xml:space="preserve">
+    <value>لم يتم العثور على تسجيل لك في هذه المادة</value>
+  </data>
+  <data name="Course_SectionNotFound" xml:space="preserve">
+    <value>الشعبة غير موجودة</value>
+  </data>
+  <data name="Course_CodeRequired" xml:space="preserve">
+    <value>رمز المادة مطلوب</value>
+  </data>
+  <data name="Course_CodeMaxLength" xml:space="preserve">
+    <value>رمز المادة يجب ألا يتجاوز 50 حرفاً</value>
+  </data>
+  <data name="Course_TitleRequired" xml:space="preserve">
+    <value>اسم المادة مطلوب</value>
+  </data>
+  <data name="Course_TitleMaxLength" xml:space="preserve">
+    <value>اسم المادة يجب ألا يتجاوز 200 حرف</value>
+  </data>
+  <data name="Course_CreditHoursRequired" xml:space="preserve">
+    <value>عدد الساعات المعتمدة مطلوب</value>
+  </data>
+  <data name="Course_CreditHoursInvalid" xml:space="preserve">
+    <value>يجب أن يكون عدد الساعات المعتمدة بين 1 و 10</value>
+  </data>
+  <data name="InstructorUserIdRequired" xml:space="preserve">
+    <value>معرف المستخدم للمعيد مطلوب</value>
+  </data>
   <data name="Assignment_TitleRequired" xml:space="preserve">
-    <value>Assignment title is required.</value>
+    <value>عنوان التكليف مطلوب</value>
   </data>
   <data name="Assignment_TitleMaxLength" xml:space="preserve">
-    <value>Assignment title must not exceed 200 characters.</value>
+    <value>عنوان التكليف يجب ألا يتجاوز 200 حرف</value>
   </data>
   <data name="Assignment_DescriptionRequired" xml:space="preserve">
-    <value>Assignment description is required.</value>
+    <value>وصف التكليف مطلوب</value>
   </data>
   <data name="Assignment_DueDateRequired" xml:space="preserve">
-    <value>Due date is required.</value>
+    <value>تاريخ الاستحقاق مطلوب</value>
   </data>
   <data name="Assignment_DueDateMustBeFuture" xml:space="preserve">
-    <value>Due date must be in the future.</value>
+    <value>يجب أن يكون تاريخ الاستحقاق في المستقبل</value>
   </data>
   <data name="Assignment_TotalScoreInvalid" xml:space="preserve">
-    <value>Total score must be greater than 0.</value>
+    <value>الدرجة الإجمالية يجب أن تكون أكبر من صفر</value>
   </data>
   <data name="Assignment_NotFound" xml:space="preserve">
-    <value>Assignment not found.</value>
+    <value>التكليف غير موجود</value>
   </data>
   <data name="Assignment_SubmissionIdRequired" xml:space="preserve">
-    <value>Submission ID is required.</value>
+    <value>معرف التسليم مطلوب</value>
   </data>
   <data name="Assignment_ScoreInvalid" xml:space="preserve">
-    <value>Score must be 0 or greater.</value>
+    <value>الدرجة يجب أن تكون صفراً أو أكثر</value>
   </data>
   <data name="SessionTimeoutInvalid" xml:space="preserve">
-    <value>Session timeout must be greater than 0 minutes.</value>
+    <value>مهلة الجلسة يجب أن تكون أكبر من 0 دقيقة</value>
   </data>
 </root>

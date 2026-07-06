@@ -15,6 +15,7 @@ using Rafeek.Application.Localization;
 using Rafeek.Domain.Enums;
 using System;
 using System.Threading.Tasks;
+using Rafeek.Application.Handlers.DocumentHandlers.Commands.DeleteDocumentRequest;
 
 namespace Rafeek.API.Controllers.Version1
 {
@@ -101,6 +102,23 @@ namespace Rafeek.API.Controllers.Version1
         {
             var result = await _mediator.Send(query);
             return File(result, "text/csv", $"academic_requests_{DateTime.UtcNow:yyyyMMddHHmmss}.csv");
+        }
+
+        /// <summary>
+        /// Delete a specific document/academic request by its ID.
+        /// </summary>
+        /// <param name="command"></param>
+        /// <returns></returns>
+        [HttpDelete]
+        [RoleAuthorize(nameof(UserType.Admin), nameof(UserType.Staff))]
+        [Route(ApiRoutes.DocumentRequest.Delete)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        public async Task<IActionResult> Delete([FromQuery]DeleteDocumentRequestCommand command)
+        {
+            var result = await _mediator.Send(command);
+            return Ok(result);
         }
     }
 }

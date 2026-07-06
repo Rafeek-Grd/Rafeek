@@ -191,6 +191,7 @@ namespace Rafeek.API.Routes
             public const string UpdateStatus = Base + "/document-requests/{id}/status";
             public const string BulkUpdateStatus = Base + "/document-requests/bulk-status";
             public const string Export = Base + "/document-requests/export";
+            public const string Delete = Base + "/document-requests/delete";
         }
 
         public static class Professor
