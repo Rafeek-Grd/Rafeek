@@ -28,7 +28,7 @@ namespace Rafeek.Application.Handlers.StudentHandlers.Commands.SendRequestForAdv
 
         private async Task<bool> StudentExists(Guid studentId, CancellationToken cancellationToken)
         {
-            return await _ctx.StudentRepository.ExistsAsync(x => x.UserId == studentId, cancellationToken);
+            return await _ctx.StudentRepository.ExistsAsync(x => x.Id == studentId, cancellationToken);
         }
     }
 }
