@@ -20,11 +20,7 @@ namespace Rafeek.Application.Handlers.StudentHandlers.Commands.SendRequestForAdv
 
         public async Task<string> Handle(SendRequestForAdvismentGuideCommand request, CancellationToken cancellationToken)
         {
-            var student = await _ctx.StudentRepository.GetFirstAsync(x => x.UserId == request.StudentId, cancellationToken);
-            if (student == null)
-            {
-                throw new Rafeek.Application.Common.Exceptions.NotFoundException(nameof(Student), request.StudentId);
-            }
+            var student = await _ctx.StudentRepository.GetFirstAsync(x => x.Id == request.StudentId, cancellationToken);
 
             var studentSupport = new StudentSupport()
             {
