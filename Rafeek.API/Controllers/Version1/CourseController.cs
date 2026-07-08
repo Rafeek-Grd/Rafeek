@@ -11,6 +11,7 @@ using Rafeek.Application.Handlers.CourseHandlers.Commands.EnrollStudent;
 using Rafeek.Application.Localization;
 using Rafeek.Application.Handlers.CourseHandlers.Queries.GetCourses;
 using Rafeek.Application.Handlers.CourseHandlers.Queries.GetCourseDetail;
+using Rafeek.Domain.Enums;
 
 namespace Rafeek.API.Controllers.Version1
 {
@@ -76,7 +77,7 @@ namespace Rafeek.API.Controllers.Version1
         /// <param name="query"></param>
         /// <returns></returns>
         [HttpGet]
-        [RoleAuthorize]
+        [RoleAuthorize(nameof(UserType.Admin))]
         [Route(ApiRoutes.Courses.GetAll)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

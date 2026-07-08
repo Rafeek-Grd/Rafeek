@@ -26,7 +26,7 @@ namespace Rafeek.Application.Handlers.StudentHandlers.Query.GetStudentSchedule
 
             if (student == null) throw new UnauthorizedException("Student profile not found.");
 
-            var query = _context.Enrollments
+            var enrollmentsQuery = _context.Enrollments
                 .AsNoTracking()
                 .Include(e => e.Course)
                 .Include(e => e.LectureGroup)
@@ -48,16 +48,21 @@ namespace Rafeek.Application.Handlers.StudentHandlers.Query.GetStudentSchedule
 
             if (request.PageNumber == -1)
             {
-                items = await query.ToListAsync(cancellationToken);
+                items = (await enrollmentsQuery.ToListAsync(cancellationToken))
+                    .DistinctBy(c => c.CourseId)
+                    .ToList();
                 totalCount = items.Count;
             }
             else
             {
-                totalCount = await query.CountAsync(cancellationToken);
-                items = await query
+                var allItems = (await enrollmentsQuery.ToListAsync(cancellationToken))
+                    .DistinctBy(c => c.CourseId)
+                    .ToList();
+                totalCount = allItems.Count;
+                items = allItems
                     .Skip((request.PageNumber - 1) * request.PageSize)
                     .Take(request.PageSize)
-                    .ToListAsync(cancellationToken);
+                    .ToList();
             }
 
             return new PagginatedResult<ScheduleItemDto>(items, totalCount, request.PageNumber, request.PageSize);
