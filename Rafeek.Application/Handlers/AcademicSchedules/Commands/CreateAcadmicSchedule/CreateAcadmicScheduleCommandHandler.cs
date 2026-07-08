@@ -1,5 +1,7 @@
-﻿using MediatR;
+﻿using AutoMapper;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Rafeek.Application.Common.Exceptions;
 using Rafeek.Application.Common.Interfaces;
 using Rafeek.Application.Handlers.AcademicSchedules.DTOs;
 using Rafeek.Domain.Entities;
@@ -11,26 +13,29 @@ namespace Rafeek.Application.Handlers.AcademicSchedules.Commands.CreateAcadmicSc
     {
         private readonly IUnitOfWork _ctx;
         private readonly IRafeekDbContext _context;
+        private readonly IMapper _mapper;
 
-        public CreateAcadmicScheduleCommandHandler(IUnitOfWork ctx, IRafeekDbContext context)
+        public CreateAcadmicScheduleCommandHandler(IUnitOfWork ctx, IRafeekDbContext context, IMapper mapper)
         {
             _ctx = ctx;
             _context = context;
+            _mapper = mapper;
         }
 
         public async Task<AcademicScheduleDto> Handle(CreateAcadmicScheduleCommand request, CancellationToken cancellationToken)
         {
-            var entity = new LectureGroup
+            var courseExists = await _context.Courses.AnyAsync(c => c.Id == request.CourseId, cancellationToken);
+            if (!courseExists)
+                throw new NotFoundException(nameof(Course), request.CourseId);
+
+            if (request.DoctorId.HasValue)
             {
-                CourseId = request.CourseId,
-                DoctorId = request.DoctorId,
-                Day = request.Day,
-                Time = request.Time,
-                StartTime = request.StartTime,
-                EndTime = request.EndTime,
-                Capacity = request.Capacity,
-                Location = request.Location
-            };
+                var doctorExists = await _context.Doctors.AnyAsync(d => d.Id == request.DoctorId.Value, cancellationToken);
+                if (!doctorExists)
+                    throw new NotFoundException(nameof(Doctor), request.DoctorId.Value);
+            }
+
+            var entity = _mapper.Map<LectureGroup>(request);
 
             _ctx.LectureGroupRepository.Add(entity);
             await _ctx.SaveChangesAsync(cancellationToken);
