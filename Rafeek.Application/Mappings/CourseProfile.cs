@@ -1,5 +1,7 @@
 using AutoMapper;
 using Rafeek.Application.Handlers.CourseHandlers.DTOs;
+using Rafeek.Application.Handlers.CourseHandlers.Commands.CreateNewCourse;
+using Rafeek.Application.Handlers.CourseHandlers.Commands.UpdateCourse;
 using Rafeek.Domain.Entities;
 
 namespace Rafeek.Application.Mappings
@@ -8,6 +10,8 @@ namespace Rafeek.Application.Mappings
     {
         public CourseProfile()
         {
+            CreateMap<CreateNewCourseCommand, Course>();
+            CreateMap<UpdateCourseCommand, Course>();
             CreateMap<Course, CourseDto>();
             CreateMap<LectureGroup, LectureGroupDto>()
                 .ForMember(d => d.DoctorName, opt => opt.MapFrom(s => s.Doctor != null ? s.Doctor.User.FullName : null))

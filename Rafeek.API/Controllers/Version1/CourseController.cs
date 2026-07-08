@@ -28,7 +28,7 @@ namespace Rafeek.API.Controllers.Version1
         /// <param name="command"></param>
         /// <returns></returns>
         [HttpPost]
-        [RoleAuthorize]
+        [RoleAuthorize(nameof(UserType.Admin))]
         [Route(ApiRoutes.Course.Create)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -45,7 +45,7 @@ namespace Rafeek.API.Controllers.Version1
         /// <param name="command"></param>
         /// <returns></returns>
         [HttpPut]
-        [RoleAuthorize]
+        [RoleAuthorize(nameof(UserType.Admin))]
         [Route(ApiRoutes.Course.Update)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -61,7 +61,7 @@ namespace Rafeek.API.Controllers.Version1
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpDelete]
-        [RoleAuthorize]
+        [RoleAuthorize(nameof(UserType.Admin))]
         [Route(ApiRoutes.Course.Delete)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -77,7 +77,7 @@ namespace Rafeek.API.Controllers.Version1
         /// <param name="query"></param>
         /// <returns></returns>
         [HttpGet]
-        [RoleAuthorize(nameof(UserType.Admin))]
+        [RoleAuthorize(nameof(UserType.Admin), nameof(UserType.Student))]
         [Route(ApiRoutes.Courses.GetAll)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
