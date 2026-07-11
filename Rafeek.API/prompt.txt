@@ -1,178 +1,49 @@
-﻿﻿      SELECT CASE
-﻿          WHEN EXISTS (
-﻿              SELECT 1
-﻿              FROM [dbo].[Doctors] AS [d]
-﻿              WHERE [d].[IsDeleted] = CAST(0 AS bit) AND [d].[UserId] = @__request_DoctorId_Value_0) THEN CAST(1 AS bit)
-﻿          ELSE CAST(0 AS bit)
-﻿      END
-﻿Erro\: Microsoft.EntityFrameworkCore.Database.Command[0]
-﻿      Failed executing DbCommand (356ms) [Parameters=[@p0='b83cc969-aac0-49bc-b13f-251445f00277', @p1='120', @p2='a5c948e1-e660-44fd-8f61-38d7c7318688', @p3='2026-07-09T01:04:48.1551343+03:00', @p4='5b0622bd-4f3c-4606-a73f-76d81b98fd3b' (Nullable = false) (Size = 4000), @p5='2026-07-14T12:00' (Nullable = false) (Size = 4000), @p6=NULL (DbType = DateTime2), @p7=NULL (Size = 4000), @p8='d5358b9f-4eec-46d7-a34a-144cd4312574' (Nullable = true), @p9='22:00:00' (Nullable = true), @p10='True', @p11='False', @p12='??????' (Size = 4000), @p13='12:00:00' (Nullable = true), @p14='12:00' (Nullable = false) (Size = 4000), @p15=NULL (DbType = DateTime2), @p16=NULL (Size = 4000)], CommandType='Text', CommandTimeout='30']
-﻿SET IMPLICIT_TRANSACTIONS OFF;
-﻿SET NOCOUNT ON;
-﻿INSERT INTO [dbo].[LectureGroups] ([Id], [Capacity], [CourseId], [CreatedAt], [CreatedBy], [Day], [DeletedAt], [DeletedBy], [DoctorId], [EndTime], [IsActive], [IsDeleted], [Location], [StartTime], [Time], [UpdatedAt], [UpdatedBy])
-﻿VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14, @p15, @p16);
-﻿fail: 7/9/2026 01:04:48.606 RelationalEventId.CommandError[20102] (Microsoft.EntityFrameworkCore.Database.Command) 
-﻿      Failed executing DbCommand (356ms) [Parameters=[@p0='b83cc969-aac0-49bc-b13f-251445f00277', @p1='120', @p2='a5c948e1-e660-44fd-8f61-38d7c7318688', @p3='2026-07-09T01:04:48.1551343+03:00', @p4='5b0622bd-4f3c-4606-a73f-76d81b98fd3b' (Nullable = false) (Size = 4000), @p5='2026-07-14T12:00' (Nullable = false) (Size = 4000), @p6=NULL (DbType = DateTime2), @p7=NULL (Size = 4000), @p8='d5358b9f-4eec-46d7-a34a-144cd4312574' (Nullable = true), @p9='22:00:00' (Nullable = true), @p10='True', @p11='False', @p12='??????' (Size = 4000), @p13='12:00:00' (Nullable = true), @p14='12:00' (Nullable = false) (Size = 4000), @p15=NULL (DbType = DateTime2), @p16=NULL (Size = 4000)], CommandType='Text', CommandTimeout='30']
-﻿      SET IMPLICIT_TRANSACTIONS OFF;
-﻿      SET NOCOUNT ON;
-﻿      INSERT INTO [dbo].[LectureGroups] ([Id], [Capacity], [CourseId], [CreatedAt], [CreatedBy], [Day], [DeletedAt], [DeletedBy], [DoctorId], [EndTime], [IsActive], [IsDeleted], [Location], [StartTime], [Time], [UpdatedAt], [UpdatedBy])
-﻿      VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14, @p15, @p16);
-﻿Erro\: Microsoft.EntityFrameworkCore.Update[0]
-﻿      An exception occurred in the database while saving changes for context type 'Rafeek.Persistence.RafeekDbContext'.
-﻿Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
-﻿ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): The INSERT statement conflicted with the FOREIGN KEY constraint "FK_LectureGroups_Doctors_DoctorId". The conflict occurred in database "db43195", table "dbo.Doctors", column 'Id'.
-﻿The statement has been terminated.
-﻿   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
-﻿   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
-﻿--- End of stack trace from previous location ---
-﻿   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
-﻿   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
-﻿--- End of stack trace from previous location ---
-﻿   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
-﻿   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
-﻿   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
-﻿ClientConnectionId:6203e80e-af08-4626-97f0-bfcfc05f33cc
-﻿Error Number:547,State:0,Class:16
-﻿   --- End of inner exception stack trace ---
-﻿   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
-﻿   at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
-﻿   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
-﻿   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
-﻿   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
-﻿   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
-﻿   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
-﻿   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
-﻿   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
-﻿ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): The INSERT statement conflicted with the FOREIGN KEY constraint "FK_LectureGroups_Doctors_DoctorId". The conflict occurred in database "db43195", table "dbo.Doctors", column 'Id'.
-﻿The statement has been terminated.
-﻿   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
-﻿   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
-﻿--- End of stack trace from previous location ---
-﻿   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
-﻿   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
-﻿--- End of stack trace from previous location ---
-﻿   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
-﻿   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
-﻿   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
-﻿ClientConnectionId:6203e80e-af08-4626-97f0-bfcfc05f33cc
-﻿Error Number:547,State:0,Class:16
-﻿   --- End of inner exception stack trace ---
-﻿   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
-﻿   at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
-﻿   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
-﻿   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
-﻿   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
-﻿   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
-﻿   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
-﻿   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
-﻿   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
-﻿fail: 7/9/2026 01:04:49.036 CoreEventId.SaveChangesFailed[10000] (Microsoft.EntityFrameworkCore.Update) 
-﻿      An exception occurred in the database while saving changes for context type 'Rafeek.Persistence.RafeekDbContext'.
-﻿      Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
-﻿       ---> Microsoft.Data.SqlClient.SqlException (0x80131904): The INSERT statement conflicted with the FOREIGN KEY constraint "FK_LectureGroups_Doctors_DoctorId". The conflict occurred in database "db43195", table "dbo.Doctors", column 'Id'.
-﻿      The statement has been terminated.
-﻿         at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
-﻿         at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
-﻿      --- End of stack trace from previous location ---
-﻿         at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
-﻿         at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
-﻿      --- End of stack trace from previous location ---
-﻿         at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
-﻿         at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
-﻿         at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
-﻿      ClientConnectionId:6203e80e-af08-4626-97f0-bfcfc05f33cc
-﻿      Error Number:547,State:0,Class:16
-﻿         --- End of inner exception stack trace ---
-﻿         at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
-﻿         at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
-﻿         at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
-﻿         at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
-﻿         at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
-﻿         at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
-﻿         at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
-﻿         at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
-﻿         at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
-﻿Erro\: Rafeek.Application.Handlers.AcademicSchedules.Commands.CreateAcadmicSchedule.CreateAcadmicScheduleCommand[0]
-﻿      Squeak Request: Unhandled Exception for Request "CreateAcadmicScheduleCommand" {"CourseId":"a5c948e1-e660-44fd-8f61-38d7c7318688", "DoctorId":"d5358b9f-4eec-46d7-a34a-144cd4312574", "Day":"2026-07-14T12:00", "Time":"12:00", "StartTime":"12:00:00", "EndTime":"22:00:00", "Capacity":120, "Location":"??????"}Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
-﻿ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): The INSERT statement conflicted with the FOREIGN KEY constraint "FK_LectureGroups_Doctors_DoctorId". The conflict occurred in database "db43195", table "dbo.Doctors", column 'Id'.
-﻿The statement has been terminated.
-﻿   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
-﻿   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
-﻿--- End of stack trace from previous location ---
-﻿   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
-﻿   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
-﻿--- End of stack trace from previous location ---
-﻿   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
-﻿   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
-﻿   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
-﻿ClientConnectionId:6203e80e-af08-4626-97f0-bfcfc05f33cc
-﻿Error Number:547,State:0,Class:16
-﻿   --- End of inner exception stack trace ---
-﻿   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
-﻿   at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
-﻿   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
-﻿   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
-﻿   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
-﻿   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
-﻿   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
-﻿   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
-﻿   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
-﻿   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
-﻿   at Rafeek.Persistence.RafeekDbContext.SaveChangesAsync(CancellationToken cancellationToken) in E:\Rafeek\Rafeek.Persistence\RafeekDbContext.cs:line 131
-﻿   at Rafeek.Infrastructure.Repostiories.Implementations.Generic.UnitOfWork.SaveChangesAsync(CancellationToken cancellationToken) in E:\Rafeek\Rafeek.Infrastructure\Repostiories\Implementations\Generic\UnitOfWork.cs:line 84
-﻿   at Rafeek.Application.Handlers.AcademicSchedules.Commands.CreateAcadmicSchedule.CreateAcadmicScheduleCommandHandler.Handle(CreateAcadmicScheduleCommand request, CancellationToken cancellationToken) in E:\Rafeek\Rafeek.Application\Handlers\AcademicSchedules\Commands\CreateAcadmicSchedule\CreateAcadmicScheduleCommandHandler.cs:line 41
-﻿   at Rafeek.Application.Common.Behaviours.PerformanceBehaviour`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next) in E:\Rafeek\Rafeek.Application\Common\Behaviours\PerformanceBehaviour.cs:line 23
-﻿   at Rafeek.Application.Common.Behaviours.ValidationBehaviour`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next) in E:\Rafeek\Rafeek.Application\Common\Behaviours\ValidationBehaviour.cs:line 28
-﻿   at Rafeek.Application.Common.Behaviours.UnhandledExceptionBehaviour`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next) in E:\Rafeek\Rafeek.Application\Common\Behaviours\UnhandledExceptionBehaviour.cs:line 20
-﻿Erro\: Rafeek.API.Filters.ApiExceptionFilterAttribute[0]
-﻿      An unhandled exception has occurred while executing the request.Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
-﻿ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): The INSERT statement conflicted with the FOREIGN KEY constraint "FK_LectureGroups_Doctors_DoctorId". The conflict occurred in database "db43195", table "dbo.Doctors", column 'Id'.
-﻿The statement has been terminated.
-﻿   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
-﻿   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
-﻿--- End of stack trace from previous location ---
-﻿   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
-﻿   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
-﻿--- End of stack trace from previous location ---
-﻿   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
-﻿   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
-﻿   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
-﻿ClientConnectionId:6203e80e-af08-4626-97f0-bfcfc05f33cc
-﻿Error Number:547,State:0,Class:16
-﻿   --- End of inner exception stack trace ---
-﻿   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
-﻿   at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
-﻿   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
-﻿   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
-﻿   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
-﻿   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
-﻿   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
-﻿   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
-﻿   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
-﻿   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
-﻿   at Rafeek.Persistence.RafeekDbContext.SaveChangesAsync(CancellationToken cancellationToken) in E:\Rafeek\Rafeek.Persistence\RafeekDbContext.cs:line 131
-﻿   at Rafeek.Infrastructure.Repostiories.Implementations.Generic.UnitOfWork.SaveChangesAsync(CancellationToken cancellationToken) in E:\Rafeek\Rafeek.Infrastructure\Repostiories\Implementations\Generic\UnitOfWork.cs:line 84
-﻿   at Rafeek.Application.Handlers.AcademicSchedules.Commands.CreateAcadmicSchedule.CreateAcadmicScheduleCommandHandler.Handle(CreateAcadmicScheduleCommand request, CancellationToken cancellationToken) in E:\Rafeek\Rafeek.Application\Handlers\AcademicSchedules\Commands\CreateAcadmicSchedule\CreateAcadmicScheduleCommandHandler.cs:line 41
-﻿   at Rafeek.Application.Common.Behaviours.PerformanceBehaviour`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next) in E:\Rafeek\Rafeek.Application\Common\Behaviours\PerformanceBehaviour.cs:line 23
-﻿   at Rafeek.Application.Common.Behaviours.ValidationBehaviour`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next) in E:\Rafeek\Rafeek.Application\Common\Behaviours\ValidationBehaviour.cs:line 28
-﻿   at Rafeek.Application.Common.Behaviours.UnhandledExceptionBehaviour`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next) in E:\Rafeek\Rafeek.Application\Common\Behaviours\UnhandledExceptionBehaviour.cs:line 20
-﻿   at MediatR.Pipeline.RequestExceptionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
-﻿   at MediatR.Pipeline.RequestExceptionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
-﻿   at MediatR.Pipeline.RequestExceptionActionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
-﻿   at MediatR.Pipeline.RequestExceptionActionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
-﻿   at MediatR.Pipeline.RequestPostProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
-﻿   at MediatR.Pipeline.RequestPreProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
-﻿   at Rafeek.API.Controllers.Version1.AcademicSchedulesController.Create(CreateAcadmicScheduleCommand command) in E:\Rafeek\Rafeek.API\Controllers\Version1\AcademicSchedulesController.cs:line 68
-﻿   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
-﻿   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
-﻿   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
-﻿   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
-﻿   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
-﻿   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
-﻿   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextExceptionFilterAsync>g__Awaited|26_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
-﻿Info\: Microsoft.EntityFrameworkCore.Database.Command[0]
-﻿      Executed DbCommand (116ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (Size = 256), @p2='?' (DbType = Int64), @p3='?' (Size = 4000), @p4='?' (Size = 45), @p5='?' (Size = 10), @p6='?' (Size = 2000), @p7='?' (Size = 4000), @p8='?' (Size = 4000), @p9='?' (Size = 100), @p10='?' (DbType = Int32), @p11='?' (Size = 4000), @p12='?' (Size = 4000), @p13='?' (DbType = Int32), @p14='?' (Size = 4000), @p15='?' (DbType = Int32), @p16='?' (DbType = Boolean), @p17='?' (DbType = DateTime2), @p18='?' (Size = 2000), @p19='?' (Size = 500), @p20='?' (Size = 256)], CommandType='Text', CommandTimeout='30']
-﻿SET IMPLICIT_TRANSACTIONS OFF;
-﻿SET NOCOUNT ON;
-﻿INSERT INTO [HttpTransactions] ([Id], [ContentType], [DurationMs], [ErrorMessage], [IpAddress], [Method], [QueryString], [RequestBody], [RequestHeaders], [RequestId], [RequestSize], [ResponseBody], [ResponseHeaders], [ResponseSize], [StackTrace], [StatusCode], [Success], [Timestamp], [Url], [UserAgent], [UserId])
-﻿VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14, @p15, @p16, @p17, @p18, @p19, @p20);
+﻿{
+  "timetableRequest": {
+    "option": "balance",
+    "preferences": {
+      "bufferMinutes": 10
+    },
+    "courses": {
+      "CS101": {
+        "priority": 5,
+        "difficulty": 3,
+        "lecture": {
+          "day": 0,
+          "start": "08:00",
+          "duration": 120,
+          "capacity": 50,
+          "availableSeats": 12
+        },
+        "sections": [
+        ]
+      },
+      "CS201": {
+        "priority": 4,
+        "difficulty": 4,
+        "lecture": {
+          "day": 2,
+          "start": "08:00",
+          "duration": 120,
+          "capacity": 45,
+          "availableSeats": 5
+        },
+        "sections": [
+        ]
+      },
+      "CS301": {
+        "priority": 5,
+        "difficulty": 5,
+        "lecture": {
+          "day": 4,
+          "start": "08:00",
+          "duration": 120,
+          "capacity": 40,
+          "availableSeats": 7
+        },
+        "sections": [
+        ]
+      }
+    }
+  }
+}

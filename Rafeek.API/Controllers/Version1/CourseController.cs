@@ -28,7 +28,7 @@ namespace Rafeek.API.Controllers.Version1
         /// <param name="command"></param>
         /// <returns></returns>
         [HttpPost]
-        [RoleAuthorize(nameof(UserType.Admin))]
+        [RoleAuthorize(nameof(UserType.Admin), nameof(UserType.Staff))]
         [Route(ApiRoutes.Course.Create)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

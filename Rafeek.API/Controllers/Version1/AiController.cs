@@ -54,9 +54,9 @@ namespace Rafeek.API.Controllers.Version1
         [Route(ApiRoutes.AiIntegration.GenerateTimetable)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> GenerateTimetable([FromBody] AITimetableRequestDto request)
+        public async Task<IActionResult> GenerateTimetable([FromBody] GenerateAITimetableCommand command)
         {
-            var result = await _mediator.Send(new GenerateAITimetableCommand { TimetableRequest = request });
+            var result = await _mediator.Send(command);
             return Ok(result);
         }
 
