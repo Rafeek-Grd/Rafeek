@@ -1,6 +1,10 @@
 ﻿using MediatR;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
+using Rafeek.Application.Common.Exceptions;
+using Rafeek.Application.Common.Interfaces;
 using Rafeek.Application.Localization;
+using Rafeek.Domain.Entities;
 using Rafeek.Domain.Repositories.Interfaces.Generic;
 
 namespace Rafeek.Application.Handlers.AcademicSchedules.Commands.UpdateAcadmicSchedule
@@ -8,11 +12,13 @@ namespace Rafeek.Application.Handlers.AcademicSchedules.Commands.UpdateAcadmicSc
     public class UpdateAcadmicScheduleCommandHandler : IRequestHandler<UpdateAcadmicScheduleCommand, string>
     {
         private readonly IUnitOfWork _ctx;
+        private readonly IRafeekDbContext _context;
         private readonly IStringLocalizer<Messages> _localizer;
 
-        public UpdateAcadmicScheduleCommandHandler(IUnitOfWork ctx, IStringLocalizer<Messages> localizer)
+        public UpdateAcadmicScheduleCommandHandler(IUnitOfWork ctx, IRafeekDbContext context, IStringLocalizer<Messages> localizer)
         {
             _ctx = ctx;
+            _context = context;
             _localizer = localizer;
         }
 
@@ -23,7 +29,12 @@ namespace Rafeek.Application.Handlers.AcademicSchedules.Commands.UpdateAcadmicSc
             if (request.CourseId.HasValue)
                 entity!.CourseId = request.CourseId.Value;
             if (request.DoctorId.HasValue)
-                entity!.DoctorId = request.DoctorId;
+            {
+                var doctor = await _context.Doctors.FirstOrDefaultAsync(d => d.UserId == request.DoctorId.Value, cancellationToken);
+                if (doctor == null)
+                    throw new NotFoundException(nameof(Doctor), request.DoctorId.Value);
+                entity!.DoctorId = doctor.Id;
+            }
             if (request.Day is not null)
                 entity!.Day = request.Day;
             if (request.Time is not null)

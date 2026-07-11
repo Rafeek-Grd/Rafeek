@@ -28,14 +28,17 @@ namespace Rafeek.Application.Handlers.AcademicSchedules.Commands.CreateAcadmicSc
             if (!courseExists)
                 throw new NotFoundException(nameof(Course), request.CourseId);
 
+            Guid? doctorId = null;
             if (request.DoctorId.HasValue)
             {
-                var doctorExists = await _context.Doctors.AnyAsync(d => d.UserId == request.DoctorId.Value, cancellationToken);
-                if (!doctorExists)
+                var doctor = await _context.Doctors.FirstOrDefaultAsync(d => d.UserId == request.DoctorId.Value, cancellationToken);
+                if (doctor == null)
                     throw new NotFoundException(nameof(Doctor), request.DoctorId.Value);
+                doctorId = doctor.Id;
             }
 
             var entity = _mapper.Map<LectureGroup>(request);
+            entity.DoctorId = doctorId;
 
             _ctx.LectureGroupRepository.Add(entity);
             await _ctx.SaveChangesAsync(cancellationToken);
