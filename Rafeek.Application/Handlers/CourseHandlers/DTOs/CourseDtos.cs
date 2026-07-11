@@ -82,7 +82,7 @@ namespace Rafeek.Application.Handlers.CourseHandlers.DTOs
         public GradeDistributionDto GradeDistribution { get; set; } = new();
 
         // ── مدرسو المادة ───────────────────────────────────────────────────────
-        public List<CourseInstructorDto> Instructors { get; set; } = new();
+        public List<CourseInstructorDto> Doctors { get; set; } = new();
 
         // ── شُعب المحاضرات والمواعيد ──────────────────────────────────────────
         public List<LectureGroupDto> LectureGroups { get; set; } = new();

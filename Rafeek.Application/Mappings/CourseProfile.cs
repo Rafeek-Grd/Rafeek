@@ -42,7 +42,7 @@ namespace Rafeek.Application.Mappings
                     FinalPercent = s.FinalPercent,
                     ProjectPercent = s.ProjectPercent
                 }))
-                .ForMember(d => d.Instructors, opt => opt.MapFrom(s => s.LectureGroups.Select(lg => lg.Doctor).Where(d => d != null).Distinct().Select(i => new CourseInstructorDto
+                .ForMember(d => d.Doctors, opt => opt.MapFrom(s => s.LectureGroups.Select(lg => lg.Doctor).Where(d => d != null).Distinct().Select(i => new CourseInstructorDto
                 {
                     InstructorId = i.Id,
                     FullName = i.User.FullName,
