@@ -35,7 +35,7 @@ namespace Rafeek.Application.Handlers.AcademicCalendarHandlers.Query.GetAllPaggi
             {
                 var date = request.EventDate.Value.Date;
                 var nextDay = date.AddDays(1);
-                query = query.Where(e => e.EventDate >= date && e.EventDate < nextDay);
+                query = query.Where(e => e.EventDate < nextDay && (!e.EndDate.HasValue || e.EndDate >= date));
             }
 
             return await query
