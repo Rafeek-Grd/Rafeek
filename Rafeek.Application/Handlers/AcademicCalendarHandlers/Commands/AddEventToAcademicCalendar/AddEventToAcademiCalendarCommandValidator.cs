@@ -19,12 +19,12 @@ namespace Rafeek.Application.Handlers.AcademicCalendarHandlers.Commands.AddEvent
 
             RuleFor(x => x.EventDate).NotEmpty().WithMessage(_localizer[LocalizationKeys.AcademicCalendar.EventDateRequired.Value]);
 
-            When(x => x.EndDate.HasValue, () =>
-            {
-                RuleFor(x => x.EndDate)
-                    .GreaterThanOrEqualTo(x => x.EventDate)
-                    .WithMessage(_localizer[LocalizationKeys.AcademicCalendar.EndDateMustBeGreaterThanOrEqualEventDate.Value]);
-            });
+            //When(x => x.EndDate.HasValue, () =>
+            //{
+            //    RuleFor(x => x.EndDate)
+            //        .GreaterThanOrEqualTo(x => x.EventDate)
+            //        .WithMessage(_localizer[LocalizationKeys.AcademicCalendar.EndDateMustBeGreaterThanOrEqualEventDate.Value]);
+            //});
 
             When(x => !x.IsAllDay, () =>
             {
