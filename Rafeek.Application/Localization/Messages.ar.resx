@@ -600,4 +600,7 @@
   <data name="NoRecordsFoundToDelete" xml:space="preserve">
     <value>لا يوجد أي سجلات ليتم حذفها.</value>
   </data>
+  <data name="CourseAlreadyAssigned" xml:space="preserve">
+      <value>هذا المقرر تمت تعيين من قبل</value>
+  </data>
 </root>

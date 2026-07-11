@@ -176,6 +176,11 @@ namespace Rafeek.Application.Localization
             public static readonly KeyString UserNotInDepartment = new("UserNotInDepartment");
         }
 
+        public record AcademicSchedule
+        {
+            public static readonly KeyString CourseAlreadyAssigned = new("CourseAlreadyAssigned");
+        }
+
         public record Student
         {
             public static readonly KeyString StudentIdRequired = new("StudentIdRequired");

@@ -597,4 +597,7 @@
   <data name="SessionTimeoutInvalid" xml:space="preserve">
     <value>مهلة الجلسة يجب أن تكون أكبر من 0 دقيقة</value>
   </data>
+  <data name="CourseAlreadyAssigned" xml:space="preserve">
+    <value>That course is assigned before to doctor</value>
+  </data>
 </root>

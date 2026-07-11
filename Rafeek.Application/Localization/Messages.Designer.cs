@@ -376,6 +376,15 @@ namespace Rafeek.Application.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to That course is assigned before to doctor.
+        /// </summary>
+        public static string CourseAlreadyAssigned {
+            get {
+                return ResourceManager.GetString("CourseAlreadyAssigned", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to تم تعيين المادة للقسم بنجاح.
         /// </summary>
         public static string CourseAssignedSuccessfully {
