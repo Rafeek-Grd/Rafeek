@@ -594,7 +594,38 @@ namespace Rafeek.Persistence.Seed
                 await context.SaveChangesAsync();
             }
 
-            // 11. Course Prerequisites
+            // 9. Course Sections
+            await SeedStageAsync("Course Sections", async () => {
+                var courseSections = await context.CourseSections.ToListAsync();
+                if (!courseSections.Any() && courses.Any())
+                {
+                    var days = new[] { 0, 1, 2, 3, 4 };
+                    var startTimes = new[] { new TimeSpan(8, 0, 0), new TimeSpan(10, 0, 0), new TimeSpan(12, 0, 0), new TimeSpan(14, 0, 0) };
+                    foreach (var course in courses)
+                    {
+                        var sectionCount = fEn.Random.Int(2, 4);
+                        for (int i = 0; i < sectionCount; i++)
+                        {
+                            var capacity = fEn.Random.Int(25, 50);
+                            courseSections.Add(new CourseSection
+                            {
+                                Id = Guid.NewGuid(),
+                                CourseId = course.Id,
+                                Day = fEn.PickRandom(days),
+                                StartTime = fEn.PickRandom(startTimes),
+                                Duration = fEn.Random.Int(1, 3),
+                                Capacity = capacity,
+                                AvailableSeats = fEn.Random.Int(0, capacity)
+                            });
+                        }
+                    }
+                    context.CourseSections.AddRange(courseSections);
+                    await context.SaveChangesAsync();
+                    Log($"[Seeder] Seeded {courseSections.Count} CourseSections.");
+                }
+            });
+
+            // 10. Course Prerequisites
             await SeedStageAsync("Course Prerequisites", async () => {
                 var prerequisites = await context.CoursePrerequisites.ToListAsync();
                 if (!prerequisites.Any() && courses.Count > 1)

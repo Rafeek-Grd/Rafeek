@@ -243,6 +243,19 @@ namespace Rafeek.Application.Localization
             public static readonly KeyString CoursesRequired = new("Courses_Required");
             public static readonly KeyString LectureFull = new("Lecture_Full");
             public static readonly KeyString RateLimitExceeded = new("RateLimit_Exceeded");
+            public static readonly KeyString OptionInvalid = new("Option_Invalid");
+            public static readonly KeyString PreferencesRequired = new("Preferences_Required");
+            public static readonly KeyString BufferMinutesInvalid = new("BufferMinutes_Invalid");
+            public static readonly KeyString CourseNameRequired = new("CourseName_Required");
+            public static readonly KeyString CourseDataRequired = new("CourseData_Required");
+            public static readonly KeyString PriorityInvalid = new("Priority_Invalid");
+            public static readonly KeyString DifficultyInvalid = new("Difficulty_Invalid");
+            public static readonly KeyString LectureRequired = new("Lecture_Required");
+            public static readonly KeyString DayInvalid = new("Day_Invalid");
+            public static readonly KeyString DurationInvalid = new("Duration_Invalid");
+            public static readonly KeyString CapacityInvalid = new("Capacity_Invalid");
+            public static readonly KeyString SectionsFull = new("Sections_Full");
+            public static readonly KeyString AvailableSeatsInvalid = new("AvailableSeats_Invalid");
         }
 
         public record Assignment

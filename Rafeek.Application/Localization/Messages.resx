@@ -510,6 +510,45 @@
   <data name="Lecture_Full" xml:space="preserve">
     <value>المحاضرة ممتلئة لـ {0}</value>
   </data>
+  <data name="Option_Invalid" xml:space="preserve">
+    <value>خيار الجدول غير صالح. القيم المسموحة: balance, early, late</value>
+  </data>
+  <data name="Preferences_Required" xml:space="preserve">
+    <value>التفضيلات مطلوبة</value>
+  </data>
+  <data name="BufferMinutes_Invalid" xml:space="preserve">
+    <value>يجب أن تكون الدقائق الفاصلة 0 أو أكثر</value>
+  </data>
+  <data name="CourseName_Required" xml:space="preserve">
+    <value>اسم المادة مطلوب</value>
+  </data>
+  <data name="CourseData_Required" xml:space="preserve">
+    <value>بيانات المادة {0} مطلوبة</value>
+  </data>
+  <data name="Priority_Invalid" xml:space="preserve">
+    <value>أولوية المادة {0} يجب أن تكون بين 1 و 5</value>
+  </data>
+  <data name="Difficulty_Invalid" xml:space="preserve">
+    <value>صعوبة المادة {0} يجب أن تكون بين 1 و 5</value>
+  </data>
+  <data name="Lecture_Required" xml:space="preserve">
+    <value>المحاضرة للمادة {0} مطلوبة</value>
+  </data>
+  <data name="Day_Invalid" xml:space="preserve">
+    <value>اليوم يجب أن يكون بين 0 (الأحد) و 6 (السبت)</value>
+  </data>
+  <data name="Duration_Invalid" xml:space="preserve">
+    <value>المدة يجب أن تكون أكبر من 0 دقيقة</value>
+  </data>
+  <data name="Capacity_Invalid" xml:space="preserve">
+    <value>السعة يجب أن تكون أكبر من 0</value>
+  </data>
+  <data name="Sections_Full" xml:space="preserve">
+    <value>لا توجد شعب متاحة للمادة {0} بمقاعد خالية</value>
+  </data>
+  <data name="AvailableSeats_Invalid" xml:space="preserve">
+    <value>المقاعد المتاحة يجب أن تكون 0 أو أكثر</value>
+  </data>
   <data name="Reminder_TitleRequired" xml:space="preserve">
     <value>عنوان التذكير مطلوب</value>
   </data>
@@ -599,5 +638,23 @@
   </data>
   <data name="CourseAlreadyAssigned" xml:space="preserve">
     <value>That course is assigned before to doctor</value>
+  </data>
+  <data name="CourseSection_CourseIdRequired" xml:space="preserve">
+    <value>Course Id is required</value>
+  </data>
+  <data name="CourseSection_DayInvalid" xml:space="preserve">
+    <value>Day must be between 0 and 6</value>
+  </data>
+  <data name="CourseSection_DurationInvalid" xml:space="preserve">
+    <value>Duration must be greater than 0</value>
+  </data>
+  <data name="CourseSection_CapacityInvalid" xml:space="preserve">
+    <value>Capacity must be greater than 0</value>
+  </data>
+  <data name="CourseSection_AvailableSeatsInvalid" xml:space="preserve">
+    <value>Available seats must be 0 or more</value>
+  </data>
+  <data name="CourseSection_IdRequired" xml:space="preserve">
+    <value>Course Section Id is required</value>
   </data>
 </root>

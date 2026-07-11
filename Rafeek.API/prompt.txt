@@ -1,49 +1,262 @@
-﻿{
+﻿curl -X 'POST' \
+  'https://localhost:44351/v1/api/ai/timetable' \
+  -H 'accept: */*' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkJlYXJlciJ9.eyJ1bmlxdWVfbmFtZSI6ImZhZC5zbGFoXzQwYjI5ZGMyIiwibmFtZWlkIjoiNjAwMTg3ZWMtZTM5Ni00ZTEyLTlmOWUtNzEwMTM5MDMwNDEzIiwiZW1haWwiOiJmYWQuc2xhaEBtYW5zLmVkdS5lZyIsIm5iZiI6MTc4Mzc4OTQ1OCwiZXhwIjoxNzgzNzg5NTE4LCJqdGkiOiI0NTQ3ZDFiZi0xNzU4LTQ0NmUtOGNjOC1lZWEzZDIyY2NhYzIiLCJVc2VyVHlwZXMiOiIxNiIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IlN0dWRlbnQiLCJpYXQiOjE3ODM3ODk0NTgsImlzcyI6Imh0dHBzOi8vbG9jYWxob3N0OjQ0MzUxLyJ9.2nU4Dy1-hq3cRPAJWU96j8ukOEGAycJsMYEAQiNWWps' \
+  -H 'Content-Type: application/json-patch+json' \
+  -d '{
   "timetableRequest": {
     "option": "balance",
     "preferences": {
-      "bufferMinutes": 10
+      "buffer_minutes": 15
     },
     "courses": {
       "CS101": {
-        "priority": 5,
+        "priority": 4,
         "difficulty": 3,
         "lecture": {
+          "id": "CS101_LEC_01",
           "day": 0,
           "start": "08:00",
           "duration": 120,
-          "capacity": 50,
-          "availableSeats": 12
+          "capacity": 80,
+          "available_seats": 12
         },
         "sections": [
+          { "id": "CS101_SEC_01", "day": 2, "start": "10:00", "duration": 60, "capacity": 25, "available_seats": 8 },
+          { "id": "CS101_SEC_02", "day": 3, "start": "12:00", "duration": 60, "capacity": 25, "available_seats": 3 }
         ]
       },
-      "CS201": {
-        "priority": 4,
-        "difficulty": 4,
+      "CS102": {
+        "priority": 3,
+        "difficulty": 2,
         "lecture": {
+          "id": "CS102_LEC_01",
+          "day": 1,
+          "start": "08:00",
+          "duration": 120,
+          "capacity": 75,
+          "available_seats": 20
+        },
+        "sections": [
+          { "id": "CS102_SEC_01", "day": 2, "start": "14:00", "duration": 60, "capacity": 25, "available_seats": 10 },
+          { "id": "CS102_SEC_02", "day": 4, "start": "10:00", "duration": 60, "capacity": 20, "available_seats": 5 }
+        ]
+      },
+      "IS101": {
+        "priority": 3,
+        "difficulty": 2,
+        "lecture": {
+          "id": "IS101_LEC_01",
           "day": 2,
           "start": "08:00",
           "duration": 120,
-          "capacity": 45,
-          "availableSeats": 5
+          "capacity": 70,
+          "available_seats": 18
         },
         "sections": [
+          { "id": "IS101_SEC_01", "day": 4, "start": "12:00", "duration": 60, "capacity": 20, "available_seats": 7 }
         ]
       },
-      "CS301": {
-        "priority": 5,
-        "difficulty": 5,
+      "IT101": {
+        "priority": 3,
+        "difficulty": 2,
         "lecture": {
+          "id": "IT101_LEC_01",
+          "day": 3,
+          "start": "08:00",
+          "duration": 120,
+          "capacity": 65,
+          "available_seats": 24
+        },
+        "sections": [
+          { "id": "IT101_SEC_01", "day": 1, "start": "14:00", "duration": 60, "capacity": 20, "available_seats": 8 },
+          { "id": "IT101_SEC_02", "day": 4, "start": "14:00", "duration": 60, "capacity": 20, "available_seats": 12 }
+        ]
+      },
+      "SWE101": {
+        "priority": 5,
+        "difficulty": 4,
+        "lecture": {
+          "id": "SWE101_LEC_01",
           "day": 4,
           "start": "08:00",
           "duration": 120,
-          "capacity": 40,
-          "availableSeats": 7
+          "capacity": 55,
+          "available_seats": 15
         },
         "sections": [
+          { "id": "SWE101_SEC_01", "day": 0, "start": "10:00", "duration": 60, "capacity": 20, "available_seats": 6 },
+          { "id": "SWE101_SEC_02", "day": 2, "start": "12:00", "duration": 60, "capacity": 20, "available_seats": 3 }
         ]
       }
     }
   }
 }
+'
+
+{
+  "success": true,
+  "errors": {},
+  "data": {
+    "stats": {
+      "max_load": 8,
+      "total_days": 5,
+      "option_name": "🎯 OPTION 1: Best Balance (Low Daily Load)"
+    },
+    "schedule": [
+      {
+        "course": "CS101",
+        "type": "LECTURE",
+        "day": 0,
+        "start_time": "08:00",
+        "end_time": "10:00",
+        "difficulty": 3,
+        "priority": 4,
+        "capacity": 80,
+        "available_seats": 12
+      },
+      {
+        "course": "CS101",
+        "type": "SECTION",
+        "section_id": "CS101_SEC_02",
+        "day": 3,
+        "start_time": "12:00",
+        "end_time": "13:00",
+        "difficulty": 3,
+        "priority": 4,
+        "capacity": 25,
+        "available_seats": 3
+      },
+      {
+        "course": "CS102",
+        "type": "LECTURE",
+        "day": 1,
+        "start_time": "08:00",
+        "end_time": "10:00",
+        "difficulty": 2,
+        "priority": 3,
+        "capacity": 75,
+        "available_seats": 20
+      },
+      {
+        "course": "CS102",
+        "type": "SECTION",
+        "section_id": "CS102_SEC_01",
+        "day": 2,
+        "start_time": "14:00",
+        "end_time": "15:00",
+        "difficulty": 2,
+        "priority": 3,
+        "capacity": 25,
+        "available_seats": 10
+      },
+      {
+        "course": "IS101",
+        "type": "LECTURE",
+        "day": 2,
+        "start_time": "08:00",
+        "end_time": "10:00",
+        "difficulty": 2,
+        "priority": 3,
+        "capacity": 70,
+        "available_seats": 18
+      },
+      {
+        "course": "IS101",
+        "type": "SECTION",
+        "section_id": "IS101_SEC_01",
+        "day": 4,
+        "start_time": "12:00",
+        "end_time": "13:00",
+        "difficulty": 2,
+        "priority": 3,
+        "capacity": 20,
+        "available_seats": 7
+      },
+      {
+        "course": "IT101",
+        "type": "LECTURE",
+        "day": 3,
+        "start_time": "08:00",
+        "end_time": "10:00",
+        "difficulty": 2,
+        "priority": 3,
+        "capacity": 65,
+        "available_seats": 24
+      },
+      {
+        "course": "IT101",
+        "type": "SECTION",
+        "section_id": "IT101_SEC_02",
+        "day": 4,
+        "start_time": "14:00",
+        "end_time": "15:00",
+        "difficulty": 2,
+        "priority": 3,
+        "capacity": 20,
+        "available_seats": 12
+      },
+      {
+        "course": "SWE101",
+        "type": "LECTURE",
+        "day": 4,
+        "start_time": "08:00",
+        "end_time": "10:00",
+        "difficulty": 4,
+        "priority": 5,
+        "capacity": 55,
+        "available_seats": 15
+      },
+      {
+        "course": "SWE101",
+        "type": "SECTION",
+        "section_id": "SWE101_SEC_02",
+        "day": 2,
+        "start_time": "12:00",
+        "end_time": "13:00",
+        "difficulty": 4,
+        "priority": 5,
+        "capacity": 20,
+        "available_seats": 3
+      }
+    ]
+  },
+  "message": "تم تنفيذ العملية بنجاح",
+  "statusCode": 200
+}
+
+---
+
+### Save Timetable Request (POST /v1/api/ai/timetable/save)
+
+```json
+curl -X 'POST' \
+  'https://localhost:44351/v1/api/ai/timetable/save' \
+  -H 'accept: */*' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkJlYXJlciJ9.eyJ1bmlxdWVfbmFtZSI6ImZhZC5zbGFoXzQwYjI5ZGMyIiwibmFtZWlkIjoiNjAwMTg3ZWMtZTM5Ni00ZTEyLTlmOWUtNzEwMTM5MDMwNDEzIiwiZW1haWwiOiJmYWQuc2xhaEBtYW5zLmVkdS5lZyIsIm5iZiI6MTc4Mzc4OTQ1OCwiZXhwIjoxNzgzNzg5NTE4LCJqdGkiOiI0NTQ3ZDFiZi0xNzU4LTQ0NmUtOGNjOC1lZWEzZDIyY2NhYzIiLCJVc2VyVHlwZXMiOiIxNiIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IlN0dWRlbnQiLCJpYXQiOjE3ODM3ODk0NTgsImlzcyI6Imh0dHBzOi8vbG9jYWxob3N0OjQ0MzUxLyJ9.2nU4Dy1-hq3cRPAJWU96j8ukOEGAycJsMYEAQiNWWps' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "id": null,
+  "studentId": "600187ec-e396-4e12-9f9e-710139030413",
+  "timetableName": "My Timetable - Fall 2025",
+  "timetableData": {
+    "stats": {
+      "max_load": 8,
+      "total_days": 5,
+      "option_name": "🎯 OPTION 1: Best Balance (Low Daily Load)"
+    },
+    "schedule": [
+      { "course": "CS101", "type": "LECTURE", "day": 0, "start_time": "08:00", "end_time": "10:00", "difficulty": 3, "priority": 4, "capacity": 80, "available_seats": 12 },
+      { "course": "CS101", "type": "SECTION", "section_id": "CS101_SEC_02", "day": 3, "start_time": "12:00", "end_time": "13:00", "difficulty": 3, "priority": 4, "capacity": 25, "available_seats": 3 },
+      { "course": "CS102", "type": "LECTURE", "day": 1, "start_time": "08:00", "end_time": "10:00", "difficulty": 2, "priority": 3, "capacity": 75, "available_seats": 20 },
+      { "course": "CS102", "type": "SECTION", "section_id": "CS102_SEC_01", "day": 2, "start_time": "14:00", "end_time": "15:00", "difficulty": 2, "priority": 3, "capacity": 25, "available_seats": 10 },
+      { "course": "IS101", "type": "LECTURE", "day": 2, "start_time": "08:00", "end_time": "10:00", "difficulty": 2, "priority": 3, "capacity": 70, "available_seats": 18 },
+      { "course": "IS101", "type": "SECTION", "section_id": "IS101_SEC_01", "day": 4, "start_time": "12:00", "end_time": "13:00", "difficulty": 2, "priority": 3, "capacity": 20, "available_seats": 7 },
+      { "course": "IT101", "type": "LECTURE", "day": 3, "start_time": "08:00", "end_time": "10:00", "difficulty": 2, "priority": 3, "capacity": 65, "available_seats": 24 },
+      { "course": "IT101", "type": "SECTION", "section_id": "IT101_SEC_02", "day": 4, "start_time": "14:00", "end_time": "15:00", "difficulty": 2, "priority": 3, "capacity": 20, "available_seats": 12 },
+      { "course": "SWE101", "type": "LECTURE", "day": 4, "start_time": "08:00", "end_time": "10:00", "difficulty": 4, "priority": 5, "capacity": 55, "available_seats": 15 },
+      { "course": "SWE101", "type": "SECTION", "section_id": "SWE101_SEC_02", "day": 2, "start_time": "12:00", "end_time": "13:00", "difficulty": 4, "priority": 5, "capacity": 20, "available_seats": 3 }
+    ]
+  }
+}'
+```

@@ -31,6 +31,7 @@ namespace Rafeek.Domain.Repositories.Interfaces.Generic
         ICourseRegistrationPeriodRepository CourseRegistrationPeriodRepository { get; }
         IAssignmentRepository AssignmentRepository { get; }
         IAssignmentSubmissionRepository AssignmentSubmissionRepository { get; }
+        ICourseSectionRepository CourseSectionRepository { get; }
         IAcademicSettingRepository AcademicSettingRepository { get; }
         IGradeScaleRepository GradeScaleRepository { get; }
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);

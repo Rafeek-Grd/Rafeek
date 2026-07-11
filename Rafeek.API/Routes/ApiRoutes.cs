@@ -183,6 +183,14 @@ namespace Rafeek.API.Routes
             public const string GetByStudent = Base + "/career-suggestions/student/{studentId}";
         }
 
+        public static class CourseSection
+        {
+            public const string Create = Base + "/course-sections/add";
+            public const string Update = Base + "/course-sections/{id}/update";
+            public const string Delete = Base + "/course-sections/{id}/delete";
+            public const string GetByCourse = Base + "/course-sections/course/{courseId}";
+        }
+
         public static class StudyPlan
         {
             public const string GetByStudent = Base + "/study-plans/student/{studentId}";

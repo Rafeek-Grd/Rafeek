@@ -23,6 +23,7 @@ namespace Rafeek.Infrastructure.Services
 
         private static readonly JsonSerializerOptions _deserializerOptions = new()
         {
+            PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower,
             PropertyNameCaseInsensitive = true
         };
 
