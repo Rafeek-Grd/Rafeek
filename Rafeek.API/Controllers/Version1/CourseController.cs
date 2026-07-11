@@ -28,7 +28,7 @@ namespace Rafeek.API.Controllers.Version1
         /// <param name="command"></param>
         /// <returns></returns>
         [HttpPost]
-        [RoleAuthorize(nameof(UserType.Admin), nameof(UserType.Staff))]
+        [RoleAuthorize(nameof(UserType.Admin))]
         [Route(ApiRoutes.Course.Create)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -77,7 +77,7 @@ namespace Rafeek.API.Controllers.Version1
         /// <param name="query"></param>
         /// <returns></returns>
         [HttpGet]
-        [RoleAuthorize(nameof(UserType.Admin), nameof(UserType.Student))]
+        [RoleAuthorize(nameof(UserType.Admin),nameof(UserType.Staff), nameof(UserType.Student))]
         [Route(ApiRoutes.Courses.GetAll)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
