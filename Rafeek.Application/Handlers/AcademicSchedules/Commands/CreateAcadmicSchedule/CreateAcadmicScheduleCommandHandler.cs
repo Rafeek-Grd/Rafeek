@@ -28,6 +28,10 @@ namespace Rafeek.Application.Handlers.AcademicSchedules.Commands.CreateAcadmicSc
             if (!courseExists)
                 throw new NotFoundException(nameof(Course), request.CourseId);
 
+            var courseAlreadyAssigned = await _context.LectureGroups.AnyAsync(lg => lg.CourseId == request.CourseId, cancellationToken);
+            if (courseAlreadyAssigned)
+                throw new BadRequestException("Course is already assigned to a schedule");
+
             Guid? doctorId = null;
             if (request.DoctorId.HasValue)
             {
