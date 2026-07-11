@@ -55,11 +55,11 @@ namespace Rafeek.Application.Handlers.AcademicCalendarHandlers.Commands.AddEvent
                 .NotNull().WithMessage(_localizer[LocalizationKeys.AcademicCalendar.TargetUserIdRequired.Value]);
             });
 
-            When(x => x.EventType == AcademicCalendarEventType.Exam, () =>
-            {
-                RuleFor(x => x.CourseId)
-                    .NotNull().WithMessage(_localizer[LocalizationKeys.AcademicCalendar.CourseIdRequiredForExamEvent.Value]);
-            });
+            //When(x => x.EventType == AcademicCalendarEventType.Exam, () =>
+            //{
+            //    RuleFor(x => x.CourseId)
+            //        .NotNull().WithMessage(_localizer[LocalizationKeys.AcademicCalendar.CourseIdRequiredForExamEvent.Value]);
+            //});
         }
     }
 }
