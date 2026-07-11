@@ -82,7 +82,7 @@ namespace Rafeek.API.Controllers.Version1
         /// <param name="filter"></param>
         /// <returns></returns>
         [HttpGet]
-        [RoleAuthorize()]
+        [RoleAuthorize]
         [Route(ApiRoutes.EventOfAcademicCalendar.GetAllPagginatedEvents)]
         [ProducesResponseType(typeof(PagginatedResult<AcademicCalendarDto>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -98,7 +98,7 @@ namespace Rafeek.API.Controllers.Version1
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet]
-        [RoleAuthorize()]
+        [RoleAuthorize]
         [Route(ApiRoutes.EventOfAcademicCalendar.GetEventById)]
         [ProducesResponseType(typeof(AcademicCalendarDto), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
