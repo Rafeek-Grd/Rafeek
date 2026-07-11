@@ -30,7 +30,7 @@ namespace Rafeek.Application.Handlers.AcademicSchedules.Commands.CreateAcadmicSc
 
             if (request.DoctorId.HasValue)
             {
-                var doctorExists = await _context.Doctors.AnyAsync(d => d.Id == request.DoctorId.Value, cancellationToken);
+                var doctorExists = await _context.Doctors.AnyAsync(d => d.UserId == request.DoctorId.Value, cancellationToken);
                 if (!doctorExists)
                     throw new NotFoundException(nameof(Doctor), request.DoctorId.Value);
             }
