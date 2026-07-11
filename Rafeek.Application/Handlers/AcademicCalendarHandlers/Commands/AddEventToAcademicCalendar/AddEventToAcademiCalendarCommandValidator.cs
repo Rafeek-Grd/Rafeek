@@ -30,7 +30,7 @@ namespace Rafeek.Application.Handlers.AcademicCalendarHandlers.Commands.AddEvent
             {
                 RuleFor(x => x.StartTime).NotNull().WithMessage(_localizer[LocalizationKeys.AcademicCalendar.StartTimeRequired.Value]);
                 RuleFor(x => x.EndTime).NotNull().WithMessage(_localizer[LocalizationKeys.AcademicCalendar.EndTimeRequired.Value]);
-                RuleFor(x => x.EndTime).GreaterThan(x => x.StartTime).WithMessage(_localizer[LocalizationKeys.AcademicCalendar.EndTimeMustBeGreaterThanStartTime.Value]);
+                //RuleFor(x => x.EndTime).GreaterThan(x => x.StartTime).WithMessage(_localizer[LocalizationKeys.AcademicCalendar.EndTimeMustBeGreaterThanStartTime.Value]);
             });
 
             RuleFor(x => x.Location)
