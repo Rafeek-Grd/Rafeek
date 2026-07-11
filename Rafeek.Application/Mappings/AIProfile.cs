@@ -1,4 +1,5 @@
-using AutoMapper;
+﻿using AutoMapper;
+using Rafeek.Application.Handlers.AIHandlers.DTOs;
 using Rafeek.Application.Handlers.CareerHandlers.DTOs;
 using Rafeek.Application.Handlers.ExternalHandlers.DTOs;
 using Rafeek.Application.Handlers.LearningResourceHandlers.DTOs;
@@ -11,6 +12,9 @@ namespace Rafeek.Application.Mappings
     {
         public AIProfile()
         {
+            CreateMap<AITimetable, AITimetableDto>();
+            CreateMap<AITimetableItem, AITimetableItemDto>();
+
             CreateMap<AITimetableResponseDto, AITimetable>()
                 .ForMember(dest => dest.OptionName, opt => opt.MapFrom(src => src.Stats.OptionName))
                 .ForMember(dest => dest.MaxLoad, opt => opt.MapFrom(src => src.Stats.MaxLoad))
@@ -37,3 +41,5 @@ namespace Rafeek.Application.Mappings
         }
     }
 }
+
+

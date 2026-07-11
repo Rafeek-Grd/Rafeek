@@ -1,4 +1,4 @@
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 using Rafeek.API.Filters;
@@ -16,6 +16,7 @@ using Rafeek.Application.Handlers.AIHandlers.DTOs;
 using Rafeek.Application.Handlers.ExternalHandlers.DTOs;
 using Rafeek.Application.Handlers.AIHandlers.Commands.AskAi;
 using Rafeek.Application.Handlers.AIHandlers.Queries.GetChatHistory;
+using Rafeek.Application.Handlers.AIHandlers.Queries.GetAITimetablesByStudent;
 using Rafeek.Application.Handlers.AIHandlers.Queries.GetAiSessions;
 
 namespace Rafeek.API.Controllers.Version1
@@ -75,6 +76,23 @@ namespace Rafeek.API.Controllers.Version1
             var result = await _mediator.Send(command);
             return Ok(result);
         }
+
+        /// <summary>
+        /// Get all saved AI timetables for a student.
+        /// </summary>
+        /// <param name="studentId"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [RoleAuthorize(nameof(UserType.Student))]
+        [Route(ApiRoutes.AiIntegration.GetAITimetablesByStudent)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> GetAITimetablesByStudent(Guid studentId)
+        {
+            var result = await _mediator.Send(new GetAITimetablesByStudentQuery { StudentId = studentId });
+            return Ok(result);
+        }
+
 
         /// <summary>
         /// Ask the AI Chatbot a question.
@@ -172,3 +190,6 @@ namespace Rafeek.API.Controllers.Version1
         }
     }
 }
+
+
+

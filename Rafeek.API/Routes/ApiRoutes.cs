@@ -1,4 +1,4 @@
-namespace Rafeek.API.Routes
+﻿namespace Rafeek.API.Routes
 {
     public static class ApiRoutes
     {
@@ -157,6 +157,7 @@ namespace Rafeek.API.Routes
             public const string AskAi = Base + "/ai/ask";
             public const string GetAiSessions = Base + "/ai/sessions";
             public const string GetChatHistory = Base + "/ai/history";
+            public const string GetAITimetablesByStudent = Base + "/ai/timetable/student/{studentId}";
         }
 
         public static class Course
@@ -255,3 +256,4 @@ namespace Rafeek.API.Routes
         }
     }
 }
+
