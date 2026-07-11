@@ -1,10 +1,10 @@
-using AutoMapper;
+﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Rafeek.Application.Common.Exceptions;
 using Rafeek.Application.Handlers.CourseHandlers.DTOs;
-
+using Rafeek.Application.Handlers.CourseSectionHandlers.DTOs;
 using Rafeek.Domain.Repositories.Interfaces.Generic;
 
 namespace Rafeek.Application.Handlers.CourseHandlers.Queries.GetCourseDetail
@@ -28,6 +28,21 @@ namespace Rafeek.Application.Handlers.CourseHandlers.Queries.GetCourseDetail
                 .ProjectTo<CourseDetailDto>(_mapper.ConfigurationProvider)
                 .FirstOrDefaultAsync(cancellationToken);
 
+            courseDetail.Sections = await _ctx.CourseSectionRepository.GetAll()
+                .AsNoTracking()
+                .Where(s => s.CourseId == request.CourseId)
+                .Select(s => new CourseSectionDto
+                {
+                    Id = s.Id,
+                    CourseId = s.CourseId,
+                    Day = s.Day,
+                    StartTime = s.StartTime,
+                    Duration = s.Duration,
+                    Capacity = s.Capacity,
+                    AvailableSeats = s.AvailableSeats
+                })
+                .ToListAsync(cancellationToken);
+
             courseDetail.RegistrationStatus = courseDetail.Capacity == 0 ? "Closed" : (courseDetail.EnrolledStudents >= courseDetail.Capacity ? "Full" : "Open");
             courseDetail.RegistrationStatusLabel = courseDetail.Capacity == 0 ? "إلغاء التسجيل" : (courseDetail.EnrolledStudents >= courseDetail.Capacity ? "مكتمل" : "متاح");
 
@@ -47,7 +62,7 @@ namespace Rafeek.Application.Handlers.CourseHandlers.Queries.GetCourseDetail
                 inProgressCourseIds = studentEnrollments.Where(e => !e.IsCompleted).Select(e => e.CourseId).ToHashSet();
             }
 
-            foreach(var p in courseDetail.Prerequisites)
+            foreach (var p in courseDetail.Prerequisites)
             {
                 p.StudentStatus = "NotMet";
                 p.StudentStatusLabel = "غير مكتمل";
@@ -100,3 +115,4 @@ namespace Rafeek.Application.Handlers.CourseHandlers.Queries.GetCourseDetail
         }
     }
 }
+

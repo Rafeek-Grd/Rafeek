@@ -1,4 +1,4 @@
-using Rafeek.Domain.Common;
+﻿using Rafeek.Domain.Common;
 
 namespace Rafeek.Domain.Entities
 {
@@ -17,6 +17,7 @@ namespace Rafeek.Domain.Entities
         public Department? Department { get; set; }
         
         public ICollection<CoursePrerequisite> Prerequisites { get; set; } = new HashSet<CoursePrerequisite>();
+        public ICollection<CourseSection> CourseSections { get; set; } = new HashSet<CourseSection>();
         public ICollection<StudyPlan> StudyPlans { get; set; } = new HashSet<StudyPlan>();
         public ICollection<LearningResource> LearningResources { get; set; } = new HashSet<LearningResource>();
         public ICollection<Enrollment> Enrollments { get; set; } = new HashSet<Enrollment>();
@@ -25,3 +26,4 @@ namespace Rafeek.Domain.Entities
         public ICollection<CourseRegistrationPeriod> RegistrationPeriods { get; set; } = new HashSet<CourseRegistrationPeriod>();
     }
 }
+

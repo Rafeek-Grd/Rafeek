@@ -1,8 +1,9 @@
-using MediatR;
+﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Rafeek.Application.Common.Mappings;
 using Rafeek.Application.Common.Models;
 using Rafeek.Application.Handlers.CourseHandlers.DTOs;
+using Rafeek.Application.Handlers.CourseSectionHandlers.DTOs;
 using Rafeek.Domain.Repositories.Interfaces.Generic;
 
 namespace Rafeek.Application.Handlers.CourseHandlers.Queries.GetCourses
@@ -79,6 +80,16 @@ namespace Rafeek.Application.Handlers.CourseHandlers.Queries.GetCourses
                     Capacity = c.LectureGroups.Sum(lg => lg.Capacity),
                     InstructorName = c.LectureGroups.Select(lg => lg.Doctor != null ? lg.Doctor.User.FullName : null).FirstOrDefault(),
                     PrerequisiteCodes = c.Prerequisites.Select(p => p.Prerequisite.Code).ToList(),
+                     Sections = c.CourseSections.Select(s => new CourseSectionDto
+                     {
+                         Id = s.Id,
+                         CourseId = s.CourseId,
+                         Day = s.Day,
+                         StartTime = s.StartTime,
+                         Duration = s.Duration,
+                         Capacity = s.Capacity,
+                         AvailableSeats = s.AvailableSeats
+                     }).ToList(),
                     AcademicTermName = c.Enrollments
                         .SelectMany(e => e.LectureGroup.CalendarEvents)
                         .Where(ev => ev.AcademicTerm != null)
@@ -100,8 +111,9 @@ namespace Rafeek.Application.Handlers.CourseHandlers.Queries.GetCourses
                 Capacity = c.Capacity,
                 PrerequisiteCodes = c.PrerequisiteCodes,
                 AcademicTerm = c.AcademicTermName,
+                Sections = c.Sections,
                 Status = c.Capacity == 0 ? "Closed" : (c.EnrolledCount >= c.Capacity ? "Full" : "Open"),
-                StatusLabel = c.Capacity == 0 ? "إلغاء التسجيل" : (c.EnrolledCount >= c.Capacity ? "مكتمل" : "متاح")
+                StatusLabel = c.Capacity == 0 ? "Ø¥Ù„ØºØ§Ø¡ Ø§Ù„ØªØ³Ø¬ÙŠÙ„" : (c.EnrolledCount >= c.Capacity ? "Ù…ÙƒØªÙ…Ù„" : "Ù…ØªØ§Ø­")
             }).ToList();
 
             return new PagginatedResult<CourseListItemDto>(
@@ -112,3 +124,5 @@ namespace Rafeek.Application.Handlers.CourseHandlers.Queries.GetCourses
         }
     }
 }
+
+

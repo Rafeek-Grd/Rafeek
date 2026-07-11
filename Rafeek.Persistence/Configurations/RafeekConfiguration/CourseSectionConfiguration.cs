@@ -1,4 +1,4 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Rafeek.Domain.Entities;
 
@@ -26,9 +26,10 @@ namespace Rafeek.Persistence.Configurations.RafeekConfiguration
                 .IsRequired();
 
             builder.HasOne(x => x.Course)
-                .WithMany()
+                .WithMany(c => c.CourseSections)
                 .HasForeignKey(x => x.CourseId)
                 .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }
+
