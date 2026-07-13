@@ -12,5 +12,7 @@ namespace Rafeek.Domain.Entities
         public int Duration { get; set; }
         public int Capacity { get; set; }
         public int AvailableSeats { get; set; }
+
+        public ICollection<Enrollment> Enrollments { get; set; } = new HashSet<Enrollment>();
     }
 }

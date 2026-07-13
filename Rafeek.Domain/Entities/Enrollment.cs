@@ -13,6 +13,9 @@ namespace Rafeek.Domain.Entities
         public Guid LectureGroupId { get; set; }
         public LectureGroup LectureGroup { get; set; } = null!;
 
+        public Guid? SectionId { get; set; }
+        public CourseSection? Section { get; set; }
+
         public string Status { get; set; } = null!;
         public string? Grade { get; set; }
         public ICollection<Grade> Grades { get; set; } = new HashSet<Grade>();

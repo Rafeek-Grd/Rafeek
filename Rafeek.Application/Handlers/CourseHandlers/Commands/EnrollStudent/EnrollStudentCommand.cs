@@ -7,10 +7,6 @@ namespace Rafeek.Application.Handlers.CourseHandlers.Commands.EnrollStudent
     {
         public Guid CourseId { get; set; }
         public Guid LectureGroupId { get; set; }
-        public Guid SectionId 
-        { 
-            get => LectureGroupId; 
-            set => LectureGroupId = value; 
-        }
+        public Guid SectionId { get; set; }
     }
 }

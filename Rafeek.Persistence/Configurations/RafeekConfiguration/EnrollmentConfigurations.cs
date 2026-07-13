@@ -23,6 +23,11 @@ namespace Rafeek.Persistence.Configurations.RafeekConfiguration
                 .HasForeignKey(e => e.LectureGroupId)
                 .OnDelete(DeleteBehavior.NoAction);
 
+            builder.HasOne(e => e.Section)
+                .WithMany(s => s.Enrollments)
+                .HasForeignKey(e => e.SectionId)
+                .OnDelete(DeleteBehavior.SetNull);
+
             builder.HasQueryFilter(e => !e.IsDeleted);
         }
     }
