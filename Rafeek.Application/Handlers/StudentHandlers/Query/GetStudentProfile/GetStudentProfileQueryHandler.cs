@@ -13,7 +13,6 @@ namespace Rafeek.Application.Handlers.StudentHandlers.Query.GetStudentProfile
 {
     public class GetStudentProfileQueryHandler : IRequestHandler<GetStudentProfileQuery, StudentProfileDto>
     {
-        private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
         private readonly ICurrentUserService _currentUserService;
         private readonly IStringLocalizer<Messages> _localizer;
@@ -21,14 +20,12 @@ namespace Rafeek.Application.Handlers.StudentHandlers.Query.GetStudentProfile
         private readonly IIdentityUnitOfWork _identityUnitOfWork;
 
         public GetStudentProfileQueryHandler(
-            IUnitOfWork unitOfWork,
             IIdentityUnitOfWork identityUnitOfWork,
             IMapper mapper,
             ICurrentUserService currentUserService,
             IStringLocalizer<Messages> localizer,
             IRafeekDbContext dbContext)
         {
-            _unitOfWork = unitOfWork;
             _mapper = mapper;
             _currentUserService = currentUserService;
             _localizer = localizer;
@@ -39,21 +36,15 @@ namespace Rafeek.Application.Handlers.StudentHandlers.Query.GetStudentProfile
         public async Task<StudentProfileDto> Handle(GetStudentProfileQuery request, CancellationToken cancellationToken)
         {
             var studentId = request.UserId != Guid.Empty ? request.UserId : _currentUserService.UserId;
-            
-            // Если пользователь не авторизован (لأغراض الاختبار)، استخدم أول طالب
+
             if (studentId == Guid.Empty)
             {
-                var firstStudent = await _dbContext.Students.FirstOrDefaultAsync(s => s.IsActive, cancellationToken);
-                if (firstStudent != null)
-                {
-                    studentId = firstStudent.Id;
-                }
+                throw new UnauthorizedException(_localizer[LocalizationKeys.ExceptionMessage.Unauthorized]);
             }
 
-            var student = await _unitOfWork.StudentRepository
-                .GetAll(s => s.Id == studentId || s.UserId == studentId)
+            var student = await _dbContext.Students
                 .AsNoTracking()
-                .FirstOrDefaultAsync(cancellationToken);
+                .FirstOrDefaultAsync(s => (s.Id == studentId || s.UserId == studentId) && s.IsActive, cancellationToken);
 
             if (student == null)
             {
@@ -65,14 +56,16 @@ namespace Rafeek.Application.Handlers.StudentHandlers.Query.GetStudentProfile
                 .FirstOrDefaultAsync(u => u.Id == student.UserId, cancellationToken);
 
             var department = student.DepartmentId.HasValue 
-                ? await _unitOfWork.DepartmentRepository.GetAll(d => d.Id == student.DepartmentId).AsNoTracking().FirstOrDefaultAsync(cancellationToken) 
+                ? await _dbContext.Departments.AsNoTracking().FirstOrDefaultAsync(d => d.Id == student.DepartmentId, cancellationToken) 
                 : null;
 
             var advisor = student.AcademicAdvisorId.HasValue 
-                ? await _unitOfWork.DoctorRepository.GetAll(doc => doc.Id == student.AcademicAdvisorId).AsNoTracking().FirstOrDefaultAsync(cancellationToken) 
+                ? await _dbContext.Doctors.AsNoTracking().FirstOrDefaultAsync(doc => doc.Id == student.AcademicAdvisorId, cancellationToken) 
                 : null;
 
-            var profile = await _unitOfWork.StudentAcademicProfileRepository.GetAll(p => p.Id == student.AcademicProfileId).AsNoTracking().FirstOrDefaultAsync(cancellationToken);
+            var profile = await _dbContext.StudentAcademicProfiles
+                .AsNoTracking()
+                .FirstOrDefaultAsync(p => p.Id == student.AcademicProfileId, cancellationToken);
 
             student.User = user!;
             student.Department = department;
@@ -103,22 +96,26 @@ namespace Rafeek.Application.Handlers.StudentHandlers.Query.GetStudentProfile
 
                 var grades = await _dbContext.Grades.AsNoTracking().Where(g => enrollmentIds.Contains(g.EnrollmentId)).ToListAsync(cancellationToken);
                 var courses = await _dbContext.Courses.AsNoTracking().Where(c => courseIds.Contains(c.Id)).ToListAsync(cancellationToken);
-                var sections = await _dbContext.LectureGroups.AsNoTracking().Where(s => sectionIds.Contains(s.Id)).ToListAsync(cancellationToken);
+                var sections = await _dbContext.LectureGroups
+                    .IgnoreQueryFilters()
+                    .AsNoTracking()
+                    .Where(s => sectionIds.Contains(s.Id))
+                    .ToListAsync(cancellationToken);
 
                 var calendarEvents = await _dbContext.AcademicCalendars.AsNoTracking()
                     .Where(ce => sectionIds.Contains(ce.LectureGroupId ?? Guid.Empty))
                     .ToListAsync(cancellationToken);
                 
                 var termIds = calendarEvents.Select(ce => ce.AcademicTermId).Where(id => id.HasValue).Select(id => id!.Value).Distinct().ToList();
-                var terms = await _unitOfWork.AcademicTermRepository.GetAll(t => termIds.Contains(t.Id)).AsNoTracking().ToListAsync(cancellationToken);
+                var terms = await _dbContext.AcademicTerms.AsNoTracking().Where(t => termIds.Contains(t.Id)).ToListAsync(cancellationToken);
                 
                 var yearIds = terms.Select(t => t.AcademicYearId).Distinct().ToList();
-                var years = await _unitOfWork.AcademicYearRepository.GetAll(y => yearIds.Contains(y.Id)).AsNoTracking().ToListAsync(cancellationToken);
+                var years = await _dbContext.AcademicYears.AsNoTracking().Where(y => yearIds.Contains(y.Id)).ToListAsync(cancellationToken);
 
                 var coursesDict = courses.ToDictionary(c => c.Id);
                 var sectionsDict = sections.ToDictionary(s => s.Id);
                 var gradesByEnrollment = grades.GroupBy(g => g.EnrollmentId).ToDictionary(g => g.Key, g => g.ToList());
-                var calendarBySection = calendarEvents.GroupBy(ce => ce.LectureGroupId).ToDictionary(g => g.Key, g => g.ToList());
+                var calendarBySection = calendarEvents.GroupBy(ce => ce.LectureGroupId).ToDictionary(g => g.Key ?? Guid.Empty, g => g.ToList());
                 var termsDict = terms.ToDictionary(t => t.Id);
                 var yearsDict = years.ToDictionary(y => y.Id);
 
@@ -147,6 +144,14 @@ namespace Rafeek.Application.Handlers.StudentHandlers.Query.GetStudentProfile
             }
 
             var result = _mapper.Map<StudentProfileDto>(student);
+
+            var allGrades = student.Enrollments.SelectMany(e => e.Grades).ToList();
+            if (allGrades.Any())
+            {
+                var latestGrade = allGrades.OrderByDescending(g => g.CreatedAt).First();
+                result.CurrentGPA = latestGrade.TermGPA;
+                result.CumulativeGPA = latestGrade.CGPA;
+            }
 
             var history = new List<AcademicHistoryDto>();
 

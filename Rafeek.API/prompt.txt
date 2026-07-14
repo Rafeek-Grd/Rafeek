@@ -1,262 +1,144 @@
-﻿curl -X 'POST' \
-  'https://localhost:44351/v1/api/ai/timetable' \
-  -H 'accept: */*' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkJlYXJlciJ9.eyJ1bmlxdWVfbmFtZSI6ImZhZC5zbGFoXzQwYjI5ZGMyIiwibmFtZWlkIjoiNjAwMTg3ZWMtZTM5Ni00ZTEyLTlmOWUtNzEwMTM5MDMwNDEzIiwiZW1haWwiOiJmYWQuc2xhaEBtYW5zLmVkdS5lZyIsIm5iZiI6MTc4Mzc4OTQ1OCwiZXhwIjoxNzgzNzg5NTE4LCJqdGkiOiI0NTQ3ZDFiZi0xNzU4LTQ0NmUtOGNjOC1lZWEzZDIyY2NhYzIiLCJVc2VyVHlwZXMiOiIxNiIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IlN0dWRlbnQiLCJpYXQiOjE3ODM3ODk0NTgsImlzcyI6Imh0dHBzOi8vbG9jYWxob3N0OjQ0MzUxLyJ9.2nU4Dy1-hq3cRPAJWU96j8ukOEGAycJsMYEAQiNWWps' \
-  -H 'Content-Type: application/json-patch+json' \
-  -d '{
-  "timetableRequest": {
-    "option": "balance",
-    "preferences": {
-      "buffer_minutes": 15
-    },
-    "courses": {
-      "CS101": {
-        "priority": 4,
-        "difficulty": 3,
-        "lecture": {
-          "id": "CS101_LEC_01",
-          "day": 0,
-          "start": "08:00",
-          "duration": 120,
-          "capacity": 80,
-          "available_seats": 12
-        },
-        "sections": [
-          { "id": "CS101_SEC_01", "day": 2, "start": "10:00", "duration": 60, "capacity": 25, "available_seats": 8 },
-          { "id": "CS101_SEC_02", "day": 3, "start": "12:00", "duration": 60, "capacity": 25, "available_seats": 3 }
-        ]
-      },
-      "CS102": {
-        "priority": 3,
-        "difficulty": 2,
-        "lecture": {
-          "id": "CS102_LEC_01",
-          "day": 1,
-          "start": "08:00",
-          "duration": 120,
-          "capacity": 75,
-          "available_seats": 20
-        },
-        "sections": [
-          { "id": "CS102_SEC_01", "day": 2, "start": "14:00", "duration": 60, "capacity": 25, "available_seats": 10 },
-          { "id": "CS102_SEC_02", "day": 4, "start": "10:00", "duration": 60, "capacity": 20, "available_seats": 5 }
-        ]
-      },
-      "IS101": {
-        "priority": 3,
-        "difficulty": 2,
-        "lecture": {
-          "id": "IS101_LEC_01",
-          "day": 2,
-          "start": "08:00",
-          "duration": 120,
-          "capacity": 70,
-          "available_seats": 18
-        },
-        "sections": [
-          { "id": "IS101_SEC_01", "day": 4, "start": "12:00", "duration": 60, "capacity": 20, "available_seats": 7 }
-        ]
-      },
-      "IT101": {
-        "priority": 3,
-        "difficulty": 2,
-        "lecture": {
-          "id": "IT101_LEC_01",
-          "day": 3,
-          "start": "08:00",
-          "duration": 120,
-          "capacity": 65,
-          "available_seats": 24
-        },
-        "sections": [
-          { "id": "IT101_SEC_01", "day": 1, "start": "14:00", "duration": 60, "capacity": 20, "available_seats": 8 },
-          { "id": "IT101_SEC_02", "day": 4, "start": "14:00", "duration": 60, "capacity": 20, "available_seats": 12 }
-        ]
-      },
-      "SWE101": {
-        "priority": 5,
-        "difficulty": 4,
-        "lecture": {
-          "id": "SWE101_LEC_01",
-          "day": 4,
-          "start": "08:00",
-          "duration": 120,
-          "capacity": 55,
-          "available_seats": 15
-        },
-        "sections": [
-          { "id": "SWE101_SEC_01", "day": 0, "start": "10:00", "duration": 60, "capacity": 20, "available_seats": 6 },
-          { "id": "SWE101_SEC_02", "day": 2, "start": "12:00", "duration": 60, "capacity": 20, "available_seats": 3 }
-        ]
-      }
-    }
-  }
-}
-'
-
-{
-  "success": true,
-  "errors": {},
-  "data": {
-    "stats": {
-      "max_load": 8,
-      "total_days": 5,
-      "option_name": "🎯 OPTION 1: Best Balance (Low Daily Load)"
-    },
-    "schedule": [
-      {
-        "course": "CS101",
-        "type": "LECTURE",
-        "day": 0,
-        "start_time": "08:00",
-        "end_time": "10:00",
-        "difficulty": 3,
-        "priority": 4,
-        "capacity": 80,
-        "available_seats": 12
-      },
-      {
-        "course": "CS101",
-        "type": "SECTION",
-        "section_id": "CS101_SEC_02",
-        "day": 3,
-        "start_time": "12:00",
-        "end_time": "13:00",
-        "difficulty": 3,
-        "priority": 4,
-        "capacity": 25,
-        "available_seats": 3
-      },
-      {
-        "course": "CS102",
-        "type": "LECTURE",
-        "day": 1,
-        "start_time": "08:00",
-        "end_time": "10:00",
-        "difficulty": 2,
-        "priority": 3,
-        "capacity": 75,
-        "available_seats": 20
-      },
-      {
-        "course": "CS102",
-        "type": "SECTION",
-        "section_id": "CS102_SEC_01",
-        "day": 2,
-        "start_time": "14:00",
-        "end_time": "15:00",
-        "difficulty": 2,
-        "priority": 3,
-        "capacity": 25,
-        "available_seats": 10
-      },
-      {
-        "course": "IS101",
-        "type": "LECTURE",
-        "day": 2,
-        "start_time": "08:00",
-        "end_time": "10:00",
-        "difficulty": 2,
-        "priority": 3,
-        "capacity": 70,
-        "available_seats": 18
-      },
-      {
-        "course": "IS101",
-        "type": "SECTION",
-        "section_id": "IS101_SEC_01",
-        "day": 4,
-        "start_time": "12:00",
-        "end_time": "13:00",
-        "difficulty": 2,
-        "priority": 3,
-        "capacity": 20,
-        "available_seats": 7
-      },
-      {
-        "course": "IT101",
-        "type": "LECTURE",
-        "day": 3,
-        "start_time": "08:00",
-        "end_time": "10:00",
-        "difficulty": 2,
-        "priority": 3,
-        "capacity": 65,
-        "available_seats": 24
-      },
-      {
-        "course": "IT101",
-        "type": "SECTION",
-        "section_id": "IT101_SEC_02",
-        "day": 4,
-        "start_time": "14:00",
-        "end_time": "15:00",
-        "difficulty": 2,
-        "priority": 3,
-        "capacity": 20,
-        "available_seats": 12
-      },
-      {
-        "course": "SWE101",
-        "type": "LECTURE",
-        "day": 4,
-        "start_time": "08:00",
-        "end_time": "10:00",
-        "difficulty": 4,
-        "priority": 5,
-        "capacity": 55,
-        "available_seats": 15
-      },
-      {
-        "course": "SWE101",
-        "type": "SECTION",
-        "section_id": "SWE101_SEC_02",
-        "day": 2,
-        "start_time": "12:00",
-        "end_time": "13:00",
-        "difficulty": 4,
-        "priority": 5,
-        "capacity": 20,
-        "available_seats": 3
-      }
-    ]
-  },
-  "message": "تم تنفيذ العملية بنجاح",
-  "statusCode": 200
-}
-
----
-
-### Save Timetable Request (POST /v1/api/ai/timetable/save)
-
-```json
-curl -X 'POST' \
-  'https://localhost:44351/v1/api/ai/timetable/save' \
-  -H 'accept: */*' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkJlYXJlciJ9.eyJ1bmlxdWVfbmFtZSI6ImZhZC5zbGFoXzQwYjI5ZGMyIiwibmFtZWlkIjoiNjAwMTg3ZWMtZTM5Ni00ZTEyLTlmOWUtNzEwMTM5MDMwNDEzIiwiZW1haWwiOiJmYWQuc2xhaEBtYW5zLmVkdS5lZyIsIm5iZiI6MTc4Mzc4OTQ1OCwiZXhwIjoxNzgzNzg5NTE4LCJqdGkiOiI0NTQ3ZDFiZi0xNzU4LTQ0NmUtOGNjOC1lZWEzZDIyY2NhYzIiLCJVc2VyVHlwZXMiOiIxNiIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IlN0dWRlbnQiLCJpYXQiOjE3ODM3ODk0NTgsImlzcyI6Imh0dHBzOi8vbG9jYWxob3N0OjQ0MzUxLyJ9.2nU4Dy1-hq3cRPAJWU96j8ukOEGAycJsMYEAQiNWWps' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "id": null,
-  "studentId": "600187ec-e396-4e12-9f9e-710139030413",
-  "timetableName": "My Timetable - Fall 2025",
-  "timetableData": {
-    "stats": {
-      "max_load": 8,
-      "total_days": 5,
-      "option_name": "🎯 OPTION 1: Best Balance (Low Daily Load)"
-    },
-    "schedule": [
-      { "course": "CS101", "type": "LECTURE", "day": 0, "start_time": "08:00", "end_time": "10:00", "difficulty": 3, "priority": 4, "capacity": 80, "available_seats": 12 },
-      { "course": "CS101", "type": "SECTION", "section_id": "CS101_SEC_02", "day": 3, "start_time": "12:00", "end_time": "13:00", "difficulty": 3, "priority": 4, "capacity": 25, "available_seats": 3 },
-      { "course": "CS102", "type": "LECTURE", "day": 1, "start_time": "08:00", "end_time": "10:00", "difficulty": 2, "priority": 3, "capacity": 75, "available_seats": 20 },
-      { "course": "CS102", "type": "SECTION", "section_id": "CS102_SEC_01", "day": 2, "start_time": "14:00", "end_time": "15:00", "difficulty": 2, "priority": 3, "capacity": 25, "available_seats": 10 },
-      { "course": "IS101", "type": "LECTURE", "day": 2, "start_time": "08:00", "end_time": "10:00", "difficulty": 2, "priority": 3, "capacity": 70, "available_seats": 18 },
-      { "course": "IS101", "type": "SECTION", "section_id": "IS101_SEC_01", "day": 4, "start_time": "12:00", "end_time": "13:00", "difficulty": 2, "priority": 3, "capacity": 20, "available_seats": 7 },
-      { "course": "IT101", "type": "LECTURE", "day": 3, "start_time": "08:00", "end_time": "10:00", "difficulty": 2, "priority": 3, "capacity": 65, "available_seats": 24 },
-      { "course": "IT101", "type": "SECTION", "section_id": "IT101_SEC_02", "day": 4, "start_time": "14:00", "end_time": "15:00", "difficulty": 2, "priority": 3, "capacity": 20, "available_seats": 12 },
-      { "course": "SWE101", "type": "LECTURE", "day": 4, "start_time": "08:00", "end_time": "10:00", "difficulty": 4, "priority": 5, "capacity": 55, "available_seats": 15 },
-      { "course": "SWE101", "type": "SECTION", "section_id": "SWE101_SEC_02", "day": 2, "start_time": "12:00", "end_time": "13:00", "difficulty": 4, "priority": 5, "capacity": 20, "available_seats": 3 }
-    ]
-  }
-}'
-```
+﻿﻿      ) AS [t5] ON [t1].[Id] = [t5].[StudentId]
+﻿      LEFT JOIN (
+﻿          SELECT [c0].[Id], [c0].[CreatedAt], [c0].[CreatedBy], [c0].[DeletedAt], [c0].[DeletedBy], [c0].[IsActive], [c0].[IsDeleted], [c0].[Query], [c0].[Response], [c0].[SessionId], [c0].[StudentId], [c0].[UpdatedAt], [c0].[UpdatedBy]
+﻿          FROM [dbo].[ChatbotQueries] AS [c0]
+﻿          WHERE [c0].[IsDeleted] = CAST(0 AS bit)
+﻿      ) AS [t6] ON [t1].[Id] = [t6].[StudentId]
+﻿      LEFT JOIN (
+﻿          SELECT [d1].[Id], [d1].[AttachmentUrl], [d1].[CreatedAt], [d1].[CreatedBy], [d1].[DeletedAt], [d1].[DeletedBy], [d1].[DocumentType], [d1].[IsActive], [d1].[IsDeleted], [d1].[Remarks], [d1].[Status], [d1].[StudentId], [d1].[Topic], [d1].[UpdatedAt], [d1].[UpdatedBy]
+﻿          FROM [dbo].[DocumentRequests] AS [d1]
+﻿          WHERE [d1].[IsDeleted] = CAST(0 AS bit)
+﻿      ) AS [t7] ON [t1].[Id] = [t7].[StudentId]
+﻿      LEFT JOIN (
+﻿          SELECT [e].[Id], [e].[CourseId], [e].[CreatedAt], [e].[CreatedBy], [e].[DeletedAt], [e].[DeletedBy], [e].[Grade], [e].[IsActive], [e].[IsDeleted], [e].[LectureGroupId], [e].[SectionId], [e].[Status], [e].[StudentId], [e].[UpdatedAt], [e].[UpdatedBy]
+﻿          FROM [dbo].[Enrollments] AS [e]
+﻿          WHERE [e].[IsDeleted] = CAST(0 AS bit)
+﻿      ) AS [t8] ON [t1].[Id] = [t8].[StudentId]
+﻿      LEFT JOIN (
+﻿          SELECT [g].[Id], [g].[CreatedAt], [g].[CreatedBy], [g].[DeletedAt], [g].[DeletedBy], [g].[ExpectedGPA], [g].[IsActive], [g].[IsDeleted], [g].[PredictedCGPA], [g].[StudentId], [g].[UpdatedAt], [g].[UpdatedBy]
+﻿          FROM [dbo].[GPASimulatorLog] AS [g]
+﻿          WHERE [g].[IsDeleted] = CAST(0 AS bit)
+﻿      ) AS [t9] ON [t1].[Id] = [t9].[StudentId]
+﻿      LEFT JOIN (
+﻿          SELECT [s1].[Id], [s1].[CreatedAt], [s1].[CreatedBy], [s1].[DeletedAt], [s1].[DeletedBy], [s1].[Description], [s1].[Email], [s1].[IsActive], [s1].[IsDeleted], [s1].[StudentId], [s1].[StudentSupportStatus], [s1].[TicketType], [s1].[Title], [s1].[UpdatedAt], [s1].[UpdatedBy]
+﻿          FROM [dbo].[StudentSupports] AS [s1]
+﻿          WHERE [s1].[IsDeleted] = CAST(0 AS bit)
+﻿      ) AS [t10] ON [t1].[Id] = [t10].[StudentId]
+﻿      LEFT JOIN (
+﻿          SELECT [s2].[Id], [s2].[CourseId], [s2].[CreatedAt], [s2].[CreatedBy], [s2].[DeletedAt], [s2].[DeletedBy], [s2].[IsActive], [s2].[IsDeleted], [s2].[Semester], [s2].[StudentId], [s2].[UpdatedAt], [s2].[UpdatedBy]
+﻿          FROM [dbo].[StudyPlans] AS [s2]
+﻿          WHERE [s2].[IsDeleted] = CAST(0 AS bit)
+﻿      ) AS [t11] ON [t1].[Id] = [t11].[StudentId]
+﻿      ORDER BY [t1].[Id], [t1].[Id0], [t1].[Id1], [t1].[Id2], [t1].[Id3], [t2].[Id], [t3].[Id], [t4].[Id], [t5].[Id], [t6].[Id], [t7].[Id], [t8].[Id], [t9].[Id], [t10].[Id]
+﻿Erro\: Microsoft.EntityFrameworkCore.Query[0]
+﻿      An exception occurred while iterating over the results of a query for context type 'Rafeek.Persistence.RafeekDbContext'.
+﻿Microsoft.Data.SqlClient.SqlException (0x80131904): Execution Timeout Expired.  The timeout period elapsed prior to completion of the operation or the server is not responding.
+﻿ ---> System.ComponentModel.Win32Exception (258): The wait operation timed out.
+﻿   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+﻿   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+﻿--- End of stack trace from previous location ---
+﻿   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+﻿   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+﻿--- End of stack trace from previous location ---
+﻿   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+﻿   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+﻿   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+﻿   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+﻿   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+﻿ClientConnectionId:4eb9b037-99ac-40f0-9956-c4a3742a6796
+﻿Error Number:-2,State:0,Class:11Microsoft.Data.SqlClient.SqlException (0x80131904): Execution Timeout Expired.  The timeout period elapsed prior to completion of the operation or the server is not responding.
+﻿ ---> System.ComponentModel.Win32Exception (258): The wait operation timed out.
+﻿   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+﻿   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+﻿--- End of stack trace from previous location ---
+﻿   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+﻿   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+﻿--- End of stack trace from previous location ---
+﻿   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+﻿   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+﻿   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+﻿   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+﻿   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+﻿ClientConnectionId:4eb9b037-99ac-40f0-9956-c4a3742a6796
+﻿Error Number:-2,State:0,Class:11
+﻿fail: 7/14/2026 11:40:12.335 CoreEventId.QueryIterationFailed[10100] (Microsoft.EntityFrameworkCore.Query) 
+﻿      An exception occurred while iterating over the results of a query for context type 'Rafeek.Persistence.RafeekDbContext'.
+﻿      Microsoft.Data.SqlClient.SqlException (0x80131904): Execution Timeout Expired.  The timeout period elapsed prior to completion of the operation or the server is not responding.
+﻿       ---> System.ComponentModel.Win32Exception (258): The wait operation timed out.
+﻿         at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+﻿         at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+﻿      --- End of stack trace from previous location ---
+﻿         at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+﻿         at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+﻿      --- End of stack trace from previous location ---
+﻿         at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+﻿         at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+﻿         at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+﻿         at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+﻿         at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+﻿      ClientConnectionId:4eb9b037-99ac-40f0-9956-c4a3742a6796
+﻿      Error Number:-2,State:0,Class:11
+﻿Erro\: Rafeek.Application.Handlers.StudentHandlers.Query.GetStudentProfile.GetStudentProfileQuery[0]
+﻿      Squeak Request: Unhandled Exception for Request "GetStudentProfileQuery" {"UserId":"00000000-0000-0000-0000-000000000000"}Microsoft.Data.SqlClient.SqlException (0x80131904): Execution Timeout Expired.  The timeout period elapsed prior to completion of the operation or the server is not responding.
+﻿ ---> System.ComponentModel.Win32Exception (258): The wait operation timed out.
+﻿   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+﻿   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+﻿--- End of stack trace from previous location ---
+﻿   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+﻿   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+﻿--- End of stack trace from previous location ---
+﻿   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+﻿   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+﻿   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+﻿   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+﻿   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+﻿   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+﻿   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+﻿   at Rafeek.Application.Handlers.StudentHandlers.Query.GetStudentProfile.GetStudentProfileQueryHandler.Handle(GetStudentProfileQuery request, CancellationToken cancellationToken) in E:\Rafeek\Rafeek.Application\Handlers\StudentHandlers\Query\GetStudentProfile\GetStudentProfileQueryHandler.cs:line 53
+﻿   at Rafeek.Application.Common.Behaviours.PerformanceBehaviour`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next) in E:\Rafeek\Rafeek.Application\Common\Behaviours\PerformanceBehaviour.cs:line 23
+﻿   at Rafeek.Application.Common.Behaviours.ValidationBehaviour`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next) in E:\Rafeek\Rafeek.Application\Common\Behaviours\ValidationBehaviour.cs:line 28
+﻿   at Rafeek.Application.Common.Behaviours.UnhandledExceptionBehaviour`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next) in E:\Rafeek\Rafeek.Application\Common\Behaviours\UnhandledExceptionBehaviour.cs:line 20
+﻿ClientConnectionId:4eb9b037-99ac-40f0-9956-c4a3742a6796
+﻿Error Number:-2,State:0,Class:11
+﻿Erro\: Rafeek.API.Filters.ApiExceptionFilterAttribute[0]
+﻿      An unhandled exception has occurred while executing the request.Microsoft.Data.SqlClient.SqlException (0x80131904): Execution Timeout Expired.  The timeout period elapsed prior to completion of the operation or the server is not responding.
+﻿ ---> System.ComponentModel.Win32Exception (258): The wait operation timed out.
+﻿   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+﻿   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+﻿--- End of stack trace from previous location ---
+﻿   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+﻿   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+﻿--- End of stack trace from previous location ---
+﻿   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+﻿   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+﻿   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+﻿   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+﻿   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+﻿   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+﻿   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+﻿   at Rafeek.Application.Handlers.StudentHandlers.Query.GetStudentProfile.GetStudentProfileQueryHandler.Handle(GetStudentProfileQuery request, CancellationToken cancellationToken) in E:\Rafeek\Rafeek.Application\Handlers\StudentHandlers\Query\GetStudentProfile\GetStudentProfileQueryHandler.cs:line 53
+﻿   at Rafeek.Application.Common.Behaviours.PerformanceBehaviour`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next) in E:\Rafeek\Rafeek.Application\Common\Behaviours\PerformanceBehaviour.cs:line 23
+﻿   at Rafeek.Application.Common.Behaviours.ValidationBehaviour`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next) in E:\Rafeek\Rafeek.Application\Common\Behaviours\ValidationBehaviour.cs:line 28
+﻿   at Rafeek.Application.Common.Behaviours.UnhandledExceptionBehaviour`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next) in E:\Rafeek\Rafeek.Application\Common\Behaviours\UnhandledExceptionBehaviour.cs:line 20
+﻿   at MediatR.Pipeline.RequestExceptionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+﻿   at MediatR.Pipeline.RequestExceptionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+﻿   at MediatR.Pipeline.RequestExceptionActionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+﻿   at MediatR.Pipeline.RequestExceptionActionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+﻿   at MediatR.Pipeline.RequestPostProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+﻿   at MediatR.Pipeline.RequestPreProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+﻿   at Rafeek.API.Controllers.Version1.StudentController.GetProfile() in E:\Rafeek\Rafeek.API\Controllers\Version1\StudentController.cs:line 83
+﻿   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+﻿   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+﻿   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+﻿   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+﻿   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+﻿   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+﻿   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextExceptionFilterAsync>g__Awaited|26_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+﻿ClientConnectionId:4eb9b037-99ac-40f0-9956-c4a3742a6796
+﻿Error Number:-2,State:0,Class:11
+﻿Info\: Microsoft.EntityFrameworkCore.Database.Command[0]
+﻿      Executed DbCommand (193ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (Size = 256), @p2='?' (DbType = Int64), @p3='?' (Size = 4000), @p4='?' (Size = 45), @p5='?' (Size = 10), @p6='?' (Size = 2000), @p7='?' (Size = 4000), @p8='?' (Size = 4000), @p9='?' (Size = 100), @p10='?' (DbType = Int32), @p11='?' (Size = 4000), @p12='?' (Size = 4000), @p13='?' (DbType = Int32), @p14='?' (Size = 4000), @p15='?' (DbType = Int32), @p16='?' (DbType = Boolean), @p17='?' (DbType = DateTime2), @p18='?' (Size = 2000), @p19='?' (Size = 500), @p20='?' (Size = 256)], CommandType='Text', CommandTimeout='30']
+﻿SET IMPLICIT_TRANSACTIONS OFF;
+﻿SET NOCOUNT ON;
+﻿INSERT INTO [HttpTransactions] ([Id], [ContentType], [DurationMs], [ErrorMessage], [IpAddress], [Method], [QueryString], [RequestBody], [RequestHeaders], [RequestId], [RequestSize], [ResponseBody], [ResponseHeaders], [ResponseSize], [StackTrace], [StatusCode], [Success], [Timestamp], [Url], [UserAgent], [UserId])
+﻿VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14, @p15, @p16, @p17, @p18, @p19, @p20);

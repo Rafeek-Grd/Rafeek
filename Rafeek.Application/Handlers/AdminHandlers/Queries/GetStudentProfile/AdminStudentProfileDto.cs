@@ -11,6 +11,8 @@ namespace Rafeek.Application.Handlers.AdminHandlers.Queries.GetStudentProfile
         public string LevelName { get; set; } = null!;
         public string? AcademicAdvisorName { get; set; }
         public string? ProfilePictureUrl { get; set; }
+        public float CurrentGPA { get; set; }
+        public float CumulativeGPA { get; set; }
 
         public List<AdminStudentCurrentEnrollmentDto> CurrentEnrollments { get; set; } = new();
         public List<AdminStudentResultHistoryDto> ResultsHistory { get; set; } = new();

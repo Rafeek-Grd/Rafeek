@@ -263,16 +263,31 @@ namespace Rafeek.Application.Handlers.GenericHandlers.GetProfilesForAdmins
             var enrollments = await context.Enrollments
                 .AsNoTracking()
                 .Include(e => e.Course)
-                .Include(e => e.LectureGroup)
-                    .ThenInclude(sec => sec!.Doctor)
-                        .ThenInclude(d => d!.User)
-                .Include(e => e.LectureGroup)
-                    .ThenInclude(sec => sec.CalendarEvents)
-                        .ThenInclude(ce => ce.AcademicTerm)
-                            .ThenInclude(at => at!.AcademicYear)
                 .Include(e => e.Grades)
                 .Where(e => e.StudentId == student.Id && !e.IsDeleted)
                 .ToListAsync(ct);
+
+            var sectionIds = enrollments.Select(e => e.LectureGroupId).Distinct().ToList();
+            var sections = await context.LectureGroups
+                .IgnoreQueryFilters()
+                .AsNoTracking()
+                .Include(s => s.Doctor)
+                    .ThenInclude(d => d!.User)
+                .Include(s => s.CalendarEvents)
+                    .ThenInclude(ce => ce.AcademicTerm)
+                        .ThenInclude(at => at!.AcademicYear)
+                .Where(s => sectionIds.Contains(s.Id))
+                .ToListAsync(ct);
+            var sectionsDict = sections.ToDictionary(s => s.Id);
+
+            var allGrades = enrollments.SelectMany(e => e.Grades).ToList();
+            float currentGpa = 0, cumulativeGpa = 0;
+            if (allGrades.Any())
+            {
+                var latestGrade = allGrades.OrderByDescending(g => g.CreatedAt).First();
+                currentGpa = latestGrade.TermGPA;
+                cumulativeGpa = latestGrade.CGPA;
+            }
 
             var level = (student.AcademicProfileId != Guid.Empty ? 1 : 0) + student.Level;
             var levelName = level switch
@@ -298,11 +313,15 @@ namespace Rafeek.Application.Handlers.GenericHandlers.GetProfilesForAdmins
                 UniversityCode = student.UniversityCode,
                 Level = level,
                 LevelName = levelName,
-                AcademicAdvisorName = advisorName ?? "-"
+                AcademicAdvisorName = advisorName ?? "-",
+                CurrentGPA = currentGpa,
+                CumulativeGPA = cumulativeGpa
             };
 
             foreach (var enrollment in enrollments)
             {
+                var lectureGroup = sectionsDict.GetValueOrDefault(enrollment.LectureGroupId);
+
                 var isCompleted = !string.IsNullOrEmpty(enrollment.Grade);
 
                 if (!isCompleted)
@@ -311,7 +330,7 @@ namespace Rafeek.Application.Handlers.GenericHandlers.GetProfilesForAdmins
                     {
                         CourseCode = enrollment.Course.Code,
                         CourseTitle = enrollment.Course.Title,
-                        InstructorName = enrollment.LectureGroup?.Doctor?.User?.FullName ?? "-",
+                        InstructorName = lectureGroup?.Doctor?.User?.FullName ?? "-",
                         Status = "Enrolled",
                         StatusLabel = "مسجل"
                     });
@@ -322,7 +341,7 @@ namespace Rafeek.Application.Handlers.GenericHandlers.GetProfilesForAdmins
                         .OrderByDescending(g => g.AbsoluteScore)
                         .FirstOrDefault();
 
-                    var term = enrollment.LectureGroup?.CalendarEvents?
+                    var term = lectureGroup?.CalendarEvents?
                         .Select(ce => ce.AcademicTerm)
                         .FirstOrDefault(t => t != null);
 

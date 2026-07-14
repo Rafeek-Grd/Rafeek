@@ -48,6 +48,8 @@ namespace Rafeek.Application.Handlers.GenericHandlers.GetProfilesForAdmins
         public int Level { get; set; }
         public string? LevelName { get; set; }
         public string? AcademicAdvisorName { get; set; }
+        public float CurrentGPA { get; set; }
+        public float CumulativeGPA { get; set; }
         public List<AdminStudentCurrentEnrollmentDto> CurrentEnrollments { get; set; } = new();
         public List<AdminStudentResultHistoryDto> ResultsHistory { get; set; } = new();
     }

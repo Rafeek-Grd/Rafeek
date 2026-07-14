@@ -24,24 +24,40 @@ namespace Rafeek.Application.Handlers.AdminHandlers.Queries.GetStudentProfile
                 .Include(s => s.AcademicAdvisor)
                     .ThenInclude(d => d!.User)
                 .Include(s => s.AcademicProfile)
-                .Include(s => s.Enrollments)
-                    .ThenInclude(e => e.Course)
-                .Include(s => s.Enrollments)
-                    .ThenInclude(e => e.LectureGroup)
-                        .ThenInclude(sec => sec.Doctor)
-                            .ThenInclude(d => d.User)
-                .Include(s => s.Enrollments)
-                    .ThenInclude(e => e.LectureGroup)
-                        .ThenInclude(sec => sec.CalendarEvents)
-                            .ThenInclude(ce => ce.AcademicTerm)
-                                .ThenInclude(at => at!.AcademicYear)
-                .Include(s => s.Enrollments)
-                    .ThenInclude(e => e.Grades)
                 .FirstOrDefaultAsync(s => s.Id == studentId || s.UserId == studentId, cancellationToken);
 
             if (student == null)
             {
                 throw new NotFoundException($"الطالب بالمعرّف {studentId} غير موجود.");
+            }
+
+            var enrollments = await _context.Enrollments
+                .AsNoTracking()
+                .Include(e => e.Course)
+                .Include(e => e.Grades)
+                .Where(e => e.StudentId == student.Id && !e.IsDeleted)
+                .ToListAsync(cancellationToken);
+
+            var sectionIds = enrollments.Select(e => e.LectureGroupId).Distinct().ToList();
+            var sections = await _context.LectureGroups
+                .IgnoreQueryFilters()
+                .AsNoTracking()
+                .Include(s => s.Doctor)
+                    .ThenInclude(d => d!.User)
+                .Include(s => s.CalendarEvents)
+                    .ThenInclude(ce => ce.AcademicTerm)
+                        .ThenInclude(at => at!.AcademicYear)
+                .Where(s => sectionIds.Contains(s.Id))
+                .ToListAsync(cancellationToken);
+            var sectionsDict = sections.ToDictionary(s => s.Id);
+
+            var allGrades = enrollments.SelectMany(e => e.Grades).ToList();
+            float currentGpa = 0, cumulativeGpa = 0;
+            if (allGrades.Any())
+            {
+                var latestGrade = allGrades.OrderByDescending(g => g.CreatedAt).First();
+                currentGpa = latestGrade.TermGPA;
+                cumulativeGpa = latestGrade.CGPA;
             }
 
             int level = (student.AcademicProfile?.CompletedCredits ?? 0) / 30 + 1;
@@ -64,11 +80,15 @@ namespace Rafeek.Application.Handlers.AdminHandlers.Queries.GetStudentProfile
                 Level = level,
                 LevelName = levelName,
                 AcademicAdvisorName = student.AcademicAdvisor?.User?.FullName ?? "-",
-                ProfilePictureUrl = student.User.ProfilePictureUrl
+                ProfilePictureUrl = student.User.ProfilePictureUrl,
+                CurrentGPA = currentGpa,
+                CumulativeGPA = cumulativeGpa
             };
 
-            foreach (var enrollment in student.Enrollments)
+            foreach (var enrollment in enrollments)
             {
+                var lectureGroup = sectionsDict.GetValueOrDefault(enrollment.LectureGroupId);
+
                 bool isCompleted = !string.IsNullOrEmpty(enrollment.Grade);
                 
                 if (!isCompleted)
@@ -77,7 +97,7 @@ namespace Rafeek.Application.Handlers.AdminHandlers.Queries.GetStudentProfile
                     {
                         CourseCode = enrollment.Course.Code,
                         CourseTitle = enrollment.Course.Title,
-                        InstructorName = enrollment.LectureGroup?.Doctor?.User?.FullName ?? "-",
+                        InstructorName = lectureGroup?.Doctor?.User?.FullName ?? "-",
                         Status = "Enrolled",
                         StatusLabel = "مسجل"
                     });
@@ -86,7 +106,7 @@ namespace Rafeek.Application.Handlers.AdminHandlers.Queries.GetStudentProfile
                 {
                     var finalGradeDetails = enrollment.Grades.OrderByDescending(g => g.AbsoluteScore).FirstOrDefault();
                     
-                    var term = enrollment.LectureGroup?.CalendarEvents?
+                    var term = lectureGroup?.CalendarEvents?
                         .Select(ce => ce.AcademicTerm)
                         .FirstOrDefault(at => at != null);
                     
