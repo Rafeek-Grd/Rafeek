@@ -1259,9 +1259,135 @@ namespace Rafeek.Persistence.Seed
                     .Where(e => e.StudentId == moazStudent.Id)
                     .ToListAsync();
 
+                var faker = new Faker("en");
+                var random = new Random();
+
                 if (!moazEnrollments.Any())
                 {
-                    Log("[Seeder] No enrollments for moaz. Cannot seed academic history.");
+                    Log("[Seeder] No enrollments for moaz. Creating enrollments with 2 courses (6 credit hours)...");
+
+                    var terms = await context.AcademicTerms.Include(t => t.AcademicYear).OrderBy(t => t.StartDate).ToListAsync();
+                    if (!terms.Any())
+                    {
+                        Log("[Seeder] No academic terms found. Cannot seed academic history.");
+                        return;
+                    }
+
+                    var allCourses = await context.Courses.Where(c => c.CreditHours == 3).ToListAsync();
+                    if (allCourses.Count < 2)
+                    {
+                        allCourses = await context.Courses.ToListAsync();
+                    }
+                    var selectedCourses = allCourses.OrderBy(_ => random.Next()).Take(2).ToList();
+
+                    var existingLectureGroups = await context.LectureGroups
+                        .Where(lg => selectedCourses.Select(c => c.Id).Contains(lg.CourseId))
+                        .ToListAsync();
+
+                    var newEnrollments = new List<Enrollment>();
+                    var newGrades = new List<Grade>();
+                    var newCalendarEvents = new List<AcademicCalendar>();
+
+                    foreach (var course in selectedCourses)
+                    {
+                        var lectureGroup = existingLectureGroups.FirstOrDefault(lg => lg.CourseId == course.Id)
+                            ?? new LectureGroup
+                            {
+                                Id = Guid.NewGuid(),
+                                CourseId = course.Id,
+                                DoctorId = null,
+                                Day = faker.PickRandom(new[] { "الأحد", "الإثنين", "الثلاثاء", "الأربعاء", "الخميس" }),
+                                StartTime = new TimeSpan(faker.Random.Int(8, 16), 0, 0),
+                                EndTime = new TimeSpan(faker.Random.Int(10, 18), 0, 0),
+                                Time = "10:00 - 12:00",
+                                Capacity = 40,
+                                Location = "مبنى A - قاعة " + faker.Random.Number(100, 500),
+                                CreatedAt = DateTime.UtcNow,
+                                CreatedBy = "Seeder",
+                                IsActive = true
+                            };
+
+                        if (lectureGroup.Id == Guid.Empty || !existingLectureGroups.Contains(lectureGroup))
+                        {
+                            context.LectureGroups.Add(lectureGroup);
+                            existingLectureGroups.Add(lectureGroup);
+                        }
+
+                        float score = (float)Math.Round(faker.Random.Double(75.0, 95.0), 2);
+                        string gradeLetter;
+                        float gpaPoint;
+
+                        if (score >= 90) { gradeLetter = "A"; gpaPoint = 4.0f; }
+                        else if (score >= 85) { gradeLetter = "A-"; gpaPoint = 3.7f; }
+                        else if (score >= 80) { gradeLetter = "B+"; gpaPoint = 3.3f; }
+                        else { gradeLetter = "B"; gpaPoint = 3.0f; }
+
+                        var enrollment = new Enrollment
+                        {
+                            Id = Guid.NewGuid(),
+                            StudentId = moazStudent.Id,
+                            CourseId = course.Id,
+                            LectureGroupId = lectureGroup.Id,
+                            Status = "Completed",
+                            Grade = gradeLetter,
+                            CreatedAt = DateTime.UtcNow,
+                            CreatedBy = "Seeder",
+                            IsActive = true
+                        };
+                        newEnrollments.Add(enrollment);
+
+                        newGrades.Add(new Grade
+                        {
+                            Id = Guid.NewGuid(),
+                            EnrollmentId = enrollment.Id,
+                            GradeValue = gpaPoint,
+                            AbsoluteScore = score,
+                            TermGPA = gpaPoint,
+                            CGPA = gpaPoint,
+                            CreatedAt = DateTime.UtcNow,
+                            CreatedBy = "Seeder",
+                            IsActive = true
+                        });
+
+                        var term = terms[random.Next(terms.Count)];
+                        newCalendarEvents.Add(new AcademicCalendar
+                        {
+                            Id = Guid.NewGuid(),
+                            LectureGroupId = lectureGroup.Id,
+                            AcademicTermId = term.Id,
+                            EventName = $"محاضرات مقرر - {course.Title}",
+                            Description = $"الجدول الدراسي لمقرر {course.Title}",
+                            EventDate = term.StartDate,
+                            EndDate = term.EndDate,
+                            StartTime = new TimeSpan(8, 0, 0),
+                            EndTime = new TimeSpan(10, 0, 0),
+                            EventType = AcademicCalendarEventType.Academic,
+                            Status = CalendarEventStatus.Published,
+                            Visibility = EventVisibility.All,
+                            CreatedAt = DateTime.UtcNow,
+                            CreatedBy = "Seeder",
+                            IsActive = true
+                        });
+                    }
+
+                    context.Enrollments.AddRange(newEnrollments);
+                    context.Grades.AddRange(newGrades);
+                    context.AcademicCalendars.AddRange(newCalendarEvents);
+
+                    var profile = await context.StudentAcademicProfiles
+                        .FirstOrDefaultAsync(p => p.StudentId == moazStudent.Id);
+                    if (profile != null)
+                    {
+                        var avgGpa = (float)Math.Round(newGrades.Average(g => g.GradeValue), 2);
+                        profile.GPA = avgGpa;
+                        profile.CGPA = Math.Clamp((float)Math.Round(avgGpa - 0.1, 2), 0.0f, 4.0f);
+                        profile.CompletedCredits += 6;
+                        profile.RemainingCredits -= 6;
+                        context.StudentAcademicProfiles.Update(profile);
+                    }
+
+                    await context.SaveChangesAsync();
+                    Log($"[Seeder] Created {newEnrollments.Count} enrollments, {newGrades.Count} grades, and {newCalendarEvents.Count} calendar events for moaz.");
                     return;
                 }
 
@@ -1276,27 +1402,26 @@ namespace Rafeek.Persistence.Seed
                     return;
                 }
 
-                var terms = await context.AcademicTerms.Include(t => t.AcademicYear).OrderBy(t => t.StartDate).ToListAsync();
-                if (!terms.Any())
+                var existingTerms = await context.AcademicTerms.Include(t => t.AcademicYear).OrderBy(t => t.StartDate).ToListAsync();
+                if (!existingTerms.Any())
                 {
                     Log("[Seeder] No academic terms found. Cannot seed academic history.");
                     return;
                 }
 
-                var random = new Random();
-                var termAssignments = new List<(LectureGroup group, AcademicTerm term)>();
+                var existingTermAssignments = new List<(LectureGroup group, AcademicTerm term)>();
 
                 // Assign each enrollment's lecture group to a term
                 foreach (var lgId in lectureGroupIds)
                 {
-                    var term = terms[random.Next(terms.Count)];
-                    termAssignments.Add((new LectureGroup { Id = lgId }, term));
+                    var term = existingTerms[random.Next(existingTerms.Count)];
+                    existingTermAssignments.Add((new LectureGroup { Id = lgId }, term));
                 }
 
-                var newCalendarEvents = new List<AcademicCalendar>();
-                foreach (var (group, term) in termAssignments)
+                var existingCalendarEvents = new List<AcademicCalendar>();
+                foreach (var (group, term) in existingTermAssignments)
                 {
-                    newCalendarEvents.Add(new AcademicCalendar
+                    existingCalendarEvents.Add(new AcademicCalendar
                     {
                         Id = Guid.NewGuid(),
                         LectureGroupId = group.Id,
@@ -1316,9 +1441,9 @@ namespace Rafeek.Persistence.Seed
                     });
                 }
 
-                context.AcademicCalendars.AddRange(newCalendarEvents);
+                context.AcademicCalendars.AddRange(existingCalendarEvents);
                 await context.SaveChangesAsync();
-                Log($"[Seeder] Created {newCalendarEvents.Count} calendar events linking moaz's lecture groups to academic terms.");
+                Log($"[Seeder] Created {existingCalendarEvents.Count} calendar events linking moaz's lecture groups to academic terms.");
             });
 
             await context.SaveChangesAsync();
