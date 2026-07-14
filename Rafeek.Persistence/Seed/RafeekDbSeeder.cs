@@ -1237,6 +1237,90 @@ namespace Rafeek.Persistence.Seed
                 }
             });
 
+            // 17. Seed academic history for moaz@std.mans.edu.eg
+            await SeedStageAsync("Academic History for moaz@std.mans.edu.eg", async () => {
+                var moazUser = await identityContext.Users
+                    .FirstOrDefaultAsync(u => u.Email == "moaz@std.mans.edu.eg");
+                if (moazUser == null)
+                {
+                    Log("[Seeder] moaz@std.mans.edu.eg not found. Skipping academic history seed.");
+                    return;
+                }
+
+                var moazStudent = await context.Students
+                    .FirstOrDefaultAsync(s => s.UserId == moazUser.Id);
+                if (moazStudent == null)
+                {
+                    Log("[Seeder] Student record for moaz not found. Skipping.");
+                    return;
+                }
+
+                var moazEnrollments = await context.Enrollments
+                    .Where(e => e.StudentId == moazStudent.Id)
+                    .ToListAsync();
+
+                if (!moazEnrollments.Any())
+                {
+                    Log("[Seeder] No enrollments for moaz. Cannot seed academic history.");
+                    return;
+                }
+
+                var lectureGroupIds = moazEnrollments.Select(e => e.LectureGroupId).Distinct().ToList();
+
+                bool hasCalendarLinks = await context.AcademicCalendars
+                    .AnyAsync(ce => lectureGroupIds.Contains(ce.LectureGroupId ?? Guid.Empty));
+
+                if (hasCalendarLinks)
+                {
+                    Log("[Seeder] moaz already has academic history linked. Skipping.");
+                    return;
+                }
+
+                var terms = await context.AcademicTerms.Include(t => t.AcademicYear).OrderBy(t => t.StartDate).ToListAsync();
+                if (!terms.Any())
+                {
+                    Log("[Seeder] No academic terms found. Cannot seed academic history.");
+                    return;
+                }
+
+                var random = new Random();
+                var termAssignments = new List<(LectureGroup group, AcademicTerm term)>();
+
+                // Assign each enrollment's lecture group to a term
+                foreach (var lgId in lectureGroupIds)
+                {
+                    var term = terms[random.Next(terms.Count)];
+                    termAssignments.Add((new LectureGroup { Id = lgId }, term));
+                }
+
+                var newCalendarEvents = new List<AcademicCalendar>();
+                foreach (var (group, term) in termAssignments)
+                {
+                    newCalendarEvents.Add(new AcademicCalendar
+                    {
+                        Id = Guid.NewGuid(),
+                        LectureGroupId = group.Id,
+                        AcademicTermId = term.Id,
+                        EventName = $"محاضرات مقرر - {term.Name}",
+                        Description = $"الجدول الدراسي المرتبط بالفصل {term.Name}",
+                        EventDate = term.StartDate,
+                        EndDate = term.EndDate,
+                        StartTime = new TimeSpan(8, 0, 0),
+                        EndTime = new TimeSpan(10, 0, 0),
+                        EventType = AcademicCalendarEventType.Academic,
+                        Status = CalendarEventStatus.Published,
+                        Visibility = EventVisibility.All,
+                        CreatedAt = DateTime.UtcNow,
+                        CreatedBy = "Seeder",
+                        IsActive = true
+                    });
+                }
+
+                context.AcademicCalendars.AddRange(newCalendarEvents);
+                await context.SaveChangesAsync();
+                Log($"[Seeder] Created {newCalendarEvents.Count} calendar events linking moaz's lecture groups to academic terms.");
+            });
+
             await context.SaveChangesAsync();
         }
     }
